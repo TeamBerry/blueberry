@@ -5,8 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { BerryboxNavComponent } from './components/berrybox-nav/berrybox-nav.component';
-import { BoxComponent } from './components/box/box.component';
 import { BoxWidgetComponent } from './components/box-widget/box-widget.component';
+import { BoxComponent } from './components/box/box.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { HomeComponent } from './components/home/home.component';
 import { MoodWidgetComponent } from './components/mood-widget/mood-widget.component';
@@ -17,8 +17,8 @@ import { UserComponent } from './components/user/user.component';
   declarations: [
     AppComponent,
     BerryboxNavComponent,
-    BoxComponent,
     BoxWidgetComponent,
+    BoxComponent,
     ChatComponent,
     HomeComponent,
     MoodWidgetComponent,
