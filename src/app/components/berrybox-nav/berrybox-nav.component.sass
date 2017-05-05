@@ -1,9 +1,22 @@
+@import '../../../imports.sass'
+
 .navbar
+    background-color: $main-black
+    color: $white !important //@TODO: overwrite default
     margin-bottom: 0 !important
-    background-color: rgba(41, 41, 41, 0.7)
+    height: 80px
 
 .navbar-brand
+    color: $white
     font-size: 20px
     font-weight: 800
-    color: white
-    padding: 15px
+
+.nav-link
+    color: $white !important
+
+.nav-pp
+    +nav-pp(35px)
+
+.nav-name
+    font-size: 19px
+    font-weight: 700

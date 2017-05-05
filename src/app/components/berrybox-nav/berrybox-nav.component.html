@@ -1,30 +1,35 @@
-<nav class="navbar navbar-static-top navbar-fixed-top">
-    <div class="container">
-        <div class="visible-sm visible-md visible-lg">
-            <div class="navbar-header">
-                <a href="" class="navbar-brand">
-                    <span class="nav-pp">
-                        <img src="" alt="" style="width:inherit;">
-                    </span> Berrybox
+<nav class="navbar sticky-top navbar-toggleable-md navbar-light bg-faded">
+    <a href="home" class="navbar-brand">
+        <span class="nav-pp">
+            <img src="../../../assets/images/berrybox-logo-white.png" alt="" style="width:inherit;">
+        </span> Berrybox
+    </a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="create" class="nav-link"> Create a box</a>
+            </li>
+            <li class="nav-item">
+                <a href="follow" class="nav-link">
+                    Your follows
                 </a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="create" class="nav-element"></a>
-                </li>
-                <li><span class="nav-element separator">|</span></li>
-                <li>
-                    <a href="follow" class="nav-element">
-                        <span class="glyphicon glyphicon-heart"></span> Your follows
+            </li>
+            <li class="nav-item">
+                <div ngbDropdown class="d-inline-block">
+                    <a id="nav-dropdown" ngbDropdownToggle>
+                        <span class="nav-pp"><img src="../../../assets/images/berrybox-staff-logo.png" alt="" style="width:inherit;"></span>
+                        <span class="nav-name">AngelZatch</span>
                     </a>
-                </li>
-                <li class="nav-element-picture">
-                    <span class="nav-pp">
-                    <img src="" alt="" style="width:inherit;" class="nav-pp">
-                  </span>
-                    <span class="nav-name">AngelZatch</span>
-                </li>
-            </ul>
-        </div>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="nav-dropdown">
+                        <a href="friends" class="dropdown-item">Friends</a>
+                        <a href="likes" class="dropdown-item">Likes</a>
+                        <a href="boxes" class="dropdown-item">Boxes</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="settings" class="dropdown-item">Settings</a>
+                        <a href="log-off" class="dropdown-item">Disconnect</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 </nav>

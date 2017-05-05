@@ -1,0 +1,11 @@
+=nav-pp($size)
+    height: $size
+    width: $size
+    border-radius: $size/2
+    overflow: hidden
+
+@mixin font-face($family, $filename, $folder, $style)
+    @font-face
+        font-family: $family
+        src: url('./assets/fonts/#{$folder}/#{$filename}.eot')
+        font-style: $style
