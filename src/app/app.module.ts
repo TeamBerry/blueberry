@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MoodWidgetComponent } from './components/mood-widget/mood-widget.component';
 import { PlayerComponent } from './components/player/player.component';
 import { UserComponent } from './components/user/user.component';
+import { AppRoutingModule } from 'app/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UserComponent } from './components/user/user.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
