@@ -10,9 +10,16 @@ export class BoxService {
 
     list() {
         return this.http.get(environment.apiUrl + '/boxes')
-        .map((response: Response) => {
-            return response.json();
-        });
+            .map((response: Response) => {
+                return response.json();
+            });
+    }
+
+    get(token: string) {
+        return this.http.get(environment.apiUrl + '/boxes/' + token)
+            .map((response: Response) => {
+                return response.json();
+            })
     }
 
 }
