@@ -1,0 +1,27 @@
+@import '../../../imports.scss';
+
+.navbar {
+    background-color: $main-black;
+    color: $white !important; //@TODO: overwrite default
+    margin-bottom: 0 !important;
+    height: 80px;
+}
+
+.navbar-brand {
+    color: $white;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.nav-link {
+    color: $white !important;
+}
+
+.nav-pp {
+    @include nav-pp(35px);
+}
+
+.nav-name {
+    font-size: 19px;
+    font-weight: 700;
+}
