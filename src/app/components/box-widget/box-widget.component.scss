@@ -1,0 +1,23 @@
+@import '../../../imports.scss';
+
+.card{
+    width: 360px;
+    background-color: $main-black;
+    color: white;
+    border-radius: 0 !important;
+
+    .card-img-top{
+        width: inherit;
+        border-radius: inherit;
+    }
+}
+
+.card-name{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.box-pp{
+    @include nav-pp(40px);
+}

@@ -1,8 +1,7 @@
 @import '../../../imports.scss';
 
 .navbar {
-    background-color: $main-black;
-    color: $white !important; //@TODO: overwrite default
+    background-color: $nav-black;
     margin-bottom: 0 !important;
     height: 80px;
     //@include fontFace('geometria', 'Geometria-Light-webfont');
@@ -10,13 +9,12 @@
 }
 
 .navbar-brand {
-    color: $white;
+    color: white;
     font-size: 20px;
     font-weight: 800;
-}
-
-.nav-link {
-    color: $white !important;
+    &:hover{
+        color: $main-yellow;
+    }
 }
 
 .nav-pp {

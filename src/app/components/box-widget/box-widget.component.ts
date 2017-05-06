@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-box-widget',
-  templateUrl: './box-widget.component.html',
-  styleUrls: ['./box-widget.component.scss']
+    selector: 'app-box-widget',
+    templateUrl: './box-widget.component.html',
+    styleUrls: ['./box-widget.component.scss']
 })
 export class BoxWidgetComponent implements OnInit {
 
-  constructor() { }
+    @Input() box;
 
-  ngOnInit() {
-  }
+    constructor() { }
 
+    ngOnInit() {
+    }
 }

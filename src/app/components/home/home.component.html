@@ -1,1 +1,55 @@
 <app-berrybox-nav></app-berrybox-nav>
+
+<div class="main-background">
+    <div class="jumbotron jumbotron-home jumbotron-welcome">
+        <h1 class="display-3">{{title}}</h1>
+        <p class="lead">Welcome to Berrybox, your app to create virtual rooms where you can watch YouTube videos with anyone, at the same
+            time.
+        </p>
+        <a href="" class="btn btn-primary btn-lg">Learn more</a>
+        <a href="create" class="btn btn-primary btn-lg">Get started</a>
+    </div>
+
+    <div class="container-fluid featured home-section">
+        <div class="free-text text-center">
+            <h1 class="display-3">Join a box</h1>
+            <p class="lead">Find other people who watch the videos you like.</p>
+        </div>
+        <div class="card-deck">
+            <app-box-widget *ngFor="let box of boxes; let i = index" [box]="box" (click)="enter(box.token)"></app-box-widget>
+        </div>
+    </div>
+
+    <div class="home-section how-to-container">
+        <h1 class="display-3">Sharing YouTube has never been so easy.</h1>
+        <div class="row">
+            <div class="col">
+                <span class="glyphicon glyphicon-th-large"></span>
+                <h3 class="how-to-point">Create a box</h3>
+                <p>Enter a name and you're set. Share the unique link and your friends will be able to enjoy the playlist with
+                    you.
+                </p>
+            </div>
+
+            <div class="col">
+                <span class="glyphicon glyphicon-play"></span>
+                <h3 class="how-to-point">Build playlists together</h3>
+                <p>Submit a YouTube link and it will be queued. You have total control over the playlist.</p>
+            </div>
+
+            <div class="col">
+                <span class="glyphicon glyphicon-search"></span>
+                <h3 class="how-to-point">Discover</h3>
+                <p>If you feel adventurous, join a box. You might find videos you like.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-section container-fluid social-space">
+        <div class="free-text">
+            <h1 class="display-4">Follow us</h1>
+        </div>
+        <a href="https://www.facebook.com/berryboxapp/" target="_blank" class="btn btn-primary">Facebook</a>
+        <a href="http://twitter.com/BerryboxTV" target="_blank" class="btn btn-primary">Twitter</a>
+    </div>
+</div>

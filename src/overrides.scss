@@ -1,0 +1,73 @@
+/*
+* Place bootstrap overrides here
+*/
+
+.btn{
+    border-radius: 0;
+}
+
+.btn-primary{
+    background-color: $main-purple;
+    border: lighten($main-purple, 5%);
+    color: white;
+
+    &:hover{
+        background-color: darken($main-purple, 10%);
+    }
+
+    &:active{
+        background-color: darken($main-purple, 20%);
+    }
+
+    &:visited{
+        color: white;
+    }
+}
+
+.btn-default{
+    background-color: $main-yellow;
+    border: lighten($main-yellow, 5%);
+    color: white;
+
+    &:hover{
+        background-color: darken($main-yellow, 10%);
+    }
+
+    &:active{
+        background-color: darken($main-yellow, 20%);
+    }
+}
+
+a:not(.btn):not(.navbar-brand):not(.nav-link){
+    color: $main-yellow;
+
+    &:hover{
+        color: darken($main-yellow, 10%);
+        text-decoration: none;
+    }
+
+    &:active {
+        color: darken($main-yellow, 20%);
+        text-decoration: none;
+    }
+
+    &:visited{
+        text-decoration: none;
+    }
+
+    &:focus{
+        text-decoration: none;
+    }
+}
+
+.display-3 {
+    font-family: 'geometria_lightlight';
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: white;
+
+    &:hover{
+        color: $main-yellow;
+    }
+}
