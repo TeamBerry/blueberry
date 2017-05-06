@@ -5,6 +5,8 @@
     color: $white !important; //@TODO: overwrite default
     margin-bottom: 0 !important;
     height: 80px;
+    //@include fontFace('geometria', 'Geometria-Light-webfont');
+    font-family: 'geometria_lightlight';
 }
 
 .navbar-brand {
