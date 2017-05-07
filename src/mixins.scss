@@ -16,3 +16,8 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@mixin lateral-padding($size){
+    padding-left: $size;
+    padding-right: $size;
+}

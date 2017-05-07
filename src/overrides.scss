@@ -71,3 +71,31 @@ a:not(.btn):not(.navbar-brand):not(.nav-link){
         color: $main-yellow;
     }
 }
+
+.nav-pills {
+    .nav-link {
+        border-radius: 0;
+        color: white;
+        &:hover {
+            color: darken($main-yellow, 10%);
+        }
+        &.active {
+            background-color: inherit;
+            border-bottom: 5px solid $main-yellow;
+        }
+    }
+}
+
+#chat-widget-menu > ul {
+    border-bottom: 1px solid lighten($main-black, 10%) !important;
+}
+
+::-webkit-scrollbar{
+    background-color: inherit;
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #14130e;
+    border-radius: 10px;
+}
