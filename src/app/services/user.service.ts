@@ -15,14 +15,14 @@ export class UserService {
         });
     }
 
-    stats(token: string){
+    stats(token: string) {
         return this.http.get(environment.apiUrl + '/user/' + token + '/stats')
         .map((response: Response) => {
             return response.json();
-        })
+        });
     }
 
-    likes(token: string){
+    likes(token: string) {
         return this.http.get(environment.apiUrl + '/user/' + token + '/likes')
         .map((response: Response) => {
             return response.json();

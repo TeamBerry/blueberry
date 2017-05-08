@@ -19,7 +19,7 @@ export class BoxService {
         return this.http.get(environment.apiUrl + '/boxes/' + token)
             .map((response: Response) => {
                 return response.json();
-            })
+            });
     }
 
 }

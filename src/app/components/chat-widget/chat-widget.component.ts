@@ -44,9 +44,9 @@ export class ChatWidgetComponent implements OnInit {
         let res;
         this.hasCommand = false;
         this.hasLink = false;
-        if (this.contents.indexOf('!') === 0){
+        if (this.contents.indexOf('!') === 0) {
             this.hasCommand = true;
-        } else if (res = reg.exec(this.contents) != null){
+        } else if (res = reg.exec(this.contents) != null) {
             this.hasLink = true;
             // console.log(res);
         }
@@ -73,7 +73,7 @@ export class ChatWidgetComponent implements OnInit {
                     console.log(data);
                     this.fetchMessages();
                 }
-            )
+            );
         }
     }
 
