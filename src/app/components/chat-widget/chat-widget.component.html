@@ -6,7 +6,8 @@
                 <p *ngFor="let message of messages; let i = index" class="message">
                     <span class="message-time" title="{{message.time}}">{{message.time | date: 'HH:mm'}}</span>
                     <a href="">
-            <span class="message-author author-linkback">{{message.author}}</span>
+            <span class="message-author author-linkback"
+            [ngStyle]="{'color': '#'+message.author_color}">{{message.author}}</span>
         </a> {{message.contents}}
                     <br>
                 </p>
@@ -49,8 +50,24 @@
         <ng-template ngbTabTitle>Users</ng-template>
         <ng-template ngbTabContent></ng-template>
     </ngb-tab>
-    <ngb-tab>
-        <ng-template ngbTabTitle>Options</ng-template>
-        <ng-template ngbTabContent></ng-template>
-    </ngb-tab>
 </ngb-tabset>
+<div id="footer-chat">
+    <span class="input-mode" *ngIf="!hasLink && !hasCommand"></span>
+    <span class="input-mode" id="span-command-mode" *ngIf="!hasLink && hasCommand">COMMAND MODE</span>
+    <span class="input-mode" id="span-youtube-mode" *ngIf="hasLink && !hasCommand">YOUTUBE MODE</span>
+    <textarea name="" id="" cols="30" rows="2" class="form-control chatbox" [ngClass]="{'chatbox-link': hasLink, 'chatbox-command': hasCommand}"
+        placeholder="Type a message or paste a YouTube link" [(ngModel)]="contents" (keydown.enter)="post($event)" (keyup)="watchContents()"></textarea>
+    <div class="chat-actions row">
+        <!--<div class="col-2">
+            <button class="btn btn-primary">Options</button>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-default">Emotes</button>
+        </div>-->
+        <div class="col-12">
+            <button *ngIf="!hasLink && !hasCommand" class="btn btn-default" style="float:right;" (click)="send()">Send</button>
+            <button *ngIf="hasLink && !hasCommand" class="btn btn-default" id="link-button" style="float:right;">Submit video</button>
+            <button *ngIf="!hasLink && hasCommand" class="btn btn-default" id="command-button" style="float:right;">Use command</button>
+        </div>
+    </div>
+</div>

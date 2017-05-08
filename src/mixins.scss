@@ -21,3 +21,20 @@
     padding-left: $size;
     padding-right: $size;
 }
+
+@mixin override-button($color) {
+    background-color: $color;
+    border: lighten($color, 5%);
+
+    &:hover {
+        background-color: darken($color, 10%);
+    }
+
+    &:active {
+        background-color: darken($color, 20%);
+    }
+
+    &:focus {
+        border: lighten($color, 5%);
+    }
+}

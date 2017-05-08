@@ -30,7 +30,18 @@ export class ChatWidgetComponent implements OnInit {
         }
     }
 
-    watchContents(){}
+    watchContents(){
+        const reg = new RegExp(/(\?v=([a-z0-9\-\_]+)\&?)|(\.be\/([a-z0-9\-\_]+)\&?)/i);
+        let res;
+        this.hasCommand = false;
+        this.hasLink = false;
+        if(this.contents.indexOf('!') === 0){
+            this.hasCommand = true;
+        } else if(res = reg.exec(this.contents) != null){
+            this.hasLink = true;
+            // console.log(res);
+        }
+    }
 
     post(){}
 
