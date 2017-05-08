@@ -39,7 +39,11 @@
             </div>
         </div>
         <div class="box-side-panel" *ngIf="activePanel == 'likes'">
-
+            <div *ngFor="let video of likes; let i = index;">
+                <p class="song-list-line">
+                    <a href="https://youtube.com/watch?v={{video.link}}" title="{{video.video_name}}">{{video.video_name}}</a>
+                </p>
+            </div>
         </div>
         <div class="box-side-panel" *ngIf="activePanel == 'users'">
 
