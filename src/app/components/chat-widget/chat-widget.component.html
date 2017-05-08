@@ -1,58 +1,69 @@
-<ngb-tabset type="pills" class="nav-fill" id="chat-widget-menu">
-    <ngb-tab>
-        <ng-template ngbTabTitle>Chat</ng-template>
-        <ng-template ngbTabContent>
-            <div class="box-side-panel" id="body-chat">
-                <p *ngFor="let message of messages; let i = index" class="message">
-                    <span class="message-time" title="{{message.time}}">{{message.time | date: 'HH:mm'}}</span>
-                    <a href="">
+<div class="row no-gutters">
+    <div class="col-11">
+        <div class="panel-title text-center">{{activePanel}}</div>
+        <div class="box-side-panel" *ngIf="activePanel == 'chat'">
+            <p *ngFor="let message of messages; let i = index" class="message">
+                <span class="message-time" title="{{message.time}}">{{message.time | date: 'HH:mm'}}</span>
+                <a href="">
             <span class="message-author author-linkback"
             [ngStyle]="{'color': '#'+message.author_color}">{{message.author}}</span>
         </a> {{message.contents}}
-                    <br>
-                </p>
-            </div>
-        </ng-template>
-    </ngb-tab>
-    <ngb-tab>
-        <ng-template ngbTabTitle>Queue</ng-template>
-        <ng-template ngbTabContent>
-            <div class="box-side-panel">
-                <div class="playlist-actions row">
-                    <div class="col">
-                        <button class="btn btn-default btn-admin btn-block">Next</button>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-default btn-admin btn-block">Shuffle</button>
-                    </div>
+                <br>
+            </p>
+        </div>
+        <div class="box-side-panel" *ngIf="activePanel == 'queue'">
+            <div class="playlist-actions row">
+                <div class="col">
+                    <button class="btn btn-default btn-admin btn-block">Next</button>
                 </div>
-                <div *ngFor="let video of playlist; let i = index; let first = first">
-                    <p class="list-rank" *ngIf="(video.video_status == 0 || video.video_status == 3) && !first">UPCOMING: </p>
-                    <p class="list-rank rank-playing" *ngIf="video.video_status == 1">NOW PLAYING: </p>
-                    <p class="list-rank" *ngIf="video.video_status == 2 && playlist[i - 1].video_status != 2 && !first">PLAYED: </p>
-                    <div class="row playlist-entry" [ngClass]="{'song-playing': video.video_status == 1,
+                <div class="col">
+                    <button class="btn btn-default btn-admin btn-block">Shuffle</button>
+                </div>
+            </div>
+            <div *ngFor="let video of playlist; let i = index; let first = first">
+                <p class="list-rank" *ngIf="(video.video_status == 0 || video.video_status == 3) && !first">UPCOMING: </p>
+                <p class="list-rank rank-playing" *ngIf="video.video_status == 1">NOW PLAYING: </p>
+                <p class="list-rank" *ngIf="video.video_status == 2 && playlist[i - 1].video_status != 2 && !first">PLAYED: </p>
+                <div class="row playlist-entry" [ngClass]="{'song-playing': video.video_status == 1,
                                 'song-played': video.video_status == 2,
                                 'song-ignored': video.video_status == 3}">
-                        <div class="ngClass" [ngClass]="{'col-9': video.video_status != 1 && video.video_status != 2 && !first,
+                    <div class="ngClass" [ngClass]="{'col-9': video.video_status != 1 && video.video_status != 2 && !first,
                                             'col-10': video.video_status == 0 && first,
                                             'col-11': video.video_status == 2,
                                             'col-12': video.video_status == 1}">
-                            <p class="song-list-line">
-                                <a href="https://youtube.com/watch?v={{video.link}}" title="{{video.video_name}}">{{video.video_name}}</a>
-                            </p>
-                        </div>
+                        <p class="song-list-line">
+                            <a href="https://youtube.com/watch?v={{video.link}}" title="{{video.video_name}}">{{video.video_name}}</a>
+                        </p>
                     </div>
                 </div>
             </div>
-        </ng-template>
-    </ngb-tab>
-    <ngb-tab>
-        <ng-template ngbTabTitle>Users</ng-template>
-        <ng-template ngbTabContent></ng-template>
-    </ngb-tab>
-</ngb-tabset>
-<div id="footer-chat">
-    <span class="input-mode" *ngIf="!hasLink && !hasCommand"></span>
+        </div>
+        <div class="box-side-panel" *ngIf="activePanel == 'likes'">
+
+        </div>
+        <div class="box-side-panel" *ngIf="activePanel == 'users'">
+
+        </div>
+    </div>
+    <div class="col-1" id="chat-widget-menu">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" (click)="showPanel('chat')" [ngClass]="{'active': activePanel == 'chat'}">C</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="showPanel('queue')" [ngClass]="{'active': activePanel == 'queue'}">Q</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="showPanel('likes')" [ngClass]="{'active': activePanel == 'likes'}">L</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="showPanel('users')" [ngClass]="{'active': activePanel == 'users'}">U</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="input-space">
+    <span class="input-mode" id="span-default-mode" *ngIf="!hasLink && !hasCommand">DEFAULT MODE</span>
     <span class="input-mode" id="span-command-mode" *ngIf="!hasLink && hasCommand">COMMAND MODE</span>
     <span class="input-mode" id="span-youtube-mode" *ngIf="hasLink && !hasCommand">YOUTUBE MODE</span>
     <textarea name="" id="" cols="30" rows="2" class="form-control chatbox" [ngClass]="{'chatbox-link': hasLink, 'chatbox-command': hasCommand}"

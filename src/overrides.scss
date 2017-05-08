@@ -86,10 +86,6 @@ a:not(.btn):not(.navbar-brand):not(.nav-link){
     }
 }
 
-#chat-widget-menu > ul {
-    border-bottom: 1px solid lighten($main-black, 10%) !important;
-}
-
 ::-webkit-scrollbar{
     background-color: inherit;
     width: 5px;
@@ -98,4 +94,8 @@ a:not(.btn):not(.navbar-brand):not(.nav-link){
 ::-webkit-scrollbar-thumb{
     background-color: #14130e;
     border-radius: 10px;
+}
+
+::-webkit-input-placeholder {
+    color: white;
 }
