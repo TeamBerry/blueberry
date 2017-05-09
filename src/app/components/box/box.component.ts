@@ -4,7 +4,7 @@ import { UserService } from 'app/services/user.service';
 import { BoxService } from 'app/services/box.service';
 import { PlayerService } from 'app/services/player.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'app-box',
