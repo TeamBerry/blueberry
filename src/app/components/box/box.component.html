@@ -3,7 +3,7 @@
     <div class="box-space row no-gutters">
         <div class="col-9">
             <div id="player">
-                <app-player #player [token]="box.token" (playing)="updateInfo($event)"></app-player>
+                <app-player #player [token]="box.token" (playing)="updateVideoInfo($event)"></app-player>
             </div>
             <div class="row under-player">
                 <div class="col-4 box-info">
@@ -12,13 +12,13 @@
                     <span class="minor-text">Lead by </span>{{box.admin}}
                 </div>
                 <div class="col-8 video-info">
-                    <p class="video-title" title="Metroid ► Varien - Elysian Sky (Metroid Inspired Dubstep Music Video) - GameChops">Metroid ► Varien - Elysian Sky (Metroid Inspired Dubstep Music Video) - GameChops</p>
+                    <p class="video-title" *ngIf="currentVideo" title="{{currentVideo.video_name}}">{{currentVideo.video_name}}</p>
                     <div class="row">
                         <div class="col-6">
                             <span class="minor-text">Submitted by </span>AngelZatch
                         </div>
                         <div class="col-6">
-                            <app-mood-widget></app-mood-widget>
+                            <!--<app-mood-widget></app-mood-widget>-->
                         </div>
                     </div>
                 </div>

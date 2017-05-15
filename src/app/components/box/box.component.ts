@@ -46,4 +46,8 @@ export class BoxComponent implements OnInit {
         )
     }
 
+    updateVideoInfo(data){
+        this.currentVideo = data;
+    }
+
 }
