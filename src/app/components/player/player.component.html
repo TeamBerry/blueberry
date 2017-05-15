@@ -1,3 +1,3 @@
-<p>
-  player works!
-</p>
+<youtube-player [videoId]="link" [height]="height" [width]="width"
+(ready)="onPlayerReady($event)" (change)="onStateChange($event)" class="yt-player"
+></youtube-player>

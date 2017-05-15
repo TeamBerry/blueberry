@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { YoutubePlayerModule } from 'ng2-youtube-player';
 
 import { AppComponent } from './app.component';
 import { BerryboxNavComponent } from './components/berrybox-nav/berrybox-nav.component';
@@ -34,6 +35,7 @@ import { ChatWidgetComponent } from './components/chat-widget/chat-widget.compon
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    YoutubePlayerModule,
     NgbModule.forRoot()
   ],
   providers: [],
