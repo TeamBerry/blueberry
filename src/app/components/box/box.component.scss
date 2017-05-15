@@ -1,13 +1,46 @@
 @import '../../../imports.scss';
-
 .box-space {
     height: calc(100vh - 80px);
     overflow: hidden;
 }
 
-#room-chat{
+#room-chat {
     z-index: 3;
     padding-right: 0;
     background-color: $main-black;
     color: white;
+}
+
+#player {
+    height: 913px;
+}
+
+.under-player {
+    color: white;
+    padding: 0 20px;
+    white-space: nowrap;
+}
+
+.box-info:after {
+    content: '';
+    width: 1px;
+    position: absolute;
+    height: 70%;
+    top: 15%;
+    right: 0;
+    background-color: $main-yellow;
+}
+
+.box-title,
+.video-title {
+    font-family: geometria_lightlight;
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.minor-text {
+    color: #555;
 }
