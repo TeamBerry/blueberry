@@ -33,14 +33,12 @@ export class BoxComponent implements OnInit {
         private router: Router
     ) {
         this.token = route.snapshot.paramMap.get('token');
-        console.log(this.token);
     }
 
     ngOnInit() {
         this.boxService.get(this.token).subscribe(
             data => {
                 this.box = data;
-                console.log(this.box);
                 this.loading = false;
             }
         )
@@ -49,5 +47,4 @@ export class BoxComponent implements OnInit {
     updateVideoInfo(data){
         this.currentVideo = data;
     }
-
 }

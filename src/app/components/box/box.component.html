@@ -11,11 +11,11 @@
                     <p class="box-title" title="{{box.title}}">{{box.title}}</p>
                     <span class="minor-text">Lead by </span>{{box.admin}}
                 </div>
-                <div class="col-8 video-info">
-                    <p class="video-title" *ngIf="currentVideo" title="{{currentVideo.video_name}}">{{currentVideo.video_name}}</p>
+                <div class="col-8 video-info" *ngIf="currentVideo">
+                    <p class="video-title" title="{{currentVideo.video_name}}">{{currentVideo.video_name}}</p>
                     <div class="row">
                         <div class="col-6">
-                            <span class="minor-text">Submitted by </span>AngelZatch
+                            <span class="minor-text">Submitted by </span>{{currentVideo.user_pseudo}}
                         </div>
                         <div class="col-6">
                             <!--<app-mood-widget></app-mood-widget>-->
