@@ -2,10 +2,8 @@
 
 .box-side-panel {
     overflow-y: scroll;
-    white-space: nowrap;
     overflow-x: hidden;
     height: calc(100vh - (80px + 45px + 148px));
-    padding: 0 10px;
 }
 
 .btn {
@@ -36,6 +34,15 @@
 }
 
 // Chat
+.message {
+    margin-bottom: 0;
+    padding: 4px 10px;
+}
+
+.message:nth-child(even){
+    background-color: darken($main-black, 5%);
+}
+
 .message-time {
     color: $system-color;
 }
