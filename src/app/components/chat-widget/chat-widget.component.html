@@ -11,7 +11,7 @@
                 <br>
             </p>
         </div>
-        <div class="box-side-panel" *ngIf="activePanel == 'queue'">
+        <div class="box-side-panel" id="queue-panel" *ngIf="activePanel == 'queue'">
             <div class="playlist-actions row">
                 <div class="col">
                     <button class="btn btn-default btn-admin btn-block">Next</button>
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="box-side-panel" *ngIf="activePanel == 'likes'">
+        <div class="box-side-panel" id="like-panel" *ngIf="activePanel == 'likes'">
             <div *ngFor="let video of likes; let i = index;">
                 <p class="song-list-line">
                     <a href="https://youtube.com/watch?v={{video.link}}" title="{{video.video_name}}">{{video.video_name}}</a>
