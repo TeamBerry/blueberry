@@ -6,3 +6,19 @@ body{
     background-color: black;
 }
     
+svg.berrybox-svg {
+    height: 1em;
+    &:hover {
+        .berrybox-path {
+            fill: $main-yellow;
+        }
+    }
+    .berrybox-path {
+        fill: white;
+    }
+}
+
+button > svg {
+    height: 0.7em;
+    fill: white;
+}

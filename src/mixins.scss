@@ -17,9 +17,14 @@
     font-style: normal;
 }
 
-@mixin lateral-padding($size){
+@mixin padding-horizontal($size){
     padding-left: $size;
     padding-right: $size;
+}
+
+@mixin padding-vertical($size){
+    padding-top: $size;
+    padding-bottom: $size;
 }
 
 @mixin override-button($color) {

@@ -20,16 +20,25 @@
 #chat-widget-menu > ul {
     border-left: 1px solid lighten($main-black, 10%) !important;
     height: 100%;
-    cursor: pointer;
 
-    .nav-link {
+    .nav-item {
+        cursor: pointer;
         &:hover {
             color: darken($main-yellow, 10%);
         }
         &.active {
             background-color: inherit;
             border-left: 2px solid $main-yellow;
+            .nav-link {
+                margin-left: -2px;
+            }
         }
+    }
+
+    .nav-link {
+        @include padding-horizontal(0);
+        margin: auto;
+        text-align: center;
     }
 }
 
@@ -48,8 +57,6 @@
 }
 
 .message-author {
-    font-weight: 700;
-
     &:hover {
         text-decoration: underline;
     }

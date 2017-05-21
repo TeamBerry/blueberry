@@ -51,17 +51,40 @@
     </div>
     <div class="col-1" id="chat-widget-menu">
         <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link" (click)="showPanel('chat')" [ngClass]="{'active': activePanel == 'chat'}">C</a>
+            <li class="nav-item" [ngClass]="{'active': activePanel == 'chat'}">
+                <a class="nav-link" (click)="showPanel('chat')" title="Chat">
+                    <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 434.16 360.68">
+                        <path class="berrybox-path" d="M434.16 0H0v283.32h68.05l-34.87 77.36 171.63-77.36h229.35V0" />
+                    </svg>
+                </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" (click)="showPanel('queue')" [ngClass]="{'active': activePanel == 'queue'}">Q</a>
+            <li class="nav-item" [ngClass]="{'active': activePanel == 'queue'}">
+                <a class="nav-link" (click)="showPanel('queue')" title="Queue">
+                    <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 475.55 428.13">
+                        <path class="berrybox-path" d="M475.56 307.09L293.21 201.81v210.56l182.35-105.28M0 0h456.59v56.04H0zM0 93.02h456.59v56.04H0zM0 186.04h269.23v56.04H0zM0 279.07h269.23v56.04H0zM0 372.09h269.23v56.04H0z"
+                        />
+                    </svg>
+                </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" (click)="showPanel('likes')" [ngClass]="{'active': activePanel == 'likes'}">L</a>
+            <li class="nav-item" [ngClass]="{'active': activePanel == 'likes'}">
+                <a class="nav-link" (click)="showPanel('likes')" title="Likes">
+                    <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 456.59 436.62">
+                        <path class="berrybox-path" d="M0 0h456.59v56.04H0zM0 93.02h456.59v56.04H0zM0 186.04h184.3v56.04H0zM0 279.07h184.3v56.04H0zM0 372.09h184.3v56.04H0zM456.6 259.5c0 58.37-86.26 143.34-118 172.62a17 17 0 0 1-23 0c-31.72-29.27-118-114.24-118-172.62 0-70.48 73.33-119.6 127.14-39.64a3 3 0 0 0 4.9.12c61.28-82.58 126.96-31.03 126.96 39.52z"
+                        />
+                    </svg>
+                </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" (click)="showPanel('users')" [ngClass]="{'active': activePanel == 'users'}">U</a>
+            <li class="nav-item" [ngClass]="{'active': activePanel == 'users'}">
+                <a class="nav-link" (click)="showPanel('users')" title="Users">
+                    <svg class="berrybox-svg" style="height: 1.5em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 334.45 460">
+                        <path class="berrybox-path" d="M271.41 190.25a63 63 0 0 0-63 63v190.17h126.04V253.28a63 63 0 0 0-63.04-63.03z" />
+                        <circle class="berrybox-path" cx="268.81" cy="129.3" r="52.62" />
+                        <path class="berrybox-path" d="M66.15 185.75A66.15 66.15 0 0 0 0 251.9v199.52h132.29V251.89a66.15 66.15 0 0 0-66.14-66.14z" />
+                        <circle class="berrybox-path" cx="63.41" cy="121.79" r="55.21" />
+                        <path class="berrybox-path" d="M170.23 145.13a78.39 78.39 0 0 0-78.39 78.39V460h156.78V223.52a78.39 78.39 0 0 0-78.39-78.39z" />
+                        <circle class="berrybox-path" cx="166.98" cy="65.44" r="65.44" />
+                    </svg>
+                </a>
             </li>
         </ul>
     </div>
@@ -80,7 +103,12 @@
             <button class="btn btn-default">Emotes</button>
         </div>-->
         <div class="col-12">
-            <button *ngIf="!hasLink && !hasCommand" class="btn btn-default" style="float:right;" (click)="send()">Send</button>
+            <button *ngIf="!hasLink && !hasCommand" class="btn btn-default" style="float:right;" (click)="send()">
+                <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 434.16 360.68">
+                        <path d="M434.16 0H0v283.32h68.05l-34.87 77.36 171.63-77.36h229.35V0" />
+                    </svg>
+                Send message
+                </button>
             <button *ngIf="hasLink && !hasCommand" class="btn btn-default" id="link-button" style="float:right;">Submit video</button>
             <button *ngIf="!hasLink && hasCommand" class="btn btn-default" id="command-button" style="float:right;">Use command</button>
         </div>
