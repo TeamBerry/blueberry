@@ -170,8 +170,15 @@ export class ChatWidgetComponent implements OnInit {
         );
     }
 
-    ignoreVideo(video: any){
+    banVideo(video: any){
         video.video_status = 3;
+        this.playerService.update(this.token, video).subscribe(
+            data => this.fetchPlaylist()
+        );
+    }
+
+    unbanVideo(video: any){
+        video.video_status = 0;
         this.playerService.update(this.token, video).subscribe(
             data => this.fetchPlaylist()
         );
