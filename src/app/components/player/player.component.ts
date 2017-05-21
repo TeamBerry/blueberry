@@ -23,42 +23,53 @@ export class PlayerComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        if(this.token !== undefined){
+        if  (this.token !== undefined) {
             this.playerService.current(this.token).subscribe(
                 data => {
                     this.video = data;
                     this.link = data.link;
                 }
-            )
+            );
         }
     }
 
-    onStateChange(event){
+    onStateChange(event) {
         this.playerEvent = event.data;
-        if(this.playerEvent === 0){
+        if (this.playerEvent === 0) {
             this.next();
         }
     }
 
-    onPlayerReady(player){
+    onPlayerReady(player) {
         this.player = player;
         this.playVideo();
     }
 
-    playVideo(){
+    playVideo() {
         this.player.loadVideoById(this.link);
         this.playing.emit(this.video);
     }
 
-    pauseVideo(){
-
+    pauseVideo() {
+        this.player.pauseVideo();
     }
 
-    next(){
-
+    next() {
+        this.playerService.next(this.token).subscribe(
+            data => {
+                if (data !== false) {
+                    this.video = data;
+                    this.link = data.link;
+                    this.playVideo();
+                } else {
+                    this.video = null;
+                    this.playing.emit(this.video);
+                }
+            }
+        )
     }
 
-    shuffle(){
+    shuffle() {
 
     }
 

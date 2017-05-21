@@ -89,12 +89,12 @@ export class ChatWidgetComponent implements OnInit {
             data => {
                 this.fetchPlaylist();
             }
-        )
+        );
     }
 
     handleCommands(contents) {
         const command = contents.substr(1).split(' ');
-        switch(command[0]){
+        switch (command[0]){
             case 'skip':
             case 'next':
                 this.emitSkip();
@@ -155,6 +155,18 @@ export class ChatWidgetComponent implements OnInit {
             data => {
                 this.fetchPlaylist();
             }
+        );
+    }
+
+    swap(video: any, direction: string) {
+        const action = {
+            room_history_id: video.room_history_id,
+            playlist_order: video.playlist_order,
+            direction: direction
+        };
+
+        this.playerService.swap(this.token, action).subscribe(
+            data => this.fetchPlaylist()
         );
     }
 

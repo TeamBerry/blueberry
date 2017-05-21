@@ -35,6 +35,24 @@
                             <a href="https://youtube.com/watch?v={{video.link}}" title="{{video.video_name}}">{{video.video_name}}</a>
                         </p>
                     </div>
+                    <div class="col-1" *ngIf="(video.video_status == 0 || video.video_status == 3) && !first" title="Play later" (click)="swap(video, 'up')">
+                        <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 448.37">
+                            <polygon points="145 0 0 201.87 290 201.87 145 0" />
+                            <rect width="307.91" height="121.43" x="96.05" y="252.66" transform="rotate(-90 188.02 356.39)" />
+                        </svg>
+                    </div>
+                    <div class="col-1" *ngIf="(video.video_status == 0 || video.video_status == 3) && playlist[i + 1].video_status != 1" title="Play sooner" (click)="swap(video, 'down')">
+                        <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 448.37">
+                            <polygon points="145 448.37 290 246.5 0 246.5 145 448.37" />
+                            <rect width="307.91" height="121.43" x="93.05" y="127.2" transform="rotate(90 212.98 119.93)" />
+                        </svg>
+                    </div>
+                    <div class="col-1" *ngIf="(video.video_status == 0 || video.video_status == 3) && playlist[i + 1].video_status == 1" title="Play now" (click)="emitSkip()">
+                        <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 448.37">
+                            <polygon points="145 448.37 290 246.5 0 246.5 145 448.37" />
+                            <rect width="307.91" height="121.43" x="93.05" y="127.2" transform="rotate(90 212.98 119.93)" />
+                        </svg>
+                    </div>
                     <div class="col-1" *ngIf="video.video_status == 2" title="Queue again">
                         <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.98 202.99" (click)="replayVideo(video.link)">
                             <rect width="64.36" height="121.43" y="40.78" />
