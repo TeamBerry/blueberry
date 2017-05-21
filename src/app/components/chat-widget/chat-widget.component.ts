@@ -48,7 +48,6 @@ export class ChatWidgetComponent implements OnInit {
             this.hasCommand = true;
         } else if (res = reg.exec(this.contents) != null) {
             this.hasLink = true;
-            // console.log(res);
         }
     }
 
@@ -77,9 +76,39 @@ export class ChatWidgetComponent implements OnInit {
         }
     }
 
-    handleLinks(contents) {}
+    handleLinks(contents) {
+        const reg = new RegExp(/(\?v=([a-z0-9\-\_]+)\&?)|(\.be\/([a-z0-9\-\_]+)\&?)/i);
+        const res = reg.exec(contents);
 
-    handleCommands(contents) {}
+        const video = {
+            link: (res[2]) ? res[2] : res[4],
+            author: 'D1JU70'
+        };
+
+        this.playerService.submit(this.token, video).subscribe(
+            data => {
+                this.fetchPlaylist();
+            }
+        )
+    }
+
+    handleCommands(contents) {
+        const command = contents.substr(1).split(' ');
+        switch(command[0]){
+            case 'skip':
+            case 'next':
+                this.emitSkip();
+                break;
+
+            case 'shuffle':
+            case 'random':
+                this.shuffle();
+                break;
+
+            default:
+                break;
+        }
+    }
 
     fetchMessages() {
         this.chatService.list(this.token).subscribe(
@@ -103,6 +132,18 @@ export class ChatWidgetComponent implements OnInit {
                 this.likes = data;
             }
         );
+    }
+
+    emitSkip(){
+        this.skipEvent.emit();
+    }
+
+    shuffle(){
+        this.playerService.shuffle(this.token).subscribe(
+            data => {
+                this.fetchPlaylist();
+            }
+        )
     }
 
 }
