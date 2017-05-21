@@ -22,3 +22,13 @@ button > svg {
     height: 0.7em;
     fill: white;
 }
+
+.berrybox-svg-icon {
+    height: 0.7em;
+    cursor: pointer;
+    fill: white;
+
+    &:hover {
+        fill: $main-yellow;
+    }
+}

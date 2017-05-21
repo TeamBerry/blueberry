@@ -78,9 +78,9 @@
 }
 
 .song-list-line {
-    text-overflow: ellipsis;
-    overflow: hidden;
     margin-bottom: 0;
+    @include one-line-text();
+    padding-right: 10px;
 }
 
 // Input

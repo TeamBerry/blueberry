@@ -43,3 +43,9 @@
         border: lighten($color, 5%);
     }
 }
+
+@mixin one-line-text(){
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

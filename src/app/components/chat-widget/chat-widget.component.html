@@ -21,10 +21,10 @@
                 </div>
             </div>
             <div *ngFor="let video of playlist; let i = index; let first = first">
-                <p class="list-rank" *ngIf="(video.video_status == 0 || video.video_status == 3) && !first">UPCOMING: </p>
+                <p class="list-rank" *ngIf="(video.video_status == 0 || video.video_status == 3) && first">UPCOMING: </p>
                 <p class="list-rank rank-playing" *ngIf="video.video_status == 1">NOW PLAYING: </p>
                 <p class="list-rank" *ngIf="video.video_status == 2 && playlist[i - 1].video_status != 2 && !first">PLAYED: </p>
-                <div class="row playlist-entry" [ngClass]="{'song-playing': video.video_status == 1,
+                <div class="row playlist-entry no-gutters" [ngClass]="{'song-playing': video.video_status == 1,
                                 'song-played': video.video_status == 2,
                                 'song-ignored': video.video_status == 3}">
                     <div class="ngClass" [ngClass]="{'col-9': video.video_status != 1 && video.video_status != 2 && !first,
@@ -34,6 +34,14 @@
                         <p class="song-list-line">
                             <a href="https://youtube.com/watch?v={{video.link}}" title="{{video.video_name}}">{{video.video_name}}</a>
                         </p>
+                    </div>
+                    <div class="col-1" *ngIf="video.video_status == 2" title="Queue again">
+                        <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.98 202.99" (click)="replayVideo(video.link)">
+                            <rect width="64.36" height="121.43" y="40.78" />
+                            <polygon points="457.98 101.49 316.68 0 316.68 202.99 457.98 101.49" />
+                            <rect width="64.36" height="121.43" x="81.45" y="40.78" />
+                            <rect width="168.34" height="121.43" x="162.89" y="40.78" />
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -79,9 +87,11 @@
                     <svg class="berrybox-svg" style="height: 1.5em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 334.45 460">
                         <path class="berrybox-path" d="M271.41 190.25a63 63 0 0 0-63 63v190.17h126.04V253.28a63 63 0 0 0-63.04-63.03z" />
                         <circle class="berrybox-path" cx="268.81" cy="129.3" r="52.62" />
-                        <path class="berrybox-path" d="M66.15 185.75A66.15 66.15 0 0 0 0 251.9v199.52h132.29V251.89a66.15 66.15 0 0 0-66.14-66.14z" />
+                        <path class="berrybox-path" d="M66.15 185.75A66.15 66.15 0 0 0 0 251.9v199.52h132.29V251.89a66.15 66.15 0 0 0-66.14-66.14z"
+                        />
                         <circle class="berrybox-path" cx="63.41" cy="121.79" r="55.21" />
-                        <path class="berrybox-path" d="M170.23 145.13a78.39 78.39 0 0 0-78.39 78.39V460h156.78V223.52a78.39 78.39 0 0 0-78.39-78.39z" />
+                        <path class="berrybox-path" d="M170.23 145.13a78.39 78.39 0 0 0-78.39 78.39V460h156.78V223.52a78.39 78.39 0 0 0-78.39-78.39z"
+                        />
                         <circle class="berrybox-path" cx="166.98" cy="65.44" r="65.44" />
                     </svg>
                 </a>
@@ -109,7 +119,14 @@
                     </svg>
                 Send message
                 </button>
-            <button *ngIf="hasLink && !hasCommand" class="btn btn-default" id="link-button" style="float:right;">Submit video</button>
+            <button *ngIf="hasLink && !hasCommand" class="btn btn-default" id="link-button" style="float:right;">
+                <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.98 202.99">
+<rect width="64.36" height="121.43" y="40.78""/>
+<polygon"/>
+<rect width="64.36" height="121.43" x="81.45" y="40.78""/>
+<rect width="168.34" height="121.43" x="162.89" y="40.78""/>
+</svg>
+                Submit video</button>
             <button *ngIf="!hasLink && hasCommand" class="btn btn-default" id="command-button" style="float:right;">Use command</button>
         </div>
     </div>

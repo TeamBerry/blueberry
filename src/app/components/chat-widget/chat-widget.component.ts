@@ -134,16 +134,28 @@ export class ChatWidgetComponent implements OnInit {
         );
     }
 
-    emitSkip(){
+    replayVideo(link: string) {
+        const video = {
+            link: link,
+            author: 'D1JU70'
+        };
+        this.playerService.submit(this.token, video).subscribe(
+            data => {
+                this.fetchPlaylist();
+            }
+        );
+    }
+
+    emitSkip() {
         this.skipEvent.emit();
     }
 
-    shuffle(){
+    shuffle() {
         this.playerService.shuffle(this.token).subscribe(
             data => {
                 this.fetchPlaylist();
             }
-        )
+        );
     }
 
 }
