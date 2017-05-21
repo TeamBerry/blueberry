@@ -36,7 +36,7 @@ export class PlayerService {
     }
 
     update(boxToken: string, video){
-        return this.http.put(environment.apiUrl + '/box/' + boxToken + '/playlist' + video.room_history_id, video)
+        return this.http.put(environment.apiUrl + '/box/' + boxToken + '/playlist/' + video.room_history_id, video)
         .map((response: Response) => {
             return response.json();
         });

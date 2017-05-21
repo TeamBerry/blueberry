@@ -77,6 +77,18 @@
     padding: 5px 0;
 }
 
+.song-playing {
+    font-weight: 800;
+}
+
+.song-played {
+
+}
+
+.song-ignored > div > p > a {
+    color: #d953af;
+}
+
 .song-list-line {
     margin-bottom: 0;
     @include one-line-text();

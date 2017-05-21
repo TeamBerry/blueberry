@@ -28,8 +28,10 @@ button > svg {
     width: 1.3em;
     cursor: pointer;
     fill: white;
+    stroke: white;
 
     &:hover {
         fill: $main-yellow;
+        stroke: $main-yellow;
     }
 }

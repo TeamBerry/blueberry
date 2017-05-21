@@ -66,11 +66,6 @@ export class PlayerComponent implements OnInit {
                     this.playing.emit(this.video);
                 }
             }
-        )
+        );
     }
-
-    shuffle() {
-
-    }
-
 }
