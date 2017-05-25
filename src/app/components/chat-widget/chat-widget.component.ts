@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked } from '@angular/core';
 import { ChatService } from 'app/services/chat.service';
 import { BoxService } from 'app/services/box.service';
 import { PlayerService } from 'app/services/player.service';
@@ -10,7 +10,7 @@ import { UserService } from 'app/services/user.service';
     styleUrls: ['./chat-widget.component.scss'],
     providers: [ChatService, BoxService, PlayerService, UserService]
 })
-export class ChatWidgetComponent implements OnInit {
+export class ChatWidgetComponent implements OnInit, AfterViewChecked {
     @Input() token: string;
     @Output() skipEvent = new EventEmitter();
     contents = '';
@@ -33,6 +33,10 @@ export class ChatWidgetComponent implements OnInit {
             this.fetchPlaylist();
             this.fetchLikes();
         }
+    }
+
+    ngAfterViewChecked() {
+        this.adjustChat();
     }
 
     showPanel(panelToken: string) {
@@ -94,7 +98,7 @@ export class ChatWidgetComponent implements OnInit {
 
     handleCommands(contents) {
         const command = contents.substr(1).split(' ');
-        switch (command[0]){
+        switch (command[0]) {
             case 'skip':
             case 'next':
                 this.emitSkip();
@@ -170,17 +174,22 @@ export class ChatWidgetComponent implements OnInit {
         );
     }
 
-    banVideo(video: any){
+    banVideo(video: any) {
         video.video_status = 3;
         this.playerService.update(this.token, video).subscribe(
             data => this.fetchPlaylist()
         );
     }
 
-    unbanVideo(video: any){
+    unbanVideo(video: any) {
         video.video_status = 0;
         this.playerService.update(this.token, video).subscribe(
             data => this.fetchPlaylist()
         );
+    }
+
+    adjustChat() {
+        const chatSpace = document.getElementById('chat-space');
+        chatSpace.scrollTop = chatSpace.scrollHeight;
     }
 }

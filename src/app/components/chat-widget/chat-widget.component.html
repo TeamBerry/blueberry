@@ -1,7 +1,7 @@
 <div class="row no-gutters">
     <div class="col-11">
         <div class="panel-title text-center">{{activePanel}}</div>
-        <div class="box-side-panel" *ngIf="activePanel == 'chat'">
+        <div class="box-side-panel" id="chat-space" *ngIf="activePanel == 'chat'">
             <p *ngFor="let message of messages; let i = index" class="message">
                 <span class="message-time" title="{{message.time}}">{{message.time | date: 'HH:mm'}}</span>
                 <a href="">
