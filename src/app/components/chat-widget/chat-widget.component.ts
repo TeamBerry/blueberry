@@ -134,7 +134,7 @@ export class ChatWidgetComponent implements OnInit {
         );
     }
 
-    replayVideo(link: string) {
+    quickQueue(link: string) {
         const video = {
             link: link,
             author: 'D1JU70'
