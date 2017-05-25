@@ -36,7 +36,9 @@ export class ChatWidgetComponent implements OnInit, AfterViewChecked {
     }
 
     ngAfterViewChecked() {
-        this.adjustChat();
+        if (this.activePanel === 'chat') {
+            this.adjustChat();
+        }
     }
 
     showPanel(panelToken: string) {
