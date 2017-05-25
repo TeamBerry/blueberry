@@ -1,3 +1,9 @@
-<p>
-  mood-widget works!
-</p>
+<div class="col" *ngIf="!currentVote">
+    <button class="btn btn-default" (click)="addVote()">Like</button>
+</div>
+<div class="col" *ngIf="currentVote">
+    <button class="btn btn-default" (click)="removeVote(currentVote.vote_id)">Unlike</button>
+</div>
+<div class="col">
+    <button class="btn btn-primary" (click)="requestSkip()">Request skip</button>
+</div>
