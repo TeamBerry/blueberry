@@ -14,7 +14,13 @@
         <div class="box-side-panel" id="queue-panel" *ngIf="activePanel == 'queue'">
             <div class="playlist-actions row">
                 <div class="col">
-                    <button class="btn btn-default btn-admin btn-block">Next</button>
+                    <button class="btn btn-default btn-admin btn-block">
+                        <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88" (click)="requestSkip()">
+                            <polygon points="334.18 192.94 0 0 0 385.88 334.18 192.94" />
+                            <rect width="68.21" height="385.88" x="334.18" />
+                        </svg>
+                        Next
+                    </button>
                 </div>
                 <div class="col">
                     <button class="btn btn-default btn-admin btn-block">Shuffle</button>
@@ -118,8 +124,8 @@
             </li>
             <li class="nav-item" [ngClass]="{'active': activePanel == 'likes'}">
                 <a class="nav-link" (click)="showPanel('likes')" title="Likes">
-                    <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 456.59 436.62">
-                        <path class="berrybox-path" d="M0 0h456.59v56.04H0zM0 93.02h456.59v56.04H0zM0 186.04h184.3v56.04H0zM0 279.07h184.3v56.04H0zM0 372.09h184.3v56.04H0zM456.6 259.5c0 58.37-86.26 143.34-118 172.62a17 17 0 0 1-23 0c-31.72-29.27-118-114.24-118-172.62 0-70.48 73.33-119.6 127.14-39.64a3 3 0 0 0 4.9.12c61.28-82.58 126.96-31.03 126.96 39.52z"
+                    <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408.09">
+                        <path class="berrybox-path" d="M408 129.05c0 92-135.88 225.81-185.85 271.92a26.76 26.76 0 0 1-36.3 0C135.88 354.89 0 221.05 0 129.05c0-111 115.51-188.38 200.28-62.41a4.73 4.73 0 0 0 7.72.18c96.55-130.09 200-48.87 200 62.23z"
                         />
                     </svg>
                 </a>
@@ -160,7 +166,7 @@
                         <path d="M434.16 0H0v283.32h68.05l-34.87 77.36 171.63-77.36h229.35V0" />
                     </svg>
                 Send message
-                </button>
+            </button>
             <button *ngIf="hasLink && !hasCommand" class="btn btn-default" id="link-button" style="float:right;" (click)="post($event)">
                 <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.98 202.99">
 <rect width="64.36" height="121.43" y="40.78""/>

@@ -14,11 +14,11 @@
                 <div class="col-8 video-info" *ngIf="currentVideo">
                     <p class="video-title" title="{{currentVideo.video_name}}">{{currentVideo.video_name}}</p>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-9">
                             <span class="minor-text">Submitted by </span>{{currentVideo.user_pseudo}}
                         </div>
-                        <div class="col-6">
-                            <app-mood-widget [currentVideo]="currentVideo.video_index" class="row"></app-mood-widget>
+                        <div class="col-3">
+                            <app-mood-widget [currentVideo]="currentVideo.video_index" class="row mood-widget"></app-mood-widget>
                         </div>
                     </div>
                 </div>
