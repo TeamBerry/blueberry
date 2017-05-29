@@ -14,6 +14,7 @@ import { MoodWidgetComponent } from './components/mood-widget/mood-widget.compon
 import { PlayerComponent } from './components/player/player.component';
 import { UserComponent } from './components/user/user.component';
 import { AppRoutingModule } from 'app/app-routing.module';
+import { BoxFormComponent } from './components/box-form/box-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AppRoutingModule } from 'app/app-routing.module';
     HomeComponent,
     MoodWidgetComponent,
     PlayerComponent,
-    UserComponent
+    UserComponent,
+    BoxFormComponent
   ],
   imports: [
     BrowserModule,
