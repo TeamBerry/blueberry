@@ -1,3 +1,14 @@
-<p>
-  box-form works!
-</p>
+<form novalidate [formGroup]="boxForm">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" formControlName="title">
+    </div>
+
+    <div class="form-group">
+        <label for="lang">Spoken language</label>
+        <select name="lang" id="" class="form-control" formControlName="language">
+                <option value="">Select a language</option>
+                <option *ngFor="let lang of langs" [value]="lang">{{ lang }}</option>
+            </select>
+    </div>
+</form>
