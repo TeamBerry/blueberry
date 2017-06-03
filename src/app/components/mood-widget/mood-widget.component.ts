@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { MoodService } from 'app/services/mood.service';
 
 @Component({
@@ -16,10 +16,12 @@ export class MoodWidgetComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        console.log('Init mood widget... Input is ', this.currentVideo);
         this.checkVote();
     }
 
     checkVote() {
+        console.log('checking your vote for this video...');
         const vote = {
             user_token: 'D1JU70',
             video_index: this.currentVideo
@@ -27,6 +29,7 @@ export class MoodWidgetComponent implements OnInit {
         this.moodService.checkVote(vote).subscribe(
             response => {
                 this.currentVote = response;
+                console.log("vote is ", response);
             }
         );
     }

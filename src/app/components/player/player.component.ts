@@ -23,14 +23,7 @@ export class PlayerComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        if  (this.token !== undefined) {
-            this.playerService.current(this.token).subscribe(
-                data => {
-                    this.video = data;
-                    this.link = data.link;
-                }
-            );
-        }
+        console.log("Init player...");
     }
 
     onStateChange(event) {
@@ -42,7 +35,16 @@ export class PlayerComponent implements OnInit {
 
     onPlayerReady(player) {
         this.player = player;
-        this.playVideo();
+        if (this.token !== undefined) {
+            this.playerService.current(this.token).subscribe(
+                data => {
+                    this.video = data;
+                    this.link = data.link;
+                    console.log("Video found. ", this.video);
+                    this.playVideo();
+                }
+            );
+        }
     }
 
     playVideo() {
