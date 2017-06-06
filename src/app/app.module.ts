@@ -27,7 +27,7 @@ import { BoxFormComponent } from './components/box-form/box-form.component';
     MoodWidgetComponent,
     PlayerComponent,
     UserComponent,
-    ChatWidgetComponent
+    ChatWidgetComponent,
     BoxFormComponent
   ],
   imports: [
