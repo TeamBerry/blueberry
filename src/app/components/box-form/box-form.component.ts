@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Box } from './../../box';
+import { BoxService } from './../../services/box.service';
 
 @Component({
     selector: 'app-box-form',
@@ -8,11 +10,14 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class BoxFormComponent implements OnInit {
     boxForm: FormGroup;
-    langs: string[] = [
+    public langs: string[] = [
         'English',
         'Français',
         '日本語',
     ];
+    submitted = false;
+
+    model = new Box('JFDDFAZ21SD8', 'Test box', '-', this.langs[0]);
 
     constructor() { }
 
@@ -24,7 +29,11 @@ export class BoxFormComponent implements OnInit {
     }
 
     onSubmit() {
+        this.submitted = true;
+    }
 
+    get diagnostic() {
+        return JSON.stringify(this.model);
     }
 
 }
