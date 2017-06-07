@@ -1,14 +1,21 @@
-<form [formGroup]="boxForm">
+<form (ngSubmit)="onSubmit()" #boxForm="ngForm">
     <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" formControlName="title">
+        <label for="name">Title</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.name">
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10" [(ngModel)]="model.description"></textarea>
     </div>
 
     <div class="form-group">
         <label for="lang">Spoken language</label>
-        <select name="lang" id="" class="form-control" formControlName="language">
+        <select name="lang" id="lang" class="form-control" [(ngModel)]="model.lang">
                 <option value="">Select a language</option>
                 <option *ngFor="let lang of langs" [value]="lang">{{ lang }}</option>
             </select>
     </div>
+
+    <button type="submit" class="btn btn-default">Create</button>
 </form>

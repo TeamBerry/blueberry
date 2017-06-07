@@ -17,23 +17,14 @@ export class BoxFormComponent implements OnInit {
     ];
     submitted = false;
 
-    model = new Box('JFDDFAZ21SD8', 'Test box', '-', this.langs[0]);
+    model = new Box('', '', '', this.langs[0]);
 
     constructor() { }
 
     ngOnInit() {
-        this.boxForm = new FormGroup({
-            title: new FormControl(),
-            language: new FormControl()
-        });
     }
 
     onSubmit() {
         this.submitted = true;
     }
-
-    get diagnostic() {
-        return JSON.stringify(this.model);
-    }
-
 }
