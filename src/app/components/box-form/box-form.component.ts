@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Box } from './../../box';
 import { BoxService } from './../../services/box.service';
+
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-box-form',
@@ -9,6 +11,7 @@ import { BoxService } from './../../services/box.service';
     styleUrls: ['./box-form.component.scss']
 })
 export class BoxFormComponent implements OnInit {
+    @Input() title;
     boxForm: FormGroup;
     public langs: string[] = [
         'English',
@@ -19,7 +22,7 @@ export class BoxFormComponent implements OnInit {
 
     model = new Box('', '', '', this.langs[0]);
 
-    constructor() { }
+    constructor(public activeModal: NgbActiveModal) { }
 
     ngOnInit() {
     }
