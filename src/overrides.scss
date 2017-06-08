@@ -4,12 +4,13 @@
 
 .btn {
     border-radius: 0;
+    cursor: pointer;
 }
 
 .btn-primary {
     background-color: $main-purple;
     border: lighten($main-purple, 5%);
-    color: white;
+    color: white !important;
     &:hover {
         background-color: darken($main-purple, 10%);
     }
@@ -17,14 +18,14 @@
         background-color: darken($main-purple, 20%);
     }
     &:visited {
-        color: white;
+        color: white !important;
     }
 }
 
 .btn-default {
     background-color: $main-yellow;
     border: lighten($main-yellow, 5%);
-    color: white;
+    color: white !important;
     &:hover {
         background-color: darken($main-yellow, 10%);
     }
