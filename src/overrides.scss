@@ -2,60 +2,52 @@
 * Place bootstrap overrides here
 */
 
-.btn{
+.btn {
     border-radius: 0;
+    cursor: pointer;
 }
 
-.btn-primary{
+.btn-primary {
     background-color: $main-purple;
     border: lighten($main-purple, 5%);
-    color: white;
-
-    &:hover{
+    color: white !important;
+    &:hover {
         background-color: darken($main-purple, 10%);
     }
-
-    &:active{
+    &:active {
         background-color: darken($main-purple, 20%);
     }
-
-    &:visited{
-        color: white;
+    &:visited {
+        color: white !important;
     }
 }
 
-.btn-default{
+.btn-default {
     background-color: $main-yellow;
     border: lighten($main-yellow, 5%);
-    color: white;
-
-    &:hover{
+    color: white !important;
+    &:hover {
         background-color: darken($main-yellow, 10%);
     }
-
-    &:active{
+    &:active {
         background-color: darken($main-yellow, 20%);
     }
 }
 
-a:not(.btn):not(.navbar-brand):not(.nav-link){
+a:not(.btn):not(.navbar-brand):not(.nav-link) {
     color: $main-yellow;
-
-    &:hover{
+    &:hover {
         color: darken($main-yellow, 10%);
         text-decoration: none;
     }
-
     &:active {
         color: darken($main-yellow, 20%);
         text-decoration: none;
     }
-
-    &:visited{
+    &:visited {
         text-decoration: none;
     }
-
-    &:focus{
+    &:focus {
         text-decoration: none;
     }
 }
@@ -64,10 +56,9 @@ a:not(.btn):not(.navbar-brand):not(.nav-link){
     font-family: 'geometria_lightlight';
 }
 
-.navbar-light .navbar-nav .nav-link{
+.navbar-light .navbar-nav .nav-link {
     color: white;
-
-    &:hover{
+    &:hover {
         color: $main-yellow;
     }
 }
@@ -86,12 +77,27 @@ a:not(.btn):not(.navbar-brand):not(.nav-link){
     }
 }
 
-::-webkit-scrollbar{
+.modal-content {
+    background-color: $main-black;
+    color: white;
+}
+
+.form-control {
+    border: 1px solid lighten($main-yellow, 10%) !important;
+    background-color: lighten($main-black, 10%);
+    color: white !important;
+    border-radius: 0;
+    &:focus {
+        background-color: lighten($main-black, 20%);
+    }
+}
+
+::-webkit-scrollbar {
     background-color: inherit;
     width: 5px;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
     background-color: #14130e;
     border-radius: 10px;
 }

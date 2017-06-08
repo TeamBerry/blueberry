@@ -1,6 +1,8 @@
 import { BoxService } from 'app/services/box.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BoxFormComponent } from 'app/components/box-form/box-form.component';
 
 @Component({
     selector: 'app-home',
@@ -14,6 +16,7 @@ export class HomeComponent implements OnInit {
     loading = true;
 
     constructor(public router: Router,
+        private modalService: NgbModal,
         public boxService: BoxService) { }
 
     ngOnInit() {
@@ -28,5 +31,10 @@ export class HomeComponent implements OnInit {
 
     enter(token: string) {
         this.router.navigate(['box/', token]);
+    }
+
+    openCreateModal() {
+        const modalRef = this.modalService.open(BoxFormComponent);
+        modalRef.componentInstance.title = 'Create a box';
     }
 }

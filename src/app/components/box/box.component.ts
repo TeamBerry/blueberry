@@ -36,16 +36,24 @@ export class BoxComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router
     ) {
-        this.token = route.snapshot.paramMap.get('token');
+        route.paramMap.subscribe(
+            params => {
+                this.token = params.get('token');
+                this.loadingBox();
+            }
+        );
     }
 
     ngOnInit() {
-        console.log("Init box...")
+        this.loadingBox();
+    }
+
+    loadingBox() {
+        this.loading = true;
         this.boxService.get(this.token).subscribe(
             data => {
                 this.box = data;
                 this.loading = false;
-                console.log("Box found.", this.box);
             }
         );
     }
