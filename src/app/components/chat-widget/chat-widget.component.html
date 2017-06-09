@@ -148,11 +148,17 @@
     </div>
 </div>
 <div id="input-space">
-    <span class="input-mode" id="span-default-mode" *ngIf="!hasLink && !hasCommand">DEFAULT MODE</span>
-    <span class="input-mode" id="span-command-mode" *ngIf="!hasLink && hasCommand">COMMAND MODE</span>
-    <span class="input-mode" id="span-youtube-mode" *ngIf="hasLink && !hasCommand">YOUTUBE MODE</span>
+    <span class="input-mode" id="span-default-mode" *ngIf="!hasLink && !hasCommand">DEFAULT MODE </span>
+    <div *ngIf="!hasLink && hasCommand">
+        <span class="input-mode" id="span-command-mode">COMMAND MODE </span>
+        <span class="key-commands">Use <kbd>Ctrl + Enter</kbd> to send as text</span>
+    </div>
+    <div *ngIf="hasLink && !hasCommand">
+        <span class="input-mode" id="span-youtube-mode">YOUTUBE MODE</span>
+        <span class="key-commands">Use <kbd>Ctrl + Enter</kbd> to send as text</span>
+    </div>
     <textarea name="" id="" cols="30" rows="2" class="form-control chatbox" [ngClass]="{'chatbox-link': hasLink, 'chatbox-command': hasCommand}"
-        placeholder="Type a message or paste a YouTube link" [(ngModel)]="contents" (keydown.enter)="post($event)" (keyup)="watchContents()"></textarea>
+        placeholder="Type a message or paste a YouTube link" [(ngModel)]="contents" (keydown.enter)="post($event)" (keydown.control.enter)="post($event)" (keyup)="watchContents()"></textarea>
     <div class="chat-actions row">
         <!--<div class="col-2">
             <button class="btn btn-primary">Options</button>
