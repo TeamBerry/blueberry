@@ -38,10 +38,11 @@ export class PlayerComponent implements OnInit {
         if (this.token !== undefined) {
             this.playerService.current(this.token).subscribe(
                 data => {
-                    this.video = data;
-                    this.link = data.link;
-                    console.log("Video found. ", this.video);
-                    this.playVideo();
+                    if (data) {
+                        this.video = data;
+                        this.link = data.link;
+                        this.playVideo();
+                    }
                 }
             );
         }
