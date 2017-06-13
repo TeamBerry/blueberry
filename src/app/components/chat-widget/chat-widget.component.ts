@@ -61,25 +61,30 @@ export class ChatWidgetComponent implements OnInit, AfterViewChecked {
         event.preventDefault();
         const contents = this.contents;
         this.contents = '';
-        if (this.hasLink) {
+        if (this.hasLink && !event.ctrlKey) {
             this.handleLinks(contents);
-        } else if (this.hasCommand) {
+        } else if (this.hasCommand && !event.ctrlKey) {
             this.handleCommands(contents);
         } else {
-            const message = {
-                type: 1,
-                scope: 1,
-                contents: contents,
-                author: 'D1JU70',
-                destination: null,
-            };
-            this.chatService.post(this.token, message).subscribe(
-                data => {
-                    console.log(data);
-                    this.fetchMessages();
-                }
-            );
+            this.handleMessage(contents);
         }
+    }
+
+    handleMessage(contents) {
+        const message = {
+            type: 1,
+            scope: 1,
+            contents: contents,
+            author: 'D1JU70',
+            destination: null,
+        };
+        this.chatService.post(this.token, message).subscribe(
+            data => {
+                this.hasCommand = false;
+                this.hasLink = false;
+                this.fetchMessages();
+            }
+        );
     }
 
     handleLinks(contents) {
