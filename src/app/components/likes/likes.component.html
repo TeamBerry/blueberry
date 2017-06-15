@@ -1,0 +1,18 @@
+<app-berrybox-nav></app-berrybox-nav>
+<div class="container-fluid">
+    <h1 class="display-3 page-title">Your likes</h1>
+    <p class="help-block">Manage your likes from this page. On a box, you will be able to quick send them.</p>
+
+    <div class="container like-box">
+        <div class="card card-like" *ngFor="let video of likes; let i = index">
+            <img src="http://i.ytimg.com/vi/{{video.link}}/hqdefault.jpg" alt="{{video.video_name}}" class="card-img">
+            <div class="card-img-overlay">
+                <h4 class="card-title">
+                    <p>{{ video.video_name }}</p>
+                    <!--<a href="https://youtube.com/watch?v={{video.link}}" title="{{video.video_name}}">{{ video.video_name }}</a>-->
+                </h4>
+            </div>
+        </div>
+    </div>
+
+</div>

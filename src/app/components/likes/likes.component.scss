@@ -1,0 +1,25 @@
+@import '../../../imports.scss';
+.like-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-like {
+    width: calc(480px / 1.5);
+    height: calc(360px / 1.5);
+    margin: 10px;
+    .card-img {
+        height: inherit;
+        overflow: hidden;
+    }
+    cursor: pointer;
+    .card-img-overlay {
+        display: none;
+        background-color: transparentize($main-yellow, 0.35);
+    }
+    &:hover {
+        .card-img-overlay {
+            display: block;
+        }
+    }
+}
