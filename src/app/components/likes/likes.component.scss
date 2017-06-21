@@ -5,21 +5,24 @@
 }
 
 .card-like {
-    width: calc(480px / 1.5);
-    height: calc(360px / 1.5);
+    width: calc(480px / 2);
     margin: 10px;
-    .card-img {
-        height: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    .card-block {
+        padding-bottom: 0 !important;
+    }
+    .card-title {
+        max-height: 2rem;
+        text-overflow: ellipsis;
         overflow: hidden;
     }
-    cursor: pointer;
-    .card-img-overlay {
-        display: none;
-        background-color: transparentize($main-yellow, 0.35);
+    .card-img-top {
+        height: calc(360px / 2);
+        overflow: hidden;
     }
-    &:hover {
-        .card-img-overlay {
-            display: block;
-        }
+    .card-footer {
+        background-color: inherit;
+        border-top: 0;
     }
 }
