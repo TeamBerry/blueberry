@@ -44,3 +44,4 @@ Thumbs.db
 
 # dev files
 src/assets/profile-pictures
+\.editorconfig

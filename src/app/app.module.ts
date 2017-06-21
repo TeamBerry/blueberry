@@ -16,6 +16,7 @@ import { UserComponent } from './components/user/user.component';
 import { AppRoutingModule } from 'app/app-routing.module';
 import { ChatWidgetComponent } from './components/chat-widget/chat-widget.component';
 import { BoxFormComponent } from './components/box-form/box-form.component';
+import { LikesComponent } from './components/likes/likes.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BoxFormComponent } from './components/box-form/box-form.component';
     PlayerComponent,
     UserComponent,
     ChatWidgetComponent,
-    BoxFormComponent
+    BoxFormComponent,
+    LikesComponent
   ],
   imports: [
     BrowserModule,

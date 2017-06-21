@@ -1,0 +1,29 @@
+@import '../../../imports.scss';
+.like-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-like {
+    max-width: calc(480px / 2);
+    margin: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    .card-block {
+        padding-bottom: 0 !important;
+    }
+    .card-title {
+        max-height: 2rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .card-img-top {
+        height: calc(360px / 2);
+        overflow: hidden;
+    }
+    .card-footer {
+        background-color: inherit;
+        border-top: 0;
+    }
+}
