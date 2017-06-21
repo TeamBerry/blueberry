@@ -26,6 +26,7 @@ export class MoodWidgetComponent implements OnInit {
             user_token: 'D1JU70',
             video_index: this.currentVideo
         };
+        // Should compare against the array of moods...
         this.moodService.checkVote(vote).subscribe(
             response => {
                 this.currentVote = response;
