@@ -5,7 +5,7 @@
 }
 
 .card-like {
-    width: calc(480px / 2);
+    max-width: calc(480px / 2);
     margin: 10px;
     background-color: transparent;
     cursor: pointer;

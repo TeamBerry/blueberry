@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { MoodService } from '../../services/mood.service';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-likes',
@@ -25,16 +26,16 @@ export class LikesComponent implements OnInit {
         this.loading = true;
         this.userService.likes('D1JU70').subscribe(
             data => {
-                console.log(data);
                 this.likes = data;
             }
         );
     }
 
-    removeVote(id: number){
+    removeVote(id: number) {
         this.moodService.unlikeVideo(id).subscribe(
             response => {
-                // Search in the array and delete this entry
+                const targetIndex = _.findIndex(this.likes, { vote_id: id });
+                this.likes.splice(targetIndex, 1);
             }
         )
     }
