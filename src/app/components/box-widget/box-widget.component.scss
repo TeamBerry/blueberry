@@ -1,10 +1,11 @@
 @import '../../../imports.scss';
 
-.card{
+.card-box{
     width: 360px;
     background-color: $main-black;
     color: white;
     border-radius: 0 !important;
+    cursor: pointer;
 
     .card-img-top{
         width: inherit;

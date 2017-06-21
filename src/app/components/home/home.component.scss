@@ -6,12 +6,14 @@
 }
 
 .featured, .social-space{
-    background-color: fade_out(darken($main-black, 15%), .1);
+    // background-color: fade_out(darken($main-black, 15%), .1);
+    background-color: lighten(black, 10%);
 
     .free-text{
         font-family: 'geometria_lightlight';
         color: $main-yellow;
         margin-bottom: 40px;
+        text-align: center
     }
 }
 
