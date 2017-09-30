@@ -1,0 +1,67 @@
+@import './../../../../imports.scss';
+
+.main-background{
+    height:100%;
+    background:linear-gradient(70deg, $main-yellow 0,darken($main-yellow, 15%) 100%);
+}
+
+.featured, .social-space{
+    // background-color: fade_out(darken($main-black, 15%), .1);
+    background-color: lighten(black, 10%);
+
+    .free-text{
+        font-family: 'geometria_lightlight';
+        color: $main-yellow;
+        margin-bottom: 40px;
+        text-align: center
+    }
+}
+
+.jumbotron-welcome{
+    padding: 150px;
+    font-family: geometria_lightlight;
+    height: 500px;
+    background-color: transparent;
+    text-align: center;
+}
+
+.home-section{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.footer{
+    background-color: darken($main-black, 10%);
+}
+
+#main-title{
+    font-weight:700;
+}
+
+#main-sub-title{
+    margin-bottom: 50px;
+}
+
+.jumbotron-btn{
+    font-size: 18px;
+    padding-left:40px;
+    padding-right:40px;
+}
+
+.how-to{
+    font-family: geometria_lightlight;
+}
+
+.how-to-container{
+    text-align: center;
+}
+
+.how-to-container > div > span{
+    color: $main-purple;
+    font-size:2em;
+}
+
+.how-to-point{
+    font-weight:600;
+    color:$main-purple;
+}

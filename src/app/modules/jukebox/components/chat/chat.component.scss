@@ -1,0 +1,140 @@
+@import './../../../../../imports.scss';
+.box-side-panel {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: calc(100vh - (80px + 45px + 148px));
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.panel-title {
+    text-transform: capitalize;
+    padding: 10px;
+    border-bottom: 1px solid darken($main-black, 20%);
+}
+
+// Menu
+#chat-widget-menu>ul {
+    border-left: 1px solid lighten($main-black, 10%) !important;
+    height: 100%;
+    .nav-item {
+        cursor: pointer;
+        &:hover {
+            color: darken($main-yellow, 10%);
+        }
+        &.active {
+            background-color: inherit;
+            border-left: 2px solid $main-yellow;
+            .nav-link {
+                margin-left: -2px;
+            }
+        }
+    }
+    .nav-link {
+        @include padding-horizontal(0);
+        margin: auto;
+        text-align: center;
+    }
+}
+
+// Chat
+.message {
+    margin-bottom: 0;
+    padding: 4px 10px;
+}
+
+.message:nth-child(even) {
+    background-color: darken($main-black, 5%);
+}
+
+.message-time {
+    color: $system-color;
+}
+
+.message-author {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+// Queue
+#queue-panel,
+#like-panel {
+    padding: 0 10px;
+}
+
+.playlist-actions {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.playlist-entry {
+    margin-bottom: 5px;
+    padding: 5px 0;
+}
+
+.song-playing {
+    font-weight: 800;
+}
+
+.song-played {}
+
+.song-ignored>div>p>a {
+    color: #d953af;
+}
+
+.song-list-line {
+    margin-bottom: 0;
+    @include one-line-text();
+    padding-right: 10px;
+}
+
+// Input
+#input-space {
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.chatbox {
+    margin-bottom: 10px;
+    resize: none;
+    border: 1px solid lighten($main-yellow, 10%);
+}
+
+.input-mode {
+    padding: 3px 10px;
+    font-size: 0.85rem;
+    letter-spacing: 0.1rem;
+}
+
+span#span-default-mode {
+    background-color: $main-yellow;
+}
+
+span#span-command-mode {
+    background-color: $command-color;
+}
+
+.chatbox-command {
+    border: 1px solid $command-color !important;
+}
+
+#command-button {
+    @include override-button($command-color);
+}
+
+span#span-youtube-mode {
+    background-color: $youtube-color;
+}
+
+.chatbox-link {
+    border: 1px solid $youtube-color !important;
+}
+
+#link-button {
+    @include override-button($youtube-color);
+}

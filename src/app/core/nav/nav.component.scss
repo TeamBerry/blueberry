@@ -1,0 +1,30 @@
+@import './../../../imports.scss';
+.navbar {
+    background-color: $nav-black;
+    margin-bottom: 0 !important;
+    height: 80px;
+    //@include fontFace('geometria', 'Geometria-Light-webfont');
+    font-family: 'geometria_lightlight';
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+    &:hover {
+        color: $main-yellow;
+    }
+}
+
+.nav-pp {
+    @include nav-pp(35px);
+}
+
+.nav-name {
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.nav-item {
+    cursor: pointer;
+}
