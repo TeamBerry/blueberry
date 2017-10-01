@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BoxComponent } from './pages/box/box.component';
 
 const jukeboxRoutes: Routes = [
-    { path: 'box/:id', component: BoxComponent}
+    { path: 'box/:token', component: BoxComponent}
 ];
 
 @NgModule({
