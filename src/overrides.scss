@@ -10,7 +10,7 @@
 .btn-primary {
     background-color: $main-purple;
     border: lighten($main-purple, 5%);
-    color: white !important;
+    color: white;
     &:hover {
         background-color: darken($main-purple, 10%);
     }
@@ -50,9 +50,17 @@
 .btn-outline-default {
     border-color: $main-color;
     color: $main-color;
+    .berrybox-svg-button {
+        fill: $main-color;
+        stroke: $main-color;
+    }
     &:hover {
         background-color: $main-color;
         color: white;
+        .berrybox-svg-button {
+            fill: white;
+            stroke: white;
+        }
     }
 }
 

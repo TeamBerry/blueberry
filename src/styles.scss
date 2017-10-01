@@ -4,13 +4,19 @@
 
 svg.berrybox-svg {
     height: 1em;
+    stroke: $stroke-color;
+    fill: $fill-color;
+    circle {
+        fill: $stroke-color;
+    }
     &:hover {
         .berrybox-path {
             fill: $main-color;
         }
     }
     .berrybox-path {
-        fill: white;
+        stroke: $system-color;
+        fill: $system-color;
     }
 }
 
@@ -24,7 +30,7 @@ button>svg {
     width: 1.3em;
     &.secondary-icon {
         fill: $main-black;
-        color: $main-black;
+        color: $main-color;
         cursor: default;
     }
     &.primary-icon {
@@ -46,4 +52,13 @@ button>svg {
 .page-title {
     color: $main-color;
     padding: 40px;
+}
+
+.btn-outline-primary-light {
+    color: white !important;
+    border-color: white;
+    &:hover {
+        background-color: white;
+        color: $main-color !important;
+    }
 }

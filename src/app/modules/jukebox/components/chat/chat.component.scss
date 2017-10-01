@@ -75,6 +75,10 @@
     margin-bottom: 15px;
 }
 
+.list-rank {
+    margin-bottom: 0;
+}
+
 .playlist-entry {
     margin-bottom: 5px;
     padding: 5px 0;
@@ -94,6 +98,15 @@
     margin-bottom: 0;
     @include one-line-text();
     padding-right: 10px;
+    a {
+        color: $main-color;
+        &:hover {
+            text-decoration: underline;
+        }
+        &:active {
+            color: darken($main-color, 10%);
+        }
+    }
 }
 
 // Input
