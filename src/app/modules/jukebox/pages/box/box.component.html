@@ -8,7 +8,12 @@
                 <div class="col-4 box-info">
                     <!--<img src="../../../assets/images/berrybox-staff-logo.png" alt="" style="width:inherit;">-->
                     <p class="box-title" title="{{box.title}}">{{box.title}}</p>
-                    <span class="minor-text">Lead by </span>{{box.admin}}
+                    <svg class="berrybox-svg-icon secondary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.98 202.99" title="Administrator">
+                        <rect width="440.78" height="181.69" x="29.61" y="209.46" />
+                        <polygon points="250 53.84 148.6 229.46 351.4 229.46 250 53.84" />
+                        <polygon points="470.39 54.84 368.99 230.46 470.39 230.46 470.39 54.84" />
+                        <polygon points="131.01 230.46 29.61 54.84 29.61 230.46 131.01 230.46" />
+                    </svg> {{box.admin}}
                 </div>
                 <div class="col-8 video-info" *ngIf="currentVideo">
                     <p class="video-title" title="{{currentVideo.video_name}}">{{currentVideo.video_name}}</p>

@@ -11,12 +11,12 @@ import { PlayerService } from './../../../../shared/services/player.service';
 export class PlayerComponent implements OnInit {
     @Input() token: string;
     @Output() playing: EventEmitter<any> = new EventEmitter();
-    private link;
+    public link;
     private video;
     private player;
     private playerEvent;
-    private height = '100%';
-    private width = '100%';
+    public height = '100%';
+    public width = '100%';
 
     constructor(
         private playerService: PlayerService,
@@ -24,7 +24,7 @@ export class PlayerComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        console.log("Init player...");
+        console.log('Init player...');
     }
 
     onStateChange(event) {

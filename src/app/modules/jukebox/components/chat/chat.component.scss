@@ -37,6 +37,11 @@
         margin: auto;
         text-align: center;
     }
+    .nav-separator {
+        width: 100%;
+        height: 1px;
+        background-color: lighten($main-black, 10%);
+    }
 }
 
 // Chat
@@ -124,7 +129,7 @@ span#span-command-mode {
 }
 
 #command-button {
-    @include override-button($command-color);
+    @include override-button-outline($command-color);
 }
 
 span#span-youtube-mode {
@@ -136,5 +141,5 @@ span#span-youtube-mode {
 }
 
 #link-button {
-    @include override-button($youtube-color);
+    @include override-button-outline($youtube-color);
 }

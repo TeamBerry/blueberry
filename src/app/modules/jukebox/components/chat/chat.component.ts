@@ -199,4 +199,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         const chatSpace = document.getElementById('chat-space');
         chatSpace.scrollTop = chatSpace.scrollHeight;
     }
+
+    requestSkip() { }
 }

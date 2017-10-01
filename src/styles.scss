@@ -24,12 +24,19 @@ button>svg {
 .berrybox-svg-icon {
     height: 1.3em;
     width: 1.3em;
-    cursor: pointer;
-    fill: white;
-    stroke: white;
-    &:hover {
-        fill: $main-yellow;
-        stroke: $main-yellow;
+    &.secondary-icon {
+        fill: $main-black;
+        color: $main-black;
+        cursor: default;
+    }
+    &.primary-icon {
+        &:hover {
+            fill: $main-yellow;
+            stroke: $main-yellow;
+        }
+        cursor: pointer;
+        fill: white;
+        stroke: white;
     }
 }
 

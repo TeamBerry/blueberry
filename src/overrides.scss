@@ -22,6 +22,15 @@
     }
 }
 
+.btn-outline-primary {
+    border-color: $main-yellow;
+    color: $main-yellow;
+    &:hover {
+        background-color: $main-yellow;
+        color: white;
+    }
+}
+
 .btn-default {
     background-color: $main-yellow;
     border: lighten($main-yellow, 5%);

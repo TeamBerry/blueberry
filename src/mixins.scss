@@ -44,6 +44,19 @@
     }
 }
 
+@mixin override-button-outline($color){
+    border-color: $color;
+    color: $color;
+    &:hover {
+        background-color: $color;
+        color: white;
+    }
+    &:active {
+        background-color: darken($color, 10%);
+        color: white;
+    }
+}
+
 @mixin one-line-text(){
     white-space: nowrap;
     text-overflow: ellipsis;

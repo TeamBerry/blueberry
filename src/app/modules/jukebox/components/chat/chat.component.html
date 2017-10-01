@@ -122,14 +122,6 @@
                     </svg>
                 </a>
             </li>
-            <li class="nav-item" [ngClass]="{'active': activePanel == 'likes'}">
-                <a class="nav-link" (click)="showPanel('likes')" title="Likes">
-                    <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408.09">
-                        <path class="berrybox-path" d="M408 129.05c0 92-135.88 225.81-185.85 271.92a26.76 26.76 0 0 1-36.3 0C135.88 354.89 0 221.05 0 129.05c0-111 115.51-188.38 200.28-62.41a4.73 4.73 0 0 0 7.72.18c96.55-130.09 200-48.87 200 62.23z"
-                        />
-                    </svg>
-                </a>
-            </li>
             <li class="nav-item" [ngClass]="{'active': activePanel == 'users'}">
                 <a class="nav-link" (click)="showPanel('users')" title="Users">
                     <svg class="berrybox-svg" style="height: 1.5em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 334.45 460">
@@ -141,6 +133,15 @@
                         <path class="berrybox-path" d="M170.23 145.13a78.39 78.39 0 0 0-78.39 78.39V460h156.78V223.52a78.39 78.39 0 0 0-78.39-78.39z"
                         />
                         <circle class="berrybox-path" cx="166.98" cy="65.44" r="65.44" />
+                    </svg>
+                </a>
+            </li>
+            <li class="nav-separator my-1"></li>
+            <li class="nav-item" [ngClass]="{'active': activePanel == 'likes'}">
+                <a class="nav-link" (click)="showPanel('likes')" title="Likes">
+                    <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408.09">
+                        <path class="berrybox-path" d="M408 129.05c0 92-135.88 225.81-185.85 271.92a26.76 26.76 0 0 1-36.3 0C135.88 354.89 0 221.05 0 129.05c0-111 115.51-188.38 200.28-62.41a4.73 4.73 0 0 0 7.72.18c96.55-130.09 200-48.87 200 62.23z"
+                        />
                     </svg>
                 </a>
             </li>
@@ -167,13 +168,13 @@
             <button class="btn btn-default">Emotes</button>
         </div>-->
         <div class="col-12">
-            <button *ngIf="!hasLink && !hasCommand" class="btn btn-default" style="float:right;" (click)="post($event)">
+            <button *ngIf="!hasLink && !hasCommand" class="btn btn-outline-primary" style="float:right;" (click)="post($event)">
                 <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 434.16 360.68">
                         <path d="M434.16 0H0v283.32h68.05l-34.87 77.36 171.63-77.36h229.35V0" />
                     </svg>
                 Send message
             </button>
-            <button *ngIf="hasLink && !hasCommand" class="btn btn-default" id="link-button" style="float:right;" (click)="post($event)">
+            <button *ngIf="hasLink && !hasCommand" class="btn btn-outline-primary" id="link-button" style="float:right;" (click)="post($event)">
                 <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.98 202.99">
 <rect width="64.36" height="121.43" y="40.78""/>
 <polygon"/>
@@ -181,7 +182,7 @@
 <rect width="168.34" height="121.43" x="162.89" y="40.78""/>
 </svg>
                 Submit video</button>
-            <button *ngIf="!hasLink && hasCommand" class="btn btn-default" id="command-button" style="float:right;" (click)="post($event)">Use command</button>
+            <button *ngIf="!hasLink && hasCommand" class="btn btn-outline-primary" id="command-button" style="float:right;" (click)="post($event)">Use command</button>
         </div>
     </div>
 </div>
