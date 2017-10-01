@@ -2,7 +2,7 @@
 
 .main-background{
     height:100%;
-    background:linear-gradient(70deg, $main-yellow 0,darken($main-yellow, 15%) 100%);
+    background:linear-gradient(70deg, $main-color 0,darken($main-color, 15%) 100%);
 }
 
 .featured, .social-space{
@@ -11,7 +11,7 @@
 
     .free-text{
         font-family: 'geometria_lightlight';
-        color: $main-yellow;
+        color: $main-color;
         margin-bottom: 40px;
         text-align: center
     }

@@ -1,14 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'imports.scss';
-// @import 'light-theme.scss';
-@import 'dark-theme.scss';
 
 svg.berrybox-svg {
     height: 1em;
     &:hover {
         .berrybox-path {
-            fill: $main-yellow;
+            fill: $main-color;
         }
     }
     .berrybox-path {
@@ -31,8 +29,8 @@ button>svg {
     }
     &.primary-icon {
         &:hover {
-            fill: $main-yellow;
-            stroke: $main-yellow;
+            fill: $main-color;
+            stroke: $main-color;
         }
         cursor: pointer;
         fill: white;
@@ -46,6 +44,6 @@ button>svg {
 }
 
 .page-title {
-    color: $main-yellow;
+    color: $main-color;
     padding: 40px;
 }

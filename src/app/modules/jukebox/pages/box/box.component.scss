@@ -1,14 +1,14 @@
 @import './../../../../../imports.scss';
 .box-space {
-    height: calc(100vh - 80px);
+    height: calc(100vh - 60px);
     overflow: hidden;
 }
 
 #room-chat {
     z-index: 3;
     padding-right: 0;
-    background-color: $main-black;
-    color: white;
+    background-color: $secondary-background;
+    color: $text-color;
 }
 
 #player {
@@ -16,7 +16,7 @@
 }
 
 .under-player {
-    color: white;
+    color: $text-color;
     padding-top: 10px;
     @include padding-horizontal(20px);
     white-space: nowrap;
@@ -29,7 +29,7 @@
     height: 70%;
     top: 15%;
     right: 0;
-    background-color: $main-yellow;
+    background-color: $main-color;
 }
 
 .box-title,

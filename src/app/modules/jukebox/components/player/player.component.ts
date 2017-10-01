@@ -50,7 +50,7 @@ export class PlayerComponent implements OnInit {
     }
 
     playVideo() {
-        this.player.loadVideoById(this.link);
+        /* this.player.loadVideoById(this.link); */
         this.playing.emit(this.video);
     }
 

@@ -168,21 +168,12 @@
             <button class="btn btn-default">Emotes</button>
         </div>-->
         <div class="col-12">
-            <button *ngIf="!hasLink && !hasCommand" class="btn btn-outline-primary" style="float:right;" (click)="post($event)">
-                <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 434.16 360.68">
-                        <path d="M434.16 0H0v283.32h68.05l-34.87 77.36 171.63-77.36h229.35V0" />
-                    </svg>
+            <button *ngIf="!hasLink && !hasCommand" class="btn btn-outline-default" style="float:right;" (click)="post($event)">
                 Send message
             </button>
-            <button *ngIf="hasLink && !hasCommand" class="btn btn-outline-primary" id="link-button" style="float:right;" (click)="post($event)">
-                <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.98 202.99">
-<rect width="64.36" height="121.43" y="40.78""/>
-<polygon"/>
-<rect width="64.36" height="121.43" x="81.45" y="40.78""/>
-<rect width="168.34" height="121.43" x="162.89" y="40.78""/>
-</svg>
+            <button *ngIf="hasLink && !hasCommand" class="btn btn-outline-default" id="link-button" style="float:right;" (click)="post($event)">
                 Submit video</button>
-            <button *ngIf="!hasLink && hasCommand" class="btn btn-outline-primary" id="command-button" style="float:right;" (click)="post($event)">Use command</button>
+            <button *ngIf="!hasLink && hasCommand" class="btn btn-outline-default" id="command-button" style="float:right;" (click)="post($event)">Use command</button>
         </div>
     </div>
 </div>

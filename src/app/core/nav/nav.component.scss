@@ -1,8 +1,8 @@
 @import './../../../imports.scss';
 .navbar {
-    background-color: $nav-black;
+    background-color: $main-color;
     margin-bottom: 0 !important;
-    height: 80px;
+    height: 60px;
     //@include fontFace('geometria', 'Geometria-Light-webfont');
     font-family: 'geometria_lightlight';
 }
@@ -12,7 +12,7 @@
     font-size: 20px;
     font-weight: 800;
     &:hover {
-        color: $main-yellow;
+        text-decoration: underline;
     }
 }
 
@@ -23,8 +23,16 @@
 .nav-name {
     font-size: 19px;
     font-weight: 700;
+    color: $text-on-main-background;
 }
 
 .nav-item {
     cursor: pointer;
+}
+
+.dropdown-menu {
+    background-color: $secondary-background;
+    .dropdown-item {
+        color: $text-on-secondary-background;
+    }
 }
