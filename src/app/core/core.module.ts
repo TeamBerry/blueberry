@@ -2,6 +2,7 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NavComponent } from './nav/nav.component';
 import { throwIfAlreadyLoaded } from './module-import-guard';
@@ -10,7 +11,8 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
     imports: [
         CommonModule,
         FormsModule,
-        HttpModule
+        HttpModule,
+        NgbModule.forRoot()
     ],
     declarations: [
         NavComponent
