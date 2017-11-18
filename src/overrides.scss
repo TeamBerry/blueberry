@@ -1,0 +1,123 @@
+/*
+* Place bootstrap overrides here
+*/
+
+.btn {
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: $main-purple;
+    border: lighten($main-purple, 5%);
+    color: white;
+    &:hover {
+        background-color: darken($main-purple, 10%);
+    }
+    &:active {
+        background-color: darken($main-purple, 20%);
+    }
+    &:visited {
+        color: white !important;
+    }
+}
+
+.btn-outline-primary {
+    border-color: $main-purple;
+    color: $main-purple;
+    &:hover {
+        background-color: $main-purple;
+        color: white;
+    }
+    &:active {
+        background-color: darken($main-purple, 10%);
+        color: white;
+    }
+}
+
+.btn-default {
+    background-color: $main-color;
+    border: lighten($main-color, 5%);
+    color: white !important;
+    &:hover {
+        background-color: darken($main-color, 10%);
+    }
+    &:active {
+        background-color: darken($main-color, 20%);
+    }
+}
+
+.btn-outline-default {
+    border-color: $main-color;
+    color: $main-color;
+    .berrybox-svg-button {
+        fill: $main-color;
+        stroke: $main-color;
+    }
+    &:hover {
+        background-color: $main-color;
+        color: white;
+        .berrybox-svg-button {
+            fill: white;
+            stroke: white;
+        }
+    }
+}
+
+.display-3 {
+    font-family: 'geometria_lightlight';
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    &:hover {
+        color: $main-color;
+    }
+}
+
+.nav-pills {
+    .nav-link {
+        border-radius: 0;
+        color: white;
+        &:hover {
+            color: darken($main-color, 10%);
+        }
+        &.active {
+            background-color: inherit;
+            border-bottom: 5px solid $main-color;
+        }
+    }
+}
+
+.modal-content {
+    background-color: $main-black;
+    color: white;
+}
+
+.form-control {
+    border: 1px solid lighten($main-color, 10%) !important;
+    background-color: lighten($main-black, 10%);
+    color: white !important;
+    border-radius: 0;
+    &:focus {
+        background-color: lighten($main-black, 20%);
+    }
+}
+
+::-webkit-scrollbar {
+    background-color: inherit;
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #14130e;
+    border-radius: 10px;
+}
+
+::-webkit-input-placeholder {
+    color: white;
+}
+
+.help-block {
+    color: $system-color;
+}

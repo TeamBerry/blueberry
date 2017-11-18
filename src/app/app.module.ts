@@ -1,36 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { BerryboxNavComponent } from './components/berrybox-nav/berrybox-nav.component';
-import { BoxComponent } from './components/box/box.component';
-import { BoxWidgetComponent } from './components/box-widget/box-widget.component';
-import { ChatComponent } from './components/chat/chat.component';
-import { HomeComponent } from './components/home/home.component';
-import { MoodWidgetComponent } from './components/mood-widget/mood-widget.component';
-import { PlayerComponent } from './components/player/player.component';
-import { UserComponent } from './components/user/user.component';
+import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { BoxWidgetComponent } from './shared/components/box-widget/box-widget.component';
+import { HomeComponent } from './shared/components/home/home.component';
+import { UserComponent } from './shared/components/user/user.component';
+import { BoxFormComponent } from './shared/components/box-form/box-form.component';
+import { LikesComponent } from './shared/components/likes/likes.component';
+
+/* Feature Modules */
+import { JukeboxModule } from './modules/jukebox/jukebox.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BerryboxNavComponent,
-    BoxComponent,
-    BoxWidgetComponent,
-    ChatComponent,
-    HomeComponent,
-    MoodWidgetComponent,
-    PlayerComponent,
-    UserComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        BoxWidgetComponent,
+        HomeComponent,
+        UserComponent,
+        BoxFormComponent,
+        LikesComponent
+    ],
+    imports: [
+        AppRoutingModule,
+        BrowserModule,
+        CoreModule,
+        JukeboxModule,
+        SharedModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

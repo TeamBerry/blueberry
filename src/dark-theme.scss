@@ -1,0 +1,29 @@
+// Main overwrites for the dark theme
+
+// Main colors
+$main-color: #65A6A6;
+$secondary-background: lighten(black, 10%);
+
+// Text colors
+$text-color: white;
+$text-on-main-background: white;
+$text-on-secondary-background: $white;
+
+//$main-purple: #6012b2;
+$main-purple: #2C3D4F;
+$main-black: #444;
+$system-color: #bbb;
+
+// Nav colors
+$nav-black: #222;
+
+// Box widget
+$box-black: #555;
+
+// Type colors
+$command-color: #0fb562;
+$youtube-color: #b5220f;
+
+body {
+    background-color: black;
+}

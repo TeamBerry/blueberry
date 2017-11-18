@@ -1,0 +1,51 @@
+@import './../../../../../imports.scss';
+.box-space {
+    height: calc(100vh - 60px);
+    overflow: hidden;
+}
+
+#room-chat {
+    z-index: 3;
+    padding-right: 0;
+    background-color: $secondary-background;
+    color: $text-color;
+}
+
+#player {
+    height: calc(100% - 78px);
+}
+
+.under-player {
+    color: $text-color;
+    padding-top: 10px;
+    @include padding-horizontal(20px);
+    white-space: nowrap;
+}
+
+.box-info:after {
+    content: '';
+    width: 1px;
+    position: absolute;
+    height: 70%;
+    top: 15%;
+    right: 0;
+    background-color: $main-color;
+}
+
+.box-title,
+.video-title {
+    font-family: geometria_lightlight;
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.minor-text {
+    color: #555;
+}
+
+.mood-widget {
+    text-align: center;
+}

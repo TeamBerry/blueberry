@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'imports.scss';
+
+svg.berrybox-svg {
+    height: 1em;
+    stroke: $stroke-color;
+    fill: $fill-color;
+    circle {
+        fill: $stroke-color;
+    }
+    &:hover {
+        .berrybox-path {
+            fill: $main-color;
+        }
+    }
+    .berrybox-path {
+        stroke: $system-color;
+        fill: $system-color;
+    }
+}
+
+button>svg {
+    height: 0.7em;
+    fill: white;
+}
+
+.berrybox-svg-icon {
+    height: 1.3em;
+    width: 1.3em;
+    &.secondary-icon {
+        fill: $main-black;
+        color: $main-color;
+        cursor: default;
+    }
+    &.primary-icon {
+        &:hover {
+            fill: $main-color;
+            stroke: $main-color;
+        }
+        cursor: pointer;
+        fill: white;
+        stroke: white;
+    }
+}
+
+.key-commands {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+}
+
+.page-title {
+    color: $main-color;
+    padding: 40px;
+}
+
+.btn-outline-primary-light {
+    color: white !important;
+    border-color: white;
+    &:hover {
+        background-color: white;
+        color: $main-color !important;
+    }
+}

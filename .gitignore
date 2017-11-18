@@ -26,6 +26,7 @@
 
 # misc
 /.sass-cache
+/.scss-cache
 /connect.lock
 /coverage
 /libpeerconnection.log
@@ -40,3 +41,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# dev files
+src/assets/profile-pictures
+\.editorconfig

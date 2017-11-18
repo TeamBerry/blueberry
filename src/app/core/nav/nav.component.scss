@@ -1,0 +1,38 @@
+@import './../../../imports.scss';
+.navbar {
+    background-color: $main-color;
+    margin-bottom: 0 !important;
+    height: 60px;
+    //@include fontFace('geometria', 'Geometria-Light-webfont');
+    font-family: 'geometria_lightlight';
+}
+
+.navbar-brand {
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.nav-pp {
+    @include nav-pp(35px);
+}
+
+.nav-name {
+    font-size: 19px;
+    font-weight: 700;
+    color: $text-on-main-background;
+}
+
+.nav-item {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    background-color: $secondary-background;
+    .dropdown-item {
+        color: $text-on-secondary-background;
+    }
+}

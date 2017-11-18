@@ -1,0 +1,17 @@
+<div class="card card-box">
+    <img src="http://i.ytimg.com/vi/XxT7M47LxwE/hqdefault.jpg" alt="" class="card-img-top">
+    <div class="card-block">
+        <h4 class="card-name">{{box.title}}</h4>
+        <p class="card-text">Kass Theme -Extended-</p>
+        <a href="" class="btn btn-default">Join</a>
+    </div>
+    <div class="card-block">
+        <div class="media">
+            <img src="./assets/profile-pictures/{{box.admin_picture}}" alt="" class="d-flex mr-3 box-pp">
+            <div class="media-body">
+                <h6 class="mt-0"><a href="user/{{box.admin_token}}">{{box.admin}}</a></h6>
+                {{box.creation_date}}
+            </div>
+        </div>
+    </div>
+</div>

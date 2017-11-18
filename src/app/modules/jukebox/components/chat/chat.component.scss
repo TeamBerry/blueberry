@@ -1,0 +1,158 @@
+@import './../../../../../imports.scss';
+.box-side-panel {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: calc(100vh - (80px + 45px + 148px));
+}
+
+.btn {
+    cursor: default;
+}
+
+.panel-title {
+    text-transform: capitalize;
+    padding: 10px;
+    border-bottom: 1px solid darken($main-black, 20%);
+}
+
+// Menu
+#chat-widget-menu>ul {
+    border-left: 1px solid lighten($main-black, 10%) !important;
+    height: 100%;
+    .nav-item {
+        cursor: pointer;
+        &:hover {
+            color: darken($main-color, 10%);
+        }
+        &.active {
+            background-color: inherit;
+            border-left: 2px solid $main-color;
+            .nav-link {
+                margin-left: -2px;
+            }
+        }
+    }
+    .nav-link {
+        @include padding-horizontal(0);
+        margin: auto;
+        text-align: center;
+    }
+    .nav-separator {
+        width: 100%;
+        height: 1px;
+        background-color: lighten($main-black, 10%);
+    }
+}
+
+// Chat
+.message {
+    margin-bottom: 0;
+    padding: 4px 10px;
+}
+
+.message:nth-child(even) {
+    background-color: darken($secondary-background, 5%);
+}
+
+.message-time {
+    color: $system-color;
+}
+
+.message-author {
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+// Queue
+#queue-panel,
+#like-panel {
+    padding: 0 10px;
+}
+
+.playlist-actions {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.list-rank {
+    margin-bottom: 0;
+}
+
+.playlist-entry {
+    margin-bottom: 5px;
+    padding: 5px 0;
+}
+
+.song-playing {
+    font-weight: 800;
+}
+
+.song-played {}
+
+.song-ignored>div>p>a {
+    color: #d953af;
+}
+
+.song-list-line {
+    margin-bottom: 0;
+    @include one-line-text();
+    padding-right: 10px;
+    a {
+        color: $main-color;
+        &:hover {
+            text-decoration: underline;
+        }
+        &:active {
+            color: darken($main-color, 10%);
+        }
+    }
+}
+
+// Input
+#input-space {
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.chatbox {
+    margin-bottom: 10px;
+    resize: none;
+    border: 1px solid lighten($main-color, 10%);
+}
+
+.input-mode {
+    padding: 3px 10px;
+    font-size: 0.85rem;
+    letter-spacing: 0.1rem;
+}
+
+span#span-default-mode {
+    background-color: $main-color;
+}
+
+span#span-command-mode {
+    background-color: $command-color;
+}
+
+.chatbox-command {
+    border: 1px solid $command-color !important;
+}
+
+#command-button {
+    @include override-button-outline($command-color);
+}
+
+span#span-youtube-mode {
+    background-color: $youtube-color;
+}
+
+.chatbox-link {
+    border: 1px solid $youtube-color !important;
+}
+
+#link-button {
+    @include override-button-outline($youtube-color);
+}
