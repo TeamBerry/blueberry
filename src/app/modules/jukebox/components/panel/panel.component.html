@@ -1,17 +1,11 @@
 <div class="row no-gutters">
     <div class="col-11 sub-panels">
         <div class="panel-title text-center">{{activePanel}}</div>
-        <div class="box-side-panel" id="chat-space" *ngIf="activePanel == 'chat'">
-            <app-chat-widget [token]="token" (socketStatus)="refreshChatStatus($event)"></app-chat-widget>
-        </div>
-        <div class="box-side-panel" id="queue-panel" *ngIf="activePanel == 'queue'">
-            <app-playlist [token]="token"></app-playlist>
-        </div>
-        <div class="box-side-panel" id="like-panel" *ngIf="activePanel == 'likes'">
-            <app-favoritelist></app-favoritelist>
-        </div>
-        <div class="box-side-panel" *ngIf="activePanel == 'users'">
-            <app-userlist [token]="token"></app-userlist>
+        <div class="box-side-panel" id="chat-space">
+            <app-chat *ngIf="activePanel == 'chat'" [token]="token" (socketStatus)="refreshChatStatus($event)"></app-chat>
+            <app-playlist *ngIf="activePanel == 'queue'" [token]="token"></app-playlist>
+            <app-favoritelist *ngIf="activePanel == 'likes'"></app-favoritelist>
+            <app-userlist *ngIf="activePanel == 'users'" [token]="token"></app-userlist>
         </div>
     </div>
     <div class="col-1" id="chat-widget-menu">
@@ -58,17 +52,23 @@
     </div>
 </div>
 <div id="input-space" class="py-3">
-    <span class="input-mode" id="span-default-mode" *ngIf="!hasLink && !hasCommand">DEFAULT MODE </span>
+    <div *ngIf="!hasLink && !hasCommand">
+        <span class="input-mode" id="span-default-mode">Chat </span>
+        <span class="key-commands">Type <kbd>!</kbd> to execute a command</span>
+    </div>
     <div *ngIf="!hasLink && hasCommand">
-        <span class="input-mode" id="span-command-mode">COMMAND MODE </span>
-        <span class="key-commands">Use <kbd>Ctrl + Enter</kbd> to send as text</span>
+        <span class="input-mode" id="span-command-mode">Command </span>
+        <span class="key-commands">Use
+            <kbd>Ctrl + Enter</kbd> to send as text</span>
     </div>
     <div *ngIf="hasLink && !hasCommand">
         <span class="input-mode" id="span-youtube-mode">YOUTUBE MODE</span>
-        <span class="key-commands">Use <kbd>Ctrl + Enter</kbd> to send as text</span>
+        <span class="key-commands">Use
+            <kbd>Ctrl + Enter</kbd> to send as text</span>
     </div>
     <textarea name="" id="" cols="30" rows="2" class="form-control chatbox" [ngClass]="{'chatbox-link': hasLink, 'chatbox-command': hasCommand}"
-        placeholder="Type a message or paste a YouTube link" [(ngModel)]="contents" (keydown.enter)="post($event)" (keydown.control.enter)="post($event)" (keyup)="watchContents()"></textarea>
+        placeholder="Type a message or paste a YouTube link" [(ngModel)]="contents" (keydown.enter)="post($event)" (keydown.control.enter)="post($event)"
+        (keyup)="watchContents()"></textarea>
     <div class="chat-actions row">
         <!--<div class="col-2">
             <button class="btn btn-primary">Options</button>

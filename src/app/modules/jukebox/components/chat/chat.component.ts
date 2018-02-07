@@ -2,7 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { ChatService } from './../../../../shared/services/chat.service';
 
 @Component({
-    selector: 'app-chat-widget',
+    selector: 'app-chat',
     templateUrl: './chat.component.html',
     styleUrls: ['./chat.component.scss'],
     providers: [ChatService]

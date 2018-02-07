@@ -1,22 +1,24 @@
-<div class="playlist-actions row">
-    <div class="col">
-        <button class="btn btn-outline-default btn-admin btn-block">
-            <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88" (click)="requestSkip()">
-                <polygon points="334.18 192.94 0 0 0 385.88 334.18 192.94" />
-                <rect width="68.21" height="385.88" x="334.18" />
-            </svg>
-            Next
-        </button>
-    </div>
-    <div class="col">
-        <button class="btn btn-outline-default btn-admin btn-block">Shuffle</button>
+<div class="px-3">
+    <div class="playlist-actions row">
+        <div class="col">
+            <button class="btn btn-outline-default btn-admin btn-block">
+                <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88" (click)="requestSkip()">
+                    <polygon points="334.18 192.94 0 0 0 385.88 334.18 192.94" />
+                    <rect width="68.21" height="385.88" x="334.18" />
+                </svg>
+                Next
+            </button>
+        </div>
+        <div class="col">
+            <button class="btn btn-outline-default btn-admin btn-block">Shuffle</button>
+        </div>
     </div>
 </div>
 <div *ngFor="let video of playlist; let i = index; let first = first">
-    <p class="list-rank" *ngIf="(video.video_status == 0 || video.video_status == 3) && first">UPCOMING: </p>
-    <p class="list-rank rank-playing" *ngIf="video.video_status == 1">NOW PLAYING: </p>
-    <p class="list-rank" *ngIf="video.video_status == 2 && playlist[i - 1].video_status != 2 && !first">PLAYED: </p>
-    <div class="row playlist-entry no-gutters" [ngClass]="{'song-playing': video.video_status == 1,
+    <p class="list-rank px-3" *ngIf="(video.video_status == 0 || video.video_status == 3) && first">Upcoming: </p>
+    <p class="list-rank rank-playing px-3" *ngIf="video.video_status == 1">Now playing: </p>
+    <p class="list-rank px-3" *ngIf="video.video_status == 2 && playlist[i - 1].video_status != 2 && !first">Played: </p>
+    <div class="row playlist-entry no-gutters video px-3" [ngClass]="{'song-playing': video.video_status == 1,
                     'song-played': video.video_status == 2,
                     'song-ignored': video.video_status == 3}">
         <div class="ngClass" [ngClass]="{'col-9': video.video_status != 1 && video.video_status != 2 && !first,
