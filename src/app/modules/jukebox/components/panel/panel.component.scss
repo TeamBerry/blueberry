@@ -11,6 +11,34 @@
     border-bottom: 1px solid darken($main-black, 20%);
 }
 
+#panel-menu {
+    border-left: 1px solid lighten($main-black, 10%) !important;
+
+    .nav-item {
+        cursor: pointer;
+        &:hover {
+            color: darken($main-color, 10%);
+        }
+        &.active {
+            background-color: inherit;
+            border-right: 5px solid $main-color;
+            .nav-link {
+                margin-right: -5px;
+            }
+        }
+    }
+    .nav-link {
+        @include padding-horizontal(0);
+        margin: auto;
+        text-align: center;
+    }
+    .nav-separator {
+        width: 100%;
+        height: 1px;
+        background-color: lighten($main-black, 10%);
+    }
+}
+
 // Input
 #input-space {
     padding: 10px;
@@ -27,8 +55,6 @@
 
 .input-mode {
     padding: 3px 10px;
-    font-size: 0.85rem;
-    letter-spacing: 0.1rem;
 }
 
 span#span-default-mode {

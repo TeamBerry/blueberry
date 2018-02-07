@@ -8,7 +8,7 @@
             <app-userlist *ngIf="activePanel == 'users'" [token]="token"></app-userlist>
         </div>
     </div>
-    <div class="col-1" id="chat-widget-menu">
+    <div class="col-1" id="panel-menu">
         <ul class="nav flex-column">
             <li class="nav-item" [ngClass]="{'active': activePanel == 'chat'}">
                 <a class="nav-link" (click)="showPanel('chat')" title="Chat">
