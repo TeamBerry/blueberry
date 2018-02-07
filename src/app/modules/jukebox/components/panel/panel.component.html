@@ -52,22 +52,17 @@
     </div>
 </div>
 <div id="input-space" class="py-3">
-    <div *ngIf="!hasLink && !hasCommand">
+    <div *ngIf="!hasCommand">
         <span class="input-mode" id="span-default-mode">Chat </span>
         <span class="key-commands">Type <kbd>!</kbd> to execute a command</span>
     </div>
-    <div *ngIf="!hasLink && hasCommand">
+    <div *ngIf="hasCommand">
         <span class="input-mode" id="span-command-mode">Command </span>
         <span class="key-commands">Use
             <kbd>Ctrl + Enter</kbd> to send as text</span>
     </div>
-    <div *ngIf="hasLink && !hasCommand">
-        <span class="input-mode" id="span-youtube-mode">YOUTUBE MODE</span>
-        <span class="key-commands">Use
-            <kbd>Ctrl + Enter</kbd> to send as text</span>
-    </div>
     <textarea name="" id="" cols="30" rows="2" class="form-control chatbox" [ngClass]="{'chatbox-link': hasLink, 'chatbox-command': hasCommand}"
-        placeholder="Type a message or paste a YouTube link" [(ngModel)]="contents" (keydown.enter)="post($event)" (keydown.control.enter)="post($event)"
+        placeholder="Type a message. Commands start with a '!'" [(ngModel)]="contents" (keydown.enter)="post($event)" (keydown.control.enter)="post($event)"
         (keyup)="watchContents()"></textarea>
     <div class="chat-actions row">
         <!--<div class="col-2">
@@ -77,12 +72,10 @@
             <button class="btn btn-default">Emotes</button>
         </div>-->
         <div class="col-12">
-            <button *ngIf="!hasLink && !hasCommand" class="btn btn-outline-default" style="float:right;" (click)="post($event)">
+            <button *ngIf="!hasCommand" class="btn btn-outline-default" style="float:right;" (click)="post($event)">
                 Send message
             </button>
-            <button *ngIf="hasLink && !hasCommand" class="btn btn-outline-default" id="link-button" style="float:right;" (click)="post($event)">
-                Submit video</button>
-            <button *ngIf="!hasLink && hasCommand" class="btn btn-outline-default" id="command-button" style="float:right;" (click)="post($event)">Use command</button>
+            <button *ngIf="hasCommand" class="btn btn-outline-default" id="command-button" style="float:right;" (click)="post($event)">Use command</button>
         </div>
     </div>
 </div>

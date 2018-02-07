@@ -1,19 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BoxService } from './../../../../shared/services/box.service';
+
 import { PlayerService } from './../../../../shared/services/player.service';
 
 @Component({
     selector: 'app-playlist',
     templateUrl: './playlist.component.html',
     styleUrls: ['./playlist.component.scss'],
-    providers: [BoxService, PlayerService]
+    providers: [PlayerService]
 })
 export class PlaylistComponent implements OnInit {
     @Input() token: string;
     playlist;
 
     constructor(
-        private boxService: BoxService,
         private playerService: PlayerService
     ) { }
 

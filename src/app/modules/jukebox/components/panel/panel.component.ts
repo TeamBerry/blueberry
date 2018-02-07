@@ -2,12 +2,13 @@ import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked } from
 import * as moment from 'moment';
 
 import { ChatService } from './../../../../shared/services/chat.service';
+import { PlayerService } from './../../../../shared/services/player.service';
 
 @Component({
     selector: 'app-panel',
     templateUrl: './panel.component.html',
     styleUrls: ['./panel.component.scss'],
-    providers: [ChatService]
+    providers: [ChatService, PlayerService]
 })
 export class PanelComponent implements OnInit, AfterViewChecked {
     @Input() token: string;
@@ -18,7 +19,8 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     activePanel = '';
 
     constructor(
-        private chatService: ChatService
+        private chatService: ChatService,
+        private playerService: PlayerService
     ) { }
 
     ngOnInit() {
@@ -27,13 +29,13 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
     ngAfterViewChecked() {
         if (this.activePanel === 'chat') {
-            this.adjustChat();
+            this.adjustView();
         }
     }
 
-    adjustChat() {
-        const chatSpace = document.getElementById('chat-space');
-        chatSpace.scrollTop = chatSpace.scrollHeight;
+    adjustView() {
+        const panelSpace = document.getElementById('chat-space');
+        panelSpace.scrollTop = panelSpace.scrollHeight;
     }
 
     showPanel(panelToken: string) {
@@ -41,14 +43,9 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     }
 
     watchContents() {
-        const reg = new RegExp(/(\?v=([a-z0-9\-\_]+)\&?)|(\.be\/([a-z0-9\-\_]+)\&?)/i);
-        let res;
         this.hasCommand = false;
-        this.hasLink = false;
         if (this.contents.indexOf('!') === 0) {
             this.hasCommand = true;
-        } else if (res = reg.exec(this.contents) != null) {
-            this.hasLink = true;
         }
     }
 
@@ -56,9 +53,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         event.preventDefault();
         const contents = this.contents;
         this.contents = '';
-        if (this.hasLink && !event.ctrlKey) {
-            this.handleLinks(contents);
-        } else if (this.hasCommand && !event.ctrlKey) {
+        if (this.hasCommand && !event.ctrlKey) {
             this.handleCommands(contents);
         } else {
             this.handleMessage(contents);
@@ -77,25 +72,16 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         this.chatService.post(message);
     }
 
-    handleLinks(contents) {
-        const reg = new RegExp(/(\?v=([a-z0-9\-\_]+)\&?)|(\.be\/([a-z0-9\-\_]+)\&?)/i);
-        const res = reg.exec(contents);
-
-        const video = {
-            link: (res[2]) ? res[2] : res[4],
-            author: 'D1JU70'
-        };
-
-        /* this.playerService.submit(this.token, video).subscribe(
-            data => {
-                this.fetchPlaylist();
-            }
-        ); */
-    }
-
     handleCommands(contents) {
         const command = contents.substr(1).split(' ');
-        switch (command[0]) {
+        const keyword = command[0];
+        switch (keyword) {
+            case 'add':
+            case 'queue':
+            case 'play':
+                this.submitVideo(command[1]);
+                break;
+
             case 'skip':
             case 'next':
                 this.emitSkip();
@@ -115,7 +101,24 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         this.skipEvent.emit();
     }
 
-    refreshChatStatus(event){
+    refreshChatStatus(event) {
         console.log(event);
+    }
+
+    submitVideo(url) {
+        const reg = new RegExp(/(\?v=([a-z0-9\-\_]+)\&?)|(\.be\/([a-z0-9\-\_]+)\&?)/i);
+        const res = reg.exec(url);
+
+        const video = {
+            link: (res[2]) ? res[2] : res[4],
+            author: 'D1JU70'
+        };
+
+
+        this.playerService.submit(this.token, video).subscribe(
+            data => {
+                console.log("success");
+            }
+        );
     }
 }
