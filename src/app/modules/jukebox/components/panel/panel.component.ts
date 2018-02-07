@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked } from '@angular/core';
+import * as moment from 'moment';
+
 import { ChatService } from './../../../../shared/services/chat.service';
 
 @Component({
@@ -70,6 +72,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             contents: contents,
             author: 'D1JU70',
             token: this.token,
+            time: moment()
         };
         this.chatService.post(message);
     }

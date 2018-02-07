@@ -34,17 +34,6 @@ export class ChatComponent implements OnInit {
                     this.socketStatus.emit('online');
                 }
             );
-            this.fetchMessages();
         }
     }
-
-    fetchMessages() {
-        this.chatService.list(this.token).subscribe(
-            data => {
-                this.messages = data;
-            }
-        );
-    }
-
-    requestSkip() { }
 }
