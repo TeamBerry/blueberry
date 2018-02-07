@@ -64,6 +64,7 @@ export class ChatService {
             this.socket.on('confirm', (data) => {
                 console.log('connected to socket: ', data);
                 console.log(this.socket.id);
+                // TODO: Send welcome system message
             });
 
             this.socket.on('denied', (data) => {
