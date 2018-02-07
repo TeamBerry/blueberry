@@ -2,7 +2,7 @@
     <div class="col-11 sub-panels">
         <div class="panel-title text-center">{{activePanel}}</div>
         <div class="box-side-panel" id="chat-space" *ngIf="activePanel == 'chat'">
-            <app-chat-widget [token]="token"></app-chat-widget>
+            <app-chat-widget [token]="token" (socketStatus)="refreshChatStatus($event)"></app-chat-widget>
         </div>
         <div class="box-side-panel" id="queue-panel" *ngIf="activePanel == 'queue'">
             <app-playlist [token]="token"></app-playlist>

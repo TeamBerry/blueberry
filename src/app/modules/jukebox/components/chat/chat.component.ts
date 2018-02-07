@@ -9,7 +9,7 @@ import { ChatService } from './../../../../shared/services/chat.service';
 })
 export class ChatComponent implements OnInit {
     @Input() token: string;
-    @Output() skipEvent = new EventEmitter();
+    @Output() socketStatus = new EventEmitter();
     contents = '';
     hasLink = false;
     hasCommand = false;
@@ -21,6 +21,19 @@ export class ChatComponent implements OnInit {
 
     ngOnInit() {
         if (this.token !== undefined) {
+            this.chatService.connect(this.token, 'D1JU70').subscribe(
+                message => {
+                    // TODO: Push recieved messages in the list of messages
+                    console.log(message);
+                    this.messages.push(message);
+                },
+                error => {
+                    this.socketStatus.emit('offline');
+                },
+                () => {
+                    this.socketStatus.emit('online');
+                }
+            );
             this.fetchMessages();
         }
     }

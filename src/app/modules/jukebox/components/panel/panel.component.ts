@@ -13,13 +13,14 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     contents = '';
     hasLink = false;
     hasCommand = false;
-    activePanel = 'chat';
+    activePanel = '';
 
     constructor(
         private chatService: ChatService
     ) { }
 
     ngOnInit() {
+        this.activePanel = 'chat';
     }
 
     ngAfterViewChecked() {
@@ -68,15 +69,9 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             scope: 1,
             contents: contents,
             author: 'D1JU70',
-            destination: null,
+            token: this.token,
         };
-        /* this.chatService.post(this.token, message).subscribe(
-            data => {
-                this.hasCommand = false;
-                this.hasLink = false;
-                this.fetchMessages();
-            }
-        ); */
+        this.chatService.post(message);
     }
 
     handleLinks(contents) {
@@ -115,5 +110,9 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
     emitSkip() {
         this.skipEvent.emit();
+    }
+
+    refreshChatStatus(event){
+        console.log(event);
     }
 }
