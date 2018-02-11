@@ -24,7 +24,7 @@ export class ChatComponent implements OnInit {
             this.chatService.connect(this.token, 'D1JU70').subscribe(
                 message => {
                     // TODO: Push recieved messages in the list of messages
-                    console.log(message);
+                    console.log("recieved from socket: ", message);
                     this.messages.push(message);
                 },
                 error => {

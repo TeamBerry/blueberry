@@ -4,6 +4,12 @@
 }
 
 // Chat
+
+.system-message {
+    font-style: italic;
+    color: $system-color;
+}
+
 .message {
     margin-bottom: 0;
     padding: 4px 0;

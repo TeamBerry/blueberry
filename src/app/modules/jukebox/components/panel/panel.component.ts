@@ -62,8 +62,8 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
     handleMessage(contents) {
         const message = {
-            type: 1,
-            scope: 1,
+            type: 'user',
+            scope: 'broadcast',
             contents: contents,
             author: 'D1JU70',
             token: this.token,
