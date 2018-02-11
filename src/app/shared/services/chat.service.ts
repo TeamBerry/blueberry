@@ -12,34 +12,9 @@ export class ChatService {
     private connectionOptions = {
         'transports': ['websocket']
     };
-    private socket = io('localhost:3001', this.connectionOptions);
+    private socket = io('localhost:3002', this.connectionOptions);
+
     constructor(private http: Http) { }
-
-    list(token: string) {
-        return this.http.get(environment.apiUrl + '/box/' + token + '/chat/all')
-            .map((response: Response) => {
-                return response.json();
-            });
-    }
-
-    post(message) {
-        this.socket.emit('chat', message);
-        /* return this.http.post(environment.apiUrl + '/box/' + token + '/chat', message)
-            .map((response: Response) => {
-                return response.json();
-            }); */
-    }
-
-    put(token: string, message) {
-
-    }
-
-    delete(token: string, id: number) {
-        return this.http.delete(environment.apiUrl + '/box/' + token + '/chat/message/' + id)
-            .map((response: Response) => {
-                return response.json();
-            });
-    }
 
     /**
      * Adds a subscription to the box socket, for the chat type
@@ -81,4 +56,15 @@ export class ChatService {
         });
         return observable;
     }
+
+    /**
+     * Sends a message to the socket.
+     *
+     * @param {Message} message
+     * @memberof ChatService
+     */
+    post(message: Message): void {
+        this.socket.emit('chat', message);
+    }
+
 }
