@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import * as io from 'socket.io-client';
 
 import { environment } from './../../../environments/environment';
+import { Message } from 'app/shared/models/message.model';
 
 @Injectable()
 export class ChatService {
@@ -62,7 +63,7 @@ export class ChatService {
             });
 
             this.socket.on('confirm', (data) => {
-                observer.next(data);
+                observer.next(new Message(data));
             });
 
             this.socket.on('denied', (data) => {
@@ -71,7 +72,7 @@ export class ChatService {
 
             this.socket.on('chat', (data) => {
                 console.log('recieved chat message', data);
-                observer.next(data);
+                observer.next(new Message(data));
             });
 
             return () => {
