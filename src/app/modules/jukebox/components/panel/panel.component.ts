@@ -3,6 +3,7 @@ import * as moment from 'moment';
 
 import { ChatService } from './../../../../shared/services/chat.service';
 import { PlayerService } from './../../../../shared/services/player.service';
+import { Message } from 'app/shared/models/message.model';
 
 @Component({
     selector: 'app-panel',
@@ -61,14 +62,12 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     }
 
     handleMessage(contents) {
-        const message = {
-            type: 'user',
-            scope: 'broadcast',
+        const message = new Message({
+            author: 'AngelZatch', // TODO: ACL
             contents: contents,
-            author: 'D1JU70',
-            token: this.token,
-            time: moment()
-        };
+            scope: this.token,
+            source: 'user',
+        });
         this.chatService.post(message);
     }
 

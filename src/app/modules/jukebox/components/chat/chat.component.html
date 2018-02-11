@@ -1,5 +1,5 @@
-<p *ngFor="let message of messages; let i = index" class="message px-3" [ngClass]="{'system-message': message.type === 'system'}">
-    <span class="message-time" title="{{message.time}}" *ngIf="message.type !== 'system'">{{message.time | date: 'HH:mm'}}</span>
+<p *ngFor="let message of messages; let i = index" class="message px-3" [ngClass]="{'system-message': message.source === 'system'}">
+    <span class="message-time" title="{{message.time}}" *ngIf="message.source !== 'system'">{{message.time | date: 'HH:mm'}}</span>
     <a href="">
         <span class="message-author author-linkback" [ngStyle]="{'color': '#'+message.author_color}">{{message.author}}</span>
     </a> {{message.contents}}
