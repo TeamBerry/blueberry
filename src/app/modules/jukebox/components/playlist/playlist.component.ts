@@ -6,7 +6,6 @@ import { PlayerService } from './../../../../shared/services/player.service';
     selector: 'app-playlist',
     templateUrl: './playlist.component.html',
     styleUrls: ['./playlist.component.scss'],
-    providers: [PlayerService]
 })
 export class PlaylistComponent implements OnInit {
     @Input() token: string;
@@ -33,11 +32,11 @@ export class PlaylistComponent implements OnInit {
             link: link,
             author: 'D1JU70'
         };
-        this.playerService.submit(this.token, video).subscribe(
+        /* this.playerService.submit(this.token, video).subscribe(
             data => {
                 this.fetchPlaylist();
             }
-        );
+        ); */
     }
 
     swap(video: any, direction: string) {

@@ -1,18 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MoodService } from './../../../../shared/services/mood.service';
-import { UserService } from './../../../../shared/services/user.service';
 import { BoxService } from './../../../../shared/services/box.service';
-import { PlayerService } from './../../../../shared/services/player.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { MoodWidgetComponent } from './../../components/mood-widget/mood-widget.component';
+import { PlayerService } from './../../../../shared/services/player.service';
 
 @Component({
     selector: 'app-box',
     templateUrl: './box.component.html',
     styleUrls: ['./box.component.scss'],
-    providers: [BoxService, UserService, PlayerService, MoodService]
+    providers: [BoxService]
 })
 export class BoxComponent implements OnInit {
     token: string;
@@ -30,25 +28,21 @@ export class BoxComponent implements OnInit {
 
     constructor(
         private boxService: BoxService,
-        private userService: UserService,
         private playerService: PlayerService,
-        private moodService: MoodService,
         private route: ActivatedRoute,
         private router: Router
-    ) {
-        route.paramMap.subscribe(
-            params => {
-                this.token = params.get('token');
-                this.loadingBox();
-            }
-        );
-    }
+    ) { }
 
     ngOnInit() {
-        this.loadingBox();
+        this.route.params.subscribe(
+            params => {
+                this.token = params.token;
+                this.loadBox();
+            }
+        )
     }
 
-    loadingBox() {
+    loadBox() {
         this.loading = true;
         this.boxService.get(this.token).subscribe(
             data => {
@@ -56,13 +50,20 @@ export class BoxComponent implements OnInit {
                 this.loading = false;
             }
         );
+        this.playerService.connect(this.token, 'D1JU70').subscribe(
+            message => {
+                console.log("connected", message);
+            },
+            error => {
+                console.error(error);
+            }
+        );
     }
 
     updateVideoInfo(data) {
         this.currentVideo = data;
-        console.log("Video has been detected.", this.currentVideo);
-        if (this.moodWidgetComponent) {
+/*         if (this.moodWidgetComponent) {
             this.moodWidgetComponent.checkVote();
-        }
+        } */
     }
 }

@@ -28,7 +28,6 @@ export class ChatService {
         const observable = new Observable(observer => {
             // On connect, indicate we're here for the chat
             this.socket.on('connect', () => {
-                console.log('attempting to connect to socket...');
                 this.socket.emit('auth', {
                     origin: 'BERRYBOX PNEUMA',
                     type: 'chat',
@@ -46,7 +45,6 @@ export class ChatService {
             });
 
             this.socket.on('chat', (data) => {
-                console.log('recieved chat message', data);
                 observer.next(new Message(data));
             });
 

@@ -113,11 +113,14 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             author: 'D1JU70'
         };
 
+        console.log("sending video");
 
-        this.playerService.submit(this.token, video).subscribe(
+        /* this.playerService.submit(this.token, video).subscribe(
             data => {
                 console.log("success");
             }
-        );
+        ); */
+
+        this.playerService.submit(this.token, video);
     }
 }
