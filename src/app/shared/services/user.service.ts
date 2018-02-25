@@ -9,21 +9,21 @@ export class UserService {
     constructor(private http: Http) { }
 
     get(token: string) {
-        return this.http.get(environment.apiUrl + '/user/' + token)
+        return this.http.get(environment.logosUrl + '/user/' + token)
         .map((response: Response) => {
             return response.json();
         });
     }
 
     stats(token: string) {
-        return this.http.get(environment.apiUrl + '/user/' + token + '/stats')
+        return this.http.get(environment.logosUrl + '/user/' + token + '/stats')
         .map((response: Response) => {
             return response.json();
         });
     }
 
     likes(token: string) {
-        return this.http.get(environment.apiUrl + '/user/' + token + '/likes')
+        return this.http.get(environment.logosUrl + '/user/' + token + '/likes')
         .map((response: Response) => {
             return response.json();
         });

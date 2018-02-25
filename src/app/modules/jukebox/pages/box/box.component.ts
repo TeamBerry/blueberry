@@ -44,9 +44,10 @@ export class BoxComponent implements OnInit {
 
     loadBox() {
         this.loading = true;
-        this.boxService.get(this.token).subscribe(
+        this.boxService.show(this.token).subscribe(
             data => {
-                this.box = data;
+                this.box = data[0];
+                console.log(this.box);
                 this.loading = false;
             }
         );
@@ -62,8 +63,8 @@ export class BoxComponent implements OnInit {
 
     updateVideoInfo(data) {
         this.currentVideo = data;
-/*         if (this.moodWidgetComponent) {
-            this.moodWidgetComponent.checkVote();
-        } */
+        /*         if (this.moodWidgetComponent) {
+                    this.moodWidgetComponent.checkVote();
+                } */
     }
 }

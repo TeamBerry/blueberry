@@ -22,29 +22,24 @@ export class BoxFormComponent implements OnInit {
     ];
     submitted = false;
 
-    model = new Box('', '', '', this.langs[0]);
+    box = new Box('D1JU70', '', '', this.langs[0]);
 
     constructor(
         public boxService: BoxService,
         public activeModal: NgbActiveModal,
-        private router: Router) { }
+        private router: Router
+    ) { }
 
     ngOnInit() {
     }
 
     onSubmit() {
         this.submitted = true;
-        if (this.model.token === '') {
-            this.boxService.post(this.model).subscribe(
-                data => {
-                    this.activeModal.close();
-                    this.router.navigate(['/box/' + data.token]);
-                }
-            );
-        } else {
-            this.boxService.put(this.model).subscribe(
-                data => console.log(data)
-            );
-        }
+        this.boxService.store(this.box).subscribe(
+            data => {
+                this.activeModal.close();
+                this.router.navigate(['/box/' + data._id]);
+            }
+        );
     }
 }

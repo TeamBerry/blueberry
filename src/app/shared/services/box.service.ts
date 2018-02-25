@@ -11,31 +11,23 @@ export class BoxService {
     constructor(private http: Http) { }
 
     list() {
-        return this.http.get(environment.apiUrl + '/boxes')
+        return this.http.get(environment.logosUrl + '/boxes')
             .map((response: Response) => {
                 return response.json();
             });
     }
 
-    get(token: string) {
-        return this.http.get(environment.apiUrl + '/boxes/' + token)
+    show(id: string) {
+        return this.http.get(environment.chronosUrl + '/box/' + id)
             .map((response: Response) => {
                 return response.json();
             });
     }
 
-    post(box: Box) {
-        return this.http.post(environment.apiUrl + '/boxes', box)
+    store(box: Box) {
+        return this.http.post(environment.chronosUrl + '/box', box)
             .map((response: Response) => {
                 return response.json();
             });
     }
-
-    put(box: Box) {
-        return this.http.put(environment.apiUrl + '/boxes/' + box.token, box)
-            .map((response: Response) => {
-                return response.json();
-            });
-    }
-
 }

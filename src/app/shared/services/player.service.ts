@@ -33,7 +33,7 @@ export class PlayerService {
             });
 
             this.socket.on('sync', (data) => {
-                console.log('recieved video', data);
+                console.log('recieved sync data', data);
                 observer.next(data);
             });
 
@@ -45,21 +45,21 @@ export class PlayerService {
     }
 
     playlist(boxToken: string) {
-        return this.http.get(environment.apiUrl + '/box/' + boxToken + '/playlist/all')
+        return this.http.get(environment.logosUrl + '/box/' + boxToken + '/playlist/all')
             .map((response: Response) => {
                 return response.json();
             });
     }
 
     current(boxToken: string) {
-        return this.http.get(environment.apiUrl + '/box/' + boxToken + '/playlist/current')
+        return this.http.get(environment.logosUrl + '/box/' + boxToken + '/playlist/current')
             .map((response: Response) => {
                 return response.json();
             });
     }
 
     next(boxToken: string) {
-        return this.http.get(environment.apiUrl + '/box/' + boxToken + '/playlist/next')
+        return this.http.get(environment.logosUrl + '/box/' + boxToken + '/playlist/next')
             .map((response: Response) => {
                 return response.json();
             });
@@ -74,21 +74,21 @@ export class PlayerService {
     }
 
     update(boxToken: string, video) {
-        return this.http.put(environment.apiUrl + '/box/' + boxToken + '/playlist/' + video.room_history_id, video)
+        return this.http.put(environment.logosUrl + '/box/' + boxToken + '/playlist/' + video.room_history_id, video)
             .map((response: Response) => {
                 return response.json();
             });
     }
 
     shuffle(boxToken: string) {
-        return this.http.get(environment.apiUrl + '/box/' + boxToken + '/playlist/shuffle')
+        return this.http.get(environment.logosUrl + '/box/' + boxToken + '/playlist/shuffle')
             .map((response: Response) => {
                 return response.json();
             });
     }
 
     swap(boxToken: string, action) {
-        return this.http.post(environment.apiUrl + '/box/' + boxToken + '/playlist/swap', action)
+        return this.http.post(environment.logosUrl + '/box/' + boxToken + '/playlist/swap', action)
             .map((response: Response) => {
                 return response.json();
             })
