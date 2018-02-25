@@ -46,7 +46,7 @@ export class BoxComponent implements OnInit {
         this.loading = true;
         this.boxService.show(this.token).subscribe(
             data => {
-                this.box = data[0];
+                this.box = data;
                 console.log(this.box);
                 this.loading = false;
             }
