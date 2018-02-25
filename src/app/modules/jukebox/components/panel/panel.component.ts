@@ -110,16 +110,11 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
         const video = {
             link: (res[2]) ? res[2] : res[4],
-            author: 'D1JU70'
+            author: 'D1JU70',
+            token: this.token,
         };
 
         console.log("sending video");
-
-        /* this.playerService.submit(this.token, video).subscribe(
-            data => {
-                console.log("success");
-            }
-        ); */
 
         this.playerService.submit(this.token, video);
     }
