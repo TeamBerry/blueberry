@@ -22,8 +22,6 @@ export class PlayerComponent implements OnInit, OnChanges {
     @Input() token: string;
     @Input() video: any;
     @Output() playing: EventEmitter<any> = new EventEmitter();
-    hasVideo = false;
-    public link;
     private player;
     private playerEvent;
     public height = '100%';
@@ -45,10 +43,9 @@ export class PlayerComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(event) {
-        console.log("changes detected in the inputs", event);
+        console.log('changes detected in the inputs', event);
         if (_.has(event, 'currentValue.video')) {
             if (event.currentValue.video !== null) {
-                this.hasVideo = true;
                 /* const video = event.currentValue.video;
                 this.player.loadVideoById(video.link); */
             }
@@ -64,19 +61,8 @@ export class PlayerComponent implements OnInit, OnChanges {
      */
     onPlayerReady(player) {
         this.player = player;
-        console.log("player is ready");
-        console.log(this.video);
+        console.log('player is ready');
         this.playVideo();
-        // TODO: Connect back to the box? Maybe treat the video with 2-way data-binding
-        /* this.playerService.current(this.token).subscribe(
-            data => {
-                if (data) {
-                    this.video = data;
-                    this.link = data.link;
-                    this.playVideo();
-                }
-            }
-        ); */
     }
 
     /**

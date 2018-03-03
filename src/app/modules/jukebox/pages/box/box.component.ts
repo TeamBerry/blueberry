@@ -14,17 +14,43 @@ import { PlayerService } from './../../../../shared/services/player.service';
     providers: [BoxService]
 })
 export class BoxComponent implements OnInit {
+    /**
+     * Token of the box. Unique indentifier (ObjectID from MongoDB)
+     *
+     * @type {string}
+     * @memberof BoxComponent
+     */
     token: string;
-    title: string;
-    box;
-    adminData;
-    adminStats;
-    userList;
+
+    /**
+     * Box itself
+     *
+     * @type {*}
+     * @memberof BoxComponent
+     */
+    box: any;
+
+    /**
+     * Loading flag to hide or show parts of the DOM depending on their state of readiness
+     *
+     * @memberof BoxComponent
+     */
     loading = true;
-    loadingData = true;
-    loadingStats = true;
+
+    /**
+     * The currently playing vidoe in the box. Gets refreshed by sockets and sent to the player and mood widgets
+     *
+     * @memberof BoxComponent
+     */
     currentVideo = null;
-    ready = false;
+
+    /**
+     * Integration of the Mood Widget component, though I'm not sure I need it anymore
+     *
+     * @private
+     * @type {MoodWidgetComponent}
+     * @memberof BoxComponent
+     */
     @ViewChild(MoodWidgetComponent) private moodWidgetComponent: MoodWidgetComponent;
 
     constructor(
@@ -39,18 +65,32 @@ export class BoxComponent implements OnInit {
             params => {
                 this.token = params.token;
                 this.loadBox();
+                this.connect();
             }
-        )
+        );
     }
 
+    /**
+     * Loads the details of the box
+     *
+     * @memberof BoxComponent
+     */
     loadBox() {
-        this.loading = true;
         this.boxService.show(this.token).subscribe(
             data => {
                 this.box = data;
                 this.loading = false;
             }
         );
+    }
+
+    /**
+     * This is where the real-time stuff happens.
+     * The box will connect to the server via socket and start synchronising with other users.
+     *
+     * @memberof BoxComponent
+     */
+    connect() {
         this.playerService.connect(this.token, 'D1JU70').subscribe(
             message => {
                 console.log('connected', message);
@@ -63,12 +103,5 @@ export class BoxComponent implements OnInit {
                 console.error(error);
             }
         );
-    }
-
-    updateVideoInfo(data) {
-        this.currentVideo = data;
-        /*         if (this.moodWidgetComponent) {
-                    this.moodWidgetComponent.checkVote();
-                } */
     }
 }
