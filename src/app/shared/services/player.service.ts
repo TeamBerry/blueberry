@@ -21,7 +21,7 @@ export class PlayerService {
                 console.log("Connecting to Box socket...");
                 this.socket.emit('auth', {
                     origin: 'BERRYBOX PNEUMA',
-                    type: 'box',
+                    type: 'sync',
                     token,
                     subscriber: userToken
                 });
