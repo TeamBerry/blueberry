@@ -2,7 +2,7 @@
     <div class="box-space row no-gutters">
         <div class="col-9">
             <div id="player">
-                <app-player #player [token]="box.token" (playing)="updateVideoInfo($event)"></app-player>
+                <app-player #player [token]="box.token" [video]="currentVideo" (playing)="updateVideoInfo($event)"></app-player>
             </div>
             <div class="row under-player">
                 <div class="col-4 box-info">
@@ -15,7 +15,7 @@
                     </svg> {{ box.creator }}
                 </div>
                 <div class="col-8 video-info" *ngIf="currentVideo">
-                    <p class="video-title" title="{{currentVideo.video_name}}">{{currentVideo.video_name}}</p>
+                    <p class="video-title" title="{{currentVideo.name}}">{{currentVideo.name}}</p>
                     <div class="row">
                         <div class="col-9">
                             <span class="minor-text">Submitted by </span>{{currentVideo.user_pseudo}}

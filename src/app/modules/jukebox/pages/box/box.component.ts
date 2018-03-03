@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BoxService } from './../../../../shared/services/box.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import * as _ from 'lodash';
 
 import { MoodWidgetComponent } from './../../components/mood-widget/mood-widget.component';
 import { PlayerService } from './../../../../shared/services/player.service';
@@ -47,13 +48,16 @@ export class BoxComponent implements OnInit {
         this.boxService.show(this.token).subscribe(
             data => {
                 this.box = data;
-                console.log(this.box);
                 this.loading = false;
             }
         );
         this.playerService.connect(this.token, 'D1JU70').subscribe(
             message => {
-                console.log("connected", message);
+                console.log('connected', message);
+                // Dirty, to be changed
+                if (_.has(message, 'link')) {
+                    this.currentVideo = message; // Given to the player by 1-way binding
+                }
             },
             error => {
                 console.error(error);

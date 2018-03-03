@@ -30,6 +30,11 @@ export class PlayerService {
             this.socket.on('confirm', (data) => {
                 console.log("connected to socket");
                 observer.next(data);
+                // Tells the service the user is joining. Response will be on sync
+                this.socket.emit('start', {
+                    token,
+                    subscriber: userToken
+                });
             });
 
             this.socket.on('sync', (data) => {
@@ -51,13 +56,6 @@ export class PlayerService {
             });
     }
 
-    current(boxToken: string) {
-        return this.http.get(environment.logosUrl + '/box/' + boxToken + '/playlist/current')
-            .map((response: Response) => {
-                return response.json();
-            });
-    }
-
     next(boxToken: string) {
         return this.http.get(environment.logosUrl + '/box/' + boxToken + '/playlist/next')
             .map((response: Response) => {
@@ -66,10 +64,6 @@ export class PlayerService {
     }
 
     submit(boxToken: string, video) : void{
-        /* return this.http.post(environment.apiUrl + '/box/' + boxToken + '/playlist', video)
-        .map((response: Response) => {
-            return response.json();
-        }); */
         this.socket.emit('video', video);
     }
 

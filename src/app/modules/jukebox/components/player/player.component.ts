@@ -1,18 +1,29 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import * as _ from 'lodash';
 
-import { BoxService } from './../../../../shared/services/box.service';
 import { PlayerService } from './../../../../shared/services/player.service';
 
+/**
+ * The player component of the box. It just recieves the video as an input from the box
+ * and sends back outputs when it starts or stops playing, so the box component can ask for
+ * what's next.
+ *
+ * @export
+ * @class PlayerComponent
+ * @implements {OnInit}
+ * @implements {OnChanges}
+ */
 @Component({
     selector: 'app-player',
     templateUrl: './player.component.html',
     styleUrls: ['./player.component.scss']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, OnChanges {
     @Input() token: string;
+    @Input() video: any;
     @Output() playing: EventEmitter<any> = new EventEmitter();
+    hasVideo = false;
     public link;
-    private video;
     private player;
     private playerEvent;
     public height = '100%';
@@ -20,7 +31,6 @@ export class PlayerComponent implements OnInit {
 
     constructor(
         private playerService: PlayerService,
-        private boxService: BoxService
     ) { }
 
     ngOnInit() {
@@ -34,24 +44,48 @@ export class PlayerComponent implements OnInit {
         }
     }
 
-    onPlayerReady(player) {
-        this.player = player;
-        if (this.token !== undefined) {
-            this.playerService.current(this.token).subscribe(
-                data => {
-                    if (data) {
-                        this.video = data;
-                        this.link = data.link;
-                        this.playVideo();
-                    }
-                }
-            );
+    ngOnChanges(event) {
+        console.log("changes detected in the inputs", event);
+        if (_.has(event, 'currentValue.video')) {
+            if (event.currentValue.video !== null) {
+                this.hasVideo = true;
+                /* const video = event.currentValue.video;
+                this.player.loadVideoById(video.link); */
+            }
         }
     }
 
+    /**
+     * Fires when the YouTube player is ready. We can only start playing videos once the player
+     * is itself ready.
+     *
+     * @param {any} player
+     * @memberof PlayerComponent
+     */
+    onPlayerReady(player) {
+        this.player = player;
+        console.log("player is ready");
+        console.log(this.video);
+        this.playVideo();
+        // TODO: Connect back to the box? Maybe treat the video with 2-way data-binding
+        /* this.playerService.current(this.token).subscribe(
+            data => {
+                if (data) {
+                    this.video = data;
+                    this.link = data.link;
+                    this.playVideo();
+                }
+            }
+        ); */
+    }
+
+    /**
+     * Starts the video after it detected changes in the video input
+     *
+     * @memberof PlayerComponent
+     */
     playVideo() {
-        /* this.player.loadVideoById(this.link); */
-        this.playing.emit(this.video);
+        this.player.loadVideoById(this.video.link);
     }
 
     pauseVideo() {
@@ -59,17 +93,6 @@ export class PlayerComponent implements OnInit {
     }
 
     next() {
-        this.playerService.next(this.token).subscribe(
-            data => {
-                if (data !== false) {
-                    this.video = data;
-                    this.link = data.link;
-                    this.playVideo();
-                } else {
-                    this.video = null;
-                    this.playing.emit(this.video);
-                }
-            }
-        );
+        // TODO: Emit a next to the box
     }
 }
