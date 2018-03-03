@@ -12,7 +12,7 @@ export class ChatService {
     private connectionOptions = {
         'transports': ['websocket']
     };
-    private socket = io('localhost:3002', this.connectionOptions);
+    private socket = io('localhost:8008', this.connectionOptions);
 
     constructor(private http: Http) { }
 

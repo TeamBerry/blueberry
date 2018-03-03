@@ -11,7 +11,7 @@ export class PlayerService {
     private connectionOptions = {
         'transports': ['websocket']
     };
-    private socket = io('localhost:3001', this.connectionOptions);
+    private socket = io('localhost:8008', this.connectionOptions);
 
     constructor(private http: Http) { }
 
