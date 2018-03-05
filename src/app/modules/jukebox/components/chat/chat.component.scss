@@ -20,11 +20,20 @@
 }
 
 .message-time {
-    color: $system-color;
+    color: $text-system-color;
 }
 
 .message-author {
     &:hover {
         text-decoration: underline;
     }
+}
+
+.bot-icon {
+    font-size: 0.7rem;
+    background-color: #e5a61a;
+    padding: .2rem;
+    color: white;
+    font-weight: 700;
+    border-radius: .3rem;
 }
