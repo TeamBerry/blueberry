@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.boxService.list().subscribe(
-            response => {
-                this.boxes = response;
+            boxes => {
+                this.boxes = boxes;
                 this.loading = false;
             },
             error => console.log(error)

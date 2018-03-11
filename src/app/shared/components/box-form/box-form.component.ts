@@ -22,7 +22,9 @@ export class BoxFormComponent implements OnInit {
     ];
     submitted = false;
 
-    box = new Box('D1JU70', '', '', this.langs[0]);
+    box = new Box({
+        creator: 'D1JU70',
+    });
 
     constructor(
         public boxService: BoxService,

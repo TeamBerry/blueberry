@@ -11,9 +11,13 @@ export class BoxService {
     constructor(private http: Http) { }
 
     list() {
-        return this.http.get(environment.logosUrl + '/boxes')
+        return this.http.get(environment.chronosUrl + '/box')
             .map((response: Response) => {
-                return response.json();
+                const boxes: Box[] = [];
+                response.json().forEach((box) => {
+                    boxes.push(new Box(box));
+                });
+                return boxes;
             });
     }
 
