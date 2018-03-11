@@ -6,11 +6,13 @@ export class Box {
     creator: string;
     description: string;
     name: string;
+    _id: string;
 
     constructor(obj?: any) {
         this.creator = obj && obj.creator || null;
         this.description = obj && obj.description || null;
         this.name = obj && obj.name || null;
         this.playlist = obj && obj.playlist || [];
+        this._id = obj && obj._id || null;
     }
 }
