@@ -1,15 +1,17 @@
 @import './../../../../imports.scss';
 
 .card-box{
-    width: 360px;
     background-color: $main-black;
     color: white;
     border-radius: 0 !important;
     cursor: pointer;
 
     .card-img-top{
-        width: inherit;
+        width: 100%;
         border-radius: inherit;
+    }
+    &:hover {
+        background-color: lighten($main-black, 10%);
     }
 }
 
