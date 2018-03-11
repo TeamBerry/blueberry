@@ -4,7 +4,7 @@ import { environment } from './../../../environments/environment';
 
 @Injectable()
 export class MoodService {
-    host: string = environment.apiUrl;
+    host: string = environment.logosUrl;
 
     constructor(private http: Http) { }
 

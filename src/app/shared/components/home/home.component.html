@@ -12,8 +12,8 @@
             <h1 class="display-3">Join a box</h1>
             <p class="lead">Find other people who watch the videos you like.</p>
         </div>
-        <div class="card-deck">
-            <app-box-widget *ngFor="let box of boxes; let i = index" [box]="box" (click)="enter(box.token)"></app-box-widget>
+        <div class="row">
+            <app-box-widget class="col-sm-3 py-2" *ngFor="let box of boxes; let i = index" [box]="box" (click)="enter(box._id)"></app-box-widget>
         </div>
     </div>
 

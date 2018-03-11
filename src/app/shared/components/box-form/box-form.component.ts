@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { Box } from './../../models/box.model';
 import { BoxService } from './../../services/box.service';
-
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-box-form',
@@ -22,29 +22,26 @@ export class BoxFormComponent implements OnInit {
     ];
     submitted = false;
 
-    model = new Box('', '', '', this.langs[0]);
+    box = new Box({
+        creator: 'D1JU70',
+    });
 
     constructor(
         public boxService: BoxService,
         public activeModal: NgbActiveModal,
-        private router: Router) { }
+        private router: Router
+    ) { }
 
     ngOnInit() {
     }
 
     onSubmit() {
         this.submitted = true;
-        if (this.model.token === '') {
-            this.boxService.post(this.model).subscribe(
-                data => {
-                    this.activeModal.close();
-                    this.router.navigate(['/box/' + data.token]);
-                }
-            );
-        } else {
-            this.boxService.put(this.model).subscribe(
-                data => console.log(data)
-            );
-        }
+        this.boxService.store(this.box).subscribe(
+            data => {
+                this.activeModal.close();
+                this.router.navigate(['/box/' + data._id]);
+            }
+        );
     }
 }

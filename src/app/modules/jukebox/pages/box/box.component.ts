@@ -1,56 +1,82 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MoodService } from './../../../../shared/services/mood.service';
-import { UserService } from './../../../../shared/services/user.service';
 import { BoxService } from './../../../../shared/services/box.service';
-import { PlayerService } from './../../../../shared/services/player.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import * as _ from 'lodash';
 
 import { MoodWidgetComponent } from './../../components/mood-widget/mood-widget.component';
+import { PlayerService } from './../../../../shared/services/player.service';
 
 @Component({
     selector: 'app-box',
     templateUrl: './box.component.html',
     styleUrls: ['./box.component.scss'],
-    providers: [BoxService, UserService, PlayerService, MoodService]
+    providers: [BoxService]
 })
 export class BoxComponent implements OnInit {
+    /**
+     * Token of the box. Unique indentifier (ObjectID from MongoDB)
+     *
+     * @type {string}
+     * @memberof BoxComponent
+     */
     token: string;
-    title: string;
-    box;
-    adminData;
-    adminStats;
-    userList;
+
+    /**
+     * Box itself
+     *
+     * @type {*}
+     * @memberof BoxComponent
+     */
+    box: any;
+
+    /**
+     * Loading flag to hide or show parts of the DOM depending on their state of readiness
+     *
+     * @memberof BoxComponent
+     */
     loading = true;
-    loadingData = true;
-    loadingStats = true;
+
+    /**
+     * The currently playing vidoe in the box. Gets refreshed by sockets and sent to the player and mood widgets
+     *
+     * @memberof BoxComponent
+     */
     currentVideo = null;
-    ready = false;
+
+    /**
+     * Integration of the Mood Widget component, though I'm not sure I need it anymore
+     *
+     * @private
+     * @type {MoodWidgetComponent}
+     * @memberof BoxComponent
+     */
     @ViewChild(MoodWidgetComponent) private moodWidgetComponent: MoodWidgetComponent;
 
     constructor(
         private boxService: BoxService,
-        private userService: UserService,
         private playerService: PlayerService,
-        private moodService: MoodService,
         private route: ActivatedRoute,
         private router: Router
-    ) {
-        route.paramMap.subscribe(
+    ) { }
+
+    ngOnInit() {
+        this.route.params.subscribe(
             params => {
-                this.token = params.get('token');
-                this.loadingBox();
+                this.token = params.token;
+                this.loadBox();
+                this.connect();
             }
         );
     }
 
-    ngOnInit() {
-        this.loadingBox();
-    }
-
-    loadingBox() {
-        this.loading = true;
-        this.boxService.get(this.token).subscribe(
+    /**
+     * Loads the details of the box
+     *
+     * @memberof BoxComponent
+     */
+    loadBox() {
+        this.boxService.show(this.token).subscribe(
             data => {
                 this.box = data;
                 this.loading = false;
@@ -58,11 +84,24 @@ export class BoxComponent implements OnInit {
         );
     }
 
-    updateVideoInfo(data) {
-        this.currentVideo = data;
-        console.log("Video has been detected.", this.currentVideo);
-        if (this.moodWidgetComponent) {
-            this.moodWidgetComponent.checkVote();
-        }
+    /**
+     * This is where the real-time stuff happens.
+     * The box will connect to the server via socket and start synchronising with other users.
+     *
+     * @memberof BoxComponent
+     */
+    connect() {
+        this.playerService.connect(this.token, 'D1JU70').subscribe(
+            message => {
+                console.log('connected', message);
+                // Dirty, to be changed
+                if (_.has(message, 'link')) {
+                    this.currentVideo = message; // Given to the player by 1-way binding
+                }
+            },
+            error => {
+                console.error(error);
+            }
+        );
     }
 }

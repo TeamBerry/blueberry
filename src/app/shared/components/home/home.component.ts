@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { BoxService } from './../../services/box.service';
+import { Box } from '../../models/box.model';
 import { BoxFormComponent } from './../box-form/box-form.component';
+import { BoxService } from './../../services/box.service';
 
 @Component({
     selector: 'app-home',
@@ -13,7 +14,7 @@ import { BoxFormComponent } from './../box-form/box-form.component';
 })
 export class HomeComponent implements OnInit {
     title = 'YouTube. With everyone.';
-    boxes;
+    boxes: Box[] = [];
     loading = true;
 
     constructor(public router: Router,
@@ -22,14 +23,20 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.boxService.list().subscribe(
-            response => {
-                this.boxes = response;
+            boxes => {
+                this.boxes = boxes;
                 this.loading = false;
             },
             error => console.log(error)
         );
     }
 
+    /**
+     * When the user clicks on the widget box, he enters the box
+     *
+     * @param {string} token The Mongo _id of the box
+     * @memberof HomeComponent
+     */
     enter(token: string) {
         this.router.navigate(['box/', token]);
     }

@@ -1,17 +1,17 @@
-<div class="card card-box">
-    <img src="http://i.ytimg.com/vi/XxT7M47LxwE/hqdefault.jpg" alt="" class="card-img-top">
+<div class="card-box">
+    <img *ngIf="currentVideo" src="http://i.ytimg.com/vi/{{ currentVideo?.video?.link }}/hqdefault.jpg" alt="" class="card-img-top">
+    <img *ngIf="!currentVideo" src="assets/images/no-playing.png" alt="" class="card-img-top">
     <div class="card-block">
-        <h4 class="card-name">{{box.title}}</h4>
-        <p class="card-text">Kass Theme -Extended-</p>
-        <a href="" class="btn btn-default">Join</a>
-    </div>
-    <div class="card-block">
+        <h4 class="card-name">{{ box.name }}</h4>
+        <p class="card-text">Currently playing: {{ currentVideo?.video?.name || "Nothing." }}</p>
         <div class="media">
-            <img src="./assets/profile-pictures/{{box.admin_picture}}" alt="" class="d-flex mr-3 box-pp">
+            <img src="./assets/profile-pictures/{{ box.creator }}" alt="" class="d-flex mr-3 box-pp">
             <div class="media-body">
-                <h6 class="mt-0"><a href="user/{{box.admin_token}}">{{box.admin}}</a></h6>
-                {{box.creation_date}}
+                <h6 class="mt-0">
+                    <a href="user/{{ box.creator }}">{{ box.creator }}</a>
+                </h6>
             </div>
         </div>
+        <a href="" class="btn btn-default btn-block">Join</a>
     </div>
 </div>
