@@ -2,17 +2,19 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class Box {
-    playlist: any[];
+    _id: string;
     creator: string;
     description: string;
+    lang: string;
     name: string;
-    _id: string;
+    playlist: any[];
 
     constructor(obj?: any) {
+        this._id = obj && obj._id || null;
         this.creator = obj && obj.creator || null;
         this.description = obj && obj.description || null;
+        this.lang = obj && obj.lang || 'English';
         this.name = obj && obj.name || null;
         this.playlist = obj && obj.playlist || [];
-        this._id = obj && obj._id || null;
     }
 }
