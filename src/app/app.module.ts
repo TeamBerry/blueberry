@@ -11,9 +11,9 @@ import { UserComponent } from './shared/components/user/user.component';
 import { BoxFormComponent } from './shared/components/box-form/box-form.component';
 import { LikesComponent } from './shared/components/likes/likes.component';
 
-// Auth components
-import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
+// Auth component
+import { LoginFormComponent } from './shared/components/login-form/login-form.component';
+import { SignupFormComponent } from './shared/components/signup-form/signup-form.component';
 
 /* Feature Modules */
 import { JukeboxModule } from './modules/jukebox/jukebox.module';
@@ -26,8 +26,8 @@ import { JukeboxModule } from './modules/jukebox/jukebox.module';
         UserComponent,
         BoxFormComponent,
         LikesComponent,
-        LoginComponent,
-        SignupComponent
+        LoginFormComponent,
+        SignupFormComponent
     ],
     imports: [
         AppRoutingModule,
