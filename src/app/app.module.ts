@@ -11,6 +11,10 @@ import { UserComponent } from './shared/components/user/user.component';
 import { BoxFormComponent } from './shared/components/box-form/box-form.component';
 import { LikesComponent } from './shared/components/likes/likes.component';
 
+// Auth components
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+
 /* Feature Modules */
 import { JukeboxModule } from './modules/jukebox/jukebox.module';
 
@@ -21,7 +25,9 @@ import { JukeboxModule } from './modules/jukebox/jukebox.module';
         HomeComponent,
         UserComponent,
         BoxFormComponent,
-        LikesComponent
+        LikesComponent,
+        LoginComponent,
+        SignupComponent
     ],
     imports: [
         AppRoutingModule,
