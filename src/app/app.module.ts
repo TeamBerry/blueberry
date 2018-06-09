@@ -37,6 +37,11 @@ import { JukeboxModule } from './modules/jukebox/jukebox.module';
         SharedModule
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [
+        BoxFormComponent,
+        LoginFormComponent,
+        SignupFormComponent
+    ]
 })
 export class AppModule { }
