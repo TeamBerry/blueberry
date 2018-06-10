@@ -6,14 +6,16 @@ import * as moment from 'moment';
 })
 export class AuthDirective implements OnInit, AfterViewInit, OnDestroy {
     // tslint:disable-next-line:no-input-rename
-    @Input('auth') display: boolean;
+    @Input('appAuth') display: string;
 
     constructor(
         private element: ElementRef
-    ) { }
+    ) {
+        console.log('CONSTRUCTOR');
+    }
 
     ngOnInit() {
-        console.log('applying');
+        console.log('INIT');
         this.apply();
     }
 
@@ -28,8 +30,14 @@ export class AuthDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     apply() {
+        // "Casting" the string to boolean
+        const isDisplay = (this.display === 'true');
+
+        // Get the isLogged boolean
         const isLogged = moment().isBefore(moment(JSON.parse(localStorage.getItem('expires_at'))));
-        if (this.display !== isLogged) {
+
+        // Compare both bools
+        if (isDisplay !== isLogged) {
             console.log('HIDE ELEMENT', this.element);
             this.element.nativeElement.style.display = 'none';
         }

@@ -8,6 +8,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './nav/nav.component';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
+import { AuthDirective } from '../shared/directive/auth.directive';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -17,7 +19,8 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
         NgbModule.forRoot()
     ],
     declarations: [
-        NavComponent
+        NavComponent,
+        AuthDirective
     ],
     exports: [
         NavComponent
