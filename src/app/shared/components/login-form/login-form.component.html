@@ -5,14 +5,14 @@
     </button>
 </div>
 <div class="modal-body">
-    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <form (ngSubmit)="login()" #loginForm="ngForm">
         <div class="form-group">
             <label for="mail">Mail address</label>
-            <input type="mail" class="form-control input-lg" name="mail" placeholder="Email" required autofocus>
+            <input type="mail" [(ngModel)]="mail" class="form-control input-lg" name="mail" placeholder="Email" required autofocus>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control input-lg" name="password" placeholder="Password" required>
+            <input type="password" [(ngModel)]="password" class="form-control input-lg" name="password" placeholder="Password" required>
         </div>
         <div class="form-group align-center">
             <button type="submit" class="btn btn-block btn-default">Log in</button>

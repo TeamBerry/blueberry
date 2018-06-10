@@ -12,6 +12,7 @@ import { BoxFormComponent } from './shared/components/box-form/box-form.componen
 import { LikesComponent } from './shared/components/likes/likes.component';
 
 // Auth component
+import { AuthDirective } from './shared/directive/auth.directive';
 import { LoginFormComponent } from './shared/components/login-form/login-form.component';
 import { SignupFormComponent } from './shared/components/signup-form/signup-form.component';
 
@@ -27,7 +28,8 @@ import { JukeboxModule } from './modules/jukebox/jukebox.module';
         BoxFormComponent,
         LikesComponent,
         LoginFormComponent,
-        SignupFormComponent
+        SignupFormComponent,
+        AuthDirective
     ],
     imports: [
         AppRoutingModule,
