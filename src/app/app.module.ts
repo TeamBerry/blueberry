@@ -32,9 +32,12 @@ import { JukeboxModule } from './modules/jukebox/jukebox.module';
     imports: [
         AppRoutingModule,
         BrowserModule,
+        SharedModule,
         CoreModule,
         JukeboxModule,
-        SharedModule
+    ],
+    exports: [
+        AppComponent
     ],
     providers: [],
     bootstrap: [AppComponent],

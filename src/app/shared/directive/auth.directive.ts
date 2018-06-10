@@ -6,7 +6,7 @@ import * as moment from 'moment';
 })
 export class AuthDirective implements OnInit, AfterViewInit {
     // tslint:disable-next-line:no-input-rename
-    @Input('appAuth') display: string;
+    @Input() appAuth: string;
 
     constructor(
         private element: ElementRef
@@ -29,13 +29,13 @@ export class AuthDirective implements OnInit, AfterViewInit {
      */
     apply() {
         // "Casting" the string to boolean
-        const isDisplay = (this.display === 'true');
+        const isDisplay = (this.appAuth === 'true');
 
         // Get the isLogged boolean
         const isLogged = moment().isBefore(moment(JSON.parse(localStorage.getItem('expires_at'))));
 
         // Compare both bools
-        if (isDisplay === isLogged) {
+        if (isDisplay !== isLogged) {
             this.element.nativeElement.style.display = 'none';
         }
     }

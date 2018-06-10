@@ -6,14 +6,12 @@ import { BoxFormComponent } from '../../shared/components/box-form/box-form.comp
 import { LoginFormComponent } from '../../shared/components/login-form/login-form.component';
 import { SignupFormComponent } from '../../shared/components/signup-form/signup-form.component';
 
-// Services
-import { AuthService } from '../../shared/services/auth.service';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
     selector: 'app-nav',
     templateUrl: './nav.component.html',
     styleUrls: ['./nav.component.scss'],
-    providers: [AuthService]
 })
 export class NavComponent implements OnInit {
 

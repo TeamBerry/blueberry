@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './nav/nav.component';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
+import { AuthService } from './auth.service';
 import { AuthDirective } from '../shared/directive/auth.directive';
 
 @NgModule({
@@ -23,9 +24,12 @@ import { AuthDirective } from '../shared/directive/auth.directive';
         AuthDirective
     ],
     exports: [
-        NavComponent
+        NavComponent,
+        AuthDirective
     ],
-    providers: []
+    providers: [
+        AuthService
+    ]
 })
 export class CoreModule {
     constructor( @Optional() @SkipSelf() parentModule: CoreModule) {

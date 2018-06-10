@@ -4,7 +4,6 @@ import 'rxjs/add/operator/map';
 import * as moment from 'moment';
 
 import { environment } from 'environments/environment';
-import { User } from '../models/user.model';
 
 @Injectable()
 export class AuthService {
