@@ -1,34 +1,32 @@
-import { Directive, OnInit, AfterViewInit, OnDestroy, Input, ElementRef } from '@angular/core';
+import { Directive, OnInit, AfterViewInit, Input, ElementRef } from '@angular/core';
 import * as moment from 'moment';
 
 @Directive({
     selector: '[appAuth]',
 })
-export class AuthDirective implements OnInit, AfterViewInit, OnDestroy {
+export class AuthDirective implements OnInit, AfterViewInit {
     // tslint:disable-next-line:no-input-rename
     @Input('appAuth') display: string;
 
     constructor(
         private element: ElementRef
-    ) {
-        console.log('CONSTRUCTOR');
-    }
+    ) { }
 
     ngOnInit() {
-        console.log('INIT');
         this.apply();
     }
 
     ngAfterViewInit() {
-        console.log('applying');
         this.apply();
     }
 
-    ngOnDestroy() {
-        console.log('applying');
-        this.apply();
-    }
-
+    /**
+     * Applies the logic of the directive to the DOM.
+     *
+     * TODO: Create/Destroy DOM elements instead of simply hiding them.
+     *
+     * @memberof AuthDirective
+     */
     apply() {
         // "Casting" the string to boolean
         const isDisplay = (this.display === 'true');
@@ -37,8 +35,7 @@ export class AuthDirective implements OnInit, AfterViewInit, OnDestroy {
         const isLogged = moment().isBefore(moment(JSON.parse(localStorage.getItem('expires_at'))));
 
         // Compare both bools
-        if (isDisplay !== isLogged) {
-            console.log('HIDE ELEMENT', this.element);
+        if (isDisplay === isLogged) {
             this.element.nativeElement.style.display = 'none';
         }
     }

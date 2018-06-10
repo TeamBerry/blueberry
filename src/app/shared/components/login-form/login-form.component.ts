@@ -21,20 +21,16 @@ export class LoginFormComponent implements OnInit {
     ngOnInit() {
     }
 
-
     /**
-     * Sends the form data tot hte server to attempt connection
+     * Sends the form data to the server to attempt connection
      *
      * @memberof LoginFormComponent
      */
     login() {
-        console.log('attempting to log in...');
         this.authService.login(this.mail, this.password).subscribe(
             (authResult) => {
-                console.log(authResult);
                 this.authService.setSession(authResult);
                 location.reload();
-                // TODO: Dismiss modal and reload page
             }
         );
     }

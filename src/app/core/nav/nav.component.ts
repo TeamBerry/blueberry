@@ -1,18 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+// Components
 import { BoxFormComponent } from '../../shared/components/box-form/box-form.component';
 import { LoginFormComponent } from '../../shared/components/login-form/login-form.component';
 import { SignupFormComponent } from '../../shared/components/signup-form/signup-form.component';
 
+// Services
+import { AuthService } from '../../shared/services/auth.service';
+
 @Component({
     selector: 'app-nav',
     templateUrl: './nav.component.html',
-    styleUrls: ['./nav.component.scss']
+    styleUrls: ['./nav.component.scss'],
+    providers: [AuthService]
 })
 export class NavComponent implements OnInit {
 
-    constructor(private modalService: NgbModal) { }
+    constructor(
+        private modalService: NgbModal,
+        private authService: AuthService
+    ) { }
 
     ngOnInit() {
     }
@@ -28,6 +36,10 @@ export class NavComponent implements OnInit {
 
     signup() {
         const modalRef = this.modalService.open(SignupFormComponent);
+    }
+
+    logout(){
+        this.authService.logout();
     }
 
 }
