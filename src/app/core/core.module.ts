@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
     imports: [

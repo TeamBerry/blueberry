@@ -6,7 +6,7 @@ import { BoxFormComponent } from '../../shared/components/box-form/box-form.comp
 import { LoginFormComponent } from '../../shared/components/login-form/login-form.component';
 import { SignupFormComponent } from '../../shared/components/signup-form/signup-form.component';
 
-import { AuthService } from '../../core/auth.service';
+import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
     selector: 'app-nav',
