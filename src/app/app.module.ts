@@ -12,11 +12,13 @@ import { BoxFormComponent } from './shared/components/box-form/box-form.componen
 import { LikesComponent } from './shared/components/likes/likes.component';
 
 // Auth component
+import { NavComponent } from './core/nav/nav.component'; // Exceptional, so it can benefit from the auth directive
 import { LoginFormComponent } from './shared/components/login-form/login-form.component';
 import { SignupFormComponent } from './shared/components/signup-form/signup-form.component';
 
 /* Feature Modules */
 import { JukeboxModule } from './modules/jukebox/jukebox.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
@@ -27,7 +29,8 @@ import { JukeboxModule } from './modules/jukebox/jukebox.module';
         BoxFormComponent,
         LikesComponent,
         LoginFormComponent,
-        SignupFormComponent
+        SignupFormComponent,
+        NavComponent
     ],
     imports: [
         AppRoutingModule,
@@ -35,6 +38,7 @@ import { JukeboxModule } from './modules/jukebox/jukebox.module';
         SharedModule,
         CoreModule,
         JukeboxModule,
+        NgbModule.forRoot()
     ],
     exports: [
         AppComponent

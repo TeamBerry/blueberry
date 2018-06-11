@@ -5,11 +5,9 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { NavComponent } from './nav/nav.component';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
 import { AuthService } from './auth.service';
-import { AuthDirective } from '../shared/directive/auth.directive';
 
 @NgModule({
     imports: [
@@ -17,18 +15,14 @@ import { AuthDirective } from '../shared/directive/auth.directive';
         FormsModule,
         HttpModule,
         HttpClientModule,
-        NgbModule.forRoot()
+        NgbModule.forRoot(),
     ],
     declarations: [
-        NavComponent,
-        AuthDirective
     ],
     exports: [
-        NavComponent,
-        AuthDirective
     ],
     providers: [
-        AuthService
+        AuthService,
     ]
 })
 export class CoreModule {
