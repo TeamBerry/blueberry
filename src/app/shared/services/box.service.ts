@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import * as _ from 'lodash';
 
@@ -9,32 +10,55 @@ import { Box } from './../models/box.model';
 @Injectable()
 export class BoxService {
 
-    constructor(private http: Http) { }
+    constructor(
+        private http: HttpClient
+    ) { }
 
-    list() {
-        return this.http.get(environment.chronosUrl + '/box')
-            .map((response: Response) => {
-                const boxes: Box[] = [];
-                response.json().forEach((box) => {
-                    boxes.push(new Box(box));
+
+    /**
+     * Gets all boxes
+     *
+     * @returns {Observable<Box[]>}
+     * @memberof BoxService
+     */
+    list(): Observable<Box[]> {
+        return this.http.get<Box[]>(environment.chronosUrl + '/box')
+            .map((boxes: Box[]) => {
+                return boxes.map((box: Box) => {
+                    return new Box(box);
                 });
-                return boxes;
             });
     }
 
-    show(id: string) {
-        return this.http.get(environment.chronosUrl + '/box/' + id)
-            .map((response: Response) => {
-                return response.json();
+
+    /**
+     * Gets one box
+     *
+     * @param {string} id The unique token of the box
+     * @returns {Observable<Box>}
+     * @memberof BoxService
+     */
+    show(id: string): Observable<Box> {
+        return this.http.get<Box>(environment.chronosUrl + '/box/' + id)
+            .map((box: Box) => {
+                return new Box(box);
             });
     }
 
-    store(box: Box) {
+
+    /**
+     * Stores a new box in the database
+     *
+     * @param {Box} box
+     * @returns {Observable<Box>}
+     * @memberof BoxService
+     */
+    store(box: Box): Observable<Box> {
         // Omitting the _id so mongo can send it correctly created
         box = _.omit(box, '_id');
-        return this.http.post(environment.chronosUrl + '/box', box)
-            .map((response: Response) => {
-                return response.json();
+        return this.http.post<Box>(environment.chronosUrl + '/box', box)
+            .map((createdBox: Box) => {
+                return createdBox;
             });
     }
 }
