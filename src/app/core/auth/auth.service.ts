@@ -29,6 +29,13 @@ export class AuthService {
         .shareReplay();*/
     }
 
+    signup(mail: string, password: string){
+        return this.http.post(environment.chronosUrl + '/signup', { mail: mail, password: password})
+            .map((response: Response) => {
+                return response.json();
+            });
+    }
+
 
     /**
      * Logs the user out by destroying its session

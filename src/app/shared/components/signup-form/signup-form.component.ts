@@ -34,6 +34,9 @@ export class SignupFormComponent implements OnInit {
             (authResult) => {
                 this.authService.setSession(authResult);
                 location.reload();
+            },
+            (error) => {
+                console.log(error);
             }
         )
     }
