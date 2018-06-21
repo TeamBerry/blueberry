@@ -1,42 +1,35 @@
-import { Directive, OnInit, AfterViewInit, Input, ElementRef } from '@angular/core';
-import * as moment from 'moment';
+import { Directive, Input, ViewContainerRef, TemplateRef } from '@angular/core';
+import { AuthService } from './../../core/auth/auth.service';
 
 @Directive({
     selector: '[appAuth]',
 })
-export class AuthDirective implements OnInit, AfterViewInit {
-    // tslint:disable-next-line:no-input-rename
-    @Input() appAuth: string;
+export class AuthDirective {
+    private isDisplayed = true;
 
     constructor(
-        private element: ElementRef
+        private templateRef: TemplateRef<any>,
+        private viewContainer: ViewContainerRef,
+        private authService: AuthService
     ) { }
 
-    ngOnInit() {
-        this.apply();
-    }
-
-    ngAfterViewInit() {
-        this.apply();
-    }
-
     /**
-     * Applies the logic of the directive to the DOM.
+     * Creates the template inside the view container or clears said container depending on the condition given out by the DOM.
      *
-     * TODO: Create/Destroy DOM elements instead of simply hiding them.
+     * This will NOT hide/show elements but render them if necessary.
+     * Protects against the user tempering with the DOM via the insepctor console of their browser.
      *
      * @memberof AuthDirective
      */
-    apply() {
-        // "Casting" the string to boolean
-        const isDisplay = (this.appAuth === 'true');
+    @Input() set appAuth(condition: boolean) {
+        const isLogged = this.authService.isLoggedIn();
 
-        // Get the isLogged boolean
-        const isLogged = moment().isBefore(moment(JSON.parse(localStorage.getItem('expires_at'))));
-
-        // Compare both bools
-        if (isDisplay !== isLogged) {
-            this.element.nativeElement.style.display = 'none';
+        if (condition === isLogged) {
+            this.viewContainer.createEmbeddedView(this.templateRef);
+            this.isDisplayed = true;
+        } else {
+            this.viewContainer.clear();
+            this.isDisplayed = false;
         }
     }
 }
