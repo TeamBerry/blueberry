@@ -3,6 +3,7 @@ import { YoutubePlayerModule } from 'ng2-youtube-player';
 
 import { SharedModule } from './../../shared/shared.module';
 import { PlayerService } from './../../shared/services/player.service';
+import { JukeboxService } from './jukebox.service';
 
 import { JukeboxRoutingModule } from './jukebox-routing.module';
 import { BoxComponent } from './pages/box/box.component';
@@ -31,6 +32,9 @@ import { FavoritelistComponent } from './components/favoritelist/favoritelist.co
         YoutubePlayerModule
     ],
     exports: [],
-    providers: [PlayerService],
+    providers: [
+        PlayerService,
+        JukeboxService
+    ],
 })
 export class JukeboxModule { }

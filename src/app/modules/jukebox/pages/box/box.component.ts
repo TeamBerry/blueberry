@@ -6,6 +6,8 @@ import * as _ from 'lodash';
 
 import { MoodWidgetComponent } from './../../components/mood-widget/mood-widget.component';
 import { PlayerService } from './../../../../shared/services/player.service';
+import { JukeboxService } from './../../jukebox.service';
+import { Box } from 'app/shared/models/box.model';
 
 @Component({
     selector: 'app-box',
@@ -55,6 +57,7 @@ export class BoxComponent implements OnInit {
 
     constructor(
         private boxService: BoxService,
+        private jukeboxService: JukeboxService,
         private playerService: PlayerService,
         private route: ActivatedRoute,
         private router: Router
@@ -78,7 +81,8 @@ export class BoxComponent implements OnInit {
     loadBox() {
         this.boxService.show(this.token).subscribe(
             data => {
-                this.box = data;
+                this.box = new Box(data);
+                this.jukeboxService.setBox(this.box);
                 this.loading = false;
             }
         );

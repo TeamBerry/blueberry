@@ -14,7 +14,7 @@
         </div>
     </div>
 </div>
-<div *ngFor="let video of playlist; let i = index; let first = first">
+<div *ngFor="let video of box.playlist; let i = index; let first = first">
     <p class="list-rank px-3" *ngIf="(video.video_status == 0 || video.video_status == 3) && first">Upcoming: </p>
     <p class="list-rank rank-playing px-3" *ngIf="video.video_status == 1">Now playing: </p>
     <p class="list-rank px-3" *ngIf="video.video_status == 2 && playlist[i - 1].video_status != 2 && !first">Played: </p>
