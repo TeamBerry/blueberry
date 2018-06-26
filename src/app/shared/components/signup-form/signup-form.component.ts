@@ -24,8 +24,13 @@ export class SignupFormComponent implements OnInit {
 
     onSubmit() {
         console.log('attempting to signup...');
+        // TODO: Check email
+
+        // Check password verify
         if (this.password !== this.passwordVerify) {
             this.errorMessage = 'Your password verification is invalid.';
+        } else {
+            this.signup();
         }
     }
 
@@ -36,6 +41,7 @@ export class SignupFormComponent implements OnInit {
                 location.reload();
             },
             (error) => {
+                this.errorMessage = 'This email address is already taken. Have you forgotten your password?';
                 console.log(error);
             }
         )
