@@ -2,10 +2,10 @@
     <div class="col-11 sub-panels">
         <div class="panel-title text-center">{{activePanel}}</div>
         <div class="box-side-panel" id="chat-space">
-            <app-chat [hidden]="activePanel !== 'chat'" [token]="token" (socketStatus)="refreshChatStatus($event)"></app-chat>
-            <app-playlist [hidden]="activePanel !== 'queue'" [token]="token"></app-playlist>
+            <app-chat [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" (socketStatus)="refreshChatStatus($event)"></app-chat>
+            <app-playlist [hidden]="activePanel !== 'queue'"></app-playlist>
             <app-favoritelist [hidden]="activePanel !== 'likes'"></app-favoritelist>
-            <app-userlist [hidden]="activePanel !== 'users'" [token]="token"></app-userlist>
+            <app-userlist [hidden]="activePanel !== 'users'" [boxToken]="boxToken"></app-userlist>
         </div>
     </div>
     <div class="col-1" id="panel-menu">

@@ -19,9 +19,10 @@ import { JukeboxService } from './../../jukebox.service';
     styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent implements OnInit, OnChanges {
-    @Input() token: string;
+    @Input() boxToken: string;
     @Input() video: any;
     @Output() playing: EventEmitter<any> = new EventEmitter();
+    @Output() state: EventEmitter<any> = new EventEmitter();
     private player;
     private playerEvent;
     public height = '100%';
@@ -37,17 +38,18 @@ export class PlayerComponent implements OnInit, OnChanges {
 
     onStateChange(event) {
         this.playerEvent = event.data;
-        if (this.playerEvent === 0) {
-            this.next();
+        if (this.playerEvent === 0) { // PLAY ENDED
+            this.state.emit(this.playerEvent);
         }
     }
 
     ngOnChanges(event) {
         console.log('changes detected in the inputs', event);
-        if (_.has(event, 'currentValue.video')) {
-            if (event.currentValue.video !== null) {
-                /* const video = event.currentValue.video;
-                this.player.loadVideoById(video.link); */
+        if (_.has(event, 'video')) {
+            if (event.video.currentValue !== null && event.video.previousValue !== null) {
+                console.log('play video yeet', event.video.currentValue);
+                this.video = event.video.currentValue;
+                this.playVideo();
             }
         }
     }
@@ -76,9 +78,5 @@ export class PlayerComponent implements OnInit, OnChanges {
 
     pauseVideo() {
         this.player.pauseVideo();
-    }
-
-    next() {
-        // TODO: Emit a next to the box
     }
 }

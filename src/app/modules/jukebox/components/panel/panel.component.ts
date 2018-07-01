@@ -12,7 +12,7 @@ import { Message } from 'app/shared/models/message.model';
     providers: [ChatService]
 })
 export class PanelComponent implements OnInit, AfterViewChecked {
-    @Input() token: string;
+    @Input() boxToken: string;
     @Output() skipEvent = new EventEmitter();
     contents = '';
     hasLink = false;
@@ -65,7 +65,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         const message = new Message({
             author: 'D1JU70', // TODO: ACL
             contents: contents,
-            scope: this.token,
+            scope: this.boxToken,
             source: 'user',
         });
         this.chatService.post(message);
@@ -111,7 +111,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         const video = {
             link: (res[2]) ? res[2] : res[4],
             author: 'D1JU70',
-            token: this.token,
+            token: this.boxToken,
         };
 
         console.log('submitting video...');

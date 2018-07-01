@@ -2,7 +2,7 @@
     <div class="box-space row no-gutters">
         <div class="col-9">
             <div id="player">
-                <app-player #player [token]="box.token" [video]="currentVideo" (playing)="updateVideoInfo($event)"></app-player>
+                <app-player #player [boxToken]="box._id" [video]="currentVideo" (state)="onPlayerStateChange($event)"></app-player>
             </div>
             <div class="row under-player">
                 <div class="col-4 box-info">
@@ -27,6 +27,6 @@
                 </div>
             </div>
         </div>
-        <app-panel class="col-3" id="room-panel" #panel [token]="box._id" (skipEvent)="app-player.next()"></app-panel>
+        <app-panel class="col-3" id="room-panel" #panel [boxToken]="box._id" (skipEvent)="app-player.next()"></app-panel>
     </div>
 </div>

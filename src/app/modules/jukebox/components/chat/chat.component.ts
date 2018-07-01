@@ -9,7 +9,7 @@ import { ChatService } from './../../../../shared/services/chat.service';
     providers: [ChatService]
 })
 export class ChatComponent implements OnInit {
-    @Input() token: string;
+    @Input() boxToken: string;
     @Output() socketStatus = new EventEmitter();
     contents = '';
     hasLink = false;
@@ -21,8 +21,9 @@ export class ChatComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        if (this.token !== undefined) {
-            this.chatService.connect(this.token, 'D1JU70').subscribe(
+        console.log(this.boxToken);
+        if (this.boxToken !== undefined) {
+            this.chatService.connect(this.boxToken, 'D1JU70').subscribe(
                 message => {
                     this.messages.push(message);
                 },

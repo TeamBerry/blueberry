@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./userlist.component.scss']
 })
 export class UserlistComponent implements OnInit {
-    @Input() token: string;
+    @Input() boxToken: string;
 
     constructor() { }
 

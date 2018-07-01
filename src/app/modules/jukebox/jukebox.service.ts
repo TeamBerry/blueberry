@@ -4,6 +4,8 @@ import { BehaviorSubject } from 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import * as io from 'socket.io-client';
+import * as _ from 'lodash';
+import * as moment from 'moment';
 
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
@@ -45,6 +47,12 @@ export class JukeboxService {
             this.socket.on('sync', (data) => {
                 console.log('recieved sync data', data);
                 observer.next(data);
+            });
+
+            this.socket.on('next', (box: Box) => {
+                console.log('order to go to next video', box);
+                this.setBox(box);
+                /* observer.next(data); */
             });
 
             // When the refreshed box is sent by Chronos, it is sent to every components that needs it
@@ -106,6 +114,13 @@ export class JukeboxService {
 
     public toggle(){
 
+    }
+
+    public next(): void {
+        this.socket.emit('sync', {
+            order: 'next',
+            boxToken: this.box._id
+        });
     }
 
     /**

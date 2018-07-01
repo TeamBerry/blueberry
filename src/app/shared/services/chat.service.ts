@@ -19,19 +19,19 @@ export class ChatService {
     /**
      * Adds a subscription to the box socket, for the chat type
      *
-     * @param {string} token
+     * @param {string} boxToken
      * @param {string} userToken
      * @returns
      * @memberof ChatService
      */
-    connect(token: string, userToken: string) {
+    connect(boxToken: string, userToken: string) {
         const observable = new Observable(observer => {
             // On connect, indicate we're here for the chat
             this.socket.on('connect', () => {
                 this.socket.emit('auth', {
                     origin: 'BERRYBOX PNEUMA',
                     type: 'chat',
-                    token,
+                    token: boxToken,
                     subscriber: userToken
                 });
             });

@@ -29,7 +29,7 @@ export class BoxComponent implements OnInit {
      * @type {*}
      * @memberof BoxComponent
      */
-    box: any;
+    box: Box;
 
     /**
      * Loading flag to hide or show parts of the DOM depending on their state of readiness
@@ -74,6 +74,9 @@ export class BoxComponent implements OnInit {
     /**
      * Loads the details of the box
      *
+     * Only if you're the creator of the box. Else, you just connect to the jukeboxService and get the box from there
+     * TODO: Restrict to creator of the box
+     *
      * @memberof BoxComponent
      */
     loadBox() {
@@ -105,5 +108,19 @@ export class BoxComponent implements OnInit {
                 console.error(error);
             }
         );
+    }
+
+
+    /**
+     * Actions when the player changes state
+     *
+     * @param {*} event
+     * @memberof BoxComponent
+     */
+    onPlayerStateChange(event: any) {
+        console.log('PLAYER STATE CHANGE', event);
+        if (event === 0) {
+            this.jukeboxService.next();
+        }
     }
 }

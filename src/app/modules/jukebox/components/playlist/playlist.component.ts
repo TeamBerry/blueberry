@@ -9,8 +9,6 @@ import { Box } from '../../../../shared/models/box.model';
     styleUrls: ['./playlist.component.scss'],
 })
 export class PlaylistComponent implements OnInit {
-    @Input() token: string;
-    playlist;
     box: Box;
 
     constructor(
