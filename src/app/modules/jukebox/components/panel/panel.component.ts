@@ -2,14 +2,14 @@ import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked } from
 import * as moment from 'moment';
 
 import { ChatService } from './../../../../shared/services/chat.service';
-import { PlayerService } from './../../../../shared/services/player.service';
+import { JukeboxService } from './../../jukebox.service';
 import { Message } from 'app/shared/models/message.model';
 
 @Component({
     selector: 'app-panel',
     templateUrl: './panel.component.html',
     styleUrls: ['./panel.component.scss'],
-    providers: [ChatService, PlayerService]
+    providers: [ChatService]
 })
 export class PanelComponent implements OnInit, AfterViewChecked {
     @Input() token: string;
@@ -21,7 +21,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
     constructor(
         private chatService: ChatService,
-        private playerService: PlayerService
+        private jukeboxService: JukeboxService
     ) { }
 
     ngOnInit() {
@@ -114,8 +114,8 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             token: this.token,
         };
 
-        console.log("sending video");
+        console.log('submitting video...');
 
-        this.playerService.submit(this.token, video);
+        this.jukeboxService.submitVideo(video);
     }
 }

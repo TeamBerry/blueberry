@@ -14,43 +14,43 @@
         </div>
     </div>
 </div>
-<div *ngFor="let video of box.playlist; let i = index; let first = first">
-    <p class="list-rank px-3" *ngIf="(video.video_status == 0 || video.video_status == 3) && first">Upcoming: </p>
-    <p class="list-rank rank-playing px-3" *ngIf="video.video_status == 1">Now playing: </p>
-    <p class="list-rank px-3" *ngIf="video.video_status == 2 && playlist[i - 1].video_status != 2 && !first">Played: </p>
-    <div class="row playlist-entry no-gutters video px-3" [ngClass]="{'song-playing': video.video_status == 1,
-                    'song-played': video.video_status == 2,
-                    'song-ignored': video.video_status == 3}">
-        <div class="ngClass" [ngClass]="{'col-9': video.video_status != 1 && video.video_status != 2 && !first,
-                                'col-10': video.video_status == 0 && first,
-                                'col-11': video.video_status == 2,
-                                'col-12': video.video_status == 1}">
-            <p class="song-list-line">
-                <a href="https://youtube.com/watch?v={{video.link}}" title="{{video.video_name}}">{{video.video_name}}</a>
-            </p>
-        </div>
-        <div class="col-1" *ngIf="(video.video_status == 0 || video.video_status == 3) && !first" title="Play later" (click)="swap(video, 'up')">
-            <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 448.37">
-                <polygon points="145 0 0 201.87 290 201.87 145 0" />
-                <rect width="307.91" height="121.43" x="96.05" y="252.66" transform="rotate(-90 188.02 356.39)" />
-            </svg>
-        </div>
-        <div class="col-1" *ngIf="video.video_status == 0 || video.video_status == 3">
-            <div *ngIf="(video.video_status == 0 || video.video_status == 3) && playlist[i + 1].video_status != 1" title="Play sooner"
-                (click)="swap(video, 'down')">
+<div *ngIf="box">
+    <div *ngFor="let entry of box.playlist; let i = index; let first = first">
+        <p class="list-rank px-3" *ngIf="entry.startTime === null && first">Upcoming: </p>
+        <p class="list-rank rank-playing px-3" *ngIf="entry.startTime !== null && entry.endTime === null">Now playing: </p>
+        <p class="list-rank px-3" *ngIf="entry.endTime !== null && box.playlist[i - 1].endTime === null && !first">Played: </p>
+        <div class="row playlist-entry no-gutters video px-3" [ngClass]="{'song-playing': entry.startTime && !entry.endTime,
+                    'song-played': entry.endTime,
+                    'song-ignored': entry.ignored }">
+            <div class="ngClass" [ngClass]="{'col-9': entry.startTime && !entry.endTime && !first,
+                                'col-10': !entry.startTime && first,
+                                'col-11': entry.endTime,
+                                'col-12': entry.startTime}">
+                <p class="song-list-line">
+                    <a href="https://youtube.com/watch?v={{entry.video.link}}" title="{{entry.video.name}}">{{entry.video.name}}</a>
+                </p>
+            </div>
+            <!-- <div class="col-1" *ngIf="entry.startTime !== null && !first" title="Play later" (click)="swap(entry, 'up')">
                 <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 448.37">
-                    <polygon points="145 448.37 290 246.5 0 246.5 145 448.37" />
-                    <rect width="307.91" height="121.43" x="93.05" y="127.2" transform="rotate(90 212.98 119.93)" />
+                    <polygon points="145 0 0 201.87 290 201.87 145 0" />
+                    <rect width="307.91" height="121.43" x="96.05" y="252.66" transform="rotate(-90 188.02 356.39)" />
                 </svg>
             </div>
-            <div *ngIf="video.video_status == 0 && playlist[i + 1].video_status == 1" title="Play now" (click)="emitSkip()">
-                <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 448.37">
-                    <polygon points="145 448.37 290 246.5 0 246.5 145 448.37" />
-                    <rect width="307.91" height="121.43" x="93.05" y="127.2" transform="rotate(90 212.98 119.93)" />
-                </svg>
+            <div class="col-1" *ngIf="!entry.startTime">
+                <div *ngIf="!box.playlist[i + 1].startTime" title="Play sooner" (click)="swap(entry, 'down')">
+                    <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 448.37">
+                        <polygon points="145 448.37 290 246.5 0 246.5 145 448.37" />
+                        <rect width="307.91" height="121.43" x="93.05" y="127.2" transform="rotate(90 212.98 119.93)" />
+                    </svg>
+                </div>
+                <div *ngIf="!entry.ignored && !box.playlist[i + 1].startTime" title="Play now" (click)="emitSkip()">
+                    <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 448.37">
+                        <polygon points="145 448.37 290 246.5 0 246.5 145 448.37" />
+                        <rect width="307.91" height="121.43" x="93.05" y="127.2" transform="rotate(90 212.98 119.93)" />
+                    </svg>
+                </div>
             </div>
-        </div>
-        <div class="col-1" *ngIf="video.video_status == 0" title="Ban" (click)="banVideo(video)">
+            <div class="col-1" *ngIf="video.video_status == 0" title="Ban" (click)="banVideo(video)">
             <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 449.33 449.33">
                 <circle cx="224.67" cy="224.67" r="205.67" fill="none" stroke-width="38" stroke-miterlimit="10" />
                 <rect width="402" height="44" x="49" y="228" transform="rotate(-45 206.756 267.92)" />
@@ -62,14 +62,15 @@
                 <rect width="249.37" height="44" x="156.48" y="242" transform="rotate(-45 229.768 274.297)" />
                 <rect width="131.52" height="44" x="111.41" y="283.25" transform="rotate(-135 159.095 293.21)" />
             </svg>
-        </div>
-        <div class="col-1" *ngIf="video.video_status == 2" title="Queue again">
-            <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.98 202.99" (click)="quickQueue(video.link)">
-                <rect width="64.36" height="121.43" y="40.78" />
-                <polygon points="457.98 101.49 316.68 0 316.68 202.99 457.98 101.49" />
-                <rect width="64.36" height="121.43" x="81.45" y="40.78" />
-                <rect width="168.34" height="121.43" x="162.89" y="40.78" />
-            </svg>
+        </div> -->
+            <div class="col-1" *ngIf="entry.endTime" title="Queue again">
+                <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.98 202.99" (click)="quickQueue(entry.video.link)">
+                    <rect width="64.36" height="121.43" y="40.78" />
+                    <polygon points="457.98 101.49 316.68 0 316.68 202.99 457.98 101.49" />
+                    <rect width="64.36" height="121.43" x="81.45" y="40.78" />
+                    <rect width="168.34" height="121.43" x="162.89" y="40.78" />
+                </svg>
+            </div>
         </div>
     </div>
 </div>

@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
 import { MoodWidgetComponent } from './../../components/mood-widget/mood-widget.component';
-import { PlayerService } from './../../../../shared/services/player.service';
 import { JukeboxService } from './../../jukebox.service';
 import { Box } from 'app/shared/models/box.model';
 
@@ -58,7 +57,6 @@ export class BoxComponent implements OnInit {
     constructor(
         private boxService: BoxService,
         private jukeboxService: JukeboxService,
-        private playerService: PlayerService,
         private route: ActivatedRoute,
         private router: Router
     ) { }
@@ -80,8 +78,8 @@ export class BoxComponent implements OnInit {
      */
     loadBox() {
         this.boxService.show(this.token).subscribe(
-            data => {
-                this.box = new Box(data);
+            (box: Box) => {
+                this.box = new Box(box);
                 this.jukeboxService.setBox(this.box);
                 this.loading = false;
             }
@@ -95,7 +93,7 @@ export class BoxComponent implements OnInit {
      * @memberof BoxComponent
      */
     connect() {
-        this.playerService.connect(this.token, 'D1JU70').subscribe(
+        this.jukeboxService.connect(this.token, 'D1JU70').subscribe(
             message => {
                 console.log('connected', message);
                 // Dirty, to be changed

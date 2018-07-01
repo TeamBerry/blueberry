@@ -47,6 +47,12 @@ export class JukeboxService {
                 observer.next(data);
             });
 
+            // When the refreshed box is sent by Chronos, it is sent to every components that needs it
+            this.socket.on('box', (box: Box) => {
+                console.log('recieved refreshed box data', box);
+                this.setBox(box);
+            });
+
             return () => {
                 this.socket.disconnect();
             };
@@ -60,7 +66,7 @@ export class JukeboxService {
      * @returns {Observable<Box>}
      * @memberof JukeboxService
      */
-    getBox(): Observable<Box> {
+    public getBox(): Observable<Box> {
         return this.boxSubject.asObservable();
     }
 
@@ -70,9 +76,36 @@ export class JukeboxService {
      * @param {Box} box
      * @memberof JukeboxService
      */
-    setBox(box: Box) {
+    public setBox(box: Box) {
         this.box = box;
         this.sendBox();
+    }
+
+    /**
+     * Submits a video to the playlist of the box
+     *
+     * @param {*} video The video to submit
+     * @memberof JukeboxService
+     */
+    public submitVideo(video): void {
+        this.socket.emit('video', video);
+    }
+
+    // TODO: The following 4
+    public skip(){
+
+    }
+
+    public shuffle(){
+
+    }
+
+    public swap(){
+
+    }
+
+    public toggle(){
+
     }
 
     /**
@@ -80,7 +113,7 @@ export class JukeboxService {
      *
      * @memberof JukeboxService
      */
-    sendBox() {
+    protected sendBox() {
         this.boxSubject.next(this.box);
     }
 }

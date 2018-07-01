@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { PlayerService } from './../../../../shared/services/player.service';
 import { JukeboxService } from './../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
 
@@ -16,13 +15,11 @@ export class PlaylistComponent implements OnInit {
 
     constructor(
         private jukeboxService: JukeboxService,
-        private playerService: PlayerService
     ) { }
 
     ngOnInit() {
         this.listen();
     }
-
 
     /**
      * Subscribe to the box from the jukebox space, to get the playlist when needed
@@ -43,11 +40,7 @@ export class PlaylistComponent implements OnInit {
             link: link,
             author: 'D1JU70'
         };
-        /* this.playerService.submit(this.token, video).subscribe(
-            data => {
-                this.fetchPlaylist();
-            }
-        ); */
+        this.jukeboxService.submitVideo(video);
     }
 
     swap(video: any, direction: string) {
@@ -57,29 +50,27 @@ export class PlaylistComponent implements OnInit {
             direction: direction
         };
 
-        this.playerService.swap(this.token, action).subscribe(
-            (data) => {
-                this.jukeboxService.setBox(this.box);
-            }
-        );
+        this.jukeboxService.swap();
     }
 
     banVideo(video: any) {
         video.video_status = 3;
-        this.playerService.update(this.token, video).subscribe(
-            (data) => {
-                this.jukeboxService.setBox(this.box);
-            }
-        );
+        this.jukeboxService.toggle();
     }
 
     unbanVideo(video: any) {
         video.video_status = 0;
-        this.playerService.update(this.token, video).subscribe(
-            (data) => {
-                this.jukeboxService.setBox(this.box);
-            }
-        );
+        this.jukeboxService.toggle();
+    }
+
+
+    /**
+     * Requests the currently playing video be skipped.
+     *
+     * @memberof PlaylistComponent
+     */
+    requestSkip() {
+
     }
 
 }

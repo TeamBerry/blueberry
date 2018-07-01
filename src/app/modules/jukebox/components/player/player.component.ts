@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
 
-import { PlayerService } from './../../../../shared/services/player.service';
+import { JukeboxService } from './../../jukebox.service';
 
 /**
  * The player component of the box. It just recieves the video as an input from the box
@@ -28,7 +28,7 @@ export class PlayerComponent implements OnInit, OnChanges {
     public width = '100%';
 
     constructor(
-        private playerService: PlayerService,
+        private jukeboxService: JukeboxService,
     ) { }
 
     ngOnInit() {
