@@ -27,13 +27,7 @@ export class MoodWidgetComponent implements OnInit {
             user_token: 'D1JU70',
             video_index: this.currentVideo
         };
-        // Should compare against the array of moods...
-        this.moodService.checkVote(vote).subscribe(
-            response => {
-                this.currentVote = response;
-                console.log("vote is ", response);
-            }
-        );
+        // TODO: Should compare against the array of moods...
     }
 
     addVote() {
@@ -42,20 +36,11 @@ export class MoodWidgetComponent implements OnInit {
             user_token: 'D1JU70',
             video_index: this.currentVideo
         };
-        this.moodService.likeVideo(vote).subscribe(
-            response => {
-                vote['vote_id'] = response;
-                this.currentVote = vote;
-            }
-        );
+        // TODO: Like video
     }
 
     removeVote(id: number) {
-        this.moodService.unlikeVideo(id).subscribe(
-            response => {
-                this.currentVote = null;
-            }
-        );
+        // TODO: Unlike video
     }
 
     requestSkip() {
