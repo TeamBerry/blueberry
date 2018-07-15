@@ -21,7 +21,7 @@ export class BoxService {
      * @returns {Observable<Box[]>}
      * @memberof BoxService
      */
-    list(): Observable<Box[]> {
+    index(): Observable<Box[]> {
         return this.http.get<Box[]>(environment.chronosUrl + '/box')
             .map((boxes: Box[]) => {
                 return boxes.map((box: Box) => {

@@ -1,32 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { environment } from './../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+
+import { environment } from './../../../environments/environment';
+import { User } from 'app/shared/models/user.model';
 
 @Injectable()
 export class UserService {
 
-    constructor(private http: Http) { }
+    constructor(
+        private http: HttpClient
+    ) { }
 
-    get(token: string) {
-        return this.http.get(environment.logosUrl + '/user/' + token)
-        .map((response: Response) => {
-            return response.json();
-        });
+    /**
+     * Gets a single user
+     *
+     * @param {string} token The token of the user
+     * @returns {Observable<User>}
+     * @memberof UserService
+     */
+    show(token: string): Observable<User> {
+        return this.http.get<User>(environment.chronosUrl + '/user/' + token)
+            .map((user: User) => {
+                return new User(user);
+            });
     }
 
-    stats(token: string) {
-        return this.http.get(environment.logosUrl + '/user/' + token + '/stats')
-        .map((response: Response) => {
-            return response.json();
-        });
-    }
+    stats(token: string) { }
 
-    likes(token: string) {
-        return this.http.get(environment.logosUrl + '/user/' + token + '/likes')
-        .map((response: Response) => {
-            return response.json();
-        });
-    }
+    likes(token: string) { }
 
 }

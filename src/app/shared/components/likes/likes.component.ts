@@ -24,20 +24,11 @@ export class LikesComponent implements OnInit {
 
     loadLikes() {
         this.loading = true;
-        this.userService.likes('D1JU70').subscribe(
-            data => {
-                this.likes = data;
-            }
-        );
+        // TODO: Fetch likes
     }
 
     removeVote(id: number) {
-        this.moodService.unlikeVideo(id).subscribe(
-            response => {
-                const targetIndex = _.findIndex(this.likes, { vote_id: id });
-                this.likes.splice(targetIndex, 1);
-            }
-        )
+        // TODO: Remove vote
     }
 
 }

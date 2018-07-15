@@ -4,28 +4,11 @@ import { environment } from './../../../environments/environment';
 
 @Injectable()
 export class MoodService {
-    host: string = environment.logosUrl;
-
     constructor(private http: Http) { }
 
-    likeVideo(vote: any){
-        return this.http.post(this.host + '/moods', vote)
-        .map((response: Response) => {
-            return response.json();
-        });
-    }
+    likeVideo(vote: any) { }
 
-    unlikeVideo(id: number){
-        return this.http.delete(this.host + '/moods/' + id)
-        .map((response: Response) => {
-            return response.json();
-        });
-    }
+    unlikeVideo(id: number) { }
 
-    checkVote(vote: any) {
-        return this.http.post(this.host + '/moods/check', vote)
-        .map((response: Response) => {
-            return response.json();
-        });
-    }
+    checkVote(vote: any) { }
 }

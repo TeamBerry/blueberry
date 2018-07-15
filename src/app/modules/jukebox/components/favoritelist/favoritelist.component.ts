@@ -19,11 +19,7 @@ export class FavoritelistComponent implements OnInit {
     }
 
     fetchLikes() {
-        this.userService.likes('D1JU70').subscribe(
-            data => {
-                this.likes = data;
-            }
-        );
+        // TODO:
     }
 
 }

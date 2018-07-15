@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         console.log(localStorage.getItem('token'));
-        this.boxService.list().subscribe(
+        this.boxService.index().subscribe(
             boxes => {
                 this.boxes = boxes;
                 this.loading = false;
