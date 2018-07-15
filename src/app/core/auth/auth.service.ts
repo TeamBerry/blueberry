@@ -48,7 +48,6 @@ export class AuthService {
         location.reload();
     }
 
-
     /**
      * Sets the session for the user based on the bearer token
      *
@@ -61,6 +60,10 @@ export class AuthService {
 
         localStorage.setItem('token', authResult.bearer);
         localStorage.setItem('expires_at', JSON.stringify(expiresAt));
+    }
+
+    public getSession(){
+        return localStorage.getItem('token');
     }
 
     public isLoggedIn(){
