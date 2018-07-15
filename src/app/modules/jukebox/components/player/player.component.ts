@@ -20,7 +20,7 @@ import { JukeboxService } from './../../jukebox.service';
 })
 export class PlayerComponent implements OnInit, OnChanges {
     @Input() boxToken: string;
-    @Input() video: any;
+    @Input() video: any = null;
     @Output() playing: EventEmitter<any> = new EventEmitter();
     @Output() state: EventEmitter<any> = new EventEmitter();
     private player;
@@ -64,7 +64,9 @@ export class PlayerComponent implements OnInit, OnChanges {
     onPlayerReady(player) {
         this.player = player;
         console.log('player is ready');
-        this.playVideo();
+        if (this.video) {
+            this.playVideo();
+        }
     }
 
     /**

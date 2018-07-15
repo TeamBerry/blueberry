@@ -18,7 +18,7 @@
     <div *ngFor="let entry of box.playlist; let i = index; let first = first">
         <p class="list-rank px-3 pt-3" *ngIf="entry.startTime === null && first">Upcoming: </p>
         <p class="list-rank px-3 pt-3" *ngIf="entry.startTime !== null && entry.endTime === null">Now playing: </p>
-        <p class="list-rank px-3 pt-3" *ngIf="entry.endTime !== null && box.playlist[i - 1].endTime === null && !first">Played: </p>
+        <p class="list-rank px-3 pt-3" *ngIf="(entry.endTime !== null && !first && box.playlist[i - 1].endTime === null) || (entry.endTime !== null && first)">Played: </p>
         <div class="row playlist-entry no-gutters video px-3" [ngClass]="{'playing': entry.startTime && !entry.endTime,
                     'played': entry.endTime,
                     'ignored': entry.ignored }">
