@@ -19,6 +19,7 @@ import { SignupFormComponent } from './shared/components/signup-form/signup-form
 /* Feature Modules */
 import { JukeboxModule } from './modules/jukebox/jukebox.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         LikesComponent,
         LoginFormComponent,
         SignupFormComponent,
-        NavComponent
+        NavComponent,
+        UserSettingsComponent
     ],
     imports: [
         AppRoutingModule,
