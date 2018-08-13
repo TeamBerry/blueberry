@@ -13,11 +13,11 @@
                 <h3 class="tab-title">Account</h3>
                 <div class="form-group">
                     <label for="name">Username</label>
-                    <input type="text" class="form-control input-lg" name="name" placeholder="Your username">
+                    <input type="text" class="form-control input-lg" name="name" placeholder="Your username" [(ngModel)]="user.name">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="mail" class="form-control input-lg" name="email" placeholder="Your mail address">
+                    <input type="mail" class="form-control input-lg" name="email" placeholder="Your mail address" [(ngModel)]="user.mail">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -33,30 +33,30 @@
                     <label for="messaging">Who can message you</label>
                     <div class="form-option">
                         <span>Everyone</span>
-                        <app-slide-toggle class="checkbox"></app-slide-toggle>
+                        <app-slide-toggle class="checkbox" [(value)]="user.settings.messagedByEveryone"></app-slide-toggle>
                     </div>
                     <div class="form-option">
                         <span>Friends only</span>
-                        <app-slide-toggle class="checkbox"></app-slide-toggle>
+                        <app-slide-toggle class="checkbox" [(value)]="user.settings.messagedByFriends"></app-slide-toggle>
                     </div>
                     <div class="form-option">
-                        <span>Noone</span>
-                        <app-slide-toggle class="checkbox"></app-slide-toggle>
+                        <span>Box members</span>
+                        <app-slide-toggle class="checkbox" [(value)]="user.settings.messagedByBoxMembers"></app-slide-toggle>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inviting">Who can send you a friend request</label>
                     <div class="form-option">
                         <span>Everyone</span>
-                        <app-slide-toggle class="checkbox"></app-slide-toggle>
+                        <app-slide-toggle class="checkbox" [(value)]="user.settings.invitedByEveryone"></app-slide-toggle>
                     </div>
                     <div class="form-option">
                         <span>Friends of friends</span>
-                        <app-slide-toggle class="checkbox"></app-slide-toggle>
+                        <app-slide-toggle class="checkbox" [(value)]="user.settings.invitedByFriendsOfFriends"></app-slide-toggle>
                     </div>
                     <div class="form-option">
-                        <span>Noone</span>
-                        <app-slide-toggle class="checkbox"></app-slide-toggle>
+                        <span>Box members</span>
+                        <app-slide-toggle class="checkbox" [(value)]="user.settings.invitedByBoxMembers"></app-slide-toggle>
                     </div>
                 </div>
             </div>
@@ -64,27 +64,27 @@
                 <h3 class="tab-title">Notifications</h3>
                 <div class="form-group">
                     <label for="in-app-notifications">Enable in-app notifications</label>
-                    <app-slide-toggle class="checkbox"></app-slide-toggle>
+                    <app-slide-toggle class="checkbox" [(value)]="user.settings.inAppNotifications"></app-slide-toggle>
                     <p class="help-text">Enable notifications displayed while you're in Berrybox</p>
                 </div>
                 <div class="form-group">
                     <label for="desktop-notifications">Enable desktop notifications</label>
-                    <app-slide-toggle class="checkbox"></app-slide-toggle>
+                    <app-slide-toggle class="checkbox" [(value)]="user.settings.desktopNotifications"></app-slide-toggle>
                     <p class="help-text">Enables your browser to relay Berrybox notifications (if possible)</p>
                 </div>
                 <div class="form-group">
                     <label for="friend-notifications">Customize</label>
                     <div class="form-option">
-                        <span>Friend request recieved</span>
-                        <app-slide-toggle class="checkbox"></app-slide-toggle>
+                        <span>Friend request received</span>
+                        <app-slide-toggle class="checkbox" [(value)]="user.settings.friendRequestReceived"></app-slide-toggle>
                     </div>
                     <div class="form-option">
-                        <span>Direct message recived</span>
-                        <app-slide-toggle class="checkbox"></app-slide-toggle>
+                        <span>Direct message received</span>
+                        <app-slide-toggle class="checkbox" [(value)]="user.settings.directMessageReceived"></app-slide-toggle>
                     </div>
                     <div class="form-option">
                         <span>Box opened by friend</span>
-                        <app-slide-toggle class="checkbox"></app-slide-toggle>
+                        <app-slide-toggle class="checkbox" [(value)]="user.settings.boxOpenedByFriend"></app-slide-toggle>
                     </div>
                 </div>
             </div>
@@ -92,6 +92,7 @@
                 <h3 class="tab-title">Appearance</h3>
                 <div class="form-group">
                     <label for="theme">Dark Theme</label>
+                    <app-slide-toggle class="checkbox" [(value)]="user.settings.darkTheme"></app-slide-toggle>
                 </div>
             </div>
         </div>

@@ -6,8 +6,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./slide-toggle.component.scss']
 })
 export class SlideToggleComponent implements OnInit {
-    @Input() checked: boolean = true;
-    @Output() toggle: EventEmitter<any> = new EventEmitter();
+    @Input() value: boolean;
+    @Output() valueChange: EventEmitter<any> = new EventEmitter(this.value);
 
     constructor() { }
 
