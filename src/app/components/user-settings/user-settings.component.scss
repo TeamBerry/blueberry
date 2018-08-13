@@ -38,6 +38,7 @@
 .form-option{
     border-bottom: 0.5px solid rgba($secondary-background, 0.4);
     color: white;
+    height: 60px;
     @include padding-vertical(10px);
 }
 
@@ -55,4 +56,8 @@ label {
 
 .save-button {
     @include padding-horizontal(40px);
+}
+
+.checkbox {
+    float: right;
 }

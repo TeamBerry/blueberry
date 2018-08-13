@@ -6,5 +6,9 @@ $nav-height: 60px;
 $success-color: #4FB36C;
 $danger-color: #B30F4F;
 
+// Status colors
+$inactive-color: #ccc;
+$active-color: #415EE8;
+
 @import './light-theme.scss';
 // @import './dark-theme.scss';
