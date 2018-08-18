@@ -3,6 +3,10 @@
 @import 'imports.scss';
 @import '../node_modules/bootstrap/scss/bootstrap';
 
+body {
+    overflow: hidden;
+}
+
 svg.berrybox-svg {
     height: 1em;
     stroke: $stroke-color;

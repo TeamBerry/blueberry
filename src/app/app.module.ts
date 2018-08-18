@@ -16,10 +16,13 @@ import { NavComponent } from './core/nav/nav.component'; // Exceptional, so it c
 import { LoginFormComponent } from './shared/components/login-form/login-form.component';
 import { SignupFormComponent } from './shared/components/signup-form/signup-form.component';
 
+// Settings
+import { SettingsDirective } from './shared/directive/settings.directive';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+
 /* Feature Modules */
 import { JukeboxModule } from './modules/jukebox/jukebox.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +35,7 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
         LoginFormComponent,
         SignupFormComponent,
         NavComponent,
+        SettingsDirective,
         UserSettingsComponent
     ],
     imports: [
@@ -50,7 +54,8 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
     entryComponents: [
         BoxFormComponent,
         LoginFormComponent,
-        SignupFormComponent
+        SignupFormComponent,
+        UserSettingsComponent
     ]
 })
 export class AppModule { }

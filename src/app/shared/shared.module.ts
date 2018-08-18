@@ -7,9 +7,16 @@ import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.com
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [AuthDirective, SlideToggleComponent],
-    exports: [CommonModule, FormsModule, AuthDirective,
-        SlideToggleComponent],
-    providers: [AuthDirective]
+    declarations: [
+        AuthDirective,
+        SlideToggleComponent,
+    ],
+    exports: [
+        CommonModule,
+        FormsModule,
+        AuthDirective,
+        SlideToggleComponent
+    ],
+    providers: [AuthDirective],
 })
 export class SharedModule { }

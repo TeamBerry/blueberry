@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 
 import { User } from '../../shared/models/user.model';
 
@@ -12,6 +12,8 @@ export class UserSettingsComponent implements OnInit {
     public currentTab = 'account';
     public user: User
 
+    public close: EventEmitter<any> = new EventEmitter();
+
     constructor() { }
 
     ngOnInit() {
@@ -19,6 +21,10 @@ export class UserSettingsComponent implements OnInit {
         this.user.name = 'AngelZatch';
         this.user.mail = 'angelzatch@gmail.com';
         console.log(this.user);
+    }
+
+    closeSettings() {
+        this.close.emit();
     }
 
 }
