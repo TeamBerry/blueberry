@@ -7,7 +7,6 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
-    { path: 'settings', component: UserSettingsComponent}
     /* { path: 'likes', component: LikesComponent } */
 ];
 
