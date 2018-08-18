@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 // Components
@@ -8,14 +8,30 @@ import { SignupFormComponent } from '../../shared/components/signup-form/signup-
 
 import { AuthService } from '../../core/auth/auth.service';
 
+// User settings
+import { SettingsDirective } from '../../shared/directive/settings.directive';
+import { UserSettingsComponent } from '../../components/user-settings/user-settings.component';
+
 @Component({
     selector: 'app-nav',
     templateUrl: './nav.component.html',
     styleUrls: ['./nav.component.scss'],
+    entryComponents: [
+        UserSettingsComponent
+    ]
 })
 export class NavComponent implements OnInit {
 
+    /**
+     * Directive to dynamically load the settings components without having to leave the box
+     *
+     * @type {SettingsDirective}
+     * @memberof NavComponent
+     */
+    @ViewChild(SettingsDirective) settingsHost: SettingsDirective;
+
     constructor(
+        private componentFactoryResolver: ComponentFactoryResolver,
         private modalService: NgbModal,
         private authService: AuthService
     ) { }
@@ -28,6 +44,20 @@ export class NavComponent implements OnInit {
         modalRef.componentInstance.title = 'Create a box';
     }
 
+    summonSettings() {
+        const viewContainerRef = this.settingsHost.viewContainerRef;
+        viewContainerRef.clear();
+
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserSettingsComponent);
+        const componentRef = viewContainerRef.createComponent(componentFactory);
+
+        componentRef.instance.close.subscribe(
+            () => {
+                viewContainerRef.clear();
+            }
+        )
+    }
+
     login() {
         const modalRef = this.modalService.open(LoginFormComponent);
     }
@@ -36,7 +66,7 @@ export class NavComponent implements OnInit {
         const modalRef = this.modalService.open(SignupFormComponent);
     }
 
-    logout(){
+    logout() {
         this.authService.logout();
     }
 

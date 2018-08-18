@@ -1,6 +1,6 @@
 @import './../../../imports.scss';
 .navbar {
-    background-color: $main-color;
+    background-color: $master-color;
     margin-bottom: 0 !important;
     height: 60px;
     //@include fontFace('geometria', 'Geometria-Light-webfont');
@@ -31,8 +31,15 @@
 }
 
 .dropdown-menu {
-    background-color: $secondary-background;
+    background-color: $background-main-color;
+    /* top: 46px !important; */
+    border-radius: 0;
+    border-color: $master-color;
+    width: 179px;
     .dropdown-item {
-        color: $text-on-secondary-background;
+        color: $text-focus-color;
+        &:hover {
+            background-color: $background-main-hover-color;
+        }
     }
 }

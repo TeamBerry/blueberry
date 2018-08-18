@@ -7,7 +7,7 @@
 
 .system-message {
     font-style: italic;
-    color: $system-color;
+    color: $text-system-color;
 }
 
 .message {
@@ -16,7 +16,7 @@
 }
 
 .message:nth-child(even) {
-    background-color: darken($secondary-background, 5%);
+    background-color: lighten($background-focus-color, 5%);
 }
 
 .message-time {

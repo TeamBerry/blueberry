@@ -27,6 +27,19 @@ export class UserService {
             });
     }
 
+
+    /**
+     * Updates an user
+     *
+     * @param {string} token The token of the user
+     * @param {User} user The user to update
+     * @returns {Observable<User>} The updated user
+     * @memberof UserService
+     */
+    update(token: string, user: User): Observable<User> {
+        return this.http.put<User>(environment.chronosUrl + '/user/' + token, user);
+    }
+
     stats(token: string) { }
 
     likes(token: string) { }

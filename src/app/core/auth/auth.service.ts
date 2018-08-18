@@ -29,8 +29,8 @@ export class AuthService {
         .shareReplay();*/
     }
 
-    signup(mail: string, password: string){
-        return this.http.post(environment.chronosUrl + '/signup', { mail: mail, password: password})
+    signup(mail: string, password: string) {
+        return this.http.post(environment.chronosUrl + '/signup', { mail: mail, password: password })
             .map((response: Response) => {
                 return response.json();
             });
@@ -48,7 +48,6 @@ export class AuthService {
         location.reload();
     }
 
-
     /**
      * Sets the session for the user based on the bearer token
      *
@@ -63,11 +62,15 @@ export class AuthService {
         localStorage.setItem('expires_at', JSON.stringify(expiresAt));
     }
 
-    public isLoggedIn(){
+    public getSession() {
+        return localStorage.getItem('token');
+    }
+
+    public isLoggedIn() {
         return moment().isBefore(this.getExpiration());
     }
 
-    getExpiration(){
+    getExpiration() {
         return moment(JSON.parse(localStorage.getItem('expires_at')));
     }
 

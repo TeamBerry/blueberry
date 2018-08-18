@@ -1,14 +1,14 @@
 @import './../../../../../imports.scss';
 .box-space {
-    height: calc(100vh - 60px);
+    height: calc(100vh - #{$nav-height});
     overflow: hidden;
 }
 
 #room-panel {
     z-index: 3;
     padding-right: 0;
-    background-color: $secondary-background;
-    color: $text-color;
+    background-color: $background-focus-color;
+    color: $text-main-color;
 }
 
 #player {
@@ -16,7 +16,7 @@
 }
 
 .under-player {
-    color: $text-color;
+    color: $text-main-color;
     padding-top: 10px;
     @include padding-horizontal(20px);
     white-space: nowrap;
@@ -29,7 +29,7 @@
     height: 70%;
     top: 15%;
     right: 0;
-    background-color: $main-color;
+    background-color: $master-color;
 }
 
 .box-title,
@@ -43,7 +43,7 @@
 }
 
 .minor-text {
-    color: #555;
+    color: $text-system-color;
 }
 
 .mood-widget {
