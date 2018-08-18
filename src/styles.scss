@@ -5,6 +5,7 @@
 
 body {
     overflow: hidden;
+    background-color: $background-main-color;
 }
 
 svg.berrybox-svg {
@@ -16,12 +17,12 @@ svg.berrybox-svg {
     }
     &:hover {
         .berrybox-path {
-            fill: $main-color;
+            fill: $master-color;
         }
     }
     .berrybox-path {
-        stroke: $system-color;
-        fill: $system-color;
+        stroke: $text-system-color;
+        fill: $text-system-color;
     }
 }
 
@@ -35,13 +36,13 @@ button>svg {
     width: 1.3em;
     &.secondary-icon {
         fill: $main-black;
-        color: $main-color;
+        color: $master-color;
         cursor: default;
     }
     &.primary-icon {
         &:hover {
-            fill: $main-color;
-            stroke: $main-color;
+            fill: $master-color;
+            stroke: $master-color;
         }
         cursor: pointer;
         fill: white;
@@ -55,7 +56,7 @@ button>svg {
 }
 
 .page-title {
-    color: $main-color;
+    color: $master-color;
     padding: 40px;
 }
 
@@ -64,11 +65,11 @@ button>svg {
     border-color: white;
     &:hover {
         background-color: white;
-        color: $main-color !important;
+        color: $master-color !important;
     }
 }
 
 .help-text {
-    color: $system-color;
+    color: $text-system-color;
     margin: 0;
 }

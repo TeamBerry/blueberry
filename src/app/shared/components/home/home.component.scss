@@ -3,16 +3,16 @@
 .main-background{
     height: calc(100vh - #{$nav-height});
     overflow-y: auto;
-    background: linear-gradient(70deg, $main-color 0,darken($main-color, 15%) 100%);
+    background: linear-gradient(70deg, $master-color 0,darken($master-color, 15%) 100%);
 }
 
 .featured, .social-space{
     // background-color: fade_out(darken($main-black, 15%), .1);
-    background-color: lighten(black, 10%);
+    background-color: $background-focus-color;
 
     .free-text{
         font-family: 'geometria_lightlight';
-        color: $main-color;
+        color: $text-focus-color;
         margin-bottom: 40px;
         text-align: center
     }

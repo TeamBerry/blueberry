@@ -36,26 +36,26 @@
 }
 
 .btn-default {
-    background-color: $main-color;
-    border: lighten($main-color, 5%);
+    background-color: $master-color;
+    border: lighten($master-color, 5%);
     color: white !important;
     &:hover {
-        background-color: darken($main-color, 10%);
+        background-color: darken($master-color, 10%);
     }
     &:active {
-        background-color: darken($main-color, 20%);
+        background-color: darken($master-color, 20%);
     }
 }
 
 .btn-outline-default {
-    border-color: $main-color;
-    color: $main-color;
+    border-color: $master-color;
+    color: $master-color;
     .berrybox-svg-button {
-        fill: $main-color;
-        stroke: $main-color;
+        fill: $master-color;
+        stroke: $master-color;
     }
     &:hover {
-        background-color: $main-color;
+        background-color: $master-color;
         color: white;
         .berrybox-svg-button {
             fill: white;
@@ -89,7 +89,7 @@
 .navbar-light .navbar-nav .nav-link {
     color: white;
     &:hover {
-        color: $main-color;
+        color: $master-color;
     }
 }
 
@@ -98,33 +98,33 @@
         border-radius: 0;
         color: white;
         &:hover {
-            color: darken($main-color, 10%);
+            color: darken($master-color, 10%);
         }
         &.active {
             background-color: inherit;
-            border-bottom: 5px solid $main-color;
+            border-bottom: 5px solid $master-color;
         }
     }
 }
 
 .modal-content {
-    background-color: $main-black;
+    background-color: $background-main-color;
     color: $text-on-main-background;
 }
 
 .form-control {
-    border: 1px solid lighten($main-color, 10%) !important;
-    background-color: darken($main-color, 20%);
+    border: 1px solid lighten($master-color, 10%) !important;
+    background-color: darken($master-color, 20%);
     color: white !important;
     border-radius: 0;
     &:focus {
-        background-color: darken($main-color, 15%);
-        box-shadow: 0 0 0 0.2rem $main-color;
+        background-color: darken($master-color, 15%);
+        box-shadow: 0 0 0 0.2rem $master-color;
     }
 }
 
 ::placeholder {
-    color: $secondary-background;
+    color: $background-focus-color;
 }
 
 ::-webkit-scrollbar {
@@ -142,5 +142,5 @@
 }
 
 .help-block {
-    color: $system-color;
+    color: $text-system-color;
 }

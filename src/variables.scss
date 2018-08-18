@@ -1,8 +1,11 @@
-
-$white: #fff;
 $nav-height: 60px;
 
-// Feedback colors
+$master-color: #65A6A6;
+
+$main-purple: #2C3D4F;
+$main-black: #444;
+
+// Feedback colors*
 $success-color: #4FB36C;
 $danger-color: #B30F4F;
 
@@ -10,5 +13,12 @@ $danger-color: #B30F4F;
 $inactive-color: #ccc;
 $active-color: #415EE8;
 
-@import './light-theme.scss';
-// @import './dark-theme.scss';
+// Type colors
+$command-color: #0fb562;
+$youtube-color: #b5220f;
+
+// SVG
+$fill-color: none;
+
+// @import './light-theme.scss';
+@import './dark-theme.scss';

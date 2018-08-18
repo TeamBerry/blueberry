@@ -37,7 +37,7 @@ input:checked + .slider {
 }
 
 input:focus + .slider {
-    background-color: $main-color;
+    background-color: $master-color;
 }
 
 input:checked + .slider::before{
