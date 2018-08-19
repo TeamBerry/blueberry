@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { AuthService } from '../../../core/auth/auth.service';
 
 @Component({
@@ -23,6 +24,13 @@ export class LoginFormComponent implements OnInit {
     /**
      * Sends the form data to the server to attempt connection
      *
+     * authResult structure:
+     * {
+     *  "bearer": JWT,
+     *  "expiresIn": validity,
+     *  "subject": user
+     * }
+     *
      * @memberof LoginFormComponent
      */
     login() {
@@ -33,5 +41,4 @@ export class LoginFormComponent implements OnInit {
             }
         );
     }
-
 }

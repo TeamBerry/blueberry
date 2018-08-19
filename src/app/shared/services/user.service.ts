@@ -4,11 +4,11 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { environment } from './../../../environments/environment';
+
 import { User } from 'app/shared/models/user.model';
 
 @Injectable()
 export class UserService {
-
     constructor(
         private http: HttpClient
     ) { }
@@ -26,7 +26,6 @@ export class UserService {
                 return new User(user);
             });
     }
-
 
     /**
      * Updates an user

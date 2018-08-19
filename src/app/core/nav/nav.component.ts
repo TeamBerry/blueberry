@@ -11,6 +11,7 @@ import { AuthService } from '../../core/auth/auth.service';
 // User settings
 import { SettingsDirective } from '../../shared/directive/settings.directive';
 import { UserSettingsComponent } from '../../components/user-settings/user-settings.component';
+import { User } from 'app/shared/models/user.model';
 
 @Component({
     selector: 'app-nav',
@@ -21,6 +22,7 @@ import { UserSettingsComponent } from '../../components/user-settings/user-setti
     ]
 })
 export class NavComponent implements OnInit {
+    public user: User;
 
     /**
      * Directive to dynamically load the settings components without having to leave the box
@@ -37,6 +39,13 @@ export class NavComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        if (this.authService.isLoggedIn()) {
+            this.authService.getUser().subscribe(
+                (user: User) => {
+                    this.user = user;
+                }
+            )
+        }
     }
 
     openCreateModal() {

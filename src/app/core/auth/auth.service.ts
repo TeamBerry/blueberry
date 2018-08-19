@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '../../../../node_modules/@angular/common/http';
+import { BehaviorSubject } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
 
 import { environment } from 'environments/environment';
 
+import { User } from 'app/shared/models/user.model';
+
 @Injectable()
 export class AuthService {
+    user: User;
+    public subject: BehaviorSubject<User> = new BehaviorSubject<User>(this.user);
 
     constructor(
-        private http: Http
+        private http: HttpClient,
     ) { }
 
     /**
@@ -20,22 +26,19 @@ export class AuthService {
      * @memberof AuthService
      */
     login(mail: string, password: string) {
-        console.log('CONTACTING CHRONOS WITH THIS.');
-        return this.http.post(environment.chronosUrl + '/auth/login', { mail: mail, password: password })
-            .map((response: Response) => {
-                return response.json();
+        return this.http.post(environment.chronosUrl + '/auth/login', { mail: mail, password: password });
+    }
+
+    showConnectedUser(token: string): Observable<User> {
+        return this.http.get<User>(environment.chronosUrl + '/user/' + token)
+            .map((user: User) => {
+                return new User(user);
             });
-        /*.do(res => this.setSession)
-        .shareReplay();*/
     }
 
     signup(mail: string, password: string) {
-        return this.http.post(environment.chronosUrl + '/signup', { mail: mail, password: password })
-            .map((response: Response) => {
-                return response.json();
-            });
+        return this.http.post(environment.chronosUrl + '/signup', { mail: mail, password: password });
     }
-
 
     /**
      * Logs the user out by destroying its session
@@ -43,8 +46,9 @@ export class AuthService {
      * @memberof AuthService
      */
     logout() {
-        localStorage.removeItem('token');
-        localStorage.removeItem('expires_at');
+        localStorage.removeItem('BBOX-token');
+        localStorage.removeItem('BBOX-expires_at');
+        localStorage.removeItem('BBOX-user');
         location.reload();
     }
 
@@ -58,20 +62,44 @@ export class AuthService {
     public setSession(authResult) {
         const expiresAt = moment().add(authResult.expiresIn, 'second');
 
-        localStorage.setItem('token', authResult.bearer);
-        localStorage.setItem('expires_at', JSON.stringify(expiresAt));
+        localStorage.setItem('BBOX-token', authResult.bearer);
+        localStorage.setItem('BBOX-expires_at', JSON.stringify(expiresAt));
+        localStorage.setItem('BBOX-user', JSON.stringify(authResult.subject));
+
+        this.user = authResult.subject;
     }
 
     public getSession() {
-        return localStorage.getItem('token');
+        return localStorage.getItem('BBOX-token');
     }
 
-    public isLoggedIn() {
+    public isLoggedIn(): boolean {
         return moment().isBefore(this.getExpiration());
     }
 
     getExpiration() {
-        return moment(JSON.parse(localStorage.getItem('expires_at')));
+        return moment(JSON.parse(localStorage.getItem('BBOX-expires_at')));
+    }
+
+    /**
+     * Below are user subscription methods for all components in the application.
+     */
+
+    public getUser(): Observable<User> {
+        if (!this.user) {
+            this.user = JSON.parse(localStorage.getItem('BBOX-user'));
+            this.sendUser();
+        }
+        return this.subject.asObservable();
+    }
+
+    public setUser(user: User) {
+        this.user = user;
+        this.sendUser();
+    }
+
+    public sendUser() {
+        this.subject.next(this.user);
     }
 
 }

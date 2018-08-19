@@ -6,7 +6,9 @@ import * as _ from 'lodash';
 
 import { MoodWidgetComponent } from './../../components/mood-widget/mood-widget.component';
 import { JukeboxService } from './../../jukebox.service';
+import { AuthService } from 'app/core/auth/auth.service';
 import { Box } from 'app/shared/models/box.model';
+import { User } from 'app/shared/models/user.model';
 
 @Component({
     selector: 'app-box',
@@ -45,6 +47,15 @@ export class BoxComponent implements OnInit {
      */
     currentVideo = null;
 
+
+    /**
+     * Connected user. Obtained from the auth service
+     *
+     * @type {User}
+     * @memberof BoxComponent
+     */
+    user: User;
+
     /**
      * Integration of the Mood Widget component, though I'm not sure I need it anymore
      *
@@ -55,6 +66,7 @@ export class BoxComponent implements OnInit {
     @ViewChild(MoodWidgetComponent) private moodWidgetComponent: MoodWidgetComponent;
 
     constructor(
+        private authService: AuthService,
         private boxService: BoxService,
         private jukeboxService: JukeboxService,
         private route: ActivatedRoute,
@@ -69,6 +81,12 @@ export class BoxComponent implements OnInit {
                 this.connect();
             }
         );
+
+        this.authService.getUser().subscribe(
+            (user: User) => {
+                this.user = user;
+            }
+        )
     }
 
     /**
