@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 
 import { User } from 'app/shared/models/user.model';
 import { UserService } from 'app/shared/services/user.service';
+import { AuthService } from 'app/core/auth/auth.service';
 
 @Component({
     selector: 'app-mood-widget',
@@ -18,6 +19,7 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
     currentVote = null;
 
     constructor(
+        public authService: AuthService,
         public userService: UserService
     ) { }
 
@@ -46,7 +48,7 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
         this.user.favorites.push(this.video.link);
         this.userService.updateFavorites(this.user).subscribe(
             (user: User) => {
-                console.log(user);
+                this.authService.setUser(user);
                 this.isLiked = true;
             }
         );
@@ -61,7 +63,7 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
         _.pull(this.user.favorites, this.video.link);
         this.userService.updateFavorites(this.user).subscribe(
             (user: User) => {
-                console.log(user);
+                this.authService.setUser(user);
                 this.isLiked = false;
             }
         );

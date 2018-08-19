@@ -95,6 +95,9 @@ export class AuthService {
 
     public setUser(user: User) {
         this.user = user;
+
+        localStorage.setItem('BBOX-user', JSON.stringify(user));
+
         this.sendUser();
     }
 
