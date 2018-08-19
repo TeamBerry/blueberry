@@ -17,7 +17,7 @@
                 <div class="col-8 video-info" *ngIf="currentVideo">
                     <div class="row">
                         <div class="col-11">
-                            <p class="video-title" title="{{currentVideo.name}}">{{currentVideo.name}}</p>
+                            <p class="video-title" title="{{currentVideo?.name}}">{{currentVideo?.name}}</p>
                         </div>
                         <div class="col-1">
                             <app-mood-widget *ngIf="currentVideo" [video]="currentVideo" [user]="user" class="row mood-widget"></app-mood-widget>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="row">
                         <div class="col-9">
-                            <span class="minor-text">Submitted by </span>{{currentVideo.user_pseudo}}
+                            <span class="minor-text">Submitted by </span>
                         </div>
                     </div>
                 </div>

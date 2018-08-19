@@ -30,7 +30,8 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes) {
-        if (changes.currentValue) {
+        if (changes.video.currentValue) {
+            this.video = changes.video.currentValue;
             this.isLiked = this.checkFavorites();
         }
     }
