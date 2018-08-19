@@ -15,18 +15,22 @@
                     </svg> {{ box.creator }}
                 </div>
                 <div class="col-8 video-info" *ngIf="currentVideo">
-                    <p class="video-title" title="{{currentVideo.name}}">{{currentVideo.name}}</p>
+                    <div class="row">
+                        <div class="col-11">
+                            <p class="video-title" title="{{currentVideo.name}}">{{currentVideo.name}}</p>
+                        </div>
+                        <div class="col-1">
+                            <app-mood-widget *ngIf="currentVideo" [video]="currentVideo" [user]="user" class="row mood-widget"></app-mood-widget>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-9">
                             <span class="minor-text">Submitted by </span>{{currentVideo.user_pseudo}}
-                        </div>
-                        <div class="col-3">
-                            <!-- <app-mood-widget *ngIf="currentVideo" [currentVideo]="currentVideo.video_index" class="row mood-widget"></app-mood-widget> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <app-panel class="col-3" id="room-panel" #panel [boxToken]="box._id" (skipEvent)="app-player.next()"></app-panel>
+        <app-panel class="col-3" id="room-panel" #panel [boxToken]="box._id" [user]="user" (skipEvent)="app-player.next()"></app-panel>
     </div>
 </div>

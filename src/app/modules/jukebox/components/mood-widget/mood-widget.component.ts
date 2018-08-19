@@ -1,50 +1,70 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnChanges } from '@angular/core';
+import * as _ from 'lodash';
 
-import { MoodService } from './../../../../shared/services/mood.service';
+import { User } from 'app/shared/models/user.model';
+import { UserService } from 'app/shared/services/user.service';
 
 @Component({
     selector: 'app-mood-widget',
     templateUrl: './mood-widget.component.html',
     styleUrls: ['./mood-widget.component.scss'],
-    providers: [MoodService]
+    providers: [UserService]
 })
-export class MoodWidgetComponent implements OnInit {
-    @Input() currentVideo: number;
+export class MoodWidgetComponent implements OnInit, OnChanges {
+    @Input() video;
+    @Input() user: User;
+
+    isLiked = false;
     currentVote = null;
 
     constructor(
-        public moodService: MoodService
+        public userService: UserService
     ) { }
 
     ngOnInit() {
-        console.log('Init mood widget... Input is ', this.currentVideo);
-        this.checkVote();
+        if (this.video) {
+            this.isLiked = this.checkFavorites();
+        }
     }
 
-    checkVote() {
-        console.log('checking your vote for this video...');
-        const vote = {
-            user_token: 'D1JU70',
-            video_index: this.currentVideo
-        };
-        // TODO: Should compare against the array of moods...
+    ngOnChanges(changes) {
+        if (changes.currentValue) {
+            this.isLiked = this.checkFavorites();
+        }
     }
 
-    addVote() {
-        const vote = {
-            vote_mood: 1,
-            user_token: 'D1JU70',
-            video_index: this.currentVideo
-        };
-        // TODO: Like video
+    checkFavorites() {
+        return _.includes(this.user.favorites, this.video.link);
     }
 
-    removeVote(id: number) {
-        // TODO: Unlike video
+    /**
+     * Adds a video to the array of favorites
+     *
+     * @memberof MoodWidgetComponent
+     */
+    likeVideo() {
+        this.user.favorites.push(this.video.link);
+        this.userService.updateFavorites(this.user).subscribe(
+            (user: User) => {
+                console.log(user);
+                this.isLiked = true;
+            }
+        );
     }
 
-    requestSkip() {
-
+    /**
+     * Removes a video from the array of favorites
+     *
+     * @memberof MoodWidgetComponent
+     */
+    unlikeVideo() {
+        _.pull(this.user.favorites, this.video.link);
+        this.userService.updateFavorites(this.user).subscribe(
+            (user: User) => {
+                console.log(user);
+                this.isLiked = false;
+            }
+        );
     }
 
 }

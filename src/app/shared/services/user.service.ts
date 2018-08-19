@@ -39,6 +39,18 @@ export class UserService {
         return this.http.put<User>(environment.chronosUrl + '/user/' + token, user);
     }
 
+
+    /**
+     * Updates the favorites of an user
+     *
+     * @param {User} user
+     * @returns {Observable<User>}
+     * @memberof UserService
+     */
+    updateFavorites(user: User): Observable<User> {
+        return this.http.patch<User>(environment.chronosUrl + '/user/' + user._id + '/favorites', user.favorites);
+    }
+
     stats(token: string) { }
 
     likes(token: string) { }

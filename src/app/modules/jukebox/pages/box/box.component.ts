@@ -78,15 +78,16 @@ export class BoxComponent implements OnInit {
             params => {
                 this.token = params.token;
                 this.loadBox();
-                this.connect();
+                if (this.authService.isLoggedIn()) {
+                    this.authService.getUser().subscribe(
+                        (user: User) => {
+                            this.user = user;
+                            this.connect();
+                        }
+                    )
+                }
             }
         );
-
-        this.authService.getUser().subscribe(
-            (user: User) => {
-                this.user = user;
-            }
-        )
     }
 
     /**
@@ -114,7 +115,7 @@ export class BoxComponent implements OnInit {
      * @memberof BoxComponent
      */
     connect() {
-        this.jukeboxService.connect(this.token, 'D1JU70').subscribe(
+        this.jukeboxService.connect(this.token, this.user.token).subscribe(
             message => {
                 console.log('connected', message);
                 // Dirty, to be changed

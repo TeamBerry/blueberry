@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { JukeboxService } from './../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
+import { User } from 'app/shared/models/user.model';
 
 @Component({
     selector: 'app-playlist',
@@ -10,6 +11,7 @@ import { Box } from '../../../../shared/models/box.model';
 })
 export class PlaylistComponent implements OnInit {
     box: Box;
+    @Input() user: User = new User;
 
     constructor(
         private jukeboxService: JukeboxService,
@@ -36,7 +38,7 @@ export class PlaylistComponent implements OnInit {
     quickQueue(link: string) {
         const video = {
             link: link,
-            author: 'D1JU70'
+            author: this.user.token
         };
         this.jukeboxService.submitVideo(video);
     }

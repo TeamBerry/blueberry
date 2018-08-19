@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { User } from 'app/shared/models/user.model';
+
 @Component({
     selector: 'app-userlist',
     templateUrl: './userlist.component.html',
@@ -7,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class UserlistComponent implements OnInit {
     @Input() boxToken: string;
+    @Input() user: User;
 
     constructor() { }
 

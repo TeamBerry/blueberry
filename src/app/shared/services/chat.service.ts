@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import * as io from 'socket.io-client';
 
-import { environment } from './../../../environments/environment';
 import { Message } from 'app/shared/models/message.model';
 
 @Injectable()
@@ -14,7 +12,7 @@ export class ChatService {
     };
     private socket = io('localhost:8008', this.connectionOptions);
 
-    constructor(private http: Http) { }
+    constructor() { }
 
     /**
      * Adds a subscription to the box socket, for the chat type

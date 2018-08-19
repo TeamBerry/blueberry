@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { User } from 'app/shared/models/user.model';
 
 @Component({
     selector: 'app-favoritelist',
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritelistComponent implements OnInit {
     likes;
+    @Input() user: User = new User;
 
     constructor(
     ) { }

@@ -7,13 +7,14 @@ export class User {
     token: string;
     mail: string;
     settings: {};
+    favorites: string[];
 
     constructor(obj?: any) {
         this._id = obj && obj._id || null;
         this.name = obj && obj.name || null;
         this.token = obj && obj.token || null;
         this.mail = obj && obj.mail || null;
-        this.settings =  obj && obj.settings || {
+        this.settings = obj && obj.settings || {
             messagedByEveryone: true,
             messagedByFriends: true,
             messagedByBoxMembers: true,
@@ -27,5 +28,6 @@ export class User {
             boxOpenedByFriend: true,
             darkTheme: true
         }
+        this.favorites = obj && obj.favorites || [];
     }
 }

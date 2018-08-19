@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { ChatService } from './../../../../shared/services/chat.service';
 import { JukeboxService } from './../../jukebox.service';
 import { Message } from 'app/shared/models/message.model';
+import { User } from 'app/shared/models/user.model';
 
 @Component({
     selector: 'app-panel',
@@ -13,6 +14,8 @@ import { Message } from 'app/shared/models/message.model';
 })
 export class PanelComponent implements OnInit, AfterViewChecked {
     @Input() boxToken: string;
+    @Input() user: User;
+
     @Output() skipEvent = new EventEmitter();
     contents = '';
     hasLink = false;
@@ -63,7 +66,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
     handleMessage(contents) {
         const message = new Message({
-            author: 'D1JU70', // TODO: ACL
+            author: this.user.token,
             contents: contents,
             scope: this.boxToken,
             source: 'user',
@@ -110,7 +113,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
         const video = {
             link: (res[2]) ? res[2] : res[4],
-            author: 'D1JU70',
+            author: this.user.token,
             token: this.boxToken,
         };
 
