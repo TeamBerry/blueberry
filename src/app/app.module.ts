@@ -9,7 +9,6 @@ import { BoxWidgetComponent } from './shared/components/box-widget/box-widget.co
 import { HomeComponent } from './shared/components/home/home.component';
 import { UserComponent } from './shared/components/user/user.component';
 import { BoxFormComponent } from './shared/components/box-form/box-form.component';
-import { LikesComponent } from './shared/components/likes/likes.component';
 
 // Auth component
 import { NavComponent } from './core/nav/nav.component'; // Exceptional, so it can benefit from the auth directive
@@ -31,7 +30,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         HomeComponent,
         UserComponent,
         BoxFormComponent,
-        LikesComponent,
         LoginFormComponent,
         SignupFormComponent,
         NavComponent,
@@ -49,7 +47,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     exports: [
         AppComponent
     ],
-    providers: [],
     bootstrap: [AppComponent],
     entryComponents: [
         BoxFormComponent,
