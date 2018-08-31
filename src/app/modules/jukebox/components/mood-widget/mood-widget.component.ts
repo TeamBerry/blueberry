@@ -46,7 +46,7 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
      * @memberof MoodWidgetComponent
      */
     likeVideo() {
-        this.user.favorites.push(this.video.link);
+        this.user.favorites.push(this.video);
         this.userService.updateFavorites(this.user).subscribe(
             (user: User) => {
                 this.authService.setUser(user);
