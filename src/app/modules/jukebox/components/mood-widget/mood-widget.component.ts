@@ -30,14 +30,20 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes) {
-        if (changes.video.currentValue) {
+        if (changes.video && changes.video.currentValue) {
             this.video = changes.video.currentValue;
             this.isLiked = this.checkFavorites();
         }
     }
 
-    checkFavorites() {
-        return _.includes(this.user.favorites, this.video.link);
+    /**
+     * Checks if the currently playing video is in the list of favorites
+     *
+     * @returns {boolean} Whether the user has the video in their favorites
+     * @memberof MoodWidgetComponent
+     */
+    checkFavorites(): boolean {
+        return (_.findIndex(this.user.favorites, { '_id': this.video._id }) !== -1);
     }
 
     /**
@@ -56,12 +62,18 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
     }
 
     /**
-     * Removes a video from the array of favorites
+     * Removes a video from the list of favorites
      *
      * @memberof MoodWidgetComponent
      */
     unlikeVideo() {
-        _.pull(this.user.favorites, this.video.link);
+        // Delete one or more (you never know) instances of the video in the favorites
+        const newFavorites = this.user.favorites.filter(favorite => {
+            return favorite._id !== this.video._id;
+        })
+
+        this.user.favorites = newFavorites;
+
         this.userService.updateFavorites(this.user).subscribe(
             (user: User) => {
                 this.authService.setUser(user);

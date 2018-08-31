@@ -7,7 +7,7 @@ export class User {
     token: string;
     mail: string;
     settings: {};
-    favorites: string[];
+    favorites: any[];
 
     constructor(obj?: any) {
         this._id = obj && obj._id || null;
