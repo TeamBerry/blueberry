@@ -11,14 +11,8 @@ export class FavoritelistComponent implements OnInit {
     likes;
     @Input() user: User = new User;
 
-    constructor(
-    ) { }
+    constructor() { }
 
     ngOnInit() {
     }
-
-    fetchLikes() {
-        // TODO:
-    }
-
 }
