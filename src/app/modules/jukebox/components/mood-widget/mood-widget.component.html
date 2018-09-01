@@ -1,9 +1,9 @@
 <div class="col">
-    <svg *ngIf="!isLiked" class="mood-icon berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408.09" (click)="likeVideo()">
+    <svg *ngIf="!isLiked" class="mood-icon berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408.09" (click)="likeVideo()" title="Add to favorites">
         <path d="M408 129.05c0 92-135.88 225.81-185.85 271.92a26.76 26.76 0 0 1-36.3 0C135.88 354.89 0 221.05 0 129.05c0-111 115.51-188.38 200.28-62.41a4.73 4.73 0 0 0 7.72.18c96.55-130.09 200-48.87 200 62.23z"
         />
     </svg>
-    <svg *ngIf="isLiked" class="mood-icon berrybox-svg-icon mood-active" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408.09" (click)="unlikeVideo()">
+    <svg *ngIf="isLiked" class="mood-icon berrybox-svg-icon mood-active" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408.09" (click)="unlikeVideo()" title="Remove from favorites">
         <path d="M408 129.05c0 92-135.88 225.81-185.85 271.92a26.76 26.76 0 0 1-36.3 0C135.88 354.89 0 221.05 0 129.05c0-111 115.51-188.38 200.28-62.41a4.73 4.73 0 0 0 7.72.18c96.55-130.09 200-48.87 200 62.23z"
         />
     </svg>
