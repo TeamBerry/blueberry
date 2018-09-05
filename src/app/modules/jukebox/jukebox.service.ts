@@ -92,7 +92,12 @@ export class JukeboxService {
     /**
      * Submits a video to the playlist of the box
      *
-     * @param {*} video The video to submit
+     * @param {*} video The video to submit. Structure goes as follows:
+     * {
+     *  "link": video code
+     *  "author": token of the user submitting the video
+     *  "token": token of the box
+     * }
      * @memberof JukeboxService
      */
     public submitVideo(video): void {
@@ -100,19 +105,19 @@ export class JukeboxService {
     }
 
     // TODO: The following 4
-    public skip(){
+    public skip() {
 
     }
 
-    public shuffle(){
+    public shuffle() {
 
     }
 
-    public swap(){
+    public swap() {
 
     }
 
-    public toggle(){
+    public toggle() {
 
     }
 

@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+import { Video } from '../../models/video.model';
 
 @Component({
     selector: 'app-video-entry',
@@ -7,11 +9,17 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class VideoEntryComponent implements OnInit {
 
-    @Input() video;
+    @Input() video: Video;
+
+    @Output() submit: EventEmitter<Video> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() {
+    }
+
+    submitVideo() {
+        this.submit.emit(this.video);
     }
 
 }

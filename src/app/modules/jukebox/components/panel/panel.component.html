@@ -4,7 +4,7 @@
         <div class="box-side-panel" id="chat-space">
             <app-chat [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user" (socketStatus)="refreshChatStatus($event)"></app-chat>
             <app-playlist [hidden]="activePanel !== 'queue'" [user]="user"></app-playlist>
-            <app-favoritelist [hidden]="activePanel !== 'likes'" [user]="user"></app-favoritelist>
+            <app-favoritelist [hidden]="activePanel !== 'likes'" [boxToken]="boxToken" [user]="user"></app-favoritelist>
             <app-userlist [hidden]="activePanel !== 'users'" [boxToken]="boxToken" [user]="user"></app-userlist>
         </div>
     </div>

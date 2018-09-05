@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { User } from 'app/shared/models/user.model';
+import { Video } from 'app/shared/models/video.model';
+import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
 
 @Component({
     selector: 'app-favoritelist',
@@ -8,11 +10,29 @@ import { User } from 'app/shared/models/user.model';
     styleUrls: ['./favoritelist.component.scss'],
 })
 export class FavoritelistComponent implements OnInit {
-    likes;
+    @Input() boxToken: string;
     @Input() user: User = new User;
 
-    constructor() { }
+    constructor(
+        private jukeboxService: JukeboxService
+    ) { }
 
     ngOnInit() {
+    }
+
+    /**
+     * Relays the output event from the video-entry component and submits the video
+     * to the box, via the jukebox service method "submitVideo"
+     *
+     * @param {Video} video The video to submit
+     * @memberof FavoritelistComponent
+     */
+    submitVideo(video: Video) {
+        const videoPacket = {
+            link: video.link,
+            author: this.user.token,
+            token: this.boxToken
+        };
+        this.jukeboxService.submitVideo(videoPacket);
     }
 }
