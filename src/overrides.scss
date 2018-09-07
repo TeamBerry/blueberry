@@ -123,9 +123,7 @@
     }
 }
 
-::placeholder {
-    color: $background-focus-color;
-}
+// Pseudo-elements
 
 ::-webkit-scrollbar {
     background-color: inherit;
@@ -133,11 +131,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: $background-main-hover-color;
+    background-color: darken($master-color, 10%);
 }
 
 ::-webkit-input-placeholder {
-    color: white;
+    color: $background-focus-color;
 }
 
 .help-block {
