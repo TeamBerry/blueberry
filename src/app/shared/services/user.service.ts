@@ -14,7 +14,7 @@ export class UserService {
     ) { }
 
     /**
-     * Gets a single user
+     * Gets a single user. User is served with their favorites
      *
      * @param {string} token The token of the user
      * @returns {Observable<User>}
@@ -52,7 +52,4 @@ export class UserService {
     }
 
     stats(token: string) { }
-
-    likes(token: string) { }
-
 }
