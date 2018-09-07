@@ -19,7 +19,7 @@
                         <div class="col-11">
                             <p class="video-title" title="{{currentVideo?.name}}">{{currentVideo?.name}}</p>
                         </div>
-                        <div class="col-1">
+                        <div class="col-1" *appAuth="true">
                             <app-mood-widget *ngIf="currentVideo" [video]="currentVideo" [user]="user" class="row mood-widget"></app-mood-widget>
                         </div>
                     </div>

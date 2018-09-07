@@ -68,11 +68,11 @@ export class NavComponent implements OnInit {
     }
 
     login() {
-        const modalRef = this.modalService.open(LoginFormComponent);
+        this.modalService.open(LoginFormComponent);
     }
 
     signup() {
-        const modalRef = this.modalService.open(SignupFormComponent);
+        this.modalService.open(SignupFormComponent);
     }
 
     logout() {

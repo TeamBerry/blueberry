@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { User } from 'app/shared/models/user.model';
 import { Video } from 'app/shared/models/video.model';
 import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
+import { LoginFormComponent } from '../../../../shared/components/login-form/login-form.component';
+import { SignupFormComponent } from '../../../../shared/components/signup-form/signup-form.component';
 
 @Component({
     selector: 'app-favoritelist',
@@ -14,7 +17,8 @@ export class FavoritelistComponent implements OnInit {
     @Input() user: User = new User;
 
     constructor(
-        private jukeboxService: JukeboxService
+        private jukeboxService: JukeboxService,
+        private modalService: NgbModal
     ) { }
 
     ngOnInit() {
@@ -34,5 +38,13 @@ export class FavoritelistComponent implements OnInit {
             token: this.boxToken
         };
         this.jukeboxService.submitVideo(videoPacket);
+    }
+
+    openLoginPrompt() {
+        this.modalService.open(LoginFormComponent);
+    }
+
+    openSignupPrompt() {
+        this.modalService.open(SignupFormComponent);
     }
 }

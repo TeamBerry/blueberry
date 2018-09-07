@@ -74,3 +74,11 @@ button>svg {
     color: $text-system-color;
     margin: 0;
 }
+
+.no-contents {
+    padding-top: 50px;
+    color: $inactive-color;
+    svg {
+        height: 4em !important;
+    }
+}
