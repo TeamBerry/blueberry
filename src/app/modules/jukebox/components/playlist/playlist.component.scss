@@ -23,11 +23,7 @@
         border-top: .5px solid rgba($text-focus-color, 0.7);
     }
     &.playing {
-        font-weight: 800;
-        background-color: lighten($master-color, 30%);
-    }
-    &.played {
-        color: $text-system-color;
+        background-color: $background-main-active-color;
     }
     &.ignored {
 
