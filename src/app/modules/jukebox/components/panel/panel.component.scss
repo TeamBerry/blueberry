@@ -3,6 +3,14 @@
     overflow-y: scroll;
     overflow-x: hidden;
     height: calc(100vh - (80px + 45px + 148px));
+    &::-webkit-scrollbar-thumb {
+        visibility: hidden;
+    }
+    &:hover {
+        &::-webkit-scrollbar-thumb {
+            visibility: visible;
+        }
+    }
 }
 
 .panel-title {
