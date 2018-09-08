@@ -9,7 +9,7 @@ export class Message {
     scope: string;
     time: any;
 
-    constructor(obj?: any){
+    constructor(obj?: any) {
         this.author = obj && obj.author || null;
         this.contents = obj && obj.contents || null;
         this.source = obj && obj.source || null;
