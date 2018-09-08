@@ -8,17 +8,17 @@
 }
 
 .btn-primary {
-    background-color: $main-purple;
-    border: lighten($main-purple, 5%);
-    color: white;
+    background-color: $background-main-color;
+    border: lighten($background-main-color, 5%);
+    color: $text-main-color;
     &:hover {
-        background-color: darken($main-purple, 10%);
+        background-color: $background-main-hover-color;
     }
     &:active {
-        background-color: darken($main-purple, 20%);
+        background-color: $background-main-active-color;
     }
     &:visited {
-        color: white !important;
+        color: $text-main-color !important;
     }
 }
 
@@ -109,7 +109,7 @@
 
 .modal-content {
     background-color: $background-main-color;
-    color: $text-on-main-background;
+    color: $text-main-color;
 }
 
 .form-control {

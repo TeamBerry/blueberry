@@ -72,7 +72,7 @@
             <button class="btn btn-default">Emotes</button>
         </div>-->
         <div class="col-12">
-            <button *ngIf="!hasCommand" class="btn btn-outline-default" style="float:right;" (click)="post($event)">
+            <button *ngIf="!hasCommand" class="btn btn-primary" style="float:right;" (click)="post($event)">
                 Send message
             </button>
             <button *ngIf="hasCommand" class="btn btn-outline-default" id="command-button" style="float:right;" (click)="post($event)">Use command</button>
