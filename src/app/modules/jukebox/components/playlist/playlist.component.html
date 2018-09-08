@@ -33,6 +33,9 @@
                     <p class="submission-time">
                         {{ entry.submitted_at | date:'dd/MM/yyyy HH:mm:ss'}}
                     </p>
+                    <p class="submission-user" *ngIf="entry.submitted_by">
+                        {{ entry?.submitted_by?.name }}
+                    </p>
                 </div>
             </div>
             <!-- <div class="ngClass entry-actions w-100 d-flex">
