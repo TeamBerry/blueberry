@@ -1,0 +1,6 @@
+@import './../../../../imports.scss';
+.modal-header,
+.modal-body {
+    background-color: $background-main-color;
+    border-radius: 0;
+}
