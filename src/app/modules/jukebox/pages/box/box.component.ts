@@ -119,7 +119,7 @@ export class BoxComponent implements OnInit {
             message => {
                 console.log('connected', message);
                 // Dirty, to be changed
-                if (_.has(message, 'link')) {
+                if (_.has(message, 'video')) {
                     this.currentVideo = message; // Given to the player by 1-way binding
                 }
             },

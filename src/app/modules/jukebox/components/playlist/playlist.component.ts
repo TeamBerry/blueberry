@@ -38,7 +38,8 @@ export class PlaylistComponent implements OnInit {
     quickQueue(link: string) {
         const video = {
             link: link,
-            author: this.user.token
+            userToken: this.user._id,
+            boxToken: this.box._id
         };
         this.jukeboxService.submitVideo(video);
     }

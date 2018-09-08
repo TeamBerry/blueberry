@@ -45,7 +45,7 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
      * @memberof MoodWidgetComponent
      */
     checkFavorites(): boolean {
-        return (_.findIndex(this.user.favorites, { '_id': this.video._id }) !== -1);
+        return (_.findIndex(this.user.favorites, { '_id': this.video.video._id }) !== -1);
     }
 
     /**
@@ -54,7 +54,7 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
      * @memberof MoodWidgetComponent
      */
     likeVideo() {
-        this.user.favorites.push(this.video);
+        this.user.favorites.push(this.video.video);
         this.userService.updateFavorites(this.user).subscribe(
             (user: User) => {
                 this.authService.setUser(user);
@@ -72,7 +72,7 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
     unlikeVideo() {
         // Delete one or more (you never know) instances of the video in the favorites
         const newFavorites = this.user.favorites.filter(favorite => {
-            return favorite._id !== this.video._id;
+            return favorite._id !== this.video.video._id;
         })
 
         this.user.favorites = newFavorites;

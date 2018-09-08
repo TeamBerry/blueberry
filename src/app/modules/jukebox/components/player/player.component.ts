@@ -75,7 +75,7 @@ export class PlayerComponent implements OnInit, OnChanges {
      * @memberof PlayerComponent
      */
     playVideo() {
-        this.player.loadVideoById(this.video.link);
+        this.player.loadVideoById(this.video.video.link);
     }
 
     pauseVideo() {

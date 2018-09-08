@@ -103,8 +103,8 @@ export class JukeboxService {
      * @param {*} video The video to submit. Structure goes as follows:
      * {
      *  "link": video code
-     *  "author": token of the user submitting the video
-     *  "token": token of the box
+     *  "userToken": document ID of the user submitting the video
+     *  "boxToken": document ID of the box
      * }
      * @memberof JukeboxService
      */
