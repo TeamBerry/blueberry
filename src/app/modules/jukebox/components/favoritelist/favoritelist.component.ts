@@ -34,8 +34,8 @@ export class FavoritelistComponent implements OnInit {
     submitVideo(video: Video) {
         const videoPacket = {
             link: video.link,
-            author: this.user.token,
-            token: this.boxToken
+            userToken: this.user._id,
+            boxToken: this.boxToken
         };
         this.jukeboxService.submitVideo(videoPacket);
     }

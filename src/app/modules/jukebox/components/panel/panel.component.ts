@@ -66,7 +66,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
     handleMessage(contents) {
         const message = new Message({
-            author: this.user.token,
+            author: this.user._id,
             contents: contents,
             scope: this.boxToken,
             source: 'user',
@@ -113,8 +113,8 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
         const video = {
             link: (res[2]) ? res[2] : res[4],
-            author: this.user.token,
-            token: this.boxToken,
+            userToken: this.user._id,
+            boxToken: this.boxToken,
         };
 
         console.log('submitting video...');

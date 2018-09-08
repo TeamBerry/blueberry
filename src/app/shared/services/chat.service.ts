@@ -17,8 +17,8 @@ export class ChatService {
     /**
      * Adds a subscription to the box socket, for the chat type
      *
-     * @param {string} boxToken
-     * @param {string} userToken
+     * @param {string} boxToken The document ID of the box
+     * @param {string} userToken The document ID of the user
      * @returns
      * @memberof ChatService
      */
@@ -29,8 +29,8 @@ export class ChatService {
                 this.socket.emit('auth', {
                     origin: 'BERRYBOX PNEUMA',
                     type: 'chat',
-                    token: boxToken,
-                    subscriber: userToken
+                    boxToken,
+                    userToken
                 });
             });
 

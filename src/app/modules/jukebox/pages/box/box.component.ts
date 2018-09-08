@@ -115,7 +115,7 @@ export class BoxComponent implements OnInit {
      * @memberof BoxComponent
      */
     connect() {
-        this.jukeboxService.connect(this.token, this.user.token).subscribe(
+        this.jukeboxService.connect(this.token, this.user._id).subscribe(
             message => {
                 console.log('connected', message);
                 // Dirty, to be changed

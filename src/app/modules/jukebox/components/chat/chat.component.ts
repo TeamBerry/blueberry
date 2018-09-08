@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit {
     }
 
     connect() {
-        this.chatService.connect(this.boxToken, this.user.token).subscribe(
+        this.chatService.connect(this.boxToken, this.user._id).subscribe(
             message => {
                 this.messages.push(message);
             },

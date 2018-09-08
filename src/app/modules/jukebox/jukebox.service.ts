@@ -22,15 +22,23 @@ export class JukeboxService {
 
     constructor(private http: Http) { }
 
-    connect(token: string, userToken: string) {
+    /**
+     * Connects to the box socket and start real-time stuff
+     *
+     * @param {string} boxToken The document ID (_id) of the box
+     * @param {string} userToken The document ID (_id) of the user
+     * @returns
+     * @memberof JukeboxService
+     */
+    connect(boxToken: string, userToken: string) {
         const observable = new Observable(observer => {
             this.socket.on('connect', () => {
                 console.log('Connecting to Box socket...');
                 this.socket.emit('auth', {
                     origin: 'BERRYBOX PNEUMA',
                     type: 'sync',
-                    token,
-                    subscriber: userToken
+                    boxToken,
+                    userToken
                 });
             });
 
@@ -39,8 +47,8 @@ export class JukeboxService {
                 observer.next(data);
                 // Tells the service the user is joining. Response will be on sync
                 this.socket.emit('start', {
-                    token,
-                    subscriber: userToken
+                    boxToken,
+                    userToken
                 });
             });
 
