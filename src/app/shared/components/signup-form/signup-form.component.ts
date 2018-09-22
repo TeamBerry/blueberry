@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../../core/auth/auth.service';
 
+import { User } from '../../../shared/models/user.model';
+
 @Component({
     selector: 'app-signup-form',
     templateUrl: './signup-form.component.html',
     styleUrls: ['./signup-form.component.scss']
 })
 export class SignupFormComponent implements OnInit {
+    user: User = new User;
+    username: string;
     mail: string;
     password: string;
     passwordVerify: string;
@@ -35,6 +39,7 @@ export class SignupFormComponent implements OnInit {
     }
 
     signup() {
+        console.log('signup');
         this.authService.signup(this.mail, this.password).subscribe(
             (authResult) => {
                 this.authService.setSession(authResult);

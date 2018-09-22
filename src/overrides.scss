@@ -5,6 +5,7 @@
 .btn {
     border-radius: 0;
     cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .btn-primary {
@@ -125,7 +126,6 @@
 }
 
 // Pseudo-elements
-
 ::-webkit-scrollbar {
     background-color: inherit;
     width: 5px;
