@@ -60,6 +60,7 @@ export class NavComponent implements OnInit {
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserSettingsComponent);
         const componentRef = viewContainerRef.createComponent(componentFactory);
 
+        componentRef.instance.user = this.user;
         componentRef.instance.close.subscribe(
             () => {
                 viewContainerRef.clear();

@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 
 import { User } from '../../shared/models/user.model';
 
@@ -10,16 +10,13 @@ import { User } from '../../shared/models/user.model';
 export class UserSettingsComponent implements OnInit {
 
     public currentTab = 'account';
-    public user: User
+    @Input() user: User;
 
     public close: EventEmitter<any> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() {
-        this.user = new User;
-        this.user.name = 'AngelZatch';
-        this.user.mail = 'angelzatch@gmail.com';
         console.log(this.user);
     }
 
