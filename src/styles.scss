@@ -3,7 +3,6 @@
 @import 'imports.scss';
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import '../node_modules/ngx-toastr/toastr';
-
 body {
     overflow: hidden;
     background-color: $background-main-color;
@@ -81,4 +80,15 @@ button>svg {
     svg {
         height: 4em !important;
     }
+}
+
+// Auth modals
+#auth-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+#auth-icon {
+    width: 50px;
 }

@@ -2,15 +2,6 @@
 .modal-header,
 .modal-body {
     background-color: $background-main-color;
+    border: none;
     border-radius: 0;
-}
-
-#signup-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 1.5rem;
-}
-
-#signup-icon {
-    width: 50px;
 }
