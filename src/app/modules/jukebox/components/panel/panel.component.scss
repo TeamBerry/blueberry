@@ -21,7 +21,6 @@
 
 #panel-menu {
     border-left: 1px solid lighten($main-black, 10%) !important;
-
     .nav-item {
         cursor: pointer;
         &:hover {
@@ -63,6 +62,7 @@
 
 .input-mode {
     padding: 3px 10px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 span#span-default-mode {
