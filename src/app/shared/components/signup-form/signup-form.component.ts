@@ -39,8 +39,7 @@ export class SignupFormComponent implements OnInit {
     }
 
     signup() {
-        console.log('signup');
-        this.authService.signup(this.mail, this.password).subscribe(
+        this.authService.signup(this.mail, this.password, this.username).subscribe(
             (authResult) => {
                 this.authService.setSession(authResult);
                 location.reload();

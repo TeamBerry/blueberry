@@ -36,8 +36,8 @@ export class AuthService {
             });
     }
 
-    signup(mail: string, password: string) {
-        return this.http.post(environment.chronosUrl + '/signup', { mail: mail, password: password });
+    signup(mail: string, password: string, username: string) {
+        return this.http.post(environment.chronosUrl + '/auth/signup', { mail, password, username });
     }
 
     /**
