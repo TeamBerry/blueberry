@@ -1,24 +1,17 @@
 $nav-height: 60px;
-
 $master-color: #65A6A6;
-
 $main-purple: #2C3D4F;
 $main-black: #444;
-
 // Feedback colors*
 $success-color: #4FB36C;
 $danger-color: #B30F4F;
-
 // Status colors
 $inactive-color: #ccc;
 $active-color: #415EE8;
-
 // Type colors
 $command-color: #0fb562;
 $youtube-color: #b5220f;
-
 // SVG
 $fill-color: none;
-
-// @import './light-theme.scss';
-@import './dark-theme.scss';
+@import './light-theme.scss';
+// @import './dark-theme.scss';
