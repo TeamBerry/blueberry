@@ -46,7 +46,7 @@ export class PlayerComponent implements OnInit, OnChanges {
     ngOnChanges(event) {
         console.log('changes detected in the inputs', event);
         if (_.has(event, 'video')) {
-            if (event.video.currentValue !== null && event.video.previousValue !== null) {
+            if (event.video.currentValue !== null) {
                 console.log('play video yeet', event.video.currentValue);
                 this.video = event.video.currentValue;
                 this.playVideo();
