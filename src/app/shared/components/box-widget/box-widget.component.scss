@@ -1,12 +1,10 @@
 @import './../../../../imports.scss';
-
-.card-box{
+.card-box {
     background-color: $main-black;
     color: white;
     border-radius: 0 !important;
     cursor: pointer;
-
-    .card-img-top{
+    .card-img-top {
         width: 100%;
         border-radius: inherit;
     }
@@ -15,12 +13,14 @@
     }
 }
 
-.card-name{
+.card-name {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    font-family: 'Montserrat', sans-serif;
+    color: $master-color;
 }
 
-.box-pp{
+.box-pp {
     @include nav-pp(40px);
 }
