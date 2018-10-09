@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../../core/auth/auth.service';
 
 import { User } from '../../../shared/models/user.model';
+import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 
 @Component({
     selector: 'app-signup-form',
@@ -11,35 +12,60 @@ import { User } from '../../../shared/models/user.model';
 })
 export class SignupFormComponent implements OnInit {
     user: User = new User;
-    username: string;
-    mail: string;
-    password: string;
-    passwordVerify: string;
 
     errorMessage: string = null;
+    signupForm: FormGroup;
 
     constructor(
         public activeModal: NgbActiveModal,
         public authService: AuthService
     ) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
+        this.signupForm = new FormGroup({
+            username: new FormControl('', [
+                Validators.required,
+                Validators.minLength(6)
+            ]),
+            mail: new FormControl('', [Validators.required]),
+            password: new FormControl('', [
+                Validators.required,
+                Validators.minLength(8)
+            ]),
+            passwordVerify: new FormControl('', [
+                Validators.required,
+                Validators.minLength(8)
+            ])
+        })
     }
 
-    onSubmit() {
-        console.log('attempting to signup...');
-        // TODO: Check email
+    get username() { return this.signupForm.get('username'); }
+    get mail() { return this.signupForm.get('mail'); }
+    get password() { return this.signupForm.get('password'); }
+    get passwordVerify() { return this.signupForm.get('passwordVerify'); }
 
-        // Check password verify
-        if (this.password !== this.passwordVerify) {
-            this.errorMessage = 'Your password verification is invalid.';
-        } else {
-            this.signup();
-        }
-    }
+    /**
+     * Checks if the password verification input has the same value as the password input
+     *
+     * @returns {boolean} Result of the check
+     * @memberof SignupFormComponent
+     */
+    passwordMatchVerify(): boolean {
+        return (this.signupForm.value.password === this.signupForm.value.passwordVerify);
+    };
 
     signup() {
-        this.authService.signup(this.mail, this.password, this.username).subscribe(
+
+        if (!this.passwordMatchVerify()) {
+            this.errorMessage = 'Your password verification is invalid';
+            return;
+        }
+
+        const mail = this.signupForm.value.mail,
+            password = this.signupForm.value.password,
+            username = this.signupForm.value.username;
+
+        this.authService.signup(mail, password, username).subscribe(
             (authResult) => {
                 this.authService.setSession(authResult);
                 location.reload();

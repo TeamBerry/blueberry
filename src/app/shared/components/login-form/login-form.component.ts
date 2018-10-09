@@ -42,12 +42,13 @@ export class LoginFormComponent implements OnInit {
      * @memberof LoginFormComponent
      */
     login() {
-        console.log(this.loginForm.value);
-        // this.authService.login(this.mail, this.password).subscribe(
-        //     (authResult) => {
-        //         this.authService.setSession(authResult);
-        //         location.reload();
-        //     }
-        // );
+        const mail = this.loginForm.value.mail,
+            password = this.loginForm.value.password;
+        this.authService.login(mail, password).subscribe(
+            (authResult) => {
+                this.authService.setSession(authResult);
+                location.reload();
+            }
+        );
     }
 }

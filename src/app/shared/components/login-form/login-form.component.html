@@ -10,7 +10,7 @@
     </button>
 </div>
 <div class="modal-body">
-    <form [formGroup]="loginForm" #logi>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="form-group">
             <label for="mail">Mail address</label>
             <input type="mail" formControlName="mail" class="form-control input-lg" id="mail" placeholder="Mail address" required autofocus>
