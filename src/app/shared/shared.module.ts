@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AuthDirective } from '../shared/directive/auth.directive';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
 import { VideoEntryComponent } from './components/video-entry/video-entry.component';
 
 @NgModule({
-    imports: [CommonModule],
+    imports: [
+        CommonModule
+    ],
     declarations: [
         AuthDirective,
         SlideToggleComponent,
@@ -16,6 +18,7 @@ import { VideoEntryComponent } from './components/video-entry/video-entry.compon
     exports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         AuthDirective,
         SlideToggleComponent,
         VideoEntryComponent
