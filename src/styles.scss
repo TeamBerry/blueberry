@@ -6,6 +6,7 @@
 body {
     overflow: hidden;
     background-color: $background-main-color;
+    font-size: pxtorem($base-font-size);
 }
 
 svg.berrybox-svg {

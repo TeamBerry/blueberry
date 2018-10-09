@@ -1,4 +1,4 @@
-@mixin nav-pp($size){
+@mixin nav-pp($size) {
     height: $size;
     width: $size;
     border-radius: $size/2;
@@ -8,21 +8,17 @@
 @font-face {
     font-family: 'geometria_lightlight';
     src: url('/assets/fonts/geometria/Geometria-Light-webfont.eot');
-    src: url('/assets/fonts/geometria/Geometria-Light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/fonts/geometria/Geometria-Light-webfont.woff2') format('woff2'),
-         url('/assets/fonts/geometria/Geometria-Light-webfont.woff') format('woff'),
-         url('/assets/fonts/geometria/Geometria-Light-webfont.ttf') format('truetype'),
-         url('/assets/fonts/geometria/Geometria-Light-webfont.svg#geometria_lightlight') format('svg');
+    src: url('/assets/fonts/geometria/Geometria-Light-webfont.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/geometria/Geometria-Light-webfont.woff2') format('woff2'), url('/assets/fonts/geometria/Geometria-Light-webfont.woff') format('woff'), url('/assets/fonts/geometria/Geometria-Light-webfont.ttf') format('truetype'), url('/assets/fonts/geometria/Geometria-Light-webfont.svg#geometria_lightlight') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
-@mixin padding-horizontal($size){
+@mixin padding-horizontal($size) {
     padding-left: $size;
     padding-right: $size;
 }
 
-@mixin padding-vertical($size){
+@mixin padding-vertical($size) {
     padding-top: $size;
     padding-bottom: $size;
 }
@@ -30,21 +26,18 @@
 @mixin override-button($color) {
     background-color: $color;
     border: lighten($color, 5%);
-
     &:hover {
         background-color: darken($color, 10%);
     }
-
     &:active {
         background-color: darken($color, 20%);
     }
-
     &:focus {
         border: lighten($color, 5%);
     }
 }
 
-@mixin override-button-outline($color){
+@mixin override-button-outline($color) {
     border-color: $color;
     color: $color;
     &:hover {
@@ -57,8 +50,13 @@
     }
 }
 
-@mixin one-line-text(){
+@mixin one-line-text() {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+@function pxtorem($px) {
+    $remSize: $px / 16px;
+    @return #{$remSize}rem;
 }

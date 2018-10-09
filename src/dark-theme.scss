@@ -1,17 +1,14 @@
 // Main overwrites for the dark theme
-
 // Main colors
 $background-main-color: #243B3B;
 $background-main-hover-color: lighten($background-main-color, 5%);
 $background-main-active-color: lighten($background-main-color, 15%);
+$background-main-border-color: #979797;
 $text-main-color: white;
-
 // Focus colors
 $background-focus-color: #192929;
 $text-focus-color: $master-color;
-
 // System colors
 $text-system-color: #bbb;
-
 // SVG
 $stroke-color: $text-system-color;
