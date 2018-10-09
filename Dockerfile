@@ -13,7 +13,7 @@ COPY package.json /usr/src/pneuma
 # Install dependencies
 RUN npm install
 
-# Cet code
+# Get code
 COPY . /usr/src/pneuma
 
 # Expose 4200
