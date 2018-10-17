@@ -28,7 +28,7 @@ export class BoxComponent implements OnInit {
     /**
      * Box itself
      *
-     * @type {*}
+     * @type {Box}
      * @memberof BoxComponent
      */
     box: Box;
@@ -139,7 +139,7 @@ export class BoxComponent implements OnInit {
      * @memberof BoxComponent
      */
     onPlayerStateChange(event: any) {
-        if (event === 0 && (this.user._id === this.box.creator._id)) {
+        if (event === 0 && (this.user._id === this.box.creator['_id'])) {
             this.jukeboxService.next();
         } else {
             console.log('Not an admin, wait for autoplay');
