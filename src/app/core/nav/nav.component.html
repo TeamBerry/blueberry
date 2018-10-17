@@ -1,4 +1,4 @@
-<nav class="navbar sticky-top navbar-toggleable-md navbar-light bg-faded">
+<nav class="navbar sticky-top navbar-expand-lg navbar-toggleable-md navbar-light bg-faded">
     <a href="home" class="navbar-brand">
         <span class="nav-pp">
             <img src="../../../assets/images/berrybox-logo-white.png" alt="" style="width:inherit;">
@@ -6,25 +6,32 @@
     </a>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <li class="nav-item" *appAuth="true">
                 <a class="btn btn-outline-primary-light" (click)="openCreateModal()"> Create a box</a>
             </li>
-            <li class="nav-item ml-3">
-                <div ngbDropdown class="d-inline-block">
+            <li class="nav-item" *appAuth="false">
+                <a class="btn btn-outline-primary-light" (click)="login()">Log in</a>
+            </li>
+            <div class="nav-item" *appAuth="false">
+                <a class="btn btn-outline-primary-light" (click)="signup()">Sign up</a>
+            </div>
+            <li class="nav-item ml-3" *appAuth="true">
+                <div ngbDropdown class="d-inline-block" placement="bottom-left">
                     <a id="nav-dropdown" ngbDropdownToggle>
                         <span class="nav-pp"><img src="../../../assets/images/berrybox-staff-logo.png" alt="" style="width:inherit;"></span>
-                        <span class="nav-name">AngelZatch</span>
+                        <span class="nav-name">{{ user?.name }}</span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="nav-dropdown">
-                        <a href="friends" class="dropdown-item">Friends</a>
-                        <a href="likes" class="dropdown-item">Likes</a>
-                        <a href="boxes" class="dropdown-item">Boxes</a>
+                    <div ngbDropdownMenu class="dropdown-menu dropdown-menu-left" aria-labelledby="nav-dropdown">
+                        <!-- <a href="friends" class="dropdown-item">Friends</a> -->
+                        <!-- <a href="favorites" class="dropdown-item">Favorites</a> -->
+                        <!-- <a href="boxes" class="dropdown-item">Boxes</a> -->
+                        <a class="dropdown-item" (click)="summonSettings()">Settings</a>
                         <div class="dropdown-divider"></div>
-                        <a href="settings" class="dropdown-item">Settings</a>
-                        <a href="log-off" class="dropdown-item">Disconnect</a>
+                        <a (click)="logout()" class="dropdown-item">Log out</a>
                     </div>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
+<ng-template settings-host></ng-template>

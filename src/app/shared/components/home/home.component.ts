@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
         public boxService: BoxService) { }
 
     ngOnInit() {
-        this.boxService.list().subscribe(
+        this.boxService.index().subscribe(
             boxes => {
                 this.boxes = boxes;
                 this.loading = false;

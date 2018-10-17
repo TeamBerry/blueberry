@@ -1,0 +1,60 @@
+@import './../../../../imports.scss';
+#queue-panel,
+#like-panel {
+    padding: 0 10px;
+}
+
+.playlist-actions {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.list-rank {
+    margin-bottom: 0;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+.playlist-entry {
+    padding: 5px 0;
+    border-bottom: .5px solid rgba($text-focus-color, 0.7);
+    &:nth-child(even) {
+        border-top: .5px solid rgba($text-focus-color, 0.7);
+    }
+    &.playing {
+        font-weight: 800;
+        background-color: lighten($master-color, 30%);
+    }
+    &.played {
+        color: $text-system-color;
+    }
+    &.ignored {
+
+    }
+}
+
+.entry-info {
+    height: 90px;
+}
+
+.entry-actions {
+    height: 30px;
+}
+
+.entry-image-container {
+}
+
+.song-list-line {
+    margin-bottom: 0;
+    @include one-line-text();
+    a {
+        color: $master-color;
+        &:hover {
+            text-decoration: underline;
+        }
+        &:active {
+            color: darken($master-color, 10%);
+        }
+    }
+}

@@ -1,67 +1,67 @@
 @import './../../../../imports.scss';
-
-.main-background{
-    height:100%;
-    background:linear-gradient(70deg, $main-color 0,darken($main-color, 15%) 100%);
+.main-background {
+    height: calc(100vh - #{$nav-height});
+    overflow-y: auto;
+    background: linear-gradient(70deg, $master-color 0, darken($master-color, 15%) 100%);
 }
 
-.featured, .social-space{
+.featured,
+.social-space {
     // background-color: fade_out(darken($main-black, 15%), .1);
-    background-color: lighten(black, 10%);
-
-    .free-text{
-        font-family: 'geometria_lightlight';
-        color: $main-color;
+    background-color: $background-focus-color;
+    .free-text {
+        font-family: 'Montserrat', sans-serif;
+        color: $text-focus-color;
         margin-bottom: 40px;
         text-align: center
     }
 }
 
-.jumbotron-welcome{
+.jumbotron-welcome {
     padding: 150px;
-    font-family: geometria_lightlight;
+    font-family: 'Montserrat', sans-serif;
     height: 500px;
     background-color: transparent;
     text-align: center;
 }
 
-.home-section{
+.home-section {
     padding-top: 50px;
     padding-bottom: 50px;
 }
 
-.footer{
+.footer {
     background-color: darken($main-black, 10%);
 }
 
-#main-title{
-    font-weight:700;
+#main-title {
+    font-weight: 700;
 }
 
-#main-sub-title{
+#main-sub-title {
     margin-bottom: 50px;
 }
 
-.jumbotron-btn{
+.jumbotron-btn {
     font-size: 18px;
-    padding-left:40px;
-    padding-right:40px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
-.how-to{
-    font-family: geometria_lightlight;
+.how-to {
+    font-family: 'Montserrat', sans-serif;
 }
 
-.how-to-container{
+.how-to-container {
     text-align: center;
 }
 
-.how-to-container > div > span{
+.how-to-container>div>span {
     color: $main-purple;
-    font-size:2em;
+    font-size: 2em;
 }
 
-.how-to-point{
-    font-weight:600;
-    color:$main-purple;
+.how-to-point {
+    font-weight: 600;
+    color: $main-purple;
 }

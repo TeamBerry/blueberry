@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+
 import { ChatService } from './../../../../shared/services/chat.service';
+import { User } from 'app/shared/models/user.model';
 
 @Component({
     selector: 'app-chat',
@@ -8,7 +10,8 @@ import { ChatService } from './../../../../shared/services/chat.service';
     providers: [ChatService]
 })
 export class ChatComponent implements OnInit {
-    @Input() token: string;
+    @Input() boxToken: string;
+    @Input() user: User = new User;
     @Output() socketStatus = new EventEmitter();
     contents = '';
     hasLink = false;
@@ -20,18 +23,22 @@ export class ChatComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        if (this.token !== undefined) {
-            this.chatService.connect(this.token, 'D1JU70').subscribe(
-                message => {
-                    this.messages.push(message);
-                },
-                error => {
-                    this.socketStatus.emit('offline');
-                },
-                () => {
-                    this.socketStatus.emit('online');
-                }
-            );
+        if (this.boxToken !== undefined) {
+            this.connect();
         }
+    }
+
+    connect() {
+        this.chatService.connect(this.boxToken, this.user._id).subscribe(
+            message => {
+                this.messages.push(message);
+            },
+            error => {
+                this.socketStatus.emit('offline');
+            },
+            () => {
+                this.socketStatus.emit('online');
+            }
+        );
     }
 }

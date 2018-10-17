@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
 
-import { PlayerService } from './../../../../shared/services/player.service';
+import { JukeboxService } from './../../jukebox.service';
 
 /**
  * The player component of the box. It just recieves the video as an input from the box
@@ -19,16 +19,17 @@ import { PlayerService } from './../../../../shared/services/player.service';
     styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent implements OnInit, OnChanges {
-    @Input() token: string;
-    @Input() video: any;
+    @Input() boxToken: string;
+    @Input() video: any = null;
     @Output() playing: EventEmitter<any> = new EventEmitter();
+    @Output() state: EventEmitter<any> = new EventEmitter();
     private player;
     private playerEvent;
     public height = '100%';
     public width = '100%';
 
     constructor(
-        private playerService: PlayerService,
+        private jukeboxService: JukeboxService,
     ) { }
 
     ngOnInit() {
@@ -37,17 +38,18 @@ export class PlayerComponent implements OnInit, OnChanges {
 
     onStateChange(event) {
         this.playerEvent = event.data;
-        if (this.playerEvent === 0) {
-            this.next();
+        if (this.playerEvent === 0) { // PLAY ENDED
+            this.state.emit(this.playerEvent);
         }
     }
 
     ngOnChanges(event) {
         console.log('changes detected in the inputs', event);
-        if (_.has(event, 'currentValue.video')) {
-            if (event.currentValue.video !== null) {
-                /* const video = event.currentValue.video;
-                this.player.loadVideoById(video.link); */
+        if (_.has(event, 'video')) {
+            if (event.video.currentValue !== null) {
+                console.log('play video yeet', event.video.currentValue);
+                this.video = event.video.currentValue;
+                this.playVideo();
             }
         }
     }
@@ -62,7 +64,9 @@ export class PlayerComponent implements OnInit, OnChanges {
     onPlayerReady(player) {
         this.player = player;
         console.log('player is ready');
-        this.playVideo();
+        if (this.video) {
+            this.playVideo();
+        }
     }
 
     /**
@@ -71,14 +75,10 @@ export class PlayerComponent implements OnInit, OnChanges {
      * @memberof PlayerComponent
      */
     playVideo() {
-        this.player.loadVideoById(this.video.link);
+        this.player.loadVideoById(this.video.video.link);
     }
 
     pauseVideo() {
         this.player.pauseVideo();
-    }
-
-    next() {
-        // TODO: Emit a next to the box
     }
 }

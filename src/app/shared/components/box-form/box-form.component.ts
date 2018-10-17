@@ -5,6 +5,8 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Box } from './../../models/box.model';
 import { BoxService } from './../../services/box.service';
+import { AuthService } from 'app/core/auth/auth.service';
+import { User } from 'app/shared/models/user.model';
 
 @Component({
     selector: 'app-box-form',
@@ -22,17 +24,22 @@ export class BoxFormComponent implements OnInit {
     ];
     submitted = false;
 
-    box = new Box({
-        creator: 'D1JU70',
-    });
+    box: Box;
 
     constructor(
+        private authService: AuthService,
         public boxService: BoxService,
         public activeModal: NgbActiveModal,
         private router: Router
     ) { }
 
     ngOnInit() {
+        this.box = new Box();
+        this.authService.getUser().subscribe(
+            (user: User) => {
+                this.box.creator = user._id;
+            }
+        )
     }
 
     onSubmit() {

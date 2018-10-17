@@ -1,16 +1,11 @@
 <div class="card-box">
     <img *ngIf="currentVideo" src="http://i.ytimg.com/vi/{{ currentVideo?.video?.link }}/hqdefault.jpg" alt="" class="card-img-top">
     <img *ngIf="!currentVideo" src="assets/images/no-playing.png" alt="" class="card-img-top">
-    <div class="card-block">
+    <div class="card-block p-2">
         <h4 class="card-name">{{ box.name }}</h4>
-        <p class="card-text">Currently playing: {{ currentVideo?.video?.name || "Nothing." }}</p>
-        <div class="media">
-            <img src="./assets/profile-pictures/{{ box.creator }}" alt="" class="d-flex mr-3 box-pp">
-            <div class="media-body">
-                <h6 class="mt-0">
-                    <a href="user/{{ box.creator }}">{{ box.creator }}</a>
-                </h6>
-            </div>
+        <div id="box-info" class="pl-4">
+            <p id="currently-playing" class="mb-0"><strong>Playing: </strong>{{ currentVideo?.video?.name || "Nothing." }}</p>
+            <p id="box-admin" class="mb-0"><strong>Created by: </strong>{{ box?.creator?.name }}</p>
         </div>
         <a href="" class="btn btn-default btn-block">Join</a>
     </div>

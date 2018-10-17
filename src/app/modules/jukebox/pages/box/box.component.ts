@@ -5,7 +5,10 @@ import { Observable } from 'rxjs/Observable';
 import * as _ from 'lodash';
 
 import { MoodWidgetComponent } from './../../components/mood-widget/mood-widget.component';
-import { PlayerService } from './../../../../shared/services/player.service';
+import { JukeboxService } from './../../jukebox.service';
+import { AuthService } from 'app/core/auth/auth.service';
+import { Box } from 'app/shared/models/box.model';
+import { User } from 'app/shared/models/user.model';
 
 @Component({
     selector: 'app-box',
@@ -28,7 +31,7 @@ export class BoxComponent implements OnInit {
      * @type {*}
      * @memberof BoxComponent
      */
-    box: any;
+    box: Box;
 
     /**
      * Loading flag to hide or show parts of the DOM depending on their state of readiness
@@ -44,6 +47,15 @@ export class BoxComponent implements OnInit {
      */
     currentVideo = null;
 
+
+    /**
+     * Connected user. Obtained from the auth service
+     *
+     * @type {User}
+     * @memberof BoxComponent
+     */
+    user: User;
+
     /**
      * Integration of the Mood Widget component, though I'm not sure I need it anymore
      *
@@ -54,8 +66,9 @@ export class BoxComponent implements OnInit {
     @ViewChild(MoodWidgetComponent) private moodWidgetComponent: MoodWidgetComponent;
 
     constructor(
+        private authService: AuthService,
         private boxService: BoxService,
-        private playerService: PlayerService,
+        private jukeboxService: JukeboxService,
         private route: ActivatedRoute,
         private router: Router
     ) { }
@@ -65,7 +78,14 @@ export class BoxComponent implements OnInit {
             params => {
                 this.token = params.token;
                 this.loadBox();
-                this.connect();
+                if (this.authService.isLoggedIn()) {
+                    this.authService.getUser().subscribe(
+                        (user: User) => {
+                            this.user = user;
+                            this.connect();
+                        }
+                    )
+                }
             }
         );
     }
@@ -73,12 +93,16 @@ export class BoxComponent implements OnInit {
     /**
      * Loads the details of the box
      *
+     * Only if you're the creator of the box. Else, you just connect to the jukeboxService and get the box from there
+     * TODO: Restrict to creator of the box
+     *
      * @memberof BoxComponent
      */
     loadBox() {
         this.boxService.show(this.token).subscribe(
-            data => {
-                this.box = data;
+            (box: Box) => {
+                this.box = box;
+                this.jukeboxService.setBox(this.box);
                 this.loading = false;
             }
         );
@@ -91,11 +115,11 @@ export class BoxComponent implements OnInit {
      * @memberof BoxComponent
      */
     connect() {
-        this.playerService.connect(this.token, 'D1JU70').subscribe(
+        this.jukeboxService.connect(this.token, this.user._id).subscribe(
             message => {
                 console.log('connected', message);
                 // Dirty, to be changed
-                if (_.has(message, 'link')) {
+                if (_.has(message, 'video')) {
                     this.currentVideo = message; // Given to the player by 1-way binding
                 }
             },
@@ -103,5 +127,22 @@ export class BoxComponent implements OnInit {
                 console.error(error);
             }
         );
+    }
+
+
+    /**
+     * Actions when the player changes state
+     *
+     * The autoplay sync is only available to the administrator of the box
+     *
+     * @param {*} event
+     * @memberof BoxComponent
+     */
+    onPlayerStateChange(event: any) {
+        if (event === 0 && (this.user._id === this.box.creator._id)) {
+            this.jukeboxService.next();
+        } else {
+            console.log('Not an admin, wait for autoplay');
+        }
     }
 }

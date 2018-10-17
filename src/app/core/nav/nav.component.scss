@@ -1,10 +1,10 @@
 @import './../../../imports.scss';
 .navbar {
-    background-color: $main-color;
+    background-color: $master-color;
     margin-bottom: 0 !important;
     height: 60px;
     //@include fontFace('geometria', 'Geometria-Light-webfont');
-    font-family: 'geometria_lightlight';
+    font-family: 'Montserrat', sans-serif;
 }
 
 .navbar-brand {
@@ -23,7 +23,7 @@
 .nav-name {
     font-size: 19px;
     font-weight: 700;
-    color: $text-on-main-background;
+    color: $text-main-color;
 }
 
 .nav-item {
@@ -31,8 +31,15 @@
 }
 
 .dropdown-menu {
-    background-color: $secondary-background;
+    background-color: $background-main-color;
+    /* top: 46px !important; */
+    border-radius: 0;
+    border-color: $master-color;
+    width: 179px;
     .dropdown-item {
-        color: $text-on-secondary-background;
+        color: $text-focus-color;
+        &:hover {
+            background-color: $background-main-hover-color;
+        }
     }
 }

@@ -5,6 +5,5 @@
 
 export const environment = {
     production: false,
-    logosUrl: 'http://localhost:8000/api/v1',
     chronosUrl: 'http://localhost:3000',
 };

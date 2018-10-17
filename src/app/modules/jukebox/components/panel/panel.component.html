@@ -2,10 +2,10 @@
     <div class="col-11 sub-panels">
         <div class="panel-title text-center">{{activePanel}}</div>
         <div class="box-side-panel" id="chat-space">
-            <app-chat [hidden]="activePanel !== 'chat'" [token]="token" (socketStatus)="refreshChatStatus($event)"></app-chat>
-            <app-playlist [hidden]="activePanel !== 'queue'" [token]="token"></app-playlist>
-            <app-favoritelist [hidden]="activePanel !== 'likes'"></app-favoritelist>
-            <app-userlist [hidden]="activePanel !== 'users'" [token]="token"></app-userlist>
+            <app-chat [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user" (socketStatus)="refreshChatStatus($event)"></app-chat>
+            <app-playlist [hidden]="activePanel !== 'queue'" [user]="user"></app-playlist>
+            <app-favoritelist [hidden]="activePanel !== 'favorites'" [boxToken]="boxToken" [user]="user"></app-favoritelist>
+            <app-userlist [hidden]="activePanel !== 'users'" [boxToken]="boxToken" [user]="user"></app-userlist>
         </div>
     </div>
     <div class="col-1" id="panel-menu">
@@ -40,8 +40,8 @@
                 </a>
             </li>
             <li class="nav-separator my-1"></li>
-            <li class="nav-item" [ngClass]="{'active': activePanel == 'likes'}">
-                <a class="nav-link" (click)="showPanel('likes')" title="Likes">
+            <li class="nav-item" [ngClass]="{'active': activePanel == 'favorites'}">
+                <a class="nav-link" (click)="showPanel('favorites')" title="Favorites">
                     <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408.09">
                         <path class="berrybox-path" d="M408 129.05c0 92-135.88 225.81-185.85 271.92a26.76 26.76 0 0 1-36.3 0C135.88 354.89 0 221.05 0 129.05c0-111 115.51-188.38 200.28-62.41a4.73 4.73 0 0 0 7.72.18c96.55-130.09 200-48.87 200 62.23z"
                         />
@@ -51,7 +51,7 @@
         </ul>
     </div>
 </div>
-<div id="input-space" class="py-3">
+<div id="input-space" class="py-3" *appAuth="true">
     <div *ngIf="!hasCommand">
         <span class="input-mode" id="span-default-mode">Chat </span>
         <span class="key-commands">Type <kbd>!</kbd> to execute a command</span>
@@ -61,9 +61,8 @@
         <span class="key-commands">Use
             <kbd>Ctrl + Enter</kbd> to send as text</span>
     </div>
-    <textarea name="" id="" cols="30" rows="2" class="form-control chatbox" [ngClass]="{'chatbox-link': hasLink, 'chatbox-command': hasCommand}"
-        placeholder="Type a message. Commands start with a '!'" [(ngModel)]="contents" (keydown.enter)="post($event)" (keydown.control.enter)="post($event)"
-        (keyup)="watchContents()"></textarea>
+    <textarea name="" id="" cols="30" rows="2" class="form-control chatbox" [ngClass]="{'chatbox-link': hasLink, 'chatbox-command': hasCommand}" placeholder="Type a message. Commands start with a '!'" [(ngModel)]="contents" (keydown.enter)="post($event)"
+        (keydown.control.enter)="post($event)" (keyup)="watchContents()"></textarea>
     <div class="chat-actions row">
         <!--<div class="col-2">
             <button class="btn btn-primary">Options</button>
@@ -72,10 +71,10 @@
             <button class="btn btn-default">Emotes</button>
         </div>-->
         <div class="col-12">
-            <button *ngIf="!hasCommand" class="btn btn-outline-default" style="float:right;" (click)="post($event)">
+            <button *ngIf="!hasCommand" class="btn btn-primary" style="float:right;" (click)="post($event)">
                 Send message
             </button>
-            <button *ngIf="hasCommand" class="btn btn-outline-default" id="command-button" style="float:right;" (click)="post($event)">Use command</button>
+            <button *ngIf="hasCommand" class="btn btn-primary" id="command-button" style="float:right;" (click)="post($event)">Use command</button>
         </div>
     </div>
 </div>

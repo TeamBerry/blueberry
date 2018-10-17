@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import * as io from 'socket.io-client';
 
-import { environment } from './../../../environments/environment';
 import { Message } from 'app/shared/models/message.model';
 
 @Injectable()
@@ -14,25 +12,25 @@ export class ChatService {
     };
     private socket = io('localhost:8008', this.connectionOptions);
 
-    constructor(private http: Http) { }
+    constructor() { }
 
     /**
      * Adds a subscription to the box socket, for the chat type
      *
-     * @param {string} token
-     * @param {string} userToken
+     * @param {string} boxToken The document ID of the box
+     * @param {string} userToken The document ID of the user
      * @returns
      * @memberof ChatService
      */
-    connect(token: string, userToken: string) {
+    connect(boxToken: string, userToken: string) {
         const observable = new Observable(observer => {
             // On connect, indicate we're here for the chat
             this.socket.on('connect', () => {
                 this.socket.emit('auth', {
                     origin: 'BERRYBOX PNEUMA',
                     type: 'chat',
-                    token,
-                    subscriber: userToken
+                    boxToken,
+                    userToken
                 });
             });
 

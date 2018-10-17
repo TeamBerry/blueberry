@@ -1,6 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'imports.scss';
+@import '../node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/ngx-toastr/toastr';
+body {
+    overflow: hidden;
+    background-color: $background-main-color;
+    font-size: pxtorem($base-font-size);
+}
 
 svg.berrybox-svg {
     height: 1em;
@@ -11,12 +18,12 @@ svg.berrybox-svg {
     }
     &:hover {
         .berrybox-path {
-            fill: $main-color;
+            fill: $master-color;
         }
     }
     .berrybox-path {
-        stroke: $system-color;
-        fill: $system-color;
+        stroke: $text-system-color;
+        fill: $text-system-color;
     }
 }
 
@@ -30,13 +37,13 @@ button>svg {
     width: 1.3em;
     &.secondary-icon {
         fill: $main-black;
-        color: $main-color;
+        color: $master-color;
         cursor: default;
     }
     &.primary-icon {
         &:hover {
-            fill: $main-color;
-            stroke: $main-color;
+            fill: $master-color;
+            stroke: $master-color;
         }
         cursor: pointer;
         fill: white;
@@ -50,7 +57,7 @@ button>svg {
 }
 
 .page-title {
-    color: $main-color;
+    color: $master-color;
     padding: 40px;
 }
 
@@ -59,6 +66,30 @@ button>svg {
     border-color: white;
     &:hover {
         background-color: white;
-        color: $main-color !important;
+        color: $master-color !important;
     }
+}
+
+.help-text {
+    color: $text-system-color;
+    margin: 0;
+}
+
+.no-contents {
+    padding-top: 50px;
+    color: $inactive-color;
+    svg {
+        height: 4em !important;
+    }
+}
+
+// Auth modals
+#auth-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+#auth-icon {
+    width: 50px;
 }

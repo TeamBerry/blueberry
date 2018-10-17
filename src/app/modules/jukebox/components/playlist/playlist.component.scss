@@ -4,10 +4,6 @@
     padding: 0 10px;
 }
 
-.video:nth-child(even) {
-    background-color: darken($secondary-background, 5%);
-}
-
 .playlist-actions {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -15,34 +11,46 @@
 
 .list-rank {
     margin-bottom: 0;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
 }
 
 .playlist-entry {
-    margin-bottom: 5px;
     padding: 5px 0;
+    border-bottom: .5px solid rgba($text-focus-color, 0.7);
+    &:nth-child(even) {
+        border-top: .5px solid rgba($text-focus-color, 0.7);
+    }
+    &.playing {
+        background-color: $background-main-active-color;
+    }
+    &.ignored {
+
+    }
 }
 
-.song-playing {
-    font-weight: 800;
+.entry-info {
+    height: 90px;
 }
 
-.song-played {}
+.entry-actions {
+    height: 30px;
+}
 
-.song-ignored>div>p>a {
-    color: #d953af;
+.entry-image-container {
 }
 
 .song-list-line {
     margin-bottom: 0;
     @include one-line-text();
-    padding-right: 10px;
     a {
-        color: $main-color;
+        color: $master-color;
         &:hover {
             text-decoration: underline;
         }
         &:active {
-            color: darken($main-color, 10%);
+            color: darken($master-color, 10%);
         }
     }
 }

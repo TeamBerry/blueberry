@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { PlayerService } from './../../../../shared/services/player.service';
+import { JukeboxService } from './../../jukebox.service';
+import { Box } from '../../../../shared/models/box.model';
+import { User } from 'app/shared/models/user.model';
 
 @Component({
     selector: 'app-playlist',
@@ -8,21 +10,27 @@ import { PlayerService } from './../../../../shared/services/player.service';
     styleUrls: ['./playlist.component.scss'],
 })
 export class PlaylistComponent implements OnInit {
-    @Input() token: string;
-    playlist;
+    box: Box;
+    @Input() user: User = new User;
 
     constructor(
-        private playerService: PlayerService
+        private jukeboxService: JukeboxService,
     ) { }
 
     ngOnInit() {
-        /* this.fetchPlaylist(); */
+        this.listen();
     }
 
-    fetchPlaylist() {
-        this.playerService.playlist(this.token).subscribe(
-            data => {
-                this.playlist = data;
+    /**
+     * Subscribe to the box from the jukebox space, to get the playlist when needed
+     *
+     * @memberof PlaylistComponent
+     */
+    listen() {
+        this.jukeboxService.getBox().subscribe(
+            (box: Box) => {
+                this.box = box;
+                console.log('GOT BOX: ', box);
             }
         );
     }
@@ -30,13 +38,10 @@ export class PlaylistComponent implements OnInit {
     quickQueue(link: string) {
         const video = {
             link: link,
-            author: 'D1JU70'
+            userToken: this.user._id,
+            boxToken: this.box._id
         };
-        /* this.playerService.submit(this.token, video).subscribe(
-            data => {
-                this.fetchPlaylist();
-            }
-        ); */
+        this.jukeboxService.submitVideo(video);
     }
 
     swap(video: any, direction: string) {
@@ -46,23 +51,27 @@ export class PlaylistComponent implements OnInit {
             direction: direction
         };
 
-        this.playerService.swap(this.token, action).subscribe(
-            data => this.fetchPlaylist()
-        );
+        this.jukeboxService.swap();
     }
 
     banVideo(video: any) {
         video.video_status = 3;
-        this.playerService.update(this.token, video).subscribe(
-            data => this.fetchPlaylist()
-        );
+        this.jukeboxService.toggle();
     }
 
     unbanVideo(video: any) {
         video.video_status = 0;
-        this.playerService.update(this.token, video).subscribe(
-            data => this.fetchPlaylist()
-        );
+        this.jukeboxService.toggle();
+    }
+
+
+    /**
+     * Requests the currently playing video be skipped.
+     *
+     * @memberof PlaylistComponent
+     */
+    requestSkip() {
+
     }
 
 }

@@ -2,17 +2,20 @@ import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked } from
 import * as moment from 'moment';
 
 import { ChatService } from './../../../../shared/services/chat.service';
-import { PlayerService } from './../../../../shared/services/player.service';
+import { JukeboxService } from './../../jukebox.service';
 import { Message } from 'app/shared/models/message.model';
+import { User } from 'app/shared/models/user.model';
 
 @Component({
     selector: 'app-panel',
     templateUrl: './panel.component.html',
     styleUrls: ['./panel.component.scss'],
-    providers: [ChatService, PlayerService]
+    providers: [ChatService]
 })
 export class PanelComponent implements OnInit, AfterViewChecked {
-    @Input() token: string;
+    @Input() boxToken: string;
+    @Input() user: User;
+
     @Output() skipEvent = new EventEmitter();
     contents = '';
     hasLink = false;
@@ -21,7 +24,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
     constructor(
         private chatService: ChatService,
-        private playerService: PlayerService
+        private jukeboxService: JukeboxService
     ) { }
 
     ngOnInit() {
@@ -63,9 +66,9 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
     handleMessage(contents) {
         const message = new Message({
-            author: 'D1JU70', // TODO: ACL
+            author: this.user._id,
             contents: contents,
-            scope: this.token,
+            scope: this.boxToken,
             source: 'user',
         });
         this.chatService.post(message);
@@ -110,12 +113,12 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
         const video = {
             link: (res[2]) ? res[2] : res[4],
-            author: 'D1JU70',
-            token: this.token,
+            userToken: this.user._id,
+            boxToken: this.boxToken,
         };
 
-        console.log("sending video");
+        console.log('submitting video...');
 
-        this.playerService.submit(this.token, video);
+        this.jukeboxService.submitVideo(video);
     }
 }

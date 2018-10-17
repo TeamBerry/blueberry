@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LikesComponent } from './likes.component';
+import { SlideToggleComponent } from './slide-toggle.component';
 
-describe('LikesComponent', () => {
-  let component: LikesComponent;
-  let fixture: ComponentFixture<LikesComponent>;
+describe('SlideToggleComponent', () => {
+  let component: SlideToggleComponent;
+  let fixture: ComponentFixture<SlideToggleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LikesComponent ]
+      declarations: [ SlideToggleComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LikesComponent);
+    fixture = TestBed.createComponent(SlideToggleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

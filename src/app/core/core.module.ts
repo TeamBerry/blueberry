@@ -2,25 +2,35 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 
-import { NavComponent } from './nav/nav.component';
 import { throwIfAlreadyLoaded } from './module-import-guard';
+
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         HttpModule,
-        NgbModule.forRoot()
+        HttpClientModule,
+        NgbModule.forRoot(),
+        ToastrModule.forRoot({
+            timeOut: 4000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: true,
+            progressBar: true
+        })
     ],
     declarations: [
-        NavComponent
     ],
     exports: [
-        NavComponent
     ],
-    providers: []
+    providers: [
+        AuthService,
+    ]
 })
 export class CoreModule {
     constructor( @Optional() @SkipSelf() parentModule: CoreModule) {

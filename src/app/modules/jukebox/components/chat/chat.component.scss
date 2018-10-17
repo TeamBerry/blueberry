@@ -4,10 +4,14 @@
 }
 
 // Chat
-
 .system-message {
-    font-style: italic;
-    color: $system-color;
+    color: $text-system-color;
+    .message-author {
+        color: $master-color;
+    }
+    .message-contents {
+        font-style: italic;
+    }
 }
 
 .message {
@@ -16,7 +20,7 @@
 }
 
 .message:nth-child(even) {
-    background-color: darken($secondary-background, 5%);
+    background-color: lighten($background-focus-color, 5%);
 }
 
 .message-time {
@@ -24,14 +28,16 @@
 }
 
 .message-author {
-    &:hover {
-        text-decoration: underline;
-    }
+    // &:hover {
+    //     text-decoration: underline;
+    // }
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 .bot-icon {
     font-size: 0.7rem;
-    background-color: #e5a61a;
+    background-color: $master-color;
     padding: .2rem;
     color: white;
     font-weight: 700;
