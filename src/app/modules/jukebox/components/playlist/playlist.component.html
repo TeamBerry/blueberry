@@ -1,6 +1,6 @@
 <div *ngIf="box">
     <div *ngIf="box.playlist.length > 0; else noVideos">
-        <div class="px-3">
+        <!-- <div class="px-3">
             <div class="playlist-actions row">
                 <div class="col">
                     <button class="btn btn-default btn-admin btn-block">
@@ -15,7 +15,7 @@
                     <button class="btn btn-default btn-admin btn-block">Shuffle</button>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div *ngFor="let entry of box.playlist; let i = index; let first = first">
             <p class="list-rank px-3 pt-3" *ngIf="entry.startTime === null && first">Upcoming: </p>
             <p class="list-rank px-3 pt-3" *ngIf="entry.startTime !== null && entry.endTime === null">Now playing: </p>
