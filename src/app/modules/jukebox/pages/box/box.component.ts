@@ -101,7 +101,7 @@ export class BoxComponent implements OnInit {
     loadBox() {
         this.boxService.show(this.token).subscribe(
             (box: Box) => {
-                this.box = new Box(box);
+                this.box = box;
                 this.jukeboxService.setBox(this.box);
                 this.loading = false;
             }
@@ -133,13 +133,16 @@ export class BoxComponent implements OnInit {
     /**
      * Actions when the player changes state
      *
+     * The autoplay sync is only available to the administrator of the box
+     *
      * @param {*} event
      * @memberof BoxComponent
      */
     onPlayerStateChange(event: any) {
-        console.log('PLAYER STATE CHANGE', event);
-        if (event === 0) {
+        if (event === 0 && (this.user._id === this.box.creator._id)) {
             this.jukeboxService.next();
+        } else {
+            console.log('Not an admin, wait for autoplay');
         }
     }
 }

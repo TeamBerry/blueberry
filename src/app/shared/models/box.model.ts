@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Box {
     _id: string;
-    creator: Object;
+    creator: {
+        _id: string,
+        name: string
+    };
     description: string;
     lang: string;
     name: string;
