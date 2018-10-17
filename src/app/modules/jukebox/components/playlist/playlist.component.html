@@ -1,44 +1,45 @@
-<div class="px-3">
-    <div class="playlist-actions row">
-        <div class="col">
-            <button class="btn btn-default btn-admin btn-block">
-                <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88" (click)="requestSkip()">
-                    <polygon points="334.18 192.94 0 0 0 385.88 334.18 192.94" />
-                    <rect width="68.21" height="385.88" x="334.18" />
-                </svg>
-                Next
-            </button>
-        </div>
-        <div class="col">
-            <button class="btn btn-default btn-admin btn-block">Shuffle</button>
-        </div>
-    </div>
-</div>
 <div *ngIf="box">
-    <div *ngFor="let entry of box.playlist; let i = index; let first = first">
-        <p class="list-rank px-3 pt-3" *ngIf="entry.startTime === null && first">Upcoming: </p>
-        <p class="list-rank px-3 pt-3" *ngIf="entry.startTime !== null && entry.endTime === null">Now playing: </p>
-        <p class="list-rank px-3 pt-3" *ngIf="(entry.endTime !== null && !first && box.playlist[i - 1].endTime === null) || (entry.endTime !== null && first)">Played: </p>
-        <div class="row playlist-entry no-gutters video px-3 py-2" [ngClass]="{'playing': entry.startTime && !entry.endTime,
-                    'played': entry.endTime,
-                    'ignored': entry.ignored }">
-            <div class="entry-info d-flex">
-                <div class="entry-image-container h-100">
-                    <img class="entry-image h-100 float-left" src="http://img.youtube.com/vi/{{ entry.video.link }}/0.jpg" alt="">
+    <div *ngIf="box.playlist.length > 0; else noVideos">
+        <div class="px-3">
+            <div class="playlist-actions row">
+                <div class="col">
+                    <button class="btn btn-default btn-admin btn-block">
+                            <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88" (click)="requestSkip()">
+                                <polygon points="334.18 192.94 0 0 0 385.88 334.18 192.94" />
+                                <rect width="68.21" height="385.88" x="334.18" />
+                            </svg>
+                            Next
+                        </button>
                 </div>
-                <div class="entry-details col pr-0">
-                    <p class="song-list-line">
-                        <a href="https://youtube.com/watch?v={{entry.video.link}}" title="{{entry.video.name}}">{{entry.video.name}}</a>
-                    </p>
-                    <p class="submission-time">
-                        {{ entry.submitted_at | date:'dd/MM/yyyy HH:mm:ss'}}
-                    </p>
-                    <p class="submission-user" *ngIf="entry.submitted_by">
-                        {{ entry?.submitted_by?.name }}
-                    </p>
+                <div class="col">
+                    <button class="btn btn-default btn-admin btn-block">Shuffle</button>
                 </div>
             </div>
-            <!-- <div class="ngClass entry-actions w-100 d-flex">
+        </div>
+        <div *ngFor="let entry of box.playlist; let i = index; let first = first">
+            <p class="list-rank px-3 pt-3" *ngIf="entry.startTime === null && first">Upcoming: </p>
+            <p class="list-rank px-3 pt-3" *ngIf="entry.startTime !== null && entry.endTime === null">Now playing: </p>
+            <p class="list-rank px-3 pt-3" *ngIf="(entry.endTime !== null && !first && box.playlist[i - 1].endTime === null) || (entry.endTime !== null && first)">Played: </p>
+            <div class="row playlist-entry no-gutters video px-3 py-2" [ngClass]="{'playing': entry.startTime && !entry.endTime,
+                    'played': entry.endTime,
+                    'ignored': entry.ignored }">
+                <div class="entry-info d-flex">
+                    <div class="entry-image-container h-100">
+                        <img class="entry-image h-100 float-left" src="http://img.youtube.com/vi/{{ entry.video.link }}/0.jpg" alt="">
+                    </div>
+                    <div class="entry-details col pr-0">
+                        <p class="song-list-line">
+                            <a href="https://youtube.com/watch?v={{entry.video.link}}" title="{{entry.video.name}}">{{entry.video.name}}</a>
+                        </p>
+                        <p class="submission-time">
+                            {{ entry.submitted_at | date:'dd/MM/yyyy HH:mm:ss'}}
+                        </p>
+                        <p class="submission-user" *ngIf="entry.submitted_by">
+                            {{ entry?.submitted_by?.name }}
+                        </p>
+                    </div>
+                </div>
+                <!-- <div class="ngClass entry-actions w-100 d-flex">
                 <div class="col" *ngIf="entry.startTime === null && !first" title="Play later" (click)="swap(entry, 'up')">
                     <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 448.37">
                         <polygon points="145 0 0 201.87 290 201.87 145 0" />
@@ -76,5 +77,17 @@
                 </div>
             </div>
         </div> -->
+            </div>
+        </div>
     </div>
+    <ng-template #noVideos>
+        <div class="text-center no-contents">
+            <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 475.55 428.13">
+                    <path class="berrybox-path" d="M475.56 307.09L293.21 201.81v210.56l182.35-105.28M0 0h456.59v56.04H0zM0 93.02h456.59v56.04H0zM0 186.04h269.23v56.04H0zM0 279.07h269.23v56.04H0zM0 372.09h269.23v56.04H0z"
+                    />
+                </svg>
+            <h3>Your queue is empty</h3>
+            <p>You can add youtube links in the chat input with the <kbd>!add</kbd> command</p>
+        </div>
+    </ng-template>
 </div>
