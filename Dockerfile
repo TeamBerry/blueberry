@@ -1,23 +1,19 @@
-# Create image based on Node 8
-FROM node:8
+# Stage 0, "build-stage"
+FROM node:9 as build-stage
 
-# Create a directory to place the app
-RUN mkdir -p /usr/src/pneuma
+WORKDIR /Pneuma
 
-# Change directory to run commands
-WORKDIR /usr/src/pneuma
+COPY package*.json /Pneuma
 
-# Copy dependency file
-COPY package.json /usr/src/pneuma
-
-# Install dependencies
 RUN npm install
 
-# Get code
-COPY . /usr/src/pneuma
+COPY ./ /Pneuma/
 
-# Expose 4200
-EXPOSE 4200
+RUN npm run-script build
 
-# Serve
-CMD ["npm", "start"]
+# Stage 1, compiled app serve with NginX
+FROM nginx:alpine
+
+COPY --from=build-stage /Pneuma/dist/out /usr/share/nginx/html
+
+COPY --from=build-stage /Pneuma/nginx.conf /etc/nginx/conf.d/default.conf

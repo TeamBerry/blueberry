@@ -14,7 +14,7 @@ export class Box {
 
     constructor(obj?: any) {
         this._id = obj && obj._id || null;
-        this.creator = obj && obj.creator || undefined;
+        this.creator = obj && obj.creator || null;
         this.description = obj && obj.description || null;
         this.lang = obj && obj.lang || 'English';
         this.name = obj && obj.name || null;
