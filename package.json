@@ -1,6 +1,6 @@
 {
     "name": "berryfront-new",
-    "version": "0.8.0",
+    "version": "0.8.1",
     "license": "MIT",
     "scripts": {
         "ng": "./node_modules/.bin/ng",
