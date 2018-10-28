@@ -5,7 +5,7 @@
         <h4 class="card-name">{{ box.name }}</h4>
         <div id="box-info" class="pl-4">
             <p id="currently-playing" class="mb-0"><strong>Playing: </strong>{{ currentVideo?.video?.name || "Nothing." }}</p>
-            <p id="box-admin" class="mb-0"><strong>Created by: </strong>{{ box?.creator?.name }}</p>
+            <p id="box-admin" class="mb-0"><strong>Created by: </strong>{{ box.creator['name'] }}</p>
         </div>
         <a href="" class="btn btn-default btn-block">Join</a>
     </div>
