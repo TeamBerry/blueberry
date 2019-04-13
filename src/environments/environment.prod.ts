@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  chronosUrl: 'http://localhost:3000'
+  chronosUrl: 'http://chronos.berrybox.tv'
 };
