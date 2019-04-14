@@ -4,13 +4,14 @@ import 'rxjs/add/operator/map';
 import * as io from 'socket.io-client';
 
 import { Message } from 'app/shared/models/message.model';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class ChatService {
     private connectionOptions = {
         'transports': ['websocket']
     };
-    private socket = io('localhost:8008', this.connectionOptions);
+    private socket = io(environment.hermesUrl, this.connectionOptions);
 
     constructor() { }
 

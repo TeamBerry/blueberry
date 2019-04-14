@@ -6,4 +6,5 @@
 export const environment = {
     production: false,
     chronosUrl: 'http://localhost:3000',
+    hermesUrl: 'http://localhost:8008',
 };

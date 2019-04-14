@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  chronosUrl: 'http://chronos.berrybox.tv'
+  chronosUrl: 'http://chronos.berrybox.tv',
+  hermesUrl: 'http://hermes.berrybox.tv',
 };
