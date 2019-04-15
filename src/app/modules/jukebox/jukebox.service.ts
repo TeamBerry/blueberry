@@ -15,7 +15,7 @@ export class JukeboxService {
     private connectionOptions = {
         'transports': ['websocket']
     };
-    private socket = io('localhost:8008', this.connectionOptions);
+    private socket = io(environment.hermesUrl, this.connectionOptions);
 
     public box: Box;
     public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(this.box);
