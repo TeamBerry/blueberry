@@ -1,13 +1,12 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
-import { ChatService } from './../../../../shared/services/chat.service';
 import { User } from 'app/shared/models/user.model';
+import { JukeboxService } from '../../jukebox.service';
 
 @Component({
     selector: 'app-chat',
     templateUrl: './chat.component.html',
     styleUrls: ['./chat.component.scss'],
-    providers: [ChatService]
 })
 export class ChatComponent implements OnInit {
     @Input() boxToken: string;
@@ -19,7 +18,7 @@ export class ChatComponent implements OnInit {
     messages = [];
 
     constructor(
-        private chatService: ChatService
+        private jukeboxService: JukeboxService
     ) { }
 
     ngOnInit() {
@@ -29,7 +28,8 @@ export class ChatComponent implements OnInit {
     }
 
     connect() {
-        this.chatService.connect(this.boxToken, this.user._id).subscribe(
+        console.log('connecting chat to socket...');
+        this.jukeboxService.connectToChat(this.boxToken, this.user._id).subscribe(
             message => {
                 this.messages.push(message);
             },

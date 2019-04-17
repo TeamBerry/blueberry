@@ -1,7 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked } from '@angular/core';
-import * as moment from 'moment';
 
-import { ChatService } from './../../../../shared/services/chat.service';
 import { JukeboxService } from './../../jukebox.service';
 import { Message } from 'app/shared/models/message.model';
 import { User } from 'app/shared/models/user.model';
@@ -10,7 +8,6 @@ import { User } from 'app/shared/models/user.model';
     selector: 'app-panel',
     templateUrl: './panel.component.html',
     styleUrls: ['./panel.component.scss'],
-    providers: [ChatService]
 })
 export class PanelComponent implements OnInit, AfterViewChecked {
     @Input() boxToken: string;
@@ -23,7 +20,6 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     activePanel = '';
 
     constructor(
-        private chatService: ChatService,
         private jukeboxService: JukeboxService
     ) { }
 
@@ -71,7 +67,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             scope: this.boxToken,
             source: 'user',
         });
-        this.chatService.post(message);
+        this.jukeboxService.post(message);
     }
 
     handleCommands(contents) {

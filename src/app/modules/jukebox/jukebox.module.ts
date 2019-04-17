@@ -32,7 +32,7 @@ import { FavoritelistComponent } from './components/favoritelist/favoritelist.co
     ],
     exports: [],
     providers: [
-        JukeboxService
-    ],
+        JukeboxService,
+    ]
 })
 export class JukeboxModule { }

@@ -112,8 +112,8 @@ export class BoxComponent implements OnInit {
      * @memberof BoxComponent
      */
     connect() {
-        console.log('connecting...');
-        this.jukeboxService.connect(this.token, this.user._id).subscribe(
+        console.log('connecting sync to socket...');
+        this.jukeboxService.connectToBox(this.token, this.user._id).subscribe(
             message => {
                 console.log('connected', message);
                 // Dirty, to be changed
@@ -123,6 +123,7 @@ export class BoxComponent implements OnInit {
             },
             error => {
                 console.error(error);
+                console.log('socket offline');
             }
         );
     }
