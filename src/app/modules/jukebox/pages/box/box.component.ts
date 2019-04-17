@@ -74,20 +74,17 @@ export class BoxComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.route.params.subscribe(
-            params => {
-                this.token = params.token;
-                this.loadBox();
-                if (this.authService.isLoggedIn()) {
-                    this.authService.getUser().subscribe(
-                        (user: User) => {
-                            this.user = user;
-                            this.connect();
-                        }
-                    )
-                }
+        this.route.params.subscribe(params => {
+            this.token = params.token;
+            this.loadBox();
+            if (this.authService.isLoggedIn()) {
+                this.authService.getUser().subscribe(
+                    (user: User) => {
+                        this.user = user;
+                    }
+                )
             }
-        );
+        });
     }
 
     /**
@@ -115,6 +112,7 @@ export class BoxComponent implements OnInit {
      * @memberof BoxComponent
      */
     connect() {
+        console.log('connecting...');
         this.jukeboxService.connect(this.token, this.user._id).subscribe(
             message => {
                 console.log('connected', message);
@@ -139,7 +137,9 @@ export class BoxComponent implements OnInit {
      * @memberof BoxComponent
      */
     onPlayerStateChange(event: any) {
-        if (event === 0 && (this.user._id === this.box.creator['_id'])) {
+        if (event === 'ready') {
+            this.connect();
+        } else if (event === 0 && (this.user._id === this.box.creator['_id'])) {
             this.jukeboxService.next();
         } else {
             console.log('Not an admin, wait for autoplay');

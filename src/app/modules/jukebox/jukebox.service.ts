@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { BehaviorSubject ,  Observable } from 'rxjs';
 
 import * as io from 'socket.io-client';
 import * as _ from 'lodash';
-import * as moment from 'moment';
 
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
@@ -19,7 +17,7 @@ export class JukeboxService {
     public box: Box;
     public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(this.box);
 
-    constructor(private http: Http) { }
+    constructor() { }
 
     /**
      * Connects to the box socket and start real-time stuff
@@ -31,6 +29,7 @@ export class JukeboxService {
      */
     connect(boxToken: string, userToken: string) {
         const observable = new Observable(observer => {
+            console.log('attempting to connect to socket', this.socket);
             this.socket.on('connect', () => {
                 console.log('Connecting to Box socket...');
                 this.socket.emit('auth', {
@@ -50,6 +49,11 @@ export class JukeboxService {
                     userToken
                 });
             });
+
+            this.socket.on('denied', (data) => {
+                console.log('your connection attempt has been denied.');
+                observer.error(JSON.parse(data));
+            })
 
             this.socket.on('sync', (data) => {
                 console.log('recieved sync data', data);

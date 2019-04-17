@@ -36,13 +36,6 @@ export class PlayerComponent implements OnInit, OnChanges {
         console.log('Init player...');
     }
 
-    onStateChange(event) {
-        this.playerEvent = event.data;
-        if (this.playerEvent === 0) { // PLAY ENDED
-            this.state.emit(this.playerEvent);
-        }
-    }
-
     ngOnChanges(event) {
         console.log('changes detected in the inputs', event);
         if (_.has(event, 'video')) {
@@ -51,6 +44,13 @@ export class PlayerComponent implements OnInit, OnChanges {
                 this.video = event.video.currentValue;
                 this.playVideo();
             }
+        }
+    }
+
+    onStateChange(event) {
+        this.playerEvent = event.data;
+        if (this.playerEvent === 0) { // PLAY ENDED
+            this.state.emit(this.playerEvent);
         }
     }
 
@@ -64,9 +64,7 @@ export class PlayerComponent implements OnInit, OnChanges {
     onPlayerReady(player) {
         this.player = player;
         console.log('player is ready');
-        if (this.video) {
-            this.playVideo();
-        }
+        this.state.emit('ready');
     }
 
     /**
@@ -76,9 +74,5 @@ export class PlayerComponent implements OnInit, OnChanges {
      */
     playVideo() {
         this.player.loadVideoById(this.video.video.link);
-    }
-
-    pauseVideo() {
-        this.player.pauseVideo();
     }
 }
