@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { YoutubePlayerModule } from 'ngx-youtube-player';
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 
 import { SharedModule } from './../../shared/shared.module';
 import { JukeboxService } from './jukebox.service';
@@ -28,7 +28,7 @@ import { FavoritelistComponent } from './components/favoritelist/favoritelist.co
     imports: [
         JukeboxRoutingModule,
         SharedModule,
-        YoutubePlayerModule
+        NgxYoutubePlayerModule
     ],
     exports: [],
     providers: [

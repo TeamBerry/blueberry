@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '../../../../node_modules/@angular/common/http';
-import { BehaviorSubject } from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 
 import { environment } from 'environments/environment';
@@ -30,10 +29,7 @@ export class AuthService {
     }
 
     showConnectedUser(token: string): Observable<User> {
-        return this.http.get<User>(environment.chronosUrl + '/user/' + token)
-            .map((user: User) => {
-                return new User(user);
-            });
+        return this.http.get<User>(environment.chronosUrl + '/user/' + token);
     }
 
     signup(mail: string, password: string, username: string) {
