@@ -11,7 +11,7 @@ export class ChatService {
     private connectionOptions = {
         'transports': ['websocket']
     };
-    private socket = io(environment.hermesUrl, this.connectionOptions);
+    private socket;
 
     constructor() { }
 
@@ -25,6 +25,7 @@ export class ChatService {
      */
     connect(boxToken: string, userToken: string) {
         const observable = new Observable(observer => {
+            this.socket = io(environment.hermesUrl, this.connectionOptions);
             // On connect, indicate we're here for the chat
             this.socket.on('connect', () => {
                 this.socket.emit('auth', {
