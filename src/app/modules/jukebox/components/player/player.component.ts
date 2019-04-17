@@ -28,6 +28,17 @@ export class PlayerComponent implements OnInit, OnChanges {
     public height = '100%';
     public width = '100%';
 
+    /**
+     * indicates if the player is ready to recieve videos and play them or not.
+     *
+     * Used as a guard against the onChanges hook of the component to avoid errors
+     *
+     * @private
+     * @type {boolean}
+     * @memberof PlayerComponent
+     */
+    private isPlayerReady: boolean = false;
+
     constructor(
         private jukeboxService: JukeboxService,
     ) { }
@@ -37,13 +48,17 @@ export class PlayerComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(event) {
-        console.log('changes detected in the inputs', event);
-        if (_.has(event, 'video')) {
-            if (event.video.currentValue !== null) {
-                console.log('play video yeet', event.video.currentValue);
-                this.video = event.video.currentValue;
-                this.playVideo();
+        if (this.isPlayerReady) {
+            console.log('changes detected in the inputs', event);
+            if (_.has(event, 'video')) {
+                if (event.video.currentValue !== null) {
+                    console.log('play video yeet', event.video.currentValue);
+                    this.video = event.video.currentValue;
+                    this.playVideo();
+                }
             }
+        } else {
+            console.log('Player is not ready yet to play videos.');
         }
     }
 
@@ -63,12 +78,14 @@ export class PlayerComponent implements OnInit, OnChanges {
      */
     onPlayerReady(player) {
         this.player = player;
+        this.isPlayerReady = true;
         console.log('player is ready');
         this.state.emit('ready');
     }
 
     /**
-     * Starts the video after it detected changes in the video input
+     * Starts the video after it detected changes in the video input, only if
+     * the player is ready.
      *
      * @memberof PlayerComponent
      */
