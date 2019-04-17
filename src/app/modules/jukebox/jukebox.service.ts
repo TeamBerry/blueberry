@@ -17,7 +17,10 @@ export class JukeboxService {
     public box: Box;
     public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(this.box);
 
-    constructor() { }
+    constructor() {
+        // FIXME: Can't access hermes
+        this.socket = io(environment.hermesUrl, this.connectionOptions);
+    }
 
     /**
      * Connects to the box socket and start real-time stuff
@@ -29,7 +32,6 @@ export class JukeboxService {
      */
     connect(boxToken: string, userToken: string) {
         const observable = new Observable(observer => {
-            this.socket = io(environment.hermesUrl, this.connectionOptions);
             console.log('attempting to connect to socket', this.socket);
             this.socket.on('connect', () => {
                 console.log('Connecting to Box socket...');

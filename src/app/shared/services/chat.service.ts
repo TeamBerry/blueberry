@@ -13,7 +13,10 @@ export class ChatService {
     };
     private socket;
 
-    constructor() { }
+    constructor() {
+        // FIXME: Works fine but sends two requests. And if put in the observable, won't be reachable by other methods...
+        this.socket = io(environment.hermesUrl, this.connectionOptions);
+    }
 
     /**
      * Adds a subscription to the box socket, for the chat type
@@ -24,8 +27,7 @@ export class ChatService {
      * @memberof ChatService
      */
     connect(boxToken: string, userToken: string) {
-        const observable = new Observable(observer => {
-            this.socket = io(environment.hermesUrl, this.connectionOptions);
+        const observable = new Observable((observer) => {
             // On connect, indicate we're here for the chat
             this.socket.on('connect', () => {
                 this.socket.emit('auth', {
@@ -34,6 +36,7 @@ export class ChatService {
                     boxToken,
                     userToken
                 });
+
             });
 
             this.socket.on('confirm', (data) => {

@@ -45,6 +45,10 @@ export class PlayerComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         console.log('Init player...');
+
+        setTimeout(() => {
+            this.state.emit('ready');
+        }, 400);
     }
 
     ngOnChanges(event) {
