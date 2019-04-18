@@ -116,11 +116,11 @@
 
 .form-control {
     border: 1px solid lighten($master-color, 10%) !important;
-    background-color: darken($master-color, 20%);
+    background-color: $master-color;
     color: white !important;
     border-radius: 0;
     &:focus {
-        background-color: darken($master-color, 15%);
+        background-color: lighten($master-color, 20%);
         box-shadow: 0 0 0 0.2rem $master-color;
     }
 }
@@ -136,7 +136,8 @@
 }
 
 ::-webkit-input-placeholder {
-    color: $background-focus-color;
+    color: $placeholder-color !important;
+    opacity: 1 !important;
 }
 
 .help-block {

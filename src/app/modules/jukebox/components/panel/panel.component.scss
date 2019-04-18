@@ -59,6 +59,9 @@
     margin-bottom: 10px;
     resize: none;
     border: 1px solid lighten($master-color, 10%);
+    ::placeholder {
+        color: white;
+    }
 }
 
 .input-mode {
