@@ -1,9 +1,12 @@
 $nav-height: 60px;
 $base-font-size: 14px;
-$master-color: #65A6A6;
+$master-color: #009AEB;
 $main-purple: #2C3D4F;
 $main-black: #444;
-// Feedback colors*
+// Text colors
+$text-master-color: white;
+$placeholder-color: white;
+// Feedback colors
 $success-color: #4FB36C;
 $danger-color: #B30F4F;
 // Status colors
@@ -13,5 +16,5 @@ $command-color: #0fb562;
 $youtube-color: #b5220f;
 // SVG
 $fill-color: none;
-@import './light-theme.scss';
-// @import './dark-theme.scss';
+// @import './light-theme.scss';
+@import './dark-theme.scss';
