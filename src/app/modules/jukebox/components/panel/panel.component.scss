@@ -93,17 +93,3 @@ span#span-youtube-mode {
 #link-button {
     @include override-button-outline($youtube-color);
 }
-
-
-::-webkit-input-placeholder {
-    color:    #999;
-}
-:-moz-placeholder {
-    color:    #999;
-}
-::-moz-placeholder {
-    color:    #999;
-}
-:-ms-input-placeholder {
-    color:    #999;
-}
