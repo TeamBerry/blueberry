@@ -8,11 +8,11 @@
 }
 
 .navbar-brand {
-    color: white;
+    color: $text-master-color;
     font-size: 20px;
     font-weight: 800;
     &:hover {
-        color: white;
+        color: $text-master-color;
     }
 }
 
@@ -23,7 +23,7 @@
 .nav-name {
     font-size: 19px;
     font-weight: 700;
-    color: $text-main-color;
+    color: $text-master-color;
 }
 
 .nav-item {
