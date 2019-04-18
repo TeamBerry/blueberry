@@ -59,9 +59,6 @@
     margin-bottom: 10px;
     resize: none;
     border: 1px solid lighten($master-color, 10%);
-    ::placeholder {
-        color: white;
-    }
 }
 
 .input-mode {
@@ -95,4 +92,18 @@ span#span-youtube-mode {
 
 #link-button {
     @include override-button-outline($youtube-color);
+}
+
+
+::-webkit-input-placeholder {
+    color:    #999;
+}
+:-moz-placeholder {
+    color:    #999;
+}
+::-moz-placeholder {
+    color:    #999;
+}
+:-ms-input-placeholder {
+    color:    #999;
 }

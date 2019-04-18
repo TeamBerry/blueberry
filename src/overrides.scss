@@ -116,11 +116,9 @@
 
 .form-control {
     border: 1px solid lighten($master-color, 10%) !important;
-    background-color: $master-color;
-    color: white !important;
+    background-color: $input-main-color;
     border-radius: 0;
     &:focus {
-        background-color: lighten($master-color, 20%);
         box-shadow: 0 0 0 0.2rem $master-color;
     }
 }
