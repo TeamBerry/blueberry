@@ -1,26 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { BehaviorSubject } from 'rxjs/Rx';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import * as io from 'socket.io-client';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+import io from 'socket.io-client';
 import * as _ from 'lodash';
-import * as moment from 'moment';
 
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
+import { Message } from 'app/shared/models/message.model';
 
 @Injectable()
 export class JukeboxService {
-    private connectionOptions = {
-        'transports': ['websocket']
-    };
-    private socket = io(environment.hermesUrl, this.connectionOptions);
+    private syncSocket;
+    private chatSocket;
 
     public box: Box;
     public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(this.box);
 
-    constructor(private http: Http) { }
+    constructor() {
+        console.log('INIT SOCKETS', this.syncSocket);
+    }
 
     /**
      * Connects to the box socket and start real-time stuff
@@ -30,11 +28,13 @@ export class JukeboxService {
      * @returns
      * @memberof JukeboxService
      */
-    connect(boxToken: string, userToken: string) {
-        const observable = new Observable(observer => {
-            this.socket.on('connect', () => {
+    connectToBox(boxToken: string, userToken: string) {
+        console.log('Creating box socket observable...');
+        this.syncSocket = io(environment.hermesUrl, { transports: ['websocket'] });
+        return new Observable(observer => {
+            this.syncSocket.on('connect', () => {
                 console.log('Connecting to Box socket...');
-                this.socket.emit('auth', {
+                this.syncSocket.emit('auth', {
                     origin: 'BERRYBOX PNEUMA',
                     type: 'sync',
                     boxToken,
@@ -42,38 +42,82 @@ export class JukeboxService {
                 });
             });
 
-            this.socket.on('confirm', (data) => {
-                console.log('connected to socket');
+            this.syncSocket.on('confirm', (data) => {
+                console.log('Connected to box socket');
                 observer.next(data);
                 // Tells the service the user is joining. Response will be on sync
-                this.socket.emit('start', {
+                this.syncSocket.emit('start', {
                     boxToken,
                     userToken
                 });
             });
 
-            this.socket.on('sync', (data) => {
+            this.syncSocket.on('denied', (data) => {
+                console.log('your connection attempt has been denied.');
+                observer.error(JSON.parse(data));
+            })
+
+            this.syncSocket.on('sync', (data) => {
                 console.log('recieved sync data', data);
                 observer.next(data);
             });
 
-            this.socket.on('next', (box: Box) => {
+            this.syncSocket.on('next', (box: Box) => {
                 console.log('order to go to next video', box);
                 this.setBox(box);
                 /* observer.next(data); */
             });
 
             // When the refreshed box is sent by Chronos, it is sent to every components that needs it
-            this.socket.on('box', (box: Box) => {
+            this.syncSocket.on('box', (box: Box) => {
                 console.log('recieved refreshed box data', box);
                 this.setBox(box);
             });
 
             return () => {
-                this.socket.disconnect();
+                this.syncSocket.disconnect();
             };
         });
-        return observable;
+    }
+
+    /**
+     * Adds a subscription to the box socket, for the chat type
+     *
+     * @param {string} boxToken The document ID of the box
+     * @param {string} userToken The document ID of the user
+     * @memberof JukeboxService
+     */
+    connectToChat(boxToken: string, userToken: string) {
+        this.chatSocket = io(environment.hermesUrl, { transports: ['websocket'] });
+        return new Observable((observer) => {
+            // On connect, indicate we're here for the chat
+            this.chatSocket.on('connect', () => {
+                this.chatSocket.emit('auth', {
+                    origin: 'BERRYBOX PNEUMA',
+                    type: 'chat',
+                    boxToken,
+                    userToken
+                });
+
+            });
+
+            this.chatSocket.on('confirm', (data) => {
+                console.log('Connected to chat socket.');
+                observer.next(new Message(data));
+            });
+
+            this.chatSocket.on('denied', (data) => {
+                observer.error(JSON.parse(data));
+            });
+
+            this.chatSocket.on('chat', (data) => {
+                observer.next(new Message(data));
+            });
+
+            return () => {
+                this.chatSocket.disconnect();
+            };
+        });
     }
 
     /**
@@ -109,7 +153,7 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public submitVideo(video): void {
-        this.socket.emit('video', video);
+        this.syncSocket.emit('video', video);
     }
 
     // TODO: The following 4
@@ -130,10 +174,21 @@ export class JukeboxService {
     }
 
     public next(): void {
-        this.socket.emit('sync', {
+        this.syncSocket.emit('sync', {
             order: 'next',
             boxToken: this.box._id
         });
+    }
+
+    /**
+     * Sends a message to the socket
+     *
+     * @param {Message} message The message to send
+     * @memberof JukeboxService
+     */
+    public post(message: Message): void {
+        console.log(this.chatSocket);
+        this.chatSocket.emit('chat', message);
     }
 
     /**

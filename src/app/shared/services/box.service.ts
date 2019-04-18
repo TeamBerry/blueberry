@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+
 import * as _ from 'lodash';
 
 import { environment } from './../../../environments/environment';
@@ -22,12 +22,7 @@ export class BoxService {
      * @memberof BoxService
      */
     index(): Observable<Box[]> {
-        return this.http.get<Box[]>(environment.chronosUrl + '/box')
-            .map((boxes: Box[]) => {
-                return boxes.map((box: Box) => {
-                    return new Box(box);
-                });
-            });
+        return this.http.get<Box[]>(environment.chronosUrl + '/box');
     }
 
 
@@ -39,10 +34,7 @@ export class BoxService {
      * @memberof BoxService
      */
     show(id: string): Observable<Box> {
-        return this.http.get<Box>(environment.chronosUrl + '/box/' + id)
-            .map((box: Box) => {
-                return new Box(box);
-            });
+        return this.http.get<Box>(environment.chronosUrl + '/box/' + id);
     }
 
 
@@ -56,9 +48,6 @@ export class BoxService {
     store(box: Box): Observable<Box> {
         // Omitting the _id so mongo can send it correctly created
         box = _.omit(box, '_id');
-        return this.http.post<Box>(environment.chronosUrl + '/box', box)
-            .map((createdBox: Box) => {
-                return createdBox;
-            });
+        return this.http.post<Box>(environment.chronosUrl + '/box', box);
     }
 }

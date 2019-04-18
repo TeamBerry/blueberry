@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+
 
 import { environment } from './../../../environments/environment';
 
@@ -21,10 +21,7 @@ export class UserService {
      * @memberof UserService
      */
     show(token: string): Observable<User> {
-        return this.http.get<User>(environment.chronosUrl + '/user/' + token)
-            .map((user: User) => {
-                return new User(user);
-            });
+        return this.http.get<User>(environment.chronosUrl + '/user/' + token);
     }
 
     /**
