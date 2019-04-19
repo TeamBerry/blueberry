@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { PlaylistItem } from './playlist-item.model';
+
 @Injectable()
 export class Box {
     _id: string;
@@ -10,7 +12,7 @@ export class Box {
     description: string;
     lang: string;
     name: string;
-    playlist: any[];
+    playlist: Array<PlaylistItem>;
 
     constructor(obj?: any) {
         this._id = obj && obj._id || null;

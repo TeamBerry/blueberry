@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { JukeboxService } from './../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
+import { PlaylistItem } from 'app/shared/models/playlist-item.model';
 
 @Component({
     selector: 'app-playlist',
@@ -12,6 +13,10 @@ import { User } from 'app/shared/models/user.model';
 export class PlaylistComponent implements OnInit {
     box: Box;
     @Input() user: User = new User;
+
+    currentlyPlaying: PlaylistItem;
+    playedVideos: Array<PlaylistItem>;
+    upcomingVideos: Array<PlaylistItem>;
 
     constructor(
         private jukeboxService: JukeboxService,
@@ -33,6 +38,41 @@ export class PlaylistComponent implements OnInit {
                 console.log('GOT BOX: ', box);
             }
         );
+    }
+
+    /**
+     * Isolates the currently playing video
+     *
+     * @param {Array<PlaylistItem>} playlist The playlist of the box
+     * @returns {PlaylistItem} The currently playing video
+     * @memberof PlaylistComponent
+     */
+    getCurrentlyPlayingVideo(playlist: Array<PlaylistItem>): PlaylistItem {
+        return playlist.find((item: PlaylistItem) => {
+            return item.startTime !== null && item.endTime === null;
+        });
+    }
+
+    /**
+     * Builds a partial list of the playlist of the box based on the wanted state of the videos
+     *
+     * @param {Array<PlaylistItem>} playlist The playlist of the box
+     * @param {string} state The state of the videos. Upcoming or Played
+     * @returns {Array<PlaylistItem>}
+     * @memberof PlaylistComponent
+     */
+    buildPartialPlaylist(playlist: Array<PlaylistItem>, state: string): Array<PlaylistItem> {
+        if (state === 'upcoming') {
+            return playlist.filter((item: PlaylistItem) => {
+                return item.startTime === null;
+            });
+        }
+
+        if (state === 'played') {
+            return playlist.filter((item: PlaylistItem) => {
+                return item.startTime !== null && item.endTime !== null;
+            });
+        }
     }
 
     quickQueue(link: string) {
