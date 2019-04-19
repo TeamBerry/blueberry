@@ -5,10 +5,12 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthDirective } from '../shared/directive/auth.directive';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
 import { VideoEntryComponent } from './components/video-entry/video-entry.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        NgbModule.forRoot(),
     ],
     declarations: [
         AuthDirective,
@@ -21,7 +23,8 @@ import { VideoEntryComponent } from './components/video-entry/video-entry.compon
         ReactiveFormsModule,
         AuthDirective,
         SlideToggleComponent,
-        VideoEntryComponent
+        VideoEntryComponent,
+        NgbModule
     ],
     providers: [AuthDirective],
 })

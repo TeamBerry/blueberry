@@ -1,83 +1,26 @@
 <div *ngIf="box">
     <div *ngIf="box.playlist.length > 0; else noVideos">
-        <!-- <div class="px-3">
-            <div class="playlist-actions row">
-                <div class="col">
-                    <button class="btn btn-default btn-admin btn-block">
-                            <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88" (click)="requestSkip()">
-                                <polygon points="334.18 192.94 0 0 0 385.88 334.18 192.94" />
-                                <rect width="68.21" height="385.88" x="334.18" />
-                            </svg>
-                            Next
-                        </button>
-                </div>
-                <div class="col">
-                    <button class="btn btn-default btn-admin btn-block">Shuffle</button>
-                </div>
-            </div>
-        </div> -->
-        <div *ngFor="let entry of box.playlist; let i = index; let first = first">
-            <p class="list-rank px-3 pt-3" *ngIf="entry.startTime === null && first">Upcoming: </p>
-            <p class="list-rank px-3 pt-3" *ngIf="entry.startTime !== null && entry.endTime === null">Now playing: </p>
-            <p class="list-rank px-3 pt-3" *ngIf="(entry.endTime !== null && !first && box.playlist[i - 1].endTime === null) || (entry.endTime !== null && first)">Played: </p>
-            <div class="row playlist-entry no-gutters video px-3 py-2" [ngClass]="{'playing': entry.startTime && !entry.endTime,
-                    'played': entry.endTime,
-                    'ignored': entry.ignored }">
-                <div class="entry-info d-flex">
-                    <div class="entry-image-container h-100">
-                        <img class="entry-image h-100 float-left" src="http://img.youtube.com/vi/{{ entry.video.link }}/0.jpg" alt="">
-                    </div>
-                    <div class="entry-details col pr-0">
-                        <p class="song-list-line">
-                            <a href="https://youtube.com/watch?v={{entry.video.link}}" title="{{entry.video.name}}">{{entry.video.name}}</a>
-                        </p>
-                        <p class="submission-time">
-                            {{ entry.submitted_at | date:'dd/MM/yyyy HH:mm:ss'}}
-                        </p>
-                        <p class="submission-user" *ngIf="entry.submitted_by">
-                            {{ entry?.submitted_by?.name }}
-                        </p>
-                    </div>
-                </div>
-                <!-- <div class="ngClass entry-actions w-100 d-flex">
-                <div class="col" *ngIf="entry.startTime === null && !first" title="Play later" (click)="swap(entry, 'up')">
-                    <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 448.37">
-                        <polygon points="145 0 0 201.87 290 201.87 145 0" />
-                        <rect width="307.91" height="121.43" x="96.05" y="252.66" transform="rotate(-90 188.02 356.39)" />
-                    </svg>
-                </div>
-                <div class="col" *ngIf="!entry.startTime && !box.playlist[i + 1].startTime" (click)="swap(entry, 'down')">
-                    <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 290 448.37">
-                        <polygon points="145 448.37 290 246.5 0 246.5 145 448.37" />
-                        <rect width="307.91" height="121.43" x="93.05" y="127.2" transform="rotate(90 212.98 119.93)" />
-                    </svg>
-                </div>
-                <div *ngIf="!entry.startTime">
-                    <div class="col" *ngIf="!entry.ignored" title="Ban" (click)="banVideo(entry)">
-                        <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 449.33 449.33">
-                            <circle cx="224.67" cy="224.67" r="205.67" fill="none" stroke-width="38" stroke-miterlimit="10" />
-                            <rect width="402" height="44" x="49" y="228" transform="rotate(-45 206.756 267.92)" />
-                        </svg>
-                    </div>
-                    <div class="col" *ngIf="entry.ignored" title="Unban" (click)="unbanVideo(entry)">
-                        <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 449.33 449.33">
-                            <circle cx="224.67" cy="224.67" r="205.67" fill="none" stroke-width="38" stroke-miterlimit="10" />
-                            <rect width="249.37" height="44" x="156.48" y="242" transform="rotate(-45 229.768 274.297)" />
-                            <rect width="131.52" height="44" x="111.41" y="283.25" transform="rotate(-135 159.095 293.21)" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="col" *ngIf="entry.endTime" title="Queue again">
-                    <svg class="berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.98 202.99" (click)="quickQueue(entry.video.link)">
-                        <rect width="64.36" height="121.43" y="40.78" />
-                        <polygon points="457.98 101.49 316.68 0 316.68 202.99 457.98 101.49" />
-                        <rect width="64.36" height="121.43" x="81.45" y="40.78" />
-                        <rect width="168.34" height="121.43" x="162.89" y="40.78" />
-                    </svg>
-                </div>
-            </div>
-        </div> -->
-            </div>
+        <p class="list-rank px-3 pt-3">Now playing: </p>
+        <app-playlist-item [item]="currentlyPlaying"></app-playlist-item>
+        <div class="lists mt-2">
+            <ngb-tabset type="pills" justify="fill">
+                <ngb-tab title="Upcoming">
+                    <ng-template ngbTabContent>
+                        <p class="list-rank px-3 pt-3">Upcoming: </p>
+                        <div *ngFor="let entry of upcomingVideos; let i = index">
+                            <app-playlist-item [item]="entry"></app-playlist-item>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="Played">
+                    <ng-template ngbTabContent>
+                        <p class="list-rank px-3 pt-3">Played: </p>
+                        <div *ngFor="let entry of playedVideos; let i = index">
+                            <app-playlist-item [item]="entry"></app-playlist-item>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
         </div>
     </div>
     <ng-template #noVideos>

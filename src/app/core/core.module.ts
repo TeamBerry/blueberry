@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
@@ -16,7 +15,6 @@ import { AuthService } from './auth/auth.service';
         FormsModule,
         HttpModule,
         HttpClientModule,
-        NgbModule.forRoot(),
         ToastrModule.forRoot({
             timeOut: 4000,
             positionClass: 'toast-bottom-right',
