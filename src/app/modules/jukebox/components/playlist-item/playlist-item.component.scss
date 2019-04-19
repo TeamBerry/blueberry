@@ -1,0 +1,36 @@
+@import './../../../../../imports.scss';
+.playlist-entry {
+    padding: 5px 0;
+    border-bottom: .5px solid rgba($text-focus-color, 0.7);
+    &:nth-child(even) {
+        border-top: .5px solid rgba($text-focus-color, 0.7);
+    }
+    &.playing {
+        background-color: $background-main-active-color;
+    }
+    &.ignored {}
+}
+
+.entry-info {
+    height: 90px;
+}
+
+.entry-actions {
+    height: 30px;
+}
+
+.entry-image-container {}
+
+.song-list-line {
+    margin-bottom: 0;
+    @include one-line-text();
+    a {
+        color: $master-color;
+        &:hover {
+            text-decoration: underline;
+        }
+        &:active {
+            color: darken($master-color, 10%);
+        }
+    }
+}

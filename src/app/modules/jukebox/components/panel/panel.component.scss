@@ -1,6 +1,6 @@
 @import './../../../../../imports.scss';
 .box-side-panel {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     height: calc(100vh - (80px + 45px + 148px));
     &::-webkit-scrollbar-thumb {
