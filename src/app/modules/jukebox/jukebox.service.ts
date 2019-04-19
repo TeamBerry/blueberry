@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
 import { Message } from 'app/shared/models/message.model';
+import { SyncPacket } from 'app/shared/models/sync-packet.model';
 
 @Injectable()
 export class JukeboxService {
@@ -57,7 +58,7 @@ export class JukeboxService {
                 observer.error(JSON.parse(data));
             })
 
-            this.syncSocket.on('sync', (data: { item: any, box: string }) => {
+            this.syncSocket.on('sync', (data: SyncPacket) => {
                 if (data.box === this.box._id) {
                     console.log('recieved sync data', data);
                     observer.next(data.item);
