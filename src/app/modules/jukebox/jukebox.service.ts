@@ -8,6 +8,7 @@ import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
 import { Message } from 'app/shared/models/message.model';
 import { SyncPacket } from 'app/shared/models/sync-packet.model';
+import { VideoPayload } from 'app/shared/models/video-payload.model';
 
 @Injectable()
 export class JukeboxService {
@@ -156,15 +157,10 @@ export class JukeboxService {
     /**
      * Submits a video to the playlist of the box
      *
-     * @param {*} video The video to submit. Structure goes as follows:
-     * {
-     *  "link": video code
-     *  "userToken": document ID of the user submitting the video
-     *  "boxToken": document ID of the box
-     * }
+     * @param {VideoPayload} video The video to submit. Structure goes as follows:
      * @memberof JukeboxService
      */
-    public submitVideo(video): void {
+    public submitVideo(video: VideoPayload): void {
         this.syncSocket.emit('video', video);
     }
 

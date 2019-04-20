@@ -6,6 +6,7 @@ import { Video } from 'app/shared/models/video.model';
 import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
 import { LoginFormComponent } from '../../../../shared/components/login-form/login-form.component';
 import { SignupFormComponent } from '../../../../shared/components/signup-form/signup-form.component';
+import { VideoPayload } from 'app/shared/models/video-payload.model';
 
 @Component({
     selector: 'app-favoritelist',
@@ -32,12 +33,12 @@ export class FavoritelistComponent implements OnInit {
      * @memberof FavoritelistComponent
      */
     submitVideo(video: Video) {
-        const videoPacket = {
+        const videoPayload: VideoPayload = {
             link: video.link,
             userToken: this.user._id,
             boxToken: this.boxToken
         };
-        this.jukeboxService.submitVideo(videoPacket);
+        this.jukeboxService.submitVideo(videoPayload);
     }
 
     openLoginPrompt() {
