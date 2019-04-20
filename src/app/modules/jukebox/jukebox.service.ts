@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
 import { Message } from 'app/shared/models/message.model';
+import { SyncPacket } from 'app/shared/models/sync-packet.model';
 
 @Injectable()
 export class JukeboxService {
@@ -57,21 +58,27 @@ export class JukeboxService {
                 observer.error(JSON.parse(data));
             })
 
-            this.syncSocket.on('sync', (data) => {
-                console.log('recieved sync data', data);
-                observer.next(data);
+            this.syncSocket.on('sync', (data: SyncPacket) => {
+                if (data.box === this.box._id) {
+                    console.log('recieved sync data', data);
+                    observer.next(data.item);
+                }
             });
 
             this.syncSocket.on('next', (box: Box) => {
-                console.log('order to go to next video', box);
-                this.setBox(box);
+                if (box._id === this.box._id) {
+                    console.log('order to go to next video', box);
+                    this.setBox(box);
+                }
                 /* observer.next(data); */
             });
 
             // When the refreshed box is sent by Chronos, it is sent to every components that needs it
             this.syncSocket.on('box', (box: Box) => {
-                console.log('recieved refreshed box data', box);
-                this.setBox(box);
+                if (box._id === this.box._id) {
+                    console.log('recieved refreshed box data', box);
+                    this.setBox(box);
+                }
             });
 
             return () => {
@@ -101,17 +108,22 @@ export class JukeboxService {
 
             });
 
-            this.chatSocket.on('confirm', (data) => {
-                console.log('Connected to chat socket.');
-                observer.next(new Message(data));
+            this.chatSocket.on('confirm', (data: Message) => {
+                if (data.scope === this.box._id) {
+                    console.log('Connected to chat socket.', data);
+                    observer.next(new Message(data));
+                }
             });
 
-            this.chatSocket.on('denied', (data) => {
-                observer.error(JSON.parse(data));
+            this.chatSocket.on('denied', (data: Message) => {
+                observer.error(new Message(data));
             });
 
-            this.chatSocket.on('chat', (data) => {
-                observer.next(new Message(data));
+            this.chatSocket.on('chat', (data: Message) => {
+                if (data.scope === this.box._id) {
+                    console.log('Recieved chat message', data);
+                    observer.next(new Message(data));
+                }
             });
 
             return () => {

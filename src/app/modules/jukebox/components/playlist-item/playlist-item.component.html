@@ -1,16 +1,16 @@
 <div class="row playlist-entry no-gutters video px-3 py-2 upcoming">
     <div class="entry-info d-flex">
         <div class="entry-image-container h-100">
-            <img class="entry-image h-100 float-left" src="http://img.youtube.com/vi/{{ item.video.link }}/0.jpg" alt="">
+            <img class="entry-image h-100 float-left" src="http://img.youtube.com/vi/{{ item?.video?.link }}/0.jpg" alt="">
         </div>
         <div class="entry-details col pr-0">
             <p class="song-list-line">
-                <a href="https://youtube.com/watch?v={{item.video.link}}" title="{{item.video.name}}">{{item.video.name}}</a>
+                <a href="https://youtube.com/watch?v={{item?.video?.link}}" title="{{item?.video?.name}}">{{item?.video?.name}}</a>
             </p>
             <p class="submission-time">
-                {{ item.submitted_at | date:'dd/MM/yyyy HH:mm:ss'}}
+                {{ item?.submitted_at | date:'dd/MM/yyyy HH:mm:ss'}}
             </p>
-            <p class="submission-user" *ngIf="item.submitted_by">
+            <p class="submission-user" *ngIf="item?.submitted_by">
                 {{ item?.submitted_by?.name }}
             </p>
         </div>
