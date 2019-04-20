@@ -13,6 +13,7 @@ import { PanelComponent } from './components/panel/panel.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { UserlistComponent } from './components/userlist/userlist.component';
 import { FavoritelistComponent } from './components/favoritelist/favoritelist.component';
+import { PlaylistItemComponent } from './components/playlist-item/playlist-item.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { FavoritelistComponent } from './components/favoritelist/favoritelist.co
         PanelComponent,
         PlaylistComponent,
         UserlistComponent,
-        FavoritelistComponent
+        FavoritelistComponent,
+        PlaylistItemComponent
     ],
     imports: [
         JukeboxRoutingModule,
