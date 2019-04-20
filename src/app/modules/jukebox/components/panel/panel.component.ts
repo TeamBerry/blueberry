@@ -3,6 +3,7 @@ import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked } from
 import { JukeboxService } from './../../jukebox.service';
 import { Message } from 'app/shared/models/message.model';
 import { User } from 'app/shared/models/user.model';
+import { VideoPayload } from 'app/shared/models/video-payload.model';
 
 @Component({
     selector: 'app-panel',
@@ -107,7 +108,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         const reg = new RegExp(/(\?v=([a-z0-9\-\_]+)\&?)|(\.be\/([a-z0-9\-\_]+)\&?)/i);
         const res = reg.exec(url);
 
-        const video = {
+        const video: VideoPayload = {
             link: (res[2]) ? res[2] : res[4],
             userToken: this.user._id,
             boxToken: this.boxToken,

@@ -7,12 +7,16 @@
             <p class="song-list-line">
                 <a href="https://youtube.com/watch?v={{item?.video?.link}}" title="{{item?.video?.name}}">{{item?.video?.name}}</a>
             </p>
-            <p class="submission-time">
-                {{ item?.submitted_at | date:'dd/MM/yyyy HH:mm:ss'}}
-            </p>
-            <p class="submission-user" *ngIf="item?.submitted_by">
-                {{ item?.submitted_by?.name }}
-            </p>
+            <div>
+                <span class="submission-time">
+                    {{ item?.submitted_at | date:'dd/MM/yyyy HH:mm:ss'}}
+                </span>
+                <span>|</span>
+                <span class="submission-user" *ngIf="item?.submitted_by">
+                    {{ item?.submitted_by?.name }}
+                </span>
+            </div>
+            <button *ngIf="item?.endTime !== null" class="btn btn-default button-resubmit" (click)="resubmit(item)">Resubmit</button>
         </div>
     </div>
 </div>
