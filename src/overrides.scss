@@ -3,20 +3,19 @@
 */
 
 .btn {
-    border-radius: 0;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
 }
 
 .btn-primary {
-    background-color: $background-main-color;
+    background-color: $master-color;
     border: lighten($background-main-color, 5%);
     color: $text-main-color;
     &:hover {
-        background-color: $background-main-hover-color;
+        background-color: $master-hover-color;
     }
     &:active {
-        background-color: $background-main-active-color;
+        background-color: $master-active-color;
     }
     &:visited {
         color: $text-main-color !important;
@@ -115,9 +114,8 @@
 }
 
 .form-control {
-    border: 1px solid lighten($master-color, 10%) !important;
+    border: 1px solid $master-color !important;
     background-color: $input-main-color;
-    border-radius: 0;
     &:focus {
         box-shadow: 0 0 0 0.2rem $master-color;
     }

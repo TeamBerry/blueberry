@@ -20,7 +20,7 @@
 }
 
 .message:nth-child(even) {
-    background-color: lighten($background-focus-color, 5%);
+    background-color: lighten($background-secondary-color, 5%);
 }
 
 .message-time {

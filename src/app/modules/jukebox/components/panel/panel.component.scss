@@ -58,12 +58,14 @@
 .chatbox {
     margin-bottom: 10px;
     resize: none;
-    border: 1px solid lighten($master-color, 10%);
+    border-top-left-radius: 0;
 }
 
 .input-mode {
     padding: 3px 10px;
     font-family: 'Montserrat', sans-serif;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 40px;
 }
 
 span#span-default-mode {
@@ -76,10 +78,19 @@ span#span-command-mode {
 
 .chatbox-command {
     border: 1px solid $command-color !important;
+    &:focus {
+        box-shadow: 0 0 0 0.2rem $command-color;
+    }
 }
 
 #command-button {
-    @include override-button-outline($command-color);
+    background-color: $command-color;
+    &:hover {
+        backgorund-color: lighten($command-color, 10%);
+    }
+    &:active {
+        background-color: lighten($command-color, 15%);
+    }
 }
 
 span#span-youtube-mode {

@@ -1,6 +1,8 @@
 $nav-height: 60px;
 $base-font-size: 14px;
 $master-color: #009AEB;
+$master-hover-color: lighten($master-color, 10%);
+$master-active-color: lighten($master-color, 20%);
 $main-purple: #2C3D4F;
 $main-black: #444;
 // Text colors
@@ -12,7 +14,7 @@ $danger-color: #B30F4F;
 // Status colors
 $active-color: #415EE8;
 // Type colors
-$command-color: #0fb562;
+$command-color: #A091FF;
 $youtube-color: #b5220f;
 // SVG
 $fill-color: none;
