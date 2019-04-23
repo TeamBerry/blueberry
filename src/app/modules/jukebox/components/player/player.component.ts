@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 
 import { JukeboxService } from './../../jukebox.service';
+import { PlaylistItem } from 'app/shared/models/playlist-item.model';
 
 /**
  * The player component of the box. It just recieves the video as an input from the box
@@ -20,7 +22,7 @@ import { JukeboxService } from './../../jukebox.service';
 })
 export class PlayerComponent implements OnInit, OnChanges {
     @Input() boxToken: string;
-    @Input() video: any = null;
+    @Input() video: PlaylistItem = null;
     @Output() playing: EventEmitter<any> = new EventEmitter();
     @Output() state: EventEmitter<any> = new EventEmitter();
     private player;
@@ -54,7 +56,7 @@ export class PlayerComponent implements OnInit, OnChanges {
                 if (event.video.currentValue !== null) {
                     console.log('play video yeet', event.video.currentValue);
                     this.video = event.video.currentValue;
-                    this.playVideo();
+                    this.playVideo(this.video);
                 }
             }
         } else {
@@ -87,9 +89,22 @@ export class PlayerComponent implements OnInit, OnChanges {
      * Starts the video after it detected changes in the video input, only if
      * the player is ready.
      *
+     * Will start the video at the correct number of seconds based on the start time it received, with a grace period being
+     * the number of seconds allowed where the video should just start from the beginning
+     * if the computed starting time is inferior to this value. This is done to avoid weird video plays in the case
+     * of normal auto-play sync. The grace period is of 2 seconds
+     *
+     * @param {PlaylistItem} video The playlist item to play
      * @memberof PlayerComponent
      */
-    playVideo() {
-        this.player.loadVideoById(this.video.video.link);
+    playVideo(video: PlaylistItem) {
+        const now = +moment().format('x');
+        let startingTime = (now - video.startTime) / 1000;
+
+        if (startingTime <= 2) {
+            startingTime = 0;
+        }
+
+        this.player.loadVideoById(video.video.link, startingTime);
     }
 }

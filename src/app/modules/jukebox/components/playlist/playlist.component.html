@@ -16,7 +16,7 @@
                     <ng-template ngbTabContent>
                         <p class="list-rank px-3 pt-3">Played: </p>
                         <div *ngFor="let entry of playedVideos; let i = index">
-                            <app-playlist-item [item]="entry"></app-playlist-item>
+                            <app-playlist-item [item]="entry" (resubmit$)="resubmitVideo($event)"></app-playlist-item>
                         </div>
                     </ng-template>
                 </ngb-tab>
