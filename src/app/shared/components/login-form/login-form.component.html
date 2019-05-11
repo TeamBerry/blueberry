@@ -1,8 +1,8 @@
 <div class="modal-header">
     <div class="header-contents w-100 text-center">
         <span id="auth-icon">
-                    <img src="../../../assets/images/berrybox-logo-white.png" alt="" style="width:inherit;">
-                </span>
+            <img src="../../../assets/images/berrybox-logo-white.png" alt="" style="width:inherit;">
+        </span>
         <h5 class="modal-title" id="auth-title">Log in</h5>
     </div>
     <button type="button" class="close" aria-label="close" (click)="activeModal.dismiss()">
@@ -13,7 +13,8 @@
     <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="form-group">
             <label for="mail">Mail address</label>
-            <input type="mail" formControlName="mail" class="form-control input-lg" id="mail" placeholder="Mail address" required autofocus>
+            <input type="mail" formControlName="mail" class="form-control input-lg" id="mail" placeholder="Mail address"
+                required autofocus>
             <div class="alert alert-danger" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
                 <div *ngIf="mail.errors.required">
                     The mail address is required
@@ -22,13 +23,15 @@
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" formControlName="password" class="form-control input-lg" name="password" placeholder="Password" required>
+            <input type="password" formControlName="password" class="form-control input-lg" name="password"
+                placeholder="Password" required>
             <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
                 <div *ngIf="password.errors.required">
                     The password is required
                 </div>
             </div>
         </div>
+        <div class="alert alert-danger text-center" *ngIf="errorMessage">{{ errorMessage }}</div>
         <div class="form-group align-center">
             <button type="submit" class="btn btn-block btn-default" [disabled]="!loginForm.valid">Log in</button>
         </div>
