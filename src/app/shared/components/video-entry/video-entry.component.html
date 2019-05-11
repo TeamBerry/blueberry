@@ -1,11 +1,11 @@
 <div class="row playlist-entry no-gutters px-3">
     <div class="entry-info d-flex">
         <div class="entry-image-container h-100">
-            <img src="http://img.youtube.com/vi/{{ video.link }}/0.jpg" alt="{{ video.name }}" class="entry-image h-100 float-left">
+            <img src="http://img.youtube.com/vi/{{ video?.link }}/0.jpg" alt="{{ video?.name }}" class="entry-image h-100 float-left">
         </div>
         <div class="entry-details col pr-0">
             <p class="song-list-line">
-                <a href="https://youtube.com/watch?v={{ video.link }}" title="{{ video.name }}">{{ video.name }}</a>
+                <a href="https://youtube.com/watch?v={{ video?.link }}" title="{{ video?.name }}">{{ video?.name }}</a>
             </p>
             <div class="entry-actions">
                 <button type="button" class="btn btn-default" (click)="submitVideo()">Submit</button>
