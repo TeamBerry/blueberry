@@ -1,0 +1,13 @@
+@import './../../../../../imports.scss';
+.box-card {
+    border: 1px solid lighten($master-color, 10%);
+    margin: .7rem;
+    padding: 1rem;
+    color: $text-main-color;
+    border-radius: .3rem;
+}
+
+.box-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+}

@@ -22,7 +22,7 @@ export class BoxService {
      * @memberof BoxService
      */
     index(): Observable<Box[]> {
-        return this.http.get<Box[]>(environment.chronosUrl + '/box');
+        return this.http.get<Box[]>(environment.athenaUrl + '/box');
     }
 
 
@@ -34,7 +34,7 @@ export class BoxService {
      * @memberof BoxService
      */
     show(id: string): Observable<Box> {
-        return this.http.get<Box>(environment.chronosUrl + '/box/' + id);
+        return this.http.get<Box>(environment.athenaUrl + '/box/' + id);
     }
 
 
@@ -48,6 +48,6 @@ export class BoxService {
     store(box: Box): Observable<Box> {
         // Omitting the _id so mongo can send it correctly created
         box = _.omit(box, '_id');
-        return this.http.post<Box>(environment.chronosUrl + '/box', box);
+        return this.http.post<Box>(environment.athenaUrl + '/box', box);
     }
 }
