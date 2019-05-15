@@ -5,8 +5,7 @@ import { HomeComponent } from './shared/components/home/home.component';
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
-    /* { path: 'likes', component: LikesComponent } */
-    { path: 'admin', loadChildren: './modules/admin/admin.module#AdminModule'}
+    { path: 'admin', loadChildren: './modules/admin/admin.module#AdminModule'},
 ];
 
 @NgModule({
