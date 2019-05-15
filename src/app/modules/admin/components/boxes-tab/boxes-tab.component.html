@@ -1,5 +1,8 @@
 <div class="row justify-content-center">
     <div *ngFor="let box of boxes | async" class="col-9 box-card">
-        <p class="box-name">{{ box.name }}</p>
+        <p class="box-name">{{ box?.name }}</p>
+        <div class="box-details pl-3">
+            <p class="box-lang">{{ box?.lang }} | {{ box?.description || 'No description' }}</p>
+        </div>
     </div>
 </div>
