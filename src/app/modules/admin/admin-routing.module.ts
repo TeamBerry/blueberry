@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 
 const adminRoutes: Routes = [
     { path: '', component: AdminPanelComponent }
