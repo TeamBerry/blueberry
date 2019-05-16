@@ -1,8 +1,16 @@
 <div class="row justify-content-center">
-    <div *ngFor="let box of boxes | async" class="col-9 box-card">
-        <p class="box-name">{{ box?.name }}</p>
-        <div class="box-details pl-3">
-            <p class="box-lang">{{ box?.lang }} | {{ box?.description || 'No description' }}</p>
+    <div *ngFor="let box of boxes | async" class="col-9 box-card row d-flex px-0">
+        <div class="col-11 box-info">
+            <p class="box-name">{{ box?.name }}</p>
+            <div class="box-details pl-3">
+                <p class="box-lang">{{ box?.lang }} | {{ box?.description || 'No description' }}</p>
+            </div>
+        </div>
+        <div class="col-1 m-auto text-center box-option-button btn btn-default h-100">
+            O
         </div>
     </div>
+    <button class="btn btn-primary col-9" (click)="openCreateModal()">
+        Create a box
+    </button>
 </div>

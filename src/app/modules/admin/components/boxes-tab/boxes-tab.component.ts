@@ -5,6 +5,8 @@ import { UserService } from 'app/shared/services/user.service';
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
 import { Box } from 'app/shared/models/box.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
 
 @Component({
     selector: 'app-boxes-tab',
@@ -18,6 +20,7 @@ export class BoxesTabComponent implements OnInit {
     public boxes: Observable<Array<Box>>;
 
     constructor(
+        private modalService: NgbModal,
         private userService: UserService
     ) {
 
@@ -27,6 +30,11 @@ export class BoxesTabComponent implements OnInit {
         console.log('INIT', this.user);
 
         this.boxes = this.userService.boxes(this.user);
+    }
+
+    openCreateModal() {
+        const modalRef = this.modalService.open(BoxFormComponent);
+        modalRef.componentInstance.title = 'Create a box';
     }
 
 }
