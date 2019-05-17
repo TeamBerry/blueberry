@@ -6,8 +6,12 @@
                 <p class="box-lang">{{ box?.lang }} | {{ box?.description || 'No description' }}</p>
             </div>
         </div>
-        <div class="col-1 m-auto text-center box-option-button btn btn-default h-100">
-            O
+        <div class="col-1 m-auto text-center box-option-button h-100" ngbDropdown>
+            <span ngbDropdownToggle>+</span>
+            <div ngbDropdownMenu>
+                <button ngbDropdownItem>Edit</button>
+                <button ngbDropdownItem>Close</button>
+            </div>
         </div>
     </div>
     <button class="btn btn-primary col-9" (click)="openCreateModal()">
