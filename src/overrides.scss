@@ -139,3 +139,7 @@
 .help-block {
     color: $text-system-color;
 }
+
+.dropdown-toggle::after {
+    display: none;
+}
