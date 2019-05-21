@@ -35,6 +35,7 @@ export class BoxesTabComponent implements OnInit {
     openCreateModal(box?: Box) {
         const modalRef = this.modalService.open(BoxFormComponent);
         modalRef.componentInstance.title = !box ? 'Create a box' : `Edit ${box.name}`;
+        modalRef.componentInstance.box = box;
     }
 
 }

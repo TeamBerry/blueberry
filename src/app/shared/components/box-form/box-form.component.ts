@@ -16,6 +16,8 @@ import { User } from 'app/shared/models/user.model';
 })
 export class BoxFormComponent implements OnInit {
     @Input() title;
+    @Input() box: Box;
+
     boxForm: FormGroup;
     public langs: string[] = [
         'English',
@@ -23,8 +25,6 @@ export class BoxFormComponent implements OnInit {
         '日本語',
     ];
     submitted = false;
-
-    box: Box;
 
     constructor(
         private authService: AuthService,
@@ -34,12 +34,14 @@ export class BoxFormComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.box = new Box();
-        this.authService.getUser().subscribe(
-            (user: User) => {
-                this.box.creator = user._id;
-            }
-        )
+        if (!this.box) {
+            this.box = new Box();
+            this.authService.getUser().subscribe(
+                (user: User) => {
+                    this.box.creator = user._id;
+                }
+            )
+        }
     }
 
     onSubmit() {
