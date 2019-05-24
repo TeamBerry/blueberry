@@ -50,4 +50,15 @@ export class BoxService {
         box = _.omit(box, '_id');
         return this.http.post<Box>(environment.athenaUrl + '/box', box);
     }
+
+    /**
+     * Updates a box in the database
+     *
+     * @param {Box} box
+     * @returns {Observable<Box>}
+     * @memberof BoxService
+     */
+    update(box: Box): Observable<Box> {
+        return this.http.put<Box>(environment.athenaUrl + '/box/' + box._id, box);
+    }
 }

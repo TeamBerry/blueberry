@@ -26,6 +26,8 @@ export class BoxFormComponent implements OnInit {
     ];
     submitted = false;
 
+    context = 'edit';
+
     constructor(
         private authService: AuthService,
         public boxService: BoxService,
@@ -35,6 +37,7 @@ export class BoxFormComponent implements OnInit {
 
     ngOnInit() {
         if (!this.box) {
+            this.context = 'create';
             this.box = new Box();
             this.authService.getUser().subscribe(
                 (user: User) => {
@@ -46,11 +49,19 @@ export class BoxFormComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-        this.boxService.store(this.box).subscribe(
-            data => {
-                this.activeModal.close();
-                this.router.navigate(['/box/' + data._id]);
-            }
-        );
+        if (this.context === 'create') {
+            this.boxService.store(this.box).subscribe(
+                data => {
+                    this.activeModal.close();
+                    this.router.navigate(['/box/' + data._id]);
+                }
+            );
+        } else {
+            this.boxService.update(this.box).subscribe(
+                box => {
+                    this.activeModal.close();
+                }
+            )
+        }
     }
 }
