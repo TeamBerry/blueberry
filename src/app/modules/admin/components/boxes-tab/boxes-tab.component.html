@@ -1,6 +1,9 @@
 <div class="row justify-content-center">
     <div *ngFor="let box of boxes | async" class="col-9 box-card row d-flex px-0">
-        <div class="col-11 box-info">
+        <div class="col-1 m-auto text-center h-100 d-flex box-status" [ngClass]="box.open ? 'status-open' : 'status-closed'">
+
+        </div>
+        <div class="col-10 box-info">
             <p class="box-name">{{ box?.name }}</p>
             <div class="box-details pl-3">
                 <p class="box-lang">{{ box?.lang }} | {{ box?.description || 'No description' }}</p>

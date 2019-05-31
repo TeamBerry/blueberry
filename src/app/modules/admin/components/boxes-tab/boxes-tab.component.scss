@@ -30,3 +30,12 @@
 .actions-icon {
     height: 40%;
 }
+
+.box-status {
+    &.status-open {
+        background-color: $success-color;
+    }
+    &.status-closed {
+        background-color: $danger-color;
+    }
+}
