@@ -43,18 +43,27 @@ export class BoxesTabComponent implements OnInit {
     }
 
     /**
-     * Closes a box.
+     * Toggles the box between open or closed
      *
      * @param {Box} box The box to close
      * @memberof BoxesTabComponent
      */
-    closeBox(box: Box) {
-        this.boxService.close(box).subscribe(
-            (updatedBox) => {
-                box.open = false;
-                this.toastr.success('The box has been closed succesfully. Video play and submission have been disabled.', 'Success');
-            }
-        );
+    toggleBoxState(box: Box) {
+        if (box.open) {
+            this.boxService.close(box).subscribe(
+                (updatedBox) => {
+                    box.open = false;
+                    this.toastr.success('The box has been closed succesfully. Video play and submission have been disabled.', 'Success');
+                }
+            );
+        } else {
+            this.boxService.open(box).subscribe(
+                (updatedBox) => {
+                    box.open = true;
+                    this.toastr.success('The box has been opened succesfully. Video play and submission have been reenabled.', 'Success');
+                }
+            );
+        }
     }
 
 }

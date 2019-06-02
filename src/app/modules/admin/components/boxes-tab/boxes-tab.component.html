@@ -15,7 +15,7 @@
             </div>
             <div ngbDropdownMenu>
                 <button ngbDropdownItem (click)="openCreateModal(box)">Edit</button>
-                <button ngbDropdownItem (click)="closeBox(box)">Close</button>
+                <button ngbDropdownItem (click)="toggleBoxState(box)" [innerHTML]="box.open ? 'Close' : 'Open'"></button>
             </div>
         </div>
     </div>

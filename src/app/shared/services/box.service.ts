@@ -72,4 +72,15 @@ export class BoxService {
     close(box: Box): Observable<Box> {
         return this.http.post<Box>(environment.athenaUrl + '/box/' + box._id + '/close', null);
     }
+
+    /**
+     * Opens a box
+     *
+     * @param {Box} box The box to close
+     * @returns {Observable<Box>} The opened box
+     * @memberof BoxService
+     */
+    open(box: Box): Observable<Box> {
+        return this.http.post<Box>(environment.athenaUrl + '/box/' + box._id + '/open', null);
+    }
 }
