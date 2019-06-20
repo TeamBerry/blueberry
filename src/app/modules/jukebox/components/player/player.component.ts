@@ -39,7 +39,7 @@ export class PlayerComponent implements OnInit, OnChanges {
      * @type {boolean}
      * @memberof PlayerComponent
      */
-    private isPlayerReady: boolean = false;
+    private isPlayerReady = false;
 
     constructor(
         private jukeboxService: JukeboxService,
