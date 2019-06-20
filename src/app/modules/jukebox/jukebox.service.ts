@@ -164,11 +164,17 @@ export class JukeboxService {
         this.syncSocket.emit('video', video);
     }
 
-    // TODO: The following 4
-    public skip() {
-
+    /**
+     * Skips the currently playing video.
+     *
+     * @see JukeboxService.next
+     * @memberof JukeboxService
+     */
+    public skipVideo() {
+        this.next();
     }
 
+    // TODO: The following 3
     public shuffle() {
 
     }
