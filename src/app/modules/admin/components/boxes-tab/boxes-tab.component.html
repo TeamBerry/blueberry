@@ -4,7 +4,7 @@
 
         </div>
         <div class="col-10 box-info">
-            <p class="box-name">{{ box?.name }}</p>
+            <a class="box-name" href="box/{{ box?._id }}">{{ box?.name }}</a>
             <div class="box-details pl-3">
                 <p class="box-lang">{{ box?.lang }} | {{ box?.description || 'No description' }}</p>
             </div>
