@@ -2,6 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
 import { User } from 'app/shared/models/user.model';
 import { JukeboxService } from '../../jukebox.service';
+import { Message } from 'app/shared/models/message.model';
 
 @Component({
     selector: 'app-chat',
@@ -23,20 +24,27 @@ export class ChatComponent implements OnInit {
 
     ngOnInit() {
         if (this.boxToken !== undefined) {
-            this.connect();
+            this.connectToStream();
         }
     }
 
-    connect() {
+    /**
+     * Connects to jukebox service chat stream to get messages to display
+     *
+     * @memberof ChatComponent
+     */
+    connectToStream() {
         console.log('connecting chat to socket...');
-        this.jukeboxService.connectToChat(this.boxToken, this.user._id).subscribe(
-            message => {
+        this.jukeboxService.getChatStream().subscribe(
+            (message: Message) => {
+                console.log(message);
                 this.messages.push(message);
             },
             error => {
                 this.socketStatus.emit('offline');
             },
             () => {
+                console.log('CONNECTED');
                 this.socketStatus.emit('online');
             }
         );
