@@ -32,7 +32,7 @@
 
 .dropdown-menu {
     background-color: $background-main-color;
-    /* top: 46px !important; */
+    top: 8px !important;
     border-radius: 0;
     border-color: $master-color;
     width: 179px;
@@ -49,4 +49,20 @@
     font-size: .7rem;
     background-color: #E89C0C;
     padding: .2rem .3rem;
+}
+
+.user-item {
+    #nav-dropdown {
+        height: 38px;
+    }
+    &:hover {
+        background-color: $master-hover-color;
+    }
+    .user-pp {
+        @include nav-pp(28px);
+        margin-right: 5px;
+        img {
+            padding-bottom: 3px;
+        }
+    }
 }
