@@ -13,6 +13,11 @@ export class AuthService {
     user: User;
     public subject: BehaviorSubject<User> = new BehaviorSubject<User>(this.user);
 
+    static getSession(): User {
+        const user = JSON.parse(localStorage.getItem('BBOX-user'));
+        return user ? new User(user) : null;
+    }
+
     constructor(
         private http: HttpClient,
     ) { }
@@ -25,15 +30,15 @@ export class AuthService {
      * @memberof AuthService
      */
     login(mail: string, password: string) {
-        return this.http.post(environment.chronosUrl + '/auth/login', { mail: mail, password: password });
+        return this.http.post(environment.athenaUrl + '/auth/login', { mail: mail, password: password });
     }
 
     showConnectedUser(token: string): Observable<User> {
-        return this.http.get<User>(environment.chronosUrl + '/user/' + token);
+        return this.http.get<User>(environment.athenaUrl + '/user/' + token);
     }
 
     signup(mail: string, password: string, username: string) {
-        return this.http.post(environment.chronosUrl + '/auth/signup', { mail, password, username });
+        return this.http.post(environment.athenaUrl + '/auth/signup', { mail, password, username });
     }
 
     /**

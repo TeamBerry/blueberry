@@ -22,7 +22,7 @@ export class BoxService {
      * @memberof BoxService
      */
     index(): Observable<Box[]> {
-        return this.http.get<Box[]>(environment.chronosUrl + '/box');
+        return this.http.get<Box[]>(environment.athenaUrl + '/box');
     }
 
 
@@ -34,7 +34,7 @@ export class BoxService {
      * @memberof BoxService
      */
     show(id: string): Observable<Box> {
-        return this.http.get<Box>(environment.chronosUrl + '/box/' + id);
+        return this.http.get<Box>(environment.athenaUrl + '/box/' + id);
     }
 
 
@@ -48,6 +48,39 @@ export class BoxService {
     store(box: Box): Observable<Box> {
         // Omitting the _id so mongo can send it correctly created
         box = _.omit(box, '_id');
-        return this.http.post<Box>(environment.chronosUrl + '/box', box);
+        return this.http.post<Box>(environment.athenaUrl + '/box', box);
+    }
+
+    /**
+     * Updates a box in the database
+     *
+     * @param {Box} box
+     * @returns {Observable<Box>}
+     * @memberof BoxService
+     */
+    update(box: Box): Observable<Box> {
+        return this.http.put<Box>(environment.athenaUrl + '/box/' + box._id, box);
+    }
+
+    /**
+     * Closes a box.
+     *
+     * @param {Box} box The box to close
+     * @returns {Observable<Box>} The closed box
+     * @memberof BoxService
+     */
+    close(box: Box): Observable<Box> {
+        return this.http.post<Box>(environment.athenaUrl + '/box/' + box._id + '/close', null);
+    }
+
+    /**
+     * Opens a box
+     *
+     * @param {Box} box The box to close
+     * @returns {Observable<Box>} The opened box
+     * @memberof BoxService
+     */
+    open(box: Box): Observable<Box> {
+        return this.http.post<Box>(environment.athenaUrl + '/box/' + box._id + '/open', null);
     }
 }
