@@ -36,7 +36,6 @@ export class JukeboxService {
     public user: User = AuthService.getSession();
 
     constructor() {
-        console.log('INIT SOCKETS', this.syncSocket);
     }
 
     /**
@@ -240,23 +239,23 @@ export class JukeboxService {
             });
 
             // On successful connexion
-            this.chatSocket.on('confirm', (data: Message) => {
-                if (data.scope === this.box._id) {
-                    console.log('Connected to chat socket.', data);
-                    observer.next(new Message(data));
+            this.chatSocket.on('confirm', (feedback: Message) => {
+                if (feedback.scope === this.box._id) {
+                    console.log('Connected to chat socket.', feedback);
+                    observer.next(new Message(feedback));
                 }
             });
 
             // On refused connexion
-            this.chatSocket.on('denied', (data: Message) => {
-                observer.error(new Message(data));
+            this.chatSocket.on('denied', (feedback: Message) => {
+                observer.error(new Message(feedback));
             });
 
             // On chat. Regular event.
-            this.chatSocket.on('chat', (data: Message) => {
-                if (data.scope === this.box._id) {
-                    console.log('Recieved chat message', data);
-                    observer.next(new Message(data));
+            this.chatSocket.on('chat', (feedback: Message) => {
+                if (feedback.scope === this.box._id) {
+                    console.log('Recieved chat message', feedback);
+                    observer.next(new Message(feedback));
                 }
             });
 
