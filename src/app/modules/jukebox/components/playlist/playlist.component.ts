@@ -36,13 +36,9 @@ export class PlaylistComponent implements OnInit {
         this.jukeboxService.getBox().subscribe(
             (box: Box) => {
                 this.box = box;
-                console.log('GOT BOX: ', box);
                 this.currentlyPlaying = this.getCurrentlyPlayingVideo(this.box.playlist);
                 this.playedVideos = this.buildPartialPlaylist(this.box.playlist, 'played');
                 this.upcomingVideos = this.buildPartialPlaylist(this.box.playlist, 'upcoming').reverse();
-
-                console.log(this.playedVideos);
-                console.log(this.upcomingVideos);
             }
         );
     }
