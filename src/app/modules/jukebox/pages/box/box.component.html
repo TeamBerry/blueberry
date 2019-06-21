@@ -6,13 +6,22 @@
             </div>
             <div class="row under-player">
                 <div class="col-4 box-info">
-                    <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
-                    <svg class="berrybox-svg-icon secondary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.98 202.99" title="Administrator">
+                    <div>
+                        <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
+                    </div>
+                    <div class="d-flex">
+                        <div class="col">
+                            <svg class="berrybox-svg-icon secondary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.98 202.99" title="Administrator">
                         <rect width="440.78" height="181.69" x="29.61" y="209.46" />
                         <polygon points="250 53.84 148.6 229.46 351.4 229.46 250 53.84" />
                         <polygon points="470.39 54.84 368.99 230.46 470.39 230.46 470.39 54.84" />
                         <polygon points="131.01 230.46 29.61 54.84 29.61 230.46 131.01 230.46" />
                     </svg> {{ box?.creator?.name }}
+                        </div>
+                        <div class="col text-center">
+                            <span *ngIf="!box?.open" class="closed-label" title="The box is closed. Video play and submission are disabled.">Closed</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-8 video-info" *ngIf="currentVideo">
                     <div class="row">
@@ -31,6 +40,6 @@
                 </div>
             </div>
         </div>
-        <app-panel class="col-3" id="room-panel" #panel [boxToken]="box._id" [user]="user" (skipEvent)="app-player.next()"></app-panel>
+        <app-panel class="col-3" id="room-panel" #panel [boxToken]="box._id" [user]="user"></app-panel>
     </div>
 </div>

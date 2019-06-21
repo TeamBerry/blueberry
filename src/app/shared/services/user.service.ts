@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { environment } from './../../../environments/environment';
 
 import { User } from 'app/shared/models/user.model';
+import { Box } from '../models/box.model';
 
 @Injectable()
 export class UserService {
@@ -21,7 +22,7 @@ export class UserService {
      * @memberof UserService
      */
     show(token: string): Observable<User> {
-        return this.http.get<User>(environment.chronosUrl + '/user/' + token);
+        return this.http.get<User>(environment.athenaUrl + '/user/' + token);
     }
 
     /**
@@ -33,7 +34,7 @@ export class UserService {
      * @memberof UserService
      */
     update(token: string, user: User): Observable<User> {
-        return this.http.put<User>(environment.chronosUrl + '/user/' + token, user);
+        return this.http.put<User>(environment.athenaUrl + '/user/' + token, user);
     }
 
 
@@ -45,8 +46,19 @@ export class UserService {
      * @memberof UserService
      */
     updateFavorites(user: User): Observable<User> {
-        return this.http.patch<User>(environment.chronosUrl + '/user/' + user._id + '/favorites', user.favorites);
+        return this.http.patch<User>(environment.athenaUrl + '/user/' + user._id + '/favorites', user.favorites);
     }
 
     stats(token: string) { }
+
+    /**
+     * Gets all active boxes for an user
+     *
+     * @param {User} user
+     * @returns {Observable<Array<Box>>}
+     * @memberof UserService
+     */
+    boxes(user: User): Observable<Array<Box>> {
+        return this.http.get<Array<Box>>(environment.athenaUrl + '/user/' + user._id + '/boxes');
+    }
 }

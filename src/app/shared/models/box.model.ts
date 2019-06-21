@@ -13,6 +13,7 @@ export class Box {
     lang: string;
     name: string;
     playlist: Array<PlaylistItem>;
+    open: boolean;
 
     constructor(obj?: any) {
         this._id = obj && obj._id || null;
@@ -21,5 +22,6 @@ export class Box {
         this.lang = obj && obj.lang || 'English';
         this.name = obj && obj.name || null;
         this.playlist = obj && obj.playlist || [];
+        this.open = obj && obj.open || true;
     }
 }

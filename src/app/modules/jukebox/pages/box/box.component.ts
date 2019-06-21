@@ -99,7 +99,7 @@ export class BoxComponent implements OnInit {
         this.boxService.show(this.token).subscribe(
             (box: Box) => {
                 this.box = box;
-                this.jukeboxService.setBox(this.box);
+                this.jukeboxService.startBox(this.box);
                 this.loading = false;
             }
         );

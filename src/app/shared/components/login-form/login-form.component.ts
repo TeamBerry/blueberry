@@ -12,6 +12,8 @@ import { AuthService } from '../../../core/auth/auth.service';
 export class LoginFormComponent implements OnInit {
     loginForm: FormGroup;
 
+    errorMessage: string = null;
+
     constructor(
         public activeModal: NgbActiveModal,
         public authService: AuthService,
@@ -46,8 +48,12 @@ export class LoginFormComponent implements OnInit {
             password = this.loginForm.value.password;
         this.authService.login(mail, password).subscribe(
             (authResult) => {
+                this.errorMessage = null;
                 this.authService.setSession(authResult);
                 location.reload();
+            },
+            (error) => {
+                this.errorMessage = 'Your credentials are invalid. Please try again.';
             }
         );
     }

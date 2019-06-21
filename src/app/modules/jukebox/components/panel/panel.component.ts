@@ -83,7 +83,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
             case 'skip':
             case 'next':
-                this.emitSkip();
+                this.jukeboxService.skipVideo();
                 break;
 
             case 'shuffle':
@@ -94,10 +94,6 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             default:
                 break;
         }
-    }
-
-    emitSkip() {
-        this.skipEvent.emit();
     }
 
     refreshChatStatus(event) {
