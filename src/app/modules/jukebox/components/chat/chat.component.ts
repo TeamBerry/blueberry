@@ -37,7 +37,6 @@ export class ChatComponent implements OnInit {
         console.log('connecting chat to socket...');
         this.jukeboxService.getChatStream().subscribe(
             (message: Message) => {
-                console.log(message);
                 this.messages.push(message);
             },
             error => {

@@ -12,7 +12,9 @@ import { VideoPayload } from 'app/shared/models/video-payload.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class JukeboxService {
     private syncSocket;
     private chatSocket;
@@ -105,7 +107,7 @@ export class JukeboxService {
             this.syncSocket.on('next', (box: Box) => {
                 if (box._id === this.box._id) {
                     console.log('order to go to next video', box);
-                    this.startBox(box);
+                    this.sendBox();
                 }
                 /* observer.next(data); */
             });
@@ -114,7 +116,8 @@ export class JukeboxService {
             this.syncSocket.on('box', (box: Box) => {
                 if (box._id === this.box._id) {
                     console.log('recieved refreshed box data', box);
-                    this.startBox(box);
+                    this.box = box;
+                    this.sendBox();
                 }
             });
 
@@ -161,7 +164,17 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public skipVideo() {
-        if (this.user._id !== this.box.creator['_id']) {
+        // Send error if the user doing this is not the creator
+        const creator = this.box.creator['_id'] || this.box.creator;
+        if (this.user._id !== creator) {
+            const message: Message = new Message({
+                contents: 'You do not have the power to skip videos.',
+                source: 'system',
+                scope: this.box._id,
+                time: new Date()
+            });
+            this.chatStream.next(message);
+            return;
         }
         this.next();
     }
