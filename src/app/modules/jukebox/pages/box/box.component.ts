@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BoxService } from './../../../../shared/services/box.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 
 import { MoodWidgetComponent } from './../../components/mood-widget/mood-widget.component';
@@ -9,6 +8,9 @@ import { JukeboxService } from './../../jukebox.service';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Box } from 'app/shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
+import { SyncPacket } from 'app/shared/models/sync-packet.model';
+import { filter } from 'rxjs/operators';
+import { PlaylistItem } from 'app/shared/models/playlist-item.model';
 
 @Component({
     selector: 'app-box',
@@ -45,7 +47,7 @@ export class BoxComponent implements OnInit {
      *
      * @memberof BoxComponent
      */
-    currentVideo = null;
+    currentVideo: PlaylistItem = null;
 
 
     /**
@@ -91,7 +93,6 @@ export class BoxComponent implements OnInit {
      * Loads the details of the box
      *
      * Only if you're the creator of the box. Else, you just connect to the jukeboxService and get the box from there
-     * TODO: Restrict to creator of the box
      *
      * @memberof BoxComponent
      */
@@ -99,6 +100,7 @@ export class BoxComponent implements OnInit {
         this.boxService.show(this.token).subscribe(
             (box: Box) => {
                 this.box = box;
+                // Start box once it's loaded
                 this.jukeboxService.startBox(this.box);
                 this.loading = false;
             }
@@ -111,21 +113,25 @@ export class BoxComponent implements OnInit {
      *
      * @memberof BoxComponent
      */
-    connect() {
+    connectToSyncStream() {
         console.log('connecting sync to socket...');
-        this.jukeboxService.connectToBox(this.token, this.user._id).subscribe(
-            message => {
-                console.log('connected', message);
-                // Dirty, to be changed
-                if (_.has(message, 'video')) {
-                    this.currentVideo = message; // Given to the player by 1-way binding
+        this.jukeboxService.getBoxStream()
+            .pipe(
+                filter(syncPacket => syncPacket instanceof SyncPacket)
+            )
+            .subscribe(
+                (syncPacket: SyncPacket) => {
+                    console.log('New Sync Packet', syncPacket);
+                    // Dirty, to be changed
+                    if (_.has(syncPacket.item, 'video')) {
+                        this.currentVideo = syncPacket.item; // Given to the player by 1-way binding
+                    }
+                },
+                error => {
+                    console.error(error);
+                    console.log('socket offline');
                 }
-            },
-            error => {
-                console.error(error);
-                console.log('socket offline');
-            }
-        );
+            );
     }
 
 
@@ -139,7 +145,7 @@ export class BoxComponent implements OnInit {
      */
     onPlayerStateChange(event: any) {
         if (event === 'ready') {
-            this.connect();
+            this.connectToSyncStream();
         } else if (event === 0 && (this.user._id === this.box.creator['_id'])) {
             this.jukeboxService.next();
         } else {
