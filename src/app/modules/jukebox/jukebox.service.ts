@@ -133,8 +133,18 @@ export class JukeboxService {
      * @param {Message} message The message to send
      * @memberof JukeboxService
      */
-    public post(message: Message): void {
+    public postMessageToSocket(message: Message): void {
         this.boxSocket.emit('chat', message);
+    }
+
+    /**
+     * Allows components to send messages via the box stream
+     *
+     * @param {Message} message The message to dispatch
+     * @memberof JukeboxService
+     */
+    public postMessageToStream(message: Message): void {
+        this.boxStream.next(message);
     }
 
     /**

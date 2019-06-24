@@ -61,17 +61,17 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         }
     }
 
-    handleMessage(contents) {
+    handleMessage(contents: string) {
         const message = new Message({
             author: this.user._id,
             contents: contents,
             scope: this.boxToken,
             source: 'user',
         });
-        this.jukeboxService.post(message);
+        this.jukeboxService.postMessageToSocket(message);
     }
 
-    handleCommands(contents) {
+    handleCommands(contents: string) {
         const command = contents.substr(1).split(' ');
         const keyword = command[0];
         switch (keyword) {
@@ -100,18 +100,32 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         console.log(event);
     }
 
-    submitVideo(url) {
+    /**
+     * Submits a video by its URL. Will control if the url is valid.
+     *
+     * @param {string} url The YouTube URL of the video.
+     * @memberof PanelComponent
+     */
+    submitVideo(url: string) {
         const reg = new RegExp(/(\?v=([a-z0-9\-\_]+)\&?)|(\.be\/([a-z0-9\-\_]+)\&?)/i);
         const res = reg.exec(url);
 
-        const video: VideoPayload = {
-            link: (res[2]) ? res[2] : res[4],
-            userToken: this.user._id,
-            boxToken: this.boxToken,
-        };
+        try {
+            const video: VideoPayload = {
+                link: (res[2]) ? res[2] : res[4],
+                userToken: this.user._id,
+                boxToken: this.boxToken,
+            };
 
-        console.log('submitting video...');
-
-        this.jukeboxService.submitVideo(video);
+            this.jukeboxService.submitVideo(video);
+        } catch (error) {
+            const message: Message = new Message({
+                contents: 'The video URL you submitted is not a valid YouTube URL.',
+                source: 'system',
+                scope: this.boxToken,
+                time: new Date()
+            });
+            this.jukeboxService.postMessageToStream(message);
+        }
     }
 }
