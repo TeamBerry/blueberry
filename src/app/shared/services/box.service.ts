@@ -63,6 +63,17 @@ export class BoxService {
     }
 
     /**
+     * Deletes a box
+     *
+     * @param {string} id The Mongo ObjectId of the box
+     * @returns {Observable<Box>}
+     * @memberof BoxService
+     */
+    delete(id: string): Observable<Box> {
+        return this.http.delete<Box>(environment.athenaUrl + '/box/' + id);
+    }
+
+    /**
      * Closes a box.
      *
      * @param {Box} box The box to close
