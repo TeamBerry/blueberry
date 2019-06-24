@@ -10,6 +10,7 @@ import { Box } from 'app/shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
 import { SyncPacket } from 'app/shared/models/sync-packet.model';
 import { filter } from 'rxjs/operators';
+import { PlaylistItem } from 'app/shared/models/playlist-item.model';
 
 @Component({
     selector: 'app-box',
@@ -46,7 +47,7 @@ export class BoxComponent implements OnInit {
      *
      * @memberof BoxComponent
      */
-    currentVideo = null;
+    currentVideo: PlaylistItem = null;
 
 
     /**
