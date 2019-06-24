@@ -17,4 +17,9 @@ export class SyncPacket {
      * @memberof SyncPacket
      */
     item: any;
+
+    constructor(obj?: any) {
+        this.box = obj && obj.box || null;
+        this.item = obj && obj.item || null;
+    }
 }

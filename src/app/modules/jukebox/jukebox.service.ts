@@ -27,9 +27,11 @@ export class JukeboxService {
      * @type {ReplaySubject<any>}
      * @memberof JukeboxService
      */
-    private boxStream: ReplaySubject<any> = new ReplaySubject<any>();
+    private boxStream: ReplaySubject<Box | Message | SyncPacket> = new ReplaySubject<Box | Message | SyncPacket>();
 
     public box: Box;
+
+    // TODO: Refactor this into the stream
     public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(this.box);
 
     public user: User = AuthService.getSession();
@@ -46,7 +48,7 @@ export class JukeboxService {
     public startBox(box: Box) {
         this.box = box;
 
-        // Connect to sync.
+        // Connect to socket.
         this.startBoxSocket(box._id, this.user._id).subscribe(
             (message) => {
                 this.boxStream.next(message);
@@ -157,7 +159,7 @@ export class JukeboxService {
         console.log('Creating socket observable...');
         this.boxSocket = io(environment.hermesUrl, { transports: ['websocket'] });
 
-        return new Observable(observer => {
+        return new Observable<Message | SyncPacket | Box>(observer => {
             this.boxSocket.on('connect', () => {
                 this.boxSocket.emit('auth', {
                     origin: 'BERRYBOX PNEUMA',
@@ -177,15 +179,16 @@ export class JukeboxService {
                 });
             });
 
-            this.boxSocket.on('denied', (data) => {
+            this.boxSocket.on('denied', (feedback) => {
                 console.log('your connection attempt has been denied.');
-                observer.error(JSON.parse(data));
+                observer.error(JSON.parse(feedback));
+                // TODO: Add feedback in the chat
             })
 
             this.boxSocket.on('sync', (syncPacket: SyncPacket) => {
                 if (syncPacket.box === this.box._id) {
                     console.log('recieved sync data', syncPacket);
-                    observer.next(syncPacket.item);
+                    observer.next(new SyncPacket(syncPacket));
                 }
             });
 
@@ -207,7 +210,6 @@ export class JukeboxService {
 
             // On chat. Regular event.
             this.boxSocket.on('chat', (feedback: Message) => {
-                console.log('FEEDBACK: ', feedback);
                 if (feedback.scope === this.box._id) {
                     console.log('Recieved chat message', feedback);
                     observer.next(new Message(feedback));

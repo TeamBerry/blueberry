@@ -8,6 +8,8 @@ import { JukeboxService } from './../../jukebox.service';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Box } from 'app/shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
+import { SyncPacket } from 'app/shared/models/sync-packet.model';
+import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'app-box',
@@ -112,19 +114,23 @@ export class BoxComponent implements OnInit {
      */
     connectToSyncStream() {
         console.log('connecting sync to socket...');
-        this.jukeboxService.getBoxStream().subscribe(
-            (message) => {
-                console.log('New Sync Message', message);
-                // Dirty, to be changed
-                if (_.has(message, 'video')) {
-                    this.currentVideo = message; // Given to the player by 1-way binding
+        this.jukeboxService.getBoxStream()
+            .pipe(
+                filter(syncPacket => syncPacket instanceof SyncPacket)
+            )
+            .subscribe(
+                (syncPacket: SyncPacket) => {
+                    console.log('New Sync Packet', syncPacket);
+                    // Dirty, to be changed
+                    if (_.has(syncPacket.item, 'video')) {
+                        this.currentVideo = syncPacket.item; // Given to the player by 1-way binding
+                    }
+                },
+                error => {
+                    console.error(error);
+                    console.log('socket offline');
                 }
-            },
-            error => {
-                console.error(error);
-                console.log('socket offline');
-            }
-        );
+            );
     }
 
 
