@@ -41,9 +41,7 @@ export class PlayerComponent implements OnInit, OnChanges {
      */
     private isPlayerReady = false;
 
-    constructor(
-        private jukeboxService: JukeboxService,
-    ) { }
+    constructor() { }
 
     ngOnInit() {
         console.log('Init player...');
