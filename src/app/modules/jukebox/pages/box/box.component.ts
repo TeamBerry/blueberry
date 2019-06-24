@@ -91,7 +91,6 @@ export class BoxComponent implements OnInit {
      * Loads the details of the box
      *
      * Only if you're the creator of the box. Else, you just connect to the jukeboxService and get the box from there
-     * TODO: Restrict to creator of the box
      *
      * @memberof BoxComponent
      */
@@ -99,6 +98,7 @@ export class BoxComponent implements OnInit {
         this.boxService.show(this.token).subscribe(
             (box: Box) => {
                 this.box = box;
+                // Start box once it's loaded
                 this.jukeboxService.startBox(this.box);
                 this.loading = false;
             }
@@ -111,11 +111,11 @@ export class BoxComponent implements OnInit {
      *
      * @memberof BoxComponent
      */
-    connect() {
+    connectToSyncStream() {
         console.log('connecting sync to socket...');
-        this.jukeboxService.connectToBox(this.token, this.user._id).subscribe(
-            message => {
-                console.log('connected', message);
+        this.jukeboxService.getSyncStream().subscribe(
+            (message) => {
+                console.log('New Sync Message', message);
                 // Dirty, to be changed
                 if (_.has(message, 'video')) {
                     this.currentVideo = message; // Given to the player by 1-way binding
@@ -139,7 +139,7 @@ export class BoxComponent implements OnInit {
      */
     onPlayerStateChange(event: any) {
         if (event === 'ready') {
-            this.connect();
+            this.connectToSyncStream();
         } else if (event === 0 && (this.user._id === this.box.creator['_id'])) {
             this.jukeboxService.next();
         } else {
