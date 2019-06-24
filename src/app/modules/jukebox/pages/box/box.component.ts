@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BoxService } from './../../../../shared/services/box.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 
 import { MoodWidgetComponent } from './../../components/mood-widget/mood-widget.component';
@@ -113,7 +112,7 @@ export class BoxComponent implements OnInit {
      */
     connectToSyncStream() {
         console.log('connecting sync to socket...');
-        this.jukeboxService.getSyncStream().subscribe(
+        this.jukeboxService.getBoxStream().subscribe(
             (message) => {
                 console.log('New Sync Message', message);
                 // Dirty, to be changed
