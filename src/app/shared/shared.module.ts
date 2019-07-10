@@ -6,6 +6,7 @@ import { AuthDirective } from '../shared/directive/auth.directive';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
 import { VideoEntryComponent } from './components/video-entry/video-entry.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe';
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         AuthDirective,
         SlideToggleComponent,
         VideoEntryComponent,
+        BoxDeletionEstimationPipe
     ],
     exports: [
         CommonModule,
@@ -24,7 +26,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         AuthDirective,
         SlideToggleComponent,
         VideoEntryComponent,
-        NgbModule
+        NgbModule,
+        BoxDeletionEstimationPipe
     ],
     providers: [AuthDirective],
 })
