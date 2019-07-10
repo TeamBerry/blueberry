@@ -7,6 +7,7 @@
             <a class="box-name" href="box/{{ box?._id }}">{{ box?.name }}</a>
             <div class="box-details pl-3">
                 <p class="box-lang">{{ box?.lang }} | {{ box?.description || 'No description' }}</p>
+                <span *ngIf="!box.open">This box is closed. If left inactive, it will be destroyed on {{ box.updatedAt | boxDeletionEstimationPipe | date }}</span>
             </div>
         </div>
         <div class="col-1 m-auto text-center box-option-button h-100 d-flex" ngbDropdown>
@@ -16,6 +17,7 @@
             <div ngbDropdownMenu>
                 <button ngbDropdownItem (click)="openCreateModal(box)">Edit</button>
                 <button ngbDropdownItem (click)="toggleBoxState(box)" [innerHTML]="box.open ? 'Close' : 'Open'"></button>
+                <button ngbDropdownItem (click)="deleteBox(box)" *ngIf="!box.open">Delete</button>
             </div>
         </div>
     </div>

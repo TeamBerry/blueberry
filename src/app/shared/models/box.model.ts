@@ -14,6 +14,8 @@ export class Box {
     name: string;
     playlist: Array<PlaylistItem>;
     open: boolean;
+    createdAt: Date;
+    updatedAt: Date;
 
     constructor(obj?: any) {
         this._id = obj && obj._id || null;
@@ -23,5 +25,7 @@ export class Box {
         this.name = obj && obj.name || null;
         this.playlist = obj && obj.playlist || [];
         this.open = obj && obj.open || true;
+        this.createdAt = obj && obj.createdAt || null;
+        this.updatedAt = obj && obj.updatedAt || null;
     }
 }
