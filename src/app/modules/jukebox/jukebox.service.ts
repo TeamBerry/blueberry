@@ -167,7 +167,7 @@ export class JukeboxService {
      */
     private startBoxSocket(boxToken: string, userToken: string) {
         console.log('Creating socket observable...');
-        this.boxSocket = io(environment.hermesUrl, { transports: ['websocket'] });
+        this.boxSocket = io(environment.boquila, { transports: ['websocket'] });
 
         return new Observable<Message | SyncPacket | Box>(observer => {
             this.boxSocket.on('connect', () => {
