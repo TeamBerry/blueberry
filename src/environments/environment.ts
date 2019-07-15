@@ -5,6 +5,6 @@
 
 export const environment = {
     production: false,
-    athenaUrl: 'http://localhost:3000',
-    hermesUrl: 'http://localhost:8008',
+    araza: 'http://localhost:3000',
+    boquila: 'http://localhost:8008',
 };

@@ -22,7 +22,7 @@ export class UserService {
      * @memberof UserService
      */
     show(token: string): Observable<User> {
-        return this.http.get<User>(environment.athenaUrl + '/user/' + token);
+        return this.http.get<User>(environment.araza + '/user/' + token);
     }
 
     /**
@@ -34,7 +34,7 @@ export class UserService {
      * @memberof UserService
      */
     update(token: string, user: User): Observable<User> {
-        return this.http.put<User>(environment.athenaUrl + '/user/' + token, user);
+        return this.http.put<User>(environment.araza + '/user/' + token, user);
     }
 
 
@@ -46,7 +46,7 @@ export class UserService {
      * @memberof UserService
      */
     updateFavorites(user: User): Observable<User> {
-        return this.http.patch<User>(environment.athenaUrl + '/user/' + user._id + '/favorites', user.favorites);
+        return this.http.patch<User>(environment.araza + '/user/' + user._id + '/favorites', user.favorites);
     }
 
     stats(token: string) { }
@@ -59,6 +59,6 @@ export class UserService {
      * @memberof UserService
      */
     boxes(user: User): Observable<Array<Box>> {
-        return this.http.get<Array<Box>>(environment.athenaUrl + '/user/' + user._id + '/boxes');
+        return this.http.get<Array<Box>>(environment.araza + '/user/' + user._id + '/boxes');
     }
 }
