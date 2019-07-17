@@ -1,3 +1,9 @@
-<p>
-  command-list works!
-</p>
+<div class="command" *ngFor="let command of commands">
+    <div class="command-keys">
+        <kbd *ngFor="let key of command.keys">!{{ key }}</kbd>
+    </div>
+    <div class="command-arguments">
+        <kbd *ngFor="let argument of command.arguments">{{ argument }}</kbd>
+    </div>
+    <p class="command-description">{{ command.description }}</p>
+</div>
