@@ -6,6 +6,7 @@
             <app-playlist [hidden]="activePanel !== 'queue'" [user]="user"></app-playlist>
             <app-favoritelist [hidden]="activePanel !== 'favorites'" [boxToken]="boxToken" [user]="user"></app-favoritelist>
             <app-userlist [hidden]="activePanel !== 'users'" [boxToken]="boxToken" [user]="user"></app-userlist>
+            <app-command-list [hidden]="activePanel !== 'commands'" (clickedCommand)="kickstartCommand($event)"></app-command-list>
         </div>
     </div>
     <div class="col-1" id="panel-menu">
@@ -47,6 +48,10 @@
                         />
                     </svg>
                 </a>
+            </li>
+            <li class="nav-separator my-1"></li>
+            <li class="nav-item" [ngClass]="{'active': activePanel === 'commands'}">
+                <a class="nav-link" (click)="showPanel('commands')" title="Commands">!</a>
             </li>
         </ul>
     </div>

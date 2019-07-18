@@ -71,6 +71,17 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         this.jukeboxService.postMessageToSocket(message);
     }
 
+    /**
+     * Kickstarts the use of a command in the chat when a command is clicked in the command list component
+     *
+     * @param {string} commandKey
+     * @memberof PanelComponent
+     */
+    kickstartCommand(commandKey: string) {
+        this.contents += `!${commandKey} `;
+        this.watchContents();
+    }
+
     handleCommands(contents: string) {
         const command = contents.substr(1).split(' ');
         const keyword = command[0];
