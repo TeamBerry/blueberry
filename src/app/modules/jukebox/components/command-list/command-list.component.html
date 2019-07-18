@@ -1,4 +1,5 @@
 <div class="p-3">
+    <p class="help-text text-center mb-4">Click on a command to add it to the chat input!</p>
     <div class="command" *ngFor="let command of commands">
         <div class="command-keys">
             <span class="admin-mark" *ngIf="command.staffOnly" title="This command is only available to the creator">
@@ -9,7 +10,7 @@
                         <polygon points="131.01 230.46 29.61 54.84 29.61 230.46 131.01 230.46" />
                     </svg>
             </span>
-            <span class="command-key mr-1" *ngFor="let key of command.keys">!{{ key }}</span>
+            <span class="command-key mr-1" *ngFor="let key of command.keys" (click)="useCommand(key)">!{{ key }}</span>
             <kbd *ngFor="let argument of command.arguments">{{ argument }}</kbd>
         </div>
         <div class="command-arguments">
