@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import * as _ from 'lodash';
 
 import { UserService } from 'app/shared/services/user.service';
 import { AuthService } from 'app/core/auth/auth.service';
@@ -8,7 +10,6 @@ import { User } from 'app/shared/models/user.model';
 import { Box } from 'app/shared/models/box.model';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
 import { BoxService } from 'app/shared/services/box.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-boxes-tab',
@@ -64,6 +65,27 @@ export class BoxesTabComponent implements OnInit {
                 }
             );
         }
+    }
+
+    /**
+     * Deletes a closed box
+     *
+     * @param {Box} box
+     * @memberof BoxesTabComponent
+     */
+    deleteBox(box: Box) {
+        if (box.open) {
+            this.toastr.error('The box is still open and cannot be deleted. Please close the box before deleting it.');
+            return;
+        }
+        this.boxService.delete(box._id).subscribe(
+            (deletedBox) => {
+                this.toastr.success('The box has been deleted successfully.');
+
+                // Reload boxes
+                this.boxes = this.userService.boxes(this.user);
+            }
+        )
     }
 
 }

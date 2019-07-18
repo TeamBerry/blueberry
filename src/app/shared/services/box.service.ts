@@ -22,7 +22,7 @@ export class BoxService {
      * @memberof BoxService
      */
     index(): Observable<Box[]> {
-        return this.http.get<Box[]>(environment.athenaUrl + '/box');
+        return this.http.get<Box[]>(environment.araza + '/box');
     }
 
 
@@ -34,7 +34,7 @@ export class BoxService {
      * @memberof BoxService
      */
     show(id: string): Observable<Box> {
-        return this.http.get<Box>(environment.athenaUrl + '/box/' + id);
+        return this.http.get<Box>(environment.araza + '/box/' + id);
     }
 
 
@@ -48,7 +48,7 @@ export class BoxService {
     store(box: Box): Observable<Box> {
         // Omitting the _id so mongo can send it correctly created
         box = _.omit(box, '_id');
-        return this.http.post<Box>(environment.athenaUrl + '/box', box);
+        return this.http.post<Box>(environment.araza + '/box', box);
     }
 
     /**
@@ -59,7 +59,18 @@ export class BoxService {
      * @memberof BoxService
      */
     update(box: Box): Observable<Box> {
-        return this.http.put<Box>(environment.athenaUrl + '/box/' + box._id, box);
+        return this.http.put<Box>(environment.araza + '/box/' + box._id, box);
+    }
+
+    /**
+     * Deletes a box
+     *
+     * @param {string} id The Mongo ObjectId of the box
+     * @returns {Observable<Box>}
+     * @memberof BoxService
+     */
+    delete(id: string): Observable<Box> {
+        return this.http.delete<Box>(environment.araza + '/box/' + id);
     }
 
     /**
@@ -70,7 +81,7 @@ export class BoxService {
      * @memberof BoxService
      */
     close(box: Box): Observable<Box> {
-        return this.http.post<Box>(environment.athenaUrl + '/box/' + box._id + '/close', null);
+        return this.http.post<Box>(environment.araza + '/box/' + box._id + '/close', null);
     }
 
     /**
@@ -81,6 +92,6 @@ export class BoxService {
      * @memberof BoxService
      */
     open(box: Box): Observable<Box> {
-        return this.http.post<Box>(environment.athenaUrl + '/box/' + box._id + '/open', null);
+        return this.http.post<Box>(environment.araza + '/box/' + box._id + '/open', null);
     }
 }

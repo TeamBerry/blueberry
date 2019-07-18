@@ -30,15 +30,15 @@ export class AuthService {
      * @memberof AuthService
      */
     login(mail: string, password: string) {
-        return this.http.post(environment.athenaUrl + '/auth/login', { mail: mail, password: password });
+        return this.http.post(environment.araza + '/auth/login', { mail: mail, password: password });
     }
 
     showConnectedUser(token: string): Observable<User> {
-        return this.http.get<User>(environment.athenaUrl + '/user/' + token);
+        return this.http.get<User>(environment.araza + '/user/' + token);
     }
 
     signup(mail: string, password: string, username: string) {
-        return this.http.post(environment.athenaUrl + '/auth/signup', { mail, password, username });
+        return this.http.post(environment.araza + '/auth/signup', { mail, password, username });
     }
 
     /**

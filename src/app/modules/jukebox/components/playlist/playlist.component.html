@@ -1,7 +1,16 @@
 <div *ngIf="box">
     <div *ngIf="box.playlist.length > 0; else noVideos">
         <p class="list-rank px-3 pt-3">Now playing: </p>
-        <app-playlist-item [item]="currentlyPlaying"></app-playlist-item>
+        <div class="now-playing-space">
+            <div *ngIf="currentlyPlaying; else noPlaying">
+                <app-playlist-item [item]="currentlyPlaying"></app-playlist-item>
+            </div>
+            <ng-template #noPlaying>
+                <div class="no-playing text-center">
+                    No video is currently playing.
+                </div>
+            </ng-template>
+        </div>
         <div class="lists mt-2">
             <ngb-tabset type="pills" justify="fill">
                 <ngb-tab title="Upcoming">
