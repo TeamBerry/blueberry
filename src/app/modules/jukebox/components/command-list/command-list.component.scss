@@ -1,0 +1,13 @@
+@import './../../../../../imports.scss';
+.admin-mark {
+    padding-right: 5px;
+    svg {
+        fill: white;
+        padding-bottom: 4px;
+    }
+}
+
+.command-key {
+    font-weight: 800;
+    color: $master-color;
+}

@@ -11,9 +11,15 @@ export class CommandListComponent implements OnInit {
 
     commands: Array<Command> = [
         {
-            keys: ['play', 'add'],
+            keys: ['add', 'play', 'queue'],
             arguments: ['URL'],
-            description: 'Add a video to the playlist'
+            description: 'Adds a video to the playlist, by the given YouTube link.',
+            staffOnly: false,
+        },
+        {
+            keys: ['skip', 'next'],
+            description: 'Skips the currently playing video',
+            staffOnly: true
         }
     ];
 

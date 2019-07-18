@@ -1,9 +1,19 @@
-<div class="command" *ngFor="let command of commands">
-    <div class="command-keys">
-        <kbd *ngFor="let key of command.keys">!{{ key }}</kbd>
+<div class="p-3">
+    <div class="command" *ngFor="let command of commands">
+        <div class="command-keys">
+            <span class="admin-mark" *ngIf="command.staffOnly" title="This command is only available to the creator">
+                    <svg class="berrybox-svg-icon secondary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.98 202.99" title="Administrator">
+                        <rect width="440.78" height="181.69" x="29.61" y="209.46" />
+                        <polygon points="250 53.84 148.6 229.46 351.4 229.46 250 53.84" />
+                        <polygon points="470.39 54.84 368.99 230.46 470.39 230.46 470.39 54.84" />
+                        <polygon points="131.01 230.46 29.61 54.84 29.61 230.46 131.01 230.46" />
+                    </svg>
+            </span>
+            <span class="command-key mr-1" *ngFor="let key of command.keys">!{{ key }}</span>
+            <kbd *ngFor="let argument of command.arguments">{{ argument }}</kbd>
+        </div>
+        <div class="command-arguments">
+        </div>
+        <p class="command-description">{{ command.description }}</p>
     </div>
-    <div class="command-arguments">
-        <kbd *ngFor="let argument of command.arguments">{{ argument }}</kbd>
-    </div>
-    <p class="command-description">{{ command.description }}</p>
 </div>
