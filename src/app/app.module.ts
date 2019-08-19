@@ -23,6 +23,7 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 /* Feature Modules */
 import { JukeboxModule } from './modules/jukebox/jukebox.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PlaylistFormComponent } from './shared/components/playlist-form/playlist-form.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         SignupFormComponent,
         NavComponent,
         SettingsDirective,
-        UserSettingsComponent
+        UserSettingsComponent,
+        PlaylistFormComponent
     ],
     imports: [
         AppRoutingModule,
@@ -54,7 +56,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         BoxFormComponent,
         LoginFormComponent,
         SignupFormComponent,
-        UserSettingsComponent
+        UserSettingsComponent,
+        PlaylistFormComponent
     ]
 })
 export class AppModule { }

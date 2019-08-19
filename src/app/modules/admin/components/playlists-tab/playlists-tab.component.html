@@ -1,0 +1,8 @@
+<div class="row justify-content-center">
+    <div *ngFor="let playlist of playlists | async">
+        {{ playlist.name }}
+    </div>
+    <button class="btn btn-primary col-9" (click)="openCreateModal()">
+        Create a playlist
+    </button>
+</div>

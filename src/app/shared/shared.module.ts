@@ -17,7 +17,7 @@ import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe'
         AuthDirective,
         SlideToggleComponent,
         VideoEntryComponent,
-        BoxDeletionEstimationPipe
+        BoxDeletionEstimationPipe,
     ],
     exports: [
         CommonModule,
@@ -30,5 +30,7 @@ import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe'
         BoxDeletionEstimationPipe
     ],
     providers: [AuthDirective],
+    entryComponents: [
+    ]
 })
 export class SharedModule { }

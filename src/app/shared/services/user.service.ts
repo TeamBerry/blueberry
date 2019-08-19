@@ -7,6 +7,7 @@ import { environment } from './../../../environments/environment';
 
 import { User } from 'app/shared/models/user.model';
 import { Box } from '../models/box.model';
+import { UserPlaylist } from '../models/user-playlist.model';
 
 @Injectable()
 export class UserService {
@@ -60,5 +61,16 @@ export class UserService {
      */
     boxes(user: User): Observable<Array<Box>> {
         return this.http.get<Array<Box>>(environment.araza + '/user/' + user._id + '/boxes');
+    }
+
+    /**
+     * Gets all playlists for an user
+     *
+     * @param {User} user
+     * @returns {Observable<Array<UserPlaylist>>}
+     * @memberof UserService
+     */
+    playlists(user: User): Observable<Array<UserPlaylist>> {
+        return this.http.get<Array<UserPlaylist>>(environment.araza + '/user/' + user._id + '/playlists');
     }
 }
