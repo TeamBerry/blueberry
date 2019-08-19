@@ -1,4 +1,4 @@
-<label class="switch">
-    <input type="checkbox" [checked]="value">
+<label class="switch m-0">
+    <input type="checkbox" [checked]="value" (change)="emitValue($event)">
     <span class="slider"></span>
 </label>

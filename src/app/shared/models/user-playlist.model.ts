@@ -17,7 +17,7 @@ export class UserPlaylist {
     constructor(obj?: Partial<UserPlaylist>) {
         this._id = obj && obj._id || null;
         this.name = obj && obj.name || null;
-        this.isPrivate = obj && obj.isPrivate || true;
+        this.isPrivate = obj && obj.isPrivate || false;
         this.user = obj && obj.user || { _id: null, name: null };
         this.videos = obj && obj.videos || [];
         this.createdAt = obj && obj.createdAt || null;

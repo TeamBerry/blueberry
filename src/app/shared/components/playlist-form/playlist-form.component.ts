@@ -17,8 +17,6 @@ export class PlaylistFormComponent implements OnInit {
 
     context: 'create' | 'edit' = 'edit'
 
-    playlistForm: FormGroup
-
     constructor(
         public activeModal: NgbActiveModal
     ) { }
@@ -31,6 +29,7 @@ export class PlaylistFormComponent implements OnInit {
     }
 
     onSubmit() {
+        console.log(this.playlist)
         if (this.context === 'create') {
 
         } else {
