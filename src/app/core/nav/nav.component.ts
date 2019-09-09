@@ -35,7 +35,7 @@ export class NavComponent implements OnInit {
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private modalService: NgbModal,
-        private authService: AuthService
+        private authService: AuthService,
     ) { }
 
     ngOnInit() {

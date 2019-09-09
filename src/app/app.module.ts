@@ -10,6 +10,7 @@ import { BoxWidgetComponent } from './shared/components/box-widget/box-widget.co
 import { HomeComponent } from './shared/components/home/home.component';
 import { UserComponent } from './shared/components/user/user.component';
 import { BoxFormComponent } from './shared/components/box-form/box-form.component';
+import { PlaylistFormComponent } from './shared/components/playlist-form/playlist-form.component';
 
 // Auth component
 import { NavComponent } from './core/nav/nav.component'; // Exceptional, so it can benefit from the auth directive
@@ -22,8 +23,8 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 
 /* Feature Modules */
 import { JukeboxModule } from './modules/jukebox/jukebox.module';
+import { UserPlaylistsModule } from './modules/user-playlists/user-playlists.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PlaylistFormComponent } from './shared/components/playlist-form/playlist-form.component';
 
 @NgModule({
     declarations: [
@@ -46,6 +47,7 @@ import { PlaylistFormComponent } from './shared/components/playlist-form/playlis
         SharedModule,
         CoreModule,
         JukeboxModule,
+        UserPlaylistsModule,
         NgbModule.forRoot()
     ],
     exports: [
