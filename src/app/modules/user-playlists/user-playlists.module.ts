@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { SharedModule } from 'app/shared/shared.module';
+import { UserPlaylistsRoutingModule } from './user-playlists-routing.module';
+
 import { PlaylistsComponent } from './pages/playlists/playlists.component';
 
 @NgModule({
     declarations: [PlaylistsComponent],
     imports: [
-        CommonModule
+        UserPlaylistsRoutingModule,
+        SharedModule
     ]
 })
 export class UserPlaylistsModule { }
