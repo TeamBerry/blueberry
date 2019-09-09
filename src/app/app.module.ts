@@ -23,7 +23,6 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 
 /* Feature Modules */
 import { JukeboxModule } from './modules/jukebox/jukebox.module';
-import { UserPlaylistsModule } from './modules/user-playlists/user-playlists.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -47,7 +46,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         SharedModule,
         CoreModule,
         JukeboxModule,
-        UserPlaylistsModule,
         NgbModule.forRoot()
     ],
     exports: [
