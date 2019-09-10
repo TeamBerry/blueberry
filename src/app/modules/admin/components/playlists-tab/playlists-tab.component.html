@@ -1,6 +1,12 @@
 <div class="row justify-content-center">
-    <div *ngFor="let playlist of playlists | async">
-        {{ playlist.name }}
+    <div class="playlists container-fluid col-9">
+        <div *ngFor="let playlist of playlists | async" class="col-3 card playlist-card row d-flex px-0">
+            <img class="playlist-image card-img-top" src="" alt="">
+            <div class="card-body">
+                <h5 class="card-title playlist-name">{{ playlist.name }}</h5>
+                <span class="playlist-length">{{ playlist.videos.length }} videos</span>
+            </div>
+        </div>
     </div>
     <button class="btn btn-primary col-9" (click)="openCreateModal()">
         Create a playlist

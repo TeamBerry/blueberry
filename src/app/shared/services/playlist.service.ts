@@ -14,6 +14,16 @@ export class PlaylistService {
     ) { }
 
     /**
+     * Gets all public playlists
+     *
+     * @returns {Observable<Array<UserPlaylist>>} The list of public playlists
+     * @memberof PlaylistService
+     */
+    index(): Observable<Array<UserPlaylist>> {
+        return this.http.get<Array<UserPlaylist>>(`${environment.araza}/playlists`);
+    }
+
+    /**
      * Gets one playlist
      *
      * @param {string} id The ObjectId of the playlist

@@ -1,1 +1,15 @@
 @import './../../../../../imports.scss';
+.playlist-card {
+    border: 1px solid lighten($master-color, 10%);
+    margin: .7rem;
+    color: $text-main-color;
+    border-radius: .3rem;
+}
+
+.playlist-image {
+    height: 250px;
+}
+
+.playlist-name {
+    font-weight: 300;
+}

@@ -5,7 +5,9 @@
             <p class="lead">Build playlists together to kickstart boxes.</p>
         </div>
         <div class="row">
-
+            <div *ngFor="let playlist of playlists | async">
+                {{ playlist.name }}
+            </div>
         </div>
     </div>
 </div>

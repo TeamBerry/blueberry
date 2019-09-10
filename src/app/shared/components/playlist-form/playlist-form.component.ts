@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { User } from 'app/shared/models/user.model';
 import { UserPlaylist } from 'app/shared/models/user-playlist.model';
+import { PlaylistService } from 'app/shared/services/playlist.service';
 
 @Component({
     selector: 'app-playlist-form',
@@ -18,7 +19,8 @@ export class PlaylistFormComponent implements OnInit {
     context: 'create' | 'edit' = 'edit'
 
     constructor(
-        public activeModal: NgbActiveModal
+        public activeModal: NgbActiveModal,
+        public playlistService: PlaylistService
     ) { }
 
     ngOnInit() {
@@ -31,9 +33,17 @@ export class PlaylistFormComponent implements OnInit {
     onSubmit() {
         console.log(this.playlist)
         if (this.context === 'create') {
-
+            this.playlistService.store(this.playlist).subscribe(
+                (response: UserPlaylist) => {
+                    this.activeModal.close();
+                }
+            )
         } else {
-
+            this.playlistService.update(this.playlist).subscribe(
+                (response: UserPlaylist) => {
+                    this.activeModal.close();
+                }
+            )
         }
     }
 
