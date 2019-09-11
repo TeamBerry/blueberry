@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Video } from './video.model';
 
 @Injectable()
-export class PlaylistItem {
+export class PlaylistVideo {
     _id: string;
     endTime: number;
     ignored: boolean;

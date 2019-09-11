@@ -35,12 +35,4 @@ export class PlaylistsTabComponent implements OnInit {
         modalRef.componentInstance.playlist = playlist
         modalRef.componentInstance.user = this.user
     }
-
-    viewPlaylist(playlist: UserPlaylist) {
-        const modalRef = this.modalService.open(PlaylistViewComponent, {
-            size: 'lg'
-        });
-        modalRef.componentInstance.playlist = playlist;
-    }
-
 }

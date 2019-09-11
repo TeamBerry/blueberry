@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { JukeboxService } from './../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
-import { PlaylistItem } from 'app/shared/models/playlist-item.model';
+import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
 import { VideoPayload } from 'app/shared/models/video-payload.model';
 
 @Component({
@@ -15,9 +15,9 @@ export class PlaylistComponent implements OnInit {
     box: Box;
     @Input() user: User = new User;
 
-    currentlyPlaying: PlaylistItem;
-    playedVideos: Array<PlaylistItem>;
-    upcomingVideos: Array<PlaylistItem>;
+    currentlyPlaying: PlaylistVideo;
+    playedVideos: Array<PlaylistVideo>;
+    upcomingVideos: Array<PlaylistVideo>;
 
     constructor(
         private jukeboxService: JukeboxService,
@@ -46,12 +46,12 @@ export class PlaylistComponent implements OnInit {
     /**
      * Isolates the currently playing video
      *
-     * @param {Array<PlaylistItem>} playlist The playlist of the box
-     * @returns {PlaylistItem} The currently playing video
+     * @param {Array<PlaylistVideo>} playlist The playlist of the box
+     * @returns {PlaylistVideo} The currently playing video
      * @memberof PlaylistComponent
      */
-    getCurrentlyPlayingVideo(playlist: Array<PlaylistItem>): PlaylistItem {
-        return playlist.find((item: PlaylistItem) => {
+    getCurrentlyPlayingVideo(playlist: Array<PlaylistVideo>): PlaylistVideo {
+        return playlist.find((item: PlaylistVideo) => {
             return item.startTime !== null && item.endTime === null;
         });
     }
@@ -59,20 +59,20 @@ export class PlaylistComponent implements OnInit {
     /**
      * Builds a partial list of the playlist of the box based on the wanted state of the videos
      *
-     * @param {Array<PlaylistItem>} playlist The playlist of the box
+     * @param {Array<PlaylistVideo>} playlist The playlist of the box
      * @param {string} state The state of the videos. Upcoming or Played
-     * @returns {Array<PlaylistItem>}
+     * @returns {Array<PlaylistVideo>}
      * @memberof PlaylistComponent
      */
-    buildPartialPlaylist(playlist: Array<PlaylistItem>, state: string): Array<PlaylistItem> {
+    buildPartialPlaylist(playlist: Array<PlaylistVideo>, state: string): Array<PlaylistVideo> {
         if (state === 'upcoming') {
-            return playlist.filter((item: PlaylistItem) => {
+            return playlist.filter((item: PlaylistVideo) => {
                 return item.startTime === null;
             });
         }
 
         if (state === 'played') {
-            return playlist.filter((item: PlaylistItem) => {
+            return playlist.filter((item: PlaylistVideo) => {
                 return item.startTime !== null && item.endTime !== null;
             });
         }
