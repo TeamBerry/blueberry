@@ -7,6 +7,7 @@ import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.com
 import { VideoEntryComponent } from './components/video-entry/video-entry.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe';
+import { PlaylistViewComponent } from './components/playlist-view/playlist-view.component';
 
 @NgModule({
     imports: [
@@ -18,6 +19,7 @@ import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe'
         SlideToggleComponent,
         VideoEntryComponent,
         BoxDeletionEstimationPipe,
+        PlaylistViewComponent,
     ],
     exports: [
         CommonModule,
@@ -31,6 +33,7 @@ import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe'
     ],
     providers: [AuthDirective],
     entryComponents: [
+        PlaylistViewComponent
     ]
 })
 export class SharedModule { }
