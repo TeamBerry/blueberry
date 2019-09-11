@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="playlists container-fluid col-9">
+    <div class="playlists row container-fluid col-9">
         <div *ngFor="let playlist of playlists | async" class="col-3 card playlist-card row d-flex px-0">
             <app-playlist-item [playlist]="playlist"></app-playlist-item>
         </div>

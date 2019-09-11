@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class PlaylistItemComponent implements OnInit {
     @Input() playlist: UserPlaylist;
+
     constructor(
         private modalService: NgbModal
     ) { }
