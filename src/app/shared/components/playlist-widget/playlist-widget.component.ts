@@ -4,11 +4,11 @@ import { PlaylistViewComponent } from '../playlist-view/playlist-view.component'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'app-playlist-item',
-    templateUrl: './playlist-item.component.html',
-    styleUrls: ['./playlist-item.component.scss']
+    selector: 'app-playlist-widget',
+    templateUrl: './playlist-widget.component.html',
+    styleUrls: ['./playlist-widget.component.scss']
 })
-export class PlaylistItemComponent implements OnInit {
+export class PlaylistWidgetComponent implements OnInit {
     @Input() playlist: UserPlaylist;
 
     constructor(

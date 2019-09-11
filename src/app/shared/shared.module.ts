@@ -8,7 +8,7 @@ import { VideoEntryComponent } from './components/video-entry/video-entry.compon
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe';
 import { PlaylistViewComponent } from './components/playlist-view/playlist-view.component';
-import { PlaylistItemComponent } from './components/playlist-item/playlist-item.component';
+import { PlaylistWidgetComponent } from './components/playlist-widget/playlist-widget.component';
 
 @NgModule({
     imports: [
@@ -21,7 +21,7 @@ import { PlaylistItemComponent } from './components/playlist-item/playlist-item.
         VideoEntryComponent,
         BoxDeletionEstimationPipe,
         PlaylistViewComponent,
-        PlaylistItemComponent,
+        PlaylistWidgetComponent,
     ],
     exports: [
         CommonModule,
@@ -32,7 +32,7 @@ import { PlaylistItemComponent } from './components/playlist-item/playlist-item.
         VideoEntryComponent,
         NgbModule,
         BoxDeletionEstimationPipe,
-        PlaylistItemComponent
+        PlaylistWidgetComponent
     ],
     providers: [AuthDirective],
     entryComponents: [
