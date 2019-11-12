@@ -35,6 +35,10 @@ button>svg {
 .berrybox-svg-icon {
     height: 1.3em;
     width: 1.3em;
+    &.crown {
+        fill: $crown-color;
+        color: $crown-color;
+    }
     &.secondary-icon {
         fill: $main-black;
         color: $master-color;
