@@ -66,3 +66,16 @@
         }
     }
 }
+
+.main-link {
+    padding: 0.5rem 1rem;
+    color: $grey-on-master-color;
+    text-decoration: none;
+    font-size: 1.1rem;
+    &.active {
+        color: white;
+    }
+    &:hover {
+        color: white;
+    }
+}
