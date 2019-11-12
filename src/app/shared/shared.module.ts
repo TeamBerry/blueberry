@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe';
 import { PlaylistViewComponent } from './components/playlist-view/playlist-view.component';
 import { PlaylistWidgetComponent } from './components/playlist-widget/playlist-widget.component';
+import { PlaylistSelectorComponent } from './components/playlist-selector/playlist-selector.component';
 
 @NgModule({
     imports: [
@@ -22,6 +23,7 @@ import { PlaylistWidgetComponent } from './components/playlist-widget/playlist-w
         BoxDeletionEstimationPipe,
         PlaylistViewComponent,
         PlaylistWidgetComponent,
+        PlaylistSelectorComponent,
     ],
     exports: [
         CommonModule,
@@ -36,7 +38,8 @@ import { PlaylistWidgetComponent } from './components/playlist-widget/playlist-w
     ],
     providers: [AuthDirective],
     entryComponents: [
-        PlaylistViewComponent
+        PlaylistViewComponent,
+        PlaylistSelectorComponent
     ]
 })
 export class SharedModule { }

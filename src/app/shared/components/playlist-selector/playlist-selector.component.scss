@@ -1,0 +1,12 @@
+@import './../../../../imports.scss';
+.modal-header,
+.modal-body,
+.modal-footer {
+    background-color: $background-main-color;
+    border: none;
+    border-radius: 0;
+}
+
+.checkbox {
+    float: right;
+}

@@ -16,7 +16,8 @@
                     {{ item?.submitted_by?.name }}
                 </span>
             </div>
-            <button *ngIf="item?.endTime !== null" class="btn btn-default button-resubmit" (click)="resubmit(item)">Resubmit</button>
+            <button *ngIf="item?.endTime !== null" class="btn btn-default action-button" (click)="resubmit(item)">Resubmit</button>
+            <button class="btn btn-outline-default action-button" (click)="addToPlaylist(item)">Add to playlist</button>
         </div>
     </div>
 </div>
