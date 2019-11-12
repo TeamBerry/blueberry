@@ -42,7 +42,6 @@ export class ChatComponent implements OnInit {
             )
             .subscribe(
                 (message: Message) => {
-                    console.log('New message: ', message);
                     this.messages.push(message);
                 },
                 error => {
