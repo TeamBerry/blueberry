@@ -27,8 +27,7 @@ import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe'
         SlideToggleComponent,
         VideoEntryComponent,
         NgbModule,
-        BoxDeletionEstimationPipe,
-        PlaylistItemComponent
+        BoxDeletionEstimationPipe
     ],
     providers: [AuthDirective],
     entryComponents: [
