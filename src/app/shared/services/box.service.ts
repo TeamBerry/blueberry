@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 
 import { environment } from './../../../environments/environment';
 import { Box } from './../models/box.model';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class BoxService {
@@ -93,5 +94,16 @@ export class BoxService {
      */
     open(box: Box): Observable<Box> {
         return this.http.post<Box>(environment.araza + '/box/' + box._id + '/open', null);
+    }
+
+
+    /**
+     * Lists the users currently connected to the box
+     *
+     * @param {string} box
+     * @memberof JukeboxService
+     */
+    public users(box: string) {
+        return this.http.get<Array<User>>(`${environment.araza}/box/${box}/users`)
     }
 }
