@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -18,7 +18,7 @@ import { BoxService } from 'app/shared/services/box.service';
     providers: [UserService, BoxService]
 })
 export class BoxesTabComponent implements OnInit {
-    public user: User = AuthService.getSession();
+    @Input() user: User = AuthService.getSession();
 
     public boxes: Observable<Array<Box>>;
 
@@ -32,8 +32,6 @@ export class BoxesTabComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('INIT', this.user);
-
         this.boxes = this.userService.boxes(this.user);
     }
 

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlaylistComponent } from './playlist.component';
 import { JukeboxService } from '../../jukebox.service';
-import { PlaylistItem } from 'app/shared/models/playlist-item.model';
+import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
 
 describe('PlaylistComponent', () => {
     let component: PlaylistComponent;
@@ -27,7 +27,7 @@ describe('PlaylistComponent', () => {
     });
 
     describe('Builds the parts of the playlist', () => {
-        const playlist: Array<PlaylistItem> = [
+        const playlist: Array<PlaylistVideo> = [
             {
                 '_id': '5cb98fb0b7452c6b3cbfd5c5',
                 'video': {
@@ -110,7 +110,7 @@ describe('PlaylistComponent', () => {
             },
         ];
         it('Can isolate the currently playing video', () => {
-            const expected: PlaylistItem = {
+            const expected: PlaylistVideo = {
                 '_id': '5cb98fabb7452c6b3cbfd556',
                 'video': {
                     '_id': '5cb32f4f770fb93a70205ec2',
@@ -131,7 +131,7 @@ describe('PlaylistComponent', () => {
         });
 
         it('Can build the list of already played videos', () => {
-            const expected: Array<PlaylistItem> = [
+            const expected: Array<PlaylistVideo> = [
                 {
                     '_id': '5cb98c44b7452c6b3cbfd4b3',
                     'video': {
@@ -186,7 +186,7 @@ describe('PlaylistComponent', () => {
         });
 
         it('Can build the list of upcoming videos', () => {
-            const expected: Array<PlaylistItem> = [
+            const expected: Array<PlaylistVideo> = [
                 {
                     '_id': '5cb98fb0b7452c6b3cbfd5c5',
                     'video': {

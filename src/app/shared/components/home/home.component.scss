@@ -5,18 +5,6 @@
     background: linear-gradient(70deg, $master-color 0, darken($master-color, 15%) 100%);
 }
 
-.featured,
-.social-space {
-    // background-color: fade_out(darken($main-black, 15%), .1);
-    background-color: $background-main-color;
-    .free-text {
-        font-family: 'Montserrat', sans-serif;
-        color: $text-focus-color;
-        margin-bottom: 40px;
-        text-align: center
-    }
-}
-
 .jumbotron-welcome {
     padding: 150px;
     font-family: 'Montserrat', sans-serif;

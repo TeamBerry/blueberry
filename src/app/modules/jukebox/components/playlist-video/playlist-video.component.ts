@@ -1,14 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { PlaylistItem } from 'app/shared/models/playlist-item.model';
+import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
 
 @Component({
-    selector: 'app-playlist-item',
-    templateUrl: './playlist-item.component.html',
-    styleUrls: ['./playlist-item.component.scss']
+    selector: 'app-playlist-video',
+    templateUrl: './playlist-video.component.html',
+    styleUrls: ['./playlist-video.component.scss']
 })
-export class PlaylistItemComponent implements OnInit {
+export class PlaylistVideoComponent implements OnInit {
 
-    @Input() item: PlaylistItem;
+    @Input() item: PlaylistVideo;
 
     @Output() resubmit$: EventEmitter<string> = new EventEmitter();
 
@@ -20,10 +20,10 @@ export class PlaylistItemComponent implements OnInit {
     /**
      * Resubmits a video that was played back in the queue of the playlist
      *
-     * @param {PlaylistItem} item The playlist item
+     * @param {PlaylistVideo} item The playlist item
      * @memberof PlaylistItemComponent
      */
-    resubmit(item: PlaylistItem) {
+    resubmit(item: PlaylistVideo) {
         this.resubmit$.emit(item.video.link);
     }
 

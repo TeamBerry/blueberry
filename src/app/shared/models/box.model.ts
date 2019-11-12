@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { PlaylistItem } from './playlist-item.model';
+import { PlaylistVideo } from './playlist-video.model';
 
 @Injectable()
 export class Box {
@@ -12,7 +12,7 @@ export class Box {
     description: string;
     lang: string;
     name: string;
-    playlist: Array<PlaylistItem>;
+    playlist: Array<PlaylistVideo>;
     open: boolean;
     createdAt: Date;
     updatedAt: Date;

@@ -13,7 +13,7 @@ import { PanelComponent } from './components/panel/panel.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { UserlistComponent } from './components/userlist/userlist.component';
 import { FavoritelistComponent } from './components/favoritelist/favoritelist.component';
-import { PlaylistItemComponent } from './components/playlist-item/playlist-item.component';
+import { PlaylistVideoComponent } from './components/playlist-video/playlist-video.component';
 import { CommandListComponent } from './components/command-list/command-list.component';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { CommandListComponent } from './components/command-list/command-list.com
         PlaylistComponent,
         UserlistComponent,
         FavoritelistComponent,
-        PlaylistItemComponent,
+        PlaylistVideoComponent,
         CommandListComponent
     ],
     imports: [
