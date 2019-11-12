@@ -42,6 +42,17 @@ export class AuthService {
     }
 
     /**
+     * Consumes the API that will trigger a password reset for the given mail address
+     *
+     * @param {string} mail
+     * @returns
+     * @memberof AuthService
+     */
+    triggerPasswordReset(mail: string) {
+        return this.http.post(`${environment.araza}/auth/reset`, { mail })
+    }
+
+    /**
      * Logs the user out by destroying its session
      *
      * @memberof AuthService
