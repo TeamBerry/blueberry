@@ -41,6 +41,27 @@ export class AuthService {
         return this.http.post(environment.araza + '/auth/signup', { mail, password, username });
     }
 
+    // PASSWORD RESET
+
+    /**
+     * Consumes the API that will trigger a password reset for the given mail address
+     *
+     * @param {string} mail
+     * @returns
+     * @memberof AuthService
+     */
+    triggerPasswordReset(mail: string) {
+        return this.http.post(`${environment.araza}/auth/reset`, { mail })
+    }
+
+    checkPasswordToken(resetToken: string) {
+        return this.http.get(`${environment.araza}/auth/reset/${resetToken}`)
+    }
+
+    resetPassword(resetToken: string, password: string) {
+        return this.http.post(`${environment.araza}/auth/reset/${resetToken}`, { password })
+    }
+
     /**
      * Logs the user out by destroying its session
      *
