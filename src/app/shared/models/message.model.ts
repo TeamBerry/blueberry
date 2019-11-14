@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import * as moment from 'moment';
 
 @Injectable()
 export class Message {
@@ -7,13 +6,13 @@ export class Message {
     contents: string;
     source: string;
     scope: string;
-    time: any;
+    time: Date;
 
     constructor(obj?: any) {
         this.author = obj && obj.author || null;
         this.contents = obj && obj.contents || null;
         this.source = obj && obj.source || null;
         this.scope = obj && obj.scope || null;
-        this.time = obj && obj.time || moment();
+        this.time = obj && obj.time || new Date();
     }
 }

@@ -5,10 +5,10 @@ import { Video } from './video.model';
 @Injectable()
 export class PlaylistVideo {
     _id: string;
-    endTime: number;
+    endTime: Date;
     ignored: boolean;
-    startTime: number;
-    submitted_at: number;
+    startTime: Date;
+    submittedAt: Date;
     submitted_by: {
         _id: string;
         name: string;

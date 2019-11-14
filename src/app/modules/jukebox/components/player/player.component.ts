@@ -96,8 +96,7 @@ export class PlayerComponent implements OnInit, OnChanges {
      * @memberof PlayerComponent
      */
     playVideo(video: PlaylistVideo) {
-        const now = +moment().format('x');
-        let startingTime = (now - video.startTime) / 1000;
+        let startingTime = moment().diff(video.startTime) / 1000;
 
         if (startingTime <= 2) {
             startingTime = 0;
