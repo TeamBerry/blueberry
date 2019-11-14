@@ -35,6 +35,10 @@ button>svg {
 .berrybox-svg-icon {
     height: 1.3em;
     width: 1.3em;
+    &.crown {
+        fill: $crown-color;
+        color: $crown-color;
+    }
     &.secondary-icon {
         fill: $main-black;
         color: $master-color;
@@ -92,4 +96,14 @@ button>svg {
 
 #auth-icon {
     width: 50px;
+}
+
+.featured {
+    background-color: $background-main-color;
+    .free-text {
+        font-family: 'Montserrat', sans-serif;
+        color: $text-focus-color;
+        margin-bottom: 40px;
+        text-align: center
+    }
 }

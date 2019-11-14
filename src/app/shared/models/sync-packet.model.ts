@@ -1,4 +1,4 @@
-import { PlaylistItem } from './playlist-item.model';
+import { PlaylistVideo } from './playlist-video.model';
 
 /**
  * Packet sent to clients for video sync
@@ -18,7 +18,7 @@ export class SyncPacket {
      * @type {*}
      * @memberof SyncPacket
      */
-    item: PlaylistItem;
+    item: PlaylistVideo;
 
     constructor(obj?: any) {
         this.box = obj && obj.box || null;

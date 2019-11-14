@@ -5,7 +5,7 @@
             <app-chat [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user" (socketStatus)="refreshChatStatus($event)"></app-chat>
             <app-playlist [hidden]="activePanel !== 'queue'" [user]="user"></app-playlist>
             <app-favoritelist [hidden]="activePanel !== 'favorites'" [boxToken]="boxToken" [user]="user"></app-favoritelist>
-            <app-userlist [hidden]="activePanel !== 'users'" [boxToken]="boxToken" [user]="user"></app-userlist>
+            <app-userlist [hidden]="activePanel !== 'users'" [user]="user"></app-userlist>
             <app-command-list [hidden]="activePanel !== 'commands'" (clickedCommand)="kickstartCommand($event)"></app-command-list>
         </div>
     </div>

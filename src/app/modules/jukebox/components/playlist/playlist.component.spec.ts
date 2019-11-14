@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlaylistComponent } from './playlist.component';
 import { JukeboxService } from '../../jukebox.service';
-import { PlaylistItem } from 'app/shared/models/playlist-item.model';
+import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
 
 describe('PlaylistComponent', () => {
     let component: PlaylistComponent;
@@ -27,7 +27,7 @@ describe('PlaylistComponent', () => {
     });
 
     describe('Builds the parts of the playlist', () => {
-        const playlist: Array<PlaylistItem> = [
+        const playlist: Array<PlaylistVideo> = [
             {
                 '_id': '5cb98fb0b7452c6b3cbfd5c5',
                 'video': {
@@ -38,7 +38,7 @@ describe('PlaylistComponent', () => {
                 'startTime': null,
                 'endTime': null,
                 'ignored': false,
-                'submitted_at': 1555664816009,
+                'submittedAt': 1555664816009,
                 'submitted_by': {
                     '_id': '5cb323d9c403e73a69a5a7b0',
                     'name': 'AngelZatch'
@@ -54,7 +54,7 @@ describe('PlaylistComponent', () => {
                 'startTime': 1555664811319,
                 'endTime': null,
                 'ignored': false,
-                'submitted_at': 1555664811232,
+                'submittedAt': 1555664811232,
                 'submitted_by': {
                     '_id': '5cb323d9c403e73a69a5a7b0',
                     'name': 'AngelZatch'
@@ -70,7 +70,7 @@ describe('PlaylistComponent', () => {
                 'startTime': 1555663940928,
                 'endTime': 1555664132311,
                 'ignored': false,
-                'submitted_at': 1555663940816,
+                'submittedAt': 1555663940816,
                 'submitted_by': {
                     '_id': '5cb323d9c403e73a69a5a7b0',
                     'name': 'AngelZatch'
@@ -86,7 +86,7 @@ describe('PlaylistComponent', () => {
                 'startTime': 1555662177632,
                 'endTime': 1555662437877,
                 'ignored': false,
-                'submitted_at': 1555662177576,
+                'submittedAt': 1555662177576,
                 'submitted_by': {
                     '_id': '5cb323d9c403e73a69a5a7b0',
                     'name': 'AngelZatch'
@@ -102,7 +102,7 @@ describe('PlaylistComponent', () => {
                 'startTime': 1555661927247,
                 'endTime': 1555662154866,
                 'ignored': false,
-                'submitted_at': 1555661491376,
+                'submittedAt': 1555661491376,
                 'submitted_by': {
                     '_id': '5cb323d9c403e73a69a5a7b0',
                     'name': 'AngelZatch'
@@ -110,7 +110,7 @@ describe('PlaylistComponent', () => {
             },
         ];
         it('Can isolate the currently playing video', () => {
-            const expected: PlaylistItem = {
+            const expected: PlaylistVideo = {
                 '_id': '5cb98fabb7452c6b3cbfd556',
                 'video': {
                     '_id': '5cb32f4f770fb93a70205ec2',
@@ -120,7 +120,7 @@ describe('PlaylistComponent', () => {
                 'startTime': 1555664811319,
                 'endTime': null,
                 'ignored': false,
-                'submitted_at': 1555664811232,
+                'submittedAt': 1555664811232,
                 'submitted_by': {
                     '_id': '5cb323d9c403e73a69a5a7b0',
                     'name': 'AngelZatch'
@@ -131,7 +131,7 @@ describe('PlaylistComponent', () => {
         });
 
         it('Can build the list of already played videos', () => {
-            const expected: Array<PlaylistItem> = [
+            const expected: Array<PlaylistVideo> = [
                 {
                     '_id': '5cb98c44b7452c6b3cbfd4b3',
                     'video': {
@@ -142,7 +142,7 @@ describe('PlaylistComponent', () => {
                     'startTime': 1555663940928,
                     'endTime': 1555664132311,
                     'ignored': false,
-                    'submitted_at': 1555663940816,
+                    'submittedAt': 1555663940816,
                     'submitted_by': {
                         '_id': '5cb323d9c403e73a69a5a7b0',
                         'name': 'AngelZatch'
@@ -158,7 +158,7 @@ describe('PlaylistComponent', () => {
                     'startTime': 1555662177632,
                     'endTime': 1555662437877,
                     'ignored': false,
-                    'submitted_at': 1555662177576,
+                    'submittedAt': 1555662177576,
                     'submitted_by': {
                         '_id': '5cb323d9c403e73a69a5a7b0',
                         'name': 'AngelZatch'
@@ -174,7 +174,7 @@ describe('PlaylistComponent', () => {
                     'startTime': 1555661927247,
                     'endTime': 1555662154866,
                     'ignored': false,
-                    'submitted_at': 1555661491376,
+                    'submittedAt': 1555661491376,
                     'submitted_by': {
                         '_id': '5cb323d9c403e73a69a5a7b0',
                         'name': 'AngelZatch'
@@ -186,7 +186,7 @@ describe('PlaylistComponent', () => {
         });
 
         it('Can build the list of upcoming videos', () => {
-            const expected: Array<PlaylistItem> = [
+            const expected: Array<PlaylistVideo> = [
                 {
                     '_id': '5cb98fb0b7452c6b3cbfd5c5',
                     'video': {
@@ -197,7 +197,7 @@ describe('PlaylistComponent', () => {
                     'startTime': null,
                     'endTime': null,
                     'ignored': false,
-                    'submitted_at': 1555664816009,
+                    'submittedAt': 1555664816009,
                     'submitted_by': {
                         '_id': '5cb323d9c403e73a69a5a7b0',
                         'name': 'AngelZatch'

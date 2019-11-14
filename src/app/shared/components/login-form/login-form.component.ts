@@ -11,8 +11,12 @@ import { AuthService } from '../../../core/auth/auth.service';
 })
 export class LoginFormComponent implements OnInit {
     loginForm: FormGroup;
+    resetForm: FormGroup;
 
     errorMessage: string = null;
+
+    state: 'login' | 'reset' = 'login';
+    isResetDone = false;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -25,6 +29,10 @@ export class LoginFormComponent implements OnInit {
             mail: new FormControl('', [Validators.required]),
             password: new FormControl('', [Validators.required])
         });
+
+        this.resetForm = new FormGroup({
+            mail: new FormControl('', [Validators.required])
+        })
     }
 
     get mail() { return this.loginForm.get('mail'); }
@@ -56,5 +64,17 @@ export class LoginFormComponent implements OnInit {
                 this.errorMessage = 'Your credentials are invalid. Please try again.';
             }
         );
+    }
+
+    resetPassword() {
+        this.authService.triggerPasswordReset(this.resetForm.value.mail).subscribe(
+            (response) => {
+                this.isResetDone = true;
+
+                setTimeout(() => {
+                    this.state = 'login'
+                }, 5000);
+            }
+        )
     }
 }

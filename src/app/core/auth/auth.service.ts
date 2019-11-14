@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '../../../../node_modules/@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 
 import { environment } from 'environments/environment';
@@ -39,6 +38,27 @@ export class AuthService {
 
     signup(mail: string, password: string, username: string) {
         return this.http.post(environment.araza + '/auth/signup', { mail, password, username });
+    }
+
+    // PASSWORD RESET
+
+    /**
+     * Consumes the API that will trigger a password reset for the given mail address
+     *
+     * @param {string} mail
+     * @returns
+     * @memberof AuthService
+     */
+    triggerPasswordReset(mail: string) {
+        return this.http.post(`${environment.araza}/auth/reset`, { mail })
+    }
+
+    checkPasswordToken(resetToken: string) {
+        return this.http.get(`${environment.araza}/auth/reset/${resetToken}`)
+    }
+
+    resetPassword(resetToken: string, password: string) {
+        return this.http.post(`${environment.araza}/auth/reset/${resetToken}`, { password })
     }
 
     /**
