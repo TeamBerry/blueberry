@@ -8,7 +8,7 @@ export class PlaylistVideo {
     endTime: number;
     ignored: boolean;
     startTime: number;
-    submitted_at: number;
+    submittedAt: number;
     submitted_by: {
         _id: string;
         name: string;
