@@ -26,8 +26,6 @@ export class UserSettingsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        console.log(this.user);
-
         if (this.session.settings.theme === 'light') {
             this.isDarkThemeEnabled = false;
         }
@@ -38,7 +36,8 @@ export class UserSettingsComponent implements OnInit {
     }
 
     toggleDarkTheme() {
-        if (this.isDarkThemeEnabled) {
+        if (this.isDarkThemeEnabled === true) {
+            console.log('GOING LIGHT.')
             this.themeService.toggleLight()
         } else {
             this.themeService.toggleDark()
