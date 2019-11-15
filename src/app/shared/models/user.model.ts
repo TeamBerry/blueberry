@@ -6,28 +6,19 @@ export class User {
     name: string;
     token: string;
     mail: string;
-    settings: {};
+    settings: {
+        theme: 'light' | 'dark'
+    };
     favorites: any[];
 
-    constructor(obj?: any) {
-        this._id = obj && obj._id || null;
-        this.name = obj && obj.name || null;
-        this.token = obj && obj.token || null;
-        this.mail = obj && obj.mail || null;
-        this.settings = obj && obj.settings || {
-            messagedByEveryone: true,
-            messagedByFriends: true,
-            messagedByBoxMembers: true,
-            invitedByEveryone: true,
-            invitedByFriendsOfFriends: true,
-            invitedByBoxMembers: true,
-            inAppNotifications: true,
-            desktopNotifications: true,
-            friendRequestReceived: true,
-            directMessageReceived: true,
-            boxOpenedByFriend: true,
-            darkTheme: true
+    constructor(user?: Partial<User>) {
+        this._id = user && user._id || null;
+        this.name = user && user.name || null;
+        this.token = user && user.token || null;
+        this.mail = user && user.mail || null;
+        this.settings = user && user.settings || {
+            theme: 'light'
         }
-        this.favorites = obj && obj.favorites || [];
+        this.favorites = user && user.favorites || [];
     }
 }
