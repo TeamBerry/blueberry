@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    araza: 'http://araza.berrybox.tv',
-    boquila: 'http://boquila.berrybox.tv',
+    araza: 'https://araza.berrybox.tv',
+    boquila: 'https://boquila.berrybox.tv',
 };
