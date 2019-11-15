@@ -13,6 +13,6 @@ $text-focus-color: $master-color;
 // System colors
 $text-system-color: #bbb;
 // SVG
-$stroke-color: $text-system-color;
+$stroke-color: var(--text-system-color);
 // Inactive
 $inactive-color: #ccc;

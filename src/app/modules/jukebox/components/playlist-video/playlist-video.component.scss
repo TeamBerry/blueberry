@@ -1,12 +1,12 @@
 @import './../../../../../imports.scss';
 .playlist-entry {
     padding: 5px 0;
-    border-bottom: .5px solid rgba($text-focus-color, 0.7);
+    border-bottom: .5px solid rgba(var(--text-focus-color), 0.7);
     &:nth-child(even) {
-        border-top: .5px solid rgba($text-focus-color, 0.7);
+        border-top: .5px solid rgba(var(--text-focus-color), 0.7);
     }
     &.playing {
-        background-color: $background-main-active-color;
+        background-color: var(--background-main-active-color);
     }
     &.ignored {}
 }

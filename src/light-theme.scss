@@ -11,8 +11,8 @@ $text-main-color: black;
 $background-focus-color: darken(white, 10%);
 $text-focus-color: $master-color;
 // System colors
-$text-system-color: #444444;
+var(--text-system-color): #444444;
 // SVG
-$stroke-color: $text-system-color;
+$stroke-color: var(--text-system-color);
 // Inactive
 $inactive-color: #8f8f8f;

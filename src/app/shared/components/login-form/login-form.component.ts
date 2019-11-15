@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from '../../../core/auth/auth.service';
 import { Session } from 'app/shared/models/session.model';
+import { ThemeService } from 'app/shared/services/theme.service';
 
 @Component({
     selector: 'app-login-form',
@@ -22,6 +23,7 @@ export class LoginFormComponent implements OnInit {
     constructor(
         public activeModal: NgbActiveModal,
         public authService: AuthService,
+        private themeService: ThemeService
     ) {
     }
 
@@ -59,6 +61,9 @@ export class LoginFormComponent implements OnInit {
             (session: Session) => {
                 this.errorMessage = null;
                 this.authService.setSession(session);
+                if (session.subject.settings.theme === 'light') {
+                    this.themeService.toggleLight()
+                }
                 location.reload();
             },
             (error) => {

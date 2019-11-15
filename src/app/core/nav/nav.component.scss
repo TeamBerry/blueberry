@@ -8,11 +8,11 @@
 }
 
 .navbar-brand {
-    color: $text-main-color;
+    color: var(--text-main-color);
     font-size: 20px;
     font-weight: 800;
     &:hover {
-        color: $text-main-color;
+        color: var(--text-main-color);
     }
 }
 
@@ -23,7 +23,7 @@
 .nav-name {
     font-size: 19px;
     font-weight: 700;
-    color: $text-main-color;
+    color: var(--text-main-color);
 }
 
 .nav-item {
@@ -31,15 +31,15 @@
 }
 
 .dropdown-menu {
-    background-color: $background-main-color;
+    background-color: var(--background-main-color);
     top: 8px !important;
     border-radius: 0;
     border-color: $master-color;
     width: 179px;
     .dropdown-item {
-        color: $text-focus-color;
+        color: var(--text-focus-color);
         &:hover {
-            background-color: $background-main-hover-color;
+            background-color: var(--background-main-hover-color);
         }
     }
 }

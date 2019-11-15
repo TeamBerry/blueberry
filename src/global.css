@@ -1,12 +1,13 @@
 :root {
     --background-main-color: white;
-    --background-main-hover-color: darken(var(--background-main-color), 5%);
-    --background-main-active-color: darken(var(--background-main-color), 15%);
+    --background-main-hover-color: #f2f2f2;
+    --background-main-active-color: #d9d9d9;
     --background-main-border-color: #979797;
     --background-secondary-color: #0B1A38;
+    --background-secondary-color-alternate: #0f244d;
     --input-main-color: #d0d0d0;
     --text-main-color: black;
-    --background-focus-color: darken(white, 10%);
+    --background-focus-color: #e6e6e6;
     --text-focus-color: #009AEB;
     --text-system-color: #444444;
     --stroke-color: var(--text-system-color);

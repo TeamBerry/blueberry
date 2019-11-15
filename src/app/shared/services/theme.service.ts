@@ -28,20 +28,20 @@ export const lightTheme = {
     providedIn: 'root'
 })
 export class ThemeService {
-    session: AuthSubject = AuthService.getAuthSubject();
+    user: AuthSubject = AuthService.getAuthSubject();
 
     constructor() { }
 
     toggleDark() {
         this.setTheme(darkTheme)
-        this.session.settings.theme = 'dark'
-        localStorage.setItem('BBOX-user', JSON.stringify(this.session));
+        this.user.settings.theme = 'dark'
+        localStorage.setItem('BBOX-user', JSON.stringify(this.user));
     }
 
     toggleLight() {
         this.setTheme(lightTheme)
-        this.session.settings.theme = 'light'
-        localStorage.setItem('BBOX-user', JSON.stringify(this.session));
+        this.user.settings.theme = 'light'
+        localStorage.setItem('BBOX-user', JSON.stringify(this.user));
 
     }
 

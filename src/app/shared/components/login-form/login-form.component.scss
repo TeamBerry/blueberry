@@ -1,7 +1,7 @@
 @import './../../../../imports.scss';
 .modal-header,
 .modal-body {
-    background-color: $background-main-color;
+    background-color: var(--background-main-color);
     border-radius: 0;
     border: none;
 }
