@@ -11,6 +11,7 @@ import { SyncPacket } from 'app/shared/models/sync-packet.model';
 import { VideoPayload } from 'app/shared/models/video-payload.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
+import { AuthSubject } from 'app/shared/models/session.model';
 
 @Injectable({
     providedIn: 'root'
@@ -34,7 +35,7 @@ export class JukeboxService {
     // TODO: Refactor this into the stream
     public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(this.box);
 
-    public user: User = AuthService.getSession();
+    public user: AuthSubject = AuthService.getAuthSubject();
 
     constructor() {
     }

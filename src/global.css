@@ -1,0 +1,14 @@
+:root {
+    --background-main-color: white;
+    --background-main-hover-color: darken(var(--background-main-color), 5%);
+    --background-main-active-color: darken(var(--background-main-color), 15%);
+    --background-main-border-color: #979797;
+    --background-secondary-color: #0B1A38;
+    --input-main-color: #d0d0d0;
+    --text-main-color: black;
+    --background-focus-color: darken(white, 10%);
+    --text-focus-color: #009AEB;
+    --text-system-color: #444444;
+    --stroke-color: var(--text-system-color);
+    --inactive-color: #8f8f8f;
+}

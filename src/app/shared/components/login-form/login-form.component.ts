@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from '../../../core/auth/auth.service';
+import { Session } from 'app/shared/models/session.model';
 
 @Component({
     selector: 'app-login-form',
@@ -55,9 +56,9 @@ export class LoginFormComponent implements OnInit {
         const mail = this.loginForm.value.mail,
             password = this.loginForm.value.password;
         this.authService.login(mail, password).subscribe(
-            (authResult) => {
+            (session: Session) => {
                 this.errorMessage = null;
-                this.authService.setSession(authResult);
+                this.authService.setSession(session);
                 location.reload();
             },
             (error) => {

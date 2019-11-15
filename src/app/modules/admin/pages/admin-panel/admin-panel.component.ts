@@ -9,7 +9,6 @@ import { AuthService } from 'app/core/auth/auth.service';
     styleUrls: ['./admin-panel.component.scss']
 })
 export class AdminPanelComponent implements OnInit {
-    public user: User = AuthService.getSession()
     public currentTab = 'boxes';
 
     constructor() { }
