@@ -37,8 +37,8 @@ export class AuthService {
         return this.http.get<User>(environment.araza + '/user/' + token);
     }
 
-    signup(mail: string, password: string, username: string): Observable<Session> {
-        return this.http.post<Session>(environment.araza + '/auth/signup', { mail, password, username });
+    signup(mail: string, password: string, name: string): Observable<Session> {
+        return this.http.post<Session>(environment.araza + '/auth/signup', { mail, password, name });
     }
 
     // PASSWORD RESET
