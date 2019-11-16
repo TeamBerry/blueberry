@@ -37,8 +37,8 @@ button>svg {
     height: 1.3em;
     width: 1.3em;
     &.crown {
-        fill: $crown-color;
-        color: $crown-color;
+        fill: $active-color;
+        color: $active-color;
     }
     &.secondary-icon {
         fill: $main-black;

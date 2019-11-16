@@ -12,7 +12,7 @@ import { AuthService } from 'app/core/auth/auth.service';
 })
 export class UserSettingsComponent implements OnInit {
 
-    public currentTab = 'account';
+    public currentTab = 'display';
     @Input() user: User;
 
     public close: EventEmitter<any> = new EventEmitter();
@@ -37,10 +37,11 @@ export class UserSettingsComponent implements OnInit {
 
     toggleDarkTheme() {
         if (this.isDarkThemeEnabled === true) {
-            console.log('GOING LIGHT.')
             this.themeService.toggleLight()
+            this.isDarkThemeEnabled = false
         } else {
             this.themeService.toggleDark()
+            this.isDarkThemeEnabled = true
         }
     }
 
