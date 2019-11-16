@@ -42,6 +42,19 @@ export class ThemeService {
 
     constructor() { }
 
+    /**
+     * Sets the proper theme according to the user settings.
+     *
+     * @memberof ThemeService
+     */
+    init() {
+        if (this.user.settings.theme === 'light') {
+            this.setTheme(lightTheme)
+        } else {
+            this.setTheme(darkTheme)
+        }
+    }
+
     toggleDark() {
         this.setTheme(darkTheme)
         this.user.settings.theme = 'dark'
