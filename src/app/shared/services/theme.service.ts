@@ -3,12 +3,14 @@ import { AuthSubject } from '../models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
 
 export const darkTheme = {
-    'background-main-color': '#0B1A2D',
+    'background-main-color': '#0B1A38',
     'background-main-hover-color': '#102641',
     'background-main-active-color': '#1a3e6a',
     'background-main-border-color': '#979797',
-    'background-secondary-color': '#0B1A38',
-    'background-secondary-color-alternate': '#0f244d',
+    // Main Color, lighten 15%
+    'background-secondary-color': '#1a3e6a',
+    // Secondary Color, lighten 5%
+    'background-secondary-color-alternate': '#1f4a7e',
     'input-main-color': '#D0D0D0',
     'text-main-color': 'white',
     'background-focus-color': '#192929',
@@ -23,8 +25,10 @@ export const lightTheme = {
     'background-main-hover-color': '#f2f2f2',
     'background-main-active-color': '#d9d9d9',
     'background-main-border-color': '#979797',
-    'background-secondary-color': '#0B1A38',
-    'background-secondary-color-alternate': '#0f244d',
+    // Main Color, darken 15%
+    'background-secondary-color': '#d9d9d9',
+    // Secondary Color, darken 5%
+    'background-secondary-color-alternate': '#cccccc',
     'input-main-color': '#d0d0d0',
     'text-main-color': 'black',
     'background-focus-color': '#e6e6e6',
