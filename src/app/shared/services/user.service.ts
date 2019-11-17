@@ -50,6 +50,17 @@ export class UserService {
         return this.http.patch<User>(environment.araza + '/user/' + user._id + '/favorites', user.favorites);
     }
 
+    /**
+     * Update user settings
+     *
+     * @param {*} settings
+     * @returns
+     * @memberof UserService
+     */
+    updateSettings(settings) {
+        return this.http.patch(`${environment.araza}/user/settings`, settings);
+    }
+
     stats(token: string) { }
 
     /**

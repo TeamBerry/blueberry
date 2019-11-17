@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthSubject } from '../models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
+import { UserService } from './user.service';
 
 export const darkTheme = {
     'background-main-color': '#0B1A38',
@@ -43,8 +44,11 @@ export const lightTheme = {
 })
 export class ThemeService {
     user: AuthSubject = AuthService.getAuthSubject();
+    updateTimeout;
 
-    constructor() { }
+    constructor(
+        private userService: UserService
+    ) { }
 
     /**
      * Sets the proper theme according to the user settings.
@@ -52,10 +56,10 @@ export class ThemeService {
      * @memberof ThemeService
      */
     init() {
-        if (this.user.settings.theme === 'light') {
+        if (this.user && this.user.settings.theme === 'light') {
             this.setTheme(lightTheme)
         } else {
-            this.setTheme(darkTheme)
+            this.setTheme(darkTheme, false)
         }
     }
 
@@ -72,9 +76,27 @@ export class ThemeService {
 
     }
 
-    private setTheme(theme: {}) {
+    /**
+     * Sets the theme. If the refresh settings flag is at true, then the API is consumed
+     *
+     * The flag is present so the default theme can be applied even when no user is connected
+     *
+     * @private
+     * @param {{}} theme
+     * @param {boolean} [refreshSettings=true]
+     * @memberof ThemeService
+     */
+    private setTheme(theme: {}, refreshSettings = true) {
         Object.keys(theme).forEach(key =>
             document.documentElement.style.setProperty(`--${key}`, theme[key])
         );
+
+        // Refresh user settings
+        clearTimeout(this.updateTimeout)
+        if (refreshSettings) {
+            this.updateTimeout = setTimeout(() => {
+                this.userService.updateSettings({ theme: this.user.settings.theme })
+            }, 700)
+        }
     }
 }

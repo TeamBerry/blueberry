@@ -7,6 +7,8 @@ import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.com
 import { VideoEntryComponent } from './components/video-entry/video-entry.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe';
+import { ThemeService } from './services/theme.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
     imports: [
@@ -29,7 +31,7 @@ import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe'
         NgbModule,
         BoxDeletionEstimationPipe
     ],
-    providers: [AuthDirective],
+    providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
     ]
 })
