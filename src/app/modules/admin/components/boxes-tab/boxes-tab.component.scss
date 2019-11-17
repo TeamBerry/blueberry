@@ -2,7 +2,7 @@
 .box-card {
     border: 1px solid lighten($master-color, 10%);
     margin: .7rem;
-    color: $text-main-color;
+    color: var(--text-main-color);
     border-radius: .3rem;
 }
 

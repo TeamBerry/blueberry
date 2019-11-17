@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
 import { ToastrService } from 'ngx-toastr';
 
@@ -57,7 +57,6 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
         this.user.favorites.push(this.video.video);
         this.userService.updateFavorites(this.user).subscribe(
             (user: User) => {
-                this.authService.setUser(user);
                 this.toastr.success('Video added to favorites.', 'Success');
                 this.isLiked = true;
             }
@@ -79,7 +78,6 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
 
         this.userService.updateFavorites(this.user).subscribe(
             (user: User) => {
-                this.authService.setUser(user);
                 this.toastr.success('Video removed from favorites.', 'Success');
                 this.isLiked = false;
             }

@@ -4,22 +4,18 @@
     border-right: 1px solid transparentize($master-color, 0.5);
 }
 
-.settings-tabs {
-    background-color: $background-secondary-color;
-}
-
 .nav-link {
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
-    color: $text-system-color !important;
+    color: var(--text-system-color) !important;
     &:hover {
-        background-color: $background-main-hover-color;
+        background-color: var(--background-main-hover-color);
         color: white !important;
     }
     &.active {
         cursor: default;
         color: white !important;
         font-weight: 800;
-        background-color: $background-main-active-color;
+        background-color: var(--background-main-active-color);
     }
 }

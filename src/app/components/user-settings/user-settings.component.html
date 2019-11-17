@@ -1,16 +1,16 @@
 <div class="d-flex" id="settings">
     <div class="col-4 menu pt-5">
         <nav class="nav flex-column p-0 text-right">
-            <a class="nav-link" (click)="currentTab = 'account'" [ngClass]="{'active':currentTab === 'account'}">Account</a>
+            <!-- <a class="nav-link" (click)="currentTab = 'account'" [ngClass]="{'active':currentTab === 'account'}">Account</a> -->
             <!-- <a class="nav-link" (click)="currentTab = 'privacy'" [ngClass]="{'active':currentTab === 'privacy'}">Privacy</a> -->
             <!-- <a class="nav-link" (click)="currentTab = 'notifications'" [ngClass]="{'active':currentTab === 'notifications'}">Notifications</a> -->
-            <a class="nav-link" (click)="currentTab = 'appearance'" [ngClass]="{'active':currentTab === 'appearance'}">Appearance</a>
+            <a class="nav-link" (click)="currentTab = 'display'" [ngClass]="{'active':currentTab === 'display'}">Display</a>
             <a class="nav-link" (click)="closeSettings()">Close</a>
         </nav>
     </div>
     <div class="col settings-tabs pt-5">
         <div class="col-7">
-            <div id="account-tab" *ngIf="currentTab === 'account'">
+            <!-- <div id="account-tab" *ngIf="currentTab === 'account'">
                 <h3 class="tab-title">Account</h3>
                 <div class="form-group">
                     <label for="name">Username</label>
@@ -88,12 +88,12 @@
                         <app-slide-toggle class="checkbox" [(value)]="user.settings.boxOpenedByFriend"></app-slide-toggle>
                     </div>
                 </div>
-            </div>
-            <div id="appearance-tab" *ngIf="currentTab === 'appearance'">
-                <h3 class="tab-title">Appearance</h3>
+            </div> -->
+            <div id="display-tab" *ngIf="currentTab === 'display'">
+                <h3 class="tab-title">Display</h3>
                 <div class="form-group">
                     <label for="theme">Dark Theme</label>
-                    <app-slide-toggle class="checkbox" [(value)]="user.settings.darkTheme"></app-slide-toggle>
+                    <app-slide-toggle class="checkbox" [value]="isDarkThemeEnabled" (valueChange)="toggleDarkTheme()"></app-slide-toggle>
                 </div>
             </div>
         </div>

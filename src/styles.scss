@@ -1,20 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'global.css';
 @import 'imports.scss';
 @import '../node_modules/bootstrap/scss/bootstrap';
 @import '../node_modules/ngx-toastr/toastr';
 body {
     overflow: hidden;
-    background-color: $background-main-color;
+    background-color: var(--background-main-color);
     font-size: pxtorem($base-font-size);
 }
 
 svg.berrybox-svg {
     height: 1em;
-    stroke: $stroke-color;
+    stroke: var(--stroke-color);
     fill: $fill-color;
     circle {
-        fill: $stroke-color;
+        fill: var(--stroke-color);
     }
     &:hover {
         .berrybox-path {
@@ -22,8 +23,8 @@ svg.berrybox-svg {
         }
     }
     .berrybox-path {
-        stroke: $text-system-color;
-        fill: $text-system-color;
+        stroke: var(--text-system-color);
+        fill: var(--text-system-color);
     }
 }
 
@@ -36,8 +37,8 @@ button>svg {
     height: 1.3em;
     width: 1.3em;
     &.crown {
-        fill: $crown-color;
-        color: $crown-color;
+        fill: $active-color;
+        color: $active-color;
     }
     &.secondary-icon {
         fill: $main-black;
@@ -75,13 +76,13 @@ button>svg {
 }
 
 .help-text {
-    color: $text-system-color;
+    color: var(--text-system-color);
     margin: 0;
 }
 
 .no-contents {
     padding-top: 50px;
-    color: $inactive-color;
+    color: var(--inactive-color);
     svg {
         height: 4em !important;
     }
@@ -99,10 +100,10 @@ button>svg {
 }
 
 .featured {
-    background-color: $background-main-color;
+    background-color: var(--background-main-color);
     .free-text {
         font-family: 'Montserrat', sans-serif;
-        color: $text-focus-color;
+        color: var(--text-focus-color);
         margin-bottom: 40px;
         text-align: center
     }

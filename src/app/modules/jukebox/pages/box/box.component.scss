@@ -7,8 +7,8 @@
 #room-panel {
     z-index: 3;
     padding-right: 0;
-    background-color: $background-secondary-color;
-    color: $text-main-color;
+    background-color: var(--background-secondary-color);
+    color: var(--text-main-color);
 }
 
 #player {
@@ -16,7 +16,7 @@
 }
 
 .under-player {
-    color: $text-main-color;
+    color: var(--text-main-color);
     padding-top: 10px;
     @include padding-horizontal(20px);
     white-space: nowrap;
@@ -43,7 +43,7 @@
 }
 
 .minor-text {
-    color: $text-system-color;
+    color: var(--text-system-color);
 }
 
 .mood-widget {

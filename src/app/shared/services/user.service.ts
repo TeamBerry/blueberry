@@ -7,6 +7,7 @@ import { environment } from './../../../environments/environment';
 
 import { User } from 'app/shared/models/user.model';
 import { Box } from '../models/box.model';
+import { AuthSubject } from '../models/session.model';
 
 @Injectable()
 export class UserService {
@@ -49,6 +50,17 @@ export class UserService {
         return this.http.patch<User>(environment.araza + '/user/' + user._id + '/favorites', user.favorites);
     }
 
+    /**
+     * Update user settings
+     *
+     * @param {*} settings
+     * @returns
+     * @memberof UserService
+     */
+    updateSettings(settings) {
+        return this.http.patch(`${environment.araza}/user/settings`, settings);
+    }
+
     stats(token: string) { }
 
     /**
@@ -58,7 +70,7 @@ export class UserService {
      * @returns {Observable<Array<Box>>}
      * @memberof UserService
      */
-    boxes(user: User): Observable<Array<Box>> {
+    boxes(user: AuthSubject): Observable<Array<Box>> {
         return this.http.get<Array<Box>>(environment.araza + '/user/' + user._id + '/boxes');
     }
 }

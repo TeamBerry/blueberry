@@ -6,15 +6,16 @@ import * as moment from 'moment';
 import { environment } from 'environments/environment';
 
 import { User } from 'app/shared/models/user.model';
+import { AuthSubject, Session } from 'app/shared/models/session.model';
 
 @Injectable()
 export class AuthService {
-    user: User;
-    public subject: BehaviorSubject<User> = new BehaviorSubject<User>(this.user);
+    authSubject: AuthSubject;
+    public subject: BehaviorSubject<AuthSubject> = new BehaviorSubject<AuthSubject>(this.authSubject);
 
-    static getSession(): User {
-        const user = JSON.parse(localStorage.getItem('BBOX-user'));
-        return user ? new User(user) : null;
+    static getAuthSubject(): AuthSubject {
+        const session: AuthSubject = JSON.parse(localStorage.getItem('BBOX-user'));
+        return session ? new AuthSubject(session) : null;
     }
 
     constructor(
@@ -28,16 +29,16 @@ export class AuthService {
      * @param {string} password
      * @memberof AuthService
      */
-    login(mail: string, password: string) {
-        return this.http.post(environment.araza + '/auth/login', { mail: mail, password: password });
+    login(mail: string, password: string): Observable<Session> {
+        return this.http.post<Session>(environment.araza + '/auth/login', { mail: mail, password: password });
     }
 
     showConnectedUser(token: string): Observable<User> {
         return this.http.get<User>(environment.araza + '/user/' + token);
     }
 
-    signup(mail: string, password: string, username: string) {
-        return this.http.post(environment.araza + '/auth/signup', { mail, password, username });
+    signup(mail: string, password: string, name: string): Observable<Session> {
+        return this.http.post<Session>(environment.araza + '/auth/signup', { mail, password, name });
     }
 
     // PASSWORD RESET
@@ -77,21 +78,17 @@ export class AuthService {
      * Sets the session for the user based on the bearer token
      *
      * @public // Should be private
-     * @param {*} authResult Result of the authentification process
+     * @param {*} session Result of the authentification process
      * @memberof AuthService
      */
-    public setSession(authResult) {
-        const expiresAt = moment().add(authResult.expiresIn, 'second');
+    public setSession(session: Session) {
+        const expiresAt = moment().add(session.expiresIn, 'second');
 
-        localStorage.setItem('BBOX-token', authResult.bearer);
+        localStorage.setItem('BBOX-token', session.bearer);
         localStorage.setItem('BBOX-expires_at', JSON.stringify(expiresAt));
-        localStorage.setItem('BBOX-user', JSON.stringify(authResult.subject));
+        localStorage.setItem('BBOX-user', JSON.stringify(session.subject));
 
-        this.user = authResult.subject;
-    }
-
-    public getSession() {
-        return localStorage.getItem('BBOX-token');
+        this.authSubject = session.subject;
     }
 
     public isLoggedIn(): boolean {
@@ -106,24 +103,16 @@ export class AuthService {
      * Below are user subscription methods for all components in the application.
      */
 
-    public getUser(): Observable<User> {
-        if (!this.user) {
-            this.user = JSON.parse(localStorage.getItem('BBOX-user'));
+    public getUser(): Observable<AuthSubject> {
+        if (!this.authSubject) {
+            this.authSubject = JSON.parse(localStorage.getItem('BBOX-user'));
             this.sendUser();
         }
         return this.subject.asObservable();
     }
 
-    public setUser(user: User) {
-        this.user = user;
-
-        localStorage.setItem('BBOX-user', JSON.stringify(user));
-
-        this.sendUser();
-    }
-
     public sendUser() {
-        this.subject.next(this.user);
+        this.subject.next(this.authSubject);
     }
 
 }

@@ -10,6 +10,7 @@ import { User } from 'app/shared/models/user.model';
 import { Box } from 'app/shared/models/box.model';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
 import { BoxService } from 'app/shared/services/box.service';
+import { AuthSubject } from 'app/shared/models/session.model';
 
 @Component({
     selector: 'app-boxes-tab',
@@ -18,7 +19,7 @@ import { BoxService } from 'app/shared/services/box.service';
     providers: [UserService, BoxService]
 })
 export class BoxesTabComponent implements OnInit {
-    @Input() user: User = AuthService.getSession();
+    user: AuthSubject = AuthService.getAuthSubject();
 
     public boxes: Observable<Array<Box>>;
 

@@ -1,20 +1,10 @@
+@import './../../../../../imports.scss';
 .mood-icon {
+    fill: var(--inactive-color);
     &:hover {
-        fill: lighten(red, 10%);
+        cursor: pointer;
     }
     &.mood-active {
-        fill: red;
-    }
-}
-.mood-active {
-    color: red;
-}
-
-.skip-icon {
-    &:hover {
-        fill: lighten(purple, 10%);
-    }
-    &.skip-active {
-        fill: purple;
+        fill: $active-color;
     }
 }

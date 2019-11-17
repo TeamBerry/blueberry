@@ -2,16 +2,16 @@
 .nav-link {
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
-    color: $text-system-color !important;
+    color: var(--text-system-color) !important;
     &:hover {
-        background-color: $background-main-hover-color;
+        background-color: var(--background-main-hover-color);
         color: white !important;
     }
     &.active {
         cursor: default;
         color: white !important;
         font-weight: 800;
-        background-color: $background-main-active-color;
+        background-color: var(--background-main-active-color);
     }
 }
 
@@ -20,11 +20,11 @@
 }
 
 .menu {
-    background-color: $background-main-color;
+    background-color: var(--background-main-color);
 }
 
 .settings-tabs {
-    background-color: $background-secondary-color;
+    background-color: var(--background-secondary-color);
 }
 
 .tab-title {
@@ -35,8 +35,8 @@
 }
 
 .form-option {
-    border-bottom: 0.5px solid rgba($text-focus-color, 0.7);
-    color: $text-main-color;
+    border-bottom: 0.5px solid rgba(var(--text-focus-color), 0.7);
+    color: var(--text-main-color);
     height: 60px;
     @include padding-vertical(10px);
 }
@@ -48,7 +48,7 @@
 
 label {
     font-family: 'Montserrat', sans-serif;
-    color: $text-focus-color;
+    color: var(--text-focus-color);
     font-weight: 700;
 }
 
