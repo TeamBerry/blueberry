@@ -61,9 +61,7 @@ export class LoginFormComponent implements OnInit {
             (session: Session) => {
                 this.errorMessage = null;
                 this.authService.setSession(session);
-                if (session.subject.settings.theme === 'light') {
-                    this.themeService.toggleLight()
-                }
+                this.themeService.init();
                 location.reload();
             },
             (error) => {
