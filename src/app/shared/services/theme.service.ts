@@ -95,7 +95,7 @@ export class ThemeService {
         clearTimeout(this.updateTimeout)
         if (refreshSettings) {
             this.updateTimeout = setTimeout(() => {
-                this.userService.updateSettings({ theme: this.user.settings.theme })
+                this.userService.updateSettings({ theme: this.user.settings.theme }).subscribe()
             }, 700)
         }
     }
