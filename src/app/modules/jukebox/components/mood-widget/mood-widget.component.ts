@@ -54,8 +54,7 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
      * @memberof MoodWidgetComponent
      */
     likeVideo() {
-        this.user.favorites.push(this.video.video);
-        this.userService.updateFavorites(this.user).subscribe(
+        this.userService.updateFavorites({ action: 'like', target: this.video.video._id }).subscribe(
             (user: User) => {
                 this.toastr.success('Video added to favorites.', 'Success');
                 this.isLiked = true;
@@ -69,14 +68,7 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
      * @memberof MoodWidgetComponent
      */
     unlikeVideo() {
-        // Delete one or more (you never know) instances of the video in the favorites
-        const newFavorites = this.user.favorites.filter(favorite => {
-            return favorite._id !== this.video.video._id;
-        })
-
-        this.user.favorites = newFavorites;
-
-        this.userService.updateFavorites(this.user).subscribe(
+        this.userService.updateFavorites({ action: 'like', target: this.video.video._id }).subscribe(
             (user: User) => {
                 this.toastr.success('Video removed from favorites.', 'Success');
                 this.isLiked = false;

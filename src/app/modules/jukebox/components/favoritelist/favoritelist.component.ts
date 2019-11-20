@@ -7,6 +7,8 @@ import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
 import { LoginFormComponent } from '../../../../shared/components/login-form/login-form.component';
 import { SignupFormComponent } from '../../../../shared/components/signup-form/signup-form.component';
 import { VideoPayload } from 'app/shared/models/video-payload.model';
+import { Observable } from 'rxjs';
+import { UserService } from 'app/shared/services/user.service';
 
 @Component({
     selector: 'app-favoritelist',
@@ -17,12 +19,16 @@ export class FavoritelistComponent implements OnInit {
     @Input() boxToken: string;
     @Input() user: User = new User;
 
+    favorites$: Observable<User['favorites']>
+
     constructor(
+        private userService: UserService,
         private jukeboxService: JukeboxService,
         private modalService: NgbModal
     ) { }
 
     ngOnInit() {
+        this.favorites$ = this.userService.favorites()
     }
 
     /**

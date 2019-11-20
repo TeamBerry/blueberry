@@ -38,6 +38,9 @@ export class UserService {
         return this.http.put<User>(environment.araza + '/user/' + token, user);
     }
 
+    favorites(): Observable<User['favorites']> {
+        return this.http.get<User['favorites']>(`${environment.araza}/user/favorites`)
+    }
 
     /**
      * Updates the favorites of an user
@@ -46,8 +49,8 @@ export class UserService {
      * @returns {Observable<User>}
      * @memberof UserService
      */
-    updateFavorites(user: User): Observable<User> {
-        return this.http.patch<User>(environment.araza + '/user/' + user._id + '/favorites', user.favorites);
+    updateFavorites(command: { action: 'like' | 'unlike', target: string }): Observable<User> {
+        return this.http.post<User>(`${environment.araza}/user/favorites`, command);
     }
 
     /**
