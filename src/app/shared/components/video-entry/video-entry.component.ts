@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { Video } from '../../models/video.model';
 import { UserService } from 'app/shared/services/user.service';
+import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
 
 @Component({
     selector: 'app-video-entry',
@@ -17,6 +18,7 @@ export class VideoEntryComponent implements OnInit {
 
     constructor(
         private userService: UserService,
+        private jukeboxService: JukeboxService,
         private toastr: ToastrService
     ) { }
 
@@ -31,6 +33,7 @@ export class VideoEntryComponent implements OnInit {
         this.userService.updateFavorites({ action: 'unlike', target: this.video._id }).subscribe(
             (response) => {
                 this.toastr.success('Video removed from favorites.', 'Success');
+                this.jukeboxService.sendOrder('favorites');
             }
         )
     }

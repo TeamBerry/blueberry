@@ -28,7 +28,8 @@ export class FavoritelistComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.favorites$ = this.userService.favorites()
+        this.getFavorites();
+        this.listenToOrders();
     }
 
     /**
@@ -47,11 +48,35 @@ export class FavoritelistComponent implements OnInit {
         this.jukeboxService.submitVideo(videoPayload);
     }
 
+    /**
+     * Gets favorites
+     *
+     * @memberof FavoritelistComponent
+     */
+    getFavorites() {
+        this.favorites$ = this.userService.favorites();
+    }
+
     openLoginPrompt() {
         this.modalService.open(LoginFormComponent);
     }
 
     openSignupPrompt() {
         this.modalService.open(SignupFormComponent);
+    }
+
+    /**
+     * Listens to the jukebox service for orders
+     *
+     * @memberof FavoritelistComponent
+     */
+    listenToOrders() {
+        this.jukeboxService.getOrderStream().subscribe(
+            (order: string) => {
+                if (order === 'favorites') {
+                    this.getFavorites();
+                }
+            }
+        )
     }
 }
