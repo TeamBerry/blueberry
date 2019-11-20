@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from 'app/shared/models/user.model';
 import { UserService } from 'app/shared/services/user.service';
 import { AuthService } from 'app/core/auth/auth.service';
+import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
+import { JukeboxService } from '../../jukebox.service';
 
 @Component({
     selector: 'app-mood-widget',
@@ -13,28 +15,31 @@ import { AuthService } from 'app/core/auth/auth.service';
     providers: [UserService]
 })
 export class MoodWidgetComponent implements OnInit, OnChanges {
-    @Input() video;
+    @Input() video: PlaylistVideo;
     @Input() user: User;
 
     isLiked = false;
+    isChecking = false;
     currentVote = null;
 
     constructor(
         public authService: AuthService,
+        private jukeboxService: JukeboxService,
         public userService: UserService,
         private toastr: ToastrService
     ) { }
 
     ngOnInit() {
+        this.listenToOrders();
         if (this.video) {
-            this.isLiked = this.checkFavorites();
+            this.checkFavorites();
         }
     }
 
     ngOnChanges(changes) {
         if (changes.video && changes.video.currentValue) {
             this.video = changes.video.currentValue;
-            this.isLiked = this.checkFavorites();
+            this.checkFavorites();
         }
     }
 
@@ -44,8 +49,22 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
      * @returns {boolean} Whether the user has the video in their favorites
      * @memberof MoodWidgetComponent
      */
-    checkFavorites(): boolean {
-        return (_.findIndex(this.user.favorites, { '_id': this.video.video._id }) !== -1);
+    checkFavorites() {
+        if (this.isChecking === false) {
+            console.log('CHECKING')
+            this.isLiked = false
+            this.isChecking = true
+            this.userService.favorites({ title: this.video.video.name }).subscribe(
+                (response) => {
+                    if (response.length > 0) {
+                        this.isLiked = true
+                    }
+                    this.isChecking = false;
+                }
+            )
+        } else {
+            console.log('CANNOT CHECK')
+        }
     }
 
     /**
@@ -54,11 +73,11 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
      * @memberof MoodWidgetComponent
      */
     likeVideo() {
-        this.user.favorites.push(this.video.video);
-        this.userService.updateFavorites(this.user).subscribe(
+        this.userService.updateFavorites({ action: 'like', target: this.video.video._id }).subscribe(
             (user: User) => {
                 this.toastr.success('Video added to favorites.', 'Success');
                 this.isLiked = true;
+                this.jukeboxService.sendOrder('favorites');
             }
         );
     }
@@ -69,19 +88,21 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
      * @memberof MoodWidgetComponent
      */
     unlikeVideo() {
-        // Delete one or more (you never know) instances of the video in the favorites
-        const newFavorites = this.user.favorites.filter(favorite => {
-            return favorite._id !== this.video.video._id;
-        })
-
-        this.user.favorites = newFavorites;
-
-        this.userService.updateFavorites(this.user).subscribe(
+        this.userService.updateFavorites({ action: 'unlike', target: this.video.video._id }).subscribe(
             (user: User) => {
                 this.toastr.success('Video removed from favorites.', 'Success');
                 this.isLiked = false;
+                this.jukeboxService.sendOrder('favorites');
             }
         );
     }
 
+    listenToOrders() {
+        this.jukeboxService.getOrderStream().subscribe(
+            (order: string) => {
+                if (order === 'favorites') {
+                    this.checkFavorites();
+                }
+            })
+    }
 }

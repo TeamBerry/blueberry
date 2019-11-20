@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -38,6 +38,17 @@ export class UserService {
         return this.http.put<User>(environment.araza + '/user/' + token, user);
     }
 
+    favorites(searchOptions = { title: undefined }): Observable<User['favorites']> {
+        const options = {
+            params: new HttpParams()
+        }
+
+        if (searchOptions.title) {
+            options.params = options.params.set('title', searchOptions.title.toString())
+        }
+
+        return this.http.get<User['favorites']>(`${environment.araza}/user/favorites`, options)
+    }
 
     /**
      * Updates the favorites of an user
@@ -46,8 +57,8 @@ export class UserService {
      * @returns {Observable<User>}
      * @memberof UserService
      */
-    updateFavorites(user: User): Observable<User> {
-        return this.http.patch<User>(environment.araza + '/user/' + user._id + '/favorites', user.favorites);
+    updateFavorites(command: { action: 'like' | 'unlike', target: string }): Observable<User> {
+        return this.http.post<User>(`${environment.araza}/user/favorites`, command);
     }
 
     /**

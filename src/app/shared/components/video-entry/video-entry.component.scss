@@ -1,21 +1,4 @@
 @import './../../../../imports.scss';
-#queue-panel,
-#like-panel {
-    padding: 0 10px;
-}
-
-.playlist-actions {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.list-rank {
-    margin-bottom: 0;
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-}
-
 .playlist-entry {
     padding: 5px 0;
     border-bottom: .5px solid rgba(var(--text-focus-color), 0.7);
@@ -54,4 +37,9 @@
             color: darken($master-color, 10%);
         }
     }
+}
+
+.btn {
+    font-size: 0.8rem;
+    margin-right: 5px;
 }
