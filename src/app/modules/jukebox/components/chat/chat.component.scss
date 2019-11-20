@@ -15,7 +15,8 @@
 }
 
 .message-contents {
-    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 .message {
