@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from 'app/shared/models/user.model';
 import { UserService } from 'app/shared/services/user.service';
 import { AuthService } from 'app/core/auth/auth.service';
+import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
 
 @Component({
     selector: 'app-mood-widget',
@@ -13,10 +14,11 @@ import { AuthService } from 'app/core/auth/auth.service';
     providers: [UserService]
 })
 export class MoodWidgetComponent implements OnInit, OnChanges {
-    @Input() video;
+    @Input() video: PlaylistVideo;
     @Input() user: User;
 
     isLiked = false;
+    isChecking = false;
     currentVote = null;
 
     constructor(
@@ -27,14 +29,14 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         if (this.video) {
-            this.isLiked = this.checkFavorites();
+            this.checkFavorites();
         }
     }
 
     ngOnChanges(changes) {
         if (changes.video && changes.video.currentValue) {
             this.video = changes.video.currentValue;
-            this.isLiked = this.checkFavorites();
+            this.checkFavorites();
         }
     }
 
@@ -44,8 +46,19 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
      * @returns {boolean} Whether the user has the video in their favorites
      * @memberof MoodWidgetComponent
      */
-    checkFavorites(): boolean {
-        return (_.findIndex(this.user.favorites, { '_id': this.video.video._id }) !== -1);
+    checkFavorites() {
+        if (this.isChecking === false) {
+            this.isLiked = false
+            this.isChecking = true
+            this.userService.favorites({ title: this.video.video.name }).subscribe(
+                (response) => {
+                    if (response.length > 0) {
+                        this.isLiked = true
+                    }
+                    this.isChecking = false;
+                }
+            )
+        }
     }
 
     /**

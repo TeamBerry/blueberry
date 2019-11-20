@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -38,8 +38,16 @@ export class UserService {
         return this.http.put<User>(environment.araza + '/user/' + token, user);
     }
 
-    favorites(): Observable<User['favorites']> {
-        return this.http.get<User['favorites']>(`${environment.araza}/user/favorites`)
+    favorites(searchOptions = { title: undefined }): Observable<User['favorites']> {
+        const options = {
+            params: new HttpParams()
+        }
+
+        if (searchOptions.title) {
+            options.params = options.params.set('title', searchOptions.title.toString())
+        }
+
+        return this.http.get<User['favorites']>(`${environment.araza}/user/favorites`, options)
     }
 
     /**
