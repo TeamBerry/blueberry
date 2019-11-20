@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
 
 import io from 'socket.io-client';
 import * as _ from 'lodash';
@@ -11,6 +11,7 @@ import { SyncPacket } from 'app/shared/models/sync-packet.model';
 import { VideoPayload } from 'app/shared/models/video-payload.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
+import { AuthSubject } from 'app/shared/models/session.model';
 
 @Injectable({
     providedIn: 'root'
@@ -29,12 +30,25 @@ export class JukeboxService {
      */
     private boxStream: ReplaySubject<Box | Message | SyncPacket> = new ReplaySubject<Box | Message | SyncPacket>();
 
+    /**
+     * Subject for every component in the box that will need to do stuff based on the actions of other components.
+     * They Jukebox Service provides a stream so all components can tell each other they're doing stuff.
+     *
+     * Example: A favorite has been removed by the favoritelist component. An order to refresh favorites across the whole
+     * ecosystem is sent. The moodwidget might want to check if the video currently playing is still in favorites.
+     *
+     * @private
+     * @type {Subject<string>}
+     * @memberof JukeboxService
+     */
+    private orderStream: Subject<string> = new Subject<string>();
+
     public box: Box;
 
     // TODO: Refactor this into the stream
     public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(this.box);
 
-    public user: User = AuthService.getSession();
+    public user: AuthSubject = AuthService.getAuthSubject();
 
     constructor() {
     }
@@ -63,6 +77,10 @@ export class JukeboxService {
 
     public getBoxStream(): Observable<any> {
         return this.boxStream.asObservable();
+    }
+
+    public getOrderStream(): Observable<string> {
+        return this.orderStream.asObservable();
     }
 
     /**
@@ -145,6 +163,15 @@ export class JukeboxService {
      */
     public postMessageToStream(message: Message): void {
         this.boxStream.next(message);
+    }
+
+    // ORDERS
+    public sendOrder(order: string) {
+        this.emitOrder(order)
+    }
+
+    protected emitOrder(order) {
+        this.orderStream.next(order)
     }
 
     /**

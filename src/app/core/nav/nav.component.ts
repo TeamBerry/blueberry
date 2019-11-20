@@ -12,6 +12,7 @@ import { AuthService } from '../../core/auth/auth.service';
 import { SettingsDirective } from '../../shared/directive/settings.directive';
 import { UserSettingsComponent } from '../../components/user-settings/user-settings.component';
 import { User } from 'app/shared/models/user.model';
+import { ThemeService } from 'app/shared/services/theme.service';
 
 @Component({
     selector: 'app-nav',
@@ -35,6 +36,7 @@ export class NavComponent implements OnInit {
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private modalService: NgbModal,
+        private themeService: ThemeService,
         private authService: AuthService
     ) { }
 
@@ -46,6 +48,8 @@ export class NavComponent implements OnInit {
                 }
             )
         }
+
+        this.themeService.init()
     }
 
     openCreateModal() {

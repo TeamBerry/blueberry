@@ -1,0 +1,15 @@
+:root {
+    --background-main-color: #0B1A2D;
+    --background-main-hover-color: #102641;
+    --background-main-active-color: #1a3e6a;
+    --background-main-border-color: #979797;
+    --background-secondary-color: #0B1A38;
+    --background-secondary-color-alternate: #0f244d;
+    --input-main-color: #D0D0D0;
+    --text-main-color: white;
+    --background-focus-color: #192929;
+    --text-focus-color: #009AEB;
+    --text-system-color: #BBBBBB;
+    --stroke-color: #BBBBBB;
+    --inactive-color: #CCCCCC;
+}

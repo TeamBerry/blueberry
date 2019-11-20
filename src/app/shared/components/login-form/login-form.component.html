@@ -11,7 +11,7 @@
         <form [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="form-group">
                 <label for="mail">Mail address</label>
-                <input type="mail" formControlName="mail" class="form-control input-lg" id="mail" placeholder="Mail address" required>
+                <input type="email" formControlName="mail" class="form-control input-lg" id="mail" placeholder="Mail address" required>
                 <div class="alert alert-danger" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
                     <div *ngIf="mail.errors.required">
                         The mail address is required
@@ -41,7 +41,7 @@
             <form [formGroup]="resetForm" (ngSubmit)="resetPassword()">
                 <div class="form-group">
                     <label for="mail">Mail address</label>
-                    <input type="mail" formControlName="mail" class="form-control input-lg" placeholder="Mail address" required autofocus>
+                    <input type="email" formControlName="mail" class="form-control input-lg" placeholder="Mail address" required autofocus>
                 </div>
                 <div class="form-group">
                     <button type="submit" [disabled]="!resetForm.valid" class="btn btn-block btn-default">Reset</button>

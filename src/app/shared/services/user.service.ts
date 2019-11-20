@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -7,6 +7,7 @@ import { environment } from './../../../environments/environment';
 
 import { User } from 'app/shared/models/user.model';
 import { Box } from '../models/box.model';
+import { AuthSubject } from '../models/session.model';
 
 @Injectable()
 export class UserService {
@@ -37,6 +38,17 @@ export class UserService {
         return this.http.put<User>(environment.araza + '/user/' + token, user);
     }
 
+    favorites(searchOptions = { title: undefined }): Observable<User['favorites']> {
+        const options = {
+            params: new HttpParams()
+        }
+
+        if (searchOptions.title) {
+            options.params = options.params.set('title', searchOptions.title.toString())
+        }
+
+        return this.http.get<User['favorites']>(`${environment.araza}/user/favorites`, options)
+    }
 
     /**
      * Updates the favorites of an user
@@ -45,8 +57,19 @@ export class UserService {
      * @returns {Observable<User>}
      * @memberof UserService
      */
-    updateFavorites(user: User): Observable<User> {
-        return this.http.patch<User>(environment.araza + '/user/' + user._id + '/favorites', user.favorites);
+    updateFavorites(command: { action: 'like' | 'unlike', target: string }): Observable<User> {
+        return this.http.post<User>(`${environment.araza}/user/favorites`, command);
+    }
+
+    /**
+     * Update user settings
+     *
+     * @param {*} settings
+     * @returns
+     * @memberof UserService
+     */
+    updateSettings(settings) {
+        return this.http.patch(`${environment.araza}/user/settings`, settings);
     }
 
     stats(token: string) { }
@@ -58,7 +81,7 @@ export class UserService {
      * @returns {Observable<Array<Box>>}
      * @memberof UserService
      */
-    boxes(user: User): Observable<Array<Box>> {
+    boxes(user: AuthSubject): Observable<Array<Box>> {
         return this.http.get<Array<Box>>(environment.araza + '/user/' + user._id + '/boxes');
     }
 }

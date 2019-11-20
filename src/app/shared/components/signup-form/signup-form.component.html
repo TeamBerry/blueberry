@@ -25,7 +25,7 @@
         </div>
         <div class="form-group">
             <label for="mail">Mail address</label>
-            <input type="mail" formControlName="mail" class="form-control input-lg" name="mail" placeholder="Email" required>
+            <input type="email" formControlName="mail" class="form-control input-lg" name="mail" placeholder="Email" required>
             <div class="alert alert-danger" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
                 <div *ngIf="mail.errors.required">
                     The mail address is required

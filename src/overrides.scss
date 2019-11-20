@@ -9,8 +9,8 @@
 
 .btn-primary {
     background-color: $master-color;
-    border: lighten($background-main-color, 5%);
-    color: $text-main-color;
+    border: lighten($master-color, 5%);
+    color: var(--text-main-color);
     &:hover {
         background-color: $master-hover-color;
     }
@@ -18,7 +18,7 @@
         background-color: $master-active-color;
     }
     &:visited {
-        color: $text-main-color !important;
+        color: var(--text-main-color) !important;
     }
 }
 
@@ -108,14 +108,14 @@
 }
 
 .modal-content {
-    background-color: $background-main-color;
-    color: $text-main-color;
+    background-color: var(--background-main-color);
+    color: var(--text-main-color);
     border-radius: 0;
 }
 
 .form-control {
     border: 1px solid $master-color !important;
-    background-color: $input-main-color;
+    background-color: var(--input-main-color);
     &:focus {
         box-shadow: 0 0 0 0.2rem $master-color;
     }
@@ -137,7 +137,7 @@
 }
 
 .help-block {
-    color: $text-system-color;
+    color: var(--text-system-color);
 }
 
 .dropdown-toggle::after {
@@ -145,5 +145,5 @@
 }
 
 .card {
-    background-color: $background-main-color;
+    background-color: var(--background-main-color);
 }
