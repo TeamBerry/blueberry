@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -o pipefail
 
 CURRENT_DIR=$(dirname "$0")
 

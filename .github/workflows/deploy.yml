@@ -42,7 +42,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install Dependencies & Build App
-        run: ./.github/workflows/build.sh prod
+        run: |
+          cp ./.github/workflows/environments/environment.prod.ts ./../src/environments/environment.prod.ts
+          npm install
+          npx ng build --aot --prod --no-progress
         shell: bash
       - name: Copy via ssh
         uses: garygrossgarten/github-action-scp@v0.5.3
