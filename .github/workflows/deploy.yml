@@ -46,13 +46,6 @@ jobs:
           cp ./.github/workflows/environments/environment.prod.ts ./src/environments/environment.prod.ts
           npm install
           npx ng build --aot --prod --no-progress
-        shell: bash
-      - name: Copy via ssh
-        uses: garygrossgarten/github-action-scp@v0.5.3
-        with:
-          local: dist
-          remote: /var/www/test-deploy
-          host: berrybox.tv
-          username: root
-          privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Deploy over SSH
+        run: scp -r dist/ root@berrybox.tv:/var/www/test-deploy
 
