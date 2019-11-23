@@ -42,7 +42,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install Dependencies & Build App
-        run: echo ./.github/workflows/build.sh prod
+        run: ./.github/workflows/build.sh prod
         shell: bash
       - name: Copy via ssh
         uses: garygrossgarten/github-action-scp@v0.5.3
