@@ -48,8 +48,8 @@ jobs:
           npx ng build --aot --prod --no-progress
       - name: Clean Dist folder
         run: |
-        ssh ${{ secrets.USER }}@${{ secrets.HOST }}
-        rm -rf /var/www/test-deploy/
+          ssh -i ${{ secrets.SSH_PRIVATE_KEY}} ${{ secrets.USER }}@${{ secrets.HOST }}
+          rm -rf /var/www/test-deploy/
       - name: Deploy via SCP
         uses: horochx/deploy-via-scp@v1.0.1
         with:
