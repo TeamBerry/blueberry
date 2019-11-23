@@ -34,16 +34,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - uses: webfactory/ssh-agent@v0.1.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: webfactory/ssh-agent
-        uses: webfactory/ssh-agent@v0.1.1
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Install Dependencies & Build App
         run: echo ./.github/workflows/build.sh prod
         shell: bash
       - name: Deploy over SSH
-        run: scp -i ${{secrets.SSH_PRIVATE_KEY}} -r dist/ root@berrybox.tv:/var/www/test-deploy
+        run: scp -r dist/ root@berrybox.tv:/var/www/test-deploy
+      - name: Copy via ssh
+        uses: garygrossgarten/github-action-scp@v0.5.3
+        with:
+          local: dist
+          remote: /var/www/test-deploy
+          host: root@berrybox.tv
+          privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+
