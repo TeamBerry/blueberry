@@ -49,7 +49,6 @@ jobs:
       - name: Clean dist folder
         uses: appleboy/ssh-action@v0.0.2
         with:
-          remote: /var/www/test-deploy/dist
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
