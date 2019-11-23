@@ -43,6 +43,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Install Dependencies & Build App
-        run: ./.github/workflows/build.sh prod
+        run: echo ./.github/workflows/build.sh prod
+        shell: bash
       - name: Deploy over SSH
         run: scp -r dist/ root@berrybox.tv:/var/www/test-deploy
