@@ -46,10 +46,14 @@ jobs:
           cp ./.github/workflows/environments/environment.prod.ts ./src/environments/environment.prod.ts
           npm install
           npx ng build --aot --prod --no-progress
-      - name: Clean Dist folder
-        run: |
-          ssh -i ${{ secrets.SSH_PRIVATE_KEY}} ${{ secrets.USER }}@${{ secrets.HOST }}
-          rm -rf /var/www/test-deploy/
+      - name: Clean dist folder
+        uses: appleboy/ssh-action@v0.0.2
+        with:
+          remote: /var/www/test-deploy/dist
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: rm -rf /var/www/test-deploy/
       - name: Deploy via SCP
         uses: horochx/deploy-via-scp@v1.0.1
         with:
