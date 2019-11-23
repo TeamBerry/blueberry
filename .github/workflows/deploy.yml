@@ -46,11 +46,15 @@ jobs:
           cp ./.github/workflows/environments/environment.prod.ts ./src/environments/environment.prod.ts
           npm install
           npx ng build --aot --prod --no-progress
-      - name: deploy-via-scp
+      - name: Clean Dist folder
+        run: |
+        ssh ${{ secrets.USER }}@${{ secrets.HOST }}
+        rm -rf /var/www/test-deploy/
+      - name: Deploy via SCP
         uses: horochx/deploy-via-scp@v1.0.1
         with:
           local: dist
-          remote: /var/www/test-deploy
+          remote: /var/www/test-deploy/dist
           host: ${{ secrets.HOST }}
           user: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
