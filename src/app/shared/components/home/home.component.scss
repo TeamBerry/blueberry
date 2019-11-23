@@ -40,16 +40,38 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.how-to-container {
-    text-align: center;
+.featured {
+    background-color: var(--background-main-color);
+    .free-text {
+        font-family: 'Montserrat', sans-serif;
+        color: var(--text-focus-color);
+        margin-bottom: 40px;
+        text-align: center
+    }
 }
 
-.how-to-container>div>span {
-    color: $main-purple;
-    font-size: 2em;
+.featured-reverse {
+    background-color: var(--background-secondary-color);
+    color: var(--text-secondary-color);
+    .free-text {
+        color: var(--text-secondary-color);
+    }
+}
+
+.how-to-container {
+    text-align: center;
+    div>span {
+        color: var(--text-secondary-color);
+        font-size: 2em;
+    }
 }
 
 .how-to-point {
     font-weight: 600;
-    color: $main-purple;
+    color: var(--text-focus-color);
+}
+
+.how-to-text {
+    color: var(--text-secondary-color);
+    opacity: 0.8;
 }
