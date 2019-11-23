@@ -49,6 +49,7 @@ jobs:
         with:
           local: dist
           remote: /var/www/test-deploy
-          host: root@berrybox.tv
+          host: berrybox.tv
+          username: root
           privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
 
