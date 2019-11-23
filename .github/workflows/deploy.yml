@@ -31,7 +31,7 @@ jobs:
       - name: Clean dist folder
         uses: garygrossgarten/github-action-ssh@v0.3.0
         with:
-          command: rm -rf ${{ secrets.LOCATION }}/*
+          command: rm -rf ${{ secrets.LOCATION }}/dist/*
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
