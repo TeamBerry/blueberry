@@ -1,6 +1,9 @@
 <div class="card-box">
-    <img *ngIf="currentVideo" src="http://i.ytimg.com/vi/{{ currentVideo?.video?.link }}/hqdefault.jpg" alt="" class="card-img-top">
-    <img *ngIf="!currentVideo" src="assets/images/no-playing.png" alt="" class="card-img-top">
+    <div class="box-picture text-center">
+        <img *ngIf="currentVideo" src="http://i.ytimg.com/vi/{{ currentVideo?.video?.link }}/hqdefault.jpg" alt="" class="card-img-top">
+        <!-- <img *ngIf="!currentVideo" src="assets/images/no-playing.png" alt="" class="card-img-top"> -->
+        <img *ngIf="!currentVideo" src="assets/images/berrybox-logo-master.png" alt="" class="card-img-top">
+    </div>
     <div class="card-block p-2">
         <h4 class="card-name">{{ box.name }}</h4>
         <div id="box-info" class="pl-4">
