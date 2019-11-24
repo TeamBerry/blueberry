@@ -8,7 +8,7 @@ import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
 import { Message } from 'app/shared/models/message.model';
 import { SyncPacket } from 'app/shared/models/sync-packet.model';
-import { VideoPayload } from 'app/shared/models/video-payload.model';
+import { SubmissionPayload, CancelPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
 import { AuthSubject } from 'app/shared/models/session.model';
@@ -96,11 +96,21 @@ export class JukeboxService {
     /**
      * Submits a video to the playlist of the box
      *
-     * @param {VideoPayload} video The video to submit. Structure goes as follows:
+     * @param {SubmissionPayload} video The video to submit. Structure goes as follows:
      * @memberof JukeboxService
      */
-    public submitVideo(video: VideoPayload): void {
+    public submitVideo(video: SubmissionPayload): void {
         this.boxSocket.emit('video', video);
+    }
+
+    /**
+     * Cancels a video from the playlist
+     *
+     * @param {*} cancelPayload
+     * @memberof JukeboxService
+     */
+    public cancelVideo(cancelPayload: CancelPayload): void {
+        this.boxSocket.emit('cancel', cancelPayload)
     }
 
     /**
@@ -193,7 +203,6 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     private startBoxSocket(boxToken: string, userToken: string) {
-        console.log('Creating socket observable...');
         this.boxSocket = io(environment.boquila, { transports: ['websocket'] });
 
         return new Observable<Message | SyncPacket | Box>(observer => {
@@ -207,7 +216,6 @@ export class JukeboxService {
             });
 
             this.boxSocket.on('confirm', (feedback: Message) => {
-                console.log('Connected to sync socket', feedback);
                 observer.next(new Message(feedback));
                 // Tells the service the user is joining. Response will be on sync
                 this.boxSocket.emit('start', {
@@ -217,21 +225,18 @@ export class JukeboxService {
             });
 
             this.boxSocket.on('denied', (feedback) => {
-                console.log('your connection attempt has been denied.');
                 observer.error(JSON.parse(feedback));
                 // TODO: Add feedback in the chat
             })
 
             this.boxSocket.on('sync', (syncPacket: SyncPacket) => {
                 if (syncPacket.box === this.box._id) {
-                    console.log('recieved sync data', syncPacket);
                     observer.next(new SyncPacket(syncPacket));
                 }
             });
 
             this.boxSocket.on('next', (box: Box) => {
                 if (box._id === this.box._id) {
-                    console.log('order to go to next video', box);
                     this.sendBox();
                 }
             });
@@ -239,7 +244,6 @@ export class JukeboxService {
             // When the refreshed box is sent by Chronos, it is sent to every components that needs it
             this.boxSocket.on('box', (box: Box) => {
                 if (box._id === this.box._id) {
-                    console.log('recieved refreshed box data', box);
                     this.box = box;
                     this.sendBox();
                 }
@@ -248,7 +252,6 @@ export class JukeboxService {
             // On chat. Regular event.
             this.boxSocket.on('chat', (feedback: Message) => {
                 if (feedback.scope === this.box._id) {
-                    console.log('Recieved chat message', feedback);
                     observer.next(new Message(feedback));
                 }
             });

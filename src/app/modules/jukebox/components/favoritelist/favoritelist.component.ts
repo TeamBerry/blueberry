@@ -6,7 +6,7 @@ import { Video } from 'app/shared/models/video.model';
 import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
 import { LoginFormComponent } from '../../../../shared/components/login-form/login-form.component';
 import { SignupFormComponent } from '../../../../shared/components/signup-form/signup-form.component';
-import { VideoPayload } from 'app/shared/models/video-payload.model';
+import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { Observable } from 'rxjs';
 import { UserService } from 'app/shared/services/user.service';
 
@@ -40,12 +40,12 @@ export class FavoritelistComponent implements OnInit {
      * @memberof FavoritelistComponent
      */
     submitVideo(video: Video) {
-        const videoPayload: VideoPayload = {
+        const submissionPayload: SubmissionPayload = {
             link: video.link,
             userToken: this.user._id,
             boxToken: this.boxToken
         };
-        this.jukeboxService.submitVideo(videoPayload);
+        this.jukeboxService.submitVideo(submissionPayload);
     }
 
     /**

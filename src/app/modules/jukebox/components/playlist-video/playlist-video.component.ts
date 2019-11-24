@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
+import { AuthService } from 'app/core/auth/auth.service';
+import { AuthSubject } from 'app/shared/models/session.model';
 
 @Component({
     selector: 'app-playlist-video',
@@ -10,11 +12,23 @@ export class PlaylistVideoComponent implements OnInit {
 
     @Input() item: PlaylistVideo;
 
-    @Output() resubmit$: EventEmitter<string> = new EventEmitter();
+    @Output() order: EventEmitter<{ item: any, order: string }> = new EventEmitter();
+
+    user: AuthSubject = AuthService.getAuthSubject()
 
     constructor() { }
 
     ngOnInit() {
+    }
+
+    /**
+     * Cancels a video from the upcoming section
+     *
+     * @param {PlaylistVideo} item
+     * @memberof PlaylistVideoComponent
+     */
+    cancelVideo(item: PlaylistVideo) {
+        this.order.emit({ item: item._id, order: 'cancel' });
     }
 
     /**
@@ -23,8 +37,8 @@ export class PlaylistVideoComponent implements OnInit {
      * @param {PlaylistVideo} item The playlist item
      * @memberof PlaylistItemComponent
      */
-    resubmit(item: PlaylistVideo) {
-        this.resubmit$.emit(item.video.link);
+    replayVideo(item: PlaylistVideo) {
+        this.order.emit({ item: item.video.link, order: 'replay' });
     }
 
 }

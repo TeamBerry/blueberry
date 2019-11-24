@@ -4,7 +4,7 @@ import { JukeboxService } from './../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
 import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
-import { VideoPayload } from 'app/shared/models/video-payload.model';
+import { SubmissionPayload, CancelPayload } from 'app/shared/models/playlist-payload.model';
 
 @Component({
     selector: 'app-playlist',
@@ -78,21 +78,49 @@ export class PlaylistComponent implements OnInit {
         }
     }
 
+    handlePlaylistOrder(event) {
+        if (event.order === 'replay') {
+            this.replayVideo(event.item)
+        }
+
+        if (event.order === 'cancel') {
+            this.cancelVideo(event.item)
+        }
+    }
+
     /**
-     * Triggered by the resubmit$ event of the playlist item component.
+     * Triggered by the order$ event of the playlist item component.
      *
      * Resubmits the video in the playlist of the box
      *
-     * @param {string} link The Youtube link of the video
+     * @param {PlaylistVideo['video']['link']} link The Youtube link of the video
      * @memberof PlaylistComponent
      */
-    resubmitVideo(link: string) {
-        const videoPayload: VideoPayload = {
+    replayVideo(link: PlaylistVideo['video']['link']) {
+        const submissionPayload: SubmissionPayload = {
             link: link,
             userToken: this.user._id,
             boxToken: this.box._id
         };
-        this.jukeboxService.submitVideo(videoPayload);
+        this.jukeboxService.submitVideo(submissionPayload);
+    }
+
+    /**
+     * Triggered by the order$ event of the playlist item component.
+     *
+     * Cancels an entry in the upcoming part of the playlist of the box
+     *
+     * @param {PlaylistVideo['_id']} item The identifier of the playlist item
+     * @memberof PlaylistComponent
+     */
+    cancelVideo(item: PlaylistVideo['_id']) {
+        const cancelPayload: CancelPayload = {
+            item: item,
+            userToken: this.user._id,
+            boxToken: this.box._id
+        }
+
+        this.jukeboxService.cancelVideo(cancelPayload);
     }
 
     swap(video: any, direction: string) {

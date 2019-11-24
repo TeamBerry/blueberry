@@ -3,7 +3,7 @@ import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked } from
 import { JukeboxService } from './../../jukebox.service';
 import { Message } from 'app/shared/models/message.model';
 import { User } from 'app/shared/models/user.model';
-import { VideoPayload } from 'app/shared/models/video-payload.model';
+import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 
 @Component({
     selector: 'app-panel',
@@ -122,7 +122,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         const res = reg.exec(url);
 
         try {
-            const video: VideoPayload = {
+            const video: SubmissionPayload = {
                 link: (res[2]) ? res[2] : res[4],
                 userToken: this.user._id,
                 boxToken: this.boxToken,
