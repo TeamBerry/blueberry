@@ -123,6 +123,16 @@ export class PlaylistComponent implements OnInit {
         this.jukeboxService.cancelVideo(cancelPayload);
     }
 
+    /**
+     * Skips the currently playing video
+     *
+     * @param {PlaylistVideo['_id']} item
+     * @memberof PlaylistComponent
+     */
+    skipVideo(item: PlaylistVideo['_id']) {
+        this.jukeboxService.skipVideo()
+    }
+
     swap(video: any, direction: string) {
         const action = {
             room_history_id: video.room_history_id,
