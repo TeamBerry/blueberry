@@ -6,8 +6,10 @@
     cursor: pointer;
     border: 1px solid var(--background-main-border-color);
     .card-img-top {
-        width: 70%;
         border-radius: inherit;
+    }
+    .no-playing {
+        width: 70%;
     }
     &:hover {
         background-color: var(--background-main-hover-color);
