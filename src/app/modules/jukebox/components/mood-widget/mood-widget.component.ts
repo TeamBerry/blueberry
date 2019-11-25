@@ -16,7 +16,6 @@ import { JukeboxService } from '../../jukebox.service';
 })
 export class MoodWidgetComponent implements OnInit, OnChanges {
     @Input() video: PlaylistVideo;
-    @Input() user: User;
 
     isLiked = false;
     isChecking = false;

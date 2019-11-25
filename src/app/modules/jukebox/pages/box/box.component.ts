@@ -11,6 +11,7 @@ import { User } from 'app/shared/models/user.model';
 import { SyncPacket } from 'app/shared/models/sync-packet.model';
 import { filter } from 'rxjs/operators';
 import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
+import { AuthSubject } from 'app/shared/models/session.model';
 
 @Component({
     selector: 'app-box',
@@ -56,7 +57,7 @@ export class BoxComponent implements OnInit {
      * @type {User}
      * @memberof BoxComponent
      */
-    user: User;
+    user: AuthSubject = AuthService.getAuthSubject();
 
     /**
      * Integration of the Mood Widget component, though I'm not sure I need it anymore
@@ -79,13 +80,6 @@ export class BoxComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.token = params.token;
             this.loadBox();
-            if (this.authService.isLoggedIn()) {
-                this.authService.getUser().subscribe(
-                    (user: User) => {
-                        this.user = user;
-                    }
-                )
-            }
         });
     }
 
@@ -145,5 +139,14 @@ export class BoxComponent implements OnInit {
         if (event === 'ready') {
             this.connectToSyncStream();
         }
+    }
+
+    /**
+     * Sends a command to skip the currently playing video
+     *
+     * @memberof BoxComponent
+     */
+    skipVideo() {
+        this.jukeboxService.skipVideo();
     }
 }

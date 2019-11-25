@@ -4,6 +4,8 @@ import { JukeboxService } from './../../jukebox.service';
 import { Message } from 'app/shared/models/message.model';
 import { User } from 'app/shared/models/user.model';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
+import { AuthSubject } from 'app/shared/models/session.model';
+import { AuthService } from 'app/core/auth/auth.service';
 
 @Component({
     selector: 'app-panel',
@@ -12,7 +14,7 @@ import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 })
 export class PanelComponent implements OnInit, AfterViewChecked {
     @Input() boxToken: string;
-    @Input() user: User;
+    user: AuthSubject = AuthService.getAuthSubject();
 
     @Output() skipEvent = new EventEmitter();
     contents = '';

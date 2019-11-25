@@ -10,7 +10,7 @@
 .btn-primary {
     background-color: $master-color;
     border: lighten($master-color, 5%);
-    color: var(--text-main-color);
+    color: white;
     &:hover {
         background-color: $master-hover-color;
     }
