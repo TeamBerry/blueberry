@@ -138,18 +138,12 @@ export class BoxComponent implements OnInit {
     /**
      * Actions when the player changes state
      *
-     * The autoplay sync is only available to the administrator of the box
-     *
      * @param {*} event
      * @memberof BoxComponent
      */
     onPlayerStateChange(event: any) {
         if (event === 'ready') {
             this.connectToSyncStream();
-        } else if (event === 0 && (this.user._id === this.box.creator['_id'])) {
-            this.jukeboxService.next();
-        } else {
-            console.log('Not an admin, wait for autoplay');
         }
     }
 }
