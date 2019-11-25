@@ -16,7 +16,8 @@
                     {{ item?.submitted_by?.name }}
                 </span>
             </div>
-            <button *ngIf="item?.endTime !== null" class="btn btn-default button-resubmit" (click)="resubmit(item)">Resubmit</button>
+            <button *ngIf="item?.startTime === null && item?.submitted_by?._id === user._id" class="btn btn-default" (click)="cancelVideo(item)">Cancel</button>
+            <button *ngIf="item?.endTime !== null" class="btn btn-default button-resubmit" (click)="replayVideo(item)">Replay</button>
         </div>
     </div>
 </div>

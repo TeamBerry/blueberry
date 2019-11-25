@@ -27,7 +27,6 @@ export class UserlistComponent implements OnInit {
         this.jukeboxService.getBox().subscribe(
             (box: Box) => {
                 this.box = box
-                console.log(this.box)
                 this.users$ = this.boxService.users(this.box._id)
             }
         )
