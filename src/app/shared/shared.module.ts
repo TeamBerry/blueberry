@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe';
 import { ThemeService } from './services/theme.service';
 import { UserService } from './services/user.service';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ import { UserService } from './services/user.service';
         SlideToggleComponent,
         VideoEntryComponent,
         BoxDeletionEstimationPipe,
+        FilterPipe
     ],
     exports: [
         CommonModule,
@@ -29,7 +31,8 @@ import { UserService } from './services/user.service';
         SlideToggleComponent,
         VideoEntryComponent,
         NgbModule,
-        BoxDeletionEstimationPipe
+        BoxDeletionEstimationPipe,
+        FilterPipe
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
