@@ -75,6 +75,10 @@ button>svg {
     }
 }
 
+.btn-primary-icon {
+    fill: white;
+}
+
 .help-text {
     color: var(--text-system-color);
     margin: 0;
@@ -97,4 +101,8 @@ button>svg {
 
 #auth-icon {
     width: 50px;
+}
+
+.notification-indicator {
+    fill: $notification-color !important;
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable, fromEvent } from 'rxjs';
+import { debounceTime, filter, distinctUntilChanged, tap } from 'rxjs/operators';
 
 import { User } from 'app/shared/models/user.model';
 import { Video } from 'app/shared/models/video.model';
@@ -7,7 +9,6 @@ import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
 import { LoginFormComponent } from '../../../../shared/components/login-form/login-form.component';
 import { SignupFormComponent } from '../../../../shared/components/signup-form/signup-form.component';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
-import { Observable } from 'rxjs';
 import { UserService } from 'app/shared/services/user.service';
 
 @Component({
@@ -15,11 +16,14 @@ import { UserService } from 'app/shared/services/user.service';
     templateUrl: './favoritelist.component.html',
     styleUrls: ['./favoritelist.component.scss'],
 })
-export class FavoritelistComponent implements OnInit {
+export class FavoritelistComponent implements OnInit, AfterViewInit {
     @Input() boxToken: string;
     @Input() user: User = new User;
+    @ViewChild('filterInput') input: ElementRef
 
     favorites$: Observable<User['favorites']>
+
+    filterValue = ''
 
     constructor(
         private userService: UserService,
@@ -30,6 +34,19 @@ export class FavoritelistComponent implements OnInit {
     ngOnInit() {
         this.getFavorites();
         this.listenToOrders();
+    }
+
+    ngAfterViewInit() {
+        fromEvent(this.input.nativeElement, 'keyup')
+            .pipe(
+                filter(Boolean),
+                debounceTime(500),
+                distinctUntilChanged(),
+                tap(() => {
+                    this.filterValue = this.input.nativeElement.value
+                })
+            )
+            .subscribe()
     }
 
     /**
@@ -78,5 +95,10 @@ export class FavoritelistComponent implements OnInit {
                 }
             }
         )
+    }
+
+    resetFilter() {
+        this.filterValue = ''
+        this.input.nativeElement.value = ''
     }
 }

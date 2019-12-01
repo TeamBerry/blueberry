@@ -1,10 +1,16 @@
 <div *appAuth="true">
+    <div class="p-3 input-group">
+        <input type="text" class="form-control" placeholder="Type to search..." #filterInput>
+        <div class="input-group-append">
+            <button class="btn btn-outline-default" type="button" (click)="resetFilter()">Reset</button>
+        </div>
+    </div>
     <div *ngIf="favorites$ | async; else noFavorites">
-        <app-video-entry *ngFor="let video of favorites$ | async" [video]="video" (submit)="submitVideo($event)"></app-video-entry>
+        <app-video-entry *ngFor="let video of favorites$ | async | filter:filterValue:['name', 'link']" [video]="video" (submit)="submitVideo($event)"></app-video-entry>
     </div>
     <ng-template #noFavorites>
         <div class="text-center no-contents">
-            <svg class="mood-icon berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408.09" (click)="likeVideo()" title="Add to favorites">
+            <svg class="mood-icon berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408.09" title="Add to favorites">
                 <path d="M408 129.05c0 92-135.88 225.81-185.85 271.92a26.76 26.76 0 0 1-36.3 0C135.88 354.89 0 221.05 0 129.05c0-111 115.51-188.38 200.28-62.41a4.73 4.73 0 0 0 7.72.18c96.55-130.09 200-48.87 200 62.23z"/>
             </svg>
             <h3>You have no favorites yet</h3>

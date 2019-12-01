@@ -4,6 +4,9 @@ import { JukeboxService } from './../../jukebox.service';
 import { Message } from 'app/shared/models/message.model';
 import { User } from 'app/shared/models/user.model';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
+import { AuthSubject } from 'app/shared/models/session.model';
+import { AuthService } from 'app/core/auth/auth.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'app-panel',
@@ -12,7 +15,7 @@ import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 })
 export class PanelComponent implements OnInit, AfterViewChecked {
     @Input() boxToken: string;
-    @Input() user: User;
+    user: AuthSubject = AuthService.getAuthSubject();
 
     @Output() skipEvent = new EventEmitter();
     contents = '';
@@ -20,12 +23,20 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     hasCommand = false;
     activePanel = '';
 
+    /**
+     * Boolean to determine whether new messages have been received and the chat panel is not active
+     *
+     * @memberof PanelComponent
+     */
+    newMessages = false;
+
     constructor(
         private jukeboxService: JukeboxService
     ) { }
 
     ngOnInit() {
         this.activePanel = 'chat';
+        this.connectToStream();
     }
 
     ngAfterViewChecked() {
@@ -138,5 +149,24 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             });
             this.jukeboxService.postMessageToStream(message);
         }
+    }
+
+        /**
+     * Connects to jukebox service chat stream to get messages to display
+     *
+     * @memberof ChatComponent
+     */
+    connectToStream() {
+        this.jukeboxService.getBoxStream()
+            .pipe( // Filtering to only act on Message instances
+                filter(message => message instanceof Message)
+            )
+            .subscribe(
+                (message: Message) => {
+                    if (this.activePanel !== 'chat') {
+                        this.newMessages = true
+                    }
+                }
+            );
     }
 }

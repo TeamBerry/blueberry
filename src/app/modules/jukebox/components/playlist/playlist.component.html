@@ -3,7 +3,7 @@
         <p class="list-rank px-3 pt-3">Now playing: </p>
         <div class="now-playing-space">
             <div *ngIf="currentlyPlaying; else noPlaying">
-                <app-playlist-video [item]="currentlyPlaying"></app-playlist-video>
+                <app-playlist-video [item]="currentlyPlaying" (order)="handlePlaylistOrder($event)"></app-playlist-video>
             </div>
             <ng-template #noPlaying>
                 <div class="no-playing text-center">

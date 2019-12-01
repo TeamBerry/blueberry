@@ -22,6 +22,16 @@ export class PlaylistVideoComponent implements OnInit {
     }
 
     /**
+     * Skips the video
+     *
+     * @param {PlaylistVideo} item
+     * @memberof PlaylistVideoComponent
+     */
+    skipVideo(item: PlaylistVideo) {
+        this.order.emit({ item: item._id, order: 'skip' })
+    }
+
+    /**
      * Cancels a video from the upcoming section
      *
      * @param {PlaylistVideo} item

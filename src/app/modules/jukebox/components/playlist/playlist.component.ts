@@ -86,6 +86,10 @@ export class PlaylistComponent implements OnInit {
         if (event.order === 'cancel') {
             this.cancelVideo(event.item)
         }
+
+        if (event.order === 'skip') {
+            this.skipVideo()
+        }
     }
 
     /**
@@ -121,6 +125,16 @@ export class PlaylistComponent implements OnInit {
         }
 
         this.jukeboxService.cancelVideo(cancelPayload);
+    }
+
+    /**
+     * Skips the currently playing video
+     *
+     * @param {PlaylistVideo['_id']} item
+     * @memberof PlaylistComponent
+     */
+    skipVideo() {
+        this.jukeboxService.skipVideo()
     }
 
     swap(video: any, direction: string) {

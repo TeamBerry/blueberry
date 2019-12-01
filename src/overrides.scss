@@ -10,7 +10,7 @@
 .btn-primary {
     background-color: $master-color;
     border: lighten($master-color, 5%);
-    color: var(--text-main-color);
+    color: white;
     &:hover {
         background-color: $master-hover-color;
     }
@@ -115,7 +115,8 @@
 
 .form-control {
     border: 1px solid $master-color !important;
-    background-color: var(--input-main-color);
+    background-color: rgba(0, 0, 0, 0.15);
+    color: var(--text-main-color);
     &:focus {
         box-shadow: 0 0 0 0.2rem $master-color;
     }
