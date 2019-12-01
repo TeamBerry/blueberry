@@ -21,6 +21,8 @@ export class FavoritelistComponent implements OnInit {
 
     favorites$: Observable<User['favorites']>
 
+    filter = ''
+
     constructor(
         private userService: UserService,
         private jukeboxService: JukeboxService,
@@ -78,5 +80,9 @@ export class FavoritelistComponent implements OnInit {
                 }
             }
         )
+    }
+
+    resetFilter() {
+        this.filter = ''
     }
 }
