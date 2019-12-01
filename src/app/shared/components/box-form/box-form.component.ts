@@ -18,7 +18,6 @@ export class BoxFormComponent implements OnInit {
     @Input() title;
     @Input() box: Box;
 
-    boxForm: FormGroup;
     public langs: string[] = [
         'English',
         'Français',
