@@ -12,12 +12,12 @@
 }
 
 #player {
-    height: calc(100% - 78px);
+    height: calc(100% - 94px);
 }
 
 .under-player {
     color: var(--text-main-color);
-    padding-top: 10px;
+    padding-top: 15px;
     @include padding-horizontal(20px);
     white-space: nowrap;
 }
@@ -56,4 +56,11 @@
     border-radius: 2.5px;
     text-transform: uppercase;
     cursor: default;
+}
+
+.box-option {
+    text-align: center;
+    background-color: grey;
+    border-radius: 10px;
+    @include margin-horizontal(3px);
 }
