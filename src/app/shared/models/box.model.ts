@@ -5,7 +5,7 @@ import { PlaylistVideo } from './playlist-video.model';
 @Injectable()
 export class Box {
     _id: string;
-    creator: string | {
+    creator: {
         _id: string,
         name: string
     };

@@ -57,10 +57,3 @@
     text-transform: uppercase;
     cursor: default;
 }
-
-.box-option {
-    text-align: center;
-    background-color: grey;
-    border-radius: 10px;
-    @include margin-horizontal(3px);
-}

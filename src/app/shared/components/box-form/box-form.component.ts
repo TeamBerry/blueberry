@@ -39,7 +39,10 @@ export class BoxFormComponent implements OnInit {
             this.box = new Box();
             this.authService.getUser().subscribe(
                 (user: User) => {
-                    this.box.creator = user._id;
+                    this.box.creator = {
+                        _id: user._id,
+                        name: user.name
+                    }
                 }
             )
         }
