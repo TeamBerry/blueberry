@@ -50,8 +50,6 @@ export class JukeboxService {
 
     public user: AuthSubject = AuthService.getAuthSubject();
 
-    skipCooldown = false;
-
     constructor() {
     }
 
@@ -122,10 +120,10 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public skipVideo() {
-        console.log('SENDING SKIP ORDER')
         if (this.evaluateCommandPower()) {
             this.next();
         }
+        this.next();
     }
 
     // TODO: The following 3
@@ -142,17 +140,10 @@ export class JukeboxService {
     }
 
     public next(): void {
-        if (this.skipCooldown === false) {
-            this.boxSocket.emit('sync', {
-                order: 'next',
-                boxToken: this.box._id
-            });
-            this.skipCooldown = true;
-        }
-
-        setTimeout(() => {
-            this.skipCooldown = false
-        }, 10000)
+        this.boxSocket.emit('sync', {
+            order: 'next',
+            boxToken: this.box._id
+        });
     }
 
     /**
