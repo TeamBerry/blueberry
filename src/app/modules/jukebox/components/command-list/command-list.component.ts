@@ -40,6 +40,12 @@ export class CommandListComponent implements OnInit {
             keys: ['skip', 'next'],
             description: 'Skips the currently playing video',
             staffOnly: true
+        },
+        {
+            keys: ['settings'],
+            description: `Summons a window with the settings of the box, allowing you to adjust options
+            such as the modes of play`,
+            staffOnly: true
         }
     ];
 

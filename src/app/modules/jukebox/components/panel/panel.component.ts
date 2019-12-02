@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked } from '@angular/core';
+import * as _ from 'lodash'
 
 import { JukeboxService } from './../../jukebox.service';
 import { Message } from 'app/shared/models/message.model';
@@ -7,6 +8,9 @@ import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { filter } from 'rxjs/operators';
+import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Box } from 'app/shared/models/box.model';
 
 @Component({
     selector: 'app-panel',
@@ -16,6 +20,7 @@ import { filter } from 'rxjs/operators';
 export class PanelComponent implements OnInit, AfterViewChecked {
     @Input() boxToken: string;
     user: AuthSubject = AuthService.getAuthSubject();
+    box: Box;
 
     @Output() skipEvent = new EventEmitter();
     contents = '';
@@ -31,12 +36,18 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     newMessages = false;
 
     constructor(
+        private modalService: NgbModal,
         private jukeboxService: JukeboxService
     ) { }
 
     ngOnInit() {
         this.activePanel = 'chat';
         this.connectToStream();
+        this.jukeboxService.getBox().subscribe(
+            (box: Box) => {
+                this.box = box;
+            }
+        )
     }
 
     ngAfterViewChecked() {
@@ -113,6 +124,10 @@ export class PanelComponent implements OnInit, AfterViewChecked {
                 /* this.shuffle(); */
                 break;
 
+            case 'settings':
+                this.openBoxSettings();
+                break;
+
             default:
                 break;
         }
@@ -151,11 +166,11 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         }
     }
 
-        /**
-     * Connects to jukebox service chat stream to get messages to display
-     *
-     * @memberof ChatComponent
-     */
+    /**
+ * Connects to jukebox service chat stream to get messages to display
+ *
+ * @memberof ChatComponent
+ */
     connectToStream() {
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
@@ -168,5 +183,13 @@ export class PanelComponent implements OnInit, AfterViewChecked {
                     }
                 }
             );
+    }
+
+    openBoxSettings() {
+        if (this.jukeboxService.evaluateCommandPower()) {
+            const modalRef = this.modalService.open(BoxFormComponent)
+            modalRef.componentInstance.title = `Edit Box Settings`
+            modalRef.componentInstance.box = _.cloneDeep(this.box)
+        }
     }
 }

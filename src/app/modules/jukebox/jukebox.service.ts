@@ -120,17 +120,8 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public skipVideo() {
-        // Send error if the user doing this is not the creator
-        const creator = this.box.creator['_id'] || this.box.creator;
-        if (this.user._id !== creator) {
-            const message: Message = new Message({
-                contents: 'You do not have the power to skip videos.',
-                source: 'system',
-                scope: this.box._id,
-                time: new Date()
-            });
-            this.boxStream.next(message);
-            return;
+        if (this.evaluateCommandPower()) {
+            this.next();
         }
         this.next();
     }
@@ -241,10 +232,10 @@ export class JukeboxService {
                 }
             });
 
-            // When the refreshed box is sent by Chronos, it is sent to every components that needs it
-            this.boxSocket.on('box', (box: Box) => {
-                if (box._id === this.box._id) {
-                    this.box = box;
+            // When the refreshed box is sent by Tamarillo, it is sent to every components that needs it
+            this.boxSocket.on('box', (updatedBox: Box) => {
+                if (updatedBox._id === this.box._id) {
+                    this.box = updatedBox;
                     this.sendBox();
                 }
             });
@@ -260,5 +251,28 @@ export class JukeboxService {
                 this.boxSocket.disconnect();
             };
         });
+    }
+
+    /**
+     * Evaluates whether of not the user can execute a command
+     *
+     * @private
+     * @returns {boolean}
+     * @memberof JukeboxService
+     */
+    public evaluateCommandPower(): boolean {
+        // Send error if the user doing this is not the creator
+        const creator = this.box.creator['_id'] || this.box.creator;
+        if (this.user._id !== creator) {
+            const message: Message = new Message({
+                contents: 'You do not have the power to execute this action.',
+                source: 'system',
+                scope: this.box._id,
+                time: new Date()
+            });
+            this.boxStream.next(message);
+            return false;
+        }
+        return true
     }
 }

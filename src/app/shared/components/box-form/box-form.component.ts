@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Box } from './../../models/box.model';
 import { BoxService } from './../../services/box.service';
@@ -25,7 +24,7 @@ export class BoxFormComponent implements OnInit {
     ];
     submitted = false;
 
-    context = 'edit';
+    context = 'Edit';
 
     constructor(
         private authService: AuthService,
@@ -36,7 +35,7 @@ export class BoxFormComponent implements OnInit {
 
     ngOnInit() {
         if (!this.box) {
-            this.context = 'create';
+            this.context = 'Create';
             this.box = new Box();
             this.authService.getUser().subscribe(
                 (user: User) => {
@@ -48,7 +47,7 @@ export class BoxFormComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-        if (this.context === 'create') {
+        if (this.context === 'Create') {
             this.boxService.store(this.box).subscribe(
                 data => {
                     this.activeModal.close();
@@ -57,7 +56,7 @@ export class BoxFormComponent implements OnInit {
             );
         } else {
             this.boxService.update(this.box).subscribe(
-                box => {
+                (updatedBox: Box) => {
                     this.activeModal.close();
                 }
             )
