@@ -23,6 +23,16 @@
     padding-bottom: $size;
 }
 
+@mixin margin-horizontal($size) {
+    margin-right: $size;
+    margin-left: $size;
+}
+
+@mixin margin-vertical($size) {
+    margin-top: $size;
+    margin-bottom: $size;
+}
+
 @mixin override-button($color) {
     background-color: $color;
     border: lighten($color, 5%);

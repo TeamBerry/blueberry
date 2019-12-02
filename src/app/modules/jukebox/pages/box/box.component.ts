@@ -80,6 +80,7 @@ export class BoxComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.token = params.token;
             this.loadBox();
+            this.listenForBoxChanges();
         });
     }
 
@@ -99,6 +100,14 @@ export class BoxComponent implements OnInit {
                 this.loading = false;
             }
         );
+    }
+
+    listenForBoxChanges() {
+        this.jukeboxService.getBox().subscribe(
+            (updatedBox: Box) => {
+                this.box = updatedBox
+            }
+        )
     }
 
     /**
