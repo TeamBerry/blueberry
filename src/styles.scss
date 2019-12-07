@@ -114,3 +114,15 @@ button>svg {
     border-radius: 10px;
     @include margin-horizontal(3px);
 }
+
+.profile-picture {
+    &.profile-picture-nav {
+        @include profile-picture-size(28px);
+    }
+    &.profile-picture-md {
+        @include profile-picture-size(60px);
+    }
+    &.profile-picture-lg {
+        @include profile-picture-size(80px);
+    }
+}

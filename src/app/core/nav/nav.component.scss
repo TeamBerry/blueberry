@@ -17,7 +17,7 @@
 }
 
 .nav-pp {
-    @include nav-pp(35px);
+    @include profile-picture-size(35px);
 }
 
 .nav-name {
@@ -59,11 +59,7 @@
         background-color: $master-hover-color;
     }
     .user-pp {
-        @include nav-pp(28px);
         margin-right: 5px;
-        img {
-            padding-bottom: 3px;
-        }
     }
 }
 

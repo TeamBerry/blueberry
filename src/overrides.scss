@@ -107,6 +107,24 @@
     }
 }
 
+.modal-header {
+    font-family: 'Montserrat', sans-serif;
+    h5 {
+        font-weight: 700 !important;
+    }
+    .close {
+        color: var(--text-main-color);
+        opacity: .8;
+    }
+}
+
+.modal-header,
+.modal-body {
+    background-color: var(--background-main-color);
+    border-radius: 0;
+    border: none;
+}
+
 .modal-content {
     background-color: var(--background-main-color);
     color: var(--text-main-color);
@@ -147,4 +165,12 @@
 
 .card {
     background-color: var(--background-main-color);
+}
+
+// Alerts
+.alert-danger {
+    background-color: transparent;
+    color: $danger-color;
+    border-color: $danger-color;
+    font-weight: 700;
 }

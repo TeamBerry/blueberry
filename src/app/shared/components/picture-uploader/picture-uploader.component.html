@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h5>Update your profile picture</h5>
+    <button type="button" class="close" aria-label="close" (click)="activeModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+</div>
+<div class="modal-body">
+    <div *ngIf="state === 'selecting'">
+        <input type="file" #pictureInput class="d-none" (change)="processFile(pictureInput)">
+        <button class="btn btn-outline-default btn-block" id="btn-dropzone" (click)="pictureInput.click()">Import a picture</button>
+        <div *ngIf="errorMessage !== null" class="alert alert-danger mt-3 text-center">{{ errorMessage }}</div>
+    </div>
+    <div *ngIf="state === 'adjusting'">
+        <div class="text-center">
+            <img src="{{ picturePreview }}" id="picture-preview" alt="">
+        </div>
+        <div class="d-flex flex-row-reverse mt-3">
+            <button class="btn btn-success ml-3" (click)="uploadPicture()">Save</button>
+            <button class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+        </div>
+    </div>
+</div>

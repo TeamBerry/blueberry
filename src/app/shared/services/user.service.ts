@@ -84,4 +84,16 @@ export class UserService {
     boxes(user: AuthSubject): Observable<Array<Box>> {
         return this.http.get<Array<Box>>(environment.araza + '/user/' + user._id + '/boxes');
     }
+
+    /**
+     * Uploads the profile picture of the user to the database
+     *
+     * @param {FormData} picture
+     * @param {AuthSubject} user
+     * @returns
+     * @memberof UserService
+     */
+    uploadPicture(picture: FormData, user: AuthSubject) {
+        return this.http.post(`${environment.araza}/users/${user._id}/picture`, picture)
+    }
 }
