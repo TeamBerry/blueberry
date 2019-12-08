@@ -15,7 +15,7 @@ export class AuthService {
 
     static getAuthSubject(): AuthSubject {
         const session: AuthSubject = JSON.parse(localStorage.getItem('BBOX-user'));
-        return session ? new AuthSubject(session) : null;
+        return session ? session as AuthSubject : null;
     }
 
     constructor(
@@ -113,6 +113,16 @@ export class AuthService {
 
     public sendUser() {
         this.subject.next(this.authSubject);
+    }
+
+    public refreshSubject(authSubject: AuthSubject) {
+        // Compare if it's the same subject
+        if (this.authSubject._id !== authSubject._id) {
+            throw new Error('Session mismatch')
+        }
+
+        localStorage.setItem('BBOX-user', JSON.stringify(authSubject));
+        this.sendUser();
     }
 
 }

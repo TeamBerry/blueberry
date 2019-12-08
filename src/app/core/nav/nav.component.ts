@@ -13,6 +13,8 @@ import { SettingsDirective } from '../../shared/directive/settings.directive';
 import { UserSettingsComponent } from '../../components/user-settings/user-settings.component';
 import { User } from 'app/shared/models/user.model';
 import { ThemeService } from 'app/shared/services/theme.service';
+import { AuthSubject } from 'app/shared/models/session.model';
+import { environment } from 'environments/environment';
 
 @Component({
     selector: 'app-nav',
@@ -23,7 +25,8 @@ import { ThemeService } from 'app/shared/services/theme.service';
     ]
 })
 export class NavComponent implements OnInit {
-    public user: User;
+    public user: AuthSubject;
+    public pictureLocation = '../../../assets/images/berrybox-staff-logo.png';
 
     /**
      * Directive to dynamically load the settings components without having to leave the box
@@ -43,8 +46,9 @@ export class NavComponent implements OnInit {
     ngOnInit() {
         if (this.authService.isLoggedIn()) {
             this.authService.getUser().subscribe(
-                (user: User) => {
+                (user: AuthSubject) => {
                     this.user = user;
+                    this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${user.settings.picture}`
                 }
             )
         }
@@ -64,7 +68,6 @@ export class NavComponent implements OnInit {
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(UserSettingsComponent);
         const componentRef = viewContainerRef.createComponent(componentFactory);
 
-        componentRef.instance.user = this.user;
         componentRef.instance.close.subscribe(
             () => {
                 viewContainerRef.clear();

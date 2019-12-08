@@ -10,19 +10,17 @@
 .navbar-brand {
     color: white;
     font-size: 20px;
-    font-weight: 800;
     &:hover {
         color: white;
     }
 }
 
 .nav-pp {
-    @include nav-pp(35px);
+    @include profile-picture-size(35px);
 }
 
 .nav-name {
     font-size: 19px;
-    font-weight: 700;
     color: white;
 }
 
@@ -59,11 +57,7 @@
         background-color: $master-hover-color;
     }
     .user-pp {
-        @include nav-pp(28px);
         margin-right: 5px;
-        img {
-            padding-bottom: 3px;
-        }
     }
 }
 

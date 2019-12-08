@@ -7,7 +7,8 @@ export class User {
     token: string;
     mail: string;
     settings: {
-        theme: 'light' | 'dark'
+        theme: 'light' | 'dark',
+        picture: string
     };
     favorites: any[];
 
@@ -17,7 +18,8 @@ export class User {
         this.token = user && user.token || null;
         this.mail = user && user.mail || null;
         this.settings = user && user.settings || {
-            theme: 'light'
+            theme: 'light',
+            picture: null
         }
         this.favorites = user && user.favorites || [];
     }
