@@ -11,12 +11,19 @@
         <div *ngIf="errorMessage !== null" class="alert alert-danger mt-3 text-center">{{ errorMessage }}</div>
     </div>
     <div *ngIf="state === 'adjusting'">
-        <div class="text-center">
-            <img src="{{ picturePreview }}" id="picture-preview" alt="">
+        <div *ngIf="!success; else successMessage">
+            <div class="text-center">
+                <img src="{{ picturePreview }}" id="picture-preview" alt="">
+            </div>
+            <div class="d-flex flex-row-reverse mt-3">
+                <button class="btn btn-success ml-3" (click)="uploadPicture()">Save</button>
+                <button class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+            </div>
         </div>
-        <div class="d-flex flex-row-reverse mt-3">
-            <button class="btn btn-success ml-3" (click)="uploadPicture()">Save</button>
-            <button class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
-        </div>
+        <ng-template #successMessage>
+            <div class="alert alert-success">
+                Your profile picture has been updated!
+            </div>
+        </ng-template>
     </div>
 </div>

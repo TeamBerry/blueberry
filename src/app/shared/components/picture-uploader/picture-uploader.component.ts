@@ -21,10 +21,12 @@ export class PictureUploaderComponent implements OnInit {
     reader: FileReader = new FileReader();
 
     errorMessage: string = null
+    success = false
 
     authSubject: AuthSubject = AuthService.getAuthSubject()
 
     constructor(
+        public authService: AuthService,
         public activeModal: NgbActiveModal,
         public userService: UserService
     ) { }
@@ -72,8 +74,13 @@ export class PictureUploaderComponent implements OnInit {
         formData.append('picture', this.picture, this.picture.name)
 
         this.userService.uploadPicture(formData, this.authSubject).subscribe(
-            () => {
-                console.log('updated')
+            (response: { file: string }) => {
+                this.authSubject.settings.picture = response.file
+                this.authService.refreshSubject(this.authSubject)
+                this.success = true
+                setTimeout(() => {
+                    this.activeModal.dismiss()
+                }, 3000)
             }
         )
     }

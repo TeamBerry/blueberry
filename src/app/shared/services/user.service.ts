@@ -90,10 +90,10 @@ export class UserService {
      *
      * @param {FormData} picture
      * @param {AuthSubject} user
-     * @returns
+     * @returns {Observable<string>} The name of the file
      * @memberof UserService
      */
-    uploadPicture(picture: FormData, user: AuthSubject) {
-        return this.http.post(`${environment.araza}/users/${user._id}/picture`, picture)
+    uploadPicture(picture: FormData, user: AuthSubject): Observable<{ file: string }> {
+        return this.http.post<{ file: string }>(`${environment.araza}/users/${user._id}/picture`, picture)
     }
 }

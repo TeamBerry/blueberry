@@ -115,4 +115,14 @@ export class AuthService {
         this.subject.next(this.authSubject);
     }
 
+    public refreshSubject(authSubject: AuthSubject) {
+        // Compare if it's the same subject
+        if (this.authSubject._id !== authSubject._id) {
+            throw new Error('Session mismatch')
+        }
+
+        localStorage.setItem('BBOX-user', JSON.stringify(authSubject));
+        this.sendUser();
+    }
+
 }
