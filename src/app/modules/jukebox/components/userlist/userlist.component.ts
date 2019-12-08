@@ -5,6 +5,7 @@ import { BoxService } from 'app/shared/services/box.service';
 import { Observable } from 'rxjs';
 import { Box } from 'app/shared/models/box.model';
 import { JukeboxService } from '../../jukebox.service';
+import { environment } from 'environments/environment';
 
 @Component({
     selector: 'app-userlist',
@@ -15,6 +16,8 @@ import { JukeboxService } from '../../jukebox.service';
 export class UserlistComponent implements OnInit {
     box: Box;
     @Input() user: User;
+
+    pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}`
 
     users$: Observable<Array<User>>
 
