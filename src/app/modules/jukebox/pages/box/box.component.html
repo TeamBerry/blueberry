@@ -6,26 +6,31 @@
             </div>
             <div class="row under-player">
                 <div class="col-4 box-info">
-                    <div>
-                        <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
-                    </div>
                     <div class="d-flex">
-                        <div class="col-5 pl-0">
-                            <div>
-                                <svg class="berrybox-svg-icon crown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" title="Administrateur">
-                                <rect x="29.61" y="209.46" width="440.78" height="181.69"/>
-                                <polygon points="250 53.84 148.6 229.46 351.4 229.46 250 53.84"/>
-                                <polygon points="470.39 54.84 368.99 230.46 470.39 230.46 470.39 54.84"/>
-                                <polygon points="131.01 230.46 29.61 54.84 29.61 230.46 131.01 230.46"/>
-                            </svg>
-                                <span class="ml-1">{{ box?.creator?.name }}</span>
+                        <div class="bb-box-picture d-flex align-items-center justify-content-center mr-2">
+                            <img src="{{ pictureLocation }}" alt="" class="profile-picture profile-picture-md">
+                        </div>
+                        <div class="bb-box-info">
+                            <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
+                            <div class="d-flex">
+                                <div class="col-5 pl-0">
+                                    <div>
+                                        <svg class="berrybox-svg-icon crown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" title="Administrateur">
+                                    <rect x="29.61" y="209.46" width="440.78" height="181.69"/>
+                                    <polygon points="250 53.84 148.6 229.46 351.4 229.46 250 53.84"/>
+                                    <polygon points="470.39 54.84 368.99 230.46 470.39 230.46 470.39 54.84"/>
+                                    <polygon points="131.01 230.46 29.61 54.84 29.61 230.46 131.01 230.46"/>
+                                </svg>
+                                        <span class="ml-1">{{ box?.creator?.name }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-3 box-option" *ngIf="box?.options?.random === true" ngbTooltip="The next video will be picked at random from the upcoming pool" placement="top">
+                                    Random
+                                </div>
+                                <div class="col text-center">
+                                    <span *ngIf="!box?.open" class="closed-label" title="The box is closed. Video play and submission are disabled.">Closed</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-3 box-option" *ngIf="box?.options?.random === true" ngbTooltip="The next video will be picked at random from the upcoming pool" placement="top">
-                            Random
-                        </div>
-                        <div class="col text-center">
-                            <span *ngIf="!box?.open" class="closed-label" title="The box is closed. Video play and submission are disabled.">Closed</span>
                         </div>
                     </div>
                 </div>

@@ -120,7 +120,7 @@ button>svg {
         @include profile-picture-size(28px);
     }
     &.profile-picture-md {
-        @include profile-picture-size(60px);
+        @include profile-picture-size(50px);
     }
     &.profile-picture-lg {
         @include profile-picture-size(80px);
