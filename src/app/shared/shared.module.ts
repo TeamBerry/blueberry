@@ -15,7 +15,7 @@ import { PictureUploaderComponent } from './components/picture-uploader/picture-
 @NgModule({
     imports: [
         CommonModule,
-        NgbModule.forRoot(),
+        NgbModule,
     ],
     declarations: [
         AuthDirective,
