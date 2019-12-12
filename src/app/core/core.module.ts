@@ -1,7 +1,6 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -14,7 +13,6 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     imports: [
         CommonModule,
         FormsModule,
-        HttpModule,
         HttpClientModule,
         ToastrModule.forRoot({
             timeOut: 4000,
