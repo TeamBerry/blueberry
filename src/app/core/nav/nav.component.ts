@@ -11,7 +11,6 @@ import { AuthService } from '../../core/auth/auth.service';
 // User settings
 import { SettingsDirective } from '../../shared/directive/settings.directive';
 import { UserSettingsComponent } from '../../components/user-settings/user-settings.component';
-import { User } from 'app/shared/models/user.model';
 import { ThemeService } from 'app/shared/services/theme.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { environment } from 'environments/environment';
@@ -34,7 +33,7 @@ export class NavComponent implements OnInit {
      * @type {SettingsDirective}
      * @memberof NavComponent
      */
-    @ViewChild(SettingsDirective) settingsHost: SettingsDirective;
+    @ViewChild(SettingsDirective, { static: true }) settingsHost: SettingsDirective;
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,

@@ -46,7 +46,7 @@ import { PasswordResetComponent } from './pages/password-reset/password-reset.co
         SharedModule,
         CoreModule,
         JukeboxModule,
-        NgbModule.forRoot()
+        NgbModule
     ],
     exports: [
         AppComponent

@@ -2,8 +2,8 @@
 
 @import 'global.css';
 @import 'imports.scss';
-@import '../node_modules/bootstrap/scss/bootstrap';
-@import '../node_modules/ngx-toastr/toastr';
+@import '~bootstrap/scss/bootstrap';
+@import '~ngx-toastr/toastr';
 body {
     overflow: hidden;
     background-color: var(--background-main-color);

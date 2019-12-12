@@ -6,7 +6,7 @@ import { PasswordResetComponent } from './pages/password-reset/password-reset.co
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
-    { path: 'admin', loadChildren: './modules/admin/admin.module#AdminModule' },
+    { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
     { path: 'password/reset', component: PasswordResetComponent }
 ];
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from '../../../core/auth/auth.service';
 import { Session } from 'app/shared/models/session.model';
@@ -21,7 +20,6 @@ export class LoginFormComponent implements OnInit {
     isResetDone = false;
 
     constructor(
-        public activeModal: NgbActiveModal,
         public authService: AuthService,
         private themeService: ThemeService
     ) {
