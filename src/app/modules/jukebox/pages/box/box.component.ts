@@ -74,7 +74,7 @@ export class BoxComponent implements OnInit {
      * @type {MoodWidgetComponent}
      * @memberof BoxComponent
      */
-    @ViewChild(MoodWidgetComponent) private moodWidgetComponent: MoodWidgetComponent;
+    @ViewChild(MoodWidgetComponent, { static: false }) private moodWidgetComponent: MoodWidgetComponent;
 
     constructor(
         private authService: AuthService,

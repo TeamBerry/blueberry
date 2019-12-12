@@ -19,7 +19,7 @@ import { UserService } from 'app/shared/services/user.service';
 export class FavoritelistComponent implements OnInit, AfterViewInit {
     @Input() boxToken: string;
     @Input() user: User = new User;
-    @ViewChild('filterInput') input: ElementRef
+    @ViewChild('filterInput', { static: false }) input: ElementRef
 
     favorites$: Observable<User['favorites']>
 

@@ -33,7 +33,7 @@ export class NavComponent implements OnInit {
      * @type {SettingsDirective}
      * @memberof NavComponent
      */
-    @ViewChild(SettingsDirective) settingsHost: SettingsDirective;
+    @ViewChild(SettingsDirective, { static: true }) settingsHost: SettingsDirective;
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
