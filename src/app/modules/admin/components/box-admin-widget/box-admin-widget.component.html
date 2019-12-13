@@ -6,10 +6,10 @@
     <div class="col d-flex pr-0">
         <div class="col box-info">
             <a class="box-name" href="box/{{ box?._id }}">{{ box?.name }}</a>
-            <div class="box-details pl-3">
+            <div class="box-details pl-0">
                 <p class="box-lang">{{ box?.lang }} | {{ box?.description || 'No description' }}</p>
                 <span *ngIf="!box.open"><strong>This box is closed. If left inactive, it will be destroyed on {{ box.updatedAt | boxDeletionEstimationPipe | date }}</strong></span>
-                <div class="modes row pb-2">
+                <div class="modes d-flex pb-2">
                     <div class="col-2 box-option" *ngIf="box?.options?.random === true" ngbTooltip="The next video will be picked at random from the upcoming pool" placement="right">
                         Random
                     </div>
