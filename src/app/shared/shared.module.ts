@@ -11,6 +11,7 @@ import { ThemeService } from './services/theme.service';
 import { UserService } from './services/user.service';
 import { FilterPipe } from './pipes/filter.pipe';
 import { PictureUploaderComponent } from './components/picture-uploader/picture-uploader.component';
+import { BxAlertComponent } from './components/bx-alert/bx-alert.component';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { PictureUploaderComponent } from './components/picture-uploader/picture-
         VideoEntryComponent,
         BoxDeletionEstimationPipe,
         FilterPipe,
-        PictureUploaderComponent
+        PictureUploaderComponent,
+        BxAlertComponent
     ],
     exports: [
         CommonModule,

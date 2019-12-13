@@ -8,7 +8,7 @@
     <div *ngIf="state === 'selecting'">
         <input type="file" #pictureInput class="d-none" (change)="processFile(pictureInput)">
         <button class="btn btn-outline-default btn-block" id="btn-dropzone" (click)="pictureInput.click()">Import a picture</button>
-        <div *ngIf="errorMessage !== null" class="alert alert-danger mt-3 text-center">{{ errorMessage }}</div>
+        <app-bx-alert [options]="{'type': 'danger', 'message': errorMessage}" *ngIf="errorMessage !== null"></app-bx-alert>
     </div>
     <div *ngIf="state === 'adjusting'">
         <div *ngIf="!success; else successMessage">
@@ -21,9 +21,7 @@
             </div>
         </div>
         <ng-template #successMessage>
-            <div class="alert alert-success">
-                Your profile picture has been updated!
-            </div>
+            <app-bx-alert [options]="{'type': 'success', 'message': 'Your profile picture has been updated!'}"></app-bx-alert>
         </ng-template>
     </div>
 </div>
