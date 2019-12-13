@@ -13,7 +13,7 @@
                         <div class="bb-box-info">
                             <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
                             <div class="d-flex">
-                                <div class="col-5 pl-0">
+                                <div class="col-7 pl-0">
                                     <div>
                                         <svg class="berrybox-svg-icon crown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" title="Administrator">
                                     <rect x="29.61" y="209.46" width="440.78" height="181.69"/>
@@ -24,7 +24,7 @@
                                         <span class="ml-1">{{ box?.creator?.name }}</span>
                                     </div>
                                 </div>
-                                <div class="col-3 box-option" *ngIf="box?.options?.random === true" ngbTooltip="The next video will be picked at random from the upcoming pool" placement="top">
+                                <div class="col-5 box-option" *ngIf="box?.options?.random === true" ngbTooltip="The next video will be picked at random from the upcoming pool" placement="top">
                                     Random
                                 </div>
                                 <div class="col text-center">

@@ -1,4 +1,4 @@
-<div class="d-flex" id="settings">
+<div class="d-flex overflow-auto" id="settings">
     <div class="col-4 menu pt-5">
         <nav class="nav flex-column p-0 text-right">
             <a class="nav-link" (click)="currentTab = 'account'" [ngClass]="{'active':currentTab === 'account'}">Account</a>
@@ -23,9 +23,6 @@
                             <p class="help-text text-muted">Accepted formats: JPEG, PNG. Maximum size: 2MB.</p>
                         </div>
                     </div>
-                </div>
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-success save-button">Save</button>
                 </div>
             </div>
             <!-- <div id="privacy-tab" *ngIf="currentTab === 'privacy'">
