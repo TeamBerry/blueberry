@@ -142,6 +142,10 @@ button>svg {
     color: white;
     border-radius: 10px;
     @include margin-horizontal(3px);
+    &.box-option-success {
+        background-color: $success-color;
+        color: black;
+    }
 }
 
 .profile-picture {

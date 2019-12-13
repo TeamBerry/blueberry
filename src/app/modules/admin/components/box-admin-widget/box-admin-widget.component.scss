@@ -9,6 +9,9 @@ img {
     color: var(--text-main-color);
     border-radius: .3rem;
     height: 120px;
+    &.inactive {
+        background: repeating-linear-gradient( 45deg, transparent, transparent 10px, var(--background-secondary-color) 10px, var(--background-secondary-color) 20px), linear-gradient( to bottom, var(--background-main-hover-color), var(--background-main-active-color))
+    }
 }
 
 .box-info {

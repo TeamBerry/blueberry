@@ -1,4 +1,4 @@
-<div class="box-card d-flex">
+<div class="box-card d-flex" [ngClass]="{'inactive': box.open === false}">
     <div>
         <img *ngIf="currentVideo" src="http://i.ytimg.com/vi/{{ currentVideo?.video?.link }}/hqdefault.jpg" alt="">
         <img *ngIf="!currentVideo" src="assets/images/berrybox-logo-master.png" alt="" class="no-playing">
@@ -8,8 +8,8 @@
             <a class="box-name" href="box/{{ box?._id }}">{{ box?.name }}</a>
             <div class="box-details pl-3">
                 <p class="box-lang">{{ box?.lang }} | {{ box?.description || 'No description' }}</p>
-                <span *ngIf="!box.open">This box is closed. If left inactive, it will be destroyed on {{ box.updatedAt | boxDeletionEstimationPipe | date }}</span>
-                <div class="modes pb-2">
+                <span *ngIf="!box.open"><strong>This box is closed. If left inactive, it will be destroyed on {{ box.updatedAt | boxDeletionEstimationPipe | date }}</strong></span>
+                <div class="modes row pb-2">
                     <div class="col-2 box-option" *ngIf="box?.options?.random === true" ngbTooltip="The next video will be picked at random from the upcoming pool" placement="right">
                         Random
                     </div>
