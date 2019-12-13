@@ -1,0 +1,45 @@
+@import './../../../../../imports.scss';
+img {
+    height: 118px;
+}
+
+.box-card {
+    border: 1px solid lighten($master-color, 10%);
+    @include margin-vertical(.7rem);
+    color: var(--text-main-color);
+    border-radius: .3rem;
+    height: 120px;
+}
+
+.box-info {
+    padding: 1rem;
+}
+
+.box-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+}
+
+.box-option-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    &:hover {
+        background-color: transparentize($master-hover-color, 0.8);
+    }
+    &:active {
+        background-color: transparentize($master-active-color, 0.6);
+    }
+}
+
+.actions-icon {
+    height: 40%;
+}
+
+.box-status {
+    &.status-open {
+        background-color: $success-color;
+    }
+    &.status-closed {
+        background-color: $danger-color;
+    }
+}
