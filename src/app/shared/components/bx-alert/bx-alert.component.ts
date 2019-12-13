@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 interface BoxAlertOptions {
     type: 'success' | 'warning' | 'danger',
+    icon: boolean,
     message: string
 }
 
@@ -13,6 +14,7 @@ interface BoxAlertOptions {
 export class BxAlertComponent implements OnInit {
     @Input() options: BoxAlertOptions = {
         type: 'success',
+        icon: true,
         message: 'This is the default message'
     }
 

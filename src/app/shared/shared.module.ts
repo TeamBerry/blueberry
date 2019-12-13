@@ -37,7 +37,8 @@ import { BxAlertComponent } from './components/bx-alert/bx-alert.component';
         NgbModule,
         BoxDeletionEstimationPipe,
         FilterPipe,
-        PictureUploaderComponent
+        PictureUploaderComponent,
+        BxAlertComponent
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [

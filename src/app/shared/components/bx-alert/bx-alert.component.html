@@ -1,11 +1,13 @@
 <div class="alert alert-{{ options.type }} bx-alert">
-    <svg *ngIf="options.type === 'danger'" class="bx-icon bx-icon-sm bx-icon-danger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+    <ng-template *ngIf="options.icon">
+        <svg *ngIf="options.type === 'danger'" class="bx-icon bx-icon-sm bx-icon-danger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
             <rect class="cls-1" x="44.33" y="213.71" width="411.33" height="72.58" transform="translate(-103.55 250) rotate(-45)"/>
             <rect class="cls-1" x="44.33" y="213.71" width="411.33" height="72.58" transform="translate(250 603.55) rotate(-135)"/>
         </svg>
-    <svg *ngIf="options.type === 'success'" class="bx-icon bx-icon-sm bx-icon-success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+        <svg *ngIf="options.type === 'success'" class="bx-icon bx-icon-sm bx-icon-success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
             <rect class="cls-1" x="90.58" y="218.38" width="411.33" height="72.58" transform="translate(-93.31 284.07) rotate(-45)"/>
             <rect class="cls-1" x="16.23" y="286.42" width="216.94" height="72.58" transform="translate(-15.31 639.07) rotate(-135)"/>
     </svg>
+    </ng-template>
     <span class="col">{{ options.message }}</span>
 </div>
