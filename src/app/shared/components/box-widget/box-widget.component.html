@@ -1,15 +1,26 @@
 <div class="card-box">
     <div class="text-center">
         <img *ngIf="currentVideo" src="http://i.ytimg.com/vi/{{ currentVideo?.video?.link }}/hqdefault.jpg" alt="" class="card-img-top">
-        <!-- <img *ngIf="!currentVideo" src="assets/images/no-playing.png" alt="" class="card-img-top"> -->
         <img *ngIf="!currentVideo" src="assets/images/berrybox-logo-master.png" alt="" class="card-img-top no-playing">
     </div>
-    <div class="card-block p-2">
-        <h4 class="card-name">{{ box.name }}</h4>
-        <div id="box-info" class="pl-4">
-            <p id="currently-playing" class="mb-0"><strong>Playing: </strong>{{ currentVideo?.video?.name || "Nothing." }}</p>
-            <p id="box-admin" class="mb-0"><strong>Created by: </strong>{{ box.creator['name'] }}</p>
+    <div class="card-block p-2 d-flex">
+        <div class="bb-box-picture d-flex align-items-center justify-content-center mr-2">
+            <img src="{{ pictureLocation }}" alt="" class="profile-picture profile-picture-md">
         </div>
+        <div>
+            <h4 class="card-name m-0">{{ box.name }}</h4>
+            <div id="box-info">
+                <p id="currently-playing" class="mb-0"><strong>Playing: </strong>{{ currentVideo?.video?.name || "Nothing." }}</p>
+                <p id="box-admin" class="mb-0"><strong>Created by: </strong>{{ box.creator['name'] }}</p>
+                <div class="modes pb-2">
+                    <div class="col-6 box-option" *ngIf="box?.options?.random === true" ngbTooltip="The next video will be picked at random from the upcoming pool" placement="right">
+                        Random
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-actions p-2">
         <a class="btn btn-default btn-block">Join</a>
     </div>
 </div>

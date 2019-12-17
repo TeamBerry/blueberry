@@ -107,6 +107,24 @@
     }
 }
 
+.modal-header {
+    font-family: 'Montserrat', sans-serif;
+    h5 {
+        font-weight: 700 !important;
+    }
+    .close {
+        color: var(--text-main-color);
+        opacity: .8;
+    }
+}
+
+.modal-header,
+.modal-body {
+    background-color: var(--background-main-color);
+    border-radius: 0;
+    border: none;
+}
+
 .modal-content {
     background-color: var(--background-main-color);
     color: var(--text-main-color);
@@ -147,4 +165,18 @@
 
 .card {
     background-color: var(--background-main-color);
+}
+
+// Alerts
+.alert {
+    background-color: transparent;
+    font-weight: 700;
+    &.alert-danger {
+        color: $danger-color !important;
+        border-color: $danger-color;
+    }
+    &.alert-success {
+        color: $success-color !important;
+        border-color: $success-color;
+    }
 }

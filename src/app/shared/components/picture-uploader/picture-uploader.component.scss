@@ -1,0 +1,15 @@
+@import './../../../../imports.scss';
+.modal-header,
+.modal-body {
+    background-color: var(--background-main-color);
+    border-radius: 0;
+    border: none;
+}
+
+#btn-dropzone {
+    height: 150px;
+}
+
+#picture-preview {
+    @include profile-picture-size(120px);
+}

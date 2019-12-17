@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { User } from './user.model';
 
 export interface Session {
     bearer: string,
@@ -6,19 +7,4 @@ export interface Session {
     expiresIn: number | string
 }
 
-@Injectable()
-export class AuthSubject {
-    _id: string;
-    name: string;
-    settings: {
-        theme: 'light' | 'dark'
-    }
-
-    constructor(session?: Partial<AuthSubject>) {
-        this._id = session && session._id || null;
-        this.name = session && session.name || null;
-        this.settings = session && session.settings || {
-            theme: 'light'
-        }
-    }
-};
+export type AuthSubject = Pick<User, '_id' | 'name' | 'settings'>

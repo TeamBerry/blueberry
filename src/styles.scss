@@ -2,8 +2,8 @@
 
 @import 'global.css';
 @import 'imports.scss';
-@import '../node_modules/bootstrap/scss/bootstrap';
-@import '../node_modules/ngx-toastr/toastr';
+@import '~bootstrap/scss/bootstrap';
+@import '~ngx-toastr/toastr';
 body {
     overflow: hidden;
     background-color: var(--background-main-color);
@@ -56,6 +56,35 @@ button>svg {
     }
 }
 
+.bx-icon {
+    // Sizes
+    &.bx-icon-xs {
+        height: 20px;
+        width: 20px;
+    }
+    &.bx-icon-sm {
+        height: 40px;
+        width: 40px;
+    }
+    &.bx-icon-md {
+        height: 80px;
+        width: 80px;
+    }
+    &.bx-icon-lg {
+        height: 160px;
+        width: 160px;
+    }
+    // Status
+    &.bx-icon-danger {
+        fill: $danger-color;
+        color: $danger-color;
+    }
+    &.bx-icon-success {
+        fill: $success-color;
+        color: $success-color;
+    }
+}
+
 .key-commands {
     font-size: 0.8rem;
     padding: 0.5rem;
@@ -105,4 +134,31 @@ button>svg {
 
 .notification-indicator {
     fill: $notification-color !important;
+}
+
+.box-option {
+    text-align: center;
+    background-color: grey;
+    color: white;
+    border-radius: 10px;
+    @include margin-horizontal(3px);
+    &.box-option-success {
+        background-color: $success-color;
+        color: black;
+    }
+}
+
+.profile-picture {
+    &.profile-picture-nav {
+        @include profile-picture-size(28px);
+    }
+    &.profile-picture-sm {
+        @include profile-picture-size(30px);
+    }
+    &.profile-picture-md {
+        @include profile-picture-size(50px);
+    }
+    &.profile-picture-lg {
+        @include profile-picture-size(80px);
+    }
 }

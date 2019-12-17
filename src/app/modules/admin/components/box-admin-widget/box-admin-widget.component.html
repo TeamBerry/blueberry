@@ -1,0 +1,30 @@
+<div class="box-card d-flex" [ngClass]="{'inactive': box.open === false}">
+    <div>
+        <img *ngIf="currentVideo" src="http://i.ytimg.com/vi/{{ currentVideo?.video?.link }}/hqdefault.jpg" alt="">
+        <img *ngIf="!currentVideo" src="assets/images/berrybox-logo-master.png" alt="" class="no-playing">
+    </div>
+    <div class="col d-flex pr-0">
+        <div class="col box-info">
+            <a class="box-name" href="box/{{ box?._id }}">{{ box?.name }}</a>
+            <div class="box-details pl-0">
+                <p class="box-lang">{{ box?.lang }} | {{ box?.description || 'No description' }}</p>
+                <span *ngIf="!box.open"><strong>This box is closed. If left inactive, it will be destroyed on {{ box.updatedAt | boxDeletionEstimationPipe | date }}</strong></span>
+                <div class="modes d-flex pb-2">
+                    <div class="col-2 box-option" *ngIf="box?.options?.random === true" ngbTooltip="The next video will be picked at random from the upcoming pool" placement="right">
+                        Random
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1 m-auto text-center box-option-button h-100 d-flex" ngbDropdown>
+            <div ngbDropdownToggle class="h-100 d-flex align-items-center">
+                <img src="../../../../../assets/images/icons/actions-icon.svg" alt="Actions" class="actions-icon">
+            </div>
+            <div ngbDropdownMenu>
+                <button ngbDropdownItem (click)="openCreateModal(box)">Edit</button>
+                <button ngbDropdownItem (click)="toggleBoxState(box)" [innerHTML]="box.open ? 'Close' : 'Open'"></button>
+                <button ngbDropdownItem (click)="deleteBox(box)" *ngIf="!box.open">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,18 +10,22 @@ import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe'
 import { ThemeService } from './services/theme.service';
 import { UserService } from './services/user.service';
 import { FilterPipe } from './pipes/filter.pipe';
+import { PictureUploaderComponent } from './components/picture-uploader/picture-uploader.component';
+import { BxAlertComponent } from './components/bx-alert/bx-alert.component';
 
 @NgModule({
     imports: [
         CommonModule,
-        NgbModule.forRoot(),
+        NgbModule,
     ],
     declarations: [
         AuthDirective,
         SlideToggleComponent,
         VideoEntryComponent,
         BoxDeletionEstimationPipe,
-        FilterPipe
+        FilterPipe,
+        PictureUploaderComponent,
+        BxAlertComponent
     ],
     exports: [
         CommonModule,
@@ -32,10 +36,13 @@ import { FilterPipe } from './pipes/filter.pipe';
         VideoEntryComponent,
         NgbModule,
         BoxDeletionEstimationPipe,
-        FilterPipe
+        FilterPipe,
+        PictureUploaderComponent,
+        BxAlertComponent
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
+        PictureUploaderComponent
     ]
 })
 export class SharedModule { }
