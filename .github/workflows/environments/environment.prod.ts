@@ -4,5 +4,5 @@ export const environment = {
     boquila: 'https://boquila.berrybox.tv',
     amazonBuckets: 'https://berrybox-user-pictures.s3.eu-west-1.amazonaws.com',
     profilePictureBuckets: 'profile-pictures',
-    youtubeApiKey: 'AIzaSyB4-S6Lm-1-T1KmGIwcbMw_KDR4T4StxUE'
+    youtubeApiKey: 'AIzaSyBU8B5y5758rXBT28HtBJUOofxj79wBuUI'
 };
