@@ -16,6 +16,9 @@ export class SearchTabComponent implements OnInit {
     @Input() user: AuthSubject;
     searchValue = ''
     errorMessage
+    defaultSearchCooldown = 5
+    searchTimeoutValue = 5
+    canSearch = true
 
     searchResults: Array<Video> = []
 
@@ -34,11 +37,21 @@ export class SearchTabComponent implements OnInit {
             this.errorMessage = 'Your search criteria needs to have at least 3 characters.'
             return false
         }
+        // Timeout
+        if (this.canSearch === false) {
+            // tslint:disable-next-line: max-line-length
+            this.errorMessage = `You have to wait at least ${this.defaultSearchCooldown} seconds before two requests. Please wait until you can search again.`
+            return false
+        }
         return true
     }
 
     searchYouTube() {
         if (this.checkValidity()) {
+            // Reset cooldown
+            this.canSearch = false
+            this.searchTimeoutValue = this.defaultSearchCooldown
+            // Search
             this.youtubeService.search(this.searchValue).subscribe(
                 (response: YoutubeSearchResult) => {
                     this.searchResults = response.items.map((responseVideo: YoutubeSearchVideos) => {
@@ -48,6 +61,14 @@ export class SearchTabComponent implements OnInit {
                             link: responseVideo.id.videoId
                         })
                     })
+                    // Cooldown of 5s before allowing a new search
+                    setInterval(() => {
+                        this.searchTimeoutValue--
+                        if (this.searchTimeoutValue <= 0) {
+                            clearInterval()
+                            this.canSearch = true
+                        }
+                    }, 1000);
                 }
             )
         }
