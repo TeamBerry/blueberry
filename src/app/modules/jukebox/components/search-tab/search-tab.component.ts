@@ -15,6 +15,7 @@ export class SearchTabComponent implements OnInit {
     @Input() boxToken: string;
     @Input() user: AuthSubject;
     searchValue = ''
+    errorMessage
 
     searchResults: Array<Video> = []
 
@@ -26,18 +27,30 @@ export class SearchTabComponent implements OnInit {
     ngOnInit() {
     }
 
+    checkValidity(): boolean {
+        this.errorMessage = ''
+        // Length of value
+        if (this.searchValue.length < 3) {
+            this.errorMessage = 'Your search criteria needs to have at least 3 characters.'
+            return false
+        }
+        return true
+    }
+
     searchYouTube() {
-        this.youtubeService.search(this.searchValue).subscribe(
-            (response: YoutubeSearchResult) => {
-                this.searchResults = response.items.map((responseVideo: YoutubeSearchVideos) => {
-                    return new Video({
-                        _id: null,
-                        name: responseVideo.snippet.title,
-                        link: responseVideo.id.videoId
+        if (this.checkValidity()) {
+            this.youtubeService.search(this.searchValue).subscribe(
+                (response: YoutubeSearchResult) => {
+                    this.searchResults = response.items.map((responseVideo: YoutubeSearchVideos) => {
+                        return new Video({
+                            _id: null,
+                            name: responseVideo.snippet.title,
+                            link: responseVideo.id.videoId
+                        })
                     })
-                })
-            }
-        )
+                }
+            )
+        }
     }
 
     resetSearch() {

@@ -5,5 +5,8 @@
     </div>
 </div>
 <div *ngIf="searchResults" id="results">
+    <div *ngIf="errorMessage" class="p-4">
+        <app-bx-alert [options]="{'type': 'danger', 'message': errorMessage}"></app-bx-alert>
+    </div>
     <app-video-entry *ngFor="let video of searchResults" [video]="video" (submit)="submitVideo($event)"></app-video-entry>
 </div>
