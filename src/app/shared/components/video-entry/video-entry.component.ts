@@ -14,9 +14,9 @@ export class VideoEntryComponent implements OnInit {
 
     @Input() video: Video;
     @Input() options: {
-        submit: boolean,
-        favorite: boolean
-    }
+        submit?: boolean,
+        favorite?: boolean
+    } = {}
 
     appliedOptions = {
         submit: true,
