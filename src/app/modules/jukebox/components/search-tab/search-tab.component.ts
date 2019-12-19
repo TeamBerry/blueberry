@@ -18,6 +18,7 @@ export class SearchTabComponent implements OnInit {
     errorMessage
     defaultSearchCooldown = 5
     searchTimeoutValue = 5
+    searchInterval
     canSearch = true
 
     searchResults: Array<Video> = []
@@ -62,13 +63,16 @@ export class SearchTabComponent implements OnInit {
                         })
                     })
                     // Cooldown of 5s before allowing a new search
-                    setInterval(() => {
+                    this.searchInterval = setInterval(() => {
                         this.searchTimeoutValue--
                         if (this.searchTimeoutValue <= 0) {
-                            clearInterval()
+                            clearInterval(this.searchInterval)
                             this.canSearch = true
                         }
                     }, 1000);
+                },
+                (error) => {
+                    this.canSearch = true
                 }
             )
         }
