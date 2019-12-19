@@ -13,6 +13,15 @@ import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
 export class VideoEntryComponent implements OnInit {
 
     @Input() video: Video;
+    @Input() options: {
+        submit: boolean,
+        favorite: boolean
+    }
+
+    appliedOptions = {
+        submit: true,
+        favorite: true
+    }
 
     @Output() submit: EventEmitter<Video> = new EventEmitter();
 
@@ -23,6 +32,15 @@ export class VideoEntryComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.buildOptions()
+    }
+
+    buildOptions() {
+        Object.keys(this.options).map(
+            (value: string) => {
+                this.appliedOptions[value] = this.options[value]
+            }
+        )
     }
 
     submitVideo() {
