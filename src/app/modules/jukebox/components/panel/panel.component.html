@@ -1,12 +1,15 @@
 <div class="row no-gutters">
     <div class="col-11 sub-panels">
         <div class="panel-title text-center">{{activePanel}}</div>
-        <div class="box-side-panel" id="chat-space">
+        <div class="box-side-panel" id="panel-space" [hidden]="['chat', 'queue', 'users', 'commands'].indexOf(activePanel) === -1">
             <app-chat [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user" (socketStatus)="refreshChatStatus($event)"></app-chat>
             <app-playlist [hidden]="activePanel !== 'queue'" [user]="user"></app-playlist>
-            <app-favoritelist [hidden]="activePanel !== 'favorites'" [boxToken]="boxToken" [user]="user"></app-favoritelist>
             <app-userlist [hidden]="activePanel !== 'users'" [user]="user"></app-userlist>
             <app-command-list [hidden]="activePanel !== 'commands'" (clickedCommand)="kickstartCommand($event)"></app-command-list>
+        </div>
+        <div class="box-side-panel panel-fixed" [hidden]="['favorites', 'search'].indexOf(activePanel) === -1">
+            <app-favoritelist [hidden]="activePanel !== 'favorites'" [boxToken]="boxToken" [user]="user"></app-favoritelist>
+            <app-search-tab [hidden]="activePanel !== 'search'" [boxToken]="boxToken" [user]="user"></app-search-tab>
         </div>
     </div>
     <div class="col-1" id="panel-menu">
@@ -64,6 +67,14 @@
                 </a>
             </li>
             <li class="nav-separator my-1"></li>
+            <li class="nav-item" [ngClass]="{'active': activePanel === 'search'}" ngbTooltip="Search" placement="left">
+                <a class="nav-link" (click)="showPanel('search')" title="Search">
+                    <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427.28 439.64">
+                        <rect class="berrybox-path" x="-10.35" y="290.75" width="245.89" height="72.58" transform="translate(-198.27 175.41) rotate(-45)"/>
+                        <path class="berrybox-path" d="M275.62,0A151.66,151.66,0,1,0,427.28,151.66,151.66,151.66,0,0,0,275.62,0Zm0,239a87.32,87.32,0,1,1,87.32-87.32A87.32,87.32,0,0,1,275.62,239Z"/>
+                    </svg>
+                </a>
+            </li>
             <li class="nav-item" [ngClass]="{'active': activePanel === 'commands'}" ngbTooltip="Commands" placement="left">
                 <a class="nav-link" (click)="showPanel('commands')" title="Commands">!</a>
             </li>

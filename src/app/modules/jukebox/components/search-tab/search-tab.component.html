@@ -1,0 +1,19 @@
+<div class="p-3">
+    <form (submit)="searchYouTube()">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Type to search YouTube..." [(ngModel)]="searchValue" name="searchCriterion">
+            <div class="input-group-append">
+                <button class="btn btn-outline-default" type="submit" [disabled]="canSearch === false">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div *ngIf="searchResults" id="results">
+    <div *ngIf="!canSearch">
+        <p class="text-muted text-center">Next search available in {{ searchTimeoutValue }} seconds.</p>
+    </div>
+    <div *ngIf="errorMessage" class="p-4">
+        <app-bx-alert [options]="{'type': 'danger', 'message': errorMessage}"></app-bx-alert>
+    </div>
+    <app-video-entry *ngFor="let video of searchResults" [video]="video" [options]="{'favorite': false}" (submit)="submitVideo($event)"></app-video-entry>
+</div>
