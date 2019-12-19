@@ -25,6 +25,10 @@ svg.berrybox-svg {
     .berrybox-path {
         stroke: var(--text-system-color);
         fill: var(--text-system-color);
+        &:active {
+            stroke: var(--active-stroke-color);
+            fill: var(--active-stroke-color);
+        }
     }
 }
 

@@ -11,6 +11,9 @@
             visibility: visible;
         }
     }
+    &.panel-fixed {
+        overflow-y: hidden;
+    }
 }
 
 .panel-title {

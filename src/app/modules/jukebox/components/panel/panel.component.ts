@@ -57,7 +57,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     }
 
     adjustView() {
-        const panelSpace = document.getElementById('chat-space');
+        const panelSpace = document.getElementById('panel-space');
         panelSpace.scrollTop = panelSpace.scrollHeight;
     }
 
