@@ -19,6 +19,7 @@ export const darkTheme = {
     'text-focus-color': '#009AEB',
     'text-system-color': '#BBBBBB',
     'stroke-color': '#BBBBBB',
+    'active-stroke-color': 'white',
     'inactive-color': '#CCCCCC'
 }
 
@@ -38,6 +39,7 @@ export const lightTheme = {
     'text-focus-color': '#009AEB',
     'text-system-color': '#444444',
     'stroke-color': '#444444',
+    'active-stroke-color': '#009AEB',
     'inactive-color': '#8f8f8f',
 }
 
