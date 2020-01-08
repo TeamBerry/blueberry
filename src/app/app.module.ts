@@ -24,6 +24,8 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 import { JukeboxModule } from './modules/jukebox/jukebox.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -46,7 +48,8 @@ import { PasswordResetComponent } from './pages/password-reset/password-reset.co
         SharedModule,
         CoreModule,
         JukeboxModule,
-        NgbModule
+        NgbModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     ],
     exports: [
         AppComponent
