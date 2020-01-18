@@ -1,6 +1,6 @@
 @import './../../../imports.scss';
 .navbar {
-    background-color: $master-color;
+    background-color: var(--nav-color);
     margin-bottom: 0 !important;
     height: 60px;
     //@include fontFace('geometria', 'Geometria-Light-webfont');

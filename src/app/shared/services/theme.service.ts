@@ -4,14 +4,15 @@ import { AuthService } from 'app/core/auth/auth.service';
 import { UserService } from './user.service';
 
 export const darkTheme = {
-    'background-main-color': '#0B1A38',
+    'background-main-color': '#262626',
+    'nav-color': '#333333',
     'background-main-hover-color': '#102641',
     'background-main-active-color': '#1a3e6a',
     'background-main-border-color': '#979797',
     // Main Color, lighten 15%
-    'background-secondary-color': '#1a3e6a',
+    'background-secondary-color': '#404040',
     // Secondary Color, lighten 5%
-    'background-secondary-color-alternate': '#1f4a7e',
+    'background-secondary-color-alternate': '#4d4d4d',
     'input-main-color': '#D0D0D0',
     'text-main-color': 'white',
     'text-secondary-color': '#e6e6e6',
@@ -28,6 +29,7 @@ export const lightTheme = {
     'background-main-hover-color': '#f2f2f2',
     'background-main-active-color': '#d9d9d9',
     'background-main-border-color': '#979797',
+    'nav-color': '#009AEB',
     // Main Color, darken 15%
     'background-secondary-color': '#d9d9d9',
     // Secondary Color, darken 5%
