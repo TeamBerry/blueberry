@@ -6,8 +6,8 @@ import { UserService } from './user.service';
 export const darkTheme = {
     'background-main-color': '#262626',
     'nav-color': '#333333',
-    'background-main-hover-color': '#102641',
-    'background-main-active-color': '#1a3e6a',
+    'background-main-hover-color': '#3f3f3f',
+    'background-main-active-color': '#3f3f3f',
     'background-main-border-color': '#979797',
     // Main Color, lighten 15%
     'background-secondary-color': '#404040',
