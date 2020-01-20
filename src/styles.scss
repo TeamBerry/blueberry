@@ -145,6 +145,7 @@ button>svg {
     background-color: grey;
     color: white;
     border-radius: 10px;
+    width: 80px;
     @include margin-horizontal(3px);
     &.box-option-success {
         background-color: $success-color;

@@ -29,7 +29,7 @@ export class Box {
          *
          * @type {Boolean}
          */
-        refresh: Boolean;
+        loop: Boolean;
     }
 
     constructor(obj?: any) {
@@ -42,7 +42,7 @@ export class Box {
         this.open = obj && obj.open || true;
         this.options = obj && obj.options || {
             random: false,
-            refresh: false
+            loop: false
         }
         this.createdAt = obj && obj.createdAt || null;
         this.updatedAt = obj && obj.updatedAt || null;
