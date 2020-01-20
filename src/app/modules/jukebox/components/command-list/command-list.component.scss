@@ -8,13 +8,5 @@
 }
 
 .command-key {
-    font-weight: 800;
-    color: $master-color;
     cursor: pointer;
-    &:hover {
-        color: $master-hover-color;
-    }
-    &:active {
-        color: $master-active-color;
-    }
 }

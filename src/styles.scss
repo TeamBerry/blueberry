@@ -166,3 +166,14 @@ button>svg {
         @include profile-picture-size(80px);
     }
 }
+
+.command-key {
+    font-weight: 800;
+    color: $master-color;
+    &:hover {
+        color: $master-hover-color;
+    }
+    &:active {
+        color: $master-active-color;
+    }
+}

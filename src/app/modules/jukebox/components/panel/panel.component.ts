@@ -12,6 +12,8 @@ import { BoxFormComponent } from 'app/shared/components/box-form/box-form.compon
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Box } from 'app/shared/models/box.model';
 
+export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorites' | 'search'
+
 @Component({
     selector: 'app-panel',
     templateUrl: './panel.component.html',
@@ -26,7 +28,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     contents = '';
     hasLink = false;
     hasCommand = false;
-    activePanel = '';
+    activePanel: Panel = 'chat';
 
     /**
      * Boolean to determine whether new messages have been received and the chat panel is not active
@@ -61,7 +63,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         panelSpace.scrollTop = panelSpace.scrollHeight;
     }
 
-    showPanel(panelToken: string) {
+    showPanel(panelToken: Panel) {
         this.activePanel = panelToken;
     }
 
@@ -126,6 +128,37 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
             case 'settings':
                 this.openBoxSettings();
+                break;
+
+            case 'help':
+                this.activePanel = 'help';
+                break;
+
+            case 'chat':
+                this.activePanel = 'chat';
+                this.newMessages = false;
+                break;
+
+            case 'playlist':
+                this.activePanel = 'queue';
+                break;
+
+            case 'users':
+            case 'userlist':
+                this.activePanel = 'users';
+                break;
+
+            case 'favorites':
+                this.activePanel = 'favorites';
+                break;
+
+            case 'search':
+                this.activePanel = 'search';
+                break;
+
+            case 'commands':
+            case 'macros':
+                this.activePanel = 'commands';
                 break;
 
             default:
