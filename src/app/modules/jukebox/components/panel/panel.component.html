@@ -1,11 +1,12 @@
 <div class="row no-gutters">
     <div class="col-11 sub-panels">
         <div class="panel-title text-center">{{activePanel}}</div>
-        <div class="box-side-panel" id="panel-space" [hidden]="['chat', 'queue', 'users', 'commands'].indexOf(activePanel) === -1">
+        <div class="box-side-panel" id="panel-space" [hidden]="['chat', 'queue', 'users', 'commands', 'help'].indexOf(activePanel) === -1">
             <app-chat [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user" (socketStatus)="refreshChatStatus($event)"></app-chat>
             <app-playlist [hidden]="activePanel !== 'queue'" [user]="user"></app-playlist>
             <app-userlist [hidden]="activePanel !== 'users'" [user]="user"></app-userlist>
             <app-command-list [hidden]="activePanel !== 'commands'" (clickedCommand)="kickstartCommand($event)"></app-command-list>
+            <app-help-tab [hidden]="activePanel !== 'help'"></app-help-tab>
         </div>
         <div class="box-side-panel panel-fixed" [hidden]="['favorites', 'search'].indexOf(activePanel) === -1">
             <app-favoritelist [hidden]="activePanel !== 'favorites'" [boxToken]="boxToken" [user]="user"></app-favoritelist>
@@ -77,6 +78,9 @@
             </li>
             <li class="nav-item" [ngClass]="{'active': activePanel === 'commands'}" ngbTooltip="Commands" placement="left">
                 <a class="nav-link" (click)="showPanel('commands')" title="Commands">!</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': activePanel === 'help'}" ngbTooltip="Help" placement="left">
+                <a class="nav-link" (click)="showPanel('help')" title="Help">?</a>
             </li>
         </ul>
     </div>

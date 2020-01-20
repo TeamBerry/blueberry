@@ -16,6 +16,7 @@ import { FavoritelistComponent } from './components/favoritelist/favoritelist.co
 import { PlaylistVideoComponent } from './components/playlist-video/playlist-video.component';
 import { CommandListComponent } from './components/command-list/command-list.component';
 import { SearchTabComponent } from './components/search-tab/search-tab.component';
+import { HelpTabComponent } from './components/help-tab/help-tab.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { SearchTabComponent } from './components/search-tab/search-tab.component
         FavoritelistComponent,
         PlaylistVideoComponent,
         CommandListComponent,
-        SearchTabComponent
+        SearchTabComponent,
+        HelpTabComponent
     ],
     imports: [
         JukeboxRoutingModule,
