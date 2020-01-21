@@ -145,6 +145,7 @@ button>svg {
     background-color: grey;
     color: white;
     border-radius: 10px;
+    width: 80px;
     @include margin-horizontal(3px);
     &.box-option-success {
         background-color: $success-color;
@@ -164,5 +165,16 @@ button>svg {
     }
     &.profile-picture-lg {
         @include profile-picture-size(80px);
+    }
+}
+
+.command-key {
+    font-weight: 800;
+    color: $master-color;
+    &:hover {
+        color: $master-hover-color;
+    }
+    &:active {
+        color: $master-active-color;
     }
 }

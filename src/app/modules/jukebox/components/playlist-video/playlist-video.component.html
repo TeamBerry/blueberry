@@ -2,6 +2,9 @@
     <div class="entry-info d-flex">
         <div class="entry-image-container h-100">
             <img class="entry-image h-100 float-left" src="http://img.youtube.com/vi/{{ item?.video?.link }}/0.jpg" alt="">
+            <span class="submission-duration">
+                {{ item?.video.duration | duration }}
+            </span>
         </div>
         <div class="entry-details col pr-0">
             <p class="song-list-line">

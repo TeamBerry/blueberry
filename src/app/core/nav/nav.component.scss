@@ -1,6 +1,6 @@
 @import './../../../imports.scss';
 .navbar {
-    background-color: $master-color;
+    background-color: var(--nav-color);
     margin-bottom: 0 !important;
     height: 60px;
     //@include fontFace('geometria', 'Geometria-Light-webfont');
@@ -13,6 +13,12 @@
     &:hover {
         color: white;
     }
+    &:active {
+        color: white;
+    }
+    &:focus {
+        color: white;
+    }
 }
 
 .nav-pp {
@@ -21,20 +27,19 @@
 
 .nav-name {
     font-size: 19px;
-    color: white;
-}
-
-.nav-item {
-    cursor: pointer;
+    color: var(--text-main-color);
 }
 
 .dropdown-menu {
     background-color: var(--background-main-color);
-    border-radius: 0;
-    border-color: $master-color;
-    width: 179px;
+    width: 200px;
+    padding: 1rem 0 0.5rem 0;
+    box-shadow: 0 0 7px 0.1rem black;
+    top: 50px;
+    border: none;
     .dropdown-item {
-        color: var(--text-focus-color);
+        cursor: pointer;
+        color: var(--text-main-color);
         &:hover {
             background-color: var(--background-main-hover-color);
         }
@@ -52,9 +57,6 @@
     #nav-dropdown {
         height: 38px;
     }
-    &:hover {
-        background-color: $master-hover-color;
-    }
     .user-pp {
         margin-right: 5px;
     }
@@ -71,4 +73,8 @@
     &:hover {
         color: white;
     }
+}
+
+.dropdown-divider {
+    color: white;
 }
