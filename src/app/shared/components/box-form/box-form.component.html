@@ -34,6 +34,16 @@
             </div>
         </div>
 
+        <div class="form-group d-flex no-gutters">
+            <div class="col-10">
+                <label for="random" class="col-form-label pb-0">Loop Mode</label>
+                <p class="help-text text-muted">The system will automatically requeue old videos. Combined with Random Mode, videos will be picked randomly.</p>
+            </div>
+            <div class="col m-auto">
+                <app-slide-toggle class="float-right" [(value)]="box.options.loop"></app-slide-toggle>
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-default btn-block">{{ context }}</button>
     </form>
 </div>

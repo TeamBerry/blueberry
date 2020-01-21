@@ -17,8 +17,19 @@ export class Box {
     createdAt: Date;
     updatedAt: Date;
     options: {
-        // Random: The next video will be picked at random from the playlist
+        /**
+         * The next video will be picked at random from the playlist
+         *
+         * @type {Boolean}
+         */
         random: Boolean;
+        /**
+         * If there are more than 10 submitted videos and less than 3 upcoming videos, one video at random from the
+         * pool of 10 will be added to the list of upcoming videos
+         *
+         * @type {Boolean}
+         */
+        loop: Boolean;
     }
 
     constructor(obj?: any) {
@@ -30,7 +41,8 @@ export class Box {
         this.playlist = obj && obj.playlist || [];
         this.open = obj && obj.open || true;
         this.options = obj && obj.options || {
-            random: false
+            random: false,
+            loop: false
         }
         this.createdAt = obj && obj.createdAt || null;
         this.updatedAt = obj && obj.updatedAt || null;

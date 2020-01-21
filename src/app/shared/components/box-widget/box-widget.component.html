@@ -13,9 +13,12 @@
                 <p id="currently-playing" class="mb-0"><strong>Playing: </strong>{{ currentVideo?.video?.name || "Nothing." }}</p>
                 <p id="box-admin" class="mb-0"><strong>Created by: </strong>{{ box.creator['name'] }}</p>
                 <div class="modes pb-2">
-                    <div class="col-6 box-option" *ngIf="box?.options?.random === true" ngbTooltip="The next video will be picked at random from the upcoming pool" placement="right">
+                    <span class="col-6 box-option" *ngIf="box?.options?.random === true" ngbTooltip="The next video will be picked at random from the upcoming pool." placement="right">
                         Random
-                    </div>
+                    </span>
+                    <span class="col-6 box-option" *ngIf="box?.options?.loop === true" ngbTooltip="The system will automatically requeue old videos." placement="right">
+                        Loop
+                    </span>
                 </div>
             </div>
         </div>
