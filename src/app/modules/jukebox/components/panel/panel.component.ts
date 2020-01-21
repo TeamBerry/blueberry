@@ -200,14 +200,14 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     }
 
     /**
- * Connects to jukebox service chat stream to get messages to display
- *
- * @memberof ChatComponent
- */
+     * Connects to jukebox service chat stream to get messages to display
+     *
+     * @memberof ChatComponent
+     */
     connectToStream() {
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
-                filter(message => message instanceof Message)
+                filter(message => message instanceof Message && message.scope === this.boxToken)
             )
             .subscribe(
                 (message: Message) => {

@@ -38,7 +38,7 @@ export class ChatComponent implements OnInit {
         console.log('connecting chat to socket...');
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
-                filter(message => message instanceof Message)
+                filter(message => message instanceof Message && message.scope === this.boxToken)
             )
             .subscribe(
                 (message: Message) => {

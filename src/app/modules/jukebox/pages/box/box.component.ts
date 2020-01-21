@@ -129,7 +129,7 @@ export class BoxComponent implements OnInit {
         console.log('connecting sync to socket...');
         this.jukeboxService.getBoxStream()
             .pipe(
-                filter(syncPacket => syncPacket instanceof SyncPacket)
+                filter(syncPacket => syncPacket instanceof SyncPacket && syncPacket.box === this.box._id)
             )
             .subscribe(
                 (syncPacket: SyncPacket) => {
