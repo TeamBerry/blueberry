@@ -12,6 +12,7 @@ import { UserService } from './services/user.service';
 import { FilterPipe } from './pipes/filter.pipe';
 import { PictureUploaderComponent } from './components/picture-uploader/picture-uploader.component';
 import { BxAlertComponent } from './components/bx-alert/bx-alert.component';
+import { DurationPipe } from './pipes/duration.pipe';
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { BxAlertComponent } from './components/bx-alert/bx-alert.component';
         BoxDeletionEstimationPipe,
         FilterPipe,
         PictureUploaderComponent,
-        BxAlertComponent
+        BxAlertComponent,
+        DurationPipe
     ],
     exports: [
         CommonModule,
@@ -38,7 +40,8 @@ import { BxAlertComponent } from './components/bx-alert/bx-alert.component';
         BoxDeletionEstimationPipe,
         FilterPipe,
         PictureUploaderComponent,
-        BxAlertComponent
+        BxAlertComponent,
+        DurationPipe
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
