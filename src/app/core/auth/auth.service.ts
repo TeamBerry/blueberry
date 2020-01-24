@@ -15,7 +15,7 @@ export class AuthService {
 
     static getAuthSubject(): AuthSubject {
         const session: AuthSubject = JSON.parse(localStorage.getItem('BBOX-user'));
-        return session ? session as AuthSubject : null;
+        return session ? session as AuthSubject : { _id: null, name: null, settings: { theme: 'dark', picture: null } };
     }
 
     constructor(
