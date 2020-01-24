@@ -14,8 +14,27 @@ export class AuthService {
     public subject: BehaviorSubject<AuthSubject> = new BehaviorSubject<AuthSubject>(this.authSubject);
 
     static getAuthSubject(): AuthSubject {
-        const session: AuthSubject = JSON.parse(localStorage.getItem('BBOX-user'));
-        return session ? session as AuthSubject : { _id: null, name: null, settings: { theme: 'dark', picture: null } };
+        let session: AuthSubject = JSON.parse(localStorage.getItem('BBOX-user'));
+        if (!session) {
+
+            const values = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+            let authToken = ''
+
+            for (let i = 20; i > 0; --i) {
+                authToken += values[Math.round(Math.random() * (values.length - 1))]
+            }
+
+            session = {
+                _id: `user-${authToken}`,
+                name: null,
+                settings: {
+                    theme: 'dark',
+                    picture: null
+                }
+            }
+        }
+
+        return session as AuthSubject
     }
 
     constructor(
@@ -124,5 +143,4 @@ export class AuthService {
         localStorage.setItem('BBOX-user', JSON.stringify(authSubject));
         this.sendUser();
     }
-
 }
