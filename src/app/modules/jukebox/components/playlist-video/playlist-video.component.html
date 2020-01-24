@@ -19,15 +19,17 @@
                     {{ item?.submitted_by?.name }}
                 </span>
             </div>
-            <button *ngIf="item?.startTime !== null && item?.endTime === null" type="button" class="btn btn-primary" (click)="skipVideo(item)">
+            <div *appAuth="true">
+                <button *ngIf="item?.startTime !== null && item?.endTime === null" type="button" class="btn btn-primary" (click)="skipVideo(item)">
                     <svg class="btn-primary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88">
                     <polygon points="334.18 192.94 0 0 0 385.88 334.18 192.94"/>
                     <rect width="68.21" height="385.88" x="334.18"/>
                   </svg>
                   Skip
                 </button>
-            <button *ngIf="item?.startTime === null && item?.submitted_by?._id === user._id" class="btn btn-default" (click)="cancelVideo(item)">Cancel</button>
-            <button *ngIf="item?.endTime !== null" class="btn btn-default button-resubmit" (click)="replayVideo(item)">Replay</button>
+                <button *ngIf="item?.startTime === null && item?.submitted_by?._id === user._id" class="btn btn-default" (click)="cancelVideo(item)">Cancel</button>
+                <button *ngIf="item?.endTime !== null" class="btn btn-default button-resubmit" (click)="replayVideo(item)">Replay</button>
+            </div>
         </div>
     </div>
 </div>
