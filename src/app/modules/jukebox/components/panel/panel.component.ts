@@ -11,6 +11,8 @@ import { filter } from 'rxjs/operators';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Box } from 'app/shared/models/box.model';
+import { LoginFormComponent } from 'app/shared/components/login-form/login-form.component';
+import { SignupFormComponent } from 'app/shared/components/signup-form/signup-form.component';
 
 export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorites' | 'search'
 
@@ -224,5 +226,13 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             modalRef.componentInstance.title = `Edit Box Settings`
             modalRef.componentInstance.box = _.cloneDeep(this.box)
         }
+    }
+
+    openLoginPrompt() {
+        this.modalService.open(LoginFormComponent);
+    }
+
+    openSignupPrompt() {
+        this.modalService.open(SignupFormComponent);
     }
 }
