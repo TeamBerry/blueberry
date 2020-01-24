@@ -37,16 +37,18 @@ export class FavoritelistComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        fromEvent(this.input.nativeElement, 'keyup')
-            .pipe(
-                filter(Boolean),
-                debounceTime(500),
-                distinctUntilChanged(),
-                tap(() => {
-                    this.filterValue = this.input.nativeElement.value
-                })
-            )
-            .subscribe()
+        if (!this.user._id.startsWith('user-')) {
+            fromEvent(this.input.nativeElement, 'keyup')
+                .pipe(
+                    filter(Boolean),
+                    debounceTime(500),
+                    distinctUntilChanged(),
+                    tap(() => {
+                        this.filterValue = this.input.nativeElement.value
+                    })
+                )
+                .subscribe()
+        }
     }
 
     /**
