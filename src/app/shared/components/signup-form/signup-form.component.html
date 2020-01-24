@@ -13,10 +13,11 @@
     <form (ngSubmit)="signup()" [formGroup]="signupForm">
         <div class="form-group">
             <label for="name">Username</label>
-            <input type="text" formControlName="username" class="form-control input-lg" name="name" placeholder="Your username" required autofocus minlength="5">
+            <input type="text" formControlName="username" class="form-control input-lg" name="name" placeholder="Your username" required autofocus minlength="5" maxlength="20">
             <div *ngIf="username.invalid && (username.dirty || username.touched)">
                 <app-bx-alert [options]="{'type': 'danger', 'icon': false, 'message': 'You must choose an username'}" *ngIf="username.errors['required']"></app-bx-alert>
                 <app-bx-alert [options]="{'type': 'danger', 'icon': false, 'message': 'Your name cannot have less than 5 letters'}" *ngIf="username.errors['minlength']"></app-bx-alert>
+                <app-bx-alert [options]="{'type': 'danger', 'icon': false, 'message': 'Your name cannot have more than 20 letters'}" *ngIf="username.errors['maxlength']"></app-bx-alert>
             </div>
         </div>
         <div class="form-group">
