@@ -21,14 +21,9 @@
             </div>
             <div *appAuth="true">
                 <app-like-button [video]="item.video"></app-like-button>
-                <button *ngIf="item?.startTime !== null && item?.endTime === null" type="button" class="btn btn-primary ml-1" ngbTooltip="Skip" (click)="skipVideo(item)">
-                    <svg class="btn-primary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88">
-                    <polygon points="334.18 192.94 0 0 0 385.88 334.18 192.94"/>
-                    <rect width="68.21" height="385.88" x="334.18"/>
-                  </svg>
-                </button>
-                <button *ngIf="item?.startTime === null && item?.submitted_by?._id === user._id" class="btn btn-default ml-1" (click)="cancelVideo(item)">Cancel</button>
-                <button *ngIf="item?.endTime !== null" class="btn btn-default button-resubmit ml-1" (click)="replayVideo(item)">Replay</button>
+                <app-bx-button *ngIf="item?.startTime !== null && item?.endTime === null" class="ml-1" ngbTooltip="Skip" (click)="skipVideo(item)" [options]="{'type': 'skip'}"></app-bx-button>
+                <app-bx-button *ngIf="item?.startTime === null && item?.submitted_by?._id === user._id" class="ml-1" (click)="cancelVideo(item)" ngbTooltip="Cancel" [options]="{'type': 'cancel', 'context': 'danger'}"></app-bx-button>
+                <app-bx-button *ngIf="item?.endTime !== null" class="ml-1" (click)="replayVideo(item)" ngbTooltip="Replay" [options]="{'type': 'replay'}"></app-bx-button>
             </div>
         </div>
     </div>

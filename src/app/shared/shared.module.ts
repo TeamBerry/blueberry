@@ -14,6 +14,7 @@ import { PictureUploaderComponent } from './components/picture-uploader/picture-
 import { BxAlertComponent } from './components/bx-alert/bx-alert.component';
 import { DurationPipe } from './pipes/duration.pipe';
 import { LikeButtonComponent } from 'app/modules/jukebox/components/like-button/like-button.component';
+import { BxButtonComponent } from './components/bx-button/bx-button.component';
 
 @NgModule({
     imports: [
@@ -29,7 +30,8 @@ import { LikeButtonComponent } from 'app/modules/jukebox/components/like-button/
         PictureUploaderComponent,
         BxAlertComponent,
         DurationPipe,
-        LikeButtonComponent
+        LikeButtonComponent,
+        BxButtonComponent
     ],
     exports: [
         CommonModule,
@@ -44,7 +46,8 @@ import { LikeButtonComponent } from 'app/modules/jukebox/components/like-button/
         PictureUploaderComponent,
         BxAlertComponent,
         DurationPipe,
-        LikeButtonComponent
+        LikeButtonComponent,
+        BxButtonComponent
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
