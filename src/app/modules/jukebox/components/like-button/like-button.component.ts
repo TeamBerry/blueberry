@@ -12,7 +12,6 @@ import { JukeboxService } from '../../jukebox.service';
     selector: 'app-like-button',
     templateUrl: './like-button.component.html',
     styleUrls: ['./like-button.component.scss'],
-    providers: [UserService]
 })
 export class LikeButtonComponent implements OnInit, OnChanges {
     @Input() video: PlaylistVideo;
@@ -50,19 +49,15 @@ export class LikeButtonComponent implements OnInit, OnChanges {
      */
     checkFavorites() {
         if (this.isChecking === false) {
-            console.log('CHECKING')
+            console.log('CHECKING', this.video.video._id)
             this.isLiked = false
             this.isChecking = true
-            this.userService.favorites({ title: this.video.video.name }).subscribe(
-                (response) => {
-                    if (response.length > 0) {
-                        this.isLiked = true
-                    }
+            this.userService.favorites().subscribe(
+                (favorites: Array<User['favorites']>) => {
+                    this.isLiked = _.findIndex(favorites, { _id: this.video.video._id }) !== -1;
                     this.isChecking = false;
                 }
             )
-        } else {
-            console.log('CANNOT CHECK')
         }
     }
 
@@ -99,7 +94,9 @@ export class LikeButtonComponent implements OnInit, OnChanges {
     listenToOrders() {
         this.jukeboxService.getOrderStream().subscribe(
             (order: string) => {
-                if (order === 'favorites') {
+                console.log('GET ORDER: ', order);
+                if (order === 'refresh-like') {
+                    console.log('REFRESHING LIKE');
                     this.checkFavorites();
                 }
             })

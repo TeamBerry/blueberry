@@ -8,9 +8,12 @@ import { environment } from './../../../environments/environment';
 import { User } from 'app/shared/models/user.model';
 import { Box } from '../models/box.model';
 import { AuthSubject } from '../models/session.model';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
+    public favorites$: Observable<User['favorites']>;
+
     constructor(
         private http: HttpClient
     ) { }
@@ -41,22 +44,23 @@ export class UserService {
     /**
      * Gets the favorites of an user
      *
-     * Needs to be cached!
-     *
-     * @param {*} [searchOptions={ title: undefined }]
+     * @param {boolean} [refresh=false]
      * @returns {Observable<User['favorites']>}
      * @memberof UserService
      */
-    favorites(searchOptions = { title: undefined }): Observable<User['favorites']> {
-        const options = {
-            params: new HttpParams()
+    favorites(refresh = false): Observable<User['favorites']> {
+        if (refresh === true) {
+            console.log('Triggering new refresh');
+            this.favorites$ = null;
         }
 
-        if (searchOptions.title) {
-            options.params = options.params.set('title', searchOptions.title.toString())
+        if (!this.favorites$) {
+            this.favorites$ = this.http
+                .get<User['favorites']>(`${environment.araza}/user/favorites`)
+                .pipe(shareReplay(1));
         }
 
-        return this.http.get<User['favorites']>(`${environment.araza}/user/favorites`, options)
+        return this.favorites$;
     }
 
     /**

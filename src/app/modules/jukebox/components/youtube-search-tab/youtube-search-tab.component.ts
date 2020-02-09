@@ -87,7 +87,7 @@ export class YoutubeSearchTabComponent implements OnInit {
      * to the box, via the jukebox service method "submitVideo"
      *
      * @param {Video} video The video to submit
-     * @memberof FavoritelistComponent
+     * @memberof FavoriteSearchTabComponent
      */
     submitVideo(video: Video) {
         const submissionPayload: SubmissionPayload = {

@@ -16,7 +16,7 @@ import { AuthSubject } from 'app/shared/models/session.model';
     selector: 'app-boxes-tab',
     templateUrl: './boxes-tab.component.html',
     styleUrls: ['./boxes-tab.component.scss'],
-    providers: [UserService, BoxService]
+    providers: [BoxService]
 })
 export class BoxesTabComponent implements OnInit {
     user: AuthSubject = AuthService.getAuthSubject();
