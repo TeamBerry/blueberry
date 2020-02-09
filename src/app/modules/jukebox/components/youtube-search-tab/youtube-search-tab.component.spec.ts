@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { SearchTabComponent } from './search-tab.component';
+import { YoutubeSearchTabComponent } from './youtube-search-tab.component';
 
-describe('CatalogTabComponent', () => {
-  let component: SearchTabComponent;
-  let fixture: ComponentFixture<SearchTabComponent>;
+describe('SearchTabComponent', () => {
+  let component: YoutubeSearchTabComponent;
+  let fixture: ComponentFixture<YoutubeSearchTabComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchTabComponent ]
+      declarations: [ YoutubeSearchTabComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchTabComponent);
+    fixture = TestBed.createComponent(YoutubeSearchTabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

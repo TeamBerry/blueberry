@@ -52,11 +52,6 @@ export class CommandListComponent implements OnInit {
             staffOnly: false
         },
         {
-            keys: ['favorites'],
-            description: 'Summons your favorites',
-            staffOnly: false
-        },
-        {
             keys: ['search'],
             description: 'Summons the search tab',
             staffOnly: false

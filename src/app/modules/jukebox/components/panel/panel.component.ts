@@ -150,10 +150,6 @@ export class PanelComponent implements OnInit, AfterViewChecked {
                 this.activePanel = 'users';
                 break;
 
-            case 'favorites':
-                this.activePanel = 'favorites';
-                break;
-
             case 'search':
                 this.activePanel = 'search';
                 break;
