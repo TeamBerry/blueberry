@@ -9,12 +9,12 @@ import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
 import { JukeboxService } from '../../jukebox.service';
 
 @Component({
-    selector: 'app-mood-widget',
-    templateUrl: './mood-widget.component.html',
-    styleUrls: ['./mood-widget.component.scss'],
+    selector: 'app-like-button',
+    templateUrl: './like-button.component.html',
+    styleUrls: ['./like-button.component.scss'],
     providers: [UserService]
 })
-export class MoodWidgetComponent implements OnInit, OnChanges {
+export class LikeButtonComponent implements OnInit, OnChanges {
     @Input() video: PlaylistVideo;
 
     isLiked = false;
@@ -46,7 +46,7 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
      * Checks if the currently playing video is in the list of favorites
      *
      * @returns {boolean} Whether the user has the video in their favorites
-     * @memberof MoodWidgetComponent
+     * @memberof LikeButtonComponent
      */
     checkFavorites() {
         if (this.isChecking === false) {
@@ -69,7 +69,7 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
     /**
      * Adds a video to the array of favorites
      *
-     * @memberof MoodWidgetComponent
+     * @memberof LikeButtonComponent
      */
     likeVideo() {
         this.userService.updateFavorites({ action: 'like', target: this.video.video._id }).subscribe(
@@ -84,7 +84,7 @@ export class MoodWidgetComponent implements OnInit, OnChanges {
     /**
      * Removes a video from the list of favorites
      *
-     * @memberof MoodWidgetComponent
+     * @memberof LikeButtonComponent
      */
     unlikeVideo() {
         this.userService.updateFavorites({ action: 'unlike', target: this.video.video._id }).subscribe(

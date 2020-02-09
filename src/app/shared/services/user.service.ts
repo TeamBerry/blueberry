@@ -38,6 +38,15 @@ export class UserService {
         return this.http.put<User>(environment.araza + '/user/' + token, user);
     }
 
+    /**
+     * Gets the favorites of an user
+     *
+     * Needs to be cached!
+     *
+     * @param {*} [searchOptions={ title: undefined }]
+     * @returns {Observable<User['favorites']>}
+     * @memberof UserService
+     */
     favorites(searchOptions = { title: undefined }): Observable<User['favorites']> {
         const options = {
             params: new HttpParams()

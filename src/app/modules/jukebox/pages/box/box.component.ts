@@ -3,7 +3,7 @@ import { BoxService } from './../../../../shared/services/box.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 
-import { MoodWidgetComponent } from './../../components/mood-widget/mood-widget.component';
+import { LikeButtonComponent } from '../../components/like-button/like-button.component';
 import { JukeboxService } from './../../jukebox.service';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Box } from 'app/shared/models/box.model';
@@ -71,10 +71,10 @@ export class BoxComponent implements OnInit {
      * Integration of the Mood Widget component, though I'm not sure I need it anymore
      *
      * @private
-     * @type {MoodWidgetComponent}
+     * @type {LikeButtonComponent}
      * @memberof BoxComponent
      */
-    @ViewChild(MoodWidgetComponent, { static: false }) private moodWidgetComponent: MoodWidgetComponent;
+    @ViewChild(LikeButtonComponent, { static: false }) private LikeButtonComponent: LikeButtonComponent;
 
     constructor(
         private authService: AuthService,

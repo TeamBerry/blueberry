@@ -8,7 +8,7 @@ import { JukeboxRoutingModule } from './jukebox-routing.module';
 import { BoxComponent } from './pages/box/box.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { PlayerComponent } from './components/player/player.component';
-import { MoodWidgetComponent } from './components/mood-widget/mood-widget.component';
+import { LikeButtonComponent } from './components/like-button/like-button.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { UserlistComponent } from './components/userlist/userlist.component';
@@ -24,7 +24,7 @@ import { SearchTabComponent } from './components/search-tab/search-tab.component
         BoxComponent,
         ChatComponent,
         PlayerComponent,
-        MoodWidgetComponent,
+        LikeButtonComponent,
         PanelComponent,
         PlaylistComponent,
         UserlistComponent,

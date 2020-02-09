@@ -108,6 +108,12 @@ button>svg {
     }
 }
 
+.btn-active {
+    background-color: $active-color;
+    border-color: $active-color;
+    color: white !important;
+}
+
 .btn-primary-icon {
     fill: white;
 }

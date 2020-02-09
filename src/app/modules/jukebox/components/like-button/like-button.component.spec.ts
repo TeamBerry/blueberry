@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MoodWidgetComponent } from './mood-widget.component';
+import { LikeButtonComponent } from './like-button.component';
 
-describe('MoodWidgetComponent', () => {
-    let component: MoodWidgetComponent;
-    let fixture: ComponentFixture<MoodWidgetComponent>;
+describe('LikeButtonComponent', () => {
+    let component: LikeButtonComponent;
+    let fixture: ComponentFixture<LikeButtonComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [MoodWidgetComponent]
+            declarations: [LikeButtonComponent]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(MoodWidgetComponent);
+        fixture = TestBed.createComponent(LikeButtonComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
