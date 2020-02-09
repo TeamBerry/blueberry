@@ -8,7 +8,7 @@
                 <a href="https://youtube.com/watch?v={{ video?.link }}" title="{{ video?.name }}">{{ video?.name }}</a>
             </p>
             <div class="entry-actions" *appAuth="true">
-                <app-like-button [video]="video"></app-like-button>
+                <app-like-button *ngIf="video" [video]="video"></app-like-button>
                 <button type="button" *ngIf="appliedOptions.submit" class="btn btn-default" (click)="submitVideo()">Submit</button>
             </div>
         </div>

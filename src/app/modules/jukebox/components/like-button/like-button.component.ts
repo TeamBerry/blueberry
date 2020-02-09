@@ -5,8 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from 'app/shared/models/user.model';
 import { UserService } from 'app/shared/services/user.service';
 import { AuthService } from 'app/core/auth/auth.service';
-import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
 import { JukeboxService } from '../../jukebox.service';
+import { Video } from 'app/shared/models/video.model';
 
 @Component({
     selector: 'app-like-button',
@@ -14,7 +14,7 @@ import { JukeboxService } from '../../jukebox.service';
     styleUrls: ['./like-button.component.scss'],
 })
 export class LikeButtonComponent implements OnInit, OnChanges {
-    @Input() video: PlaylistVideo;
+    @Input() video: Video;
 
     isLiked = false;
     isChecking = false;
@@ -49,12 +49,12 @@ export class LikeButtonComponent implements OnInit, OnChanges {
      */
     checkFavorites() {
         if (this.isChecking === false) {
-            console.log('CHECKING', this.video.video._id)
+            console.log('CHECKING', this.video._id)
             this.isLiked = false
             this.isChecking = true
             this.userService.favorites().subscribe(
                 (favorites: Array<User['favorites']>) => {
-                    this.isLiked = _.findIndex(favorites, { _id: this.video.video._id }) !== -1;
+                    this.isLiked = _.findIndex(favorites, { _id: this.video._id }) !== -1;
                     this.isChecking = false;
                 }
             )
@@ -67,8 +67,8 @@ export class LikeButtonComponent implements OnInit, OnChanges {
      * @memberof LikeButtonComponent
      */
     likeVideo() {
-        this.userService.updateFavorites({ action: 'like', target: this.video.video._id }).subscribe(
-            (user: User) => {
+        this.userService.updateFavorites({ action: 'like', target: this.video._id }).subscribe(
+            () => {
                 this.toastr.success('Video added to favorites.', 'Success');
                 this.isLiked = true;
                 this.jukeboxService.sendOrder('favorites');
@@ -82,8 +82,8 @@ export class LikeButtonComponent implements OnInit, OnChanges {
      * @memberof LikeButtonComponent
      */
     unlikeVideo() {
-        this.userService.updateFavorites({ action: 'unlike', target: this.video.video._id }).subscribe(
-            (user: User) => {
+        this.userService.updateFavorites({ action: 'unlike', target: this.video._id }).subscribe(
+            () => {
                 this.toastr.success('Video removed from favorites.', 'Success');
                 this.isLiked = false;
                 this.jukeboxService.sendOrder('favorites');
@@ -94,9 +94,8 @@ export class LikeButtonComponent implements OnInit, OnChanges {
     listenToOrders() {
         this.jukeboxService.getOrderStream().subscribe(
             (order: string) => {
-                console.log('GET ORDER: ', order);
-                if (order === 'refresh-like') {
-                    console.log('REFRESHING LIKE');
+                if (order === 'favorites') {
+                    console.log('Favorites have been refreshed. Checking if video is in favorites.');
                     this.checkFavorites();
                 }
             })

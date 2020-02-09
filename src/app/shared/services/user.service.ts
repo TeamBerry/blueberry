@@ -12,7 +12,7 @@ import { shareReplay } from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
-    public favorites$: Observable<User['favorites']>;
+    public favorites$: Observable<User['favorites']> = null;
 
     constructor(
         private http: HttpClient
@@ -49,8 +49,7 @@ export class UserService {
      * @memberof UserService
      */
     favorites(refresh = false): Observable<User['favorites']> {
-        if (refresh === true) {
-            console.log('Triggering new refresh');
+        if (refresh === true || this.favorites$ === null) {
             this.favorites$ = null;
         }
 
@@ -64,14 +63,16 @@ export class UserService {
     }
 
     /**
-     * Updates the favorites of an user
+     * Updates the favorites of an user. Will refresh favorites and send them back.
      *
      * @param {User} user
      * @returns {Observable<User>}
      * @memberof UserService
      */
-    updateFavorites(command: { action: 'like' | 'unlike', target: string }): Observable<User> {
-        return this.http.post<User>(`${environment.araza}/user/favorites`, command);
+    updateFavorites(command: { action: 'like' | 'unlike', target: string }): Observable<User['favorites']> {
+        this.http.post<User>(`${environment.araza}/user/favorites`, command).subscribe();
+        this.favorites$ = null;
+        return this.favorites(true);
     }
 
     /**

@@ -23,7 +23,6 @@ export class FavoriteSearchTabComponent implements OnInit, AfterViewInit {
     @ViewChild('filterInput', { static: false }) input: ElementRef
 
     favorites$: Observable<User['favorites']>
-    favorites: User['favorites'];
 
     filterValue = ''
 
@@ -72,19 +71,10 @@ export class FavoriteSearchTabComponent implements OnInit, AfterViewInit {
     /**
      * Gets favorites
      *
-     * @param {Boolean} [refreshCache = false] Whether to fetch from server or not
      * @memberof FavoriteSearchTabComponent
      */
-    getFavorites(refreshCache = false) {
-        this.userService.favorites(refreshCache).subscribe(
-            (favorites) => {
-                this.favorites = favorites;
-
-                if (refreshCache === true) {
-                    this.jukeboxService.sendOrder('refresh-like');
-                }
-            }
-        )
+    getFavorites() {
+        this.favorites$ = this.userService.favorites()
     }
 
     openLoginPrompt() {
@@ -104,7 +94,7 @@ export class FavoriteSearchTabComponent implements OnInit, AfterViewInit {
         this.jukeboxService.getOrderStream().subscribe(
             (order: string) => {
                 if (order === 'favorites') {
-                    this.getFavorites(true);
+                    this.getFavorites();
                 }
             }
         )

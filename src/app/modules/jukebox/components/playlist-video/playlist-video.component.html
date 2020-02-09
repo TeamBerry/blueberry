@@ -20,7 +20,7 @@
                 </span>
             </div>
             <div *appAuth="true">
-                <app-like-button [video]="item"></app-like-button>
+                <app-like-button [video]="item.video"></app-like-button>
                 <button *ngIf="item?.startTime !== null && item?.endTime === null" type="button" class="btn btn-primary ml-1" ngbTooltip="Skip" (click)="skipVideo(item)">
                     <svg class="btn-primary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88">
                     <polygon points="334.18 192.94 0 0 0 385.88 334.18 192.94"/>
