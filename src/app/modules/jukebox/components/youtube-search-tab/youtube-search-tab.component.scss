@@ -1,0 +1,6 @@
+@import './../../../../../imports.scss';
+#results {
+    height: calc(100vh - (80px + 45px + 148px + 70px));
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

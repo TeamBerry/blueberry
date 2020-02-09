@@ -12,11 +12,12 @@ import { MoodWidgetComponent } from './components/mood-widget/mood-widget.compon
 import { PanelComponent } from './components/panel/panel.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { UserlistComponent } from './components/userlist/userlist.component';
-import { FavoritelistComponent } from './components/favoritelist/favoritelist.component';
+import { FavoritelistComponent } from './components/favorite-search-tab/favorite-search-tab.component';
 import { PlaylistVideoComponent } from './components/playlist-video/playlist-video.component';
 import { CommandListComponent } from './components/command-list/command-list.component';
-import { SearchTabComponent } from './components/search-tab/search-tab.component';
+import { YoutubeSearchTabComponent } from './components/youtube-search-tab/youtube-search-tab.component';
 import { HelpTabComponent } from './components/help-tab/help-tab.component';
+import { SearchTabComponent } from './components/search-tab/search-tab.component';
 
 @NgModule({
     declarations: [
@@ -30,8 +31,9 @@ import { HelpTabComponent } from './components/help-tab/help-tab.component';
         FavoritelistComponent,
         PlaylistVideoComponent,
         CommandListComponent,
-        SearchTabComponent,
-        HelpTabComponent
+        YoutubeSearchTabComponent,
+        HelpTabComponent,
+        SearchTabComponent
     ],
     imports: [
         JukeboxRoutingModule,

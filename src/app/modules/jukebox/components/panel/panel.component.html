@@ -8,8 +8,7 @@
             <app-command-list [hidden]="activePanel !== 'commands'" (clickedCommand)="kickstartCommand($event)"></app-command-list>
             <app-help-tab [hidden]="activePanel !== 'help'"></app-help-tab>
         </div>
-        <div class="box-side-panel panel-fixed" [hidden]="['favorites', 'search'].indexOf(activePanel) === -1">
-            <app-favoritelist [hidden]="activePanel !== 'favorites'" [boxToken]="boxToken" [user]="user"></app-favoritelist>
+        <div class="box-side-panel panel-fixed" [hidden]="['search'].indexOf(activePanel) === -1">
             <app-search-tab [hidden]="activePanel !== 'search'" [boxToken]="boxToken" [user]="user"></app-search-tab>
         </div>
     </div>
@@ -28,6 +27,14 @@
                     <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 475.55 428.13">
                         <path class="berrybox-path" d="M475.56 307.09L293.21 201.81v210.56l182.35-105.28M0 0h456.59v56.04H0zM0 93.02h456.59v56.04H0zM0 186.04h269.23v56.04H0zM0 279.07h269.23v56.04H0zM0 372.09h269.23v56.04H0z"
                         />
+                    </svg>
+                </a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active': activePanel === 'search'}" *appAuth="true" ngbTooltip="Find Videos" placement="left">
+                <a class="nav-link" (click)="showPanel('search')" title="Find Videos">
+                    <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427.28 439.64">
+                        <rect class="berrybox-path" x="-10.35" y="290.75" width="245.89" height="72.58" transform="translate(-198.27 175.41) rotate(-45)"/>
+                        <path class="berrybox-path" d="M275.62,0A151.66,151.66,0,1,0,427.28,151.66,151.66,151.66,0,0,0,275.62,0Zm0,239a87.32,87.32,0,1,1,87.32-87.32A87.32,87.32,0,0,1,275.62,239Z"/>
                     </svg>
                 </a>
             </li>
@@ -55,23 +62,6 @@
                         <rect class="berrybox-path" x="372.85" y="353.26" width="138.04" height="56" transform="translate(1000.81 213.34) rotate(122.49)"/>
                         <rect class="berrybox-path" x="39.11" y="140.74" width="138.04" height="56" transform="translate(308.54 168.16) rotate(122.49)"/>
                         <path class="berrybox-path" d="M275,79.67C167.12,79.67,79.67,167.12,79.67,275S167.12,470.33,275,470.33,470.33,382.88,470.33,275,382.88,79.67,275,79.67Zm0,297.72A102.39,102.39,0,1,1,377.39,275,102.39,102.39,0,0,1,275,377.39Z"/>
-                    </svg>
-                </a>
-            </li>
-            <li class="nav-separator my-1"></li>
-            <li class="nav-item" [ngClass]="{'active': activePanel == 'favorites'}" ngbTooltip="Favorites" placement="left">
-                <a class="nav-link" (click)="showPanel('favorites')" title="Favorites">
-                    <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408.09">
-                        <path class="berrybox-path" d="M408 129.05c0 92-135.88 225.81-185.85 271.92a26.76 26.76 0 0 1-36.3 0C135.88 354.89 0 221.05 0 129.05c0-111 115.51-188.38 200.28-62.41a4.73 4.73 0 0 0 7.72.18c96.55-130.09 200-48.87 200 62.23z"
-                        />
-                    </svg>
-                </a>
-            </li>
-            <li class="nav-item" [ngClass]="{'active': activePanel === 'search'}" *appAuth="true" ngbTooltip="Search on YouTube" placement="left">
-                <a class="nav-link" (click)="showPanel('search')" title="Search">
-                    <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427.28 439.64">
-                        <rect class="berrybox-path" x="-10.35" y="290.75" width="245.89" height="72.58" transform="translate(-198.27 175.41) rotate(-45)"/>
-                        <path class="berrybox-path" d="M275.62,0A151.66,151.66,0,1,0,427.28,151.66,151.66,151.66,0,0,0,275.62,0Zm0,239a87.32,87.32,0,1,1,87.32-87.32A87.32,87.32,0,0,1,275.62,239Z"/>
                     </svg>
                 </a>
             </li>
