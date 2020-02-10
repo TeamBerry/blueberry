@@ -1,4 +1,4 @@
-<button class="btn btn-{{computedOptions.context}}" ngbTooltip="{{computedOptions.tooltip}}">
+<button class="btn btn-{{computedOptions.context}}" [ngbTooltip]="computedOptions.textDisplay === 'tooltip' ? buttonText : ''">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" *ngIf="computedOptions.type === 'play'">
         <polygon class="cls-1" points="444.29 246.57 55.71 22.23 55.71 470.92 444.29 246.57"/>
     </svg>
@@ -6,9 +6,10 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 449.33 449.33" *ngIf="computedOptions.type === 'cancel'">
         <circle cx="224.67" cy="224.67" r="205.67" fill="none" style="stroke: white;" stroke-width="38" stroke-miterlimit="10"/>
         <rect width="402" height="44" x="49" y="228" transform="rotate(-45 206.756 267.92)"/>
-      </svg>
-      <svg class="btn-primary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88" *ngIf="computedOptions.type === 'skip'">
+    </svg>
+    <svg class="btn-primary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88" *ngIf="computedOptions.type === 'skip'">
         <polygon points="334.18 192.94 0 0 0 385.88 334.18 192.94"/>
         <rect width="68.21" height="385.88" x="334.18"/>
-      </svg>
+    </svg>
+    <span *ngIf="computedOptions.text" class="btn-text ml-2">{{ buttonText }}</span>
 </button>

@@ -47,7 +47,7 @@
                             <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}</p>
                         </div>
                         <div class="col-2 text-right" *appAuth="true">
-                            <app-bx-button *ngIf="user._id === box.creator._id" (click)="skipVideo()" [options]="{'type': 'skip', 'tooltip': 'Skip Video'}" class="mr-2"></app-bx-button>
+                            <app-bx-button *ngIf="user._id === box.creator._id" (click)="skipVideo()" [options]="{'type': 'skip', 'textDisplay': 'button'}" class="mr-2"></app-bx-button>
                             <app-like-button *ngIf="currentVideo" [video]="currentVideo.video"></app-like-button>
                         </div>
                     </div>
