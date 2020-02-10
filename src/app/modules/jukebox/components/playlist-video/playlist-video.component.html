@@ -21,9 +21,9 @@
             </div>
             <div *appAuth="true">
                 <app-like-button [video]="item.video"></app-like-button>
-                <app-bx-button *ngIf="item?.startTime !== null && item?.endTime === null" class="ml-1" (click)="skipVideo(item)" [options]="{'type': 'skip', 'textDisplay': 'button'}"></app-bx-button>
-                <app-bx-button *ngIf="item?.startTime === null && item?.submitted_by?._id === user._id" class="ml-1" (click)="cancelVideo(item)" [options]="{'type': 'cancel', 'context': 'danger', 'textDisplay': 'button'}"></app-bx-button>
-                <app-bx-button *ngIf="item?.endTime !== null" class="ml-1" (click)="replayVideo(item)" [options]="{'type': 'replay', 'textDisplay': 'button'}"></app-bx-button>
+                <app-bx-button *ngIf="item?.startTime !== null && item?.endTime === null" class="ml-1" (click)="skipVideo(item)" [options]="{'type': 'skip', 'textDisplay': 'tooltip'}"></app-bx-button>
+                <app-bx-button *ngIf="item?.startTime === null && item?.submitted_by?._id === user._id" class="ml-1" (click)="cancelVideo(item)" [options]="{'type': 'cancel', 'context': 'danger', 'textDisplay': 'tooltip'}"></app-bx-button>
+                <app-bx-button *ngIf="item?.endTime !== null" class="ml-1" (click)="replayVideo(item)" [options]="{'type': 'replay', 'textDisplay': 'tooltip'}"></app-bx-button>
             </div>
         </div>
     </div>
