@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 export interface ButtonOptions {
-    type?: 'play' | 'replay' | 'cancel' | 'skip'
-    context?: 'primary' | 'secondary' | 'default' | 'warning' | 'default'
+    type?: 'play' | 'replay' | 'cancel' | 'skip',
+    tooltip?: string,
+    context?: 'primary' | 'secondary' | 'default' | 'warning' | 'default',
+    text?: boolean
 }
 
 @Component({
@@ -14,7 +16,8 @@ export class BxButtonComponent implements OnInit {
     @Input() options: ButtonOptions
 
     computedOptions: ButtonOptions = {
-        context: 'default'
+        context: 'default',
+        text: false
     }
 
     constructor() { }
