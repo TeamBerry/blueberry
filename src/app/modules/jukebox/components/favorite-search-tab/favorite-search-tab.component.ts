@@ -17,7 +17,7 @@ import { AuthSubject } from 'app/shared/models/session.model';
     templateUrl: './favorite-search-tab.component.html',
     styleUrls: ['./favorite-search-tab.component.scss'],
 })
-export class FavoritelistComponent implements OnInit, AfterViewInit {
+export class FavoriteSearchTabComponent implements OnInit, AfterViewInit {
     @Input() boxToken: string;
     @Input() user: AuthSubject;
     @ViewChild('filterInput', { static: false }) input: ElementRef
@@ -57,7 +57,7 @@ export class FavoritelistComponent implements OnInit, AfterViewInit {
      * to the box, via the jukebox service method "submitVideo"
      *
      * @param {Video} video The video to submit
-     * @memberof FavoritelistComponent
+     * @memberof FavoriteSearchTabComponent
      */
     submitVideo(video: Video) {
         const submissionPayload: SubmissionPayload = {
@@ -71,10 +71,10 @@ export class FavoritelistComponent implements OnInit, AfterViewInit {
     /**
      * Gets favorites
      *
-     * @memberof FavoritelistComponent
+     * @memberof FavoriteSearchTabComponent
      */
     getFavorites() {
-        this.favorites$ = this.userService.favorites();
+        this.favorites$ = this.userService.favorites()
     }
 
     openLoginPrompt() {
@@ -88,7 +88,7 @@ export class FavoritelistComponent implements OnInit, AfterViewInit {
     /**
      * Listens to the jukebox service for orders
      *
-     * @memberof FavoritelistComponent
+     * @memberof FavoriteSearchTabComponent
      */
     listenToOrders() {
         this.jukeboxService.getOrderStream().subscribe(

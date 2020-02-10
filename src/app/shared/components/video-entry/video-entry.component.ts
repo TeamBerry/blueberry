@@ -49,7 +49,7 @@ export class VideoEntryComponent implements OnInit {
 
     removeVideo() {
         this.userService.updateFavorites({ action: 'unlike', target: this.video._id }).subscribe(
-            (response) => {
+            () => {
                 this.toastr.success('Video removed from favorites.', 'Success');
                 this.jukeboxService.sendOrder('favorites');
             }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FavoritelistComponent } from './favorite-search-tab.component';
+import { FavoriteSearchTabComponent } from './favorite-search-tab.component';
 
-describe('FavoritelistComponent', () => {
-  let component: FavoritelistComponent;
-  let fixture: ComponentFixture<FavoritelistComponent>;
+describe('FavoriteSearchTabComponent', () => {
+  let component: FavoriteSearchTabComponent;
+  let fixture: ComponentFixture<FavoriteSearchTabComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FavoritelistComponent ]
+      declarations: [ FavoriteSearchTabComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FavoritelistComponent);
+    fixture = TestBed.createComponent(FavoriteSearchTabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

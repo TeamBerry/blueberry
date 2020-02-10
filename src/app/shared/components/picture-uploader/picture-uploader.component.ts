@@ -8,7 +8,6 @@ import { AuthService } from 'app/core/auth/auth.service';
     selector: 'app-picture-uploader',
     templateUrl: './picture-uploader.component.html',
     styleUrls: ['./picture-uploader.component.scss'],
-    providers: [UserService]
 })
 export class PictureUploaderComponent implements OnInit {
     state: 'selecting' | 'adjusting' = 'selecting'

@@ -8,9 +8,12 @@ import { environment } from './../../../environments/environment';
 import { User } from 'app/shared/models/user.model';
 import { Box } from '../models/box.model';
 import { AuthSubject } from '../models/session.model';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
+    public favorites$: Observable<User['favorites']> = null;
+
     constructor(
         private http: HttpClient
     ) { }
@@ -38,27 +41,38 @@ export class UserService {
         return this.http.put<User>(environment.araza + '/user/' + token, user);
     }
 
-    favorites(searchOptions = { title: undefined }): Observable<User['favorites']> {
-        const options = {
-            params: new HttpParams()
+    /**
+     * Gets the favorites of an user
+     *
+     * @param {boolean} [refresh=false]
+     * @returns {Observable<User['favorites']>}
+     * @memberof UserService
+     */
+    favorites(refresh = false): Observable<User['favorites']> {
+        if (refresh === true || this.favorites$ === null) {
+            this.favorites$ = null;
         }
 
-        if (searchOptions.title) {
-            options.params = options.params.set('title', searchOptions.title.toString())
+        if (!this.favorites$) {
+            this.favorites$ = this.http
+                .get<User['favorites']>(`${environment.araza}/user/favorites`)
+                .pipe(shareReplay(1));
         }
 
-        return this.http.get<User['favorites']>(`${environment.araza}/user/favorites`, options)
+        return this.favorites$;
     }
 
     /**
-     * Updates the favorites of an user
+     * Updates the favorites of an user. Will refresh favorites and send them back.
      *
      * @param {User} user
      * @returns {Observable<User>}
      * @memberof UserService
      */
-    updateFavorites(command: { action: 'like' | 'unlike', target: string }): Observable<User> {
-        return this.http.post<User>(`${environment.araza}/user/favorites`, command);
+    updateFavorites(command: { action: 'like' | 'unlike', target: string }): Observable<User['favorites']> {
+        this.http.post<User>(`${environment.araza}/user/favorites`, command).subscribe();
+        this.favorites$ = null;
+        return this.favorites(true);
     }
 
     /**

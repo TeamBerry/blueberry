@@ -46,17 +46,9 @@
                         <div class="col-10">
                             <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}</p>
                         </div>
-                        <div class="col-1">
-                            <button *ngIf="user._id === box.creator._id" type="button" class="btn btn-primary" (click)="skipVideo()">
-                                <svg class="btn-primary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88">
-                                <polygon points="334.18 192.94 0 0 0 385.88 334.18 192.94"/>
-                                <rect width="68.21" height="385.88" x="334.18"/>
-                              </svg>
-                              Skip
-                            </button>
-                        </div>
-                        <div class="col-1 my-auto" *appAuth="true">
-                            <app-mood-widget *ngIf="currentVideo" [video]="currentVideo" class="row mood-widget"></app-mood-widget>
+                        <div class="col-2 text-right" *appAuth="true">
+                            <app-bx-button *ngIf="user._id === box.creator._id" (click)="skipVideo()" [options]="{'type': 'skip', 'textDisplay': 'tooltip'}" class="mr-2"></app-bx-button>
+                            <app-like-button *ngIf="currentVideo" [video]="currentVideo.video"></app-like-button>
                         </div>
                     </div>
                     <div class="row">

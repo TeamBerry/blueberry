@@ -5,11 +5,14 @@
             <button class="btn btn-outline-default" type="button" (click)="resetFilter()">Reset</button>
         </div>
     </div>
-    <div id="results" *ngIf="favorites$ | async">
-        <div *ngIf="(favorites$ | async).length > 0; else noFavorites">
+    <div id="results" *ngIf="favorites$ | async; else loading">
+        <div *ngIf="(favorites$|async).length > 0; else noFavorites">
             <app-video-entry *ngFor="let video of favorites$ | async | filter:filterValue:['name', 'link']" [video]="video" (submit)="submitVideo($event)"></app-video-entry>
         </div>
     </div>
+    <ng-template #loading>
+        Loading...
+    </ng-template>
     <ng-template #noFavorites>
         <div class="text-center no-contents">
             <svg class="mood-icon berrybox-svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408.09" title="Add to favorites">
