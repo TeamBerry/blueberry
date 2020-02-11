@@ -39,6 +39,13 @@ export class PanelComponent implements OnInit, AfterViewChecked {
      */
     newMessages = false;
 
+    /**
+     * Whether the emoji picker is displayed
+     *
+     * @memberof PanelComponent
+     */
+    isEmojiPickerDisplayed = false;
+
     constructor(
         private modalService: NgbModal,
         private jukeboxService: JukeboxService
@@ -95,6 +102,16 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             source: 'user',
         });
         this.jukeboxService.postMessageToSocket(message);
+    }
+
+    /**
+     * Adds the selected emoji to the contents of the message
+     *
+     * @param {*} event
+     * @memberof PanelComponent
+     */
+    addEmoji(event) {
+        this.contents += ` ${event.emoji.colons}`;
     }
 
     /**

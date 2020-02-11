@@ -110,3 +110,9 @@ span#span-youtube-mode {
 #link-button {
     @include override-button-outline($youtube-color);
 }
+
+.emoji-picker {
+    position: absolute;
+    bottom: 92%;
+    right: 2%;
+}

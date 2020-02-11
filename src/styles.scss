@@ -4,6 +4,7 @@
 @import 'imports.scss';
 @import '~bootstrap/scss/bootstrap';
 @import '~ngx-toastr/toastr';
+@import '~@ctrl/ngx-emoji-mart/picker';
 body {
     overflow: hidden;
     background-color: var(--background-main-color);
