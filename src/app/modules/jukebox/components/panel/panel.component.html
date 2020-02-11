@@ -2,7 +2,7 @@
     <div class="col-11 sub-panels">
         <div class="panel-title text-center">{{activePanel}}</div>
         <div class="box-side-panel" id="panel-space" [hidden]="['chat', 'queue', 'users', 'commands', 'help'].indexOf(activePanel) === -1">
-            <app-chat [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user" (socketStatus)="refreshChatStatus($event)"></app-chat>
+            <app-chat-tab [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user" (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
             <app-playlist [hidden]="activePanel !== 'queue'" [user]="user"></app-playlist>
             <app-userlist [hidden]="activePanel !== 'users'"></app-userlist>
             <app-command-list [hidden]="activePanel !== 'commands'" (clickedCommand)="kickstartCommand($event)"></app-command-list>

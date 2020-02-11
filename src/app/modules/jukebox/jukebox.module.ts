@@ -6,7 +6,7 @@ import { JukeboxService } from './jukebox.service';
 
 import { JukeboxRoutingModule } from './jukebox-routing.module';
 import { BoxComponent } from './pages/box/box.component';
-import { ChatComponent } from './components/chat/chat.component';
+import { ChatTabComponent } from './components/chat-tab/chat-tab.component';
 import { PlayerComponent } from './components/player/player.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
@@ -21,7 +21,7 @@ import { SearchTabComponent } from './components/search-tab/search-tab.component
 @NgModule({
     declarations: [
         BoxComponent,
-        ChatComponent,
+        ChatTabComponent,
         PlayerComponent,
         PanelComponent,
         PlaylistComponent,
