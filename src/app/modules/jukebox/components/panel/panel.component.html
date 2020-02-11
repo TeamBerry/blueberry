@@ -86,8 +86,13 @@
             <span class="key-commands">Use
             <kbd>Ctrl + Enter</kbd> to send as text</span>
         </div>
-        <textarea name="" id="" cols="30" rows="2" class="form-control chatbox" [ngClass]="{'chatbox-link': hasLink, 'chatbox-command': hasCommand}" placeholder="Type a message. Commands start with a '!'" [(ngModel)]="contents" (keydown.enter)="post($event)"
-            (keydown.control.enter)="post($event)" (keyup)="watchContents()"></textarea>
+        <div class="input-group input-group-chatbox">
+            <input type="text" class="form-control chatbox" [ngClass]="{'chatbox-link': hasLink, 'chatbox-command': hasCommand}" placeholder="Type a message. Commands start with a '!'" [(ngModel)]="contents" (keydown.enter)="post($event)" (keydown.control.enter)="post($event)"
+                (keyup)="watchContents()">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">:)</button>
+            </div>
+        </div>
         <div class="chat-actions row">
             <!--<div class="col-2">
             <button class="btn btn-primary">Options</button>

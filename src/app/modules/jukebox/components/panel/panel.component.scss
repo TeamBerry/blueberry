@@ -58,8 +58,11 @@
     bottom: 0;
 }
 
-.chatbox {
+.input-group-chatbox {
     margin-bottom: 10px;
+}
+
+.chatbox {
     resize: none;
     border-top-left-radius: 0;
 }
@@ -82,14 +85,14 @@ span#span-command-mode {
 .chatbox-command {
     border: 1px solid $command-color !important;
     &:focus {
-        box-shadow: 0 0 0 0.2rem $command-color;
+        box-shadow: 0 0 0 0.1rem $command-color;
     }
 }
 
 #command-button {
     background-color: $command-color;
     &:hover {
-        backgorund-color: lighten($command-color, 10%);
+        background-color: lighten($command-color, 10%);
     }
     &:active {
         background-color: lighten($command-color, 15%);
