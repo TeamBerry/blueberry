@@ -77,7 +77,7 @@
 </div>
 <div id="input-space" class="py-3">
     <div *appAuth="true">
-        <emoji-mart class="emoji-picker" [hidden]="!isEmojiPickerDisplayed" (emojiClick)="addEmoji($event)"></emoji-mart>
+        <emoji-mart class="emoji-picker" [set]="'twitter'" [hidden]="!isEmojiPickerDisplayed || hasCommand" (emojiClick)="addEmoji($event)"></emoji-mart>
         <div *ngIf="!hasCommand">
             <span class="input-mode" id="span-default-mode">Chat </span>
             <span class="key-commands">Type <kbd>!</kbd> to execute a command</span>
@@ -90,8 +90,8 @@
         <div class="input-group input-group-chatbox">
             <input type="text" class="form-control chatbox" [ngClass]="{'chatbox-link': hasLink, 'chatbox-command': hasCommand}" placeholder="Type a message. Commands start with a '!'" [(ngModel)]="contents" (keydown.enter)="post($event)" (keydown.control.enter)="post($event)"
                 (keyup)="watchContents()">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" (click)="isEmojiPickerDisplayed = !isEmojiPickerDisplayed">:)</button>
+            <div class="input-group-append" ngbTooltip="Use Emojis">
+                <button class="btn btn-outline-secondary" type="button" [disabled]="hasCommand" (click)="isEmojiPickerDisplayed = !isEmojiPickerDisplayed">🙂</button>
             </div>
         </div>
         <div class="chat-actions row">

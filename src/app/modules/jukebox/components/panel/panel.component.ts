@@ -111,7 +111,8 @@ export class PanelComponent implements OnInit, AfterViewChecked {
      * @memberof PanelComponent
      */
     addEmoji(event) {
-        this.contents += ` ${event.emoji.colons}`;
+        console.log(event);
+        this.contents += ` ${event.emoji.native}`;
     }
 
     /**
