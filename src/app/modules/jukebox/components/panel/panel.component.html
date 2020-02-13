@@ -77,7 +77,9 @@
 </div>
 <div id="input-space" class="py-3">
     <div *appAuth="true">
-        <emoji-mart class="emoji-picker" [set]="'twitter'" [color]="'#009AEB'" [hidden]="!isEmojiPickerDisplayed || hasCommand" (emojiClick)="addEmoji($event)" #emojiPicker></emoji-mart>
+        <div #emojiPicker>
+            <emoji-mart class="emoji-picker" [set]="'twitter'" [color]="'#009AEB'" [hidden]="!isEmojiPickerDisplayed || hasCommand" (emojiClick)="addEmoji($event)"></emoji-mart>
+        </div>
         <div *ngIf="!hasCommand">
             <span class="input-mode" id="span-default-mode">Chat </span>
             <span class="key-commands">Type <kbd>!</kbd> to execute a command</span>

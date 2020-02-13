@@ -47,8 +47,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     isEmojiPickerDisplayed = false;
 
     @ViewChild('chatbox', { static: false }) chatbox: ElementRef;
-    // Static true so that it encompasses children elements
-    @ViewChild('emojiPicker', { static: true }) emojiPicker: ElementRef;
+    @ViewChild('emojiPicker', { static: false }) emojiPicker: ElementRef;
     @ViewChild('emojiButton', { static: false }) emojiButton: ElementRef;
 
     constructor(
@@ -60,7 +59,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         this.renderer.listen('window', 'click', (e: Event) => {
             if (e.target !== this.chatbox.nativeElement
                 && e.target !== this.emojiButton.nativeElement
-                && e.target !== this.emojiPicker.nativeElement
+                && e.composedPath().indexOf(this.emojiPicker.nativeElement) === -1
             ) {
                 this.isEmojiPickerDisplayed = false;
             }
