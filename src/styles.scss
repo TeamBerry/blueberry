@@ -188,7 +188,18 @@ button>svg {
 
 .no-focus {
     &:focus {
-        outline:none;
+        outline: none;
         box-shadow: none;
     }
+}
+
+.no-active {
+    &:active {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+.no-border {
+    border: none !important;
 }

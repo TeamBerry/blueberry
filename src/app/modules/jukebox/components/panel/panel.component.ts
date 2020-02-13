@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import * as _ from 'lodash'
 
 import { JukeboxService } from './../../jukebox.service';
@@ -46,10 +46,20 @@ export class PanelComponent implements OnInit, AfterViewChecked {
      */
     isEmojiPickerDisplayed = false;
 
+    @ViewChild('chatbox', { static: false }) chatbox: ElementRef;
+    @ViewChild('emojiPicker', { static: false }) emojiPicker: ElementRef;
+
     constructor(
         private modalService: NgbModal,
-        private jukeboxService: JukeboxService
-    ) { }
+        private jukeboxService: JukeboxService,
+        private renderer: Renderer2
+    ) {
+        this.renderer.listen('window', 'click', (e: Event) => {
+            if (e.target !== this.chatbox.nativeElement && e.target !== this.emojiPicker.nativeElement) {
+                this.isEmojiPickerDisplayed = false;
+            }
+        })
+    }
 
     ngOnInit() {
         this.activePanel = 'chat';
