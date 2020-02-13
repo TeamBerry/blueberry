@@ -185,3 +185,10 @@ button>svg {
         color: $master-active-color;
     }
 }
+
+.no-focus {
+    &:focus {
+        outline:none;
+        box-shadow: none;
+    }
+}

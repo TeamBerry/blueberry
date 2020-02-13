@@ -60,11 +60,32 @@
 
 .input-group-chatbox {
     margin-bottom: 10px;
-}
+    border: 1px solid $master-color;
+    border-top-left-radius: 0 !important;
+    border-radius: 0.25rem;
 
-.chatbox {
-    resize: none;
-    border-top-left-radius: 0;
+    &.chatbox-command {
+        border: $command-color !important;
+    }
+
+    .chatbox {
+        border-right: none !important;
+        resize: none;
+        border-top-left-radius: 0;
+    }
+
+    .input-group-append {
+        background-color: rgba(0, 0, 0, 0.15);
+        border-left: none !important;
+        .btn {
+            border-left: none !important;
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.15);
+            }
+        }
+    }
 }
 
 .input-mode {
@@ -80,13 +101,6 @@ span#span-default-mode {
 
 span#span-command-mode {
     background-color: $command-color;
-}
-
-.chatbox-command {
-    border: 1px solid $command-color !important;
-    &:focus {
-        box-shadow: 0 0 0 0.1rem $command-color;
-    }
 }
 
 #command-button {
