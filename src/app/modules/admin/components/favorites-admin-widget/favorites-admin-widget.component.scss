@@ -1,0 +1,23 @@
+@import './../../../../../imports.scss';
+.playlist-entry {
+    border: 1px solid $master-color;
+}
+
+.entry-info {
+    height: 90px;
+}
+
+.song-list-line {
+    margin-bottom: 0;
+    font-size: 1rem;
+    @include one-line-text();
+    a {
+        color: $master-color;
+        &:hover {
+            text-decoration: underline;
+        }
+        &:active {
+            color: darken($master-color, 10%);
+        }
+    }
+}
