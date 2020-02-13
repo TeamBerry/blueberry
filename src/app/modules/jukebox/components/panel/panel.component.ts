@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import * as _ from 'lodash'
 
 import { JukeboxService } from './../../jukebox.service';
@@ -39,10 +39,32 @@ export class PanelComponent implements OnInit, AfterViewChecked {
      */
     newMessages = false;
 
+    /**
+     * Whether the emoji picker is displayed
+     *
+     * @memberof PanelComponent
+     */
+    isEmojiPickerDisplayed = false;
+
+    @ViewChild('chatbox', { static: false }) chatbox: ElementRef;
+    @ViewChild('emojiPicker', { static: false }) emojiPicker: ElementRef;
+    @ViewChild('emojiButton', { static: false }) emojiButton: ElementRef;
+
     constructor(
         private modalService: NgbModal,
-        private jukeboxService: JukeboxService
-    ) { }
+        private jukeboxService: JukeboxService,
+        private renderer: Renderer2
+    ) {
+        // Will close the emoji picker when a click is registered outside of the chatbox, the emoji button and picker
+        this.renderer.listen('window', 'click', (e: Event) => {
+            if (e.target !== this.chatbox.nativeElement
+                && e.target !== this.emojiButton.nativeElement
+                && e.composedPath().indexOf(this.emojiPicker.nativeElement) === -1
+            ) {
+                this.isEmojiPickerDisplayed = false;
+            }
+        })
+    }
 
     ngOnInit() {
         this.activePanel = 'chat';
@@ -88,6 +110,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     }
 
     handleMessage(contents: string) {
+        this.isEmojiPickerDisplayed = false;
         const message = new Message({
             author: this.user._id,
             contents: contents,
@@ -95,6 +118,17 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             source: 'user',
         });
         this.jukeboxService.postMessageToSocket(message);
+    }
+
+    /**
+     * Adds the selected emoji to the contents of the message
+     *
+     * @param {*} event
+     * @memberof PanelComponent
+     */
+    addEmoji(event) {
+        console.log(event);
+        this.contents += ` ${event.emoji.native}`;
     }
 
     /**

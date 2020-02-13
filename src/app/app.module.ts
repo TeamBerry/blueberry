@@ -22,8 +22,10 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 
 /* Feature Modules */
 import { JukeboxModule } from './modules/jukebox/jukebox.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
+
+// External Modules
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [

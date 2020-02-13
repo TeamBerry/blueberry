@@ -16,6 +16,9 @@ import { DurationPipe } from './pipes/duration.pipe';
 import { LikeButtonComponent } from 'app/modules/jukebox/components/like-button/like-button.component';
 import { BxButtonComponent } from './components/bx-button/bx-button.component';
 
+// Feature Modules
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -47,7 +50,8 @@ import { BxButtonComponent } from './components/bx-button/bx-button.component';
         BxAlertComponent,
         DurationPipe,
         LikeButtonComponent,
-        BxButtonComponent
+        BxButtonComponent,
+        PickerModule
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [

@@ -6,11 +6,11 @@ import { Message } from 'app/shared/models/message.model';
 import { filter } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-chat',
-    templateUrl: './chat.component.html',
-    styleUrls: ['./chat.component.scss'],
+    selector: 'app-chat-tab',
+    templateUrl: './chat-tab.component.html',
+    styleUrls: ['./chat-tab.component.scss'],
 })
-export class ChatComponent implements OnInit {
+export class ChatTabComponent implements OnInit {
     @Input() boxToken: string;
     @Input() user: User = new User;
     @Output() socketStatus = new EventEmitter();
