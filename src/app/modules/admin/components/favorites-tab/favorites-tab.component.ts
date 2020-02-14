@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 import { UserService } from 'app/shared/services/user.service';
 import { User } from 'app/shared/models/user.model';
@@ -14,7 +15,8 @@ export class FavoritesTabComponent implements OnInit {
     public favorites$: Observable<User['favorites']> = null;
 
     constructor(
-        private userService: UserService
+        private userService: UserService,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
@@ -22,6 +24,7 @@ export class FavoritesTabComponent implements OnInit {
     }
 
     refresh() {
+        this.toastr.success('The video has been removed from your favorites', 'Success');
         this.favorites$ = this.userService.favorites(true);
     }
 
