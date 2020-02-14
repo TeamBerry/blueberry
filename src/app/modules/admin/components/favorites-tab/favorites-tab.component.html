@@ -2,9 +2,7 @@
     <div class="col-8">
         <h2 class="admin-tab-title">My Favorites</h2>
         <div class="row">
-            <div *ngFor="let video of favorites$ | async" class="col-6">
-                <app-favorites-admin-widget *ngFor="let video of favorites$ | async" [video]="video" class="favorites-entry"></app-favorites-admin-widget>
-            </div>
+            <app-favorites-admin-widget *ngFor="let video of favorites$ | async" [video]="video" class="favorites-entry col-6"></app-favorites-admin-widget>
         </div>
     </div>
 </div>
