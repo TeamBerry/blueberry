@@ -24,17 +24,6 @@ img {
     color: var(--text-main-color);
 }
 
-.box-option-button {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    &:hover {
-        background-color: transparentize($master-hover-color, 0.8);
-    }
-    &:active {
-        background-color: transparentize($master-active-color, 0.6);
-    }
-}
-
 .actions-icon {
     height: 40%;
 }

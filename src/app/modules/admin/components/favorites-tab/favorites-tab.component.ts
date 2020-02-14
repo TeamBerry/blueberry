@@ -21,4 +21,8 @@ export class FavoritesTabComponent implements OnInit {
         this.favorites$ = this.userService.favorites();
     }
 
+    refresh() {
+        this.favorites$ = this.userService.favorites(true);
+    }
+
 }

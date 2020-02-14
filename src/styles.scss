@@ -45,11 +45,6 @@ button>svg {
         fill: $active-color;
         color: $active-color;
     }
-    &.secondary-icon {
-        fill: $main-black;
-        color: $master-color;
-        cursor: default;
-    }
     &.primary-icon {
         &:hover {
             fill: $master-color;
@@ -62,6 +57,8 @@ button>svg {
 }
 
 .bx-icon {
+    fill: var(--text-main-color);
+    color: var(--text-main-color);
     // Sizes
     &.bx-icon-xs {
         height: 20px;
@@ -160,6 +157,26 @@ button>svg {
     }
 }
 
+.box-option-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    cursor: pointer;
+    &:hover {
+        background-color: transparentize($master-hover-color, 0.8);
+    }
+    &:active {
+        background-color: transparentize($master-active-color, 0.6);
+    }
+    &.box-option-button-danger {
+        &:hover {
+            background-color: transparentize($danger-color, 0.6);
+        }
+        &:active {
+            background-color: transparentize($danger-color, 0.3);
+        }
+    }
+}
+
 .profile-picture {
     &.profile-picture-nav {
         @include profile-picture-size(28px);
@@ -208,4 +225,22 @@ button>svg {
     color: var(--text-main-color);
     font-family: 'Montserrat';
     font-weight: 700;
+}
+
+.song-list-line {
+    margin-bottom: 0;
+    font-size: 1rem;
+    @include one-line-text();
+    a {
+        color: $master-color;
+        display: inline-block;
+        width: 100%;
+        @include one-line-text();
+        &:hover {
+            text-decoration: underline;
+        }
+        &:active {
+            color: darken($master-color, 10%);
+        }
+    }
 }
