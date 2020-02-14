@@ -21,18 +21,7 @@ img {
 .box-name {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.4rem;
-    color: white;
-}
-
-.box-option-button {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    &:hover {
-        background-color: transparentize($master-hover-color, 0.8);
-    }
-    &:active {
-        background-color: transparentize($master-active-color, 0.6);
-    }
+    color: var(--text-main-color);
 }
 
 .actions-icon {
