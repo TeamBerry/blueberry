@@ -143,6 +143,8 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     }
 
     handleCommands(contents: string) {
+        // Trim multiple spaces in commands
+        contents = contents.replace(/(\s)+/gm, ' ');
         const command = contents.substr(1).split(' ');
         const keyword = command[0];
         switch (keyword) {
