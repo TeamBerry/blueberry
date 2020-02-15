@@ -119,6 +119,10 @@ export class BoxComponent implements OnInit {
         )
     }
 
+    loadDefaultPicture() {
+        this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/default-picture`;
+    }
+
     /**
      * This is where the real-time stuff happens.
      * The box will connect to the server via socket and start synchronising with other users.

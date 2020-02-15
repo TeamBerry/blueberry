@@ -18,13 +18,17 @@ export class BoxWidgetComponent implements OnInit {
      *
      * @memberof BoxWidgetComponent
      */
-    public pictureLocation = '../../../assets/images/berrybox-staff-logo.png';
+    public pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/default-picture`;
 
     constructor() { }
 
     ngOnInit() {
         this.displayCurrentVideo();
         this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${this.box.creator._id}-picture`
+    }
+
+    loadDefaultPicture() {
+        this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/default-picture`;
     }
 
     /**

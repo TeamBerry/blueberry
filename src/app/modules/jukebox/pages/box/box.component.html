@@ -8,7 +8,7 @@
                 <div class="col-4 box-info">
                     <div class="d-flex">
                         <div class="bb-box-picture d-flex align-items-center justify-content-center mr-2">
-                            <img src="{{ pictureLocation }}" alt="" class="profile-picture profile-picture-md">
+                            <img src="{{ pictureLocation }}" alt="{{ box?.creator?.name }}" (error)="loadDefaultPicture()" class="profile-picture profile-picture-md">
                         </div>
                         <div class="bb-box-info">
                             <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
