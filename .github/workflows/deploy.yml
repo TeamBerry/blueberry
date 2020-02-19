@@ -26,6 +26,7 @@ jobs:
       - name: Install Dependencies & Build App
         run: |
           cp ./.github/workflows/environments/environment.prod.ts ./src/environments/environment.prod.ts
+          cp ./src/environments/environment.example.ts ./src/environments/environment.ts
           npm install
           npx ng build --aot --prod --no-progress
       - name: Clean dist folder
