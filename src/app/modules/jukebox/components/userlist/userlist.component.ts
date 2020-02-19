@@ -15,7 +15,6 @@ import { environment } from 'environments/environment';
 })
 export class UserlistComponent implements OnInit {
     box: Box;
-    @Input() user: User;
 
     pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}`
 

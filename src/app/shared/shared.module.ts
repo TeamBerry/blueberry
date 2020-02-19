@@ -13,6 +13,11 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { PictureUploaderComponent } from './components/picture-uploader/picture-uploader.component';
 import { BxAlertComponent } from './components/bx-alert/bx-alert.component';
 import { DurationPipe } from './pipes/duration.pipe';
+import { LikeButtonComponent } from 'app/modules/jukebox/components/like-button/like-button.component';
+import { BxButtonComponent } from './components/bx-button/bx-button.component';
+
+// Feature Modules
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 @NgModule({
     imports: [
@@ -27,7 +32,9 @@ import { DurationPipe } from './pipes/duration.pipe';
         FilterPipe,
         PictureUploaderComponent,
         BxAlertComponent,
-        DurationPipe
+        DurationPipe,
+        LikeButtonComponent,
+        BxButtonComponent
     ],
     exports: [
         CommonModule,
@@ -41,7 +48,10 @@ import { DurationPipe } from './pipes/duration.pipe';
         FilterPipe,
         PictureUploaderComponent,
         BxAlertComponent,
-        DurationPipe
+        DurationPipe,
+        LikeButtonComponent,
+        BxButtonComponent,
+        PickerModule
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [

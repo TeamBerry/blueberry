@@ -5,7 +5,7 @@
     </div>
     <div class="card-block p-2 d-flex">
         <div class="bb-box-picture d-flex align-items-center justify-content-center mr-2">
-            <img src="{{ pictureLocation }}" alt="" class="profile-picture profile-picture-md">
+            <img src="{{ pictureLocation }}" alt="{{ box.creator['name'] }}" (error)="loadDefaultPicture()" class="profile-picture profile-picture-md">
         </div>
         <div>
             <h4 class="card-name m-0">{{ box.name }}</h4>

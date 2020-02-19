@@ -10,15 +10,16 @@ import { LoginFormComponent } from '../../../../shared/components/login-form/log
 import { SignupFormComponent } from '../../../../shared/components/signup-form/signup-form.component';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { UserService } from 'app/shared/services/user.service';
+import { AuthSubject } from 'app/shared/models/session.model';
 
 @Component({
-    selector: 'app-favoritelist',
-    templateUrl: './favoritelist.component.html',
-    styleUrls: ['./favoritelist.component.scss'],
+    selector: 'app-favorite-search-tab',
+    templateUrl: './favorite-search-tab.component.html',
+    styleUrls: ['./favorite-search-tab.component.scss'],
 })
-export class FavoritelistComponent implements OnInit, AfterViewInit {
+export class FavoriteSearchTabComponent implements OnInit, AfterViewInit {
     @Input() boxToken: string;
-    @Input() user: User = new User;
+    @Input() user: AuthSubject;
     @ViewChild('filterInput', { static: false }) input: ElementRef
 
     favorites$: Observable<User['favorites']>
@@ -37,16 +38,18 @@ export class FavoritelistComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        fromEvent(this.input.nativeElement, 'keyup')
-            .pipe(
-                filter(Boolean),
-                debounceTime(500),
-                distinctUntilChanged(),
-                tap(() => {
-                    this.filterValue = this.input.nativeElement.value
-                })
-            )
-            .subscribe()
+        if (!this.user._id.startsWith('user-')) {
+            fromEvent(this.input.nativeElement, 'keyup')
+                .pipe(
+                    filter(Boolean),
+                    debounceTime(500),
+                    distinctUntilChanged(),
+                    tap(() => {
+                        this.filterValue = this.input.nativeElement.value
+                    })
+                )
+                .subscribe()
+        }
     }
 
     /**
@@ -54,7 +57,7 @@ export class FavoritelistComponent implements OnInit, AfterViewInit {
      * to the box, via the jukebox service method "submitVideo"
      *
      * @param {Video} video The video to submit
-     * @memberof FavoritelistComponent
+     * @memberof FavoriteSearchTabComponent
      */
     submitVideo(video: Video) {
         const submissionPayload: SubmissionPayload = {
@@ -68,10 +71,10 @@ export class FavoritelistComponent implements OnInit, AfterViewInit {
     /**
      * Gets favorites
      *
-     * @memberof FavoritelistComponent
+     * @memberof FavoriteSearchTabComponent
      */
     getFavorites() {
-        this.favorites$ = this.userService.favorites();
+        this.favorites$ = this.userService.favorites()
     }
 
     openLoginPrompt() {
@@ -85,7 +88,7 @@ export class FavoritelistComponent implements OnInit, AfterViewInit {
     /**
      * Listens to the jukebox service for orders
      *
-     * @memberof FavoritelistComponent
+     * @memberof FavoriteSearchTabComponent
      */
     listenToOrders() {
         this.jukeboxService.getOrderStream().subscribe(

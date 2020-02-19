@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 
 import { SearchTabComponent } from './search-tab.component';
 
-describe('SearchTabComponent', () => {
+describe('CatalogTabComponent', () => {
   let component: SearchTabComponent;
   let fixture: ComponentFixture<SearchTabComponent>;
 

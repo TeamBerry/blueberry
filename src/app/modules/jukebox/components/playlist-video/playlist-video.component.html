@@ -6,7 +6,7 @@
                 {{ item?.video.duration | duration }}
             </span>
         </div>
-        <div class="entry-details col pr-0">
+        <div class="entry-details pl-3 pr-0">
             <p class="song-list-line">
                 <a href="https://youtube.com/watch?v={{item?.video?.link}}" title="{{item?.video?.name}}">{{item?.video?.name}}</a>
             </p>
@@ -19,15 +19,12 @@
                     {{ item?.submitted_by?.name }}
                 </span>
             </div>
-            <button *ngIf="item?.startTime !== null && item?.endTime === null" type="button" class="btn btn-primary" (click)="skipVideo(item)">
-                    <svg class="btn-primary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88">
-                    <polygon points="334.18 192.94 0 0 0 385.88 334.18 192.94"/>
-                    <rect width="68.21" height="385.88" x="334.18"/>
-                  </svg>
-                  Skip
-                </button>
-            <button *ngIf="item?.startTime === null && item?.submitted_by?._id === user._id" class="btn btn-default" (click)="cancelVideo(item)">Cancel</button>
-            <button *ngIf="item?.endTime !== null" class="btn btn-default button-resubmit" (click)="replayVideo(item)">Replay</button>
+            <div *appAuth="true">
+                <app-like-button [video]="item.video"></app-like-button>
+                <app-bx-button *ngIf="item?.startTime !== null && item?.endTime === null" class="ml-1" (click)="skipVideo(item)" [options]="{'type': 'skip', 'textDisplay': 'tooltip'}"></app-bx-button>
+                <app-bx-button *ngIf="item?.startTime === null && item?.submitted_by?._id === user._id" class="ml-1" (click)="cancelVideo(item)" [options]="{'type': 'cancel', 'context': 'danger', 'textDisplay': 'tooltip'}"></app-bx-button>
+                <app-bx-button *ngIf="item?.endTime !== null" class="ml-1" (click)="replayVideo(item)" [options]="{'type': 'replay', 'textDisplay': 'tooltip'}"></app-bx-button>
+            </div>
         </div>
     </div>
 </div>

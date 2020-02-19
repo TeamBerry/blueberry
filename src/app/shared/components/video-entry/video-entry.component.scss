@@ -17,29 +17,15 @@
 
 .entry-info {
     height: 90px;
+    width: 100%;
 }
 
 .entry-actions {
     height: 30px;
 }
 
+.entry-details {
+    width: calc(100% - 120px);
+}
+
 .entry-image-container {}
-
-.song-list-line {
-    margin-bottom: 0;
-    @include one-line-text();
-    a {
-        color: $master-color;
-        &:hover {
-            text-decoration: underline;
-        }
-        &:active {
-            color: darken($master-color, 10%);
-        }
-    }
-}
-
-.btn {
-    font-size: 0.8rem;
-    margin-right: 5px;
-}

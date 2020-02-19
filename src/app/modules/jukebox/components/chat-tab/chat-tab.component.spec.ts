@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FavoritelistComponent } from './favoritelist.component';
+import { ChatTabComponent } from './chat-tab.component';
 
-describe('FavoritelistComponent', () => {
-  let component: FavoritelistComponent;
-  let fixture: ComponentFixture<FavoritelistComponent>;
+describe('ChatTabComponent', () => {
+  let component: ChatTabComponent;
+  let fixture: ComponentFixture<ChatTabComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FavoritelistComponent ]
+      declarations: [ ChatTabComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FavoritelistComponent);
+    fixture = TestBed.createComponent(ChatTabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

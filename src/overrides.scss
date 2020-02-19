@@ -23,15 +23,27 @@
 }
 
 .btn-outline-primary {
-    border-color: $main-purple;
-    color: $main-purple;
+    border-color: $master-color;
+    color: $master-color;
     &:hover {
-        background-color: $main-purple;
+        background-color: $master-color;
         color: white;
+        .berrybox-svg-button {
+            fill: white;
+            stroke: white;
+        }
     }
     &:active {
-        background-color: darken($main-purple, 10%);
+        background-color: darken($master-color, 10%);
         color: white;
+        .berrybox-svg-button {
+            fill: white;
+            stroke: white;
+        }
+    }
+    .berrybox-svg-button {
+        fill: $master-color;
+        stroke: $master-color;
     }
 }
 
@@ -132,11 +144,13 @@
 }
 
 .form-control {
-    border: 1px solid $master-color !important;
+    &:not(.no-border) {
+        border: 1px solid $master-color !important;
+    }
     background-color: rgba(0, 0, 0, 0.15);
     color: var(--text-main-color);
-    &:focus {
-        box-shadow: 0 0 0 0.2rem $master-color;
+    &:not(.no-focus):focus {
+        box-shadow: 0 0 0 0.1rem $master-color;
     }
 }
 

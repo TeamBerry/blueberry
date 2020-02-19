@@ -58,10 +58,31 @@
     bottom: 0;
 }
 
-.chatbox {
+.input-group-chatbox {
     margin-bottom: 10px;
-    resize: none;
-    border-top-left-radius: 0;
+    border: 1px solid $master-color;
+    border-top-left-radius: 0 !important;
+    border-radius: 0.25rem;
+    &.chatbox-command {
+        border-color: $command-color !important;
+    }
+    .chatbox {
+        border-right: none !important;
+        resize: none;
+        border-top-left-radius: 0;
+    }
+    .input-group-append {
+        background-color: rgba(0, 0, 0, 0.15);
+        .btn {
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.15);
+            }
+            &:active:focus {
+                outline: none;
+                box-shadow: none;
+            }
+        }
+    }
 }
 
 .input-mode {
@@ -79,17 +100,10 @@ span#span-command-mode {
     background-color: $command-color;
 }
 
-.chatbox-command {
-    border: 1px solid $command-color !important;
-    &:focus {
-        box-shadow: 0 0 0 0.2rem $command-color;
-    }
-}
-
 #command-button {
     background-color: $command-color;
     &:hover {
-        backgorund-color: lighten($command-color, 10%);
+        background-color: lighten($command-color, 10%);
     }
     &:active {
         background-color: lighten($command-color, 15%);
@@ -106,4 +120,10 @@ span#span-youtube-mode {
 
 #link-button {
     @include override-button-outline($youtube-color);
+}
+
+.emoji-picker {
+    position: absolute;
+    bottom: 92%;
+    right: 2%;
 }
