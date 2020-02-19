@@ -95,17 +95,21 @@
                 <button class="btn btn-outline-secondary no-border no-focus" type="button" [disabled]="hasCommand" (click)="isEmojiPickerDisplayed = !isEmojiPickerDisplayed" #emojiButton>🙂</button>
             </div>
         </div>
-        <div class="chat-actions row">
+        <div class="chat-actions d-flex no-gutters">
             <!--<div class="col-2">
             <button class="btn btn-primary">Options</button>
-        </div>
-        <div class="col-2">
-            <button class="btn btn-default">Emotes</button>
         </div>-->
-            <div class="col-12">
-                <button *ngIf="!hasCommand" class="btn btn-primary" style="float:right;" (click)="post($event)">
-                Send message
-            </button>
+            <div class="col-6">
+                <button class="btn btn-outline-primary" (click)="showPanel('search')">
+                    <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427.28 439.64">
+                        <rect class="berrybox-path" x="-10.35" y="290.75" width="245.89" height="72.58" transform="translate(-198.27 175.41) rotate(-45)"/>
+                        <path class="berrybox-path" d="M275.62,0A151.66,151.66,0,1,0,427.28,151.66,151.66,151.66,0,0,0,275.62,0Zm0,239a87.32,87.32,0,1,1,87.32-87.32A87.32,87.32,0,0,1,275.62,239Z"/>
+                    </svg>
+                    Add videos
+                </button>
+            </div>
+            <div class="col-6">
+                <button *ngIf="!hasCommand" class="btn btn-primary" style="float:right;" (click)="post($event)">Send message</button>
                 <button *ngIf="hasCommand" class="btn btn-primary" id="command-button" style="float:right;" (click)="post($event)">Use command</button>
             </div>
         </div>
