@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { YoutubeService } from 'app/shared/services/youtube.service';
+import { SearchService } from 'app/shared/services/search.service';
 import { YoutubeSearchResult, YoutubeSearchVideos } from 'app/shared/models/youtube.model';
 import { Video } from 'app/shared/models/video.model';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
@@ -25,7 +25,7 @@ export class YoutubeSearchTabComponent implements OnInit {
 
     constructor(
         private jukeboxService: JukeboxService,
-        private youtubeService: YoutubeService
+        private searchService: SearchService
     ) { }
 
     ngOnInit() {
@@ -53,7 +53,7 @@ export class YoutubeSearchTabComponent implements OnInit {
             this.canSearch = false
             this.searchTimeoutValue = this.defaultSearchCooldown
             // Search
-            this.youtubeService.search(this.searchValue).subscribe(
+            this.searchService.searchOnYoutube(this.searchValue).subscribe(
                 (response: YoutubeSearchResult) => {
                     this.searchResults = response.items.map((responseVideo: YoutubeSearchVideos) => {
                         return new Video({
