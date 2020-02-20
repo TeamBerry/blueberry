@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class YoutubeService {
+export class SearchService {
 
     constructor(
         private http: HttpClient
@@ -20,7 +20,7 @@ export class YoutubeService {
      * @returns
      * @memberof YoutubeService
      */
-    search(value: string): Observable<YoutubeSearchResult> {
+    searchOnYoutube(value: string): Observable<YoutubeSearchResult> {
         return this.http.get<YoutubeSearchResult>(`${environment.araza}/search`, {
             params: { value }
         })

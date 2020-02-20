@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { YoutubeService } from './youtube.service';
+import { SearchService } from './search.service';
 
-describe('Service: Youtube', () => {
+describe('Service: Search', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [YoutubeService]
+      providers: [SearchService]
     });
   });
 
-  it('should ...', inject([YoutubeService], (service: YoutubeService) => {
+  it('should ...', inject([SearchService], (service: SearchService) => {
     expect(service).toBeTruthy();
   }));
 });
