@@ -45,6 +45,3 @@ Thumbs.db
 # dev files
 src/assets/profile-pictures
 \.editorconfig
-
-
-src/environments/environment.ts
