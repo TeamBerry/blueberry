@@ -2,8 +2,8 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
 import { User } from 'app/shared/models/user.model';
 import { JukeboxService } from '../../jukebox.service';
-import { Message } from 'app/shared/models/message.model';
 import { filter } from 'rxjs/operators';
+import { Message, FeedbackMessage } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-chat-tab',
@@ -38,10 +38,13 @@ export class ChatTabComponent implements OnInit {
         console.log('connecting chat to socket...');
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
-                filter(message => message instanceof Message && message.scope === this.boxToken)
+                filter(message =>
+                    (message instanceof Message || message instanceof FeedbackMessage)
+                    && message.scope === this.boxToken
+                )
             )
             .subscribe(
-                (message: Message) => {
+                (message) => {
                     this.messages.push(message);
                 },
                 error => {

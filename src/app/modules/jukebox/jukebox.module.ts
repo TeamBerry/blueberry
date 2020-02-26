@@ -17,6 +17,7 @@ import { CommandListComponent } from './components/command-list/command-list.com
 import { YoutubeSearchTabComponent } from './components/youtube-search-tab/youtube-search-tab.component';
 import { HelpTabComponent } from './components/help-tab/help-tab.component';
 import { SearchTabComponent } from './components/search-tab/search-tab.component';
+import { ChatItemComponent } from './components/chat-item/chat-item.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { SearchTabComponent } from './components/search-tab/search-tab.component
         CommandListComponent,
         YoutubeSearchTabComponent,
         HelpTabComponent,
-        SearchTabComponent
+        SearchTabComponent,
+        ChatItemComponent
     ],
     imports: [
         JukeboxRoutingModule,

@@ -23,6 +23,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Authenticate to Team Berry's GitHub Registry
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.REGISTRY_KEY }}" >> ~/.npmrc
       - name: Install Dependencies & Build App
         run: |
           cp ./.github/workflows/environments/environment.prod.ts ./src/environments/environment.prod.ts

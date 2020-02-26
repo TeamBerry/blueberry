@@ -2,7 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, Eleme
 import * as _ from 'lodash'
 
 import { JukeboxService } from './../../jukebox.service';
-import { Message } from 'app/shared/models/message.model';
+import { Message } from '@teamberry/muscadine';
 import { User } from 'app/shared/models/user.model';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthSubject } from 'app/shared/models/session.model';
