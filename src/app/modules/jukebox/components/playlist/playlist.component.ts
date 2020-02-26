@@ -4,7 +4,7 @@ import { JukeboxService } from './../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
 import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
-import { SubmissionPayload, CancelPayload } from 'app/shared/models/playlist-payload.model';
+import { SubmissionPayload, PlaylistItemActionRequest } from 'app/shared/models/playlist-payload.model';
 
 @Component({
     selector: 'app-playlist',
@@ -78,17 +78,31 @@ export class PlaylistComponent implements OnInit {
         }
     }
 
+    /**
+     * Triggered by the order$ event of the playlist item component.
+     *
+     * @param {*} event
+     * @memberof PlaylistComponent
+     */
     handlePlaylistOrder(event) {
-        if (event.order === 'replay') {
-            this.replayVideo(event.item)
+        const actionRequest: PlaylistItemActionRequest = {
+            item: event.item,
+            userToken: this.user._id,
+            boxToken: this.box._id
         }
 
-        if (event.order === 'cancel') {
-            this.cancelVideo(event.item)
-        }
+        switch (event.order) {
+            case 'replay':
+                this.replayVideo(event.item)
+                break
 
-        if (event.order === 'skip') {
-            this.skipVideo()
+            case 'cancel':
+                this.jukeboxService.cancelVideo(actionRequest)
+                break
+
+            case 'skip':
+                this.jukeboxService.skipVideo()
+                break
         }
     }
 
@@ -109,34 +123,6 @@ export class PlaylistComponent implements OnInit {
         this.jukeboxService.submitVideo(submissionPayload);
     }
 
-    /**
-     * Triggered by the order$ event of the playlist item component.
-     *
-     * Cancels an entry in the upcoming part of the playlist of the box
-     *
-     * @param {PlaylistVideo['_id']} item The identifier of the playlist item
-     * @memberof PlaylistComponent
-     */
-    cancelVideo(item: PlaylistVideo['_id']) {
-        const cancelPayload: CancelPayload = {
-            item: item,
-            userToken: this.user._id,
-            boxToken: this.box._id
-        }
-
-        this.jukeboxService.cancelVideo(cancelPayload);
-    }
-
-    /**
-     * Skips the currently playing video
-     *
-     * @param {PlaylistVideo['_id']} item
-     * @memberof PlaylistComponent
-     */
-    skipVideo() {
-        this.jukeboxService.skipVideo()
-    }
-
     swap(video: any, direction: string) {
         const action = {
             room_history_id: video.room_history_id,
@@ -147,17 +133,6 @@ export class PlaylistComponent implements OnInit {
         this.jukeboxService.swap();
     }
 
-    banVideo(video: any) {
-        video.video_status = 3;
-        this.jukeboxService.toggle();
-    }
-
-    unbanVideo(video: any) {
-        video.video_status = 0;
-        this.jukeboxService.toggle();
-    }
-
-
     /**
      * Requests the currently playing video be skipped.
      *
@@ -166,5 +141,4 @@ export class PlaylistComponent implements OnInit {
     requestSkip() {
 
     }
-
 }

@@ -16,9 +16,22 @@ export class PlaylistVideoComponent implements OnInit {
 
     user: AuthSubject = AuthService.getAuthSubject()
 
+    status: 'upcoming' | 'playing' | 'played'
+
     constructor() { }
 
     ngOnInit() {
+        this.status = this.computeStatus()
+    }
+
+    computeStatus(): 'upcoming' | 'playing' | 'played' {
+        if (this.item.startTime === null) {
+            return 'upcoming'
+        }
+        if (this.item.startTime !== null && this.item.endTime === null) {
+            return 'playing'
+        }
+        return 'played'
     }
 
     /**
