@@ -6,7 +6,6 @@ import { Video } from './video.model';
 export class PlaylistVideo {
     _id: string;
     endTime: Date;
-    ignored: boolean;
     startTime: Date;
     submittedAt: Date;
     submitted_by: {
