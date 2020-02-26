@@ -37,7 +37,6 @@ describe('PlaylistComponent', () => {
                 },
                 'startTime': null,
                 'endTime': null,
-                'ignored': false,
                 'submittedAt': 1555664816009,
                 'submitted_by': {
                     '_id': '5cb323d9c403e73a69a5a7b0',
@@ -53,7 +52,6 @@ describe('PlaylistComponent', () => {
                 },
                 'startTime': 1555664811319,
                 'endTime': null,
-                'ignored': false,
                 'submittedAt': 1555664811232,
                 'submitted_by': {
                     '_id': '5cb323d9c403e73a69a5a7b0',
@@ -69,7 +67,6 @@ describe('PlaylistComponent', () => {
                 },
                 'startTime': 1555663940928,
                 'endTime': 1555664132311,
-                'ignored': false,
                 'submittedAt': 1555663940816,
                 'submitted_by': {
                     '_id': '5cb323d9c403e73a69a5a7b0',
@@ -85,7 +82,6 @@ describe('PlaylistComponent', () => {
                 },
                 'startTime': 1555662177632,
                 'endTime': 1555662437877,
-                'ignored': false,
                 'submittedAt': 1555662177576,
                 'submitted_by': {
                     '_id': '5cb323d9c403e73a69a5a7b0',
@@ -101,7 +97,6 @@ describe('PlaylistComponent', () => {
                 },
                 'startTime': 1555661927247,
                 'endTime': 1555662154866,
-                'ignored': false,
                 'submittedAt': 1555661491376,
                 'submitted_by': {
                     '_id': '5cb323d9c403e73a69a5a7b0',
@@ -119,7 +114,6 @@ describe('PlaylistComponent', () => {
                 },
                 'startTime': 1555664811319,
                 'endTime': null,
-                'ignored': false,
                 'submittedAt': 1555664811232,
                 'submitted_by': {
                     '_id': '5cb323d9c403e73a69a5a7b0',
@@ -141,7 +135,6 @@ describe('PlaylistComponent', () => {
                     },
                     'startTime': 1555663940928,
                     'endTime': 1555664132311,
-                    'ignored': false,
                     'submittedAt': 1555663940816,
                     'submitted_by': {
                         '_id': '5cb323d9c403e73a69a5a7b0',
@@ -157,7 +150,6 @@ describe('PlaylistComponent', () => {
                     },
                     'startTime': 1555662177632,
                     'endTime': 1555662437877,
-                    'ignored': false,
                     'submittedAt': 1555662177576,
                     'submitted_by': {
                         '_id': '5cb323d9c403e73a69a5a7b0',
@@ -173,7 +165,6 @@ describe('PlaylistComponent', () => {
                     },
                     'startTime': 1555661927247,
                     'endTime': 1555662154866,
-                    'ignored': false,
                     'submittedAt': 1555661491376,
                     'submitted_by': {
                         '_id': '5cb323d9c403e73a69a5a7b0',
@@ -196,7 +187,6 @@ describe('PlaylistComponent', () => {
                     },
                     'startTime': null,
                     'endTime': null,
-                    'ignored': false,
                     'submittedAt': 1555664816009,
                     'submitted_by': {
                         '_id': '5cb323d9c403e73a69a5a7b0',

@@ -8,7 +8,7 @@ import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
 import { Message } from 'app/shared/models/message.model';
 import { SyncPacket } from 'app/shared/models/sync-packet.model';
-import { SubmissionPayload, CancelPayload } from 'app/shared/models/playlist-payload.model';
+import { SubmissionPayload, PlaylistItemActionRequest } from 'app/shared/models/playlist-payload.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
 import { AuthSubject } from 'app/shared/models/session.model';
@@ -109,7 +109,7 @@ export class JukeboxService {
      * @param {*} cancelPayload
      * @memberof JukeboxService
      */
-    public cancelVideo(cancelPayload: CancelPayload): void {
+    public cancelVideo = (cancelPayload: PlaylistItemActionRequest): void => {
         this.boxSocket.emit('cancel', cancelPayload)
     }
 

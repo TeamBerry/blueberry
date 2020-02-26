@@ -18,6 +18,7 @@ import { BxButtonComponent } from './components/bx-button/bx-button.component';
 
 // Feature Modules
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { BxCheckboxComponent } from './components/bx-checkbox/bx-checkbox.component';
 
 @NgModule({
     imports: [
@@ -34,7 +35,8 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
         BxAlertComponent,
         DurationPipe,
         LikeButtonComponent,
-        BxButtonComponent
+        BxButtonComponent,
+        BxCheckboxComponent
     ],
     exports: [
         CommonModule,
@@ -51,7 +53,8 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
         DurationPipe,
         LikeButtonComponent,
         BxButtonComponent,
-        PickerModule
+        PickerModule,
+        BxCheckboxComponent
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [

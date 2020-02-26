@@ -108,7 +108,7 @@
 .nav-pills {
     .nav-link {
         border-radius: 0;
-        color: white;
+        color: $master-color;
         &:hover {
             color: darken($master-color, 10%);
         }

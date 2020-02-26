@@ -26,7 +26,7 @@ export class SubmissionPayload {
     boxToken: string;
 }
 
-export class CancelPayload {
+export class PlaylistItemActionRequest {
     /**
      * Identifier of the playlist item
      *
