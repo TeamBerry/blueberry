@@ -36,10 +36,6 @@
     padding: 4px 0;
 }
 
-.message:nth-child(even) {
-    background-color: var(--background-secondary-color-alternate);
-}
-
 .message-time {
     color: var(--text-system-color);
 }
