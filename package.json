@@ -23,6 +23,7 @@
     "@angular/router": "8.2.14",
     "@ctrl/ngx-emoji-mart": "^1.0.6",
     "@ng-bootstrap/ng-bootstrap": "^5.1.4",
+    "@teamberry/muscadine": "^0.3.3",
     "@types/youtube": "0.0.36",
     "bootstrap": "^4.4.1",
     "core-js": "^2.6.5",

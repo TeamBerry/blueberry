@@ -1,0 +1,63 @@
+@import './../../../../../imports.scss';
+.btn {
+    cursor: default;
+}
+
+// Chat
+.system-message {
+    color: var(--text-system-color);
+    border-left-width: 3px;
+    border-left-style: solid;
+    padding-left: 11px !important;
+    &.system-message-success {
+        border-left-color: $success-color;
+    }
+    &.system-message-error {
+        border-left-color: $danger-color;
+    }
+    &.system-message-info {
+        border-left-color: $master-color;
+    }
+    .message-author {
+        color: $master-color;
+    }
+    .message-contents {
+        font-style: italic;
+    }
+}
+
+.message-contents {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.message {
+    margin-bottom: 4px;
+    padding: 4px 0;
+}
+
+.message:nth-child(even) {
+    background-color: var(--background-secondary-color-alternate);
+}
+
+.message-time {
+    color: var(--text-system-color);
+}
+
+.message-author {
+    // &:hover {
+    //     text-decoration: underline;
+    // }
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 0 5px;
+}
+
+.bot-icon {
+    font-size: 0.7rem;
+    background-color: $master-color;
+    padding: .2rem;
+    color: white;
+    font-weight: 700;
+    border-radius: .3rem;
+}
