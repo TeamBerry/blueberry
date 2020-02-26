@@ -2,9 +2,8 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
 import { User } from 'app/shared/models/user.model';
 import { JukeboxService } from '../../jukebox.service';
-import { Message } from 'app/shared/models/message.model';
 import { filter } from 'rxjs/operators';
-import { FeedbackMessage } from '@teamberry/muscadine';
+import { Message, FeedbackMessage } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-chat-tab',

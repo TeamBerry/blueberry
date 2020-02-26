@@ -6,8 +6,7 @@ import * as _ from 'lodash';
 
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
-import { Message } from 'app/shared/models/message.model';
-import { FeedbackMessage } from '@teamberry/muscadine';
+import { Message, FeedbackMessage } from '@teamberry/muscadine';
 import { SyncPacket } from 'app/shared/models/sync-packet.model';
 import { SubmissionPayload, PlaylistItemActionRequest } from 'app/shared/models/playlist-payload.model';
 import { AuthService } from 'app/core/auth/auth.service';

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Message } from 'app/shared/models/message.model';
-import { FeedbackMessage } from '@teamberry/muscadine';
+import { Message, FeedbackMessage } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-chat-item',
