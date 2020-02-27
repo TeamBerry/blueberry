@@ -60,7 +60,8 @@ import { BxCheckboxComponent } from './components/bx-checkbox/bx-checkbox.compon
         LikeButtonComponent,
         BxButtonComponent,
         PickerModule,
-        BxCheckboxComponent
+        BxCheckboxComponent,
+        PlaylistWidgetComponent
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
