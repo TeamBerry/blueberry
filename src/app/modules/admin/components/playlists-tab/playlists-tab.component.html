@@ -18,7 +18,7 @@
                     <div *ngIf="selectedPlaylist">
                         <div *ngIf="selectedPlaylist.videos.length > 0; else noVideos">
                             <div *ngFor="let video of selectedPlaylist.videos">
-                                <app-video-entry [video]="video"></app-video-entry>
+                                <app-video-entry [video]="video" [options]="{'submit': false, 'favorite': false, 'addToPlaylist': false, 'removeFromPlaylist': true}"></app-video-entry>
                             </div>
                         </div>
                         <ng-template #noVideos>
@@ -49,7 +49,7 @@
                 <div *ngIf="errorMessage" class="p-4">
                     <app-bx-alert [options]="{'type': 'danger', 'message': errorMessage}"></app-bx-alert>
                 </div>
-                <app-video-entry *ngFor="let video of searchResults" [video]="video" [options]="{'favorite': false}" (submit)="submitVideo($event)"></app-video-entry>
+                <app-video-entry *ngFor="let video of searchResults" [video]="video" [options]="{'submit': false, 'favorite': false, 'addToPlaylist': true}" (submit)="submitVideo($event)"></app-video-entry>
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@ export interface ButtonOptions {
      * @type {('primary' | 'secondary' | 'default' | 'warning' | 'default')}
      * @memberof ButtonOptions
      */
-    context?: 'primary' | 'secondary' | 'default' | 'warning' | 'default',
+    context?: 'primary' | 'secondary' | 'danger' | 'warning' | 'default',
     /**
      * Button text. Will default to the type if not specified
      *

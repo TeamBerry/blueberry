@@ -33,6 +33,18 @@ export class PlaylistsTabComponent implements OnInit {
 
     searchResults: Array<Video> = []
 
+    inPlaylistOptions = {
+        submit: false,
+        favorite: false,
+        removeFromPlaylist: true
+    }
+
+    outPlaylistOptions = {
+        submit: false,
+        favorite: false,
+        addToPlaylist: true
+    }
+
     constructor(
         private modalService: NgbModal,
         private userService: UserService,
