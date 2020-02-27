@@ -8,6 +8,7 @@ import { UserService } from 'app/shared/services/user.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaylistFormComponent } from 'app/shared/components/playlist-form/playlist-form.component';
 import { PlaylistViewComponent } from 'app/shared/components/playlist-view/playlist-view.component';
+import { AuthSubject } from 'app/shared/models/session.model';
 
 @Component({
     selector: 'app-playlists-tab',
@@ -16,9 +17,8 @@ import { PlaylistViewComponent } from 'app/shared/components/playlist-view/playl
     providers: [UserService]
 })
 export class PlaylistsTabComponent implements OnInit {
-    @Input() user: User = AuthService.getSession()
-
     public playlists: Observable<Array<UserPlaylist>>
+    user: AuthSubject = AuthService.getAuthSubject();
 
     constructor(
         private modalService: NgbModal,

@@ -5,6 +5,7 @@ import { UserService } from 'app/shared/services/user.service';
 import { User } from 'app/shared/models/user.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthSubject } from 'app/shared/models/session.model';
 
 @Component({
     selector: 'app-playlist-selector',
@@ -16,7 +17,7 @@ export class PlaylistSelectorComponent implements OnInit {
 
     userPlaylists
 
-    user: User = AuthService.getSession()
+    user: AuthSubject = AuthService.getAuthSubject()
 
     @Output() selectedPlaylist$: EventEmitter<UserPlaylist> = new EventEmitter<UserPlaylist>();
 

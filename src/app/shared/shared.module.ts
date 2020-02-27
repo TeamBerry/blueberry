@@ -53,19 +53,19 @@ import { BxCheckboxComponent } from './components/bx-checkbox/bx-checkbox.compon
         VideoEntryComponent,
         NgbModule,
         BoxDeletionEstimationPipe,
-        PlaylistWidgetComponent
+        PlaylistWidgetComponent,
+        FilterPipe,
+        DurationPipe,
+        PickerModule,
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
         PlaylistViewComponent,
         PlaylistSelectorComponent,
-        FilterPipe,
         PictureUploaderComponent,
         BxAlertComponent,
-        DurationPipe,
         LikeButtonComponent,
         BxButtonComponent,
-        PickerModule,
         BxCheckboxComponent
     ],
 })

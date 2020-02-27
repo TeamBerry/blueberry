@@ -107,7 +107,7 @@ export class UserService {
      * @returns {Observable<Array<UserPlaylist>>}
      * @memberof UserService
      */
-    playlists(user: User): Observable<Array<UserPlaylist>> {
+    playlists(user: AuthSubject): Observable<Array<UserPlaylist>> {
         return this.http.get<Array<UserPlaylist>>(environment.araza + '/user/' + user._id + '/playlists');
     }
 

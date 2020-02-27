@@ -5,6 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'app/shared/models/user.model';
 import { UserPlaylist } from 'app/shared/models/user-playlist.model';
 import { PlaylistService } from 'app/shared/services/playlist.service';
+import { AuthSubject } from 'app/shared/models/session.model';
 
 @Component({
     selector: 'app-playlist-form',
@@ -14,7 +15,7 @@ import { PlaylistService } from 'app/shared/services/playlist.service';
 export class PlaylistFormComponent implements OnInit {
     @Input() title: string
     @Input() playlist: UserPlaylist
-    @Input() user: User
+    @Input() user: AuthSubject
 
     context: 'create' | 'edit' = 'edit'
 

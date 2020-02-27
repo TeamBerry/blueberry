@@ -141,10 +141,10 @@ button>svg {
 }
 
 .featured {
-    background-color: $background-main-color;
+    background-color: var(--background-main-color);
     .free-text {
         font-family: 'Montserrat', sans-serif;
-        color: $text-focus-color;
+        color: var(--text-focus-color);
         margin-bottom: 40px;
         text-align: center
     }
