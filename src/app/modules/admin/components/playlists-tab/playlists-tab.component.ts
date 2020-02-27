@@ -17,8 +17,9 @@ import { AuthSubject } from 'app/shared/models/session.model';
     providers: [UserService]
 })
 export class PlaylistsTabComponent implements OnInit {
-    public playlists: Observable<Array<UserPlaylist>>
+    public playlists: Array<UserPlaylist>
     user: AuthSubject = AuthService.getAuthSubject();
+    selectedPlaylist: UserPlaylist = null;
 
     constructor(
         private modalService: NgbModal,
@@ -26,7 +27,19 @@ export class PlaylistsTabComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.playlists = this.userService.playlists(this.user)
+        this.userService.playlists(this.user).subscribe(
+            (playlists: Array<UserPlaylist>) => {
+                this.playlists = playlists;
+
+                if (playlists.length > 0) {
+                    this.selectedPlaylist = playlists[0];
+                }
+            }
+        )
+    }
+
+    selectPlaylist(playlistId: string) {
+        this.selectedPlaylist = this.playlists.find((item: UserPlaylist) => item._id === playlistId)
     }
 
     openCreateModal(playlist?: UserPlaylist) {

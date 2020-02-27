@@ -1,10 +1,33 @@
 <div class="row justify-content-center">
-    <div class="playlists row container-fluid col-9">
-        <div *ngFor="let playlist of playlists | async" class="col-3 card playlist-card row d-flex px-0">
-            <app-playlist-widget [playlist]="playlist"></app-playlist-widget>
+    <h2 class="admin-tab-title">My Playlists</h2>
+    <div class="d-flex playlist-manager">
+        <div class="d-flex playlist-space col-9 pl-0">
+            <div *ngIf="playlists; else noPlaylists" class="d-flex w-100">
+                <div class="col-3 playlists-list p-0">
+                    <div *ngFor="let playlist of playlists" class="playlists-list-item px-3" [ngClass]="{'active': playlist._id === selectedPlaylist?._id}" (click)="selectPlaylist(playlist._id)">
+                        <p class="playlist-name mb-0">{{ playlist.name }}</p>
+                        <span> {{ playlist.videos.length }} Videos - Last updated {{ playlist.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+                    </div>
+                </div>
+                <div class="col-9 playlist-videos">
+                    <div *ngIf="selectedPlaylist">
+                        <div *ngIf="selectedPlaylist.videos.length > 0">
+                            <div *ngFor="let video of selectedPlaylist.video">
+                                {{ video.name }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #noPlaylists>
+                You have no playlists
+            </ng-template>
+        </div>
+        <div class="search-space col-3">
+            <div class="col-3 search-tab"></div>
         </div>
     </div>
-    <button class="btn btn-primary col-9" (click)="openCreateModal()">
-        Create a playlist
-    </button>
+    <button class="btn btn-primary btn-block" (click)="openCreateModal()">
+            Create a playlist
+        </button>
 </div>

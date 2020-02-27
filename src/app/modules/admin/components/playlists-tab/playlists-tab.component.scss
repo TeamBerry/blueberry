@@ -1,4 +1,40 @@
 @import './../../../../../imports.scss';
+.playlist-manager {
+    height: 90vh;
+    width: 100%;
+}
+
+.playlist-space,
+.search-space {
+    background-color: var(--background-secondary-color);
+}
+
+.playlists-list,
+.playlist-videos {
+    height: 100%;
+}
+
+.playlists-list {
+    border-right: 1px solid var(--background-secondary-color-alternate);
+    .playlists-list-item {
+        p {
+            color: var(--text-main-color);
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+        &.active {
+            border-left: 5px solid $master-color;
+        }
+        &:hover {
+            background-color: var(--background-secondary-color-alternate);
+        }
+    }
+}
+
+.playlist-space {
+    border-right: 3px solid var(--background-main-color);
+}
+
 .playlist-card {
     border: 1px solid lighten($master-color, 10%);
     margin: .7rem;
@@ -8,8 +44,4 @@
 
 .playlist-image {
     height: 250px;
-}
-
-.playlist-name {
-    font-weight: 300;
 }
