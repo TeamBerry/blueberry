@@ -1,6 +1,6 @@
 @import './../../../imports.scss';
 .navbar {
-    background-color: $master-color;
+    background-color: var(--nav-color);
     margin-bottom: 0 !important;
     height: 60px;
     //@include fontFace('geometria', 'Geometria-Light-webfont');
@@ -8,38 +8,40 @@
 }
 
 .navbar-brand {
-    color: $text-main-color;
+    color: white;
     font-size: 20px;
-    font-weight: 800;
     &:hover {
-        color: $text-main-color;
+        color: white;
+    }
+    &:active {
+        color: white;
+    }
+    &:focus {
+        color: white;
     }
 }
 
 .nav-pp {
-    @include nav-pp(35px);
+    @include profile-picture-size(35px);
 }
 
 .nav-name {
     font-size: 19px;
-    font-weight: 700;
-    color: $text-main-color;
-}
-
-.nav-item {
-    cursor: pointer;
+    color: var(--text-main-color);
 }
 
 .dropdown-menu {
-    background-color: $background-main-color;
-    top: 8px !important;
-    border-radius: 0;
-    border-color: $master-color;
-    width: 179px;
+    background-color: var(--background-main-color);
+    width: 200px;
+    padding: 1rem 0 0.5rem 0;
+    box-shadow: 0 0 7px 0.1rem black;
+    top: 50px;
+    border: none;
     .dropdown-item {
-        color: $text-focus-color;
+        cursor: pointer;
+        color: var(--text-main-color);
         &:hover {
-            background-color: $background-main-hover-color;
+            background-color: var(--background-main-hover-color);
         }
     }
 }
@@ -55,15 +57,8 @@
     #nav-dropdown {
         height: 38px;
     }
-    &:hover {
-        background-color: $master-hover-color;
-    }
     .user-pp {
-        @include nav-pp(28px);
         margin-right: 5px;
-        img {
-            padding-bottom: 3px;
-        }
     }
 }
 
@@ -78,4 +73,8 @@
     &:hover {
         color: white;
     }
+}
+
+.dropdown-divider {
+    color: white;
 }

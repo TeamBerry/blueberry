@@ -3,7 +3,7 @@
         <p class="list-rank px-3 pt-3">Now playing: </p>
         <div class="now-playing-space">
             <div *ngIf="currentlyPlaying; else noPlaying">
-                <app-playlist-video [item]="currentlyPlaying"></app-playlist-video>
+                <app-playlist-video [item]="currentlyPlaying" (order)="handlePlaylistOrder($event)"></app-playlist-video>
             </div>
             <ng-template #noPlaying>
                 <div class="no-playing text-center">
@@ -17,7 +17,7 @@
                     <ng-template ngbTabContent>
                         <p class="list-rank px-3 pt-3">Upcoming: </p>
                         <div *ngFor="let entry of upcomingVideos; let i = index">
-                            <app-playlist-video [item]="entry"></app-playlist-video>
+                            <app-playlist-video [item]="entry" (order)="handlePlaylistOrder($event)"></app-playlist-video>
                         </div>
                     </ng-template>
                 </ngb-tab>
@@ -25,7 +25,7 @@
                     <ng-template ngbTabContent>
                         <p class="list-rank px-3 pt-3">Played: </p>
                         <div *ngFor="let entry of playedVideos; let i = index">
-                            <app-playlist-video [item]="entry" (resubmit$)="resubmitVideo($event)"></app-playlist-video>
+                            <app-playlist-video [item]="entry" (order)="handlePlaylistOrder($event)"></app-playlist-video>
                         </div>
                     </ng-template>
                 </ngb-tab>
@@ -39,7 +39,7 @@
                     />
                 </svg>
             <h3>Your queue is empty</h3>
-            <p>You can add youtube links in the chat input with the <kbd>!add</kbd> command</p>
+            <p>You can add youtube links in the chat input with the <span class="command-key">!add</span> command or use the lens icon to search directly on YouTube.</p>
         </div>
     </ng-template>
 </div>

@@ -1,0 +1,8 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <h2 class="admin-tab-title">My Favorites</h2>
+        <div class="row">
+            <app-favorites-admin-widget *ngFor="let video of favorites$ | async" [video]="video" class="favorites-entry col-6" (refresh)="refresh()"></app-favorites-admin-widget>
+        </div>
+    </div>
+</div>

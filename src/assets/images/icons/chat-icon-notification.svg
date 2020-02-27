@@ -1,0 +1,8 @@
+<svg id="chat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 550">
+    <defs>
+        <style>.cls-1,.cls-2{fill:#fff;}.cls-1{stroke:#fff;stroke-miterlimit:10;stroke-width:30px;}</style>
+    </defs>
+    <title>chat-icon-notification</title>
+    <polygon class="cls-1" points="465.41 102.83 31.25 102.83 31.25 386.15 99.3 386.15 64.44 463.51 236.07 386.15 465.41 386.15 465.41 102.83"/>
+    <circle class="cls-2" cx="445.41" cy="122.83" r="89"/>
+</svg>

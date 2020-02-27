@@ -16,14 +16,34 @@
             <textarea class="form-control" name="description" id="description" cols="30" rows="5" [(ngModel)]="box.description"></textarea>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="lang">Spoken language</label>
             <select name="lang" id="lang" class="form-control" [(ngModel)]="box.lang">
                 <option value="">Select a language</option>
                 <option *ngFor="let lang of langs" [value]="lang">{{ lang }}</option>
             </select>
+        </div> -->
+
+        <div class="form-group d-flex no-gutters">
+            <div class="col-10">
+                <label for="random" class="col-form-label pb-0">Random Mode</label>
+                <p class="help-text text-muted">When a video ends, the next one will be picked at random from the upcoming pool of videos</p>
+            </div>
+            <div class="col m-auto">
+                <app-slide-toggle class="float-right" [(value)]="box.options.random"></app-slide-toggle>
+            </div>
         </div>
 
-        <button type="submit" class="btn btn-default btn-block">Create</button>
+        <div class="form-group d-flex no-gutters">
+            <div class="col-10">
+                <label for="random" class="col-form-label pb-0">Loop Mode</label>
+                <p class="help-text text-muted">The system will automatically requeue old videos. Combined with Random Mode, videos will be picked randomly.</p>
+            </div>
+            <div class="col m-auto">
+                <app-slide-toggle class="float-right" [(value)]="box.options.loop"></app-slide-toggle>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-default btn-block">{{ context }}</button>
     </form>
 </div>

@@ -1,0 +1,50 @@
+name: Deploy
+
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-18.04
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: webfactory/ssh-agent@v0.1.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Authenticate to Team Berry's GitHub Registry
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.REGISTRY_KEY }}" >> ~/.npmrc
+      - name: Install Dependencies & Build App
+        run: |
+          cp ./.github/workflows/environments/environment.prod.ts ./src/environments/environment.prod.ts
+          npm install
+          npx ng build --aot --prod --no-progress
+      - name: Clean dist folder
+        uses: garygrossgarten/github-action-ssh@v0.3.0
+        with:
+          command: rm -rf ${{ secrets.LOCATION }}/dist/*
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Deploy via SCP
+        uses: horochx/deploy-via-scp@v1.0.1
+        with:
+          local: dist
+          remote: ${{ secrets.LOCATION }}
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+
+

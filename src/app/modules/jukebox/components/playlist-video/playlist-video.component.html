@@ -2,22 +2,35 @@
     <div class="entry-info d-flex">
         <div class="entry-image-container h-100">
             <img class="entry-image h-100 float-left" src="http://img.youtube.com/vi/{{ item?.video?.link }}/0.jpg" alt="">
+            <span class="submission-duration">
+                {{ item?.video.duration | duration }}
+            </span>
         </div>
-        <div class="entry-details col pr-0">
-            <p class="song-list-line">
-                <a href="https://youtube.com/watch?v={{item?.video?.link}}" title="{{item?.video?.name}}">{{item?.video?.name}}</a>
-            </p>
+        <div class="entry-details pl-3 pr-0">
+            <div class="d-flex justify-content-between">
+                <p class="song-list-line">
+                    <a href="https://youtube.com/watch?v={{item?.video?.link}}" title="{{item?.video?.name}}">{{item?.video?.name}}</a>
+                </p>
+            </div>
             <div>
                 <span class="submission-time">
-                    {{ item?.submitted_at | date:'dd/MM/yyyy HH:mm:ss'}}
+                    {{ item?.submittedAt | date:'dd/MM/yyyy HH:mm:ss'}}
                 </span>
                 <span>|</span>
                 <span class="submission-user" *ngIf="item?.submitted_by">
                     {{ item?.submitted_by?.name }}
                 </span>
             </div>
-            <button *ngIf="item?.endTime !== null" class="btn btn-default action-button" (click)="resubmit(item)">Resubmit</button>
-            <button class="btn btn-outline-default action-button" (click)="addToPlaylist(item)">Add to playlist</button>
+            <div *appAuth="true" class="d-flex justify-content-between">
+                <div class="d-flex">
+                    <app-like-button [video]="item.video"></app-like-button>
+                </div>
+                <div class="d-flex">
+                    <app-bx-button *ngIf="status === 'playing'" class="ml-1" (click)="skipVideo(item)" [options]="{'type': 'skip', 'textDisplay': 'tooltip'}"></app-bx-button>
+                    <app-bx-button *ngIf="status === 'upcoming' && item?.submitted_by?._id === user._id" class="ml-1" (click)="cancelVideo(item)" [options]="{'type': 'cancel', 'context': 'danger', 'textDisplay': 'tooltip', 'text': 'Remove from Queue'}"></app-bx-button>
+                    <app-bx-button *ngIf="status === 'played'" class="ml-1" (click)="replayVideo(item)" [options]="{'type': 'replay', 'textDisplay': 'tooltip'}"></app-bx-button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

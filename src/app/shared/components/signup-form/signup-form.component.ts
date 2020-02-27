@@ -4,6 +4,7 @@ import { AuthService } from '../../../core/auth/auth.service';
 
 import { User } from '../../../shared/models/user.model';
 import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
+import { Session } from 'app/shared/models/session.model';
 
 @Component({
     selector: 'app-signup-form',
@@ -25,7 +26,8 @@ export class SignupFormComponent implements OnInit {
         this.signupForm = new FormGroup({
             username: new FormControl('', [
                 Validators.required,
-                Validators.minLength(5)
+                Validators.minLength(5),
+                Validators.maxLength(20)
             ]),
             mail: new FormControl('', [Validators.required]),
             password: new FormControl('', [
@@ -66,8 +68,8 @@ export class SignupFormComponent implements OnInit {
             username = this.signupForm.value.username;
 
         this.authService.signup(mail, password, username).subscribe(
-            (authResult) => {
-                this.authService.setSession(authResult);
+            (session: Session) => {
+                this.authService.setSession(session);
                 location.reload();
             },
             (error) => {

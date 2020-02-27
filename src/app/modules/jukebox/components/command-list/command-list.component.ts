@@ -37,8 +37,44 @@ export class CommandListComponent implements OnInit {
             staffOnly: false,
         },
         {
+            keys: ['chat'],
+            description: 'Summons the chat tab',
+            staffOnly: false,
+        },
+        {
+            keys: ['playlist'],
+            description: 'Summons the playlist tab',
+            staffOnly: false
+        },
+        {
+            keys: ['users', 'userlist'],
+            description: 'Summons the user list',
+            staffOnly: false
+        },
+        {
+            keys: ['search'],
+            description: 'Summons the search tab',
+            staffOnly: false
+        },
+        {
+            keys: ['help'],
+            description: 'Summons the help tab',
+            staffOnly: false
+        },
+        {
+            keys: ['commands', 'macros'],
+            description: 'Summons the commands list',
+            staffOnly: false
+        },
+        {
             keys: ['skip', 'next'],
             description: 'Skips the currently playing video',
+            staffOnly: true
+        },
+        {
+            keys: ['settings'],
+            description: `Summons a window with the settings of the box, allowing you to adjust options
+            such as the modes of play`,
             staffOnly: true
         }
     ];

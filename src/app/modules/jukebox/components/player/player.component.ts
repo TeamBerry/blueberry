@@ -7,8 +7,7 @@ import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
 
 /**
  * The player component of the box. It just recieves the video as an input from the box
- * and sends back outputs when it starts or stops playing, so the box component can ask for
- * what's next.
+ * and sends back outputs when it starts or stops playing.
  *
  * @export
  * @class PlayerComponent
@@ -96,8 +95,7 @@ export class PlayerComponent implements OnInit, OnChanges {
      * @memberof PlayerComponent
      */
     playVideo(video: PlaylistVideo) {
-        const now = +moment().format('x');
-        let startingTime = (now - video.startTime) / 1000;
+        let startingTime = moment().diff(video.startTime) / 1000;
 
         if (startingTime <= 2) {
             startingTime = 0;

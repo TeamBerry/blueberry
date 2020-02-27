@@ -4,7 +4,7 @@ import { JukeboxService } from './../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
 import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
-import { VideoPayload } from 'app/shared/models/video-payload.model';
+import { SubmissionPayload, PlaylistItemActionRequest } from 'app/shared/models/playlist-payload.model';
 
 @Component({
     selector: 'app-playlist',
@@ -79,20 +79,48 @@ export class PlaylistComponent implements OnInit {
     }
 
     /**
-     * Triggered by the resubmit$ event of the playlist item component.
+     * Triggered by the order$ event of the playlist item component.
+     *
+     * @param {*} event
+     * @memberof PlaylistComponent
+     */
+    handlePlaylistOrder(event) {
+        const actionRequest: PlaylistItemActionRequest = {
+            item: event.item,
+            userToken: this.user._id,
+            boxToken: this.box._id
+        }
+
+        switch (event.order) {
+            case 'replay':
+                this.replayVideo(event.item)
+                break
+
+            case 'cancel':
+                this.jukeboxService.cancelVideo(actionRequest)
+                break
+
+            case 'skip':
+                this.jukeboxService.skipVideo()
+                break
+        }
+    }
+
+    /**
+     * Triggered by the order$ event of the playlist item component.
      *
      * Resubmits the video in the playlist of the box
      *
-     * @param {string} link The Youtube link of the video
+     * @param {PlaylistVideo['video']['link']} link The Youtube link of the video
      * @memberof PlaylistComponent
      */
-    resubmitVideo(link: string) {
-        const videoPayload: VideoPayload = {
+    replayVideo(link: PlaylistVideo['video']['link']) {
+        const submissionPayload: SubmissionPayload = {
             link: link,
             userToken: this.user._id,
             boxToken: this.box._id
         };
-        this.jukeboxService.submitVideo(videoPayload);
+        this.jukeboxService.submitVideo(submissionPayload);
     }
 
     swap(video: any, direction: string) {
@@ -105,17 +133,6 @@ export class PlaylistComponent implements OnInit {
         this.jukeboxService.swap();
     }
 
-    banVideo(video: any) {
-        video.video_status = 3;
-        this.jukeboxService.toggle();
-    }
-
-    unbanVideo(video: any) {
-        video.video_status = 0;
-        this.jukeboxService.toggle();
-    }
-
-
     /**
      * Requests the currently playing video be skipped.
      *
@@ -124,5 +141,4 @@ export class PlaylistComponent implements OnInit {
     requestSkip() {
 
     }
-
 }

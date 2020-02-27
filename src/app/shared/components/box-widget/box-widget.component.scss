@@ -1,16 +1,18 @@
 @import './../../../../imports.scss';
 .card-box {
-    background-color: $background-main-color;
-    color: $text-main-color;
+    background-color: var(--background-main-color);
+    color: var(--text-main-color);
     border-radius: 0 !important;
     cursor: pointer;
-    border: 1px solid $background-main-border-color;
+    border: 1px solid var(--background-main-border-color);
     .card-img-top {
-        width: 100%;
         border-radius: inherit;
     }
+    .no-playing {
+        width: 70%;
+    }
     &:hover {
-        background-color: $background-main-hover-color;
+        background-color: var(--background-main-hover-color);
     }
 }
 
@@ -27,5 +29,5 @@
 }
 
 .box-pp {
-    @include nav-pp(40px);
+    @include profile-picture-size(40px);
 }

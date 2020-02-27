@@ -23,6 +23,9 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 
 /* Feature Modules */
 import { JukeboxModule } from './modules/jukebox/jukebox.module';
+import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
+
+// External Modules
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -37,7 +40,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         NavComponent,
         SettingsDirective,
         UserSettingsComponent,
-        PlaylistFormComponent
+        PlaylistFormComponent,
+        PasswordResetComponent
     ],
     imports: [
         AppRoutingModule,
@@ -46,7 +50,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         SharedModule,
         CoreModule,
         JukeboxModule,
-        NgbModule.forRoot()
+        NgbModule
     ],
     exports: [
         AppComponent

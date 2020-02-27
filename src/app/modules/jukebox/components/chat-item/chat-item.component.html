@@ -1,0 +1,7 @@
+<p class="message px-3" [ngClass]="{'system-message': message.source === 'system' || message.source === 'bot'}" [class]="typeStyle">
+    <span class="message-time" title="{{message.time}}" *ngIf="message.source !== 'system'">{{ message.time | date: 'HH:mm' }}</span>
+    <span class="message-author author-linkback" *ngIf="message.source !== 'bot'" [ngStyle]="{'color': '#'+message.author_color}" [ngClass]="{'d-none': message.source === 'system'}">{{ author }}</span>
+    <span *ngIf="message.source === 'bot'" class="message-author">Berrybot <span class="bot-icon" *ngIf="message.source === 'bot'">BOT</span></span>
+    <span class="message-contents">{{ message.contents }}</span>
+    <br>
+</p>

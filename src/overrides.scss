@@ -9,8 +9,8 @@
 
 .btn-primary {
     background-color: $master-color;
-    border: lighten($background-main-color, 5%);
-    color: $text-main-color;
+    border: lighten($master-color, 5%);
+    color: white;
     &:hover {
         background-color: $master-hover-color;
     }
@@ -18,20 +18,32 @@
         background-color: $master-active-color;
     }
     &:visited {
-        color: $text-main-color !important;
+        color: var(--text-main-color) !important;
     }
 }
 
 .btn-outline-primary {
-    border-color: $main-purple;
-    color: $main-purple;
+    border-color: $master-color;
+    color: $master-color;
     &:hover {
-        background-color: $main-purple;
+        background-color: $master-color;
         color: white;
+        .berrybox-svg-button {
+            fill: white;
+            stroke: white;
+        }
     }
     &:active {
-        background-color: darken($main-purple, 10%);
+        background-color: darken($master-color, 10%);
         color: white;
+        .berrybox-svg-button {
+            fill: white;
+            stroke: white;
+        }
+    }
+    .berrybox-svg-button {
+        fill: $master-color;
+        stroke: $master-color;
     }
 }
 
@@ -96,7 +108,7 @@
 .nav-pills {
     .nav-link {
         border-radius: 0;
-        color: white;
+        color: $master-color;
         &:hover {
             color: darken($master-color, 10%);
         }
@@ -107,17 +119,38 @@
     }
 }
 
+.modal-header {
+    font-family: 'Montserrat', sans-serif;
+    h5 {
+        font-weight: 700 !important;
+    }
+    .close {
+        color: var(--text-main-color);
+        opacity: .8;
+    }
+}
+
+.modal-header,
+.modal-body {
+    background-color: var(--background-main-color);
+    border-radius: 0;
+    border: none;
+}
+
 .modal-content {
-    background-color: $background-main-color;
-    color: $text-main-color;
+    background-color: var(--background-main-color);
+    color: var(--text-main-color);
     border-radius: 0;
 }
 
 .form-control {
-    border: 1px solid $master-color !important;
-    background-color: $input-main-color;
-    &:focus {
-        box-shadow: 0 0 0 0.2rem $master-color;
+    &:not(.no-border) {
+        border: 1px solid $master-color !important;
+    }
+    background-color: rgba(0, 0, 0, 0.15);
+    color: var(--text-main-color);
+    &:not(.no-focus):focus {
+        box-shadow: 0 0 0 0.1rem $master-color;
     }
 }
 
@@ -137,7 +170,7 @@
 }
 
 .help-block {
-    color: $text-system-color;
+    color: var(--text-system-color);
 }
 
 .dropdown-toggle::after {
@@ -145,5 +178,19 @@
 }
 
 .card {
-    background-color: $background-main-color;
+    background-color: var(--background-main-color);
+}
+
+// Alerts
+.alert {
+    background-color: transparent;
+    font-weight: 700;
+    &.alert-danger {
+        color: $danger-color !important;
+        border-color: $danger-color;
+    }
+    &.alert-success {
+        color: $success-color !important;
+        border-color: $success-color;
+    }
 }

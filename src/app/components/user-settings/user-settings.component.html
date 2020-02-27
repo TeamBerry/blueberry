@@ -1,34 +1,35 @@
-<div class="d-flex" id="settings">
+<div class="d-flex overflow-auto" id="settings">
     <div class="col-4 menu pt-5">
         <nav class="nav flex-column p-0 text-right">
             <a class="nav-link" (click)="currentTab = 'account'" [ngClass]="{'active':currentTab === 'account'}">Account</a>
             <!-- <a class="nav-link" (click)="currentTab = 'privacy'" [ngClass]="{'active':currentTab === 'privacy'}">Privacy</a> -->
             <!-- <a class="nav-link" (click)="currentTab = 'notifications'" [ngClass]="{'active':currentTab === 'notifications'}">Notifications</a> -->
-            <a class="nav-link" (click)="currentTab = 'appearance'" [ngClass]="{'active':currentTab === 'appearance'}">Appearance</a>
-            <a class="nav-link" (click)="closeSettings()">Close</a>
+            <a class="nav-link" (click)="currentTab = 'display'" [ngClass]="{'active':currentTab === 'display'}">Display</a>
         </nav>
     </div>
-    <div class="col settings-tabs pt-5">
+    <div class="col settings-tabs">
+        <div class="d-flex flex-row-reverse close-button-space">
+            <button type="button" class="close" aria-label="close" (click)="closeSettings()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <div class="col-7">
             <div id="account-tab" *ngIf="currentTab === 'account'">
                 <h3 class="tab-title">Account</h3>
                 <div class="form-group">
-                    <label for="name">Username</label>
-                    <input type="text" class="form-control input-lg" name="name" placeholder="Your username" [(ngModel)]="user.name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="mail" class="form-control input-lg" name="email" placeholder="Your mail address" [(ngModel)]="user.mail">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control input-lg" name="password" placeholder="Your password is required to update this section">
-                </div>
-                <div class="form-group text-right">
-                    <button type="submit" class="btn btn-success save-button">Save</button>
+                    <label for="picture">Profile Picture</label>
+                    <div class="picture-edit-space d-flex">
+                        <div class="col-3 text-center">
+                            <img class="profile-picture profile-picture-lg" src="{{pictureLocation}}" alt="">
+                        </div>
+                        <div class="col m-auto">
+                            <button type="button" class="btn btn-primary" (click)="openPictureUploader()">Change your profile picture</button>
+                            <p class="help-text text-muted">Accepted formats: JPEG, PNG. Maximum size: 2MB.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="privacy-tab" *ngIf="currentTab === 'privacy'">
+            <!-- <div id="privacy-tab" *ngIf="currentTab === 'privacy'">
                 <h3 class="tab-title">Privacy</h3>
                 <div class="form-group">
                     <label for="messaging">Who can message you</label>
@@ -88,12 +89,12 @@
                         <app-slide-toggle class="checkbox" [(value)]="user.settings.boxOpenedByFriend"></app-slide-toggle>
                     </div>
                 </div>
-            </div>
-            <div id="appearance-tab" *ngIf="currentTab === 'appearance'">
-                <h3 class="tab-title">Appearance</h3>
+            </div> -->
+            <div id="display-tab" *ngIf="currentTab === 'display'">
+                <h3 class="tab-title">Display</h3>
                 <div class="form-group">
                     <label for="theme">Dark Theme</label>
-                    <app-slide-toggle class="checkbox" [(value)]="user.settings.darkTheme"></app-slide-toggle>
+                    <app-slide-toggle class="checkbox" [value]="isDarkThemeEnabled" (valueChange)="toggleDarkTheme()"></app-slide-toggle>
                 </div>
             </div>
         </div>

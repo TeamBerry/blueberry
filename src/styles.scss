@@ -1,20 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'global.css';
 @import 'imports.scss';
-@import '../node_modules/bootstrap/scss/bootstrap';
-@import '../node_modules/ngx-toastr/toastr';
+@import '~bootstrap/scss/bootstrap';
+@import '~ngx-toastr/toastr';
+@import '~@ctrl/ngx-emoji-mart/picker';
 body {
     overflow: hidden;
-    background-color: $background-main-color;
+    background-color: var(--background-main-color);
     font-size: pxtorem($base-font-size);
 }
 
 svg.berrybox-svg {
     height: 1em;
-    stroke: $stroke-color;
+    stroke: var(--stroke-color);
     fill: $fill-color;
     circle {
-        fill: $stroke-color;
+        fill: var(--stroke-color);
     }
     &:hover {
         .berrybox-path {
@@ -22,8 +24,12 @@ svg.berrybox-svg {
         }
     }
     .berrybox-path {
-        stroke: $text-system-color;
-        fill: $text-system-color;
+        stroke: var(--text-system-color);
+        fill: var(--text-system-color);
+        &:active {
+            stroke: var(--active-stroke-color);
+            fill: var(--active-stroke-color);
+        }
     }
 }
 
@@ -35,10 +41,9 @@ button>svg {
 .berrybox-svg-icon {
     height: 1.3em;
     width: 1.3em;
-    &.secondary-icon {
-        fill: $main-black;
-        color: $master-color;
-        cursor: default;
+    &.crown {
+        fill: $active-color;
+        color: $active-color;
     }
     &.primary-icon {
         &:hover {
@@ -48,6 +53,37 @@ button>svg {
         cursor: pointer;
         fill: white;
         stroke: white;
+    }
+}
+
+.bx-icon {
+    fill: var(--text-main-color);
+    color: var(--text-main-color);
+    // Sizes
+    &.bx-icon-xs {
+        height: 20px;
+        width: 20px;
+    }
+    &.bx-icon-sm {
+        height: 40px;
+        width: 40px;
+    }
+    &.bx-icon-md {
+        height: 80px;
+        width: 80px;
+    }
+    &.bx-icon-lg {
+        height: 160px;
+        width: 160px;
+    }
+    // Status
+    &.bx-icon-danger {
+        fill: $danger-color;
+        color: $danger-color;
+    }
+    &.bx-icon-success {
+        fill: $success-color;
+        color: $success-color;
     }
 }
 
@@ -70,14 +106,24 @@ button>svg {
     }
 }
 
+.btn-active {
+    background-color: $active-color;
+    border-color: $active-color;
+    color: white !important;
+}
+
+.btn-primary-icon {
+    fill: white;
+}
+
 .help-text {
-    color: $text-system-color;
+    color: var(--text-system-color);
     margin: 0;
 }
 
 .no-contents {
     padding-top: 50px;
-    color: $inactive-color;
+    color: var(--inactive-color);
     svg {
         height: 4em !important;
     }
@@ -101,5 +147,110 @@ button>svg {
         color: $text-focus-color;
         margin-bottom: 40px;
         text-align: center
+    }
+}
+
+.notification-indicator {
+    fill: $notification-color !important;
+}
+
+.box-option {
+    text-align: center;
+    background-color: grey;
+    color: white;
+    border-radius: 10px;
+    width: 80px;
+    @include margin-horizontal(3px);
+    &.box-option-success {
+        background-color: $success-color;
+        color: black;
+    }
+}
+
+.box-option-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    cursor: pointer;
+    &:hover {
+        background-color: transparentize($master-hover-color, 0.8);
+    }
+    &:active {
+        background-color: transparentize($master-active-color, 0.6);
+    }
+    &.box-option-button-danger {
+        &:hover {
+            background-color: transparentize($danger-color, 0.6);
+        }
+        &:active {
+            background-color: transparentize($danger-color, 0.3);
+        }
+    }
+}
+
+.profile-picture {
+    &.profile-picture-nav {
+        @include profile-picture-size(28px);
+    }
+    &.profile-picture-sm {
+        @include profile-picture-size(30px);
+    }
+    &.profile-picture-md {
+        @include profile-picture-size(50px);
+    }
+    &.profile-picture-lg {
+        @include profile-picture-size(80px);
+    }
+}
+
+.command-key {
+    font-weight: 800;
+    color: $master-color;
+    &:hover {
+        color: $master-hover-color;
+    }
+    &:active {
+        color: $master-active-color;
+    }
+}
+
+.no-focus {
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+.no-active {
+    &:active {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+.no-border {
+    border: none !important;
+}
+
+.admin-tab-title {
+    color: var(--text-main-color);
+    font-family: 'Montserrat';
+    font-weight: 700;
+}
+
+.song-list-line {
+    margin-bottom: 0;
+    font-size: 1rem;
+    @include one-line-text();
+    a {
+        color: $master-color;
+        display: inline-block;
+        width: 100%;
+        @include one-line-text();
+        &:hover {
+            text-decoration: underline;
+        }
+        &:active {
+            color: darken($master-color, 10%);
+        }
     }
 }

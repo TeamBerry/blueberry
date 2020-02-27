@@ -1,0 +1,10 @@
+@import './../../../../../imports.scss';
+.playlist-entry {
+    border: 1px solid $master-color;
+    border-radius: 0.25rem;
+    height: 90px;
+}
+
+.entry-info {
+    width: calc(100% - 117.33px);
+}

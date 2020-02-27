@@ -1,8 +1,8 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-toggleable-md navbar-light bg-faded">
-    <a href="home" class="navbar-brand">
+<nav class="navbar sticky-top navbar-expand-sm navbar-toggleable-sm navbar-light bg-faded">
+    <a routerLink="/home" class="navbar-brand" (click)="settingsHost.viewContainerRef.clear()">
         <span class="nav-pp">
             <img src="../../../assets/images/berrybox-logo-white.png" alt="" style="width:inherit;">
-        </span> Berrybox <span for="" class="label label-beta">Beta</span>
+        </span> Berrybox
     </a>
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -25,17 +25,24 @@
             </div>
             <li class="nav-item ml-3 user-item" *appAuth="true">
                 <div ngbDropdown class="d-inline-block" placement="bottom-right">
-                    <div id="nav-dropdown" class="px-2 py-1" ngbDropdownToggle>
-                        <span class="user-pp"><img src="../../../assets/images/berrybox-staff-logo.png" alt="" style="width:inherit;"></span>
-                        <span class="nav-name">{{ user?.name }}</span>
+                    <div id="nav-dropdown" class="d-flex px-2 py-1" ngbDropdownToggle>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img src="{{pictureLocation}}" class="profile-picture profile-picture-nav" alt="">
+                        </div>
                     </div>
-                    <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="nav-dropdown">
-                        <!-- <a href="friends" class="dropdown-item">Friends</a> -->
-                        <!-- <a href="favorites" class="dropdown-item">Favorites</a> -->
-                        <a class="dropdown-item" (click)="summonSettings()">Settings</a>
-                        <a class="dropdown-item" routerLink="/admin">Administration</a>
+                    <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-dropdown">
+                        <div class="d-flex text-left pb-2">
+                            <img src="{{pictureLocation}}" class="profile-picture profile-picture-md mx-2" alt="">
+                            <span class="nav-name my-auto">{{ user?.name }}</span>
+                        </div>
                         <div class="dropdown-divider"></div>
-                        <a (click)="logout()" class="dropdown-item">Log out</a>
+                        <div class="text-right">
+                            <!-- <a href="friends" class="dropdown-item">Friends</a> -->
+                            <a class="dropdown-item" (click)="summonSettings()">Settings</a>
+                            <a class="dropdown-item" routerLink="/admin" (click)="settingsHost.viewContainerRef.clear()">Administration</a>
+                            <div class="dropdown-divider"></div>
+                            <a (click)="logout()" class="dropdown-item">Log out</a>
+                        </div>
                     </div>
                 </div>
             </li>

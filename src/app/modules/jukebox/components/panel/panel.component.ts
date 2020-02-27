@@ -1,9 +1,20 @@
-import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import * as _ from 'lodash'
 
 import { JukeboxService } from './../../jukebox.service';
-import { Message } from 'app/shared/models/message.model';
+import { Message } from '@teamberry/muscadine';
 import { User } from 'app/shared/models/user.model';
-import { VideoPayload } from 'app/shared/models/video-payload.model';
+import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
+import { AuthSubject } from 'app/shared/models/session.model';
+import { AuthService } from 'app/core/auth/auth.service';
+import { filter } from 'rxjs/operators';
+import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Box } from 'app/shared/models/box.model';
+import { LoginFormComponent } from 'app/shared/components/login-form/login-form.component';
+import { SignupFormComponent } from 'app/shared/components/signup-form/signup-form.component';
+
+export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorites' | 'search'
 
 @Component({
     selector: 'app-panel',
@@ -12,20 +23,57 @@ import { VideoPayload } from 'app/shared/models/video-payload.model';
 })
 export class PanelComponent implements OnInit, AfterViewChecked {
     @Input() boxToken: string;
-    @Input() user: User;
+    user: AuthSubject = AuthService.getAuthSubject();
+    box: Box;
 
     @Output() skipEvent = new EventEmitter();
     contents = '';
     hasLink = false;
     hasCommand = false;
-    activePanel = '';
+    activePanel: Panel = 'chat';
+
+    /**
+     * Boolean to determine whether new messages have been received and the chat panel is not active
+     *
+     * @memberof PanelComponent
+     */
+    newMessages = false;
+
+    /**
+     * Whether the emoji picker is displayed
+     *
+     * @memberof PanelComponent
+     */
+    isEmojiPickerDisplayed = false;
+
+    @ViewChild('chatbox', { static: false }) chatbox: ElementRef;
+    @ViewChild('emojiPicker', { static: false }) emojiPicker: ElementRef;
+    @ViewChild('emojiButton', { static: false }) emojiButton: ElementRef;
 
     constructor(
-        private jukeboxService: JukeboxService
-    ) { }
+        private modalService: NgbModal,
+        private jukeboxService: JukeboxService,
+        private renderer: Renderer2
+    ) {
+        // Will close the emoji picker when a click is registered outside of the chatbox, the emoji button and picker
+        this.renderer.listen('window', 'click', (e: Event) => {
+            if (e.target !== this.chatbox.nativeElement
+                && e.target !== this.emojiButton.nativeElement
+                && e.composedPath().indexOf(this.emojiPicker.nativeElement) === -1
+            ) {
+                this.isEmojiPickerDisplayed = false;
+            }
+        })
+    }
 
     ngOnInit() {
         this.activePanel = 'chat';
+        this.connectToStream();
+        this.jukeboxService.getBox().subscribe(
+            (box: Box) => {
+                this.box = box;
+            }
+        )
     }
 
     ngAfterViewChecked() {
@@ -35,11 +83,11 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     }
 
     adjustView() {
-        const panelSpace = document.getElementById('chat-space');
+        const panelSpace = document.getElementById('panel-space');
         panelSpace.scrollTop = panelSpace.scrollHeight;
     }
 
-    showPanel(panelToken: string) {
+    showPanel(panelToken: Panel) {
         this.activePanel = panelToken;
     }
 
@@ -62,6 +110,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     }
 
     handleMessage(contents: string) {
+        this.isEmojiPickerDisplayed = false;
         const message = new Message({
             author: this.user._id,
             contents: contents,
@@ -69,6 +118,17 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             source: 'user',
         });
         this.jukeboxService.postMessageToSocket(message);
+    }
+
+    /**
+     * Adds the selected emoji to the contents of the message
+     *
+     * @param {*} event
+     * @memberof PanelComponent
+     */
+    addEmoji(event) {
+        console.log(event);
+        this.contents += ` ${event.emoji.native}`;
     }
 
     /**
@@ -83,6 +143,8 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     }
 
     handleCommands(contents: string) {
+        // Trim multiple spaces in commands
+        contents = contents.replace(/(\s)+/gm, ' ');
         const command = contents.substr(1).split(' ');
         const keyword = command[0];
         switch (keyword) {
@@ -100,6 +162,37 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             case 'shuffle':
             case 'random':
                 /* this.shuffle(); */
+                break;
+
+            case 'settings':
+                this.openBoxSettings();
+                break;
+
+            case 'help':
+                this.activePanel = 'help';
+                break;
+
+            case 'chat':
+                this.activePanel = 'chat';
+                this.newMessages = false;
+                break;
+
+            case 'playlist':
+                this.activePanel = 'queue';
+                break;
+
+            case 'users':
+            case 'userlist':
+                this.activePanel = 'users';
+                break;
+
+            case 'search':
+                this.activePanel = 'search';
+                break;
+
+            case 'commands':
+            case 'macros':
+                this.activePanel = 'commands';
                 break;
 
             default:
@@ -122,7 +215,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         const res = reg.exec(url);
 
         try {
-            const video: VideoPayload = {
+            const video: SubmissionPayload = {
                 link: (res[2]) ? res[2] : res[4],
                 userToken: this.user._id,
                 boxToken: this.boxToken,
@@ -138,5 +231,40 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             });
             this.jukeboxService.postMessageToStream(message);
         }
+    }
+
+    /**
+     * Connects to jukebox service chat stream to get messages to display
+     *
+     * @memberof ChatComponent
+     */
+    connectToStream() {
+        this.jukeboxService.getBoxStream()
+            .pipe( // Filtering to only act on Message instances
+                filter(message => message instanceof Message && message.scope === this.boxToken)
+            )
+            .subscribe(
+                (message: Message) => {
+                    if (this.activePanel !== 'chat') {
+                        this.newMessages = true
+                    }
+                }
+            );
+    }
+
+    openBoxSettings() {
+        if (this.jukeboxService.evaluateCommandPower()) {
+            const modalRef = this.modalService.open(BoxFormComponent)
+            modalRef.componentInstance.title = `Edit Box Settings`
+            modalRef.componentInstance.box = _.cloneDeep(this.box)
+        }
+    }
+
+    openLoginPrompt() {
+        this.modalService.open(LoginFormComponent);
+    }
+
+    openSignupPrompt() {
+        this.modalService.open(SignupFormComponent);
     }
 }

@@ -1,13 +1,19 @@
-<div class="px-3 text-center mt-5">
-    <svg class="berrybox-svg" style="height: 7em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 334.45 460">
-        <path class="berrybox-path" d="M271.41 190.25a63 63 0 0 0-63 63v190.17h126.04V253.28a63 63 0 0 0-63.04-63.03z" />
-        <circle class="berrybox-path" cx="268.81" cy="129.3" r="52.62" />
-        <path class="berrybox-path" d="M66.15 185.75A66.15 66.15 0 0 0 0 251.9v199.52h132.29V251.89a66.15 66.15 0 0 0-66.14-66.14z"
-        />
-        <circle class="berrybox-path" cx="63.41" cy="121.79" r="55.21" />
-        <path class="berrybox-path" d="M170.23 145.13a78.39 78.39 0 0 0-78.39 78.39V460h156.78V223.52a78.39 78.39 0 0 0-78.39-78.39z"
-        />
-        <circle class="berrybox-path" cx="166.98" cy="65.44" r="65.44" />
-    </svg>
-    <p>This section is still under construction!</p>
+<div class="px-3">
+    <div *ngIf="users$ | async as users; else loading">
+        <div *ngFor="let user of users" class="user-item my-1 d-flex">
+            <div class="bb-box-picture d-flex align-items-center justify-content-center mr-2">
+                <img src="{{pictureLocation}}/{{user._id}}-picture" alt="" class="profile-picture profile-picture-sm">
+            </div>
+            <div class="d-flex align-items-center">
+                <svg *ngIf="user._id === box?.creator?._id" class="berrybox-svg-icon crown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" title="Administrator">
+                <rect x="29.61" y="209.46" width="440.78" height="181.69"/>
+                <polygon points="250 53.84 148.6 229.46 351.4 229.46 250 53.84"/>
+                <polygon points="470.39 54.84 368.99 230.46 470.39 230.46 470.39 54.84"/>
+                <polygon points="131.01 230.46 29.61 54.84 29.61 230.46 131.01 230.46"/>
+            </svg>
+                <span class="ml-1 user-name">{{ user.name }}</span>
+            </div>
+        </div>
+    </div>
+    <ng-template #loading>Loading users...</ng-template>
 </div>

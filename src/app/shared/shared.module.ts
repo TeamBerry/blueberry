@@ -10,11 +10,23 @@ import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe'
 import { PlaylistViewComponent } from './components/playlist-view/playlist-view.component';
 import { PlaylistWidgetComponent } from './components/playlist-widget/playlist-widget.component';
 import { PlaylistSelectorComponent } from './components/playlist-selector/playlist-selector.component';
+import { ThemeService } from './services/theme.service';
+import { UserService } from './services/user.service';
+import { FilterPipe } from './pipes/filter.pipe';
+import { PictureUploaderComponent } from './components/picture-uploader/picture-uploader.component';
+import { BxAlertComponent } from './components/bx-alert/bx-alert.component';
+import { DurationPipe } from './pipes/duration.pipe';
+import { LikeButtonComponent } from 'app/modules/jukebox/components/like-button/like-button.component';
+import { BxButtonComponent } from './components/bx-button/bx-button.component';
+
+// Feature Modules
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { BxCheckboxComponent } from './components/bx-checkbox/bx-checkbox.component';
 
 @NgModule({
     imports: [
         CommonModule,
-        NgbModule.forRoot(),
+        NgbModule,
     ],
     declarations: [
         AuthDirective,
@@ -24,6 +36,13 @@ import { PlaylistSelectorComponent } from './components/playlist-selector/playli
         PlaylistViewComponent,
         PlaylistWidgetComponent,
         PlaylistSelectorComponent,
+        FilterPipe,
+        PictureUploaderComponent,
+        BxAlertComponent,
+        DurationPipe,
+        LikeButtonComponent,
+        BxButtonComponent,
+        BxCheckboxComponent
     ],
     exports: [
         CommonModule,
@@ -36,10 +55,18 @@ import { PlaylistSelectorComponent } from './components/playlist-selector/playli
         BoxDeletionEstimationPipe,
         PlaylistWidgetComponent
     ],
-    providers: [AuthDirective],
+    providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
         PlaylistViewComponent,
-        PlaylistSelectorComponent
-    ]
+        PlaylistSelectorComponent,
+        FilterPipe,
+        PictureUploaderComponent,
+        BxAlertComponent,
+        DurationPipe,
+        LikeButtonComponent,
+        BxButtonComponent,
+        PickerModule,
+        BxCheckboxComponent
+    ],
 })
 export class SharedModule { }
