@@ -124,4 +124,18 @@ export class PlaylistsTabComponent implements OnInit {
         modalRef.componentInstance.playlist = playlist
         modalRef.componentInstance.user = this.user
     }
+
+    addVideoToPlaylist(video: Video) {
+        this.userService.updatePlaylist({ action: 'add', video: video.link, playlist: this.selectedPlaylist._id })
+            .subscribe((updatedPlaylist: UserPlaylist) => {
+                this.selectedPlaylist = updatedPlaylist
+            })
+    }
+
+    removeVideoFromPlaylist(video: Video) {
+        this.userService.updatePlaylist({ action: 'remove', video: video.link, playlist: this.selectedPlaylist._id })
+            .subscribe((updatedPlaylist: UserPlaylist) => {
+                this.selectedPlaylist = updatedPlaylist
+            })
+    }
 }

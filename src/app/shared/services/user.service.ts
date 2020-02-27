@@ -10,6 +10,7 @@ import { Box } from '../models/box.model';
 import { AuthSubject } from '../models/session.model';
 import { shareReplay } from 'rxjs/operators';
 import { UserPlaylist } from '../models/user-playlist.model';
+import { Video } from '../models/video.model';
 
 @Injectable()
 export class UserService {
@@ -74,6 +75,17 @@ export class UserService {
         this.http.post<User>(`${environment.araza}/user/favorites`, command).subscribe();
         this.favorites$ = null;
         return this.favorites(true);
+    }
+
+    /**
+     * Updates a playlist
+     *
+     * @param {({ action: 'add' | 'remove', video: Video['link'] | Video['_id'], playlist: string })} command
+     * @returns {Observable<UserPlaylist>}
+     * @memberof UserService
+     */
+    updatePlaylist(command: { action: 'add' | 'remove', video: Video['link'] | Video['_id'], playlist: string }): Observable<UserPlaylist> {
+        return this.http.patch<UserPlaylist>(`${environment.araza}/user/playlists/${command.playlist}`, command)
     }
 
     /**

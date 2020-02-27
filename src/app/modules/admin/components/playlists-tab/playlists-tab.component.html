@@ -6,7 +6,7 @@
                 <div class="col-3 playlists-list p-0">
                     <div *ngFor="let playlist of playlists" class="playlists-list-item p-3" [ngClass]="{'active': playlist._id === selectedPlaylist?._id}" (click)="selectPlaylist(playlist._id)">
                         <p class="playlist-name mb-0">{{ playlist.name }}</p>
-                        <span> {{ playlist.videos.length }} Videos - Last updated {{ playlist.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+                        <span class="playlist-info"> {{ playlist.videos.length }} Videos - Last updated {{ playlist.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</span>
                     </div>
                     <div class="px-2">
                         <button class="btn btn-primary btn-block" (click)="openCreateModal()">
@@ -17,8 +17,8 @@
                 <div class="col-9 playlist-videos pt-3">
                     <div *ngIf="selectedPlaylist">
                         <div *ngIf="selectedPlaylist.videos.length > 0; else noVideos">
-                            <div *ngFor="let video of selectedPlaylist.videos">
-                                <app-video-entry [video]="video" [options]="{'submit': false, 'favorite': false, 'addToPlaylist': false, 'removeFromPlaylist': true}"></app-video-entry>
+                            <div *ngFor="let video of selectedPlaylist.videos" class="playlist-video-item py-3">
+                                <app-video-entry [video]="video" [options]="{'submit': false, 'favorite': false, 'addToPlaylist': false, 'removeFromPlaylist': true}" (addedToPlaylist)="addVideoToPlaylist($event)"></app-video-entry>
                             </div>
                         </div>
                         <ng-template #noVideos>
@@ -49,7 +49,7 @@
                 <div *ngIf="errorMessage" class="p-4">
                     <app-bx-alert [options]="{'type': 'danger', 'message': errorMessage}"></app-bx-alert>
                 </div>
-                <app-video-entry *ngFor="let video of searchResults" [video]="video" [options]="{'submit': false, 'favorite': false, 'addToPlaylist': true}" (submit)="submitVideo($event)"></app-video-entry>
+                <app-video-entry *ngFor="let video of searchResults" [video]="video" [options]="{'submit': false, 'favorite': false, 'addToPlaylist': true}" (removedFromPlaylist)="removeVideoFromPlaylist($event)"></app-video-entry>
             </div>
         </div>
     </div>

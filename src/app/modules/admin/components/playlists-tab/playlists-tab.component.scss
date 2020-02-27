@@ -17,10 +17,13 @@
 .playlists-list {
     border-right: 1px solid var(--background-secondary-color-alternate);
     .playlists-list-item {
-        p {
+        .playlist-name {
             color: var(--text-main-color);
             font-size: 1.3rem;
             font-weight: 300;
+        }
+        .playlist-info {
+            color: var(--text-secondary-color);
         }
         &.active {
             border-left: 5px solid $master-color;
@@ -35,11 +38,8 @@
     border-right: 3px solid var(--background-main-color);
 }
 
-.playlist-card {
-    border: 1px solid lighten($master-color, 10%);
-    margin: .7rem;
-    color: var(--text-main-color);
-    border-radius: .3rem;
+.playlist-video-item {
+    border-bottom: 1px solid var(--text-main-color);
 }
 
 .playlist-image {
