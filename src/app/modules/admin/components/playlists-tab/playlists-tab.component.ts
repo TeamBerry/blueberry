@@ -9,6 +9,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaylistFormComponent } from 'app/shared/components/playlist-form/playlist-form.component';
 import { PlaylistViewComponent } from 'app/shared/components/playlist-view/playlist-view.component';
 import { AuthSubject } from 'app/shared/models/session.model';
+import { Video } from 'app/shared/models/video.model';
+import { SearchService } from 'app/shared/services/search.service';
+import { YoutubeSearchResult, YoutubeSearchVideos } from 'app/shared/models/youtube.model';
 
 @Component({
     selector: 'app-playlists-tab',
@@ -21,9 +24,19 @@ export class PlaylistsTabComponent implements OnInit {
     user: AuthSubject = AuthService.getAuthSubject();
     selectedPlaylist: UserPlaylist = null;
 
+    searchValue = ''
+    errorMessage
+    defaultSearchCooldown = 5
+    searchTimeoutValue = 5
+    searchInterval
+    canSearch = true
+
+    searchResults: Array<Video> = []
+
     constructor(
         private modalService: NgbModal,
-        private userService: UserService
+        private userService: UserService,
+        private searchService: SearchService
     ) { }
 
     ngOnInit() {
@@ -40,6 +53,57 @@ export class PlaylistsTabComponent implements OnInit {
 
     selectPlaylist(playlistId: string) {
         this.selectedPlaylist = this.playlists.find((item: UserPlaylist) => item._id === playlistId)
+    }
+
+    checkValidity(): boolean {
+        this.errorMessage = ''
+        // Length of value
+        if (this.searchValue.length < 3) {
+            this.errorMessage = 'Your search criteria needs to have at least 3 characters.'
+            return false
+        }
+        // Timeout
+        if (this.canSearch === false) {
+            // tslint:disable-next-line: max-line-length
+            this.errorMessage = `You have to wait at least ${this.defaultSearchCooldown} seconds before two requests. Please wait until you can search again.`
+            return false
+        }
+        return true
+    }
+
+    searchYouTube() {
+        if (this.checkValidity()) {
+            // Reset cooldown
+            this.canSearch = false
+            this.searchTimeoutValue = this.defaultSearchCooldown
+            // Search
+            this.searchService.searchOnYoutube(this.searchValue).subscribe(
+                (response: YoutubeSearchResult) => {
+                    this.searchResults = response.items.map((responseVideo: YoutubeSearchVideos) => {
+                        return new Video({
+                            _id: null,
+                            name: responseVideo.snippet.title,
+                            link: responseVideo.id.videoId
+                        })
+                    })
+                    // Cooldown of 5s before allowing a new search
+                    this.searchInterval = setInterval(() => {
+                        this.searchTimeoutValue--
+                        if (this.searchTimeoutValue <= 0) {
+                            clearInterval(this.searchInterval)
+                            this.canSearch = true
+                        }
+                    }, 1000);
+                },
+                (error) => {
+                    this.canSearch = true
+                }
+            )
+        }
+    }
+
+    resetSearch() {
+        this.searchValue = ''
     }
 
     openCreateModal(playlist?: UserPlaylist) {

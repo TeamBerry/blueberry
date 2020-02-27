@@ -1,6 +1,6 @@
 @import './../../../../../imports.scss';
 .playlist-manager {
-    height: 90vh;
+    height: 88vh;
     width: 100%;
 }
 
@@ -44,4 +44,9 @@
 
 .playlist-image {
     height: 250px;
+}
+
+#results {
+    overflow: auto;
+    height: 91%;
 }
