@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
+import * as _ from 'lodash';
 
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
@@ -12,6 +13,7 @@ import { AuthSubject } from 'app/shared/models/session.model';
 import { Video } from 'app/shared/models/video.model';
 import { SearchService } from 'app/shared/services/search.service';
 import { YoutubeSearchResult, YoutubeSearchVideos } from 'app/shared/models/youtube.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-playlists-tab',
@@ -48,7 +50,8 @@ export class PlaylistsTabComponent implements OnInit {
     constructor(
         private modalService: NgbModal,
         private userService: UserService,
-        private searchService: SearchService
+        private searchService: SearchService,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
@@ -125,16 +128,24 @@ export class PlaylistsTabComponent implements OnInit {
         modalRef.componentInstance.user = this.user
     }
 
-    addVideoToPlaylist(video: Video) {
-        this.userService.updatePlaylist({ action: 'add', video: video.link, playlist: this.selectedPlaylist._id })
+    addVideoToPlaylist(video) {
+        const videoPacket = video._id ? { videoId: video._id } : { videoLink: video.link }
+
+        this.userService.addVideoToPlaylist(this.selectedPlaylist._id, videoPacket)
             .subscribe((updatedPlaylist: UserPlaylist) => {
+                this.toastr.success('Video added to the playlist', 'Success')
+                const playlistIndex = _.findIndex(this.playlists, { _id: updatedPlaylist._id })
+                this.playlists[playlistIndex] = updatedPlaylist
                 this.selectedPlaylist = updatedPlaylist
             })
     }
 
     removeVideoFromPlaylist(video: Video) {
-        this.userService.updatePlaylist({ action: 'remove', video: video.link, playlist: this.selectedPlaylist._id })
+        this.userService.removeVideoFromPlaylist(this.selectedPlaylist._id, video._id)
             .subscribe((updatedPlaylist: UserPlaylist) => {
+                this.toastr.success('Video removed from the playlist', 'Success')
+                const playlistIndex = _.findIndex(this.playlists, { _id: updatedPlaylist._id })
+                this.playlists[playlistIndex] = updatedPlaylist
                 this.selectedPlaylist = updatedPlaylist
             })
     }
