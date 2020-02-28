@@ -17,6 +17,7 @@
 .playlists-list {
     border-right: 1px solid var(--background-secondary-color-alternate);
     .playlists-list-item {
+        cursor: pointer;
         .playlist-name {
             color: var(--text-main-color);
             font-size: 1.3rem;
