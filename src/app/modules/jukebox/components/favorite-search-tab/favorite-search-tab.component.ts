@@ -11,6 +11,7 @@ import { SignupFormComponent } from '../../../../shared/components/signup-form/s
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { UserService } from 'app/shared/services/user.service';
 import { AuthSubject } from 'app/shared/models/session.model';
+import { UserPlaylist } from 'app/shared/models/user-playlist.model';
 
 @Component({
     selector: 'app-favorite-search-tab',
@@ -23,6 +24,8 @@ export class FavoriteSearchTabComponent implements OnInit, AfterViewInit {
     @ViewChild('filterInput', { static: false }) input: ElementRef
 
     favorites$: Observable<User['favorites']>
+    playlists: Array<UserPlaylist>
+    selectedPlaylist = null
 
     filterValue = ''
 
@@ -33,7 +36,7 @@ export class FavoriteSearchTabComponent implements OnInit, AfterViewInit {
     ) { }
 
     ngOnInit() {
-        this.getFavorites();
+        this.getPlaylists();
         this.listenToOrders();
     }
 
@@ -66,6 +69,18 @@ export class FavoriteSearchTabComponent implements OnInit, AfterViewInit {
             boxToken: this.boxToken
         };
         this.jukeboxService.submitVideo(submissionPayload);
+    }
+
+    getPlaylists() {
+        this.userService.playlists(this.user).subscribe(
+            (playlists: Array<UserPlaylist>) => {
+                this.playlists = playlists
+            }
+        )
+    }
+
+    selectPlaylist(playlist: UserPlaylist) {
+        this.selectedPlaylist = playlist
     }
 
     /**
