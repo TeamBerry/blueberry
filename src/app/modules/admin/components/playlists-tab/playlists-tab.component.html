@@ -2,7 +2,7 @@
     <h2 class="admin-tab-title">My Playlists</h2>
     <div class="d-flex playlist-manager">
         <div class="d-flex playlist-space col-9 pl-0">
-            <div *ngIf="playlists; else noPlaylists" class="d-flex w-100">
+            <div class="d-flex w-100">
                 <div class="col-3 playlists-list p-0">
                     <div *ngFor="let playlist of playlists" class="playlists-list-item p-3" [ngClass]="{'active': playlist._id === selectedPlaylist?._id}" (click)="selectPlaylist(playlist._id)">
                         <p class="playlist-name mb-0">{{ playlist.name }}</p>
@@ -14,22 +14,17 @@
                     </button>
                     </div>
                 </div>
-                <div class="col-9 playlist-videos pt-3">
-                    <div *ngIf="selectedPlaylist">
-                        <div *ngIf="selectedPlaylist.videos.length > 0; else noVideos">
-                            <div *ngFor="let video of selectedPlaylist.videos" class="playlist-video-item py-3">
-                                <app-video-entry [video]="video" [options]="{'submit': false, 'favorite': false, 'addToPlaylist': false, 'removeFromPlaylist': true}" (removedFromPlaylist)="removeVideoFromPlaylist($event)"></app-video-entry>
-                            </div>
-                        </div>
-                        <ng-template #noVideos>
-                            There are no videos in this playlist
-                        </ng-template>
+                <div class="col-9 playlist-videos pt-3" *ngIf="selectedPlaylist.videos.length > 0; else noVideos">
+                    <div *ngFor="let video of selectedPlaylist.videos" class="playlist-video-item py-3">
+                        <app-video-entry [video]="video" [options]="{'submit': false, 'favorite': false, 'addToPlaylist': false, 'removeFromPlaylist': true}" (removedFromPlaylist)="removeVideoFromPlaylist($event)"></app-video-entry>
                     </div>
                 </div>
+                <ng-template #noVideos>
+                    <div class="col-9 pt-3 d-flex align-items-center text-center no-videos-indicator">
+                        <span class="w-100">There are no videos in this playlist</span>
+                    </div>
+                </ng-template>
             </div>
-            <ng-template #noPlaylists>
-                You have no playlists
-            </ng-template>
         </div>
         <div class="search-space col-3">
             <div class="p-3">
