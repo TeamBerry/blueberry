@@ -3,7 +3,7 @@
     <div class="d-flex playlist-manager">
         <div class="d-flex playlist-space col-9 pl-0">
             <div class="d-flex w-100">
-                <div class="col-3 playlists-list p-0">
+                <div class="col-3 playlists-list p-0" *ngIf="playlists.length > 0">
                     <div *ngFor="let playlist of playlists" class="playlists-list-item p-3" [ngClass]="{'active': playlist._id === selectedPlaylist?._id}" (click)="selectPlaylist(playlist._id)">
                         <p class="playlist-name mb-0">{{ playlist.name }}</p>
                         <span class="playlist-info"> {{ playlist.videos.length }} Videos - Last updated {{ playlist.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</span>
