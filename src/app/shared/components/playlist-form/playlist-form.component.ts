@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -16,6 +16,8 @@ export class PlaylistFormComponent implements OnInit {
     @Input() title: string
     @Input() playlist: UserPlaylist
     @Input() user: AuthSubject
+
+    @Output() submit: EventEmitter<any> = new EventEmitter()
 
     context: 'create' | 'edit' = 'edit'
 
@@ -36,12 +38,14 @@ export class PlaylistFormComponent implements OnInit {
         if (this.context === 'create') {
             this.playlistService.store(this.playlist).subscribe(
                 (response: UserPlaylist) => {
+                    this.submit.emit();
                     this.activeModal.close();
                 }
             )
         } else {
             this.playlistService.update(this.playlist).subscribe(
                 (response: UserPlaylist) => {
+                    this.submit.emit();
                     this.activeModal.close();
                 }
             )

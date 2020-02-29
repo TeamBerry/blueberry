@@ -55,11 +55,15 @@ export class PlaylistsTabComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.getPlaylists()
+    }
+
+    getPlaylists() {
         this.userService.playlists(this.user).subscribe(
             (playlists: Array<UserPlaylist>) => {
                 this.playlists = playlists;
 
-                if (playlists.length > 0) {
+                if (!this.selectedPlaylist && playlists.length > 0) {
                     this.selectedPlaylist = playlists[0];
                 }
             }
@@ -126,6 +130,12 @@ export class PlaylistsTabComponent implements OnInit {
         modalRef.componentInstance.title = !playlist ? 'Create a playlist' : `Edit ${playlist.name}`
         modalRef.componentInstance.playlist = playlist
         modalRef.componentInstance.user = this.user
+        modalRef.componentInstance.submit.subscribe(
+            () => {
+                this.toastr.success('Playlist created', 'Success')
+                this.getPlaylists()
+            }
+        )
     }
 
     addVideoToPlaylist(video) {
