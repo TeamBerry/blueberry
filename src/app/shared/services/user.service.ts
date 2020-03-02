@@ -78,21 +78,6 @@ export class UserService {
     }
 
     /**
-     * Updates a playlist
-     *
-     * @param {({ action: 'add' | 'remove', video: Video['link'] | Video['_id'], playlist: string })} command
-     * @returns {Observable<UserPlaylist>}
-     * @memberof UserService
-     */
-    addVideoToPlaylist(playlist: string, video: { videoId?: string, videoLink?: string }): Observable<UserPlaylist> {
-        return this.http.post<UserPlaylist>(`${environment.araza}/playlists/${playlist}/videos`, video)
-    }
-
-    removeVideoFromPlaylist(playlist: string, video: string): Observable<UserPlaylist> {
-        return this.http.delete<UserPlaylist>(`${environment.araza}/playlists/${playlist}/videos/${video}`)
-    }
-
-    /**
      * Update user settings
      *
      * @param {*} settings
