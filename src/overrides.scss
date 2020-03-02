@@ -198,3 +198,24 @@
         border-color: $success-color;
     }
 }
+
+.dropdown-menu {
+    background-color: var(--background-main-color);
+    width: 200px;
+    padding: 1rem 0 0.5rem 0;
+    box-shadow: 0 0 7px 0.1rem black;
+    top: 50px;
+    border: none;
+    .dropdown-item {
+        cursor: pointer;
+        color: var(--text-main-color);
+        &:hover {
+            background-color: var(--background-main-hover-color);
+        }
+    }
+
+    .bx-dropdown-icon {
+        width: 20px;
+        margin-right: 2%;
+    }
+}
