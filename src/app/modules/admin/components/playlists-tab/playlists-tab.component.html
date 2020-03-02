@@ -15,8 +15,11 @@
                     </div>
                 </div>
                 <div class="col-9 playlist-videos pt-3" *ngIf="selectedPlaylist.videos.length > 0; else noVideos">
-                    <div *ngFor="let video of selectedPlaylist.videos" class="playlist-video-item py-3">
-                        <app-video-entry [video]="video" [options]="{'submit': false, 'favorite': false, 'addToPlaylist': false, 'removeFromPlaylist': true}" (removedFromPlaylist)="removeVideoFromPlaylist($event)"></app-video-entry>
+                    <div *ngFor="let video of selectedPlaylist.videos" class="playlist-video-item py-3 d-flex">
+                        <app-video-entry class="col-11" [video]="video" [options]="{'submit': false, 'favorite': false, 'addToPlaylist': false, 'removeFromPlaylist': false}"></app-video-entry>
+                        <div class="col-1 text-center box-option-button d-flex" ngbTooltip="Remove from Playlist" (click)="removeVideoFromPlaylist(video)">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="m-auto bx-icon bx-icon-sm" id="trash-icon" viewBox="0 0 500 500"><g id="trash-icon"><path class="cls-1" d="M354.7,444.72H160.16c-10.34,0-18.72-11-18.72-24.66L107.83,123.64H402.6L373.42,420.06C373.42,433.68,365,444.72,354.7,444.72Z"/><path class="cls-2" d="M102.54,76.15H407.9a8.59,8.59,0,0,1,8.59,8.59v16.69a0,0,0,0,1,0,0H94a0,0,0,0,1,0,0V84.73A8.59,8.59,0,0,1,102.54,76.15Z"/><rect class="cls-2" x="202.7" y="55.28" width="105.04" height="41.74" rx="20.87"/><rect class="cls-3" x="250.88" y="164.18" width="8.68" height="240" rx="4.34"/><rect class="cls-3" x="188.04" y="164.76" width="8.68" height="240" rx="4.34" transform="translate(-26.71 20) rotate(-5.56)"/><rect class="cls-3" x="312.42" y="164.76" width="8.68" height="240" rx="4.34" transform="translate(37.61 -36.96) rotate(7.1)"/></g></svg>
+                        </div>
                     </div>
                 </div>
                 <ng-template #noVideos>
