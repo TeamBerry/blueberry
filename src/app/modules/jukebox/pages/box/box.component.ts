@@ -13,6 +13,8 @@ import { filter } from 'rxjs/operators';
 import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { environment } from 'environments/environment';
+import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-box',
@@ -80,6 +82,7 @@ export class BoxComponent implements OnInit {
         private authService: AuthService,
         private boxService: BoxService,
         private jukeboxService: JukeboxService,
+        private modalService: NgbModal,
         private route: ActivatedRoute,
         private router: Router
     ) { }
@@ -170,5 +173,13 @@ export class BoxComponent implements OnInit {
      */
     skipVideo() {
         this.jukeboxService.skipVideo();
+    }
+
+    openBoxSettings() {
+        if (this.jukeboxService.evaluateCommandPower()) {
+            const modalRef = this.modalService.open(BoxFormComponent)
+            modalRef.componentInstance.title = `Edit Box Settings`
+            modalRef.componentInstance.box = _.cloneDeep(this.box)
+        }
     }
 }
