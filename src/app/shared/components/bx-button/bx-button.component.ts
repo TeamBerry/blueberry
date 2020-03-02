@@ -7,7 +7,7 @@ export interface ButtonOptions {
      * @type {('play' | 'replay' | 'cancel' | 'skip')}
      * @memberof ButtonOptions
      */
-    type: 'play' | 'replay' | 'cancel' | 'skip',
+    type: 'play' | 'replay' | 'cancel' | 'skip' | 'addToLibrary',
     /**
      * Context of the button. Will affect its display
      *

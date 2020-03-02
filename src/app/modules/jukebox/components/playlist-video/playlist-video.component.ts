@@ -2,6 +2,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { AuthSubject } from 'app/shared/models/session.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
+import { PlaylistService } from 'app/shared/services/playlist.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-playlist-video',
@@ -18,7 +22,11 @@ export class PlaylistVideoComponent implements OnInit {
 
     status: 'upcoming' | 'playing' | 'played'
 
-    constructor() { }
+    constructor(
+        private modalService: NgbModal,
+        private playlistService: PlaylistService,
+        private toastr: ToastrService
+    ) { }
 
     ngOnInit() {
         this.status = this.computeStatus()
@@ -64,4 +72,13 @@ export class PlaylistVideoComponent implements OnInit {
         this.order.emit({ item: item.video.link, order: 'replay' });
     }
 
+    addToPlaylist() {
+        const modalRef = this.modalService.open(PlaylistSelectorComponent)
+        modalRef.componentInstance.selectedPlaylist$.subscribe(
+            (playlistId: string) => {
+                this.playlistService.addVideoToPlaylist(playlistId, { videoId: this.item.video._id }).toPromise()
+                this.toastr.success('Video added', 'Success')
+            }
+        )
+    }
 }

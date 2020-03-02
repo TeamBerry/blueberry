@@ -65,7 +65,8 @@ import { BxCheckboxComponent } from './components/bx-checkbox/bx-checkbox.compon
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
-        PictureUploaderComponent
+        PictureUploaderComponent,
+        PlaylistSelectorComponent
     ]
 })
 export class SharedModule { }

@@ -6,6 +6,7 @@ import { User } from 'app/shared/models/user.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthSubject } from 'app/shared/models/session.model';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-playlist-selector',
@@ -15,11 +16,11 @@ import { AuthSubject } from 'app/shared/models/session.model';
 })
 export class PlaylistSelectorComponent implements OnInit {
 
-    userPlaylists
+    userPlaylists$: Observable<UserPlaylist[]>
 
     user: AuthSubject = AuthService.getAuthSubject()
 
-    @Output() selectedPlaylist$: EventEmitter<UserPlaylist> = new EventEmitter<UserPlaylist>();
+    @Output() selectedPlaylist$: EventEmitter<UserPlaylist['_id']> = new EventEmitter<UserPlaylist['_id']>();
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -27,7 +28,12 @@ export class PlaylistSelectorComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.userPlaylists = this.userService.playlists(this.user)
+        this.userPlaylists$ = this.userService.playlists(this.user)
+    }
+
+    selectPlaylist(playlistId: string) {
+        this.selectedPlaylist$.emit(playlistId);
+        this.activeModal.close();
     }
 
 }

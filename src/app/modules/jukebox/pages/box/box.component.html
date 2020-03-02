@@ -59,7 +59,7 @@
                         </div>
                         <div class="col-2 text-right" *appAuth="true">
                             <app-bx-button *ngIf="user._id === box.creator._id" (click)="skipVideo()" [options]="{'type': 'skip', 'textDisplay': 'tooltip'}" class="mr-2"></app-bx-button>
-                            <app-like-button *ngIf="currentVideo" [video]="currentVideo.video"></app-like-button>
+                            <app-bx-button *ngIf="currentVideo" (click)="addToPlaylist()" [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to a Playlist'}"></app-bx-button>
                         </div>
                     </div>
                     <div class="row">

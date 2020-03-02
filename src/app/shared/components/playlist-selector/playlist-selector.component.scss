@@ -10,3 +10,21 @@
 .checkbox {
     float: right;
 }
+
+.playlists-list-item {
+    cursor: pointer;
+    .playlist-name {
+        color: var(--text-main-color);
+        font-size: 1.3rem;
+        font-weight: 300;
+    }
+    .playlist-info {
+        color: var(--text-secondary-color);
+    }
+    &.active {
+        border-left: 5px solid $master-color;
+    }
+    &:hover {
+        background-color: var(--background-secondary-color-alternate);
+    }
+}

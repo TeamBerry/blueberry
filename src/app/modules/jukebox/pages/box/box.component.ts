@@ -15,6 +15,10 @@ import { AuthSubject } from 'app/shared/models/session.model';
 import { environment } from 'environments/environment';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
+import { UserPlaylist } from 'app/shared/models/user-playlist.model';
+import { PlaylistService } from 'app/shared/services/playlist.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-box',
@@ -82,9 +86,11 @@ export class BoxComponent implements OnInit {
         private authService: AuthService,
         private boxService: BoxService,
         private jukeboxService: JukeboxService,
+        private playlistService: PlaylistService,
         private modalService: NgbModal,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
@@ -181,5 +187,15 @@ export class BoxComponent implements OnInit {
             modalRef.componentInstance.title = `Edit Box Settings`
             modalRef.componentInstance.box = _.cloneDeep(this.box)
         }
+    }
+
+    addToPlaylist() {
+        const modalRef = this.modalService.open(PlaylistSelectorComponent)
+        modalRef.componentInstance.selectedPlaylist$.subscribe(
+            (playlistId: string) => {
+                this.playlistService.addVideoToPlaylist(playlistId, { videoId: this.currentVideo._id }).toPromise()
+                this.toastr.success('Video added', 'Success')
+            }
+        )
     }
 }
