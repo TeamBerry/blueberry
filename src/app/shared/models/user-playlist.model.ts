@@ -11,6 +11,7 @@ export class UserPlaylist {
         name: string
     };
     videos: Array<Partial<Video>>;
+    isDeletable: boolean;
     createdAt: Date;
     updatedAt: Date;
 
@@ -20,6 +21,7 @@ export class UserPlaylist {
         this.isPrivate = obj && obj.isPrivate || false;
         this.user = obj && obj.user || { _id: null, name: null };
         this.videos = obj && obj.videos || [];
+        this.isDeletable = obj && obj.isDeletable || true;
         this.createdAt = obj && obj.createdAt || null;
         this.updatedAt = obj && obj.updatedAt || null;
     }

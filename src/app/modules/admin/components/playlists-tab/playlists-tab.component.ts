@@ -71,7 +71,9 @@ export class PlaylistsTabComponent implements OnInit {
     }
 
     selectPlaylist(playlistId: string) {
-        this.selectedPlaylist = this.playlists.find((item: UserPlaylist) => item._id === playlistId)
+        if (this.selectedPlaylist._id !== playlistId) {
+            this.selectedPlaylist = this.playlists.find((item: UserPlaylist) => item._id === playlistId)
+        }
     }
 
     checkValidity(): boolean {
@@ -128,11 +130,12 @@ export class PlaylistsTabComponent implements OnInit {
     openCreateModal(playlist?: UserPlaylist) {
         const modalRef = this.modalService.open(PlaylistFormComponent)
         modalRef.componentInstance.title = !playlist ? 'Create a playlist' : `Edit ${playlist.name}`
-        modalRef.componentInstance.playlist = playlist
+        modalRef.componentInstance.playlist = playlist ? Object.assign({}, playlist) : new UserPlaylist()
         modalRef.componentInstance.user = this.user
         modalRef.componentInstance.submit.subscribe(
             () => {
-                this.toastr.success('Playlist created', 'Success')
+                const message = playlist._id ? 'Playlist updated' : 'Playlist created';
+                this.toastr.success(message, 'Success')
                 this.getPlaylists()
             }
         )
@@ -158,5 +161,8 @@ export class PlaylistsTabComponent implements OnInit {
                 this.playlists[playlistIndex] = updatedPlaylist
                 this.selectedPlaylist = updatedPlaylist
             })
+    }
+
+    deletePlaylist(playlist: string) {
     }
 }
