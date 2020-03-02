@@ -7,7 +7,7 @@
                     <div *ngFor="let playlist of playlists" class="playlists-list-item p-3" [ngClass]="{'active': playlist._id === selectedPlaylist?._id}" (click)="selectPlaylist(playlist._id)">
                         <div class="d-flex">
                             <div class="col">
-                                <p class="playlist-name mb-0">{{ playlist.name }}</p>
+                                <p class="playlist-name mb-0">{{ playlist.name }} <span *ngIf="playlist.isPrivate" class="privacy-indicator">Private</span></p>
                                 <span class="playlist-info"> {{ playlist.videos.length }} Videos - Last updated {{ playlist.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</span>
                             </div>
                             <div class="col-1 p-0 m-auto text-center box-option-button h-100 d-flex" ngbDropdown ngbTooltip="Options" *ngIf="playlist.isDeletable">
