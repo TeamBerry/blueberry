@@ -14,11 +14,11 @@ import { AuthSubject } from 'app/shared/models/session.model';
 import { UserPlaylist } from 'app/shared/models/user-playlist.model';
 
 @Component({
-    selector: 'app-favorite-search-tab',
-    templateUrl: './favorite-search-tab.component.html',
-    styleUrls: ['./favorite-search-tab.component.scss'],
+    selector: 'app-playlists-search-tab',
+    templateUrl: './playlists-search-tab.component.html',
+    styleUrls: ['./playlists-search-tab.component.scss'],
 })
-export class FavoriteSearchTabComponent implements OnInit, AfterViewInit {
+export class PlaylistsSearchTabComponent implements OnInit, AfterViewInit {
     @Input() boxToken: string;
     @Input() user: AuthSubject;
     @ViewChild('filterInput', { static: false }) input: ElementRef
@@ -41,7 +41,11 @@ export class FavoriteSearchTabComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        if (!this.user._id.startsWith('user-')) {
+        this.bindSearch();
+    }
+
+    bindSearch() {
+        if (!this.user._id.startsWith('user-') && this.selectedPlaylist !== null) {
             fromEvent(this.input.nativeElement, 'keyup')
                 .pipe(
                     filter(Boolean),
@@ -71,25 +75,22 @@ export class FavoriteSearchTabComponent implements OnInit, AfterViewInit {
         this.jukeboxService.submitVideo(submissionPayload);
     }
 
-    getPlaylists() {
-        this.userService.playlists(this.user).subscribe(
-            (playlists: Array<UserPlaylist>) => {
-                this.playlists = playlists
-            }
-        )
+    submitPlaylist(playlistId: string) {
+        this.jukeboxService.submitPlaylist({
+            playlistId: playlistId,
+            userToken: this.user._id,
+            boxToken: this.boxToken
+        })
+    }
+
+    async getPlaylists() {
+        this.playlists = await this.userService.playlists(this.user).toPromise()
     }
 
     selectPlaylist(playlist: UserPlaylist) {
         this.selectedPlaylist = playlist
-    }
-
-    /**
-     * Gets favorites
-     *
-     * @memberof FavoriteSearchTabComponent
-     */
-    getFavorites() {
-        this.favorites$ = this.userService.favorites()
+        this.filterValue = ''
+        setTimeout(() => this.bindSearch(), 100)
     }
 
     openLoginPrompt() {
@@ -109,7 +110,7 @@ export class FavoriteSearchTabComponent implements OnInit, AfterViewInit {
         this.jukeboxService.getOrderStream().subscribe(
             (order: string) => {
                 if (order === 'favorites') {
-                    this.getFavorites();
+                    this.getPlaylists();
                 }
             }
         )

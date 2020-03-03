@@ -95,13 +95,23 @@ export class JukeboxService {
     }
 
     /**
-     * Submits a video to the playlist of the box
+     * Submits a video to the queue of the box
      *
-     * @param {SubmissionPayload} video The video to submit. Structure goes as follows:
+     * @param {SubmissionPayload} video
      * @memberof JukeboxService
      */
     public submitVideo(video: SubmissionPayload): void {
         this.boxSocket.emit('video', video);
+    }
+
+    /**
+     * Submits a playlist to the queue of the box
+     *
+     * @param {{ playlistId: string, userToken: string, boxToken: string }} playlist
+     * @memberof JukeboxService
+     */
+    public submitPlaylist(playlist: { playlistId: string, userToken: string, boxToken: string }): void {
+        this.boxSocket.emit('playlist', playlist);
     }
 
     /**

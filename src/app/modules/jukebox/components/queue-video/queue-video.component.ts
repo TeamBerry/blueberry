@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
+import { QueueVideo } from 'app/shared/models/playlist-video.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -9,12 +9,12 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-playlist-video',
-    templateUrl: './playlist-video.component.html',
-    styleUrls: ['./playlist-video.component.scss']
+    templateUrl: './queue-video.component.html',
+    styleUrls: ['./queue-video.component.scss']
 })
-export class PlaylistVideoComponent implements OnInit {
+export class QueueVideoComponent implements OnInit {
 
-    @Input() item: PlaylistVideo;
+    @Input() item: QueueVideo;
 
     @Output() order: EventEmitter<{ item: any, order: string }> = new EventEmitter();
 
@@ -45,30 +45,30 @@ export class PlaylistVideoComponent implements OnInit {
     /**
      * Skips the video
      *
-     * @param {PlaylistVideo} item
+     * @param {QueueVideo} item
      * @memberof PlaylistVideoComponent
      */
-    skipVideo(item: PlaylistVideo) {
+    skipVideo(item: QueueVideo) {
         this.order.emit({ item: item._id, order: 'skip' })
     }
 
     /**
      * Cancels a video from the upcoming section
      *
-     * @param {PlaylistVideo} item
+     * @param {QueueVideo} item
      * @memberof PlaylistVideoComponent
      */
-    cancelVideo(item: PlaylistVideo) {
+    cancelVideo(item: QueueVideo) {
         this.order.emit({ item: item._id, order: 'cancel' });
     }
 
     /**
      * Resubmits a video that was played back in the queue of the playlist
      *
-     * @param {PlaylistVideo} item The playlist item
+     * @param {QueueVideo} item The playlist item
      * @memberof PlaylistItemComponent
      */
-    replayVideo(item: PlaylistVideo) {
+    replayVideo(item: QueueVideo) {
         this.order.emit({ item: item.video.link, order: 'replay' });
     }
 

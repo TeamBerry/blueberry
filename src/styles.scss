@@ -126,6 +126,8 @@ button>svg {
     color: var(--inactive-color);
     svg {
         height: 4em !important;
+        fill: var(--inactive-color);
+        stroke: var(--inactive-color);
     }
 }
 

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FavoriteSearchTabComponent } from './favorite-search-tab.component';
+import { QueueVideoComponent } from './queue-video.component';
 
-describe('FavoriteSearchTabComponent', () => {
-  let component: FavoriteSearchTabComponent;
-  let fixture: ComponentFixture<FavoriteSearchTabComponent>;
+describe('PlaylistItemComponent', () => {
+  let component: QueueVideoComponent;
+  let fixture: ComponentFixture<QueueVideoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FavoriteSearchTabComponent ]
+      declarations: [ QueueVideoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FavoriteSearchTabComponent);
+    fixture = TestBed.createComponent(QueueVideoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

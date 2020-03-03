@@ -1,23 +1,23 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { JukeboxService } from './../../jukebox.service';
+import { JukeboxService } from '../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
-import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
+import { QueueVideo } from 'app/shared/models/playlist-video.model';
 import { SubmissionPayload, PlaylistItemActionRequest } from 'app/shared/models/playlist-payload.model';
 
 @Component({
-    selector: 'app-playlist',
-    templateUrl: './playlist.component.html',
-    styleUrls: ['./playlist.component.scss'],
+    selector: 'app-queue',
+    templateUrl: './queue.component.html',
+    styleUrls: ['./queue.component.scss'],
 })
-export class PlaylistComponent implements OnInit {
+export class QueueComponent implements OnInit {
     box: Box;
     @Input() user: User = new User;
 
-    currentlyPlaying: PlaylistVideo;
-    playedVideos: Array<PlaylistVideo>;
-    upcomingVideos: Array<PlaylistVideo>;
+    currentlyPlaying: QueueVideo;
+    playedVideos: Array<QueueVideo>;
+    upcomingVideos: Array<QueueVideo>;
 
     constructor(
         private jukeboxService: JukeboxService,
@@ -46,12 +46,12 @@ export class PlaylistComponent implements OnInit {
     /**
      * Isolates the currently playing video
      *
-     * @param {Array<PlaylistVideo>} playlist The playlist of the box
-     * @returns {PlaylistVideo} The currently playing video
+     * @param {Array<QueueVideo>} playlist The playlist of the box
+     * @returns {QueueVideo} The currently playing video
      * @memberof PlaylistComponent
      */
-    getCurrentlyPlayingVideo(playlist: Array<PlaylistVideo>): PlaylistVideo {
-        return playlist.find((item: PlaylistVideo) => {
+    getCurrentlyPlayingVideo(playlist: Array<QueueVideo>): QueueVideo {
+        return playlist.find((item: QueueVideo) => {
             return item.startTime !== null && item.endTime === null;
         });
     }
@@ -59,20 +59,20 @@ export class PlaylistComponent implements OnInit {
     /**
      * Builds a partial list of the playlist of the box based on the wanted state of the videos
      *
-     * @param {Array<PlaylistVideo>} playlist The playlist of the box
+     * @param {Array<QueueVideo>} playlist The playlist of the box
      * @param {string} state The state of the videos. Upcoming or Played
-     * @returns {Array<PlaylistVideo>}
+     * @returns {Array<QueueVideo>}
      * @memberof PlaylistComponent
      */
-    buildPartialPlaylist(playlist: Array<PlaylistVideo>, state: string): Array<PlaylistVideo> {
+    buildPartialPlaylist(playlist: Array<QueueVideo>, state: string): Array<QueueVideo> {
         if (state === 'upcoming') {
-            return playlist.filter((item: PlaylistVideo) => {
+            return playlist.filter((item: QueueVideo) => {
                 return item.startTime === null;
             });
         }
 
         if (state === 'played') {
-            return playlist.filter((item: PlaylistVideo) => {
+            return playlist.filter((item: QueueVideo) => {
                 return item.startTime !== null && item.endTime !== null;
             });
         }
@@ -111,10 +111,10 @@ export class PlaylistComponent implements OnInit {
      *
      * Resubmits the video in the playlist of the box
      *
-     * @param {PlaylistVideo['video']['link']} link The Youtube link of the video
+     * @param {QueueVideo['video']['link']} link The Youtube link of the video
      * @memberof PlaylistComponent
      */
-    replayVideo(link: PlaylistVideo['video']['link']) {
+    replayVideo(link: QueueVideo['video']['link']) {
         const submissionPayload: SubmissionPayload = {
             link: link,
             userToken: this.user._id,

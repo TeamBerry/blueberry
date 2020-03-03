@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlaylistVideoComponent } from './playlist-video.component';
+import { PlaylistsSearchTabComponent } from './playlists-search-tab.component';
 
-describe('PlaylistItemComponent', () => {
-  let component: PlaylistVideoComponent;
-  let fixture: ComponentFixture<PlaylistVideoComponent>;
+describe('FavoriteSearchTabComponent', () => {
+  let component: PlaylistsSearchTabComponent;
+  let fixture: ComponentFixture<PlaylistsSearchTabComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlaylistVideoComponent ]
+      declarations: [ PlaylistsSearchTabComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlaylistVideoComponent);
+    fixture = TestBed.createComponent(PlaylistsSearchTabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -10,7 +10,7 @@ import { Box } from 'app/shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
 import { SyncPacket } from 'app/shared/models/sync-packet.model';
 import { filter } from 'rxjs/operators';
-import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
+import { QueueVideo } from 'app/shared/models/playlist-video.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { environment } from 'environments/environment';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
@@ -62,7 +62,7 @@ export class BoxComponent implements OnInit {
      *
      * @memberof BoxComponent
      */
-    currentVideo: PlaylistVideo = null;
+    currentVideo: QueueVideo = null;
 
 
     /**

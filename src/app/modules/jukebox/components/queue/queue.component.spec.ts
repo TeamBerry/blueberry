@@ -1,23 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlaylistComponent } from './playlist.component';
+import { QueueComponent } from './queue.component';
 import { JukeboxService } from '../../jukebox.service';
-import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
+import { QueueVideo } from 'app/shared/models/playlist-video.model';
 
 describe('PlaylistComponent', () => {
-    let component: PlaylistComponent;
-    let fixture: ComponentFixture<PlaylistComponent>;
+    let component: QueueComponent;
+    let fixture: ComponentFixture<QueueComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [PlaylistComponent],
+            declarations: [QueueComponent],
             providers: [JukeboxService]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(PlaylistComponent);
+        fixture = TestBed.createComponent(QueueComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
@@ -27,7 +27,7 @@ describe('PlaylistComponent', () => {
     });
 
     describe('Builds the parts of the playlist', () => {
-        const playlist: Array<PlaylistVideo> = [
+        const playlist: Array<QueueVideo> = [
             {
                 '_id': '5cb98fb0b7452c6b3cbfd5c5',
                 'video': {
@@ -105,7 +105,7 @@ describe('PlaylistComponent', () => {
             },
         ];
         it('Can isolate the currently playing video', () => {
-            const expected: PlaylistVideo = {
+            const expected: QueueVideo = {
                 '_id': '5cb98fabb7452c6b3cbfd556',
                 'video': {
                     '_id': '5cb32f4f770fb93a70205ec2',
@@ -125,7 +125,7 @@ describe('PlaylistComponent', () => {
         });
 
         it('Can build the list of already played videos', () => {
-            const expected: Array<PlaylistVideo> = [
+            const expected: Array<QueueVideo> = [
                 {
                     '_id': '5cb98c44b7452c6b3cbfd4b3',
                     'video': {
@@ -177,7 +177,7 @@ describe('PlaylistComponent', () => {
         });
 
         it('Can build the list of upcoming videos', () => {
-            const expected: Array<PlaylistVideo> = [
+            const expected: Array<QueueVideo> = [
                 {
                     '_id': '5cb98fb0b7452c6b3cbfd5c5',
                     'video': {
