@@ -3,13 +3,11 @@
         <path d="M475.56 307.09L293.21 201.81v210.56l182.35-105.28M0 0h456.59v56.04H0zM0 93.02h456.59v56.04H0zM0 186.04h269.23v56.04H0zM0 279.07h269.23v56.04H0zM0 372.09h269.23v56.04H0z"/>
       </svg>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" *ngIf="computedOptions.type === 'replay'"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:38px;}.cls-2{fill:#fff;}</style></defs><title>replay-icon</title><g id="replay-icon"><path class="cls-1" d="M311.08,110.47a167.47,167.47,0,1,0,81.41,216.62"/><polygon class="cls-2" points="421.8 160.65 325.12 25.6 256.5 176.86 421.8 160.65"/></g></svg>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 449.33 449.33" *ngIf="computedOptions.type === 'cancel'">
-        <circle cx="224.67" cy="224.67" r="205.67" fill="none" style="stroke: white;" stroke-width="38" stroke-miterlimit="10"/>
-        <rect width="402" height="44" x="49" y="228" transform="rotate(-45 206.756 267.92)"/>
-    </svg>
     <svg class="btn-primary-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 402.39 385.88" *ngIf="computedOptions.type === 'skip'">
         <polygon points="334.18 192.94 0 0 0 385.88 334.18 192.94"/>
         <rect width="68.21" height="385.88" x="334.18"/>
     </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" id="trash-icon" viewBox="0 0 500 500" *ngIf="computedOptions.type === 'cancel'"><g><path class="cls-1" d="M354.7,444.72H160.16c-10.34,0-18.72-11-18.72-24.66L107.83,123.64H402.6L373.42,420.06C373.42,433.68,365,444.72,354.7,444.72Z"/><path class="cls-2" d="M102.54,76.15H407.9a8.59,8.59,0,0,1,8.59,8.59v16.69a0,0,0,0,1,0,0H94a0,0,0,0,1,0,0V84.73A8.59,8.59,0,0,1,102.54,76.15Z"/><rect class="cls-2" x="202.7" y="55.28" width="105.04" height="41.74" rx="20.87"/><rect class="cls-3" x="250.88" y="164.18" width="8.68" height="240" rx="4.34"/><rect class="cls-3" x="188.04" y="164.76" width="8.68" height="240" rx="4.34" transform="translate(-26.71 20) rotate(-5.56)"/><rect class="cls-3" x="312.42" y="164.76" width="8.68" height="240" rx="4.34" transform="translate(37.61 -36.96) rotate(7.1)"/></g></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" *ngIf="computedOptions.type === 'addToLibrary'"><defs><style>.cls-1{fill:#fff;}</style></defs><title>add-to-library-icon</title><g id="add-to-library-icon"><rect class="cls-1" x="21.7" y="32.51" width="456.59" height="56.04"/><rect class="cls-1" x="21.7" y="125.53" width="456.59" height="56.04"/><rect class="cls-1" x="21.7" y="218.55" width="184.3" height="56.04"/><rect class="cls-1" x="21.7" y="311.57" width="184.3" height="56.04"/><rect class="cls-1" x="21.7" y="404.59" width="184.3" height="56.04"/><rect class="cls-1" x="237.35" y="316.28" width="228.3" height="45.21"/><rect class="cls-1" x="237.35" y="316.28" width="228.3" height="45.21" transform="translate(690.39 -12.61) rotate(90)"/></g></svg>
     <span *ngIf="computedOptions.textDisplay === 'button'" class="btn-text ml-2">{{ buttonText }}</span>
 </button>

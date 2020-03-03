@@ -1,0 +1,70 @@
+@import './../../../../../imports.scss';
+.playlist-manager {
+    height: 88vh;
+    width: 100%;
+}
+
+.playlist-space,
+.search-space {
+    background-color: var(--background-secondary-color);
+}
+
+.playlists-list,
+.playlist-videos {
+    height: 100%;
+}
+
+.playlists-list {
+    border-right: 1px solid var(--background-secondary-color-alternate);
+    .playlists-list-item {
+        cursor: pointer;
+        .playlist-name {
+            color: var(--text-main-color);
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+        .playlist-info {
+            color: var(--text-secondary-color);
+        }
+        &.active {
+            border-left: 5px solid $master-color;
+        }
+        &:hover {
+            background-color: var(--background-secondary-color-alternate);
+        }
+    }
+}
+
+.playlist-space {
+    border-right: 3px solid var(--background-main-color);
+}
+
+.playlist-video-item {
+    border-bottom: 1px solid var(--text-main-color);
+}
+
+.playlist-image {
+    height: 250px;
+}
+
+#results {
+    overflow: auto;
+    height: 91%;
+}
+
+.no-videos-indicator {
+    font-size: 2rem;
+    color: var(--text-secondary-color);
+}
+
+.actions-icon {
+    height: 40%;
+}
+
+.privacy-indicator{
+    font-size: 0.8rem;
+    background-color: orange;
+    padding: 4px;
+    border-radius: 3px;
+    color: black;
+}

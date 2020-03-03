@@ -7,6 +7,9 @@ import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.com
 import { VideoEntryComponent } from './components/video-entry/video-entry.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe';
+import { PlaylistViewComponent } from './components/playlist-view/playlist-view.component';
+import { PlaylistWidgetComponent } from './components/playlist-widget/playlist-widget.component';
+import { PlaylistSelectorComponent } from './components/playlist-selector/playlist-selector.component';
 import { ThemeService } from './services/theme.service';
 import { UserService } from './services/user.service';
 import { FilterPipe } from './pipes/filter.pipe';
@@ -30,6 +33,9 @@ import { BxCheckboxComponent } from './components/bx-checkbox/bx-checkbox.compon
         SlideToggleComponent,
         VideoEntryComponent,
         BoxDeletionEstimationPipe,
+        PlaylistViewComponent,
+        PlaylistWidgetComponent,
+        PlaylistSelectorComponent,
         FilterPipe,
         PictureUploaderComponent,
         BxAlertComponent,
@@ -54,11 +60,13 @@ import { BxCheckboxComponent } from './components/bx-checkbox/bx-checkbox.compon
         LikeButtonComponent,
         BxButtonComponent,
         PickerModule,
-        BxCheckboxComponent
+        BxCheckboxComponent,
+        PlaylistWidgetComponent
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
-        PictureUploaderComponent
+        PictureUploaderComponent,
+        PlaylistSelectorComponent
     ]
 })
 export class SharedModule { }

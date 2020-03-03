@@ -15,15 +15,21 @@ export class VideoEntryComponent implements OnInit {
     @Input() video: Video;
     @Input() options: {
         submit?: boolean,
-        favorite?: boolean
+        favorite?: boolean,
+        removeFromPlaylist?: boolean,
+        addToPlaylist?: boolean
     } = {}
 
     appliedOptions = {
         submit: true,
-        favorite: true
+        favorite: true,
+        removeFromPlaylist: false,
+        addToPlaylist: false
     }
 
     @Output() submit: EventEmitter<Video> = new EventEmitter();
+    @Output() addedToPlaylist: EventEmitter<Video> = new EventEmitter();
+    @Output() removedFromPlaylist: EventEmitter<Video> = new EventEmitter();
 
     constructor(
         private userService: UserService,
@@ -45,6 +51,14 @@ export class VideoEntryComponent implements OnInit {
 
     submitVideo() {
         this.submit.emit(this.video);
+    }
+
+    addToPlaylist() {
+        this.addedToPlaylist.emit(this.video);
+    }
+
+    removeFromPlaylist() {
+        this.removedFromPlaylist.emit(this.video);
     }
 
     removeVideo() {
