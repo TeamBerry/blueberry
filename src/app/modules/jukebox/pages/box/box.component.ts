@@ -193,7 +193,7 @@ export class BoxComponent implements OnInit {
         const modalRef = this.modalService.open(PlaylistSelectorComponent)
         modalRef.componentInstance.selectedPlaylist$.subscribe(
             (playlistId: string) => {
-                this.playlistService.addVideoToPlaylist(playlistId, { videoId: this.currentVideo._id }).toPromise()
+                this.playlistService.addVideoToPlaylist(playlistId, { videoId: this.currentVideo.video._id }).toPromise()
                 this.toastr.success('Video added', 'Success')
             }
         )
