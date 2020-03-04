@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver, HostListener } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 // Components
@@ -34,6 +34,10 @@ export class NavComponent implements OnInit {
      * @memberof NavComponent
      */
     @ViewChild(SettingsDirective, { static: true }) settingsHost: SettingsDirective;
+
+    @HostListener('document:keydown.escape', ['$event']) onEscape(event: KeyboardEvent) {
+        this.settingsHost.viewContainerRef.clear();
+    }
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
