@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h5 class="modal-title">{{ title }}</h5>
+    <button type="button" class="close" aria-label="close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form (ngSubmit)="onSubmit()" #playlistForm="ngForm">
+        <div class="form-group">
+            <label for="name" class="col-form-label">Title</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="playlist.name">
+        </div>
+
+        <div class="form-group">
+            <label for="isPrivate" class="col-form-label">Privacy</label>
+            <div class="d-flex no-gutters text-center align-items-center">
+                <div class="col-3">
+                    <app-slide-toggle [(value)]="playlist.isPrivate"></app-slide-toggle>
+                </div>
+                <div class="col">
+                    <p class="help-text text-center" *ngIf="playlist.isPrivate === true">The playlist will <strong>only be visible to you.</strong></p>
+                    <p class="help-text text-center" *ngIf="playlist.isPrivate === false"><strong>Everyone</strong> will be able to view the playlist</p>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-default btn-block">{{ playlist._id ? 'Update' : 'Create'}}</button>
+    </form>
+</div>

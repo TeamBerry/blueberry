@@ -2,3 +2,22 @@
 .btn-text {
     text-transform: capitalize;
 }
+
+#trash-icon {
+    font-size: 1.4em;
+    .cls-1,
+    .cls-3 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+    }
+    .cls-1 {
+        stroke-width: 15px;
+    }
+    .cls-2 {
+        fill: #fff;
+    }
+    .cls-3 {
+        stroke-width: 10px;
+    }
+}

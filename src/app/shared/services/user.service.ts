@@ -9,6 +9,8 @@ import { User } from 'app/shared/models/user.model';
 import { Box } from '../models/box.model';
 import { AuthSubject } from '../models/session.model';
 import { shareReplay } from 'rxjs/operators';
+import { UserPlaylist } from '../models/user-playlist.model';
+import { Video } from '../models/video.model';
 
 @Injectable()
 export class UserService {
@@ -97,6 +99,17 @@ export class UserService {
      */
     boxes(user: AuthSubject): Observable<Array<Box>> {
         return this.http.get<Array<Box>>(environment.araza + '/user/' + user._id + '/boxes');
+    }
+
+    /**
+     * Gets all playlists for an user
+     *
+     * @param {User} user
+     * @returns {Observable<Array<UserPlaylist>>}
+     * @memberof UserService
+     */
+    playlists(user: AuthSubject): Observable<Array<UserPlaylist>> {
+        return this.http.get<Array<UserPlaylist>>(environment.araza + '/user/' + user._id + '/playlists');
     }
 
     /**

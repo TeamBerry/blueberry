@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h5 class="modal-title">Select a playlist to add the video to</h5>
+    <button type="button" class="close" aria-label="close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="playlists-list-item" *ngFor="let playlist of userPlaylists$ | async" (click)="selectPlaylist(playlist._id)">
+            <p class="playlist-name mb-0">{{ playlist.name }} <span *ngIf="playlist.isPrivate" class="privacy-indicator">Private</span></p>
+        </div>
+    </form>
+</div>

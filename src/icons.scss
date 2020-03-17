@@ -1,0 +1,36 @@
+#trash-icon {
+    font-size: 1.4em;
+    .cls-1,
+    .cls-3 {
+        fill: none;
+        stroke: var(--text-main-color);
+        stroke-miterlimit: 10;
+    }
+    .cls-1 {
+        stroke-width: 15px;
+    }
+    .cls-2 {
+        fill: var(--text-main-color);
+    }
+    .cls-3 {
+        stroke-width: 10px;
+    }
+}
+
+#edit-icon {
+    .cls-1 {
+        fill: var(--text-main-color);
+    }
+}
+
+#power-icon {
+    .cls-1 {
+        fill: none;
+        stroke: var(--text-main-color);
+        stroke-miterlimit: 10;
+        stroke-width: 38px;
+    }
+    .cls-2 {
+        fill: var(--text-main-color);
+    }
+}

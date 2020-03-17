@@ -2,7 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, Eleme
 import * as _ from 'lodash'
 
 import { JukeboxService } from './../../jukebox.service';
-import { Message } from 'app/shared/models/message.model';
+import { Message } from '@teamberry/muscadine';
 import { User } from 'app/shared/models/user.model';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthSubject } from 'app/shared/models/session.model';
@@ -13,6 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Box } from 'app/shared/models/box.model';
 import { LoginFormComponent } from 'app/shared/components/login-form/login-form.component';
 import { SignupFormComponent } from 'app/shared/components/signup-form/signup-form.component';
+import { ToastrService } from 'ngx-toastr';
 
 export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorites' | 'search'
 
@@ -53,6 +54,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     constructor(
         private modalService: NgbModal,
         private jukeboxService: JukeboxService,
+        private toastr: ToastrService,
         private renderer: Renderer2
     ) {
         // Will close the emoji picker when a click is registered outside of the chatbox, the emoji button and picker
@@ -247,6 +249,9 @@ export class PanelComponent implements OnInit, AfterViewChecked {
                 (message: Message) => {
                     if (this.activePanel !== 'chat') {
                         this.newMessages = true
+                    }
+                    if ((message.source === 'system' || message.source === 'bot') && this.activePanel !== 'chat') {
+                        this.toastr.info(message.contents, `Berrybot`)
                     }
                 }
             );

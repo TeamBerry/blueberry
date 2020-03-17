@@ -2039,6 +2039,11 @@
         }
       }
     },
+    "@teamberry/muscadine": {
+      "version": "0.4.0",
+      "resolved": "https://npm.pkg.github.com/download/@teamberry/muscadine/0.4.0/d5140ac8988114e91acdae205a9e170732ccb364c4864f2dd116645d359adef9",
+      "integrity": "sha512-EKa35FdZZDZU2jK9/odsDI18xgsw2eY8z1lLJ/yl9nxdRD8Rj1EOM8SmWSx0fMiHgpP5frb97Lc3XGUHYjMfRQ=="
+    },
     "@types/events": {
       "version": "3.0.0",
       "resolved": "https://registry.npmjs.org/@types/events/-/events-3.0.0.tgz",

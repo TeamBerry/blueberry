@@ -1,13 +1,13 @@
-import { PlaylistVideo } from './playlist-video.model';
+import { QueueVideo } from './playlist-video.model';
 
 export class SubmissionPayload {
     /**
      * The YouTube uID of the video to add
      *
-     * @type {PlaylistVideo['video']['link']}
+     * @type {QueueVideo['video']['link']}
      * @memberof SubmissionPayload
      */
-    link: PlaylistVideo['video']['link'];
+    link: QueueVideo['video']['link'];
 
     /**
      * The document ID of the user who submitted the video
@@ -26,14 +26,14 @@ export class SubmissionPayload {
     boxToken: string;
 }
 
-export class CancelPayload {
+export class PlaylistItemActionRequest {
     /**
      * Identifier of the playlist item
      *
-     * @type {PlaylistVideo['_id']}
+     * @type {QueueVideo['_id']}
      * @memberof CancelPayload
      */
-    item: PlaylistVideo['_id'];
+    item: QueueVideo['_id'];
 
     /**
      * Identifier of the user who requested the cancel

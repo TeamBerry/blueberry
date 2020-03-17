@@ -1,0 +1,17 @@
+@import './../../../../../imports.scss';
+
+.home-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+
+.featured {
+    background-color: var(--background-main-color);
+    .free-text {
+        font-family: 'Montserrat', sans-serif;
+        color: var(--text-focus-color);
+        margin-bottom: 40px;
+        text-align: center
+    }
+}

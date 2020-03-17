@@ -6,9 +6,9 @@ import * as _ from 'lodash';
 
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
-import { Message } from 'app/shared/models/message.model';
+import { Message, FeedbackMessage } from '@teamberry/muscadine';
 import { SyncPacket } from 'app/shared/models/sync-packet.model';
-import { SubmissionPayload, CancelPayload } from 'app/shared/models/playlist-payload.model';
+import { SubmissionPayload, PlaylistItemActionRequest } from 'app/shared/models/playlist-payload.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
 import { AuthSubject } from 'app/shared/models/session.model';
@@ -28,7 +28,8 @@ export class JukeboxService {
      * @type {ReplaySubject<any>}
      * @memberof JukeboxService
      */
-    private boxStream: ReplaySubject<Box | Message | SyncPacket> = new ReplaySubject<Box | Message | SyncPacket>();
+    private boxStream: ReplaySubject<Box | Message | FeedbackMessage | SyncPacket> =
+        new ReplaySubject<Box | Message | FeedbackMessage | SyncPacket>();
 
     /**
      * Subject for every component in the box that will need to do stuff based on the actions of other components.
@@ -94,13 +95,23 @@ export class JukeboxService {
     }
 
     /**
-     * Submits a video to the playlist of the box
+     * Submits a video to the queue of the box
      *
-     * @param {SubmissionPayload} video The video to submit. Structure goes as follows:
+     * @param {SubmissionPayload} video
      * @memberof JukeboxService
      */
     public submitVideo(video: SubmissionPayload): void {
         this.boxSocket.emit('video', video);
+    }
+
+    /**
+     * Submits a playlist to the queue of the box
+     *
+     * @param {{ playlistId: string, userToken: string, boxToken: string }} playlist
+     * @memberof JukeboxService
+     */
+    public submitPlaylist(playlist: { playlistId: string, userToken: string, boxToken: string }): void {
+        this.boxSocket.emit('playlist', playlist);
     }
 
     /**
@@ -109,7 +120,7 @@ export class JukeboxService {
      * @param {*} cancelPayload
      * @memberof JukeboxService
      */
-    public cancelVideo(cancelPayload: CancelPayload): void {
+    public cancelVideo = (cancelPayload: PlaylistItemActionRequest): void => {
         this.boxSocket.emit('cancel', cancelPayload)
     }
 
@@ -196,7 +207,7 @@ export class JukeboxService {
     private startBoxSocket(boxToken: string, userToken: string) {
         this.boxSocket = io(environment.boquila, { transports: ['websocket'] });
 
-        return new Observable<Message | SyncPacket | Box>(observer => {
+        return new Observable<Message | FeedbackMessage | SyncPacket | Box>(observer => {
             this.boxSocket.on('connect', () => {
                 this.boxSocket.emit('auth', {
                     origin: 'BERRYBOX PNEUMA',
@@ -206,8 +217,8 @@ export class JukeboxService {
                 });
             });
 
-            this.boxSocket.on('confirm', (feedback: Message) => {
-                observer.next(new Message(feedback));
+            this.boxSocket.on('confirm', (feedback: FeedbackMessage) => {
+                observer.next(new FeedbackMessage(feedback));
                 // Tells the service the user is joining. Response will be on sync
                 this.boxSocket.emit('start', {
                     boxToken,
@@ -241,9 +252,13 @@ export class JukeboxService {
             });
 
             // On chat. Regular event.
-            this.boxSocket.on('chat', (feedback: Message) => {
-                if (feedback.scope === this.box._id) {
-                    observer.next(new Message(feedback));
+            this.boxSocket.on('chat', (message: Message | FeedbackMessage) => {
+                if (message.scope === this.box._id) {
+                    if ('feedbackType' in message) {
+                        observer.next(new FeedbackMessage(message));
+                    } else {
+                        observer.next(new Message(message));
+                    }
                 }
             });
 

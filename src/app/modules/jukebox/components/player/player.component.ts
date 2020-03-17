@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 
 import { JukeboxService } from './../../jukebox.service';
-import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
+import { QueueVideo } from 'app/shared/models/playlist-video.model';
 
 /**
  * The player component of the box. It just recieves the video as an input from the box
@@ -21,7 +21,7 @@ import { PlaylistVideo } from 'app/shared/models/playlist-video.model';
 })
 export class PlayerComponent implements OnInit, OnChanges {
     @Input() boxToken: string;
-    @Input() video: PlaylistVideo = null;
+    @Input() video: QueueVideo = null;
     @Output() playing: EventEmitter<any> = new EventEmitter();
     @Output() state: EventEmitter<any> = new EventEmitter();
     private player;
@@ -91,10 +91,10 @@ export class PlayerComponent implements OnInit, OnChanges {
      * if the computed starting time is inferior to this value. This is done to avoid weird video plays in the case
      * of normal auto-play sync. The grace period is of 2 seconds
      *
-     * @param {PlaylistVideo} video The playlist item to play
+     * @param {QueueVideo} video The playlist item to play
      * @memberof PlayerComponent
      */
-    playVideo(video: PlaylistVideo) {
+    playVideo(video: QueueVideo) {
         let startingTime = moment().diff(video.startTime) / 1000;
 
         if (startingTime <= 2) {

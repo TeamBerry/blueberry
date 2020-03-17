@@ -8,6 +8,7 @@ export const darkTheme = {
     'nav-color': '#333333',
     'background-main-hover-color': '#3f3f3f',
     'background-main-active-color': '#3f3f3f',
+    'background-main-inactive-color': '#252525',
     'background-main-border-color': '#979797',
     // Main Color, lighten 15%
     'background-secondary-color': '#404040',
@@ -28,6 +29,7 @@ export const lightTheme = {
     'background-main-color': 'white',
     'background-main-hover-color': '#f2f2f2',
     'background-main-active-color': '#d9d9d9',
+    'background-main-inactive-color': '#b3b3b3',
     'background-main-border-color': '#979797',
     'nav-color': '#009AEB',
     // Main Color, darken 15%
