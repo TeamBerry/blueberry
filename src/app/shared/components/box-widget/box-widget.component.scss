@@ -21,7 +21,27 @@
     overflow: hidden;
     white-space: nowrap;
     font-family: 'Montserrat', sans-serif;
-    color: $master-color;
+    color: var(--text-main-color);
+}
+
+.img-container {
+    max-height: 300px;
+    overflow: hidden;
+}
+
+#box-info-container {
+    width: 85%;
+}
+
+#box-admin {
+    font-family: 'Montserrat';
+    color: var(--text-system-color);
+}
+
+#currently-playing {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #box-info {
@@ -30,4 +50,8 @@
 
 .box-pp {
     @include profile-picture-size(40px);
+}
+
+.modes {
+    height: 29px
 }

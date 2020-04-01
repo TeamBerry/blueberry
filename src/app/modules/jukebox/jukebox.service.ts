@@ -205,12 +205,21 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     private startBoxSocket(boxToken: string, userToken: string) {
-        this.boxSocket = io(environment.boquila, { transports: ['websocket'] });
+        if (this.boxSocket) {
+            this.boxSocket.disconnect();
+        }
+
+        this.boxSocket = io(environment.boquila, {
+            transports: ['websocket'],
+            reconnection: true,
+            reconnectionDelay: 500,
+            reconnectionAttempts: 10
+        });
 
         return new Observable<Message | FeedbackMessage | SyncPacket | Box>(observer => {
             this.boxSocket.on('connect', () => {
                 this.boxSocket.emit('auth', {
-                    origin: 'BERRYBOX PNEUMA',
+                    origin: 'Blueberry',
                     type: 'sync',
                     boxToken,
                     userToken
