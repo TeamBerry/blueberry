@@ -219,7 +219,7 @@ export class JukeboxService {
         return new Observable<Message | FeedbackMessage | SyncPacket | Box>(observer => {
             this.boxSocket.on('connect', () => {
                 this.boxSocket.emit('auth', {
-                    origin: 'BERRYBOX PNEUMA',
+                    origin: 'Blueberry',
                     type: 'sync',
                     boxToken,
                     userToken
