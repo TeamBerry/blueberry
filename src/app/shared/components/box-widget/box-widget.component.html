@@ -3,11 +3,11 @@
         <img *ngIf="currentVideo" src="https://i.ytimg.com/vi/{{ currentVideo?.video?.link }}/hqdefault.jpg" alt="" class="card-img-top">
         <img *ngIf="!currentVideo" src="assets/images/berrybox-logo-master.png" alt="" class="card-img-top no-playing">
     </div>
-    <div class="card-block p-2 d-flex">
-        <div class="bb-box-picture d-flex align-items-center justify-content-center mr-2">
+    <div class="card-block p-2 d-flex align-items-center">
+        <div class="bb-box-picture mr-2">
             <img src="{{ pictureLocation }}" alt="{{ box.creator['name'] }}" (error)="loadDefaultPicture()" class="profile-picture profile-picture-md">
         </div>
-        <div>
+        <div class="d-flex flex-column">
             <h4 class="card-name m-0">{{ box.name }}</h4>
             <div id="box-info">
                 <p id="currently-playing" class="mb-0"><strong>Playing: </strong>{{ currentVideo?.video?.name || "Nothing." }}</p>
