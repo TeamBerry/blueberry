@@ -33,6 +33,12 @@
     color: var(--text-system-color);
 }
 
+#currently-playing {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 #box-info {
     font-size: pxtorem(14px);
 }
