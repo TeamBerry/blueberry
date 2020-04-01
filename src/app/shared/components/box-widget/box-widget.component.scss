@@ -24,6 +24,11 @@
     color: var(--text-main-color);
 }
 
+.img-container {
+    max-height: 300px;
+    overflow: hidden;
+}
+
 #box-info-container {
     width: 85%;
 }
