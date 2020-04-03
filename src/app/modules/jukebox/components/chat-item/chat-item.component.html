@@ -1,6 +1,6 @@
 <p class="message px-3" [ngClass]="{'system-message': message.source === 'system' || message.source === 'bot'}" [class]="typeStyle">
-    <span class="message-time" title="{{message.time}}" *ngIf="message.source !== 'system'">{{ message.time | date: 'HH:mm' }}</span>
+    <span class="message-time" title="{{message.time}}">{{ message.time | date: 'HH:mm' }}</span>
     <span class="message-author author-linkback" *ngIf="message.source !== 'bot'" [ngClass]="{'d-none': message.source === 'system'}">{{ author }}</span>
-    <span class="message-contents">{{ message.contents }}</span>
+    <span class="message-contents" [innerHTML]="message.contents"></span>
     <br>
 </p>
