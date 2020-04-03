@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Box } from 'app/shared/models/box.model';
 
 @Component({
-    selector: 'app-playlist-video',
+    selector: 'app-queue-video',
     templateUrl: './queue-video.component.html',
     styleUrls: ['./queue-video.component.scss']
 })

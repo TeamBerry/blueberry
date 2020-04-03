@@ -3,7 +3,7 @@
         <p class="list-rank px-3 pt-3">Now playing: </p>
         <div class="now-playing-space">
             <div *ngIf="currentlyPlaying; else noPlaying">
-                <app-playlist-video [item]="currentlyPlaying" [box]="box" (order)="handlePlaylistOrder($event)"></app-playlist-video>
+                <app-queue-video [item]="currentlyPlaying" [box]="box" (order)="handlePlaylistOrder($event)"></app-queue-video>
             </div>
             <ng-template #noPlaying>
                 <div class="no-playing text-center">
@@ -17,7 +17,7 @@
                     <ng-template ngbTabContent>
                         <p class="list-rank px-3 pt-3">Upcoming: </p>
                         <div *ngFor="let entry of upcomingVideos; let i = index">
-                            <app-playlist-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)"></app-playlist-video>
+                            <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)"></app-queue-video>
                         </div>
                     </ng-template>
                 </ngb-tab>
@@ -25,7 +25,7 @@
                     <ng-template ngbTabContent>
                         <p class="list-rank px-3 pt-3">Played: </p>
                         <div *ngFor="let entry of playedVideos; let i = index">
-                            <app-playlist-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)"></app-playlist-video>
+                            <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)"></app-queue-video>
                         </div>
                     </ng-template>
                 </ngb-tab>
