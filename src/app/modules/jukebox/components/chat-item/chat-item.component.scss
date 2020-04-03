@@ -58,3 +58,9 @@
     font-weight: 700;
     border-radius: .3rem;
 }
+
+.highlight {
+    background-color: var(--text-main-color);
+    color: var(--background-main-color);
+    padding: 2px;
+}

@@ -1,13 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Message, FeedbackMessage } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-chat-item',
     templateUrl: './chat-item.component.html',
-    styleUrls: ['./chat-item.component.scss']
+    styleUrls: ['./chat-item.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class ChatItemComponent implements OnInit {
     @Input() message: Message | FeedbackMessage;
+    @Input() username: string;
 
     typeStyle: string;
     author: string;
@@ -19,6 +21,14 @@ export class ChatItemComponent implements OnInit {
             ? (typeof this.message.author === 'object' ? this.message.author.name : this.message.author)
             : null;
         this.typeStyle = 'feedbackType' in this.message ? `system-message-${this.message.feedbackType}` : null;
+
+        this.message.contents = this.parseString(this.message.contents)
+    }
+
+    parseString(contents: string): string {
+        return contents.replace(
+            this.username, `<span class='highlight'>${this.username}</span>`
+        )
     }
 
 }
