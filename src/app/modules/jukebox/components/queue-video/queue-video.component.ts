@@ -6,13 +6,16 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
+import { Box } from 'app/shared/models/box.model';
 
 @Component({
-    selector: 'app-playlist-video',
+    selector: 'app-queue-video',
     templateUrl: './queue-video.component.html',
     styleUrls: ['./queue-video.component.scss']
 })
 export class QueueVideoComponent implements OnInit {
+
+    @Input() box: Box;
 
     @Input() item: QueueVideo;
 
