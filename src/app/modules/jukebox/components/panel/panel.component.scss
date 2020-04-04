@@ -127,3 +127,9 @@ span#span-youtube-mode {
     bottom: 92%;
     right: 2%;
 }
+
+.chat-tab {
+    display: flex;
+    height: inherit;
+    flex-direction: column;
+}
