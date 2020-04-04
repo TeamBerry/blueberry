@@ -248,10 +248,11 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             .subscribe(
                 (message: Message) => {
                     if (this.activePanel !== 'chat') {
-                        this.newMessages = true
-                    }
-                    if ((message.source === 'system' || message.source === 'bot') && this.activePanel !== 'chat') {
-                        this.toastr.info(message.contents, `Berrybot`)
+                        if (message.source !== 'system') {
+                            this.newMessages = true
+                        } else {
+                            this.toastr.info(message.contents, 'System')
+                        }
                     }
                 }
             );

@@ -18,6 +18,7 @@ export class ChatTabComponent implements OnInit {
     hasLink = false;
     hasCommand = false;
     messages = [];
+    filter: 'system' | 'human' = null;
 
     constructor(
         private jukeboxService: JukeboxService
@@ -45,6 +46,7 @@ export class ChatTabComponent implements OnInit {
             )
             .subscribe(
                 (message) => {
+                    console.log(message);
                     this.messages.push(message);
                 },
                 error => {
