@@ -23,7 +23,7 @@
                 <button class="btn btn-outline-default" type="button" (click)="resetFilter()">Reset</button>
             </div>
         </div>
-        <div *ngIf="selectedPlaylist.videos.length > 0; else noFavorites">
+        <div *ngIf="selectedPlaylist.videos.length > 0; else noFavorites" class="selected-playlist-items">
             <div class="px-3">
                 <button class="btn btn-default btn-block" (click)="submitPlaylist(selectedPlaylist._id)">Queue all</button>
             </div>
