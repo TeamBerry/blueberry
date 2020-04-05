@@ -1987,9 +1987,9 @@
       "dev": true
     },
     "@types/node": {
-      "version": "6.14.9",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.14.9.tgz",
-      "integrity": "sha512-leP/gxHunuazPdZaCvsCefPQxinqUDsCxCR5xaDUrY2MkYxQRFZZwU5e7GojyYsGB7QVtCi7iVEl/hoFXQYc+w==",
+      "version": "12.12.34",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-12.12.34.tgz",
+      "integrity": "sha512-BneGN0J9ke24lBRn44hVHNeDlrXRYF+VRp0HbSUNnEZahXGAysHZIqnf/hER6aabdBgzM4YOV4jrR8gj4Zfi0g==",
       "dev": true
     },
     "@types/q": {
