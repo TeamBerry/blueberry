@@ -80,7 +80,7 @@ export class BoxComponent implements OnInit {
      * @type {LikeButtonComponent}
      * @memberof BoxComponent
      */
-    @ViewChild(LikeButtonComponent, { static: false }) private LikeButtonComponent: LikeButtonComponent;
+    @ViewChild(LikeButtonComponent) private LikeButtonComponent: LikeButtonComponent;
 
     constructor(
         private authService: AuthService,
