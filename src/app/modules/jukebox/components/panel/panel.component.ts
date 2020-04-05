@@ -47,9 +47,9 @@ export class PanelComponent implements OnInit, AfterViewChecked {
      */
     isEmojiPickerDisplayed = false;
 
-    @ViewChild('chatbox', { static: false }) chatbox: ElementRef;
-    @ViewChild('emojiPicker', { static: false }) emojiPicker: ElementRef;
-    @ViewChild('emojiButton', { static: false }) emojiButton: ElementRef;
+    @ViewChild('chatbox') chatbox: ElementRef;
+    @ViewChild('emojiPicker') emojiPicker: ElementRef;
+    @ViewChild('emojiButton') emojiButton: ElementRef;
 
     constructor(
         private modalService: NgbModal,
