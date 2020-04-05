@@ -27,7 +27,7 @@ export class ChatItemComponent implements OnInit {
 
     parseString(contents: string): string {
         return contents.replace(
-            this.username, `<span class='highlight'>${this.username}</span>`
+            new RegExp(this.username, 'i'), '<span class="highlight">$&</span>'
         )
     }
 
