@@ -5,6 +5,11 @@ import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
 import { QueueVideo } from 'app/shared/models/playlist-video.model';
 import { SubmissionPayload, PlaylistItemActionRequest } from 'app/shared/models/playlist-payload.model';
+import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PlaylistService } from 'app/shared/services/playlist.service';
+import { BoxService } from 'app/shared/services/box.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-queue',
@@ -21,6 +26,9 @@ export class QueueComponent implements OnInit {
 
     constructor(
         private jukeboxService: JukeboxService,
+        private modalService: NgbModal,
+        private boxService: BoxService,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
@@ -139,6 +147,17 @@ export class QueueComponent implements OnInit {
      * @memberof PlaylistComponent
      */
     requestSkip() {
+
+    }
+
+    startConversion() {
+        const modalRef = this.modalService.open(PlaylistSelectorComponent);
+        modalRef.componentInstance.selectedPlaylist$.subscribe(
+            async (playlistId: string) => {
+                this.boxService.convert(this.box._id, playlistId).subscribe()
+                this.toastr.success('Playlist updated', 'Success')
+            }
+        )
 
     }
 }
