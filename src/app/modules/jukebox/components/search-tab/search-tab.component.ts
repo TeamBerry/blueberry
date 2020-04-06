@@ -10,10 +10,11 @@ export class SearchTabComponent implements OnInit {
     @Input() boxToken: string;
     @Input() user: AuthSubject;
 
+    displayedTab: 'youtube' | 'playlists' = 'youtube';
+
     constructor() { }
 
     ngOnInit() {
-        console.log(this.user);
     }
 
 }

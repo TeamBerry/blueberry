@@ -1,8 +1,7 @@
-<div id="filter-options" class="d-flex">
-    <span class="option" [ngClass]="{'active': filter === null}" (click)="filter = null">All Messages</span>
-    <span class="option" [ngClass]="{'active': filter === 'system'}" (click)="filter = 'system'">Activity</span>
-    <span class="option" [ngClass]="{'active': filter === 'human'}" (click)="filter = 'human'">User Chat</span>
-</div>
+<app-bx-tabset
+    [options]="tabsetOptions"
+    (clickedOption)="filter = $event"
+></app-bx-tabset>
 <div class="overflow-auto">
     <app-chat-item *ngFor="let message of messages" [message]="message" [username]="user.name" [hidden]="
             (filter === 'system' && message.source !== 'system')

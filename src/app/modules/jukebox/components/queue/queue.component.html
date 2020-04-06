@@ -1,7 +1,9 @@
 <div *ngIf="box" style="height: inherit;">
     <div *ngIf="box.playlist.length > 0; else noVideos" class="d-flex flex-column" style="height: inherit;">
         <div class="p-2 text-center">
-            <app-bx-button (click)="startConversion()" [options]="{'type': 'addToLibrary', 'textDisplay': 'button', 'text': 'Add all videos to a Playlist'}"></app-bx-button>
+            <app-bx-button (click)="startConversion()"
+                [options]="{'type': 'addToLibrary', 'textDisplay': 'button', 'text': 'Add all videos to a Playlist'}">
+            </app-bx-button>
         </div>
         <div class="overflow-auto">
             <p class="list-rank px-3 pt-3">Now playing: </p>
@@ -17,26 +19,19 @@
                 </ng-template>
             </div>
             <div class="lists mt-2">
-                <ngb-tabset type="pills" justify="fill">
-                    <ngb-tab title="Upcoming">
-                        <ng-template ngbTabContent>
-                            <p class="list-rank px-3 pt-3">Upcoming: </p>
-                            <div *ngFor="let entry of upcomingVideos; let i = index">
-                                <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
-                                </app-queue-video>
-                            </div>
-                        </ng-template>
-                    </ngb-tab>
-                    <ngb-tab title="Played">
-                        <ng-template ngbTabContent>
-                            <p class="list-rank px-3 pt-3">Played: </p>
-                            <div *ngFor="let entry of playedVideos; let i = index">
-                                <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
-                                </app-queue-video>
-                            </div>
-                        </ng-template>
-                    </ngb-tab>
-                </ngb-tabset>
+                <app-bx-tabset [options]="tabSetOptions" (clickedOption)="displayTab = $event"></app-bx-tabset>
+                <div *ngIf="displayTab === 'upcoming'">
+                    <div *ngFor="let entry of upcomingVideos; let i = index">
+                        <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
+                        </app-queue-video>
+                    </div>
+                </div>
+                <div *ngIf="displayTab === 'played'">
+                    <div *ngFor="let entry of playedVideos; let i = index">
+                        <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
+                        </app-queue-video>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

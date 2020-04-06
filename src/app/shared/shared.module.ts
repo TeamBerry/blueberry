@@ -22,6 +22,7 @@ import { BxButtonComponent } from './components/bx-button/bx-button.component';
 // Feature Modules
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { BxCheckboxComponent } from './components/bx-checkbox/bx-checkbox.component';
+import { BxTabsetComponent } from './components/bx-tabset/bx-tabset.component';
 
 @NgModule({
     imports: [
@@ -42,7 +43,8 @@ import { BxCheckboxComponent } from './components/bx-checkbox/bx-checkbox.compon
         DurationPipe,
         LikeButtonComponent,
         BxButtonComponent,
-        BxCheckboxComponent
+        BxCheckboxComponent,
+        BxTabsetComponent
     ],
     exports: [
         CommonModule,
@@ -61,7 +63,8 @@ import { BxCheckboxComponent } from './components/bx-checkbox/bx-checkbox.compon
         BxButtonComponent,
         PickerModule,
         BxCheckboxComponent,
-        PlaylistWidgetComponent
+        PlaylistWidgetComponent,
+        BxTabsetComponent
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
