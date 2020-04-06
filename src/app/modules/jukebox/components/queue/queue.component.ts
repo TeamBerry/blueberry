@@ -24,6 +24,12 @@ export class QueueComponent implements OnInit {
     playedVideos: Array<QueueVideo>;
     upcomingVideos: Array<QueueVideo>;
 
+    tabSetOptions = [
+        { title: `Upcoming`, value: 'upcoming' },
+        { title: 'Played', value: 'played' }
+    ]
+    displayTab: 'upcoming' | 'played' = 'upcoming';
+
     constructor(
         private jukeboxService: JukeboxService,
         private modalService: NgbModal,
@@ -74,15 +80,19 @@ export class QueueComponent implements OnInit {
      */
     buildPartialPlaylist(playlist: Array<QueueVideo>, state: string): Array<QueueVideo> {
         if (state === 'upcoming') {
-            return playlist.filter((item: QueueVideo) => {
+            const upcoming = playlist.filter((item: QueueVideo) => {
                 return item.startTime === null;
             });
+            this.tabSetOptions[0].title = `Upcoming (${upcoming.length})`
+            return upcoming
         }
 
         if (state === 'played') {
-            return playlist.filter((item: QueueVideo) => {
+            const played = playlist.filter((item: QueueVideo) => {
                 return item.startTime !== null && item.endTime !== null;
             });
+            this.tabSetOptions[1].title = `Played (${played.length})`
+            return played
         }
     }
 

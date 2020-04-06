@@ -19,6 +19,11 @@ export class ChatTabComponent implements OnInit {
     hasCommand = false;
     messages = [];
     filter: 'system' | 'human' = null;
+    tabsetOptions = [
+        { title: 'All Messages', value: null },
+        { title: 'Activity', value: 'system' },
+        { title: 'User Chat', value: 'human' }
+    ]
 
     constructor(
         private jukeboxService: JukeboxService
