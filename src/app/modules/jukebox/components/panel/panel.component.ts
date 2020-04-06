@@ -2,8 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, Eleme
 import * as _ from 'lodash'
 
 import { JukeboxService } from './../../jukebox.service';
-import { Message } from '@teamberry/muscadine';
-import { User } from 'app/shared/models/user.model';
+import { Message, FeedbackMessage } from '@teamberry/muscadine';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
@@ -225,11 +224,12 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
             this.jukeboxService.submitVideo(video);
         } catch (error) {
-            const message: Message = new Message({
-                contents: 'The video URL you submitted is not a valid YouTube URL.',
+            const message: FeedbackMessage = new FeedbackMessage({
+                contents: 'The video URL you submitted is not a valid YouTube URL. (This message is only visible to you)',
                 source: 'system',
                 scope: this.boxToken,
-                time: new Date()
+                time: new Date(),
+                feedbackType: 'error'
             });
             this.jukeboxService.postMessageToStream(message);
         }
