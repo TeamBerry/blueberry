@@ -133,3 +133,10 @@ span#span-youtube-mode {
     height: inherit;
     flex-direction: column;
 }
+
+#emoji-typeahead-title {
+    color: var(--text-main-color);
+    font-family: 'Montserrat';
+    padding-left: 27px;
+    font-weight: 700;
+}

@@ -1,18 +1,20 @@
 import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import * as _ from 'lodash'
+import { ToastrService } from 'ngx-toastr';
+import { filter } from 'rxjs/operators';
+import { NgbModal, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { EmojiSearch } from '@ctrl/ngx-emoji-mart';
+import { EmojiData } from '@ctrl/ngx-emoji-mart/ngx-emoji/public_api';
 
 import { JukeboxService } from './../../jukebox.service';
 import { Message, FeedbackMessage } from '@teamberry/muscadine';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
-import { filter } from 'rxjs/operators';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Box } from 'app/shared/models/box.model';
 import { LoginFormComponent } from 'app/shared/components/login-form/login-form.component';
 import { SignupFormComponent } from 'app/shared/components/signup-form/signup-form.component';
-import { ToastrService } from 'ngx-toastr';
 
 export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorites' | 'search'
 
@@ -49,12 +51,18 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     @ViewChild('chatbox') chatbox: ElementRef;
     @ViewChild('emojiPicker') emojiPicker: ElementRef;
     @ViewChild('emojiButton') emojiButton: ElementRef;
+    @ViewChild('emojiTypeahead') emojiTypeahead: NgbDropdown;
+
+    emojiDetectionRegEx = new RegExp(/:[\w]{2,}/, 'gmi');
+    emojiReplacementRegEx = new RegExp(/:[\w]{2,}:/, 'gmi');
+    emojiResults: Array<EmojiData> = [];
 
     constructor(
         private modalService: NgbModal,
         private jukeboxService: JukeboxService,
         private toastr: ToastrService,
-        private renderer: Renderer2
+        private renderer: Renderer2,
+        private emojiSearch: EmojiSearch
     ) {
         // Will close the emoji picker when a click is registered outside of the chatbox, the emoji button and picker
         this.renderer.listen('window', 'click', (e: Event) => {
@@ -93,9 +101,20 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     }
 
     watchContents() {
-        this.hasCommand = false;
+        if (this.contents.length === 0) {
+            this.emojiTypeahead.close();
+            this.hasCommand = false;
+            return;
+        }
         if (this.contents.indexOf('!') === 0) {
             this.hasCommand = true;
+        } else {
+            const emojiMatches = this.emojiDetectionRegEx.exec(this.contents);
+            if (emojiMatches && emojiMatches.length > 0) {
+                this.emojiResults = this.emojiSearch.search(emojiMatches[0].substr(1));
+                console.log(this.emojiResults);
+                this.emojiTypeahead.open();
+            }
         }
     }
 
@@ -112,6 +131,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
     handleMessage(contents: string) {
         this.isEmojiPickerDisplayed = false;
+        this.emojiTypeahead.close();
         const message = new Message({
             author: this.user._id,
             contents: contents,
@@ -130,6 +150,23 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     addEmoji(event) {
         console.log(event);
         this.contents += ` ${event.emoji.native}`;
+    }
+
+    /**
+     * Replaces the text by the emoji
+     *
+     * @param {EmojiData} emoji
+     * @memberof PanelComponent
+     */
+    replaceEmoji(emoji: EmojiData) {
+        this.contents = this.contents.replace(
+            this.emojiDetectionRegEx,
+            emoji.native
+        )
+        this.contents = this.contents.replace(
+            this.emojiReplacementRegEx,
+            emoji.native
+        );
     }
 
     /**
