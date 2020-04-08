@@ -89,6 +89,15 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         if (this.activePanel === 'chat') {
             this.adjustView();
         }
+
+
+        this.emojiTypeahead.openChange.subscribe(
+            (change: boolean) => {
+                if (!change) {
+                    this.chatbox.nativeElement.focus();
+                }
+            }
+        )
     }
 
     adjustView() {
@@ -119,7 +128,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         const emojiToReplace = this.emojiReplacementRegEx.exec(this.contents);
         if (emojiToReplace && emojiToReplace.length > 0) {
             const result: Array<EmojiData> = this.emojiSearch.search(emojiToReplace[0].replace(/:/gi, ''));
-            if (result.length > 0) {   
+            if (result.length > 0) {
                 this.contents = this.contents.replace(this.emojiReplacementRegEx, result[0].native);
             }
             this.emojiTypeahead.close();
@@ -129,8 +138,9 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         // Search for emojis to typeahead
         const emojiToSearch = this.emojiDetectionRegEx.exec(this.contents);
         if (emojiToSearch && emojiToSearch.length > 0) {
-            this.emojiResults = this.emojiSearch.search(emojiToSearch[0].replace(/:/gi,''));
+            this.emojiResults = this.emojiSearch.search(emojiToSearch[0].replace(/:/gi, ''));
             this.emojiTypeahead.open();
+            console.log(this.emojiResults);
             return;
         }
     }
