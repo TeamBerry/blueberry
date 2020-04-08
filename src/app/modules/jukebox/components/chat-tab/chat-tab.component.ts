@@ -68,6 +68,12 @@ export class ChatTabComponent implements OnInit {
             );
     }
 
+    setTab(tab: 'system' | 'human') {
+        this.filter = tab;
+        this.hasAutoScrollEnabled = true;
+        this.scrollToBottom();
+    }
+
     scrollToBottom() {
         if (this.hasAutoScrollEnabled) {
             this.chat.nativeElement.scrollTop = this.chat.nativeElement.scrollHeight;
