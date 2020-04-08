@@ -27,6 +27,7 @@ export class ChatTabComponent implements OnInit {
     ]
 
     hasAutoScrollEnabled = true;
+    hasNewMessages = false;
 
     constructor(
         private jukeboxService: JukeboxService
@@ -73,13 +74,24 @@ export class ChatTabComponent implements OnInit {
     scrollToBottom() {
         if (this.hasAutoScrollEnabled) {
             this.chat.nativeElement.scrollTop = this.chat.nativeElement.scrollHeight;
+            this.hasNewMessages = false;
+        } else {
+            this.hasNewMessages = true;
         }
     }
 
-    onScroll(event) {
+    resumeAutoScroll() {
+        this.chat.nativeElement.scrollTop = this.chat.nativeElement.scrollHeight;
+        this.hasNewMessages = false;
+        this.hasAutoScrollEnabled = true;
+    }
+
+    onScroll() {
         const scrollPosition = this.chat.nativeElement.scrollTop + this.chat.nativeElement.clientHeight
         const autoScrollThreshold = this.chat.nativeElement.scrollHeight - 30;
         this.hasAutoScrollEnabled = (scrollPosition >= autoScrollThreshold);
-        console.log(this.hasAutoScrollEnabled);
+        if (this.hasAutoScrollEnabled) {
+            this.hasNewMessages = false;
+        }
     }
 }

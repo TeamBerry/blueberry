@@ -23,3 +23,21 @@
 .chat-space {
     background-color: 'red';
 }
+
+.scroll-resumer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-radius: 5px;
+    background-color: $notification-color;
+    color: white;
+    font-family: 'Montserrat';
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    font-weight: 700;
+    &:hover {
+        background-color: lighten($notification-color, 10%)
+    }
+}
