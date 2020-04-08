@@ -122,6 +122,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         event.preventDefault();
         const contents = this.contents;
         this.contents = '';
+        this.emojiResults = [];
         if (this.hasCommand && !event.ctrlKey) {
             this.handleCommands(contents);
         } else {
@@ -167,6 +168,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             this.emojiReplacementRegEx,
             emoji.native
         );
+        this.chatbox.nativeElement.focus();
     }
 
     /**

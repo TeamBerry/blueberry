@@ -77,7 +77,7 @@
 <div id="input-space" class="py-3">
     <div *appAuth="true">
         <div #emojiPicker>
-            <emoji-mart class="emoji-picker" [set]="'twitter'" [color]="'#009AEB'"
+            <emoji-mart class="emoji-picker" [set]="'google'" [color]="'#009AEB'"
                 [hidden]="!isEmojiPickerDisplayed || hasCommand" (emojiClick)="addEmoji($event)"></emoji-mart>
         </div>
         <div *ngIf="!hasCommand">
@@ -99,10 +99,9 @@
             <div class="input-group input-group-chatbox"
                 [ngClass]="{'chatbox-link': hasLink, 'chatbox-command': hasCommand}">
                 <input type="text" class="form-control chatbox no-border no-focus"
-                    placeholder="Type a message. Commands start with a '!'" [(ngModel)]="contents"
-                    ngbDropdownAnchor
-                    (keydown.enter)="post($event)" (keydown.control.enter)="post($event)" (keyup)="watchContents()"
-                    #chatbox>
+                    placeholder="Type a message. Commands start with a '!'" [(ngModel)]="contents" ngbDropdownAnchor
+                    ngbDropdownToggle (click)="watchContents()" (keydown.enter)="post($event)"
+                    (keydown.control.enter)="post($event)" (keyup)="watchContents()" #chatbox>
                 <div class="input-group-append no-border" ngbTooltip="Use Emojis">
                     <button class="btn btn-outline-secondary no-border no-focus" type="button" [disabled]="hasCommand"
                         (click)="isEmojiPickerDisplayed = !isEmojiPickerDisplayed" #emojiButton>🙂</button>
