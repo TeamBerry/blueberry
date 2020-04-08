@@ -92,6 +92,7 @@
         <div class="d-flex" ngbDropdown placement="top-left" #emojiTypeahead="ngbDropdown">
             <div ngbDropdownMenu class="w-100">
                 <p id="emoji-typeahead-title">Emoji Results</p>
+                <p class="text-center help-text" *ngIf="emojiResults.length === 0">No results</p>
                 <button ngbDropdownItem *ngFor="let result of emojiResults" (click)="replaceEmoji(result)">
                     {{ result.native }} {{ result.shortName }}
                 </button>

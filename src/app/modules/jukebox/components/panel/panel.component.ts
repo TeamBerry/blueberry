@@ -118,8 +118,10 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         // Replace full emojis
         const emojiToReplace = this.emojiReplacementRegEx.exec(this.contents);
         if (emojiToReplace && emojiToReplace.length > 0) {
-            const result: Array<EmojiData> = this.emojiSearch.search(emojiToReplace[0].replace(/:/gi,''));
-            this.contents = this.contents.replace(this.emojiReplacementRegEx, result[0].native);
+            const result: Array<EmojiData> = this.emojiSearch.search(emojiToReplace[0].replace(/:/gi, ''));
+            if (result.length > 0) {   
+                this.contents = this.contents.replace(this.emojiReplacementRegEx, result[0].native);
+            }
             this.emojiTypeahead.close();
             return;
         }
