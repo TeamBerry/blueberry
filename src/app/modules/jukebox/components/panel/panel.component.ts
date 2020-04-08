@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, ElementRef, ViewChild, Renderer2, AfterViewInit } from '@angular/core';
 import * as _ from 'lodash'
 import { ToastrService } from 'ngx-toastr';
-import { filter } from 'rxjs/operators';
+import { filter, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { NgbModal, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { EmojiSearch } from '@ctrl/ngx-emoji-mart';
 import { EmojiData } from '@ctrl/ngx-emoji-mart/ngx-emoji/public_api';
@@ -15,6 +15,7 @@ import { BoxFormComponent } from 'app/shared/components/box-form/box-form.compon
 import { Box } from 'app/shared/models/box.model';
 import { LoginFormComponent } from 'app/shared/components/login-form/login-form.component';
 import { SignupFormComponent } from 'app/shared/components/signup-form/signup-form.component';
+import { Observable, fromEvent } from 'rxjs';
 
 export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorites' | 'search'
 
@@ -23,7 +24,7 @@ export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorite
     templateUrl: './panel.component.html',
     styleUrls: ['./panel.component.scss'],
 })
-export class PanelComponent implements OnInit, AfterViewChecked {
+export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
     @Input() boxToken: string;
     user: AuthSubject = AuthService.getAuthSubject();
     box: Box;
@@ -84,19 +85,32 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         )
     }
 
-    ngAfterViewChecked() {
-        if (this.activePanel === 'chat') {
-            this.adjustView();
-        }
-
-
+    ngAfterViewInit() {
         this.emojiTypeahead.openChange.subscribe(
             (change: boolean) => {
                 if (!change) {
                     this.chatbox.nativeElement.focus();
+                } else {
+                    // this.chatbox.nativeElement.dispatchEvent(
+                    //     new KeyboardEvent('keyup', { key: 'arrowDown' })
+                    // )
                 }
             }
         )
+
+        fromEvent(this.chatbox.nativeElement, 'keyup')
+            .pipe(
+                filter(Boolean),
+                debounceTime(200),
+                distinctUntilChanged(),
+        )
+        .subscribe(() => this.watchContents());
+    }
+
+    ngAfterViewChecked() {
+        if (this.activePanel === 'chat') {
+            this.adjustView();
+        }
     }
 
     adjustView() {
@@ -139,7 +153,6 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         if (emojiToSearch && emojiToSearch.length > 0) {
             this.emojiResults = this.emojiSearch.search(emojiToSearch[0].replace(/:/gi, ''));
             this.emojiTypeahead.open();
-            console.log(this.emojiResults);
             return;
         }
     }
