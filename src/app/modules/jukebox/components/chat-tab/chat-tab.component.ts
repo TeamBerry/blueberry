@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 import { User } from 'app/shared/models/user.model';
 import { JukeboxService } from '../../jukebox.service';
@@ -14,6 +14,7 @@ export class ChatTabComponent implements OnInit {
     @Input() boxToken: string;
     @Input() user: User = new User;
     @Output() socketStatus = new EventEmitter();
+    @ViewChild('chat') chat: ElementRef;
     contents = '';
     hasLink = false;
     hasCommand = false;
@@ -53,6 +54,9 @@ export class ChatTabComponent implements OnInit {
                 (message) => {
                     console.log(message);
                     this.messages.push(message);
+                    setTimeout(() => {
+                        this.scrollToBottom();
+                    }, 200);
                 },
                 error => {
                     this.socketStatus.emit('offline');
@@ -62,5 +66,9 @@ export class ChatTabComponent implements OnInit {
                     this.socketStatus.emit('online');
                 }
             );
+    }
+
+    scrollToBottom() {
+        this.chat.nativeElement.scrollTop = this.chat.nativeElement.scrollHeight;
     }
 }
