@@ -28,7 +28,6 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
     @Output() skipEvent = new EventEmitter();
     contents = '';
-    hasLink = false;
     hasCommand = false;
     activePanel: Panel = 'chat';
 

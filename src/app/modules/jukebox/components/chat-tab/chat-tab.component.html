@@ -1,11 +1,11 @@
-<app-bx-tabset
-    [options]="tabsetOptions"
-    (clickedOption)="filter = $event"
-></app-bx-tabset>
-<div class="overflow-auto">
+<app-bx-tabset [options]="tabsetOptions" (clickedOption)="filter = $event"></app-bx-tabset>
+<div class="overflow-auto" #chat (scroll)="onScroll()">
     <app-chat-item *ngFor="let message of messages" [message]="message" [username]="user.name" [hidden]="
             (filter === 'system' && message.source !== 'system')
             || (filter === 'human' && message.source === 'system')
         ">
     </app-chat-item>
+</div>
+<div class="scroll-resumer" *ngIf="!hasAutoScrollEnabled && hasNewMessages" (click)="resumeAutoScroll()">
+    New messages
 </div>
