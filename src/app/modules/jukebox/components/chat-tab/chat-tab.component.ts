@@ -41,7 +41,6 @@ export class ChatTabComponent implements OnInit {
      * @memberof ChatComponent
      */
     connectToStream() {
-        console.log('connecting chat to socket...');
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
                 filter(message =>
@@ -51,14 +50,12 @@ export class ChatTabComponent implements OnInit {
             )
             .subscribe(
                 (message) => {
-                    console.log(message);
                     this.messages.push(message);
                 },
                 error => {
                     this.socketStatus.emit('offline');
                 },
                 () => {
-                    console.log('CONNECTED');
                     this.socketStatus.emit('online');
                 }
             );

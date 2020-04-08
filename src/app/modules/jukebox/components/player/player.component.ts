@@ -43,15 +43,12 @@ export class PlayerComponent implements OnInit, OnChanges {
     constructor() { }
 
     ngOnInit() {
-        console.log('Init player...');
     }
 
     ngOnChanges(event) {
         if (this.isPlayerReady) {
-            console.log('changes detected in the inputs', event);
             if (_.has(event, 'video')) {
                 if (event.video.currentValue !== null) {
-                    console.log('play video yeet', event.video.currentValue);
                     this.video = event.video.currentValue;
                     this.playVideo(this.video);
                 }
@@ -78,7 +75,6 @@ export class PlayerComponent implements OnInit, OnChanges {
     onPlayerReady(player) {
         this.player = player;
         this.isPlayerReady = true;
-        console.log('player is ready');
         this.state.emit('ready');
     }
 

@@ -112,7 +112,6 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             const emojiMatches = this.emojiDetectionRegEx.exec(this.contents);
             if (emojiMatches && emojiMatches.length > 0) {
                 this.emojiResults = this.emojiSearch.search(emojiMatches[0].substr(1));
-                console.log(this.emojiResults);
                 this.emojiTypeahead.open();
             }
         }
@@ -149,7 +148,6 @@ export class PanelComponent implements OnInit, AfterViewChecked {
      * @memberof PanelComponent
      */
     addEmoji(event) {
-        console.log(event);
         this.contents += ` ${event.emoji.native}`;
     }
 
