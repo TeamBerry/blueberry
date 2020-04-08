@@ -26,6 +26,8 @@ export class ChatTabComponent implements OnInit {
         { title: 'User Chat', value: 'human' }
     ]
 
+    hasAutoScrollEnabled = true;
+
     constructor(
         private jukeboxService: JukeboxService
     ) { }
@@ -69,6 +71,15 @@ export class ChatTabComponent implements OnInit {
     }
 
     scrollToBottom() {
-        this.chat.nativeElement.scrollTop = this.chat.nativeElement.scrollHeight;
+        if (this.hasAutoScrollEnabled) {
+            this.chat.nativeElement.scrollTop = this.chat.nativeElement.scrollHeight;
+        }
+    }
+
+    onScroll(event) {
+        const scrollPosition = this.chat.nativeElement.scrollTop + this.chat.nativeElement.clientHeight
+        const autoScrollThreshold = this.chat.nativeElement.scrollHeight - 30;
+        this.hasAutoScrollEnabled = (scrollPosition >= autoScrollThreshold);
+        console.log(this.hasAutoScrollEnabled);
     }
 }

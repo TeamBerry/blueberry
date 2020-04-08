@@ -2,7 +2,7 @@
     [options]="tabsetOptions"
     (clickedOption)="filter = $event"
 ></app-bx-tabset>
-<div class="overflow-auto" #chat>
+<div class="overflow-auto" #chat (scroll)="onScroll($event)">
     <app-chat-item *ngFor="let message of messages" [message]="message" [username]="user.name" [hidden]="
             (filter === 'system' && message.source !== 'system')
             || (filter === 'human' && message.source === 'system')
