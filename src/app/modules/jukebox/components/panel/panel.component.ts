@@ -101,19 +101,35 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     }
 
     watchContents() {
+        // Reset everything
+        this.hasCommand = false;
         if (this.contents.length === 0) {
             this.emojiTypeahead.close();
-            this.hasCommand = false;
             return;
         }
+
+        // Switch to command mode
         if (this.contents.indexOf('!') === 0) {
             this.hasCommand = true;
-        } else {
-            const emojiMatches = this.emojiDetectionRegEx.exec(this.contents);
-            if (emojiMatches && emojiMatches.length > 0) {
-                this.emojiResults = this.emojiSearch.search(emojiMatches[0].substr(1));
-                this.emojiTypeahead.open();
-            }
+            this.emojiTypeahead.close();
+            return;
+        }
+
+        // Replace full emojis
+        const emojiToReplace = this.emojiReplacementRegEx.exec(this.contents);
+        if (emojiToReplace && emojiToReplace.length > 0) {
+            const result: Array<EmojiData> = this.emojiSearch.search(emojiToReplace[0].replace(/:/gi,''));
+            this.contents = this.contents.replace(this.emojiReplacementRegEx, result[0].native);
+            this.emojiTypeahead.close();
+            return;
+        }
+
+        // Search for emojis to typeahead
+        const emojiToSearch = this.emojiDetectionRegEx.exec(this.contents);
+        if (emojiToSearch && emojiToSearch.length > 0) {
+            this.emojiResults = this.emojiSearch.search(emojiToSearch[0].replace(/:/gi,''));
+            this.emojiTypeahead.open();
+            return;
         }
     }
 
@@ -162,10 +178,6 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             this.emojiDetectionRegEx,
             emoji.native
         )
-        this.contents = this.contents.replace(
-            this.emojiReplacementRegEx,
-            emoji.native
-        );
         this.chatbox.nativeElement.focus();
     }
 
