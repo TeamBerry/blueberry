@@ -90,10 +90,6 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
             (change: boolean) => {
                 if (!change) {
                     this.chatbox.nativeElement.focus();
-                } else {
-                    // this.chatbox.nativeElement.dispatchEvent(
-                    //     new KeyboardEvent('keyup', { key: 'arrowDown' })
-                    // )
                 }
             }
         )
