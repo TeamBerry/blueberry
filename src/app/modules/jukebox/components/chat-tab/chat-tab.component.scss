@@ -29,8 +29,8 @@
     bottom: 0;
     width: 100%;
     border-radius: 5px;
-    background-color: $notification-color;
-    color: white;
+    background-color: $active-color;
+    color: black;
     font-family: 'Montserrat';
     cursor: pointer;
     display: flex;
@@ -38,6 +38,6 @@
     align-self: center;
     font-weight: 700;
     &:hover {
-        background-color: lighten($notification-color, 10%)
+        background-color: lighten($active-color, 10%)
     }
 }

@@ -212,6 +212,9 @@
         &:hover {
             background-color: var(--background-main-hover-color);
         }
+        &:focus {
+            background-color: var(--background-main-hover-color);
+        }
     }
 
     .bx-dropdown-icon {

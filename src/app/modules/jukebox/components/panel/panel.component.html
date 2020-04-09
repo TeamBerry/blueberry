@@ -1,14 +1,17 @@
 <div class="row no-gutters">
     <div class="col-11 sub-panels">
         <div class="panel-title text-center">{{activePanel}}</div>
-        <div class="box-side-panel" id="panel-space" [hidden]="['users', 'commands', 'help'].indexOf(activePanel) === -1">
+        <div class="box-side-panel" id="panel-space"
+            [hidden]="['users', 'commands', 'help'].indexOf(activePanel) === -1">
             <app-userlist [hidden]="activePanel !== 'users'"></app-userlist>
-            <app-command-list [hidden]="activePanel !== 'commands'" (clickedCommand)="kickstartCommand($event)"></app-command-list>
+            <app-command-list [hidden]="activePanel !== 'commands'" (clickedCommand)="kickstartCommand($event)">
+            </app-command-list>
             <app-help-tab [hidden]="activePanel !== 'help'"></app-help-tab>
         </div>
         <div class="box-side-panel panel-fixed" [hidden]="['chat', 'queue', 'search'].indexOf(activePanel) === -1">
             <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user"></app-queue>
-            <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user" (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
+            <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user"
+                (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
             <app-search-tab [hidden]="activePanel !== 'search'" [boxToken]="boxToken" [user]="user"></app-search-tab>
         </div>
     </div>
@@ -16,44 +19,53 @@
         <ul class="nav flex-column">
             <li class="nav-item" [ngClass]="{'active': activePanel == 'chat'}" ngbTooltip="Chat" placement="left">
                 <a class="nav-link" (click)="showPanel('chat'); newMessages = false">
-                    <svg class="berrybox-svg" id="chat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 550" style="height:1.4em;">
-                        <polygon class="berrybox-path" points="465.41 102.83 31.25 102.83 31.25 386.15 99.3 386.15 64.44 463.51 236.07 386.15 465.41 386.15 465.41 102.83"/>
-                        <circle *ngIf="newMessages" class="berrybox-path notification-indicator" cx="430.41" cy="122.83" r="111"/>
+                    <svg class="berrybox-svg" id="chat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 550"
+                        style="height:1.4em;">
+                        <polygon class="berrybox-path"
+                            points="465.41 102.83 31.25 102.83 31.25 386.15 99.3 386.15 64.44 463.51 236.07 386.15 465.41 386.15 465.41 102.83" />
+                        <circle *ngIf="newMessages" class="berrybox-path notification-indicator" cx="430.41" cy="122.83"
+                            r="111" />
                     </svg>
                 </a>
             </li>
             <li class="nav-item" [ngClass]="{'active': activePanel == 'queue'}" ngbTooltip="Queue" placement="left">
                 <a class="nav-link" (click)="showPanel('queue')" title="Queue">
                     <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 475.55 428.13">
-                        <path class="berrybox-path" d="M475.56 307.09L293.21 201.81v210.56l182.35-105.28M0 0h456.59v56.04H0zM0 93.02h456.59v56.04H0zM0 186.04h269.23v56.04H0zM0 279.07h269.23v56.04H0zM0 372.09h269.23v56.04H0z"
-                        />
+                        <path class="berrybox-path"
+                            d="M475.56 307.09L293.21 201.81v210.56l182.35-105.28M0 0h456.59v56.04H0zM0 93.02h456.59v56.04H0zM0 186.04h269.23v56.04H0zM0 279.07h269.23v56.04H0zM0 372.09h269.23v56.04H0z" />
                     </svg>
                 </a>
             </li>
-            <li class="nav-item" [ngClass]="{'active': activePanel === 'search'}" *appAuth="true" ngbTooltip="Find Videos" placement="left">
+            <li class="nav-item" [ngClass]="{'active': activePanel === 'search'}" *appAuth="true"
+                ngbTooltip="Find Videos" placement="left">
                 <a class="nav-link" (click)="showPanel('search')" title="Find Videos">
                     <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427.28 439.64">
-                        <rect class="berrybox-path" x="-10.35" y="290.75" width="245.89" height="72.58" transform="translate(-198.27 175.41) rotate(-45)"/>
-                        <path class="berrybox-path" d="M275.62,0A151.66,151.66,0,1,0,427.28,151.66,151.66,151.66,0,0,0,275.62,0Zm0,239a87.32,87.32,0,1,1,87.32-87.32A87.32,87.32,0,0,1,275.62,239Z"/>
+                        <rect class="berrybox-path" x="-10.35" y="290.75" width="245.89" height="72.58"
+                            transform="translate(-198.27 175.41) rotate(-45)" />
+                        <path class="berrybox-path"
+                            d="M275.62,0A151.66,151.66,0,1,0,427.28,151.66,151.66,151.66,0,0,0,275.62,0Zm0,239a87.32,87.32,0,1,1,87.32-87.32A87.32,87.32,0,0,1,275.62,239Z" />
                     </svg>
                 </a>
             </li>
             <li class="nav-item" [ngClass]="{'active': activePanel == 'users'}" ngbTooltip="Users" placement="left">
                 <a class="nav-link" (click)="showPanel('users')" title="Users">
-                    <svg class="berrybox-svg" style="height: 1.5em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 334.45 460">
-                        <path class="berrybox-path" d="M271.41 190.25a63 63 0 0 0-63 63v190.17h126.04V253.28a63 63 0 0 0-63.04-63.03z" />
+                    <svg class="berrybox-svg" style="height: 1.5em;" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 334.45 460">
+                        <path class="berrybox-path"
+                            d="M271.41 190.25a63 63 0 0 0-63 63v190.17h126.04V253.28a63 63 0 0 0-63.04-63.03z" />
                         <circle class="berrybox-path" cx="268.81" cy="129.3" r="52.62" />
-                        <path class="berrybox-path" d="M66.15 185.75A66.15 66.15 0 0 0 0 251.9v199.52h132.29V251.89a66.15 66.15 0 0 0-66.14-66.14z"
-                        />
+                        <path class="berrybox-path"
+                            d="M66.15 185.75A66.15 66.15 0 0 0 0 251.9v199.52h132.29V251.89a66.15 66.15 0 0 0-66.14-66.14z" />
                         <circle class="berrybox-path" cx="63.41" cy="121.79" r="55.21" />
-                        <path class="berrybox-path" d="M170.23 145.13a78.39 78.39 0 0 0-78.39 78.39V460h156.78V223.52a78.39 78.39 0 0 0-78.39-78.39z"
-                        />
+                        <path class="berrybox-path"
+                            d="M170.23 145.13a78.39 78.39 0 0 0-78.39 78.39V460h156.78V223.52a78.39 78.39 0 0 0-78.39-78.39z" />
                         <circle class="berrybox-path" cx="166.98" cy="65.44" r="65.44" />
                     </svg>
                 </a>
             </li>
             <li class="nav-separator my-1"></li>
-            <li class="nav-item" [ngClass]="{'active': activePanel === 'commands'}" ngbTooltip="Commands" placement="left">
+            <li class="nav-item" [ngClass]="{'active': activePanel === 'commands'}" ngbTooltip="Commands"
+                placement="left">
                 <a class="nav-link" (click)="showPanel('commands')" title="Commands">!</a>
             </li>
             <li class="nav-item" [ngClass]="{'active': activePanel === 'help'}" ngbTooltip="Help" placement="left">
@@ -65,7 +77,8 @@
 <div id="input-space" class="py-3">
     <div *appAuth="true">
         <div #emojiPicker>
-            <emoji-mart class="emoji-picker" [set]="'twitter'" [color]="'#009AEB'" [hidden]="!isEmojiPickerDisplayed || hasCommand" (emojiClick)="addEmoji($event)"></emoji-mart>
+            <emoji-mart class="emoji-picker" [set]="'google'" [color]="'#009AEB'"
+                [hidden]="!isEmojiPickerDisplayed || hasCommand" (emojiClick)="addEmoji($event)"></emoji-mart>
         </div>
         <div *ngIf="!hasCommand">
             <span class="input-mode" id="span-default-mode">Chat </span>
@@ -74,36 +87,53 @@
         <div *ngIf="hasCommand">
             <span class="input-mode" id="span-command-mode">Command </span>
             <span class="key-commands">Use
-            <kbd>Ctrl + Enter</kbd> to send as text</span>
+                <kbd>Ctrl + Enter</kbd> to send as text</span>
         </div>
-        <div class="input-group input-group-chatbox" [ngClass]="{'chatbox-command': hasCommand}">
-            <input type="text" class="form-control chatbox no-border no-focus" placeholder="Type a message. Commands start with a '!'" [(ngModel)]="contents" (keydown.enter)="post($event)" (keydown.control.enter)="post($event)" (keyup)="watchContents()" #chatbox>
-            <div class="input-group-append no-border" ngbTooltip="Use Emojis">
-                <button class="btn btn-outline-secondary no-border no-focus" type="button" [disabled]="hasCommand" (click)="isEmojiPickerDisplayed = !isEmojiPickerDisplayed" #emojiButton>🙂</button>
+        <div class="d-flex" ngbDropdown placement="top-left" #emojiTypeahead="ngbDropdown">
+            <div ngbDropdownMenu class="w-100">
+                <p id="emoji-typeahead-title">Emoji Results</p>
+                <p class="text-center help-text" *ngIf="emojiResults.length === 0">No results</p>
+                <button ngbDropdownItem *ngFor="let result of emojiResults" (click)="replaceEmoji(result)">
+                    {{ result.native }} {{ result.shortName }}
+                </button>
+            </div>
+            <div class="input-group input-group-chatbox"
+                [ngClass]="{'chatbox-command': hasCommand}">
+                <input type="text" class="form-control chatbox no-border no-focus"
+                    placeholder="Type a message. Commands start with a '!'" [(ngModel)]="contents" ngbDropdownAnchor
+                    ngbDropdownToggle (click)="watchContents()" (keydown.enter)="post($event)"
+                    (keydown.control.enter)="post($event)" #chatbox>
+                <div class="input-group-append no-border" ngbTooltip="Use Emojis">
+                    <button class="btn btn-outline-secondary no-border no-focus" type="button" [disabled]="hasCommand"
+                        (click)="isEmojiPickerDisplayed = !isEmojiPickerDisplayed" #emojiButton>🙂</button>
+                </div>
             </div>
         </div>
         <div class="chat-actions d-flex no-gutters">
-            <!--<div class="col-2">
-            <button class="btn btn-primary">Options</button>
-        </div>-->
             <div class="col-6">
                 <button class="btn btn-outline-primary" (click)="showPanel('search')">
                     <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427.28 439.64">
-                        <rect class="berrybox-path" x="-10.35" y="290.75" width="245.89" height="72.58" transform="translate(-198.27 175.41) rotate(-45)"/>
-                        <path class="berrybox-path" d="M275.62,0A151.66,151.66,0,1,0,427.28,151.66,151.66,151.66,0,0,0,275.62,0Zm0,239a87.32,87.32,0,1,1,87.32-87.32A87.32,87.32,0,0,1,275.62,239Z"/>
+                        <rect class="berrybox-path" x="-10.35" y="290.75" width="245.89" height="72.58"
+                            transform="translate(-198.27 175.41) rotate(-45)" />
+                        <path class="berrybox-path"
+                            d="M275.62,0A151.66,151.66,0,1,0,427.28,151.66,151.66,151.66,0,0,0,275.62,0Zm0,239a87.32,87.32,0,1,1,87.32-87.32A87.32,87.32,0,0,1,275.62,239Z" />
                     </svg>
                     Add videos
                 </button>
             </div>
             <div class="col-6">
-                <button *ngIf="!hasCommand" class="btn btn-primary" style="float:right;" (click)="post($event)">Send message</button>
-                <button *ngIf="hasCommand" class="btn btn-primary" id="command-button" style="float:right;" (click)="post($event)">Use command</button>
+                <button *ngIf="!hasCommand" class="btn btn-primary" style="float:right;" (click)="post($event)">Send
+                    message</button>
+                <button *ngIf="hasCommand" class="btn btn-primary" id="command-button" style="float:right;"
+                    (click)="post($event)">Use command</button>
             </div>
         </div>
     </div>
     <div *appAuth="false" class="text-center">
         <h5>
-            <button class="btn btn-primary" (click)="openLoginPrompt()">Log in</button> or <button class="btn btn-primary" (click)="openSignupPrompt()">Sign up</button> to chat and submit videos to the playlist!
+            <button class="btn btn-primary" (click)="openLoginPrompt()">Log in</button> or <button
+                class="btn btn-primary" (click)="openSignupPrompt()">Sign up</button> to chat and submit videos to the
+            playlist!
         </h5>
     </div>
 </div>

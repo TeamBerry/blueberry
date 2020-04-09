@@ -139,14 +139,12 @@ export class BoxComponent implements OnInit {
      * @memberof BoxComponent
      */
     connectToSyncStream() {
-        console.log('connecting sync to socket...');
         this.jukeboxService.getBoxStream()
             .pipe(
                 filter(syncPacket => syncPacket instanceof SyncPacket && syncPacket.box === this.box._id)
             )
             .subscribe(
                 (syncPacket: SyncPacket) => {
-                    console.log('New Sync Packet', syncPacket);
                     // Dirty, to be changed
                     if (_.has(syncPacket.item, 'video')) {
                         this.currentVideo = syncPacket.item; // Given to the player by 1-way binding
@@ -154,7 +152,6 @@ export class BoxComponent implements OnInit {
                 },
                 error => {
                     console.error(error);
-                    console.log('socket offline');
                 }
             );
     }
