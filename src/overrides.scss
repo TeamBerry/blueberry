@@ -102,6 +102,14 @@
     }
 }
 
+.btn-queue {
+    color: var(--text-main-color);
+    background-color: rgba(black, 0.2);
+    &:hover {
+        background-color: rgba(black, 0.3);
+    }
+}
+
 .display-3 {
     font-family: 'Montserrat', sans-serif;
 }

@@ -33,17 +33,17 @@
             <div *appAuth="true" class="d-flex justify-content-between">
                 <div class="d-flex">
                     <app-bx-button *ngIf="item.video" (click)="addToPlaylist()"
-                        [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to a Playlist'}">
+                        [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to a Playlist', 'context': 'queue'}">
                     </app-bx-button>
                 </div>
                 <div class="d-flex">
                     <app-bx-button *ngIf="status === 'playing' && user._id === box?.creator?._id" class="ml-1"
-                        (click)="skipVideo(item)" [options]="{'type': 'skip', 'textDisplay': 'tooltip'}">
+                        (click)="skipVideo(item)" [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'queue'}">
                     </app-bx-button>
                     <app-bx-button
                         *ngIf="status === 'upcoming' && (item?.submitted_by?._id === user._id || user._id === box?.creator?._id)"
                         class="ml-1" (click)="togglePreselection(item)"
-                        [options]="{'type': 'preselect', 'textDisplay': 'tooltip', 'text': 'Force next'}">
+                        [options]="{'type': 'preselect', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Force next', 'context': 'queue'}">
                     </app-bx-button>
                     <app-bx-button
                         *ngIf="status === 'upcoming' && (item?.submitted_by?._id === user._id || user._id === box?.creator?._id)"
@@ -51,7 +51,7 @@
                         [options]="{'type': 'cancel', 'context': 'danger', 'textDisplay': 'tooltip', 'text': 'Remove from Queue'}">
                     </app-bx-button>
                     <app-bx-button *ngIf="status === 'played'" class="ml-1" (click)="replayVideo(item)"
-                        [options]="{'type': 'replay', 'textDisplay': 'tooltip'}"></app-bx-button>
+                        [options]="{'type': 'replay', 'textDisplay': 'tooltip', 'context': 'queue'}"></app-bx-button>
                 </div>
             </div>
         </div>
