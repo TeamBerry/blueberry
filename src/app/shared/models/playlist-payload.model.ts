@@ -25,29 +25,3 @@ export class SubmissionPayload {
      */
     boxToken: string;
 }
-
-export class PlaylistItemActionRequest {
-    /**
-     * Identifier of the playlist item
-     *
-     * @type {QueueVideo['_id']}
-     * @memberof CancelPayload
-     */
-    item: QueueVideo['_id'];
-
-    /**
-     * Identifier of the user who requested the cancel
-     *
-     * @type {string}
-     * @memberof CancelPayload
-     */
-    userToken: string;
-
-    /**
-     * Identifier of the box of the playlist
-     *
-     * @type {string}
-     * @memberof CancelPayload
-     */
-    boxToken: string;
-}
