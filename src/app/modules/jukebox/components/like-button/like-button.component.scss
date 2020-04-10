@@ -5,6 +5,6 @@
         cursor: pointer;
     }
     &.mood-active {
-        fill: $active-color;
+        fill: var(--active-color);
     }
 }

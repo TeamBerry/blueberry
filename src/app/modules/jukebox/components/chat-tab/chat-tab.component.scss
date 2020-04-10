@@ -29,7 +29,7 @@
     bottom: 0;
     width: 100%;
     border-radius: 5px;
-    background-color: $active-color;
+    background-color: var(--active-color);
     color: black;
     font-family: 'Montserrat';
     cursor: pointer;
@@ -38,6 +38,6 @@
     align-self: center;
     font-weight: 700;
     &:hover {
-        background-color: lighten($active-color, 10%)
+        background-color: var(--active-hover-color);
     }
 }

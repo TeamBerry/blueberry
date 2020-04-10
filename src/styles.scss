@@ -42,8 +42,8 @@ button>svg {
     height: 1.3em;
     width: 1.3em;
     &.crown {
-        fill: $active-color;
-        color: $active-color;
+        fill: var(--active-color);
+        color: var(--active-color);
     }
     &.primary-icon {
         &:hover {
@@ -107,8 +107,8 @@ button>svg {
 }
 
 .btn-active {
-    background-color: $active-color;
-    border-color: $active-color;
+    background-color: var(--active-color);
+    border-color: var(--active-color);
     color: white !important;
 }
 

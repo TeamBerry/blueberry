@@ -36,17 +36,17 @@
 }
 
 .force-next {
-    outline: 4px solid $active-color;
-    outline-offset: -4px;
+    outline: 3px solid var(--active-color);
+    outline-offset: -6px;
 }
 
 .next-indicator-icon {
     height: 18px;
-    fill: $active-color !important;
+    fill: var(--active-color) !important;
 }
 
 .next-indicator {
     font-family: 'Montserrat';
-    color: $active-color;
+    color: var(--active-color);
     font-weight: 800;
 }

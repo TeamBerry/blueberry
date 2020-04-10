@@ -22,7 +22,9 @@ export const darkTheme = {
     'text-system-color': '#BBBBBB',
     'stroke-color': '#BBBBBB',
     'active-stroke-color': 'white',
-    'inactive-color': '#CCCCCC'
+    'inactive-color': '#CCCCCC',
+    'active-color': '#EBBA17',
+    'active-hover-color': '#D6A912'
 }
 
 export const lightTheme = {
@@ -45,6 +47,8 @@ export const lightTheme = {
     'stroke-color': '#444444',
     'active-stroke-color': '#009AEB',
     'inactive-color': '#8f8f8f',
+    'active-color': '#D6A912',
+    'active-hover-color': '#EBBA17'
 }
 
 @Injectable({
