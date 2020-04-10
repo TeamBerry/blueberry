@@ -86,6 +86,10 @@
 
 .btn-danger {
     background-color: $danger-color;
+    border: darken($danger-color, 5%);
+    &:hover {
+        background-color: darken($danger-color, 5%);
+    }
 }
 
 .btn-outline-danger {
