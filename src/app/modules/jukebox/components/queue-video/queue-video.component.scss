@@ -34,3 +34,15 @@
         text-align: center;
     }
 }
+
+.force-next {
+    outline: 4px solid $active-color;
+    outline-offset: -4px;
+}
+
+
+.next-indicator {
+    font-family: 'Montserrat';
+    color: $active-color;
+    font-weight: 800;
+}
