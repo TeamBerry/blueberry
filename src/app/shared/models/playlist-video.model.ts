@@ -13,4 +13,5 @@ export class QueueVideo {
         name: string;
     };
     video: Video;
+    isPreselected: boolean;
 }

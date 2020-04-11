@@ -4,7 +4,13 @@ import { JukeboxService } from '../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
 import { QueueVideo } from 'app/shared/models/playlist-video.model';
-import { SubmissionPayload, PlaylistItemActionRequest } from 'app/shared/models/playlist-payload.model';
+import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
+import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PlaylistService } from 'app/shared/services/playlist.service';
+import { BoxService } from 'app/shared/services/box.service';
+import { ToastrService } from 'ngx-toastr';
+import { QueueItemActionRequest } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-queue',
@@ -19,8 +25,17 @@ export class QueueComponent implements OnInit {
     playedVideos: Array<QueueVideo>;
     upcomingVideos: Array<QueueVideo>;
 
+    tabSetOptions = [
+        { title: `Upcoming`, value: 'upcoming' },
+        { title: 'Played', value: 'played' }
+    ]
+    displayTab: 'upcoming' | 'played' = 'upcoming';
+
     constructor(
         private jukeboxService: JukeboxService,
+        private modalService: NgbModal,
+        private boxService: BoxService,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
@@ -66,15 +81,28 @@ export class QueueComponent implements OnInit {
      */
     buildPartialPlaylist(playlist: Array<QueueVideo>, state: string): Array<QueueVideo> {
         if (state === 'upcoming') {
-            return playlist.filter((item: QueueVideo) => {
+            const upcoming = playlist.filter((item: QueueVideo) => {
                 return item.startTime === null;
             });
+
+            // Put the preselected video first
+            const preselectedVideoIndex = upcoming.findIndex((item: QueueVideo) => item.isPreselected)
+            if (preselectedVideoIndex !== -1) {
+                const preselectedVideo = upcoming[preselectedVideoIndex]
+                upcoming.splice(preselectedVideoIndex, 1)
+                upcoming.push(preselectedVideo)
+            }
+
+            this.tabSetOptions[0].title = `Upcoming (${upcoming.length})`
+            return upcoming
         }
 
         if (state === 'played') {
-            return playlist.filter((item: QueueVideo) => {
+            const played = playlist.filter((item: QueueVideo) => {
                 return item.startTime !== null && item.endTime !== null;
             });
+            this.tabSetOptions[1].title = `Played (${played.length})`
+            return played
         }
     }
 
@@ -85,7 +113,7 @@ export class QueueComponent implements OnInit {
      * @memberof PlaylistComponent
      */
     handlePlaylistOrder(event) {
-        const actionRequest: PlaylistItemActionRequest = {
+        const actionRequest: QueueItemActionRequest = {
             item: event.item,
             userToken: this.user._id,
             boxToken: this.box._id
@@ -102,6 +130,10 @@ export class QueueComponent implements OnInit {
 
             case 'skip':
                 this.jukeboxService.skipVideo()
+                break
+
+            case 'preselect':
+                this.jukeboxService.preselectVideo(actionRequest)
                 break
         }
     }
@@ -139,6 +171,17 @@ export class QueueComponent implements OnInit {
      * @memberof PlaylistComponent
      */
     requestSkip() {
+
+    }
+
+    startConversion() {
+        const modalRef = this.modalService.open(PlaylistSelectorComponent);
+        modalRef.componentInstance.selectedPlaylist$.subscribe(
+            async (playlistId: string) => {
+                this.boxService.convert(this.box._id, playlistId).subscribe()
+                this.toastr.success('Playlist updated', 'Success')
+            }
+        )
 
     }
 }

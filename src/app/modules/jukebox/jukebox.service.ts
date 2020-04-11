@@ -6,9 +6,9 @@ import * as _ from 'lodash';
 
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
-import { Message, FeedbackMessage } from '@teamberry/muscadine';
+import { Message, FeedbackMessage, QueueItemActionRequest } from '@teamberry/muscadine';
 import { SyncPacket } from 'app/shared/models/sync-packet.model';
-import { SubmissionPayload, PlaylistItemActionRequest } from 'app/shared/models/playlist-payload.model';
+import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
 import { AuthSubject } from 'app/shared/models/session.model';
@@ -117,11 +117,21 @@ export class JukeboxService {
     /**
      * Cancels a video from the playlist
      *
-     * @param {*} cancelPayload
+     * @param {QueueItemActionRequest} actionRequest
      * @memberof JukeboxService
      */
-    public cancelVideo = (cancelPayload: PlaylistItemActionRequest): void => {
-        this.boxSocket.emit('cancel', cancelPayload)
+    public cancelVideo = (actionRequest: QueueItemActionRequest): void => {
+        this.boxSocket.emit('cancel', actionRequest)
+    }
+
+    /**
+     * Preselects/Unselects a video from the upcoming pool
+     *
+     * @param {QueueItemActionRequest} actionRequest
+     * @memberof JukeboxService
+     */
+    public preselectVideo = (actionRequest: QueueItemActionRequest): void => {
+        this.boxSocket.emit('preselect', actionRequest)
     }
 
     /**

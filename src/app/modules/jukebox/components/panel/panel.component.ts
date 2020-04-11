@@ -1,19 +1,21 @@
-import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, ElementRef, ViewChild, Renderer2, AfterViewInit } from '@angular/core';
 import * as _ from 'lodash'
+import { ToastrService } from 'ngx-toastr';
+import { filter, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { NgbModal, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { EmojiSearch } from '@ctrl/ngx-emoji-mart';
+import { EmojiData } from '@ctrl/ngx-emoji-mart/ngx-emoji/public_api';
 
 import { JukeboxService } from './../../jukebox.service';
-import { Message } from '@teamberry/muscadine';
-import { User } from 'app/shared/models/user.model';
+import { Message, FeedbackMessage } from '@teamberry/muscadine';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
-import { filter } from 'rxjs/operators';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Box } from 'app/shared/models/box.model';
 import { LoginFormComponent } from 'app/shared/components/login-form/login-form.component';
 import { SignupFormComponent } from 'app/shared/components/signup-form/signup-form.component';
-import { ToastrService } from 'ngx-toastr';
+import { Observable, fromEvent } from 'rxjs';
 
 export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorites' | 'search'
 
@@ -22,14 +24,13 @@ export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorite
     templateUrl: './panel.component.html',
     styleUrls: ['./panel.component.scss'],
 })
-export class PanelComponent implements OnInit, AfterViewChecked {
+export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
     @Input() boxToken: string;
     user: AuthSubject = AuthService.getAuthSubject();
     box: Box;
 
     @Output() skipEvent = new EventEmitter();
     contents = '';
-    hasLink = false;
     hasCommand = false;
     activePanel: Panel = 'chat';
 
@@ -47,15 +48,21 @@ export class PanelComponent implements OnInit, AfterViewChecked {
      */
     isEmojiPickerDisplayed = false;
 
-    @ViewChild('chatbox', { static: false }) chatbox: ElementRef;
-    @ViewChild('emojiPicker', { static: false }) emojiPicker: ElementRef;
-    @ViewChild('emojiButton', { static: false }) emojiButton: ElementRef;
+    @ViewChild('chatbox') chatbox: ElementRef;
+    @ViewChild('emojiPicker') emojiPicker: ElementRef;
+    @ViewChild('emojiButton') emojiButton: ElementRef;
+    @ViewChild('emojiTypeahead') emojiTypeahead: NgbDropdown;
+
+    emojiDetectionRegEx = new RegExp(/:[\w]{2,}/, 'gmi');
+    emojiReplacementRegEx = new RegExp(/:[\w]{2,}:/, 'gmi');
+    emojiResults: Array<EmojiData> = [];
 
     constructor(
         private modalService: NgbModal,
         private jukeboxService: JukeboxService,
         private toastr: ToastrService,
-        private renderer: Renderer2
+        private renderer: Renderer2,
+        private emojiSearch: EmojiSearch
     ) {
         // Will close the emoji picker when a click is registered outside of the chatbox, the emoji button and picker
         this.renderer.listen('window', 'click', (e: Event) => {
@@ -78,6 +85,24 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         )
     }
 
+    ngAfterViewInit() {
+        this.emojiTypeahead.openChange.subscribe(
+            (change: boolean) => {
+                if (!change) {
+                    this.chatbox.nativeElement.focus();
+                }
+            }
+        )
+
+        fromEvent(this.chatbox.nativeElement, 'keyup')
+            .pipe(
+                filter(Boolean),
+                debounceTime(200),
+                distinctUntilChanged(),
+        )
+        .subscribe(() => this.watchContents());
+    }
+
     ngAfterViewChecked() {
         if (this.activePanel === 'chat') {
             this.adjustView();
@@ -94,9 +119,37 @@ export class PanelComponent implements OnInit, AfterViewChecked {
     }
 
     watchContents() {
+        // Reset everything
         this.hasCommand = false;
+        if (this.contents.length === 0) {
+            this.emojiTypeahead.close();
+            return;
+        }
+
+        // Switch to command mode
         if (this.contents.indexOf('!') === 0) {
             this.hasCommand = true;
+            this.emojiTypeahead.close();
+            return;
+        }
+
+        // Replace full emojis
+        const emojiToReplace = this.emojiReplacementRegEx.exec(this.contents);
+        if (emojiToReplace && emojiToReplace.length > 0) {
+            const result: Array<EmojiData> = this.emojiSearch.search(emojiToReplace[0].replace(/:/gi, ''));
+            if (result.length > 0) {
+                this.contents = this.contents.replace(this.emojiReplacementRegEx, result[0].native);
+            }
+            this.emojiTypeahead.close();
+            return;
+        }
+
+        // Search for emojis to typeahead
+        const emojiToSearch = this.emojiDetectionRegEx.exec(this.contents);
+        if (emojiToSearch && emojiToSearch.length > 0) {
+            this.emojiResults = this.emojiSearch.search(emojiToSearch[0].replace(/:/gi, ''));
+            this.emojiTypeahead.open();
+            return;
         }
     }
 
@@ -104,6 +157,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
         event.preventDefault();
         const contents = this.contents;
         this.contents = '';
+        this.emojiResults = [];
         if (this.hasCommand && !event.ctrlKey) {
             this.handleCommands(contents);
         } else {
@@ -113,6 +167,7 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
     handleMessage(contents: string) {
         this.isEmojiPickerDisplayed = false;
+        this.emojiTypeahead.close();
         const message = new Message({
             author: this.user._id,
             contents: contents,
@@ -129,8 +184,21 @@ export class PanelComponent implements OnInit, AfterViewChecked {
      * @memberof PanelComponent
      */
     addEmoji(event) {
-        console.log(event);
         this.contents += ` ${event.emoji.native}`;
+    }
+
+    /**
+     * Replaces the text by the emoji
+     *
+     * @param {EmojiData} emoji
+     * @memberof PanelComponent
+     */
+    replaceEmoji(emoji: EmojiData) {
+        this.contents = this.contents.replace(
+            this.emojiDetectionRegEx,
+            emoji.native
+        )
+        this.chatbox.nativeElement.focus();
     }
 
     /**
@@ -225,11 +293,12 @@ export class PanelComponent implements OnInit, AfterViewChecked {
 
             this.jukeboxService.submitVideo(video);
         } catch (error) {
-            const message: Message = new Message({
-                contents: 'The video URL you submitted is not a valid YouTube URL.',
+            const message: FeedbackMessage = new FeedbackMessage({
+                contents: 'The video URL you submitted is not a valid YouTube URL. (This message is only visible to you)',
                 source: 'system',
                 scope: this.boxToken,
-                time: new Date()
+                time: new Date(),
+                feedbackType: 'error'
             });
             this.jukeboxService.postMessageToStream(message);
         }
@@ -248,10 +317,11 @@ export class PanelComponent implements OnInit, AfterViewChecked {
             .subscribe(
                 (message: Message) => {
                     if (this.activePanel !== 'chat') {
-                        this.newMessages = true
-                    }
-                    if ((message.source === 'system' || message.source === 'bot') && this.activePanel !== 'chat') {
-                        this.toastr.info(message.contents, `Berrybot`)
+                        if (message.source !== 'system') {
+                            this.newMessages = true
+                        } else {
+                            this.toastr.info(message.contents, 'System')
+                        }
                     }
                 }
             );

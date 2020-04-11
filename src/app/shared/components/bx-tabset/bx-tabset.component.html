@@ -1,0 +1,8 @@
+<div id="filter-options" class="d-flex">
+    <span
+        *ngFor="let option of options"
+        class="option"
+        (click)="onSelectOption(option.value)"
+        [ngClass]="{'active': activeOption === option.value}"
+    >{{ option.title }}</span>
+</div>

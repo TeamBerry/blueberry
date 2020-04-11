@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import { environment } from './../../../environments/environment';
 import { Box } from './../models/box.model';
 import { User } from '../models/user.model';
+import { UserPlaylist } from '../models/user-playlist.model';
 
 @Injectable()
 export class BoxService {
@@ -96,6 +97,14 @@ export class BoxService {
         return this.http.post<Box>(environment.araza + '/box/' + box._id + '/open', null);
     }
 
+    convert(sourceBox: string, targetPlaylist: string) {
+        return this.http.post<UserPlaylist>(
+            `${environment.araza}/box/${sourceBox}/convert`,
+            {
+                _id: targetPlaylist
+            }
+        )
+    }
 
     /**
      * Lists the users currently connected to the box

@@ -86,6 +86,10 @@
 
 .btn-danger {
     background-color: $danger-color;
+    border: darken($danger-color, 5%);
+    &:hover {
+        background-color: darken($danger-color, 5%);
+    }
 }
 
 .btn-outline-danger {
@@ -95,6 +99,14 @@
     &:hover {
         background-color: $danger-color;
         color: white;
+    }
+}
+
+.btn-queue {
+    color: var(--text-main-color);
+    background-color: rgba(black, 0.2);
+    &:hover {
+        background-color: rgba(black, 0.3);
     }
 }
 
@@ -210,6 +222,9 @@
         cursor: pointer;
         color: var(--text-main-color);
         &:hover {
+            background-color: var(--background-main-hover-color);
+        }
+        &:focus {
             background-color: var(--background-main-hover-color);
         }
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 import { User } from 'app/shared/models/user.model';
 import { JukeboxService } from '../../jukebox.service';
@@ -14,10 +14,20 @@ export class ChatTabComponent implements OnInit {
     @Input() boxToken: string;
     @Input() user: User = new User;
     @Output() socketStatus = new EventEmitter();
+    @ViewChild('chat') chat: ElementRef;
     contents = '';
     hasLink = false;
     hasCommand = false;
     messages = [];
+    filter: 'system' | 'human' = null;
+    tabsetOptions = [
+        { title: 'All Messages', value: null },
+        { title: 'Activity', value: 'system' },
+        { title: 'User Chat', value: 'human' }
+    ]
+
+    hasAutoScrollEnabled = true;
+    hasNewMessages = false;
 
     constructor(
         private jukeboxService: JukeboxService
@@ -35,7 +45,6 @@ export class ChatTabComponent implements OnInit {
      * @memberof ChatComponent
      */
     connectToStream() {
-        console.log('connecting chat to socket...');
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
                 filter(message =>
@@ -46,14 +55,46 @@ export class ChatTabComponent implements OnInit {
             .subscribe(
                 (message) => {
                     this.messages.push(message);
+                    setTimeout(() => {
+                        this.scrollToBottom();
+                    }, 200);
                 },
                 error => {
                     this.socketStatus.emit('offline');
                 },
                 () => {
-                    console.log('CONNECTED');
                     this.socketStatus.emit('online');
                 }
             );
+    }
+
+    setTab(tab: 'system' | 'human') {
+        this.filter = tab;
+        this.hasAutoScrollEnabled = true;
+        this.scrollToBottom();
+    }
+
+    scrollToBottom() {
+        if (this.hasAutoScrollEnabled) {
+            this.chat.nativeElement.scrollTop = this.chat.nativeElement.scrollHeight;
+            this.hasNewMessages = false;
+        } else {
+            this.hasNewMessages = true;
+        }
+    }
+
+    resumeAutoScroll() {
+        this.chat.nativeElement.scrollTop = this.chat.nativeElement.scrollHeight;
+        this.hasNewMessages = false;
+        this.hasAutoScrollEnabled = true;
+    }
+
+    onScroll() {
+        const scrollPosition = this.chat.nativeElement.scrollTop + this.chat.nativeElement.clientHeight
+        const autoScrollThreshold = this.chat.nativeElement.scrollHeight - 30;
+        this.hasAutoScrollEnabled = (scrollPosition >= autoScrollThreshold);
+        if (this.hasAutoScrollEnabled) {
+            this.hasNewMessages = false;
+        }
     }
 }

@@ -1,12 +1,11 @@
-<ngb-tabset type="pills" justify="fill">
-    <ngb-tab title="Youtube">
-        <ng-template ngbTabContent>
-            <app-youtube-search-tab [boxToken]="boxToken" [user]="user"></app-youtube-search-tab>
-        </ng-template>
-    </ngb-tab>
-    <ngb-tab title="Playlists">
-        <ng-template ngbTabContent>
-            <app-playlists-search-tab [boxToken]="boxToken" [user]="user"></app-playlists-search-tab>
-        </ng-template>
-    </ngb-tab>
-</ngb-tabset>
+<app-bx-tabset
+    [options]="[{title: 'Youtube', value: 'youtube'}, {title: 'Playlists', value: 'playlists'}]"
+    (clickedOption)="displayedTab = $event"
+>
+</app-bx-tabset>
+<div *ngIf="displayedTab === 'youtube'">
+    <app-youtube-search-tab [boxToken]="boxToken" [user]="user"></app-youtube-search-tab>
+</div>
+<div *ngIf="displayedTab === 'playlists'">
+    <app-playlists-search-tab [boxToken]="boxToken" [user]="user"></app-playlists-search-tab>
+</div>

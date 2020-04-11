@@ -110,20 +110,21 @@ span#span-command-mode {
     }
 }
 
-span#span-youtube-mode {
-    background-color: $youtube-color;
-}
-
-.chatbox-link {
-    border: 1px solid $youtube-color !important;
-}
-
-#link-button {
-    @include override-button-outline($youtube-color);
-}
-
 .emoji-picker {
     position: absolute;
     bottom: 92%;
     right: 2%;
+}
+
+.fixed-tab {
+    display: flex;
+    height: inherit;
+    flex-direction: column;
+}
+
+#emoji-typeahead-title {
+    color: var(--text-main-color);
+    font-family: 'Montserrat';
+    padding-left: 27px;
+    font-weight: 700;
 }

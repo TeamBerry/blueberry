@@ -1,0 +1,43 @@
+@import './../../../../../imports.scss';
+
+#filter-options {
+    padding: 20px;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.option {
+    margin-left: 10px;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 2px;
+    font-family: 'Montserrat';
+    cursor: pointer;
+    &.active {
+        font-weight: 700;
+        background-color: $master-color;
+    }
+}
+
+.chat-space {
+    background-color: 'red';
+}
+
+.scroll-resumer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--active-color);
+    color: black;
+    font-family: 'Montserrat';
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    font-weight: 700;
+    &:hover {
+        background-color: var(--active-hover-color);
+    }
+}

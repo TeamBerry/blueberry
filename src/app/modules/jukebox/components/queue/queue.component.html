@@ -1,45 +1,49 @@
-<div *ngIf="box">
-    <div *ngIf="box.playlist.length > 0; else noVideos">
-        <p class="list-rank px-3 pt-3">Now playing: </p>
-        <div class="now-playing-space">
-            <div *ngIf="currentlyPlaying; else noPlaying">
-                <app-queue-video [item]="currentlyPlaying" [box]="box" (order)="handlePlaylistOrder($event)"></app-queue-video>
-            </div>
-            <ng-template #noPlaying>
-                <div class="no-playing text-center">
-                    No video is currently playing.
-                </div>
-            </ng-template>
+<div *ngIf="box" style="height: inherit;">
+    <div *ngIf="box.playlist.length > 0; else noVideos" class="d-flex flex-column" style="height: inherit;">
+        <div class="p-2 text-center">
+            <app-bx-button (click)="startConversion()"
+                [options]="{'type': 'addToLibrary', 'textDisplay': 'button', 'text': 'Add all videos to a Playlist'}">
+            </app-bx-button>
         </div>
-        <div class="lists mt-2">
-            <ngb-tabset type="pills" justify="fill">
-                <ngb-tab title="Upcoming">
-                    <ng-template ngbTabContent>
-                        <p class="list-rank px-3 pt-3">Upcoming: </p>
-                        <div *ngFor="let entry of upcomingVideos; let i = index">
-                            <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)"></app-queue-video>
-                        </div>
-                    </ng-template>
-                </ngb-tab>
-                <ngb-tab title="Played">
-                    <ng-template ngbTabContent>
-                        <p class="list-rank px-3 pt-3">Played: </p>
-                        <div *ngFor="let entry of playedVideos; let i = index">
-                            <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)"></app-queue-video>
-                        </div>
-                    </ng-template>
-                </ngb-tab>
-            </ngb-tabset>
+        <div class="overflow-auto">
+            <p class="list-rank px-3 pt-3">Now playing: </p>
+            <div class="now-playing-space">
+                <div *ngIf="currentlyPlaying; else noPlaying">
+                    <app-queue-video [item]="currentlyPlaying" [box]="box" (order)="handlePlaylistOrder($event)">
+                    </app-queue-video>
+                </div>
+                <ng-template #noPlaying>
+                    <div class="no-playing text-center">
+                        No video is currently playing.
+                    </div>
+                </ng-template>
+            </div>
+            <div class="lists mt-2">
+                <app-bx-tabset [options]="tabSetOptions" (clickedOption)="displayTab = $event"></app-bx-tabset>
+                <div *ngIf="displayTab === 'upcoming'">
+                    <div *ngFor="let entry of upcomingVideos; let i = index">
+                        <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
+                        </app-queue-video>
+                    </div>
+                </div>
+                <div *ngIf="displayTab === 'played'">
+                    <div *ngFor="let entry of playedVideos; let i = index">
+                        <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
+                        </app-queue-video>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <ng-template #noVideos>
         <div class="text-center no-contents">
             <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 475.55 428.13">
-                    <path class="berrybox-path" d="M475.56 307.09L293.21 201.81v210.56l182.35-105.28M0 0h456.59v56.04H0zM0 93.02h456.59v56.04H0zM0 186.04h269.23v56.04H0zM0 279.07h269.23v56.04H0zM0 372.09h269.23v56.04H0z"
-                    />
-                </svg>
+                <path class="berrybox-path"
+                    d="M475.56 307.09L293.21 201.81v210.56l182.35-105.28M0 0h456.59v56.04H0zM0 93.02h456.59v56.04H0zM0 186.04h269.23v56.04H0zM0 279.07h269.23v56.04H0zM0 372.09h269.23v56.04H0z" />
+            </svg>
             <h3>Your queue is empty</h3>
-            <p>You can add youtube links in the chat input with the <span class="command-key">!add</span> command or use the lens icon to search directly on YouTube.</p>
+            <p>You can add youtube links in the chat input with the <span class="command-key">!add</span> command or use
+                the lens icon to search directly on YouTube.</p>
         </div>
     </ng-template>
 </div>
