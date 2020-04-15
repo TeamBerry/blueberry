@@ -45,13 +45,13 @@
                         (click)="togglePreselection(item)"
                         [options]="{'type': 'preselect', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Force next', 'context': 'queue'}">
                     </app-bx-button>
+                    <app-bx-button *ngIf="status === 'played'" class="ml-1" (click)="replayVideo(item)"
+                        [options]="{'type': 'replay', 'textDisplay': 'tooltip', 'context': 'queue'}"></app-bx-button>
                     <app-bx-button
-                        *ngIf="status === 'upcoming' && (item?.submitted_by?._id === user._id || user._id === box?.creator?._id)"
+                        *ngIf="(status === 'upcoming' || status === 'played') && (item?.submitted_by?._id === user._id || user._id === box?.creator?._id)"
                         class="ml-1" (click)="cancelVideo(item)"
                         [options]="{'type': 'cancel', 'context': 'danger', 'textDisplay': 'tooltip', 'text': 'Remove from Queue'}">
                     </app-bx-button>
-                    <app-bx-button *ngIf="status === 'played'" class="ml-1" (click)="replayVideo(item)"
-                        [options]="{'type': 'replay', 'textDisplay': 'tooltip', 'context': 'queue'}"></app-bx-button>
                 </div>
             </div>
         </div>
