@@ -82,8 +82,8 @@ button>svg {
         color: $danger-color;
     }
     &.bx-icon-success {
-        fill: $success-color;
-        color: $success-color;
+        fill: var(--success-color);
+        color: var(--success-color);
     }
 }
 
@@ -164,7 +164,7 @@ button>svg {
     width: 80px;
     @include margin-horizontal(3px);
     &.box-option-success {
-        background-color: $success-color;
+        background-color: var(--success-color);
         color: black;
     }
 }
