@@ -21,6 +21,10 @@
         border-left-color: $danger-color;
         background-color: transparentize($danger-color, 0.95)
     }
+    &.feedback-message-warning {
+        border-left-color: $warning-color;
+        background-color: transparentize($warning-color, 0.95);
+    }
     &.feedback-message-info {
         border-left-color: $master-color;
         background-color: transparentize($master-color, 0.95)
@@ -41,6 +45,9 @@
     }
     &.feedback-message-error {
         color: $danger-color;
+    }
+    &.feedback-message-warning {
+        color: $warning-color;
     }
     &.feedback-message-info {
         color: $master-color;
