@@ -172,7 +172,7 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
             author: this.user._id,
             contents: contents,
             scope: this.boxToken,
-            source: 'user',
+            source: 'human',
         });
         this.jukeboxService.postMessageToSocket(message);
     }
