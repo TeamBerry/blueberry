@@ -8,19 +8,25 @@ import { Message, FeedbackMessage } from '@teamberry/muscadine';
     encapsulation: ViewEncapsulation.None
 })
 export class ChatItemComponent implements OnInit {
-    @Input() message: Message | FeedbackMessage;
+    @Input() message: FeedbackMessage | Message;
     @Input() username: string;
 
-    typeStyle: string;
+    typeStyle: string = null;
+    feedbackType: string = null;
     author: string;
 
-    constructor() { }
+    constructor() {
+    }
 
     ngOnInit() {
+        if ('feedbackType' in this.message) {
+            this.typeStyle = `feedback-message-${this.message.feedbackType}`;
+            this.feedbackType = this.message.feedbackType;
+        }
+
         this.author = this.message.author
             ? (typeof this.message.author === 'object' ? this.message.author.name : this.message.author)
             : null;
-        this.typeStyle = 'feedbackType' in this.message ? `system-message-${this.message.feedbackType}` : null;
 
         this.message.contents = this.parseString(this.message.contents)
     }
