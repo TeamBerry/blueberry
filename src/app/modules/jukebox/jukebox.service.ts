@@ -134,6 +134,10 @@ export class JukeboxService {
         this.boxSocket.emit('preselect', actionRequest)
     }
 
+    public forcePlayVideo = (actionRequest: QueueItemActionRequest): void => {
+        this.boxSocket.emit('forcePlay', actionRequest)
+    }
+
     /**
      * Skips the currently playing video.
      *

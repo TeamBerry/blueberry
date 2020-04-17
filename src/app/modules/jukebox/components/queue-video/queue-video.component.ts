@@ -85,6 +85,16 @@ export class QueueVideoComponent implements OnInit {
         this.order.emit({ item: item._id, order: 'preselect' });
     }
 
+    /**
+     * Force plays a video from the upcoming section
+     *
+     * @param {QueueVideo} item
+     * @memberof QueueVideoComponent
+     */
+    forcePlay(item: QueueVideo) {
+        this.order.emit({ item: item._id, order: 'forcePlay' });
+    }
+
     addToPlaylist() {
         const modalRef = this.modalService.open(PlaylistSelectorComponent)
         modalRef.componentInstance.selectedPlaylist$.subscribe(
