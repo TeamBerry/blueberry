@@ -135,6 +135,10 @@ export class QueueComponent implements OnInit {
             case 'preselect':
                 this.jukeboxService.preselectVideo(actionRequest)
                 break
+
+            case 'forcePlay':
+                this.jukeboxService.forcePlayVideo(actionRequest)
+                break
         }
     }
 

@@ -43,7 +43,11 @@
                     </app-bx-button>
                     <app-bx-button *ngIf="status === 'upcoming' && user._id === box?.creator?._id" class="ml-1"
                         (click)="togglePreselection(item)"
-                        [options]="{'type': 'preselect', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Force next', 'context': 'queue'}">
+                        [options]="{'type': 'forceNext', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play next', 'context': 'queue'}">
+                    </app-bx-button>
+                    <app-bx-button *ngIf="status === 'upcoming' && user._id === box?.creator?._id" class="ml-1"
+                        (click)="forcePlay(item)"
+                        [options]="{'type': 'forcePlay', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play now', 'context': 'queue'}">
                     </app-bx-button>
                     <app-bx-button *ngIf="status === 'played'" class="ml-1" (click)="replayVideo(item)"
                         [options]="{'type': 'replay', 'textDisplay': 'tooltip', 'context': 'queue'}"></app-bx-button>
