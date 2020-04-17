@@ -9,25 +9,26 @@
 
 .system-message {
     border-left-color: $master-color;
+    font-style: italic;
 }
 
 .feedback-message {
     color: var(--text-main-color);
     &.feedback-message-success {
         border-left-color: var(--success-color);
-        background-color: rgba(var(--success-color-rgb), 0.05)
+        background-color: rgba(var(--success-color-rgb), 0.075)
     }
     &.feedback-message-error {
         border-left-color: var(--danger-color);
-        background-color: rgba(var(--danger-color-rgb), 0.05)
+        background-color: rgba(var(--danger-color-rgb), 0.075)
     }
     &.feedback-message-warning {
         border-left-color: var(--warning-color);
-        background-color: rgba(var(--warning-color-rgb), 0.05)
+        background-color: rgba(var(--warning-color-rgb), 0.075)
     }
     &.feedback-message-info {
         border-left-color: $master-color;
-        background-color: transparentize($master-color, 0.95)
+        background-color: transparentize($master-color, 0.925)
     }
 }
 

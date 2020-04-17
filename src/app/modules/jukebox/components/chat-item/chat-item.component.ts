@@ -12,7 +12,6 @@ export class ChatItemComponent implements OnInit {
     @Input() username: string;
 
     typeStyle: string = null;
-    feedbackType: string = null;
     author: string;
 
     constructor() {
@@ -21,7 +20,6 @@ export class ChatItemComponent implements OnInit {
     ngOnInit() {
         if ('feedbackType' in this.message) {
             this.typeStyle = `feedback-message-${this.message.feedbackType}`;
-            this.feedbackType = this.message.feedbackType;
         }
 
         this.author = this.message.author

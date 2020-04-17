@@ -1,7 +1,6 @@
 <div class="message px-3" [ngClass]="{'system-message': message.source === 'system', 'feedback-message': message.source === 'feedback'}" [class]="typeStyle">
     <span class="message-time" title="{{message.time}}">{{ message.time | date: 'HH:mm' }}</span>
     <span class="message-author author-linkback" [hidden]="message.source !== 'human'">{{ author }}</span>
-    <span class="feedback-type" [class]="typeStyle" [hidden]="message.source !== 'feedback'" [innerHTML]="feedbackType"></span>
     <span class="message-contents" [innerHTML]="message.contents"></span>
     <br>
     <div [hidden]="message.source !== 'feedback'">
