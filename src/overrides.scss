@@ -81,7 +81,7 @@
 }
 
 .btn-success {
-    background-color: $success-color;
+    background-color: var(--success-color);
 }
 
 .btn-danger {
@@ -206,8 +206,8 @@
         border-color: $danger-color;
     }
     &.alert-success {
-        color: $success-color !important;
-        border-color: $success-color;
+        color: var(--success-color) !important;
+        border-color: var(--success-color);
     }
 }
 

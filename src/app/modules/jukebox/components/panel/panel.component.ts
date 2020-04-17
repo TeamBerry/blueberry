@@ -172,7 +172,7 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
             author: this.user._id,
             contents: contents,
             scope: this.boxToken,
-            source: 'user',
+            source: 'human',
         });
         this.jukeboxService.postMessageToSocket(message);
     }
@@ -294,8 +294,8 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
             this.jukeboxService.submitVideo(video);
         } catch (error) {
             const message: FeedbackMessage = new FeedbackMessage({
-                contents: 'The video URL you submitted is not a valid YouTube URL. (This message is only visible to you)',
-                source: 'system',
+                contents: 'The video URL you submitted is not a valid YouTube URL.',
+                source: 'feedback',
                 scope: this.boxToken,
                 time: new Date(),
                 feedbackType: 'error'

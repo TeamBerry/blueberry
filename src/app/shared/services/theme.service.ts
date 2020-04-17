@@ -24,7 +24,13 @@ export const darkTheme = {
     'active-stroke-color': 'white',
     'inactive-color': '#CCCCCC',
     'active-color': '#EBBA17',
-    'active-hover-color': '#D6A912'
+    'active-hover-color': '#D6A912',
+    'success-color-rgb': '12, 235, 192',
+    'success-color': '#0CEBC0',
+    'warning-color-rgb': '252, 196, 13',
+    'warning-color': '#FFC40D',
+    'danger-color-rgb': '235, 23, 42',
+    'danger-color': '#EB172A'
 }
 
 export const lightTheme = {
@@ -48,7 +54,13 @@ export const lightTheme = {
     'active-stroke-color': '#009AEB',
     'inactive-color': '#8f8f8f',
     'active-color': '#D6A912',
-    'active-hover-color': '#EBBA17'
+    'active-hover-color': '#EBBA17',
+    'success-color-rgb': '10, 194, 157',
+    'success-color': '#0AC29D',
+    'warning-color-rgb': '207, 157, 10',
+    'warning-color': '#CF9D0A',
+    'danger-color-rgb': '235, 23, 42',
+    'danger-color': '#EB172A'
 }
 
 @Injectable({
