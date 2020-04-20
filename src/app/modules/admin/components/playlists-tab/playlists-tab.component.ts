@@ -23,7 +23,7 @@ import { PlaylistService } from 'app/shared/services/playlist.service';
     providers: [UserService]
 })
 export class PlaylistsTabComponent implements OnInit {
-    public playlists: Array<UserPlaylist>
+    public playlists: Array<UserPlaylist> = [];
     user: AuthSubject = AuthService.getAuthSubject();
     selectedPlaylist: UserPlaylist = null;
 
