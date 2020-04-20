@@ -20,6 +20,9 @@
 
 .playlists-list {
     border-right: 1px solid var(--background-secondary-color-alternate);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     .playlists-list-item {
         cursor: pointer;
         .playlist-name {
@@ -37,6 +40,12 @@
             background-color: var(--background-secondary-color-alternate);
         }
     }
+}
+
+#playlists-list-container {
+    height: inherit;
+    overflow-y: scroll;
+    overflow-x: visible;
 }
 
 .playlist-space {
