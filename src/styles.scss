@@ -173,6 +173,8 @@ button>svg {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
     &:hover {
         background-color: transparentize($master-hover-color, 0.8);
     }

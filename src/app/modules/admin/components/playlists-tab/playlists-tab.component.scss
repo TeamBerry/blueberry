@@ -12,11 +12,17 @@
 .playlists-list,
 .playlist-videos {
     height: 100%;
+}
+
+.playlist-videos {
     overflow: auto;
 }
 
 .playlists-list {
     border-right: 1px solid var(--background-secondary-color-alternate);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     .playlists-list-item {
         cursor: pointer;
         .playlist-name {
@@ -36,12 +42,20 @@
     }
 }
 
+#playlists-list-container {
+    height: inherit;
+    overflow-y: scroll;
+    overflow-x: visible;
+}
+
 .playlist-space {
     border-right: 3px solid var(--background-main-color);
 }
 
 .playlist-video-item {
-    border-bottom: 1px solid var(--text-main-color);
+    border-bottom: 1px solid #888;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .playlist-image {
