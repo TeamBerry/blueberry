@@ -133,7 +133,7 @@ export class PlaylistsManagerComponent implements OnInit {
         modalRef.componentInstance.user = this.user
         modalRef.componentInstance.submit.subscribe(
             () => {
-                const message = playlist._id ? 'Playlist updated' : 'Playlist created';
+                const message = playlist ? 'Playlist updated' : 'Playlist created';
                 this.toastr.success(message, 'Success')
                 this.getPlaylists()
             }
