@@ -56,4 +56,16 @@
     border-radius: 2.5px;
     text-transform: uppercase;
     cursor: default;
+    align-self: center;
+    margin-right: 5px;
+}
+
+#box-title-space {
+    display: flex;
+    justify-content: space-between;
+}
+
+#box-title {
+    display: flex;
+    justify-content: center;
 }
