@@ -1,14 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 
 import { AuthService } from 'app/core/auth/auth.service';
-import { User } from 'app/shared/models/user.model';
 import { UserPlaylist } from 'app/shared/models/user-playlist.model';
 import { UserService } from 'app/shared/services/user.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaylistFormComponent } from 'app/shared/components/playlist-form/playlist-form.component';
-import { PlaylistViewComponent } from 'app/shared/components/playlist-view/playlist-view.component';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { Video } from 'app/shared/models/video.model';
 import { SearchService } from 'app/shared/services/search.service';
@@ -17,12 +14,12 @@ import { ToastrService } from 'ngx-toastr';
 import { PlaylistService } from 'app/shared/services/playlist.service';
 
 @Component({
-    selector: 'app-playlists-tab',
-    templateUrl: './playlists-tab.component.html',
-    styleUrls: ['./playlists-tab.component.scss'],
+    selector: 'app-playlists-manager',
+    templateUrl: './playlists-manager.component.html',
+    styleUrls: ['./playlists-manager.component.scss'],
     providers: [UserService]
 })
-export class PlaylistsTabComponent implements OnInit {
+export class PlaylistsManagerComponent implements OnInit {
     public playlists: Array<UserPlaylist> = [];
     user: AuthSubject = AuthService.getAuthSubject();
     selectedPlaylist: UserPlaylist = null;
@@ -136,7 +133,7 @@ export class PlaylistsTabComponent implements OnInit {
         modalRef.componentInstance.user = this.user
         modalRef.componentInstance.submit.subscribe(
             () => {
-                const message = playlist._id ? 'Playlist updated' : 'Playlist created';
+                const message = playlist ? 'Playlist updated' : 'Playlist created';
                 this.toastr.success(message, 'Success')
                 this.getPlaylists()
             }

@@ -13,12 +13,12 @@ import { BoxService } from 'app/shared/services/box.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 
 @Component({
-    selector: 'app-boxes-tab',
-    templateUrl: './boxes-tab.component.html',
-    styleUrls: ['./boxes-tab.component.scss'],
+    selector: 'app-boxes-manager',
+    templateUrl: './boxes-manager.component.html',
+    styleUrls: ['./boxes-manager.component.scss'],
     providers: [BoxService]
 })
-export class BoxesTabComponent implements OnInit {
+export class BoxesManagerComponent implements OnInit {
     user: AuthSubject = AuthService.getAuthSubject();
 
     public boxes: Observable<Array<Box>>;
