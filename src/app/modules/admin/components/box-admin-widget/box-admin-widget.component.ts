@@ -40,7 +40,7 @@ export class BoxAdminWidgetComponent implements OnInit {
      * Toggles the box between open or closed
      *
      * @param {Box} box The box to close
-     * @memberof BoxesTabComponent
+     * @memberof BoxesManagerComponent
      */
     toggleBoxState(box: Box) {
         if (box.open) {
@@ -64,7 +64,7 @@ export class BoxAdminWidgetComponent implements OnInit {
      * Deletes a closed box
      *
      * @param {Box} box
-     * @memberof BoxesTabComponent
+     * @memberof BoxesManagerComponent
      */
     deleteBox(box: Box) {
         if (box.open) {
