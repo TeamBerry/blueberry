@@ -34,7 +34,7 @@ export const darkTheme = {
 }
 
 export const lightTheme = {
-    'background-main-color': 'white',
+    'background-main-color': '#E6E6E6',
     'background-main-hover-color': '#f2f2f2',
     'background-main-active-color': '#d9d9d9',
     'background-main-inactive-color': '#b3b3b3',

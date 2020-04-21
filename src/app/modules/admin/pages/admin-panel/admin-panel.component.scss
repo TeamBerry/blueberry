@@ -4,22 +4,6 @@
     border-right: 1px solid transparentize($master-color, 0.5);
 }
 
-.nav-link {
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text-system-color) !important;
-    &:hover {
-        background-color: var(--background-main-hover-color);
-        color: white !important;
-    }
-    &.active {
-        cursor: default;
-        color: white !important;
-        font-weight: 800;
-        background-color: var(--background-main-active-color);
-    }
-}
-
 .admin-panel {
     height: calc(100vh - #{$nav-height});
     overflow-y: auto;

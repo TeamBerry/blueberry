@@ -173,13 +173,14 @@ button>svg {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     cursor: pointer;
+    display: flex;
     align-items: center;
     justify-content: center;
     &:hover {
-        background-color: transparentize($master-hover-color, 0.8);
+        background-color: transparentize($main-black, 0.8);
     }
     &:active {
-        background-color: transparentize($master-active-color, 0.6);
+        background-color: transparentize($main-black, 0.6);
     }
     &.box-option-button-danger {
         &:hover {

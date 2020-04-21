@@ -114,27 +114,6 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.navbar-light .navbar-nav .nav-link {
-    color: white;
-    &:hover {
-        color: $master-color;
-    }
-}
-
-.nav-pills {
-    .nav-link {
-        border-radius: 0;
-        color: $master-color;
-        &:hover {
-            color: darken($master-color, 10%);
-        }
-        &.active {
-            background-color: inherit;
-            border-bottom: 5px solid $master-color;
-        }
-    }
-}
-
 .modal-header {
     font-family: 'Montserrat', sans-serif;
     h5 {
@@ -157,6 +136,20 @@
     background-color: var(--background-main-color);
     color: var(--text-main-color);
     border-radius: 0;
+}
+
+.nav-link {
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-system-color) !important;
+    &:hover {
+        background-color: var(--background-main-hover-color);
+    }
+    &.active {
+        cursor: default;
+        font-weight: 800;
+        background-color: var(--background-main-active-color);
+    }
 }
 
 .form-control {
@@ -229,8 +222,9 @@
         }
     }
 
-    .bx-dropdown-icon,img {
+    .bx-dropdown-icon {
         width: 20px;
+        height: 20px;
         margin-right: 2%;
     }
 }
