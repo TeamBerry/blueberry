@@ -25,6 +25,9 @@
 
 .entry-details {
     width: calc(100% - 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .entry-image-container {}

@@ -8,7 +8,8 @@
             <p class="song-list-line">
                 <a href="https://youtube.com/watch?v={{ video?.link }}" title="{{ video?.name }}">{{ video?.name }}</a>
             </p>
-            <div class="entry-actions" *appAuth="true">
+            <div class="entry-actions"
+                *ngIf="appliedOptions.addToPlaylist === appliedOptions.submit === appliedOptions.removeFromPlaylist === appliedOptions.favorite == false">
                 <app-bx-button *ngIf="appliedOptions.addToPlaylist" (click)="addToPlaylist()"
                     [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to the selected Playlist', 'context': 'queue'}">
                 </app-bx-button>

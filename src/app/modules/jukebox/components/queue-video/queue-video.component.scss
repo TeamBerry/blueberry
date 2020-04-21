@@ -1,18 +1,16 @@
 @import './../../../../../imports.scss';
 .playlist-entry {
     padding: 5px 0;
-    border-bottom: .5px solid rgba(var(--text-focus-color), 0.7);
-    &:nth-child(even) {
-        border-top: .5px solid rgba(var(--text-focus-color), 0.7);
-    }
-    &.playing {
-        background-color: var(--background-main-active-color);
+    &:hover {
+        background-color: var(--background-secondary-color-alternate);
     }
 }
 
 .entry-info {
-    height: 90px;
+    height: 130px;
     width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .entry-actions {
@@ -21,10 +19,14 @@
 
 .entry-details {
     width: calc(100% - 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .entry-image-container {
     position: relative;
+    height: 80%;
     .submission-duration {
         position: absolute;
         left: 0;
@@ -49,4 +51,9 @@
     font-family: 'Montserrat';
     color: var(--active-color);
     font-weight: 800;
+}
+
+.submission-details {
+    margin-top: .25rem;
+    margin-bottom: .25rem;
 }
