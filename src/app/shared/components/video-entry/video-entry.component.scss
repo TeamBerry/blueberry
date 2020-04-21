@@ -1,16 +1,8 @@
 @import './../../../../imports.scss';
 .playlist-entry {
     padding: 5px 0;
-    border-bottom: .5px solid rgba(var(--text-focus-color), 0.7);
-    &:nth-child(even) {
-        border-top: .5px solid rgba(var(--text-focus-color), 0.7);
-    }
-    &.playing {
-        font-weight: 800;
-        background-color: lighten($master-color, 30%);
-    }
-    &.played {
-        color: var(--text-system-color);
+    &:hover {
+        background-color: var(--background-secondary-color-alternate);
     }
 }
 
