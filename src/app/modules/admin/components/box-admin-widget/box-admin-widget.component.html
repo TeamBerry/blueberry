@@ -21,20 +21,20 @@
         </div>
         <div class="col-1 h-100 p-0" ngbDropdown ngbTooltip="Options">
             <div ngbDropdownToggle class="h-100 box-option-button">
-                <img src="../../../../../assets/images/icons/actions-icon.svg" alt=""
+                <img class="actions-icon" alt=""
                 style="height: 30px; width: 30px;">
             </div>
             <div ngbDropdownMenu>
                 <button ngbDropdownItem (click)="openCreateModal(box)">
-                    <img src="../../../../../assets/images/icons/edit-icon.svg" alt="" class="bx-dropdown-icon">
+                    <img alt="" class="bx-dropdown-icon edit-icon">
                     <span>Edit</span>
                 </button>
                 <button ngbDropdownItem (click)="toggleBoxState(box)">
-                    <img src="../../../../../assets/images/icons/power-icon.svg" alt="" class="bx-dropdown-icon">
+                    <img alt="" class="bx-dropdown-icon active-icon">
                     <span>{{ box.open ? 'Close': 'Open' }}</span>
                 </button>
                 <button ngbDropdownItem (click)="deleteBox(box)" *ngIf="!box.open">
-                    <img src="../../../../../assets/images/icons/trash-icon.svg" alt="" class="bx-dropdown-icon">
+                    <img alt="" class="bx-dropdown-icon trash-icon">
                     <span>Delete</span>
                 </button>
             </div>

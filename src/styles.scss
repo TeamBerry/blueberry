@@ -259,3 +259,18 @@ button>svg {
         }
     }
 }
+
+img {
+    &.actions-icon {
+        content: var(--actions-icon);
+    }
+    &.active-icon {
+        content: var(--active-icon);
+    }
+    &.edit-icon {
+        content: var(--edit-icon);
+    }
+    &.trash-icon {
+        content: var(--trash-icon);
+    }
+}
