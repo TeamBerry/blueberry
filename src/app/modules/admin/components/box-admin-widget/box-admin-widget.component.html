@@ -19,25 +19,22 @@
                 </div>
             </div>
         </div>
-        <div class="col-1 m-auto text-center box-option-button h-100 d-flex" ngbDropdown ngbTooltip="Options">
-            <div ngbDropdownToggle class="h-100 d-flex align-items-center w-100">
-                <svg id="actions-icon" class="m-auto bx-icon bx-icon-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
-                    <rect x="183.33" y="183.33" width="133.33" height="133.33"/>
-                    <rect x="183.33" y="27.67" width="133.33" height="133.33"/>
-                    <rect x="183.33" y="339" width="133.33" height="133.33"/>
-                </svg>
+        <div class="col-1 h-100 p-0" ngbDropdown ngbTooltip="Options">
+            <div ngbDropdownToggle class="h-100 box-option-button">
+                <img class="actions-icon" alt=""
+                style="height: 30px; width: 30px;">
             </div>
             <div ngbDropdownMenu>
                 <button ngbDropdownItem (click)="openCreateModal(box)">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" class="bx-dropdown-icon" id="edit-icon"><g><path class="cls-1" d="M363.73,48.85h57.89a0,0,0,0,1,0,0V170.28a0,0,0,0,1,0,0H363.73a6.47,6.47,0,0,1-6.47-6.47V55.32a6.47,6.47,0,0,1,6.47-6.47Z" transform="translate(742.28 -88.33) rotate(135)"/><polygon class="cls-1" points="84.61 413.69 187.31 396.85 101.44 310.99 84.61 413.69"/><rect class="cls-1" x="114.03" y="181.32" width="284.46" height="121.43" transform="translate(608.61 231.97) rotate(135)"/></g></svg>
+                    <img alt="" class="bx-dropdown-icon edit-icon">
                     <span>Edit</span>
                 </button>
                 <button ngbDropdownItem (click)="toggleBoxState(box)">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 372.93 450.2" class="bx-dropdown-icon" id="power-icon"><g id="Layer_2" data-name="Layer 2"><g id="Layer_17" data-name="Layer 17"><path class="cls-1" d="M70.76,142.66a167.46,167.46,0,1,0,231.42,0"/><rect class="cls-2" x="61.78" y="102.69" width="249.37" height="44" transform="translate(61.78 311.15) rotate(-90)"/></g></g></svg>
+                    <img alt="" class="bx-dropdown-icon active-icon">
                     <span>{{ box.open ? 'Close': 'Open' }}</span>
                 </button>
                 <button ngbDropdownItem (click)="deleteBox(box)" *ngIf="!box.open">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" class="bx-dropdown-icon" id="trash-icon"><g><path class="cls-1" d="M354.7,444.72H160.16c-10.34,0-18.72-11-18.72-24.66L107.83,123.64H402.6L373.42,420.06C373.42,433.68,365,444.72,354.7,444.72Z"/><path class="cls-2" d="M102.54,76.15H407.9a8.59,8.59,0,0,1,8.59,8.59v16.69a0,0,0,0,1,0,0H94a0,0,0,0,1,0,0V84.73A8.59,8.59,0,0,1,102.54,76.15Z"/><rect class="cls-2" x="202.7" y="55.28" width="105.04" height="41.74" rx="20.87"/><rect class="cls-3" x="250.88" y="164.18" width="8.68" height="240" rx="4.34"/><rect class="cls-3" x="188.04" y="164.76" width="8.68" height="240" rx="4.34" transform="translate(-26.71 20) rotate(-5.56)"/><rect class="cls-3" x="312.42" y="164.76" width="8.68" height="240" rx="4.34" transform="translate(37.61 -36.96) rotate(7.1)"/></g></svg>
+                    <img alt="" class="bx-dropdown-icon trash-icon">
                     <span>Delete</span>
                 </button>
             </div>

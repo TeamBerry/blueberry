@@ -173,13 +173,14 @@ button>svg {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     cursor: pointer;
+    display: flex;
     align-items: center;
     justify-content: center;
     &:hover {
-        background-color: transparentize($master-hover-color, 0.8);
+        background-color: transparentize($main-black, 0.8);
     }
     &:active {
-        background-color: transparentize($master-active-color, 0.6);
+        background-color: transparentize($main-black, 0.6);
     }
     &.box-option-button-danger {
         &:hover {
@@ -244,17 +245,34 @@ button>svg {
 .song-list-line {
     margin-bottom: 0;
     font-size: 1rem;
-    @include one-line-text();
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
     a {
         color: $master-color;
-        display: inline-block;
         width: 100%;
-        @include one-line-text();
         &:hover {
             text-decoration: underline;
         }
         &:active {
             color: darken($master-color, 10%);
         }
+    }
+}
+
+img {
+    &.actions-icon {
+        content: var(--actions-icon);
+    }
+    &.active-icon {
+        content: var(--active-icon);
+    }
+    &.edit-icon {
+        content: var(--edit-icon);
+    }
+    &.trash-icon {
+        content: var(--trash-icon);
     }
 }

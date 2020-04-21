@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <h2 class="admin-tab-title">My Playlists</h2>
+    <h2 class="admin-tab-title">Playlists</h2>
     <div class="d-flex playlist-manager">
         <div class="d-flex playlist-space col-9 px-0">
             <div class="col-3 playlists-list p-0" *ngIf="playlists.length > 0">
@@ -14,20 +14,18 @@
                                 <span class="playlist-info"> {{ playlist.videos.length }} Videos - Last updated
                                     {{ playlist.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</span>
                             </div>
-                            <div class="col-1 p-0 m-auto text-center h-100 d-flex" ngbDropdown
-                                container="body"
+                            <div class="col-1 p-0 m-auto text-center h-100 d-flex" ngbDropdown container="body"
                                 *ngIf="playlist.isDeletable">
-                                <div ngbDropdownToggle placement="left">
-                                    <img src="../../../../../assets/images/icons/actions-icon.svg" alt=""
-                                        style="height: 30px; width: 30px;">
+                                <div ngbDropdownToggle>
+                                    <img class="actions-icon" style="height: 30px; width: 30px;">
                                 </div>
                                 <div ngbDropdownMenu>
                                     <button ngbDropdownItem (click)="openCreateModal(playlist)">
-                                        <img src="../../../../../assets/images/icons/edit-icon.svg" alt="" class="bx-dropdown-icon">
+                                        <img alt="" class="bx-dropdown-icon edit-icon">
                                         <span>Edit</span>
                                     </button>
                                     <button ngbDropdownItem (click)="deletePlaylist(playlist)">
-                                        <img src="../../../../../assets/images/icons/trash-icon.svg" alt="" class="bx-dropdown-icon">
+                                        <img alt="" class="bx-dropdown-icon trash-icon">
                                         <span>Delete</span>
                                     </button>
                                 </div>

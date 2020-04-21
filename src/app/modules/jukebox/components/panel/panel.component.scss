@@ -42,6 +42,9 @@
         @include padding-horizontal(0);
         margin: auto;
         text-align: center;
+        &:hover {
+            background-color: transparent;
+        }
     }
     .nav-separator {
         width: 100%;
