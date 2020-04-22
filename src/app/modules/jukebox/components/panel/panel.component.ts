@@ -297,10 +297,9 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
         } catch (error) {
             const message: FeedbackMessage = new FeedbackMessage({
                 contents: 'The video URL you submitted is not a valid YouTube URL.',
-                source: 'feedback',
                 scope: this.boxToken,
                 time: new Date(),
-                feedbackType: 'error'
+                context: 'error'
             });
             this.jukeboxService.postMessageToStream(message);
         }

@@ -279,11 +279,11 @@ export class JukeboxService {
             // On chat. Regular event.
             this.boxSocket.on('chat', (message: Message | FeedbackMessage | SystemMessage) => {
                 if (message.scope === this.box._id) {
-                    if ('feedbackType' in message) {
+                    if ('context' in message) {
                         if (message.source === 'system') {
-                            observer.next(new SystemMessage(message))
+                            observer.next(new SystemMessage(message as SystemMessage));
                         } else {
-                            observer.next(new FeedbackMessage(message));
+                            observer.next(new FeedbackMessage(message as FeedbackMessage));
                         }
                     } else {
                         observer.next(new Message(message));
