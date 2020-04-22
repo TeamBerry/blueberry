@@ -97,8 +97,7 @@
                     {{ result.native }} {{ result.shortName }}
                 </button>
             </div>
-            <div class="input-group input-group-chatbox"
-                [ngClass]="{'chatbox-command': hasCommand}">
+            <div class="input-group input-group-chatbox" [ngClass]="{'chatbox-command': hasCommand}">
                 <input type="text" class="form-control chatbox no-border no-focus"
                     placeholder="Type a message. Commands start with a '!'" [(ngModel)]="contents" ngbDropdownAnchor
                     ngbDropdownToggle (click)="watchContents()" (keydown.enter)="post($event)"
@@ -110,23 +109,20 @@
             </div>
         </div>
         <div class="chat-actions d-flex no-gutters">
-            <div class="col-6">
-                <button class="btn btn-outline-primary" (click)="showPanel('search')">
-                    <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427.28 439.64">
-                        <rect class="berrybox-path" x="-10.35" y="290.75" width="245.89" height="72.58"
-                            transform="translate(-198.27 175.41) rotate(-45)" />
-                        <path class="berrybox-path"
-                            d="M275.62,0A151.66,151.66,0,1,0,427.28,151.66,151.66,151.66,0,0,0,275.62,0Zm0,239a87.32,87.32,0,1,1,87.32-87.32A87.32,87.32,0,0,1,275.62,239Z" />
-                    </svg>
-                    Add videos
-                </button>
-            </div>
-            <div class="col-6">
-                <button *ngIf="!hasCommand" class="btn btn-primary" style="float:right;" (click)="post($event)">Send
-                    message</button>
-                <button *ngIf="hasCommand" class="btn btn-primary" id="command-button" style="float:right;"
-                    (click)="post($event)">Use command</button>
-            </div>
+            <button class="btn btn-outline-primary" (click)="showPanel('search')">
+                <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427.28 439.64">
+                    <rect class="berrybox-path" x="-10.35" y="290.75" width="245.89" height="72.58"
+                        transform="translate(-198.27 175.41) rotate(-45)" />
+                    <path class="berrybox-path"
+                        d="M275.62,0A151.66,151.66,0,1,0,427.28,151.66,151.66,151.66,0,0,0,275.62,0Zm0,239a87.32,87.32,0,1,1,87.32-87.32A87.32,87.32,0,0,1,275.62,239Z" />
+                </svg>
+                Add videos
+            </button>
+            <span id="berries-count" ngbTooltip="Your berry count. You can use berries to execute special actions indicated by the buttons of the same color.">{{ berryCount }}</span>
+            <button *ngIf="!hasCommand" class="btn btn-primary" style="float:right;" (click)="post($event)">Send
+                message</button>
+            <button *ngIf="hasCommand" class="btn btn-primary" id="command-button" style="float:right;"
+                (click)="post($event)">Use command</button>
         </div>
     </div>
     <div *appAuth="false" class="text-center">

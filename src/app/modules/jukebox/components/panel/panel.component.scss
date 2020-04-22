@@ -53,6 +53,19 @@
     }
 }
 
+.chat-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+#berries-count {
+    display: flex;
+    align-self: center;
+    font-family: 'Montserrat';
+    color: $berry-color;
+    font-size: 1.2rem;
+}
+
 // Input
 #input-space {
     padding: 10px;

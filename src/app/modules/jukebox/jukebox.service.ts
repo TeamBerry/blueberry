@@ -12,7 +12,10 @@ import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
 import { AuthSubject } from 'app/shared/models/session.model';
+import { BerryCount } from '@teamberry/muscadine/dist/interfaces/subscriber.interface';
+import { SystemMessage } from '@teamberry/muscadine/dist/models/message.model';
 
+export type subjects = Box | Message | FeedbackMessage | SystemMessage | SyncPacket | BerryCount
 @Injectable({
     providedIn: 'root'
 })
@@ -25,11 +28,10 @@ export class JukeboxService {
      * in the stream for components. Acts as a middleware.
      *
      * @private
-     * @type {ReplaySubject<any>}
+     * @type {ReplaySubject<subjects>}
      * @memberof JukeboxService
      */
-    private boxStream: ReplaySubject<Box | Message | FeedbackMessage | SyncPacket> =
-        new ReplaySubject<Box | Message | FeedbackMessage | SyncPacket>();
+    private boxStream: ReplaySubject<subjects> = new ReplaySubject<subjects>();
 
     /**
      * Subject for every component in the box that will need to do stuff based on the actions of other components.
@@ -230,7 +232,7 @@ export class JukeboxService {
             reconnectionAttempts: 10
         });
 
-        return new Observable<Message | FeedbackMessage | SyncPacket | Box>(observer => {
+        return new Observable<subjects>(observer => {
             this.boxSocket.on('connect', () => {
                 this.boxSocket.emit('auth', {
                     origin: 'Blueberry',
@@ -275,15 +277,24 @@ export class JukeboxService {
             });
 
             // On chat. Regular event.
-            this.boxSocket.on('chat', (message: Message | FeedbackMessage) => {
+            this.boxSocket.on('chat', (message: Message | FeedbackMessage | SystemMessage) => {
                 if (message.scope === this.box._id) {
                     if ('feedbackType' in message) {
-                        observer.next(new FeedbackMessage(message));
+                        if (message.source === 'system') {
+                            observer.next(new SystemMessage(message))
+                        } else {
+                            observer.next(new FeedbackMessage(message));
+                        }
                     } else {
                         observer.next(new Message(message));
                     }
                 }
             });
+
+            this.boxSocket.on('berries', (berryCount: BerryCount) => {
+                console.log('Recieved actualised berry count: ', berryCount)
+                observer.next(berryCount)
+            })
 
             return () => {
                 this.boxSocket.disconnect();
