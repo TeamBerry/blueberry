@@ -19,7 +19,7 @@ export class ChatItemComponent implements OnInit {
 
     ngOnInit() {
         if ('context' in this.message) {
-            this.typeStyle = `feedback-message-${this.message.context}`;
+            this.typeStyle = `context-${this.message.context}`;
         }
 
         this.author = this.message.author
