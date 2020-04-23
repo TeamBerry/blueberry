@@ -146,31 +146,20 @@ export class JukeboxService {
      * @see JukeboxService.next
      * @memberof JukeboxService
      */
-    public skipVideo() {
-        if (this.evaluateCommandPower()) {
-            this.next();
-        }
-        this.next();
+    public skipVideo(): void {
+        this.boxSocket.emit('sync', {
+            order: 'next',
+            boxToken: this.box._id
+        });
     }
 
-    // TODO: The following 3
+    // TODO: The following 2
     public shuffle() {
 
     }
 
     public swap() {
 
-    }
-
-    public toggle() {
-
-    }
-
-    public next(): void {
-        this.boxSocket.emit('sync', {
-            order: 'next',
-            boxToken: this.box._id
-        });
     }
 
     /**

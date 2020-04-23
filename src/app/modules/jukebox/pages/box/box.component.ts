@@ -19,6 +19,7 @@ import { PlaylistSelectorComponent } from 'app/shared/components/playlist-select
 import { UserPlaylist } from 'app/shared/models/user-playlist.model';
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
+import { QueueItem } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-box',
@@ -62,7 +63,7 @@ export class BoxComponent implements OnInit {
      *
      * @memberof BoxComponent
      */
-    currentVideo: QueueVideo = null;
+    currentVideo: QueueItem = null;
 
 
     /**
