@@ -118,7 +118,10 @@
                 </svg>
                 Add videos
             </button>
-            <span id="berries-count" ngbTooltip="Your berry count. You can use berries to execute special actions indicated by the buttons of the same color.">{{ berryCount }}</span>
+            <button class="btn btn-outline-berries" (click)="showPanel('queue')" ngbTooltip="Your berry coins. Spend them to execute special actions indicated by the buttons of the same color!">
+                <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="">
+                <span id="berries-count">{{ berryCount }}</span>
+            </button>
             <button *ngIf="!hasCommand" class="btn btn-primary" style="float:right;" (click)="post($event)">Send
                 message</button>
             <button *ngIf="hasCommand" class="btn btn-primary" id="command-button" style="float:right;"
