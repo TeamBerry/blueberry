@@ -1,6 +1,8 @@
 <div class="row playlist-entry no-gutters video px-3 py-2"
     [ngClass]="{'force-next': item.isPreselected, 'playing': item.startTime !== null && item.endTime === null}">
     <div *ngIf="item.isPreselected" class="d-flex align-items-center">
+        <img *ngIf="item?.stateForcedWithBerries" src="../../../../../assets/images/icons/berry-coin-icon.svg" alt=""
+            style="height: 30px;" ngbTooltip="This video is preselected thanks to the use of berries.">
         <svg class="next-indicator-icon mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
             <polygon points="261.49 250 39.58 121.88 39.58 378.12 261.49 250" />
             <polygon points="483.4 250 261.49 121.88 261.49 378.12 483.4 250" />
