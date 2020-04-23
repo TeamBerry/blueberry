@@ -47,7 +47,7 @@
                     </app-bx-button>
                     <app-bx-button *ngIf="status === 'upcoming' && user._id !== box?.creator?._id" class="ml-1"
                         (click)="togglePreselection(item)"
-                        [options]="{'type': 'forceNext', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 100 berries to play next'}">
+                        [options]="{'type': 'forceNext', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 10 berries to play next'}">
                     </app-bx-button>
                     <app-bx-button *ngIf="status === 'upcoming' && user._id === box?.creator?._id" class="ml-1"
                         (click)="forcePlay(item)"
@@ -55,7 +55,7 @@
                     </app-bx-button>
                     <app-bx-button *ngIf="status === 'upcoming' && user._id !== box?.creator?._id" class="ml-1"
                         (click)="forcePlay(item)"
-                        [options]="{'type': 'forcePlay', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 300 berries to play now'}">
+                        [options]="{'type': 'forcePlay', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 30 berries to play now'}">
                     </app-bx-button>
                     <app-bx-button *ngIf="status === 'played'" class="ml-1" (click)="replayVideo(item)"
                         [options]="{'type': 'replay', 'textDisplay': 'tooltip', 'context': 'queue'}"></app-bx-button>
