@@ -1,0 +1,15 @@
+@import './../../../../imports.scss';
+.bx-chip {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: grey;
+    color: white;
+    border-radius: 10px;
+    width: 100px;
+    @include margin-horizontal(3px);
+    img {
+        height: 20px;
+        padding: .2rem;
+    }
+}

@@ -119,8 +119,8 @@
                 Add videos
             </button>
             <button class="btn btn-outline-berries" (click)="showPanel('queue')"
-                ngbTooltip="Your berry coins. Spend them to execute special actions indicated by the buttons of the same color!"
-                *ngIf="box.creator._id !== user._id"
+                ngbTooltip="Your berries. You will collect them over time. Spend them to execute special actions indicated by the buttons of the same color!"
+                *ngIf="box.creator._id !== user._id && box?.options?.berries"
                 >
                 <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="">
                 <span id="berries-count">{{ berryCount }}</span>

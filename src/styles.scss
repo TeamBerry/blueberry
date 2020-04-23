@@ -156,19 +156,6 @@ button>svg {
     fill: $notification-color !important;
 }
 
-.box-option {
-    text-align: center;
-    background-color: grey;
-    color: white;
-    border-radius: 10px;
-    width: 80px;
-    @include margin-horizontal(3px);
-    &.box-option-success {
-        background-color: var(--success-color);
-        color: black;
-    }
-}
-
 .box-option-button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;

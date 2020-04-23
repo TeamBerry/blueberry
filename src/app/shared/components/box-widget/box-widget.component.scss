@@ -53,5 +53,7 @@
 }
 
 .modes {
-    height: 29px
+    height: 29px;
+    display: flex;
+    justify-content: start;
 }

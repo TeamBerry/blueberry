@@ -6,7 +6,7 @@
                 </app-player>
             </div>
             <div class="row under-player">
-                <div class="col-4 box-info">
+                <div class="col-5 box-info">
                     <div class="d-flex">
                         <div class="bb-box-picture d-flex align-items-center justify-content-center mr-2">
                             <img src="{{ pictureLocation }}" alt="{{ box?.creator?.name }}"
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="d-flex">
-                                <div class="col-4 p-0">
+                                <div class="col-3 p-0">
                                     <svg class="berrybox-svg-icon crown" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 500 500" title="Administrator">
                                         <rect x="29.61" y="209.46" width="440.78" height="181.69" />
@@ -50,21 +50,15 @@
                                     <span class="ml-1">{{ box?.creator?.name }}</span>
                                 </div>
                                 <div class="col d-flex flex-row-reverse pr-0">
-                                    <div class="box-option" *ngIf="box?.options?.random === true"
-                                        ngbTooltip="The next video will be picked at random from the upcoming pool."
-                                        placement="top">
-                                        Random
-                                    </div>
-                                    <div class="box-option" *ngIf="box?.options?.loop === true"
-                                        ngbTooltip="The system will automatically requeue old videos." placement="top">
-                                        Loop
-                                    </div>
+                                    <app-bx-chip [options]="{'type': 'random'}" *ngIf="box?.options?.random"></app-bx-chip>
+                                    <app-bx-chip [options]="{'type': 'loop'}" *ngIf="box?.options?.loop"></app-bx-chip>
+                                    <app-bx-chip [options]="{'type': 'no-coin'}" *ngIf="!box?.options?.berries"></app-bx-chip>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-8 video-info" *ngIf="currentVideo">
+                <div class="col-7 video-info" *ngIf="currentVideo">
                     <div class="row">
                         <div class="col-10 d-flex justify-content-start align-items-center">
                             <img *ngIf="currentVideo?.stateForcedWithBerries" src="../../../../../assets/images/icons/berry-coin-icon.svg" alt=""
@@ -75,7 +69,7 @@
                             <app-bx-button *ngIf="user._id === box.creator._id" (click)="skipVideo()"
                                 [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'queue'}" class="mr-2">
                             </app-bx-button>
-                            <app-bx-button *ngIf="user._id !== box.creator._id" (click)="skipVideo()"
+                            <app-bx-button *ngIf="user._id !== box.creator._id && box?.options?.berries" (click)="skipVideo()"
                                 [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 30 berries to skip'}"
                                 class="mr-2">
                             </app-bx-button>

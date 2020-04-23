@@ -22,6 +22,7 @@ import { BxButtonComponent } from './components/bx-button/bx-button.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { BxCheckboxComponent } from './components/bx-checkbox/bx-checkbox.component';
 import { BxTabsetComponent } from './components/bx-tabset/bx-tabset.component';
+import { BxChipComponent } from './components/bx-chip/bx-chip.component';
 
 @NgModule({
     imports: [
@@ -42,7 +43,8 @@ import { BxTabsetComponent } from './components/bx-tabset/bx-tabset.component';
         LikeButtonComponent,
         BxButtonComponent,
         BxCheckboxComponent,
-        BxTabsetComponent
+        BxTabsetComponent,
+        BxChipComponent
     ],
     exports: [
         CommonModule,
@@ -61,7 +63,8 @@ import { BxTabsetComponent } from './components/bx-tabset/bx-tabset.component';
         BxButtonComponent,
         PickerModule,
         BxCheckboxComponent,
-        BxTabsetComponent
+        BxTabsetComponent,
+        BxChipComponent
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
