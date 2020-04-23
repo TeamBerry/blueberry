@@ -7,18 +7,16 @@ import { LikeButtonComponent } from '../../components/like-button/like-button.co
 import { JukeboxService } from './../../jukebox.service';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Box } from 'app/shared/models/box.model';
-import { User } from 'app/shared/models/user.model';
 import { SyncPacket } from 'app/shared/models/sync-packet.model';
 import { filter } from 'rxjs/operators';
-import { QueueVideo } from 'app/shared/models/playlist-video.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { environment } from 'environments/environment';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
-import { UserPlaylist } from 'app/shared/models/user-playlist.model';
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
+import { QueueItem } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-box',
@@ -62,7 +60,7 @@ export class BoxComponent implements OnInit {
      *
      * @memberof BoxComponent
      */
-    currentVideo: QueueVideo = null;
+    currentVideo: QueueItem = null;
 
 
     /**

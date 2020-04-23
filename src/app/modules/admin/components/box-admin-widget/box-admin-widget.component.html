@@ -10,12 +10,9 @@
                 <p class="box-lang">{{ box?.lang }} | {{ box?.description || 'No description' }}</p>
                 <span *ngIf="!box.open"><strong>This box is closed. If left inactive, it will be destroyed on {{ box.updatedAt | boxDeletionEstimationPipe | date }}</strong></span>
                 <div class="modes d-flex pb-2">
-                    <div class="col-2 box-option" *ngIf="box?.options?.random === true" ngbTooltip="The next video will be picked at random from the upcoming pool." placement="top">
-                        Random
-                    </div>
-                    <div class="col-2 box-option" *ngIf="box?.options?.loop === true" ngbTooltip="The system will automatically requeue old videos." placement="top">
-                        Loop
-                    </div>
+                    <app-bx-chip [options]="{'type': 'random'}" *ngIf="box?.options?.random"></app-bx-chip>
+                    <app-bx-chip [options]="{'type': 'loop'}" *ngIf="box?.options?.loop"></app-bx-chip>
+                    <app-bx-chip [options]="{'type': 'no-coin'}" *ngIf="!box?.options?.berries"></app-bx-chip>
                 </div>
             </div>
         </div>

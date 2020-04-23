@@ -34,7 +34,8 @@ export const darkTheme = {
     'actions-icon': 'url(./assets/images/icons/actions-icon.svg)',
     'edit-icon': 'url(./assets/images/icons/edit-icon.svg)',
     'trash-icon': 'url(./assets/images/icons/trash-icon.svg)',
-    'active-icon': 'url(./assets/images/icons/active-icon.svg)'
+    'active-icon': 'url(./assets/images/icons/active-icon.svg)',
+    'berry-color': '#FF8E52'
 }
 
 export const lightTheme = {
@@ -68,7 +69,8 @@ export const lightTheme = {
     'actions-icon': 'url(./assets/images/icons/actions-icon-light.svg)',
     'edit-icon': 'url(./assets/images/icons/edit-icon-light.svg)',
     'trash-icon': 'url(./assets/images/icons/trash-icon-light.svg)',
-    'active-icon': 'url(./assets/images/icons/active-icon-light.svg)'
+    'active-icon': 'url(./assets/images/icons/active-icon-light.svg)',
+    'berry-color': '#FF8E52'
 }
 
 @Injectable({

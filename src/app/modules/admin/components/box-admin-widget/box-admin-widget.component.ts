@@ -3,10 +3,10 @@ import * as _ from 'lodash';
 import { ToastrService } from 'ngx-toastr';
 
 import { Box } from 'app/shared/models/box.model';
-import { QueueVideo } from 'app/shared/models/playlist-video.model';
 import { BoxService } from 'app/shared/services/box.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
+import { QueueItem } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-box-admin-widget',
@@ -16,7 +16,7 @@ import { BoxFormComponent } from 'app/shared/components/box-form/box-form.compon
 export class BoxAdminWidgetComponent implements OnInit {
     @Input() box: Box
     @Output() refresh: EventEmitter<any> = new EventEmitter()
-    currentVideo: QueueVideo = null
+    currentVideo: QueueItem = null
 
     constructor(
         private boxService: BoxService,

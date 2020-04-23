@@ -110,6 +110,14 @@
     }
 }
 
+.btn-berries {
+    color: var(--text-main-color);
+    background-color: rgba($berry-color, 0.7);
+    &:hover {
+        background-color: rgba($berry-color, 0.8);
+    }
+}
+
 .display-3 {
     font-family: 'Montserrat', sans-serif;
 }

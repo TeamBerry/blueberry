@@ -13,12 +13,9 @@
                 <p id="box-admin" class="mb-0">{{ box.creator['name'] }}</p>
                 <p id="currently-playing" class="mb-0">{{ currentVideo?.video?.name || "--" }}</p>
                 <div class="modes pb-2">
-                    <span class="col-6 box-option" *ngIf="box?.options?.random === true" ngbTooltip="The next video will be picked at random from the upcoming pool." placement="right">
-                        Random
-                    </span>
-                    <span class="col-6 box-option" *ngIf="box?.options?.loop === true" ngbTooltip="The system will automatically requeue old videos." placement="right">
-                        Loop
-                    </span>
+                    <app-bx-chip [options]="{'type': 'random'}" *ngIf="box?.options?.random"></app-bx-chip>
+                    <app-bx-chip [options]="{'type': 'loop'}" *ngIf="box?.options?.loop"></app-bx-chip>
+                    <app-bx-chip [options]="{'type': 'no-coin'}" *ngIf="!box?.options?.berries"></app-bx-chip>
                 </div>
             </div>
         </div>

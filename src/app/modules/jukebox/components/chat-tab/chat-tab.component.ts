@@ -54,6 +54,7 @@ export class ChatTabComponent implements OnInit {
             )
             .subscribe(
                 (message) => {
+                    console.log('MESSAGE: ', message)
                     this.messages.push(message);
                     setTimeout(() => {
                         this.scrollToBottom();

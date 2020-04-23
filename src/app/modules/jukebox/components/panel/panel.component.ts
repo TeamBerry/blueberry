@@ -7,7 +7,7 @@ import { EmojiSearch } from '@ctrl/ngx-emoji-mart';
 import { EmojiData } from '@ctrl/ngx-emoji-mart/ngx-emoji/public_api';
 
 import { JukeboxService } from './../../jukebox.service';
-import { Message, FeedbackMessage } from '@teamberry/muscadine';
+import { Message, FeedbackMessage, BerryCount } from '@teamberry/muscadine';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
@@ -56,6 +56,8 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
     emojiDetectionRegEx = new RegExp(/:[\w]{2,}/, 'gmi');
     emojiReplacementRegEx = new RegExp(/:[\w]{2,}:/, 'gmi');
     emojiResults: Array<EmojiData> = [];
+
+    berryCount: number = null;
 
     constructor(
         private modalService: NgbModal,
@@ -295,10 +297,9 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
         } catch (error) {
             const message: FeedbackMessage = new FeedbackMessage({
                 contents: 'The video URL you submitted is not a valid YouTube URL.',
-                source: 'feedback',
                 scope: this.boxToken,
                 time: new Date(),
-                feedbackType: 'error'
+                context: 'error'
             });
             this.jukeboxService.postMessageToStream(message);
         }
@@ -312,18 +313,28 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
     connectToStream() {
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
-                filter(message => message instanceof Message && message.scope === this.boxToken)
+                filter(message =>
+                    (message instanceof Message && message.scope === this.boxToken)
+                    || ('berries' in message && message.boxToken === this.boxToken)
+                ),
             )
             .subscribe(
-                (message: Message) => {
-                    if (this.activePanel !== 'chat') {
-                        if (message.source !== 'system') {
-                            this.newMessages = true
-                        } else {
-                            this.toastr.info(message.contents, 'System')
+                (contents: Message | BerryCount) => {
+                    if ('scope' in contents) {
+                        if (this.activePanel !== 'chat') {
+                            if (contents.source !== 'system') {
+                                this.newMessages = true
+                            } else {
+                                this.toastr.info(contents.contents, 'System')
+                            }
                         }
                     }
-                }
+
+                    if ('berries' in contents) {
+                        console.log('Refreshing berry count: ', contents as BerryCount)
+                        this.berryCount = contents.berries;
+                    }
+                },
             );
     }
 

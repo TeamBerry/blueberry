@@ -6,7 +6,11 @@
             </app-bx-button>
         </div>
         <div class="overflow-auto">
-            <p class="list-rank px-3 pt-3">Now playing: </p>
+            <div class="d-flex align-items-center pl-2 pt-3">
+                <img *ngIf="currentlyPlaying?.stateForcedWithBerries" src="../../../../../assets/images/icons/berry-coin-icon.svg" alt=""
+                style="height: 30px;" ngbTooltip="This video is playing thanks to the use of berries.">
+                <p class="list-rank pl-2">Now playing: </p>
+            </div>
             <div class="now-playing-space">
                 <div *ngIf="currentlyPlaying; else noPlaying">
                     <app-queue-video [item]="currentlyPlaying" [box]="box" (order)="handlePlaylistOrder($event)">
