@@ -76,7 +76,8 @@
                                 [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'queue'}" class="mr-2">
                             </app-bx-button>
                             <app-bx-button *ngIf="user._id !== box.creator._id" (click)="skipVideo()"
-                                [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 50 berries to skip'}" class="mr-2">
+                                [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 30 berries to skip'}"
+                                class="mr-2">
                             </app-bx-button>
                             <app-bx-button *ngIf="currentVideo" (click)="addToPlaylist()"
                                 [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to a Playlist', 'context': 'queue'}">
