@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QueueComponent } from './queue.component';
 import { JukeboxService } from '../../jukebox.service';
-import { QueueVideo } from 'app/shared/models/playlist-video.model';
+import { QueueItem } from '@teamberry/muscadine';
 
 describe('PlaylistComponent', () => {
     let component: QueueComponent;
@@ -27,7 +27,7 @@ describe('PlaylistComponent', () => {
     });
 
     describe('Builds the parts of the playlist', () => {
-        const playlist: Array<QueueVideo> = [
+        const playlist: Array<QueueItem> = [
             {
                 '_id': '5cb98fb0b7452c6b3cbfd5c5',
                 'video': {
@@ -105,7 +105,7 @@ describe('PlaylistComponent', () => {
             },
         ];
         it('Can isolate the currently playing video', () => {
-            const expected: QueueVideo = {
+            const expected: QueueItem = {
                 '_id': '5cb98fabb7452c6b3cbfd556',
                 'video': {
                     '_id': '5cb32f4f770fb93a70205ec2',
@@ -125,7 +125,7 @@ describe('PlaylistComponent', () => {
         });
 
         it('Can build the list of already played videos', () => {
-            const expected: Array<QueueVideo> = [
+            const expected: Array<QueueItem> = [
                 {
                     '_id': '5cb98c44b7452c6b3cbfd4b3',
                     'video': {
@@ -177,7 +177,7 @@ describe('PlaylistComponent', () => {
         });
 
         it('Can build the list of upcoming videos', () => {
-            const expected: Array<QueueVideo> = [
+            const expected: Array<QueueItem> = [
                 {
                     '_id': '5cb98fb0b7452c6b3cbfd5c5',
                     'video': {

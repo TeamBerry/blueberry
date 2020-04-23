@@ -50,9 +50,11 @@
                                     <span class="ml-1">{{ box?.creator?.name }}</span>
                                 </div>
                                 <div class="col d-flex flex-row-reverse pr-0">
-                                    <app-bx-chip [options]="{'type': 'random'}" *ngIf="box?.options?.random"></app-bx-chip>
+                                    <app-bx-chip [options]="{'type': 'random'}" *ngIf="box?.options?.random">
+                                    </app-bx-chip>
                                     <app-bx-chip [options]="{'type': 'loop'}" *ngIf="box?.options?.loop"></app-bx-chip>
-                                    <app-bx-chip [options]="{'type': 'no-coin'}" *ngIf="!box?.options?.berries"></app-bx-chip>
+                                    <app-bx-chip [options]="{'type': 'no-coin'}" *ngIf="!box?.options?.berries">
+                                    </app-bx-chip>
                                 </div>
                             </div>
                         </div>
@@ -61,15 +63,18 @@
                 <div class="col-7 video-info" *ngIf="currentVideo">
                     <div class="row">
                         <div class="col-10 d-flex justify-content-start align-items-center">
-                            <img *ngIf="currentVideo?.stateForcedWithBerries" src="../../../../../assets/images/icons/berry-coin-icon.svg" alt=""
-                                style="height: 30px;" ngbTooltip="This video is playing thanks to the use of berries.">
+                            <img *ngIf="currentVideo?.stateForcedWithBerries"
+                                src="../../../../../assets/images/icons/berry-coin-icon.svg" alt=""
+                                style="height: 30px;" class="pr-2"
+                                ngbTooltip="This video is playing thanks to the use of berries.">
                             <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}</p>
                         </div>
                         <div class="col-2 text-right" *appAuth="true">
                             <app-bx-button *ngIf="user._id === box.creator._id" (click)="skipVideo()"
                                 [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'queue'}" class="mr-2">
                             </app-bx-button>
-                            <app-bx-button *ngIf="user._id !== box.creator._id && box?.options?.berries" (click)="skipVideo()"
+                            <app-bx-button *ngIf="user._id !== box.creator._id && box?.options?.berries"
+                                (click)="skipVideo()"
                                 [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 30 berries to skip'}"
                                 class="mr-2">
                             </app-bx-button>

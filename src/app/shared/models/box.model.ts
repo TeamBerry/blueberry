@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { QueueVideo } from './playlist-video.model';
+import { QueueItem } from '@teamberry/muscadine';
 
 @Injectable()
 export class Box {
@@ -12,7 +12,7 @@ export class Box {
     description: string;
     lang: string;
     name: string;
-    playlist: Array<QueueVideo>;
+    playlist: Array<QueueItem>;
     open: boolean;
     createdAt: Date;
     updatedAt: Date;
