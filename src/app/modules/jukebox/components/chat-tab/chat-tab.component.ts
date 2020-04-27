@@ -3,7 +3,7 @@ import { Component, OnInit, Output, Input, EventEmitter, ViewChild, ElementRef }
 import { User } from 'app/shared/models/user.model';
 import { JukeboxService } from '../../jukebox.service';
 import { filter } from 'rxjs/operators';
-import { Message, FeedbackMessage } from '@teamberry/muscadine';
+import { Message, FeedbackMessage, SystemMessage } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-chat-tab',
@@ -48,13 +48,12 @@ export class ChatTabComponent implements OnInit {
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
                 filter(message =>
-                    (message instanceof Message || message instanceof FeedbackMessage)
+                    (message instanceof Message || message instanceof FeedbackMessage || message instanceof SystemMessage)
                     && message.scope === this.boxToken
                 )
             )
             .subscribe(
                 (message) => {
-                    console.log('MESSAGE: ', message)
                     this.messages.push(message);
                     setTimeout(() => {
                         this.scrollToBottom();

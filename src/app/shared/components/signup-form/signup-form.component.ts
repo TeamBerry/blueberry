@@ -74,7 +74,6 @@ export class SignupFormComponent implements OnInit {
             },
             (error) => {
                 this.errorMessage = 'This email address is already taken. Have you forgotten your password?';
-                console.log(error);
             }
         )
     }

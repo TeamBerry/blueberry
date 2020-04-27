@@ -40,8 +40,6 @@ export class PictureUploaderComponent implements OnInit {
         this.errorMessage = null
         const picture: File = pictureInput.files[0]
 
-        console.log(picture)
-
         if (this.checkFileSize(picture.size) === false) {
             this.errorMessage = `The file you submitted is too large. The maximum authorized size
             is ${this.maximumSize} MB`

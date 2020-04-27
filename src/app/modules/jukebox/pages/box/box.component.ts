@@ -3,7 +3,6 @@ import { BoxService } from './../../../../shared/services/box.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 
-import { LikeButtonComponent } from '../../components/like-button/like-button.component';
 import { JukeboxService } from './../../jukebox.service';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Box } from 'app/shared/models/box.model';
@@ -70,15 +69,6 @@ export class BoxComponent implements OnInit {
      * @memberof BoxComponent
      */
     user: AuthSubject = AuthService.getAuthSubject();
-
-    /**
-     * Integration of the Mood Widget component, though I'm not sure I need it anymore
-     *
-     * @private
-     * @type {LikeButtonComponent}
-     * @memberof BoxComponent
-     */
-    @ViewChild(LikeButtonComponent) private LikeButtonComponent: LikeButtonComponent;
 
     constructor(
         private authService: AuthService,
