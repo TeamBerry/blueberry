@@ -9,7 +9,6 @@ import { PlaylistFormComponent } from 'app/shared/components/playlist-form/playl
 import { AuthSubject } from 'app/shared/models/session.model';
 import { Video } from 'app/shared/models/video.model';
 import { SearchService } from 'app/shared/services/search.service';
-import { YoutubeSearchResult, YoutubeSearchVideos } from 'app/shared/models/youtube.model';
 import { ToastrService } from 'ngx-toastr';
 import { PlaylistService } from 'app/shared/services/playlist.service';
 
@@ -98,14 +97,8 @@ export class PlaylistsManagerComponent implements OnInit {
             this.searchTimeoutValue = this.defaultSearchCooldown
             // Search
             this.searchService.searchOnYoutube(this.searchValue).subscribe(
-                (response: YoutubeSearchResult) => {
-                    this.searchResults = response.items.map((responseVideo: YoutubeSearchVideos) => {
-                        return new Video({
-                            _id: null,
-                            name: responseVideo.snippet.title,
-                            link: responseVideo.id.videoId
-                        })
-                    })
+                (videos: Array<Video>) => {
+                    this.searchResults = videos;
                     // Cooldown of 5s before allowing a new search
                     this.searchInterval = setInterval(() => {
                         this.searchTimeoutValue--
