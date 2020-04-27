@@ -88,21 +88,23 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
     }
 
     ngAfterViewInit() {
-        this.emojiTypeahead.openChange.subscribe(
-            (change: boolean) => {
-                if (!change) {
-                    this.chatbox.nativeElement.focus();
+        if (this.chatbox) {
+            this.emojiTypeahead.openChange.subscribe(
+                (change: boolean) => {
+                    if (!change) {
+                        this.chatbox.nativeElement.focus();
+                    }
                 }
-            }
-        )
+            )
 
-        fromEvent(this.chatbox.nativeElement, 'keyup')
-            .pipe(
-                filter(Boolean),
-                debounceTime(200),
-                distinctUntilChanged(),
-        )
-        .subscribe(() => this.watchContents());
+            fromEvent(this.chatbox.nativeElement, 'keyup')
+                .pipe(
+                    filter(Boolean),
+                    debounceTime(200),
+                    distinctUntilChanged(),
+            )
+                .subscribe(() => this.watchContents());
+        }
     }
 
     ngAfterViewChecked() {
@@ -331,7 +333,6 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
                     }
 
                     if ('berries' in contents) {
-                        console.log('Refreshing berry count: ', contents as BerryCount)
                         this.berryCount = contents.berries;
                     }
                 },

@@ -281,7 +281,6 @@ export class JukeboxService {
             });
 
             this.boxSocket.on('berries', (berryCount: BerryCount) => {
-                console.log('Recieved actualised berry count: ', berryCount)
                 observer.next(berryCount)
             })
 

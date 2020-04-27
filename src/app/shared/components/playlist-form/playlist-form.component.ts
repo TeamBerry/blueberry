@@ -34,7 +34,6 @@ export class PlaylistFormComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log(this.playlist)
         if (this.context === 'create') {
             this.playlistService.store(this.playlist).subscribe(
                 (response: UserPlaylist) => {

@@ -52,7 +52,7 @@ export class PlayerComponent implements OnInit, OnChanges {
                 }
             }
         } else {
-            console.log('Player is not ready yet to play videos.');
+            console.log('Player is not yet ready to play videos.');
         }
     }
 

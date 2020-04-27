@@ -27,7 +27,7 @@
             <div class="px-3">
                 <button class="btn btn-default btn-block" (click)="submitPlaylist(selectedPlaylist._id)">Queue all</button>
             </div>
-            <app-video-entry *ngFor="let video of selectedPlaylist.videos | filter:filterValue:['name', 'link']" [video]="video" [options]="{'submit': true, 'favorite': false, 'addToPlaylist': false, 'removeFromPlaylist': false}" (submit)="submitVideo($event)"></app-video-entry>
+            <app-video-entry *ngFor="let video of selectedPlaylist.videos | filter:filterValue:['name', 'link']" [video]="video" [options]="{'submit': true}" (submit)="submitVideo($event)"></app-video-entry>
         </div>
         <ng-template #noFavorites>
             <div class="text-center no-contents">

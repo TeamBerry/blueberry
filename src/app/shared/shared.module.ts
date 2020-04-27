@@ -7,7 +7,6 @@ import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.com
 import { VideoEntryComponent } from './components/video-entry/video-entry.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe';
-import { PlaylistViewComponent } from './components/playlist-view/playlist-view.component';
 import { PlaylistSelectorComponent } from './components/playlist-selector/playlist-selector.component';
 import { ThemeService } from './services/theme.service';
 import { UserService } from './services/user.service';
@@ -15,7 +14,6 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { PictureUploaderComponent } from './components/picture-uploader/picture-uploader.component';
 import { BxAlertComponent } from './components/bx-alert/bx-alert.component';
 import { DurationPipe } from './pipes/duration.pipe';
-import { LikeButtonComponent } from 'app/modules/jukebox/components/like-button/like-button.component';
 import { BxButtonComponent } from './components/bx-button/bx-button.component';
 
 // Feature Modules
@@ -34,13 +32,11 @@ import { BxChipComponent } from './components/bx-chip/bx-chip.component';
         SlideToggleComponent,
         VideoEntryComponent,
         BoxDeletionEstimationPipe,
-        PlaylistViewComponent,
         PlaylistSelectorComponent,
         FilterPipe,
         PictureUploaderComponent,
         BxAlertComponent,
         DurationPipe,
-        LikeButtonComponent,
         BxButtonComponent,
         BxCheckboxComponent,
         BxTabsetComponent,
@@ -59,7 +55,6 @@ import { BxChipComponent } from './components/bx-chip/bx-chip.component';
         PictureUploaderComponent,
         BxAlertComponent,
         DurationPipe,
-        LikeButtonComponent,
         BxButtonComponent,
         PickerModule,
         BxCheckboxComponent,
