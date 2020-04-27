@@ -34,13 +34,11 @@ export class PlaylistsManagerComponent implements OnInit {
 
     inPlaylistOptions = {
         submit: false,
-        favorite: false,
         removeFromPlaylist: true
     }
 
     outPlaylistOptions = {
         submit: false,
-        favorite: false,
         addToPlaylist: true
     }
 
