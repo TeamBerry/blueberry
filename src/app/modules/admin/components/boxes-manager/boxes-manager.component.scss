@@ -1,4 +1,58 @@
 @import './../../../../../imports.scss';
+.box-manager {
+    height: 83.5vh;
+    width: 100%;
+}
+
+.box-list {
+    border-right: 1px solid var(--background-secondary-color-alternate);
+    background-color: var(--background-secondary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    #box-list-container {
+        height: inherit;
+        overflow-y: scroll;
+        overflow-x: visible;
+    }
+    .box-list-item {
+        cursor: pointer;
+        .box-name {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main-color);
+            font-size: 1.3rem;
+        }
+        &.active {
+            border-left: 5px solid $master-color;
+        }
+        &:hover {
+            background-color: var(--background-secondary-color-alternate);
+        }
+    }
+}
+
+.box-stats-banner {
+    display: flex;
+    justify-content: center;
+    .box-stat {
+        background-color: var(--background-main-color);
+        padding: 5px;
+        border-radius: 5px;
+        width: 180px;
+        text-align: center;
+        margin: 10px;
+        color: var(--text-main-color);
+        .stat-title {
+            font-weight: 800;
+        }
+    }
+}
+
+
+.box-panel {
+    background-color: var(--background-secondary-color);
+}
+
 .box-card {
     border: 1px solid lighten($master-color, 10%);
     margin: .7rem;
@@ -8,11 +62,6 @@
 
 .box-info {
     padding: 1rem;
-}
-
-.box-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.4rem;
 }
 
 .box-option-button {

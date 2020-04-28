@@ -1,12 +1,43 @@
 <div class="row justify-content-center">
-    <div class="col-8">
-        <h2 class="admin-tab-title">Boxes</h2>
-        <div *ngFor="let box of boxes | async" class="row">
-            <app-box-admin-widget [box]="box" (refresh)="loadBoxes()" class="col"></app-box-admin-widget>
+    <h2 class="admin-tab-title">Boxes</h2>
+    <div class="d-flex box-manager">
+        <div class="col-3 box-list px-0">
+            <div id="box-list-container">
+                <div *ngFor="let box of boxes" class="box-list-item p-3"
+                    [ngClass]="{'active': box._id === selectedBox?._id}" (click)="selectBox(box._id)">
+                    <div class="d-flex">
+                        <div class="col">
+                            <p class="box-name mb-0">{{ box.name }}</p>
+                            <div class="modes d-flex">
+                                <app-bx-chip [options]="{'type': 'random'}" *ngIf="box?.options?.random"></app-bx-chip>
+                                <app-bx-chip [options]="{'type': 'loop'}" *ngIf="box?.options?.loop"></app-bx-chip>
+                                <app-bx-chip [options]="{'type': 'no-coin'}" *ngIf="!box?.options?.berries"></app-bx-chip>
+                            </div>
+                        </div>
+                        <div class="col-1 p-0 m-auto text-center h-100 d-flex">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row pb-4">
-            <div class="col">
-                <button class="btn btn-primary btn-block" (click)="openCreateModal()">Create a box</button>
+        <div class="col box-panel">
+            <div class="box-stats-banner d-flex">
+                <div class="box-stat" id="box-lifetime">
+                    <p class="mb-0 stat-title">Life</p>
+                    <span *ngIf="lifetime">{{ lifetime | duration }}</span>
+                </div>
+                <div class="box-stat" id="box-users">
+                    <p class="mb-0 stat-title">Current Users</p>
+                    <span *ngIf="users !== null">{{ users }}</span>
+                </div>
+                <div class="box-stat" id="box-users">
+                    <p class="mb-0 stat-title">Videos</p>
+                    <span>{{ selectedBox?.playlist.length }}</span>
+                </div>
+            </div>
+            <div class="chat-space">
+                <!-- <app-chat-tab class="fixed-tab" *ngIf="selectedBox" [boxToken]="selectedBox?._id" [user]="user"></app-chat-tab> -->
             </div>
         </div>
     </div>
