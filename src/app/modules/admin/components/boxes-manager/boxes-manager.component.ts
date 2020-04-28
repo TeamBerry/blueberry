@@ -76,7 +76,6 @@ export class BoxesManagerComponent implements OnInit {
     }
 
     setupClock(startTime: Date) {
-        console.log(startTime);
         let life = Math.floor((Date.now() - Date.parse(startTime.toString())) / 1000);
         this.displayClock(life);
 

@@ -43,7 +43,8 @@ import { ChatItemComponent } from './components/chat-item/chat-item.component';
     exports: [
         ChatTabComponent,
         PlayerComponent,
-        QueueComponent
+        QueueComponent,
+        SearchTabComponent
     ],
     providers: [
         JukeboxService,
