@@ -36,8 +36,15 @@
                     <span>{{ selectedBox?.playlist.length }}</span>
                 </div>
             </div>
-            <div class="chat-space">
-                <!-- <app-chat-tab class="fixed-tab" *ngIf="selectedBox" [boxToken]="selectedBox?._id" [user]="user"></app-chat-tab> -->
+            <div class="d-flex">
+                <div class="col-6 chat-space">
+                    <p class="space-title">Chat</p>
+                    <app-chat-tab class="fixed-tab" *ngIf="selectedBox" [boxToken]="selectedBox?._id" [user]="user"></app-chat-tab>
+                </div>
+                <div class="col-6 playlist-space">
+                    <p class="space-title">Playlist</p>
+                    <app-queue class="fixed-tab" *ngIf="selectedBox" [user]="user" [box]="selectedBox"></app-queue>
+                </div>
             </div>
         </div>
     </div>

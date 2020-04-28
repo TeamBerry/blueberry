@@ -12,6 +12,7 @@ import { Box } from 'app/shared/models/box.model';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
 import { BoxService } from 'app/shared/services/box.service';
 import { AuthSubject } from 'app/shared/models/session.model';
+import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
 
 @Component({
     selector: 'app-boxes-manager',
@@ -32,6 +33,7 @@ export class BoxesManagerComponent implements OnInit {
 
     constructor(
         private boxService: BoxService,
+        private jukeboxService: JukeboxService,
         private modalService: NgbModal,
         private userService: UserService,
     ) {
@@ -64,6 +66,7 @@ export class BoxesManagerComponent implements OnInit {
             clearInterval(this.clockInterval);
             this.selectedBox = this.boxes.find((box: Box) => box._id === boxId)
             this.setupClock(this.selectedBox.createdAt)
+            this.jukeboxService.startBox(this.selectedBox)
             this.boxService.users(boxId).subscribe(
                 (users) => {
                     this.users = users.length;

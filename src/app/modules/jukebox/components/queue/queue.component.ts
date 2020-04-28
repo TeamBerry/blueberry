@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 import { JukeboxService } from '../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
@@ -15,8 +15,8 @@ import { QueueItemActionRequest, QueueItem } from '@teamberry/muscadine';
     templateUrl: './queue.component.html',
     styleUrls: ['./queue.component.scss'],
 })
-export class QueueComponent implements OnInit {
-    box: Box;
+export class QueueComponent implements OnInit, OnChanges {
+    @Input() box: Box = null;
     @Input() user: User = new User;
 
     currentlyPlaying: QueueItem;
@@ -40,20 +40,30 @@ export class QueueComponent implements OnInit {
         this.listen();
     }
 
+    ngOnChanges() {
+        this.listen();
+    }
+
     /**
      * Subscribe to the box from the jukebox space, to get the playlist when needed
      *
      * @memberof PlaylistComponent
      */
     listen() {
-        this.jukeboxService.getBox().subscribe(
-            (box: Box) => {
-                this.box = box;
-                this.currentlyPlaying = this.getCurrentlyPlayingVideo(this.box.playlist);
-                this.playedVideos = this.buildPartialPlaylist(this.box.playlist, 'played');
-                this.upcomingVideos = this.buildPartialPlaylist(this.box.playlist, 'upcoming').reverse();
-            }
-        );
+        if (!this.box) {
+            this.jukeboxService.getBox().subscribe(
+                (box: Box) => {
+                    this.box = box;
+                    this.currentlyPlaying = this.getCurrentlyPlayingVideo(this.box.playlist);
+                    this.playedVideos = this.buildPartialPlaylist(this.box.playlist, 'played');
+                    this.upcomingVideos = this.buildPartialPlaylist(this.box.playlist, 'upcoming').reverse();
+                }
+            );
+        } else {
+            this.currentlyPlaying = this.getCurrentlyPlayingVideo(this.box.playlist);
+            this.playedVideos = this.buildPartialPlaylist(this.box.playlist, 'played');
+            this.upcomingVideos = this.buildPartialPlaylist(this.box.playlist, 'upcoming').reverse();
+        }
     }
 
     /**

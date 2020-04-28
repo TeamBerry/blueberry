@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, ViewChild, ElementRef, OnChanges } from '@angular/core';
 
 import { User } from 'app/shared/models/user.model';
 import { JukeboxService } from '../../jukebox.service';
@@ -10,7 +10,7 @@ import { Message, FeedbackMessage, SystemMessage } from '@teamberry/muscadine';
     templateUrl: './chat-tab.component.html',
     styleUrls: ['./chat-tab.component.scss'],
 })
-export class ChatTabComponent implements OnInit {
+export class ChatTabComponent implements OnInit, OnChanges {
     @Input() boxToken: string;
     @Input() user: User = new User;
     @Output() socketStatus = new EventEmitter();
@@ -37,6 +37,10 @@ export class ChatTabComponent implements OnInit {
         if (this.boxToken !== undefined) {
             this.connectToStream();
         }
+    }
+
+    ngOnChanges() {
+        this.messages = [];
     }
 
     /**

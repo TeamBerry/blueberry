@@ -40,7 +40,11 @@ import { ChatItemComponent } from './components/chat-item/chat-item.component';
         SharedModule,
         NgxYoutubePlayerModule
     ],
-    exports: [],
+    exports: [
+        ChatTabComponent,
+        PlayerComponent,
+        QueueComponent
+    ],
     providers: [
         JukeboxService,
     ]
