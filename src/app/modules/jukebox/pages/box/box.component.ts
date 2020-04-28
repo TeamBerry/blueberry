@@ -55,7 +55,7 @@ export class BoxComponent implements OnInit {
     loading = true;
 
     /**
-     * The currently playing vidoe in the box. Gets refreshed by sockets and sent to the player and mood widgets
+     * The currently playing video in the box. Gets refreshed by sockets and sent to the player and mood widgets
      *
      * @memberof BoxComponent
      */

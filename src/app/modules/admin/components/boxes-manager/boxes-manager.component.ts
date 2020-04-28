@@ -13,6 +13,9 @@ import { BoxFormComponent } from 'app/shared/components/box-form/box-form.compon
 import { BoxService } from 'app/shared/services/box.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
+import { filter } from 'rxjs/operators';
+import { QueueItem } from '@teamberry/muscadine';
+import { SyncPacket } from 'app/shared/models/sync-packet.model';
 
 @Component({
     selector: 'app-boxes-manager',
@@ -30,6 +33,13 @@ export class BoxesManagerComponent implements OnInit {
     clockInterval;
 
     users: number;
+
+    /**
+     * The currently playing video in the box. Gets refreshed by sockets and sent to the player and mood widgets
+     *
+     * @memberof BoxComponent
+     */
+    currentVideo: QueueItem = null;
 
     constructor(
         private boxService: BoxService,
@@ -72,7 +82,35 @@ export class BoxesManagerComponent implements OnInit {
                     this.users = users.length;
                 }
             )
+            this.connectToSyncStream();
         }
+    }
+
+
+    /**
+     * Actions when the player changes state
+     *
+     * @param {*} event
+     * @memberof BoxComponent
+     */
+    onPlayerStateChange(event: any) {
+        if (event === 'ready') {
+            this.connectToSyncStream();
+        }
+    }
+
+    connectToSyncStream() {
+        this.jukeboxService.getBoxStream()
+            .pipe(
+                filter(syncPacket => syncPacket instanceof SyncPacket && syncPacket.box === this.selectedBox._id)
+        )
+            .subscribe(
+                (syncPacket: SyncPacket) => {
+                    if (_.has(syncPacket.item, 'video')) {
+                        this.currentVideo = syncPacket.item;
+                    }
+                }
+            )
     }
 
     setupClock(startTime: Date) {
