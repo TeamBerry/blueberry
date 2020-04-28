@@ -50,20 +50,14 @@ export class QueueComponent implements OnInit, OnChanges {
      * @memberof PlaylistComponent
      */
     listen() {
-        if (!this.box) {
-            this.jukeboxService.getBox().subscribe(
-                (box: Box) => {
-                    this.box = box;
-                    this.currentlyPlaying = this.getCurrentlyPlayingVideo(this.box.playlist);
-                    this.playedVideos = this.buildPartialPlaylist(this.box.playlist, 'played');
-                    this.upcomingVideos = this.buildPartialPlaylist(this.box.playlist, 'upcoming').reverse();
-                }
-            );
-        } else {
-            this.currentlyPlaying = this.getCurrentlyPlayingVideo(this.box.playlist);
-            this.playedVideos = this.buildPartialPlaylist(this.box.playlist, 'played');
-            this.upcomingVideos = this.buildPartialPlaylist(this.box.playlist, 'upcoming').reverse();
-        }
+        this.jukeboxService.getBox().subscribe(
+            (box: Box) => {
+                this.box = box;
+                this.currentlyPlaying = this.getCurrentlyPlayingVideo(this.box.playlist);
+                this.playedVideos = this.buildPartialPlaylist(this.box.playlist, 'played');
+                this.upcomingVideos = this.buildPartialPlaylist(this.box.playlist, 'upcoming').reverse();
+            }
+        );
     }
 
     /**

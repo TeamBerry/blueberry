@@ -64,6 +64,7 @@ export class JukeboxService {
      */
     public startBox(box: Box) {
         this.box = box;
+        this.boxSubject.next(this.box);
 
         // Connect to socket.
         this.startBoxSocket(box._id, this.user._id).subscribe(
