@@ -121,3 +121,9 @@
         overflow-y: hidden;
     }
 }
+
+#chat-panel{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

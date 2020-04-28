@@ -18,6 +18,7 @@ import { YoutubeSearchTabComponent } from './components/youtube-search-tab/youtu
 import { HelpTabComponent } from './components/help-tab/help-tab.component';
 import { SearchTabComponent } from './components/search-tab/search-tab.component';
 import { ChatItemComponent } from './components/chat-item/chat-item.component';
+import { ChatInputComponent } from './components/chat-input/chat-input.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { ChatItemComponent } from './components/chat-item/chat-item.component';
         YoutubeSearchTabComponent,
         HelpTabComponent,
         SearchTabComponent,
-        ChatItemComponent
+        ChatItemComponent,
+        ChatInputComponent
     ],
     imports: [
         JukeboxRoutingModule,
@@ -44,7 +46,8 @@ import { ChatItemComponent } from './components/chat-item/chat-item.component';
         ChatTabComponent,
         PlayerComponent,
         QueueComponent,
-        SearchTabComponent
+        SearchTabComponent,
+        ChatInputComponent
     ],
     providers: [
         JukeboxService,

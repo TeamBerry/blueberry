@@ -9,6 +9,9 @@
     padding-right: 0;
     background-color: var(--background-secondary-color);
     color: var(--text-main-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #player {
