@@ -1,14 +1,14 @@
 <div class="row justify-content-center">
     <h2 class="admin-tab-title">Boxes</h2>
     <div class="d-flex box-manager">
-        <div class="col-3 box-list px-0">
+        <div class="col-2 box-list px-0">
             <div id="box-list-container">
                 <div *ngFor="let box of boxes" class="box-list-item p-3"
                     [ngClass]="{'active': box._id === selectedBox?._id}" (click)="selectBox(box._id)">
                     <div class="d-flex">
-                        <div class="col">
+                        <div class="col px-0">
                             <p class="box-name mb-0">{{ box.name }}</p>
-                            <div class="modes d-flex">
+                            <div class="modes">
                                 <app-bx-chip [options]="{'type': 'random'}" *ngIf="box?.options?.random"></app-bx-chip>
                                 <app-bx-chip [options]="{'type': 'loop'}" *ngIf="box?.options?.loop"></app-bx-chip>
                                 <app-bx-chip [options]="{'type': 'no-coin'}" *ngIf="!box?.options?.berries"></app-bx-chip>
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div class="col box-panel">
+        <div class="col box-panel px-0">
             <div class="box-stats-banner d-flex">
                 <div class="box-stat" id="box-lifetime">
                     <p class="mb-0 stat-title">Life</p>
@@ -37,13 +37,16 @@
                 </div>
             </div>
             <div class="d-flex">
-                <div class="col-6 chat-space">
+                <div class="col-4 chat-space">
                     <p class="space-title">Chat</p>
                     <app-chat-tab class="fixed-tab" *ngIf="selectedBox" [boxToken]="selectedBox?._id" [user]="user"></app-chat-tab>
                 </div>
-                <div class="col-6 playlist-space">
+                <div class="col-4 playlist-space">
                     <p class="space-title">Playlist</p>
                     <app-queue class="fixed-tab" *ngIf="selectedBox" [user]="user" [box]="selectedBox"></app-queue>
+                </div>
+                <div class="col-4 search-space">
+                    <p class="space-title">Search</p>
                 </div>
             </div>
         </div>

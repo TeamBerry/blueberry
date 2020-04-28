@@ -34,6 +34,7 @@
 .box-stats-banner {
     display: flex;
     justify-content: center;
+    border-bottom: 3px solid var(--background-main-color);
     .box-stat {
         background-color: var(--background-main-color);
         padding: 5px;
@@ -53,7 +54,7 @@
 }
 
 .chat-space {
-    border: 1px solid var(--background-secondary-color-alternate);
+    border-bottom: 3px solid var(--background-main-color);
     height: 40%;
 }
 
@@ -62,6 +63,10 @@
     color: var(--text-main-color);
     font-style: 'Montserrat';
     font-size: 1.3rem;
+}
+
+.playlist-space, .search-space {
+    border-left: 3px solid var(--background-main-color);
 }
 
 .box-card {
@@ -95,4 +100,9 @@
     &.status-closed {
         background-color: $danger-color;
     }
+}
+
+.modes {
+    display: flex;
+    flex-wrap: wrap;
 }
