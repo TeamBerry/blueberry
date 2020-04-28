@@ -22,7 +22,7 @@
                     </div>
                 </ng-template>
             </div>
-            <div class="lists mt-2">
+            <div class="lists">
                 <app-bx-tabset [options]="tabSetOptions" (clickedOption)="displayTab = $event"></app-bx-tabset>
                 <div *ngIf="displayTab === 'upcoming'">
                     <div *ngFor="let entry of upcomingVideos; let i = index">
