@@ -42,7 +42,7 @@
                         <p class="space-title">Chat</p>
                         <div class="side-panel half-panel" id="chat-panel">
                             <app-chat-tab class="fixed-tab" *ngIf="selectedBox" [boxToken]="selectedBox?._id" [user]="user"></app-chat-tab>
-                            <app-chat-input [boxToken]="selectedBox?._id" [options]="{'searchButton': false, 'macroSupport': false}"></app-chat-input>
+                            <app-chat-input [boxToken]="selectedBox?._id" [options]="{'searchButton': false, 'berryCount': false}"></app-chat-input>
                         </div>
                     </div>
                     <div class="player-space mt-2">

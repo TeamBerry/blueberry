@@ -36,12 +36,14 @@
             message</button>
         <button *ngIf="hasCommand" class="btn btn-primary" id="command-button"
             (click)="post($event)">Use command</button>
-        <button class="btn btn-outline-berries" (click)="showPanel('queue')"
-            ngbTooltip="Your berries. You will collect them over time. Spend them to execute special actions indicated by the buttons of the same color!"
-            *ngIf="box.creator._id !== user._id && box?.options?.berries">
-            <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="">
-            <span id="berries-count">{{ berryCount }}</span>
-        </button>
+            <div *ngIf="appliedOptions.berryCount">
+                <button class="btn btn-outline-berries" (click)="showPanel('queue')"
+                ngbTooltip="Your berries. You will collect them over time. Spend them to execute special actions indicated by the buttons of the same color!"
+                *ngIf="box?.creator._id !== user._id && box?.options?.berries">
+                <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="">
+                <span id="berries-count">{{ berryCount }}</span>
+            </button>
+        </div>
         <button *ngIf="appliedOptions.searchButton" class="btn btn-outline-primary" (click)="showPanel('search')">
             <svg class="berrybox-svg-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427.28 439.64">
                 <rect class="berrybox-path" x="-10.35" y="290.75" width="245.89" height="72.58"

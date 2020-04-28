@@ -7,14 +7,14 @@ import { EmojiSearch } from '@ctrl/ngx-emoji-mart';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
-import { FeedbackMessage, Message } from '@teamberry/muscadine';
+import { FeedbackMessage, Message, BerryCount } from '@teamberry/muscadine';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Box } from 'app/shared/models/box.model';
 
 export interface ChatInputOptions {
     searchButton: boolean
-    macroSupport: boolean
+    berryCount: boolean
 }
 
 @Component({
@@ -25,7 +25,7 @@ export interface ChatInputOptions {
 export class ChatInputComponent implements OnInit, OnChanges {
     @Input() boxToken: string;
     @Input() options: Partial<ChatInputOptions>
-    @Input() berryCount: number = null;
+    berryCount: number = null;
     user: AuthSubject = AuthService.getAuthSubject();
     box: Box;
 
@@ -52,7 +52,7 @@ export class ChatInputComponent implements OnInit, OnChanges {
 
     appliedOptions: ChatInputOptions = {
         searchButton: true,
-        macroSupport: true
+        berryCount: true
     }
 
     constructor(
@@ -76,11 +76,13 @@ export class ChatInputComponent implements OnInit, OnChanges {
     ngOnInit() {
         this.listen();
 
-        Object.keys(this.options).map(
-            (value: string) => {
-                this.appliedOptions[value] = this.options[value] ?? this.appliedOptions[value]
-            }
-        )
+        if (this.options) {
+            Object.keys(this.options).map(
+                (value: string) => {
+                    this.appliedOptions[value] = this.options[value] ?? this.appliedOptions[value]
+                }
+            )
+        }
     }
 
     ngOnChanges() {
@@ -111,6 +113,16 @@ export class ChatInputComponent implements OnInit, OnChanges {
         this.jukeboxService.getBox().subscribe(
             (box: Box) => {
                 this.box = box;
+            }
+        )
+
+        this.jukeboxService.getBoxStream()
+            .pipe(
+                filter(message => 'berries' in message && message.boxToken === this.box._id)
+        )
+            .subscribe(
+                (contents: BerryCount) => {
+                    this.berryCount = contents.berries;
             }
         )
     }
@@ -156,7 +168,7 @@ export class ChatInputComponent implements OnInit, OnChanges {
         this.contents = '';
         this.emojiResults = [];
         if (this.hasCommand && !event.ctrlKey) {
-            this.command.emit(contents);
+            this.handleCommands(contents);
         } else {
             this.handleMessage(contents);
         }
@@ -209,6 +221,46 @@ export class ChatInputComponent implements OnInit, OnChanges {
         this.watchContents();
     }
 
+    handleCommands(contents: string) {
+        // Trim multiple spaces in commands
+        contents = contents.replace(/(\s)+/gm, ' ');
+        const command = contents.substr(1).split(' ');
+        const keyword = command[0];
+        switch (keyword) {
+            case 'add':
+            case 'play':
+                this.submitVideo(command[1]);
+                break;
+
+            case 'skip':
+            case 'next':
+                this.jukeboxService.skipVideo();
+                break;
+
+            case 'shuffle':
+            case 'random':
+                /* this.shuffle(); */
+                break;
+
+            // "Exterior commands"
+            case 'queue':
+            case 'settings':
+            case 'help':
+            case 'chat':
+            case 'playlist':
+            case 'users':
+            case 'userlist':
+            case 'search':
+            case 'commands':
+            case 'macros':
+                this.command.emit(keyword);
+                break;
+
+            default:
+                break;
+        }
+    }
+
     refreshChatStatus(event) {
         console.log(event);
     }
@@ -243,6 +295,6 @@ export class ChatInputComponent implements OnInit, OnChanges {
     }
 
     showPanel(panel: string) {
-        this.command.emit(`!${panel}`);
+        this.command.emit(panel);
     }
 }

@@ -30,8 +30,6 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
     box: Box;
 
     @Output() skipEvent = new EventEmitter();
-    contents = '';
-    hasCommand = false;
     activePanel: Panel = 'chat';
 
     /**
@@ -41,22 +39,6 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
      */
     newMessages = false;
 
-    /**
-     * Whether the emoji picker is displayed
-     *
-     * @memberof PanelComponent
-     */
-    isEmojiPickerDisplayed = false;
-
-    @ViewChild('chatbox') chatbox: ElementRef;
-    @ViewChild('emojiPicker') emojiPicker: ElementRef;
-    @ViewChild('emojiButton') emojiButton: ElementRef;
-    @ViewChild('emojiTypeahead') emojiTypeahead: NgbDropdown;
-
-    emojiDetectionRegEx = new RegExp(/:[\w]{2,}/, 'gmi');
-    emojiReplacementRegEx = new RegExp(/:[\w]{2,}:/, 'gmi');
-    emojiResults: Array<EmojiData> = [];
-
     berryCount: number = null;
 
     constructor(
@@ -65,17 +47,7 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
         private toastr: ToastrService,
         private renderer: Renderer2,
         private emojiSearch: EmojiSearch
-    ) {
-        // Will close the emoji picker when a click is registered outside of the chatbox, the emoji button and picker
-        this.renderer.listen('window', 'click', (e: Event) => {
-            if (e.target !== this.chatbox.nativeElement
-                && e.target !== this.emojiButton.nativeElement
-                && e.composedPath().indexOf(this.emojiPicker.nativeElement) === -1
-            ) {
-                this.isEmojiPickerDisplayed = false;
-            }
-        })
-    }
+    ) { }
 
     ngOnInit() {
         this.activePanel = 'chat';
@@ -88,23 +60,6 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
     }
 
     ngAfterViewInit() {
-        if (this.chatbox) {
-            this.emojiTypeahead.openChange.subscribe(
-                (change: boolean) => {
-                    if (!change) {
-                        this.chatbox.nativeElement.focus();
-                    }
-                }
-            )
-
-            fromEvent(this.chatbox.nativeElement, 'keyup')
-                .pipe(
-                    filter(Boolean),
-                    debounceTime(200),
-                    distinctUntilChanged(),
-            )
-                .subscribe(() => this.watchContents());
-        }
     }
 
     ngAfterViewChecked() {
@@ -122,117 +77,8 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.activePanel = panelToken;
     }
 
-    watchContents() {
-        // Reset everything
-        this.hasCommand = false;
-        if (this.contents.length === 0) {
-            this.emojiTypeahead.close();
-            return;
-        }
-
-        // Switch to command mode
-        if (this.contents.indexOf('!') === 0) {
-            this.hasCommand = true;
-            this.emojiTypeahead.close();
-            return;
-        }
-
-        // Replace full emojis
-        const emojiToReplace = this.emojiReplacementRegEx.exec(this.contents);
-        if (emojiToReplace && emojiToReplace.length > 0) {
-            const result: Array<EmojiData> = this.emojiSearch.search(emojiToReplace[0].replace(/:/gi, ''));
-            if (result.length > 0) {
-                this.contents = this.contents.replace(this.emojiReplacementRegEx, result[0].native);
-            }
-            this.emojiTypeahead.close();
-            return;
-        }
-
-        // Search for emojis to typeahead
-        const emojiToSearch = this.emojiDetectionRegEx.exec(this.contents);
-        if (emojiToSearch && emojiToSearch.length > 0) {
-            this.emojiResults = this.emojiSearch.search(emojiToSearch[0].replace(/:/gi, ''));
-            this.emojiTypeahead.open();
-            return;
-        }
-    }
-
-    post(event) {
-        event.preventDefault();
-        const contents = this.contents;
-        this.contents = '';
-        this.emojiResults = [];
-        if (this.hasCommand && !event.ctrlKey) {
-            this.handleCommands(contents);
-        } else {
-            this.handleMessage(contents);
-        }
-    }
-
-    handleMessage(contents: string) {
-        this.isEmojiPickerDisplayed = false;
-        this.emojiTypeahead.close();
-        const message = new Message({
-            author: this.user._id,
-            contents: contents,
-            scope: this.boxToken,
-            source: 'human',
-        });
-        this.jukeboxService.postMessageToSocket(message);
-    }
-
-    /**
-     * Adds the selected emoji to the contents of the message
-     *
-     * @param {*} event
-     * @memberof PanelComponent
-     */
-    addEmoji(event) {
-        this.contents += ` ${event.emoji.native}`;
-    }
-
-    /**
-     * Replaces the text by the emoji
-     *
-     * @param {EmojiData} emoji
-     * @memberof PanelComponent
-     */
-    replaceEmoji(emoji: EmojiData) {
-        this.contents = this.contents.replace(
-            this.emojiDetectionRegEx,
-            emoji.native
-        )
-        this.chatbox.nativeElement.focus();
-    }
-
-    /**
-     * Kickstarts the use of a command in the chat when a command is clicked in the command list component
-     *
-     * @param {string} commandKey
-     * @memberof PanelComponent
-     */
-    kickstartCommand(commandKey: string) {
-        this.contents += `!${commandKey} `;
-        this.watchContents();
-    }
-
-    handleCommands(contents: string) {
-        // Trim multiple spaces in commands
-        contents = contents.replace(/(\s)+/gm, ' ');
-        const command = contents.substr(1).split(' ');
-        const keyword = command[0];
+    handleCommands(keyword: string) {
         switch (keyword) {
-            case 'add':
-            case 'queue':
-            case 'play':
-                this.submitVideo(command[1]);
-                break;
-
-            case 'skip':
-            case 'next':
-                this.jukeboxService.skipVideo();
-                break;
-
             case 'shuffle':
             case 'random':
                 /* this.shuffle(); */
@@ -252,6 +98,7 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
                 break;
 
             case 'playlist':
+            case 'queue':
                 this.activePanel = 'queue';
                 break;
 
@@ -279,35 +126,6 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
     }
 
     /**
-     * Submits a video by its URL. Will control if the url is valid.
-     *
-     * @param {string} url The YouTube URL of the video.
-     * @memberof PanelComponent
-     */
-    submitVideo(url: string) {
-        const reg = new RegExp(/(\?v=([a-z0-9\-\_]+)\&?)|(\.be\/([a-z0-9\-\_]+)\&?)/i);
-        const res = reg.exec(url);
-
-        try {
-            const video: SubmissionPayload = {
-                link: (res[2]) ? res[2] : res[4],
-                userToken: this.user._id,
-                boxToken: this.boxToken,
-            };
-
-            this.jukeboxService.submitVideo(video);
-        } catch (error) {
-            const message: FeedbackMessage = new FeedbackMessage({
-                contents: 'The video URL you submitted is not a valid YouTube URL.',
-                scope: this.boxToken,
-                time: new Date(),
-                context: 'error'
-            });
-            this.jukeboxService.postMessageToStream(message);
-        }
-    }
-
-    /**
      * Connects to jukebox service chat stream to get messages to display
      *
      * @memberof ChatComponent
@@ -316,24 +134,17 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
                 filter(message =>
-                    (message instanceof Message && message.scope === this.boxToken)
-                    || ('berries' in message && message.boxToken === this.boxToken)
+                    message instanceof Message && message.scope === this.boxToken
                 ),
             )
             .subscribe(
-                (contents: Message | BerryCount) => {
-                    if ('scope' in contents) {
-                        if (this.activePanel !== 'chat') {
-                            if (contents.source !== 'system') {
-                                this.newMessages = true
-                            } else {
-                                this.toastr.info(contents.contents, 'System')
-                            }
+                (contents: Message) => {
+                    if (this.activePanel !== 'chat') {
+                        if (contents.source !== 'system') {
+                            this.newMessages = true
+                        } else {
+                            this.toastr.info(contents.contents, 'System')
                         }
-                    }
-
-                    if ('berries' in contents) {
-                        this.berryCount = contents.berries;
                     }
                 },
             );
