@@ -127,3 +127,14 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+.closed-label {
+    background-color: $danger-color;
+    padding: 3px;
+    color: white;
+    border-radius: 2.5px;
+    text-transform: uppercase;
+    cursor: default;
+    align-self: center;
+    margin-left: 5px;
+}

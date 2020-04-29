@@ -165,4 +165,14 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
     openSignupPrompt() {
         this.modalService.open(SignupFormComponent);
     }
+
+    /**
+     * Kickstarts the use of a command in the chat when a command is clicked in the command list component
+     *
+     * @param {string} commandKey
+     * @memberof PanelComponent
+     */
+    kickstartCommand(commandKey: string) {
+        console.log('TODO: ', commandKey)
+    }
 }

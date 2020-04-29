@@ -7,15 +7,36 @@
                     [ngClass]="{'active': box._id === selectedBox?._id}" (click)="selectBox(box._id)">
                     <div class="d-flex">
                         <div class="col px-0">
-                            <p class="box-name mb-0">{{ box.name }}</p>
+                            <div class="d-flex">
+                                <a class="box-name" href="box/{{ box?._id }}">{{ box?.name }}</a>
+                                <span class="closed-label" *ngIf="!box?.open"
+                                    ngbTooltip="The box is closed. Video play and submission are disabled.">Closed</span>
+                            </div>
                             <div class="modes">
                                 <app-bx-chip [options]="{'type': 'random'}" *ngIf="box?.options?.random"></app-bx-chip>
                                 <app-bx-chip [options]="{'type': 'loop'}" *ngIf="box?.options?.loop"></app-bx-chip>
-                                <app-bx-chip [options]="{'type': 'no-coin'}" *ngIf="!box?.options?.berries"></app-bx-chip>
+                                <app-bx-chip [options]="{'type': 'no-coin'}" *ngIf="!box?.options?.berries">
+                                </app-bx-chip>
                             </div>
                         </div>
-                        <div class="col-1 p-0 m-auto text-center h-100 d-flex">
-
+                        <div class="col-1 p-0 m-auto text-center h-100 d-flex" ngbDropdown container="body">
+                            <div ngbDropdownToggle>
+                                <img class="actions-icon" style="height: 30px; width: 30px;">
+                            </div>
+                            <div ngbDropdownMenu>
+                                <button ngbDropdownItem (click)="openCreateModal(box)">
+                                    <img alt="" class="bx-dropdown-icon edit-icon">
+                                    <span>Edit</span>
+                                </button>
+                                <button ngbDropdownItem (click)="toggleBoxState(box)">
+                                    <img alt="" class="bx-dropdown-icon active-icon">
+                                    <span>{{ box.open ? 'Close': 'Open' }}</span>
+                                </button>
+                                <button ngbDropdownItem (click)="deleteBox(box)" *ngIf="!box.open">
+                                    <img alt="" class="bx-dropdown-icon trash-icon">
+                                    <span>Delete</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -41,8 +62,10 @@
                     <div class="chat-space mb-2">
                         <p class="space-title">Chat</p>
                         <div class="side-panel half-panel" id="chat-panel">
-                            <app-chat-tab class="fixed-tab" *ngIf="selectedBox" [boxToken]="selectedBox?._id" [user]="user"></app-chat-tab>
-                            <app-chat-input [boxToken]="selectedBox?._id" [options]="{'searchButton': false, 'berryCount': false}"></app-chat-input>
+                            <app-chat-tab class="fixed-tab" *ngIf="selectedBox" [boxToken]="selectedBox?._id"
+                                [user]="user"></app-chat-tab>
+                            <app-chat-input [boxToken]="selectedBox?._id"
+                                [options]="{'searchButton': false, 'berryCount': false}"></app-chat-input>
                         </div>
                     </div>
                     <div class="player-space mt-2">
@@ -55,7 +78,8 @@
                     <div class="playlist-space">
                         <p class="space-title">Playlist</p>
                         <div class="side-panel full-panel">
-                            <app-queue class="fixed-tab" *ngIf="selectedBox" [user]="user" [box]="selectedBox"></app-queue>
+                            <app-queue class="fixed-tab" *ngIf="selectedBox" [user]="user" [box]="selectedBox">
+                            </app-queue>
                         </div>
                     </div>
                 </div>

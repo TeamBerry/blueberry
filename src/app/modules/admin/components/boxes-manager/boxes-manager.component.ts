@@ -46,6 +46,7 @@ export class BoxesManagerComponent implements OnInit {
         private jukeboxService: JukeboxService,
         private modalService: NgbModal,
         private userService: UserService,
+        private toastr: ToastrService
     ) {
 
     }
@@ -66,9 +67,52 @@ export class BoxesManagerComponent implements OnInit {
         );
     }
 
-    openCreateModal() {
+    openCreateModal(box?: Box) {
         const modalRef = this.modalService.open(BoxFormComponent);
-        modalRef.componentInstance.title = 'Create a box';
+        modalRef.componentInstance.title = !box ? 'Create a box' : `Edit ${box.name}`;
+        modalRef.componentInstance.box = box;
+    }
+
+        /**
+     * Toggles the box between open or closed
+     *
+     * @param {Box} box The box to close
+     * @memberof BoxesManagerComponent
+     */
+    toggleBoxState(box: Box) {
+        if (box.open) {
+            this.boxService.close(box).subscribe(
+                (updatedBox) => {
+                    box.open = false;
+                    this.toastr.success('The box has been closed succesfully. Video play and submission have been disabled.', 'Success');
+                }
+            );
+        } else {
+            this.boxService.open(box).subscribe(
+                (updatedBox) => {
+                    box.open = true;
+                    this.toastr.success('The box has been opened succesfully. Video play and submission have been reenabled.', 'Success');
+                }
+            );
+        }
+    }
+
+    /**
+     * Deletes a closed box
+     *
+     * @param {Box} box
+     * @memberof BoxesManagerComponent
+     */
+    deleteBox(box: Box) {
+        if (box.open) {
+            this.toastr.error('The box is still open and cannot be deleted. Please close the box before deleting it.');
+            return;
+        }
+        this.boxService.delete(box._id).subscribe(
+            (deletedBox) => {
+                this.toastr.success('The box has been deleted successfully.');
+            }
+        )
     }
 
     selectBox(boxId: string) {
