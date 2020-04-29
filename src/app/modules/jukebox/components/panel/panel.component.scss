@@ -1,8 +1,11 @@
 @import './../../../../../imports.scss';
+.side-panel {
+    height: calc(100vh - (80px + 110px));
+    overflow: hidden;
+}
+
 .box-side-panel {
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: calc(100vh - (80px + 45px + 110px));
+    height: 100%;
     &::-webkit-scrollbar-thumb {
         visibility: hidden;
     }

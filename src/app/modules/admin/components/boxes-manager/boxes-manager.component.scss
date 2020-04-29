@@ -55,15 +55,32 @@
     flex-direction: column;
 }
 
-.space-title {
-    text-align: center;
-    color: var(--text-main-color);
-    font-style: 'Montserrat';
-    font-size: 1rem;
-    padding: 5px;
-    margin-bottom: 0;
+.space-title-section {
     border-bottom: 1px solid darken($main-black, 20%);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    .space-title {
+        text-align: center;
+        color: var(--text-main-color);
+        font-style: 'Montserrat';
+        font-size: 1rem;
+        padding: 5px;
+        margin-bottom: 0;
+        justify-self: center;
+    }
+    .space-title-button {
+        font-size: 0.8rem;
+        display: flex;
+        align-content: center;
+        .img-icon {
+            height: 17px;
+            width: 17px;
+            margin-right: 5px;
+        }
+    }
 }
+
 
 .playlist-space, .search-space, .chat-space, .player-space {
     background-color: var(--background-secondary-color);
@@ -98,22 +115,6 @@
 .modes {
     display: flex;
     flex-wrap: wrap;
-}
-
-.side-panel {
-    overflow-y: auto;
-    overflow-x: hidden;
-    &::-webkit-scrollbar-thumb {
-        visibility: hidden;
-    }
-    &:hover {
-        &::-webkit-scrollbar-thumb {
-            visibility: visible;
-        }
-    }
-    &.panel-fixed {
-        overflow-y: hidden;
-    }
 }
 
 .full-panel{
