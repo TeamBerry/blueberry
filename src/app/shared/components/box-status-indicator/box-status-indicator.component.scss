@@ -1,0 +1,11 @@
+@import './../../../../imports.scss';
+.closed-label {
+    background-color: $danger-color;
+    padding: 3px;
+    color: white;
+    border-radius: 13px;
+    text-transform: uppercase;
+    cursor: default;
+    align-self: center;
+    display: flex;
+}

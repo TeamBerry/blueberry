@@ -2,7 +2,7 @@
 .box-side-panel {
     overflow-y: auto;
     overflow-x: hidden;
-    height: calc(100vh - (80px + 45px + 148px));
+    height: calc(100vh - (80px + 45px + 110px));
     &::-webkit-scrollbar-thumb {
         visibility: hidden;
     }

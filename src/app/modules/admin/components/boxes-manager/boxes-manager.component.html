@@ -7,10 +7,9 @@
                     [ngClass]="{'active': box._id === selectedBox?._id}" (click)="selectBox(box._id)">
                     <div class="d-flex">
                         <div class="col px-0">
-                            <div class="d-flex">
+                            <div class="d-flex align-items-center">
+                                <app-box-status-indicator [isOpen]="box?.open" class="mr-2"></app-box-status-indicator>
                                 <a class="box-name" href="box/{{ box?._id }}">{{ box?.name }}</a>
-                                <span class="closed-label" *ngIf="!box?.open"
-                                    ngbTooltip="The box is closed. Video play and submission are disabled.">Closed</span>
                             </div>
                             <div class="modes">
                                 <app-bx-chip [options]="{'type': 'random'}" *ngIf="box?.options?.random"></app-bx-chip>

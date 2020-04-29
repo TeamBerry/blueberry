@@ -23,7 +23,7 @@
 .message-list {
     flex-grow: 1;
     overflow: auto;
-    height: 80%;
+    height: 78%;
 }
 
 .chat-space {
@@ -31,7 +31,7 @@
 }
 
 .scroll-resumer {
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     border-radius: 5px;

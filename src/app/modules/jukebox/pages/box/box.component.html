@@ -15,8 +15,7 @@
                         <div class="bb-box-info w-100">
                             <div id="box-title-space">
                                 <div id="box-title">
-                                    <span class="closed-label" *ngIf="!box?.open"
-                                        ngbTooltip="The box is closed. Video play and submission are disabled.">Closed</span>
+                                    <app-box-status-indicator [isOpen]="box?.open" class="mr-2"></app-box-status-indicator>
                                     <span class="box-title" title="{{box.name}}">{{ box.name }}</span>
                                 </div>
                                 <div class="d-flex align-items-center" ngbTooltip="Settings"
