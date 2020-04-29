@@ -111,6 +111,18 @@ export class BoxesManagerComponent implements OnInit {
         this.boxService.delete(box._id).subscribe(
             (deletedBox) => {
                 this.toastr.success('The box has been deleted successfully.');
+                const boxIndex = this.boxes.findIndex(item => box._id === item._id)
+                this.boxes.splice(boxIndex, 1)
+
+                if (boxIndex === 0) {
+                    this.selectBox(this.boxes[0]._id)
+                }
+
+                if (boxIndex > this.boxes.length) {
+                    this.selectBox(this.boxes[this.boxes.length]._id)
+                }
+
+                this.selectBox(this.boxes[boxIndex]._id)
             }
         )
     }
