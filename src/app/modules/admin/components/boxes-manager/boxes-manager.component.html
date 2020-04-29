@@ -66,9 +66,9 @@
                 <div class="col-4 pl-2 pr-1">
                     <div class="chat-space mb-2">
                         <p class="space-title">Chat</p>
-                        <div class="side-panel half-panel" id="chat-panel">
+                        <div class="half-panel" id="chat-panel">
                             <app-chat-tab class="fixed-tab" *ngIf="selectedBox" [boxToken]="selectedBox?._id"
-                                [user]="user"></app-chat-tab>
+                                [user]="user" style="height: 75%;"></app-chat-tab>
                             <app-chat-input [boxToken]="selectedBox?._id"
                                 [options]="{'searchButton': false, 'berryCount': false}"></app-chat-input>
                         </div>

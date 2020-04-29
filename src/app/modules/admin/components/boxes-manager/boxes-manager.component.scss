@@ -103,12 +103,6 @@
 .side-panel {
     overflow-y: auto;
     overflow-x: hidden;
-    &.full-panel{
-        height: calc(100vh - 240px);
-    }
-    &.half-panel{
-        height: calc(100vh - 435px);
-    }
     &::-webkit-scrollbar-thumb {
         visibility: hidden;
     }
@@ -122,10 +116,16 @@
     }
 }
 
+.full-panel{
+    height: calc(100vh - 240px);
+}
+.half-panel{
+    height: calc(100vh - 435px);
+}
+
 #chat-panel{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .closed-label {
