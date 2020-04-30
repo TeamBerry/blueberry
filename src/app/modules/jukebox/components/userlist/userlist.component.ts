@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { User } from 'app/shared/models/user.model';
 import { BoxService } from 'app/shared/services/box.service';

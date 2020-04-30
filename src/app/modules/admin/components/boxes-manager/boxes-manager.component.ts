@@ -1,19 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import * as _ from 'lodash';
-import * as moment from 'moment';
+import { filter } from 'rxjs/operators';
 
 import { UserService } from 'app/shared/services/user.service';
 import { AuthService } from 'app/core/auth/auth.service';
-import { User } from 'app/shared/models/user.model';
 import { Box } from 'app/shared/models/box.model';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
 import { BoxService } from 'app/shared/services/box.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
-import { filter } from 'rxjs/operators';
 import { QueueItem } from '@teamberry/muscadine';
 import { SyncPacket } from 'app/shared/models/sync-packet.model';
 

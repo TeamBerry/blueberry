@@ -3,7 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../../core/auth/auth.service';
 
 import { User } from '../../../shared/models/user.model';
-import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Session } from 'app/shared/models/session.model';
 
 @Component({

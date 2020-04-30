@@ -73,7 +73,7 @@
 </div>
 <div id="input-space">
     <div *appAuth="true">
-        <app-chat-input [boxToken]="box?._id" (command)="handleCommands($event)"></app-chat-input>
+        <app-chat-input #chatInput [boxToken]="box?._id" (command)="handleCommands($event)"></app-chat-input>
     </div>
     <div *appAuth="false" class="text-center">
         <h5>

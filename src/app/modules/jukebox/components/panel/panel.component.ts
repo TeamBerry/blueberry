@@ -1,21 +1,18 @@
-import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, ElementRef, ViewChild, Renderer2, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, ViewChild, AfterViewInit } from '@angular/core';
 import * as _ from 'lodash'
 import { ToastrService } from 'ngx-toastr';
-import { filter, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
-import { NgbModal, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
-import { EmojiSearch } from '@ctrl/ngx-emoji-mart';
-import { EmojiData } from '@ctrl/ngx-emoji-mart/ngx-emoji/public_api';
+import { filter } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { JukeboxService } from './../../jukebox.service';
-import { Message, FeedbackMessage, BerryCount } from '@teamberry/muscadine';
-import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
+import { Message } from '@teamberry/muscadine';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
 import { Box } from 'app/shared/models/box.model';
 import { LoginFormComponent } from 'app/shared/components/login-form/login-form.component';
 import { SignupFormComponent } from 'app/shared/components/signup-form/signup-form.component';
-import { Observable, fromEvent } from 'rxjs';
+import { ChatInputComponent } from '../chat-input/chat-input.component';
 
 export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorites' | 'search'
 
@@ -39,14 +36,12 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
      */
     newMessages = false;
 
-    berryCount: number = null;
+    @ViewChild('chatInput') chatInput: ChatInputComponent;
 
     constructor(
         private modalService: NgbModal,
         private jukeboxService: JukeboxService,
         private toastr: ToastrService,
-        private renderer: Renderer2,
-        private emojiSearch: EmojiSearch
     ) { }
 
     ngOnInit() {
@@ -173,6 +168,6 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
      * @memberof PanelComponent
      */
     kickstartCommand(commandKey: string) {
-        console.log('TODO: ', commandKey)
+        this.chatInput.contents = `!${commandKey}`
     }
 }

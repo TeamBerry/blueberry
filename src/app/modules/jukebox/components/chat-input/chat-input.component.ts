@@ -31,7 +31,7 @@ export class ChatInputComponent implements OnInit, OnChanges {
 
     @Output() command = new EventEmitter();
 
-    contents = '';
+    @Input() contents = '';
     hasCommand = false;
 
     /**
