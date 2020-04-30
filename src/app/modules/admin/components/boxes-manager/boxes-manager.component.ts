@@ -203,6 +203,5 @@ export class BoxesManagerComponent implements OnInit {
         computedDuration += `${seconds}S`
 
         this.lifetime = computedDuration;
-
     }
 }

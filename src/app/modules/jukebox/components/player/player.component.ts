@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { QueueItem } from '@teamberry/muscadine';
+import { JukeboxService } from '../../jukebox.service';
+import { SyncPacket } from 'app/shared/models/sync-packet.model';
+import { filter } from 'rxjs/operators';
 
 /**
  * The player component of the box. It just recieves the video as an input from the box
@@ -38,7 +41,9 @@ export class PlayerComponent implements OnInit, OnChanges {
      */
     private isPlayerReady = false;
 
-    constructor() { }
+    constructor(
+        private jukeboxService: JukeboxService
+    ) { }
 
     ngOnInit() {
     }
@@ -74,6 +79,7 @@ export class PlayerComponent implements OnInit, OnChanges {
         this.player = player;
         this.isPlayerReady = true;
         this.state.emit('ready');
+        this.connectToStream();
     }
 
     /**
@@ -96,5 +102,17 @@ export class PlayerComponent implements OnInit, OnChanges {
         }
 
         this.player.loadVideoById(video.video.link, startingTime);
+    }
+
+    connectToStream() {
+        this.jukeboxService.getBoxStream()
+            .pipe(
+                filter(syncPacket => syncPacket instanceof SyncPacket && syncPacket.box === this.boxToken)
+        )
+            .subscribe(
+                (syncPacket: SyncPacket) => {
+                    this.playVideo(syncPacket.item);
+            }
+        )
     }
 }
