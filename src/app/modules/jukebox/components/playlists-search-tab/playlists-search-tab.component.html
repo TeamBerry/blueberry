@@ -10,10 +10,10 @@
 </div>
 <div *ngIf="selectedPlaylist">
     <div class="d-flex pt-2">
-        <div class="col-3">
+        <div class="col">
             <button class="btn btn-outline-secondary" (click)="selectedPlaylist = null">Back</button>
         </div>
-        <div class="col-6">
+        <div class="col-sm-auto">
             <p class="text-center selected-playlist-name mb-0">{{ selectedPlaylist.name }}</p>
         </div>
         <app-bx-button (click)="submitPlaylist(selectedPlaylist._id)" class="panel-tab-title-button col"
