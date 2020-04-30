@@ -269,17 +269,19 @@ img {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    .panel-tab-title {
-        text-align: center;
-        color: var(--text-main-color);
-        font-style: 'Montserrat';
-        font-size: 1rem;
-        padding: 5px;
-        margin-bottom: 0;
-        justify-self: center;
-    }
-    .panel-tab-title-button {
-        display: flex;
-        justify-content: flex-end;
-    }
+}
+
+.panel-tab-title {
+    text-align: center;
+    color: var(--text-main-color);
+    font-style: 'Montserrat';
+    font-size: 1rem;
+    padding: 5px;
+    margin-bottom: 0;
+    justify-self: center;
+}
+
+.panel-tab-title-button {
+    display: flex;
+    justify-content: flex-end;
 }

@@ -15,7 +15,9 @@
             <div class="col-6">
                 <p class="text-center selected-playlist-name mb-0">{{ selectedPlaylist.name }}</p>
             </div>
-            <div class="col-3"></div>
+            <app-bx-button (click)="submitPlaylist(selectedPlaylist._id)" class="panel-tab-title-button col"
+                [options]="{'type': 'play', 'textDisplay': 'tooltip', 'text': 'Queue the whole playlist', 'context': 'queue'}">
+            </app-bx-button>
         </div>
         <div class="p-3 input-group">
             <input type="text" class="form-control" placeholder="Type to search in the playlist..." #filterInput>
@@ -24,14 +26,23 @@
             </div>
         </div>
         <div *ngIf="selectedPlaylist.videos.length > 0; else noFavorites" class="selected-playlist-items">
-            <div class="px-3">
-                <button class="btn btn-default btn-block" (click)="submitPlaylist(selectedPlaylist._id)">Queue all</button>
-            </div>
-            <app-video-entry *ngFor="let video of selectedPlaylist.videos | filter:filterValue:['name', 'link']" [video]="video" [options]="{'submit': true}" (submit)="submitVideo($event)"></app-video-entry>
+            <app-video-entry *ngFor="let video of selectedPlaylist.videos | filter:filterValue:['name', 'link']"
+                [video]="video" [options]="{'submit': true}" (submit)="submitVideo($event)"></app-video-entry>
         </div>
         <ng-template #noFavorites>
             <div class="text-center no-contents">
-                <svg class="empty-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><g id="add-to-library-icon"><rect class="cls-1" x="21.7" y="32.51" width="456.59" height="56.04"/><rect class="cls-1" x="21.7" y="125.53" width="456.59" height="56.04"/><rect class="cls-1" x="21.7" y="218.55" width="184.3" height="56.04"/><rect class="cls-1" x="21.7" y="311.57" width="184.3" height="56.04"/><rect class="cls-1" x="21.7" y="404.59" width="184.3" height="56.04"/><rect class="cls-1" x="237.35" y="316.28" width="228.3" height="45.21"/><rect class="cls-1" x="237.35" y="316.28" width="228.3" height="45.21" transform="translate(690.39 -12.61) rotate(90)"/></g></svg>
+                <svg class="empty-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+                    <g id="add-to-library-icon">
+                        <rect class="cls-1" x="21.7" y="32.51" width="456.59" height="56.04" />
+                        <rect class="cls-1" x="21.7" y="125.53" width="456.59" height="56.04" />
+                        <rect class="cls-1" x="21.7" y="218.55" width="184.3" height="56.04" />
+                        <rect class="cls-1" x="21.7" y="311.57" width="184.3" height="56.04" />
+                        <rect class="cls-1" x="21.7" y="404.59" width="184.3" height="56.04" />
+                        <rect class="cls-1" x="237.35" y="316.28" width="228.3" height="45.21" />
+                        <rect class="cls-1" x="237.35" y="316.28" width="228.3" height="45.21"
+                            transform="translate(690.39 -12.61) rotate(90)" />
+                    </g>
+                </svg>
                 <h3>This playlist is empty :(</h3>
             </div>
         </ng-template>
@@ -39,8 +50,8 @@
 </div>
 <div *appAuth="false" class="text-center no-contents">
     <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 408 408.09">
-        <path class="berrybox-path" d="M408 129.05c0 92-135.88 225.81-185.85 271.92a26.76 26.76 0 0 1-36.3 0C135.88 354.89 0 221.05 0 129.05c0-111 115.51-188.38 200.28-62.41a4.73 4.73 0 0 0 7.72.18c96.55-130.09 200-48.87 200 62.23z"
-        />
+        <path class="berrybox-path"
+            d="M408 129.05c0 92-135.88 225.81-185.85 271.92a26.76 26.76 0 0 1-36.3 0C135.88 354.89 0 221.05 0 129.05c0-111 115.51-188.38 200.28-62.41a4.73 4.73 0 0 0 7.72.18c96.55-130.09 200-48.87 200 62.23z" />
     </svg>
     <p>Log in or create an account to add videos to your favorites!</p>
     <button class="btn btn-default" (click)="openLoginPrompt()">Login</button>
