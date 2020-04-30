@@ -262,6 +262,9 @@ img {
     &.trash-icon {
         content: var(--trash-icon);
     }
+    &.access-icon {
+        content: var(--access-icon);
+    }
 }
 
 .panel-tab-title-section {
