@@ -79,8 +79,7 @@
                         <div class="panel-tab-title-section">
                             <p class="panel-tab-title col">Player</p>
                         </div>
-                        <!-- <app-player #player [boxToken]="selectedBox" [video]="currentVideo" (state)="onPlayerStateChange($event)">
-                        </app-player> -->
+                        <app-player *ngIf="selectedBox && selectedBox.open" [boxToken]="selectedBox._id"></app-player>
                     </div>
                 </div>
                 <div class="col-4 px-1">

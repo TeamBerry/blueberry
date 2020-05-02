@@ -126,7 +126,11 @@ export class BoxesManagerComponent implements OnInit {
 
     selectBox(boxId: string) {
         if (!this.selectedBox || this.selectedBox._id !== boxId) {
+            // Reset
+            this.selectedBox = null;
             clearInterval(this.clockInterval);
+
+            // Restart
             this.selectedBox = this.boxes.find((box: Box) => box._id === boxId)
             this.setupClock(this.selectedBox.createdAt)
             this.jukeboxService.startBox(this.selectedBox)
