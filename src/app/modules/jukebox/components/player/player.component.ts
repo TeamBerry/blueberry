@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges, SimpleChange } from '@angular/core';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { QueueItem } from '@teamberry/muscadine';
@@ -20,66 +20,98 @@ import { filter } from 'rxjs/operators';
     templateUrl: './player.component.html',
     styleUrls: ['./player.component.scss']
 })
-export class PlayerComponent implements OnInit, OnChanges {
+export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
     @Input() boxToken: string;
-    @Input() video: QueueItem = null;
-    @Output() playing: EventEmitter<any> = new EventEmitter();
-    @Output() state: EventEmitter<any> = new EventEmitter();
-    private player;
-    private playerEvent;
-    public height = '100%';
-    public width = '100%';
+    private player: YT.Player;
 
-    /**
-     * indicates if the player is ready to recieve videos and play them or not.
-     *
-     * Used as a guard against the onChanges hook of the component to avoid errors
-     *
-     * @private
-     * @type {boolean}
-     * @memberof PlayerComponent
-     */
-    private isPlayerReady = false;
+    streamSubscription
 
     constructor(
         private jukeboxService: JukeboxService
     ) { }
 
     ngOnInit() {
+        const tag = document.createElement('script');
+        tag.src = 'https:///www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        window['onYouTubeIframeAPIReady'] = () => this.createPlayer();
     }
 
-    ngOnChanges(event) {
-        if (this.isPlayerReady) {
-            if (_.has(event, 'video')) {
-                if (event.video.currentValue !== null) {
-                    this.video = event.video.currentValue;
-                    this.playVideo(this.video);
-                }
-            }
-        } else {
-            console.log('Player is not yet ready to play videos.');
-        }
-    }
-
-    onStateChange(event) {
-        this.playerEvent = event.data;
-        if (this.playerEvent === 0) { // PLAY ENDED
-            this.state.emit(this.playerEvent);
+    /**
+     * On Changes, stops the video and resubscribes to the jukebox stream with the changed box token
+     *
+     * @param {{boxToken: SimpleChange}} changes
+     * @memberof PlayerComponent
+     */
+    ngOnChanges(changes: {boxToken: SimpleChange}) {
+        if (changes.boxToken.previousValue !== changes.boxToken.currentValue && !changes.boxToken.firstChange) {
+            this.boxToken = changes.boxToken.currentValue;
+            this.player.stopVideo();
+            this.streamSubscription.unsubscribe();
+            this.connectToStream();
         }
     }
 
     /**
-     * Fires when the YouTube player is ready. We can only start playing videos once the player
-     * is itself ready.
+     * On destroy, removes everything pertaining to the youtube player. Everything.
      *
-     * @param {any} player
      * @memberof PlayerComponent
      */
-    onPlayerReady(player) {
-        this.player = player;
-        this.isPlayerReady = true;
-        this.state.emit('ready');
+    ngOnDestroy() {
+        window['YT'] = undefined;
+        window['yt'] = undefined;
+        if (this.streamSubscription) {
+            this.streamSubscription.unsubscribe();
+        }
+        if (this.player) {
+            this.player.stopVideo();
+            this.player.destroy();
+        }
+    }
+
+    createPlayer() {
+        this.player = new window['YT'].Player('player', {
+            videoId: null,
+            width: '100%',
+            height: '100%',
+            playerVars: {
+                autoplay: 1,
+                controls: 1
+            },
+            events: {
+                'onReady': this.onPlayerReady.bind(this)
+            }
+        })
+    }
+
+    /**
+     * Fires when the YouTube player is ready.
+     *
+     * @param {YT.PlayerEvent} event
+     * @memberof PlayerComponent
+     */
+    onPlayerReady(event: YT.PlayerEvent) {
+        this.player = event.target;
         this.connectToStream();
+    }
+
+    /**
+     * Connects to the jukebox stream to get the video to play
+     *
+     * @memberof PlayerComponent
+     */
+    connectToStream() {
+        this.streamSubscription = this.jukeboxService.getBoxStream()
+            .pipe(
+                filter(syncPacket => syncPacket instanceof SyncPacket && syncPacket.box === this.boxToken)
+        )
+            .subscribe(
+                (syncPacket: SyncPacket) => {
+                    this.playVideo(syncPacket.item);
+            }
+        )
     }
 
     /**
@@ -102,17 +134,5 @@ export class PlayerComponent implements OnInit, OnChanges {
         }
 
         this.player.loadVideoById(video.video.link, startingTime);
-    }
-
-    connectToStream() {
-        this.jukeboxService.getBoxStream()
-            .pipe(
-                filter(syncPacket => syncPacket instanceof SyncPacket && syncPacket.box === this.boxToken)
-        )
-            .subscribe(
-                (syncPacket: SyncPacket) => {
-                    this.playVideo(syncPacket.item);
-            }
-        )
     }
 }

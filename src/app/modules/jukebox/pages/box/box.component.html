@@ -1,9 +1,7 @@
 <div *ngIf="!loading">
     <div class="box-space row no-gutters">
-        <div class="col-9">
-            <div id="player">
-                <app-player *ngIf="box && currentVideo" [boxToken]="box._id"></app-player>
-            </div>
+        <div class="col-9 d-flex flex-column">
+            <app-player *ngIf="box && currentVideo" [boxToken]="box._id" style="height: 100%; width: 100%;"></app-player>
             <div class="row under-player">
                 <div class="col-5 box-info">
                     <div class="d-flex">

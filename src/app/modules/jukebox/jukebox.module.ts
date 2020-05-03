@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 
 import { SharedModule } from './../../shared/shared.module';
 import { JukeboxService } from './jukebox.service';
@@ -40,7 +39,6 @@ import { ChatInputComponent } from './components/chat-input/chat-input.component
     imports: [
         JukeboxRoutingModule,
         SharedModule,
-        NgxYoutubePlayerModule
     ],
     exports: [
         ChatTabComponent,
