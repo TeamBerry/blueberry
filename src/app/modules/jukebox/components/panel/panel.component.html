@@ -62,10 +62,11 @@
             </li>
             <li class="nav-separator my-1"></li>
             <li class="nav-item" [ngClass]="{'active': activePanel === 'commands'}" ngbTooltip="Commands"
-                placement="left">
+                placement="left" *appAuth="true">
                 <a class="nav-link" (click)="showPanel('commands')" title="Commands">!</a>
             </li>
-            <li class="nav-item" [ngClass]="{'active': activePanel === 'help'}" ngbTooltip="Help" placement="left">
+            <li class="nav-item" [ngClass]="{'active': activePanel === 'help'}" ngbTooltip="Help" placement="left"
+                *appAuth="true">
                 <a class="nav-link" (click)="showPanel('help')" title="Help">?</a>
             </li>
         </ul>
@@ -75,7 +76,7 @@
     <div *appAuth="true">
         <app-chat-input #chatInput [boxToken]="box?._id" (command)="handleCommands($event)"></app-chat-input>
     </div>
-    <div *appAuth="false" class="text-center">
+    <div *appAuth="false" class="text-center p-2">
         <h5>
             <button class="btn btn-primary" (click)="openLoginPrompt()">Log in</button> or <button
                 class="btn btn-primary" (click)="openSignupPrompt()">Sign up</button> to chat and submit videos to the
