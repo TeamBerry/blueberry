@@ -10,6 +10,7 @@
 }
 
 .list-rank {
+    color: var(--text-main-color);
     margin-bottom: 0;
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
@@ -22,4 +23,10 @@
 
 .no-playing {
     padding: 40px;
+    color: var(--text-main-color);
+}
+
+.lists {
+    height: 100%;
+    overflow: auto;
 }

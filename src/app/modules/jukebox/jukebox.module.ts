@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 
 import { SharedModule } from './../../shared/shared.module';
 import { JukeboxService } from './jukebox.service';
@@ -18,6 +17,7 @@ import { YoutubeSearchTabComponent } from './components/youtube-search-tab/youtu
 import { HelpTabComponent } from './components/help-tab/help-tab.component';
 import { SearchTabComponent } from './components/search-tab/search-tab.component';
 import { ChatItemComponent } from './components/chat-item/chat-item.component';
+import { ChatInputComponent } from './components/chat-input/chat-input.component';
 
 @NgModule({
     declarations: [
@@ -33,14 +33,20 @@ import { ChatItemComponent } from './components/chat-item/chat-item.component';
         YoutubeSearchTabComponent,
         HelpTabComponent,
         SearchTabComponent,
-        ChatItemComponent
+        ChatItemComponent,
+        ChatInputComponent
     ],
     imports: [
         JukeboxRoutingModule,
         SharedModule,
-        NgxYoutubePlayerModule
     ],
-    exports: [],
+    exports: [
+        ChatTabComponent,
+        PlayerComponent,
+        QueueComponent,
+        SearchTabComponent,
+        ChatInputComponent
+    ],
     providers: [
         JukeboxService,
     ]

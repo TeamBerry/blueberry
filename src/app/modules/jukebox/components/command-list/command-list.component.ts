@@ -31,39 +31,39 @@ export class CommandListComponent implements OnInit {
      */
     commands: Array<Command> = [
         {
-            keys: ['add', 'play', 'queue'],
+            keys: ['add', 'play'],
             arguments: ['URL'],
             description: 'Adds a video to the playlist, by the given YouTube link.',
             staffOnly: false,
         },
         {
             keys: ['chat'],
-            description: 'Summons the chat tab',
+            description: 'Shows the chat tab',
             staffOnly: false,
         },
         {
-            keys: ['playlist'],
-            description: 'Summons the playlist tab',
+            keys: ['playlist', 'queue'],
+            description: 'Shows the queue tab',
             staffOnly: false
         },
         {
             keys: ['users', 'userlist'],
-            description: 'Summons the user list',
+            description: 'Shows the user list',
             staffOnly: false
         },
         {
             keys: ['search'],
-            description: 'Summons the search tab',
+            description: 'Shows the search tab',
             staffOnly: false
         },
         {
             keys: ['help'],
-            description: 'Summons the help tab',
+            description: 'Shows the help tab',
             staffOnly: false
         },
         {
             keys: ['commands', 'macros'],
-            description: 'Summons the commands list',
+            description: 'Shows the commands list',
             staffOnly: false
         },
         {
@@ -73,7 +73,7 @@ export class CommandListComponent implements OnInit {
         },
         {
             keys: ['settings'],
-            description: `Summons a window with the settings of the box, allowing you to adjust options
+            description: `Shows a window with the settings of the box, allowing you to adjust options
             such as the modes of play`,
             staffOnly: true
         }

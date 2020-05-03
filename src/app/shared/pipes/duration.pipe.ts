@@ -14,10 +14,12 @@ export class DurationPipe implements PipeTransform {
     transform(value: string): string {
         let duration = ''
 
-        const [_, hours, mins, secs] = value.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+        const [_, years, days, hours, mins, secs] = value.match(/PT(?:(\d+)Y)?(?:(\d+)D)?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
 
-        if (hours) { duration += `${hours}h` }
-        if (mins) { duration += `${mins}min` }
+        if (years) { duration += `${years}y `}
+        if (days) { duration += `${days}d `}
+        if (hours) { duration += `${hours}h ` }
+        if (mins) { duration += `${mins}min ` }
         if (secs) { duration += `${secs}s` }
 
         return duration

@@ -33,6 +33,7 @@
         top: 77%;
         width: 100%;
         background-color: rgba($color: #000000, $alpha: 0.8);
+        color: white;
         text-align: center;
     }
 }
@@ -56,4 +57,5 @@
 .submission-details {
     margin-top: .25rem;
     margin-bottom: .25rem;
+    color: var(--text-main-color);
 }

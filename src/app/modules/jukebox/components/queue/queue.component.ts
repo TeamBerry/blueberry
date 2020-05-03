@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 import { JukeboxService } from '../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
@@ -15,8 +15,8 @@ import { QueueItemActionRequest, QueueItem } from '@teamberry/muscadine';
     templateUrl: './queue.component.html',
     styleUrls: ['./queue.component.scss'],
 })
-export class QueueComponent implements OnInit {
-    box: Box;
+export class QueueComponent implements OnInit, OnChanges {
+    @Input() box: Box = null;
     @Input() user: User = new User;
 
     currentlyPlaying: QueueItem;
@@ -37,6 +37,10 @@ export class QueueComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.listen();
+    }
+
+    ngOnChanges() {
         this.listen();
     }
 

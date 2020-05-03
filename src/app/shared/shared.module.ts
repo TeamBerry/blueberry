@@ -21,6 +21,7 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { BxCheckboxComponent } from './components/bx-checkbox/bx-checkbox.component';
 import { BxTabsetComponent } from './components/bx-tabset/bx-tabset.component';
 import { BxChipComponent } from './components/bx-chip/bx-chip.component';
+import { BoxStatusIndicatorComponent } from './components/box-status-indicator/box-status-indicator.component';
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import { BxChipComponent } from './components/bx-chip/bx-chip.component';
         BxButtonComponent,
         BxCheckboxComponent,
         BxTabsetComponent,
-        BxChipComponent
+        BxChipComponent,
+        BoxStatusIndicatorComponent
     ],
     exports: [
         CommonModule,
@@ -59,7 +61,8 @@ import { BxChipComponent } from './components/bx-chip/bx-chip.component';
         PickerModule,
         BxCheckboxComponent,
         BxTabsetComponent,
-        BxChipComponent
+        BxChipComponent,
+        BoxStatusIndicatorComponent
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [

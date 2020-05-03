@@ -35,6 +35,7 @@ export const darkTheme = {
     'edit-icon': 'url(./assets/images/icons/edit-icon.svg)',
     'trash-icon': 'url(./assets/images/icons/trash-icon.svg)',
     'active-icon': 'url(./assets/images/icons/active-icon.svg)',
+    'access-icon': 'url(./assets/images/icons/enter-box-icon.svg)',
     'berry-color': '#FF8E52'
 }
 
@@ -70,6 +71,7 @@ export const lightTheme = {
     'edit-icon': 'url(./assets/images/icons/edit-icon-light.svg)',
     'trash-icon': 'url(./assets/images/icons/trash-icon-light.svg)',
     'active-icon': 'url(./assets/images/icons/active-icon-light.svg)',
+    'access-icon': 'url(./assets/images/icons/enter-box-icon-light.svg)',
     'berry-color': '#FF8E52'
 }
 

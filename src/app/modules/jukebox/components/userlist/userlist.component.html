@@ -1,3 +1,6 @@
+<div class="panel-tab-title-section">
+    <p class="panel-tab-title col">Users</p>
+</div>
 <div class="px-3">
     <div *ngIf="users$ | async as users; else loading">
         <div *ngFor="let user of users" class="user-item my-1 d-flex">

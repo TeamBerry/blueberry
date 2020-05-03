@@ -1,40 +1,41 @@
-<div *ngIf="box" style="height: inherit;">
-    <div *ngIf="box.playlist.length > 0; else noVideos" class="d-flex flex-column" style="height: inherit;">
-        <div class="p-2 text-center">
-            <app-bx-button (click)="startConversion()"
-                [options]="{'type': 'addToLibrary', 'textDisplay': 'button', 'text': 'Add all videos to a Playlist'}">
-            </app-bx-button>
+<div class="panel-tab-title-section">
+    <div class="col"></div>
+    <p class="panel-tab-title col">Queue</p>
+    <app-bx-button (click)="startConversion()" class="panel-tab-title-button col pr-0"
+        [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add all videos to a Playlist', 'context': 'queue'}">
+    </app-bx-button>
+</div>
+<div *ngIf="box" style="height: calc(100% - 60px);">
+    <div *ngIf="box.playlist.length > 0; else noVideos" class="d-flex flex-column h-100">
+        <div class="d-flex align-items-center pl-2 pt-3">
+            <img *ngIf="currentlyPlaying?.stateForcedWithBerries"
+                src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 30px;"
+                ngbTooltip="This video is playing thanks to the use of berries.">
+            <p class="list-rank pl-2">Now playing: </p>
         </div>
-        <div class="overflow-auto">
-            <div class="d-flex align-items-center pl-2 pt-3">
-                <img *ngIf="currentlyPlaying?.stateForcedWithBerries" src="../../../../../assets/images/icons/berry-coin-icon.svg" alt=""
-                style="height: 30px;" ngbTooltip="This video is playing thanks to the use of berries.">
-                <p class="list-rank pl-2">Now playing: </p>
+        <div class="now-playing-space">
+            <div *ngIf="currentlyPlaying; else noPlaying">
+                <app-queue-video [item]="currentlyPlaying" [box]="box" (order)="handlePlaylistOrder($event)">
+                </app-queue-video>
             </div>
-            <div class="now-playing-space">
-                <div *ngIf="currentlyPlaying; else noPlaying">
-                    <app-queue-video [item]="currentlyPlaying" [box]="box" (order)="handlePlaylistOrder($event)">
+            <ng-template #noPlaying>
+                <div class="no-playing text-center">
+                    No video is currently playing.
+                </div>
+            </ng-template>
+        </div>
+        <app-bx-tabset [options]="tabSetOptions" (clickedOption)="displayTab = $event"></app-bx-tabset>
+        <div class="lists">
+            <div *ngIf="displayTab === 'upcoming'">
+                <div *ngFor="let entry of upcomingVideos; let i = index">
+                    <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
                     </app-queue-video>
                 </div>
-                <ng-template #noPlaying>
-                    <div class="no-playing text-center">
-                        No video is currently playing.
-                    </div>
-                </ng-template>
             </div>
-            <div class="lists mt-2">
-                <app-bx-tabset [options]="tabSetOptions" (clickedOption)="displayTab = $event"></app-bx-tabset>
-                <div *ngIf="displayTab === 'upcoming'">
-                    <div *ngFor="let entry of upcomingVideos; let i = index">
-                        <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
-                        </app-queue-video>
-                    </div>
-                </div>
-                <div *ngIf="displayTab === 'played'">
-                    <div *ngFor="let entry of playedVideos; let i = index">
-                        <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
-                        </app-queue-video>
-                    </div>
+            <div *ngIf="displayTab === 'played'">
+                <div *ngFor="let entry of playedVideos; let i = index">
+                    <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
+                    </app-queue-video>
                 </div>
             </div>
         </div>
