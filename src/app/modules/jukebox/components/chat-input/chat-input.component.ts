@@ -1,13 +1,13 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, Input, Output, EventEmitter, OnChanges } from '@angular/core';
-import { NgbDropdown, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { EmojiData } from '@ctrl/ngx-emoji-mart/ngx-emoji/public_api';
-import { JukeboxService } from '../../jukebox.service';
-import { ToastrService } from 'ngx-toastr';
 import { EmojiSearch } from '@ctrl/ngx-emoji-mart';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
+
 import { FeedbackMessage, Message, BerryCount } from '@teamberry/muscadine';
+import { JukeboxService } from '../../jukebox.service';
+import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Box } from 'app/shared/models/box.model';
@@ -34,16 +34,7 @@ export class ChatInputComponent implements OnInit, OnChanges {
     @Input() contents = '';
     hasCommand = false;
 
-    /**
-     * Whether the emoji picker is displayed
-     *
-     * @memberof PanelComponent
-     */
-    isEmojiPickerDisplayed = false;
-
     @ViewChild('chatbox') chatbox: ElementRef;
-    @ViewChild('emojiPicker') emojiPicker: ElementRef;
-    @ViewChild('emojiButton') emojiButton: ElementRef;
     @ViewChild('emojiTypeahead') emojiTypeahead: NgbDropdown;
 
     emojiDetectionRegEx = new RegExp(/:[\w]{2,}/, 'gmi');
@@ -56,21 +47,9 @@ export class ChatInputComponent implements OnInit, OnChanges {
     }
 
     constructor(
-        private modalService: NgbModal,
         private jukeboxService: JukeboxService,
-        private toastr: ToastrService,
-        private renderer: Renderer2,
         private emojiSearch: EmojiSearch
     ) {
-        // Will close the emoji picker when a click is registered outside of the chatbox, the emoji button and picker
-        this.renderer.listen('window', 'click', (e: Event) => {
-            if (e.target !== this.chatbox.nativeElement
-                && e.target !== this.emojiButton.nativeElement
-                && e.composedPath().indexOf(this.emojiPicker.nativeElement) === -1
-            ) {
-                this.isEmojiPickerDisplayed = false;
-            }
-        })
     }
 
     ngOnInit() {
@@ -167,7 +146,9 @@ export class ChatInputComponent implements OnInit, OnChanges {
         const contents = this.contents;
         this.contents = '';
         this.emojiResults = [];
-        if (this.hasCommand && !event.ctrlKey) {
+
+        // Since detection is not immediate anymore, detect eventual command mode
+        if (contents.indexOf('!') === 0 && !event.ctrlKey) {
             this.handleCommands(contents);
         } else {
             this.handleMessage(contents);
@@ -175,7 +156,6 @@ export class ChatInputComponent implements OnInit, OnChanges {
     }
 
     handleMessage(contents: string) {
-        this.isEmojiPickerDisplayed = false;
         this.emojiTypeahead.close();
         const message = new Message({
             author: this.user._id,
