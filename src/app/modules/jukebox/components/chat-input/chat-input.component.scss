@@ -77,10 +77,11 @@ span#span-command-mode {
     }
 }
 
-.emoji-picker {
-    position: absolute;
-    bottom: 92%;
-    right: 2%;
+.emoji-picker-container.dropdown-menu {
+    box-shadow: none;
+    padding: 0;
+    width: 343px;
+    border-radius: 20px;
 }
 
 .fixed-tab {
