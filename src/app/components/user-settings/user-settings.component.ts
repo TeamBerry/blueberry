@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 
 import { ThemeService } from 'app/shared/services/theme.service';
 import { AuthSubject } from 'app/shared/models/session.model';

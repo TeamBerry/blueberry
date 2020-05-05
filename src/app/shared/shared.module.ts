@@ -7,8 +7,6 @@ import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.com
 import { VideoEntryComponent } from './components/video-entry/video-entry.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe';
-import { PlaylistViewComponent } from './components/playlist-view/playlist-view.component';
-import { PlaylistWidgetComponent } from './components/playlist-widget/playlist-widget.component';
 import { PlaylistSelectorComponent } from './components/playlist-selector/playlist-selector.component';
 import { ThemeService } from './services/theme.service';
 import { UserService } from './services/user.service';
@@ -16,13 +14,14 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { PictureUploaderComponent } from './components/picture-uploader/picture-uploader.component';
 import { BxAlertComponent } from './components/bx-alert/bx-alert.component';
 import { DurationPipe } from './pipes/duration.pipe';
-import { LikeButtonComponent } from 'app/modules/jukebox/components/like-button/like-button.component';
 import { BxButtonComponent } from './components/bx-button/bx-button.component';
 
 // Feature Modules
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { BxCheckboxComponent } from './components/bx-checkbox/bx-checkbox.component';
 import { BxTabsetComponent } from './components/bx-tabset/bx-tabset.component';
+import { BxChipComponent } from './components/bx-chip/bx-chip.component';
+import { BoxStatusIndicatorComponent } from './components/box-status-indicator/box-status-indicator.component';
 
 @NgModule({
     imports: [
@@ -34,17 +33,16 @@ import { BxTabsetComponent } from './components/bx-tabset/bx-tabset.component';
         SlideToggleComponent,
         VideoEntryComponent,
         BoxDeletionEstimationPipe,
-        PlaylistViewComponent,
-        PlaylistWidgetComponent,
         PlaylistSelectorComponent,
         FilterPipe,
         PictureUploaderComponent,
         BxAlertComponent,
         DurationPipe,
-        LikeButtonComponent,
         BxButtonComponent,
         BxCheckboxComponent,
-        BxTabsetComponent
+        BxTabsetComponent,
+        BxChipComponent,
+        BoxStatusIndicatorComponent
     ],
     exports: [
         CommonModule,
@@ -59,12 +57,12 @@ import { BxTabsetComponent } from './components/bx-tabset/bx-tabset.component';
         PictureUploaderComponent,
         BxAlertComponent,
         DurationPipe,
-        LikeButtonComponent,
         BxButtonComponent,
         PickerModule,
         BxCheckboxComponent,
-        PlaylistWidgetComponent,
-        BxTabsetComponent
+        BxTabsetComponent,
+        BxChipComponent,
+        BoxStatusIndicatorComponent
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [

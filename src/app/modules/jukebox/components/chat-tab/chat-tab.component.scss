@@ -20,12 +20,18 @@
     }
 }
 
+.message-list {
+    flex-grow: 1;
+    overflow: auto;
+    height: 68%;
+}
+
 .chat-space {
     background-color: 'red';
 }
 
 .scroll-resumer {
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     border-radius: 5px;

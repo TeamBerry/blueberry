@@ -1,0 +1,130 @@
+@import './../../../../../imports.scss';
+.box-manager {
+    height: 86.8vh;
+    width: 100%;
+}
+
+.box-list {
+    border-right: 1px solid var(--background-secondary-color-alternate);
+    background-color: var(--background-secondary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    #box-list-container {
+        height: inherit;
+        overflow-y: scroll;
+        overflow-x: visible;
+    }
+    .box-list-item {
+        cursor: pointer;
+        .box-name {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main-color);
+            font-size: 1.3rem;
+        }
+        &.active {
+            border-left: 5px solid $master-color;
+        }
+        &:hover {
+            background-color: var(--background-secondary-color-alternate);
+        }
+    }
+}
+
+.box-stats-banner {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3px;
+    background-color: var(--background-secondary-color);
+    .box-stat {
+        background-color: var(--background-main-color);
+        padding: 5px;
+        border-radius: 5px;
+        width: 180px;
+        text-align: center;
+        margin: 10px;
+        color: var(--text-main-color);
+        .stat-title {
+            font-weight: 800;
+        }
+    }
+}
+
+.box-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.space-title-section {
+    border-bottom: 1px solid darken($main-black, 20%);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    .space-title {
+        text-align: center;
+        color: var(--text-main-color);
+        font-style: 'Montserrat';
+        font-size: 1rem;
+        padding: 5px;
+        margin-bottom: 0;
+        justify-self: center;
+    }
+    .space-title-button {
+        font-size: 0.8rem;
+        display: flex;
+        align-content: center;
+        .img-icon {
+            height: 17px;
+            width: 17px;
+            margin-right: 5px;
+        }
+    }
+}
+
+
+.playlist-space, .search-space, .chat-space, .player-space {
+    background-color: var(--background-secondary-color);
+}
+
+.playlist-space, .search-space {
+    height: 90.5%;
+}
+
+.box-option-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-left: 1.875rem;
+    &:hover {
+        background-color: transparentize($master-hover-color, 0.8);
+    }
+    &:active {
+        background-color: transparentize($master-active-color, 0.6);
+    }
+}
+
+.actions-icon {
+    height: 40%;
+}
+
+.box-status {
+    &.status-closed {
+        background-color: $danger-color;
+    }
+}
+
+.modes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.full-panel{
+    height: calc(100vh - 240px);
+}
+.half-panel{
+    height: calc(100vh - 415px);
+}
+
+#chat-panel{
+    display: flex;
+    flex-direction: column;
+}

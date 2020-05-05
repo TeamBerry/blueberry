@@ -14,15 +14,19 @@ export class VideoEntryComponent implements OnInit {
 
     @Input() video: Video;
     @Input() options: {
+        none?: boolean,
         submit?: boolean,
-        favorite?: boolean,
+        forceNext?: boolean,
+        forcePlay?: boolean,
         removeFromPlaylist?: boolean,
         addToPlaylist?: boolean
     } = {}
 
     appliedOptions = {
-        submit: true,
-        favorite: true,
+        none: false,
+        submit: false,
+        forceNext: false,
+        forcePlay: false,
         removeFromPlaylist: false,
         addToPlaylist: false
     }
@@ -31,20 +35,20 @@ export class VideoEntryComponent implements OnInit {
     @Output() addedToPlaylist: EventEmitter<Video> = new EventEmitter();
     @Output() removedFromPlaylist: EventEmitter<Video> = new EventEmitter();
 
-    constructor(
-        private userService: UserService,
-        private jukeboxService: JukeboxService,
-        private toastr: ToastrService
-    ) { }
+    constructor() { }
 
     ngOnInit() {
         this.buildOptions()
     }
 
     buildOptions() {
+        if (this.options.none) {
+            this.appliedOptions.none = true;
+            return;
+        }
         Object.keys(this.options).map(
             (value: string) => {
-                this.appliedOptions[value] = this.options[value]
+                this.appliedOptions[value] = this.options[value] ?? this.appliedOptions[value]
             }
         )
     }
@@ -60,14 +64,4 @@ export class VideoEntryComponent implements OnInit {
     removeFromPlaylist() {
         this.removedFromPlaylist.emit(this.video);
     }
-
-    removeVideo() {
-        this.userService.updateFavorites({ action: 'unlike', target: this.video._id }).subscribe(
-            () => {
-                this.toastr.success('Video removed from favorites.', 'Success');
-                this.jukeboxService.sendOrder('favorites');
-            }
-        )
-    }
-
 }

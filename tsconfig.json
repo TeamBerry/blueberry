@@ -14,6 +14,7 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "types": ["youtube"],
     "lib": [
       "es2016",
       "dom"

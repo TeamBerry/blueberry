@@ -44,6 +44,17 @@
             </div>
         </div>
 
+        <div class="form-group d-flex no-gutters">
+            <div class="col-10">
+                <label for="berries" class="col-form-label pb-0">Berries</label>
+                <p class="help-text text-muted">Your users will be able to collect Berries while they are in your box. They will then be able to spend the berries to skip a video or select the next video to play.
+                </p>
+            </div>
+            <div class="col m-auto">
+                <app-slide-toggle class="float-right" [(value)]="box.options.berries"></app-slide-toggle>
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-default btn-block">{{ context }}</button>
     </form>
 </div>

@@ -1,24 +1,21 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BoxService } from './../../../../shared/services/box.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 
-import { LikeButtonComponent } from '../../components/like-button/like-button.component';
 import { JukeboxService } from './../../jukebox.service';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Box } from 'app/shared/models/box.model';
-import { User } from 'app/shared/models/user.model';
 import { SyncPacket } from 'app/shared/models/sync-packet.model';
 import { filter } from 'rxjs/operators';
-import { QueueVideo } from 'app/shared/models/playlist-video.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { environment } from 'environments/environment';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
-import { UserPlaylist } from 'app/shared/models/user-playlist.model';
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
+import { QueueItem } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-box',
@@ -58,12 +55,11 @@ export class BoxComponent implements OnInit {
     loading = true;
 
     /**
-     * The currently playing vidoe in the box. Gets refreshed by sockets and sent to the player and mood widgets
+     * The currently playing video in the box. Gets refreshed by sockets and sent to the player and mood widgets
      *
      * @memberof BoxComponent
      */
-    currentVideo: QueueVideo = null;
-
+    currentVideo: QueueItem = null;
 
     /**
      * Connected user. Obtained from the auth service
@@ -73,23 +69,12 @@ export class BoxComponent implements OnInit {
      */
     user: AuthSubject = AuthService.getAuthSubject();
 
-    /**
-     * Integration of the Mood Widget component, though I'm not sure I need it anymore
-     *
-     * @private
-     * @type {LikeButtonComponent}
-     * @memberof BoxComponent
-     */
-    @ViewChild(LikeButtonComponent) private LikeButtonComponent: LikeButtonComponent;
-
     constructor(
-        private authService: AuthService,
         private boxService: BoxService,
         private jukeboxService: JukeboxService,
         private playlistService: PlaylistService,
         private modalService: NgbModal,
         private route: ActivatedRoute,
-        private router: Router,
         private toastr: ToastrService
     ) { }
 
@@ -115,6 +100,7 @@ export class BoxComponent implements OnInit {
                 this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${box.creator._id}-picture`
                 // Start box once it's loaded
                 this.jukeboxService.startBox(this.box);
+                this.connectToSyncStream();
                 this.loading = false;
             }
         );

@@ -12,7 +12,10 @@ import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
 import { AuthSubject } from 'app/shared/models/session.model';
+import { BerryCount } from '@teamberry/muscadine/dist/interfaces/subscriber.interface';
+import { SystemMessage } from '@teamberry/muscadine/dist/models/message.model';
 
+export type subjects = Box | Message | FeedbackMessage | SystemMessage | SyncPacket | BerryCount
 @Injectable({
     providedIn: 'root'
 })
@@ -25,11 +28,10 @@ export class JukeboxService {
      * in the stream for components. Acts as a middleware.
      *
      * @private
-     * @type {ReplaySubject<any>}
+     * @type {ReplaySubject<subjects>}
      * @memberof JukeboxService
      */
-    private boxStream: ReplaySubject<Box | Message | FeedbackMessage | SyncPacket> =
-        new ReplaySubject<Box | Message | FeedbackMessage | SyncPacket>();
+    private boxStream: ReplaySubject<subjects> = new ReplaySubject<subjects>();
 
     /**
      * Subject for every component in the box that will need to do stuff based on the actions of other components.
@@ -62,6 +64,7 @@ export class JukeboxService {
      */
     public startBox(box: Box) {
         this.box = box;
+        this.boxSubject.next(this.box);
 
         // Connect to socket.
         this.startBoxSocket(box._id, this.user._id).subscribe(
@@ -134,37 +137,30 @@ export class JukeboxService {
         this.boxSocket.emit('preselect', actionRequest)
     }
 
+    public forcePlayVideo = (actionRequest: QueueItemActionRequest): void => {
+        this.boxSocket.emit('forcePlay', actionRequest)
+    }
+
     /**
      * Skips the currently playing video.
      *
      * @see JukeboxService.next
      * @memberof JukeboxService
      */
-    public skipVideo() {
-        if (this.evaluateCommandPower()) {
-            this.next();
-        }
-        this.next();
+    public skipVideo(): void {
+        this.boxSocket.emit('sync', {
+            order: 'next',
+            boxToken: this.box._id
+        });
     }
 
-    // TODO: The following 3
+    // TODO: The following 2
     public shuffle() {
 
     }
 
     public swap() {
 
-    }
-
-    public toggle() {
-
-    }
-
-    public next(): void {
-        this.boxSocket.emit('sync', {
-            order: 'next',
-            boxToken: this.box._id
-        });
     }
 
     /**
@@ -226,7 +222,7 @@ export class JukeboxService {
             reconnectionAttempts: 10
         });
 
-        return new Observable<Message | FeedbackMessage | SyncPacket | Box>(observer => {
+        return new Observable<subjects>(observer => {
             this.boxSocket.on('connect', () => {
                 this.boxSocket.emit('auth', {
                     origin: 'Blueberry',
@@ -271,15 +267,23 @@ export class JukeboxService {
             });
 
             // On chat. Regular event.
-            this.boxSocket.on('chat', (message: Message | FeedbackMessage) => {
+            this.boxSocket.on('chat', (message: Message | FeedbackMessage | SystemMessage) => {
                 if (message.scope === this.box._id) {
-                    if ('feedbackType' in message) {
-                        observer.next(new FeedbackMessage(message));
+                    if ('context' in message) {
+                        if (message.source === 'system') {
+                            observer.next(new SystemMessage(message as SystemMessage));
+                        } else {
+                            observer.next(new FeedbackMessage(message as FeedbackMessage));
+                        }
                     } else {
                         observer.next(new Message(message));
                     }
                 }
             });
+
+            this.boxSocket.on('berries', (berryCount: BerryCount) => {
+                observer.next(berryCount)
+            })
 
             return () => {
                 this.boxSocket.disconnect();

@@ -1,16 +1,16 @@
-import { Component, OnInit, Output, Input, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, ViewChild, ElementRef, OnChanges } from '@angular/core';
 
 import { User } from 'app/shared/models/user.model';
 import { JukeboxService } from '../../jukebox.service';
 import { filter } from 'rxjs/operators';
-import { Message, FeedbackMessage } from '@teamberry/muscadine';
+import { Message, FeedbackMessage, SystemMessage } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-chat-tab',
     templateUrl: './chat-tab.component.html',
     styleUrls: ['./chat-tab.component.scss'],
 })
-export class ChatTabComponent implements OnInit {
+export class ChatTabComponent implements OnInit, OnChanges {
     @Input() boxToken: string;
     @Input() user: User = new User;
     @Output() socketStatus = new EventEmitter();
@@ -39,6 +39,10 @@ export class ChatTabComponent implements OnInit {
         }
     }
 
+    ngOnChanges() {
+        this.messages = [];
+    }
+
     /**
      * Connects to jukebox service chat stream to get messages to display
      *
@@ -48,7 +52,7 @@ export class ChatTabComponent implements OnInit {
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
                 filter(message =>
-                    (message instanceof Message || message instanceof FeedbackMessage)
+                    (message instanceof Message || message instanceof FeedbackMessage || message instanceof SystemMessage)
                     && message.scope === this.boxToken
                 )
             )

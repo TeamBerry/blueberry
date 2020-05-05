@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { User } from 'app/shared/models/user.model';
 import { UserPlaylist } from 'app/shared/models/user-playlist.model';
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { AuthSubject } from 'app/shared/models/session.model';
@@ -34,7 +32,6 @@ export class PlaylistFormComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log(this.playlist)
         if (this.context === 'create') {
             this.playlistService.store(this.playlist).subscribe(
                 (response: UserPlaylist) => {

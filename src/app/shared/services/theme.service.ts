@@ -24,11 +24,23 @@ export const darkTheme = {
     'active-stroke-color': 'white',
     'inactive-color': '#CCCCCC',
     'active-color': '#EBBA17',
-    'active-hover-color': '#D6A912'
+    'active-hover-color': '#D6A912',
+    'success-color-rgb': '12, 235, 192',
+    'success-color': '#0CEBC0',
+    'warning-color-rgb': '252, 196, 13',
+    'warning-color': '#FFC40D',
+    'danger-color-rgb': '235, 23, 42',
+    'danger-color': '#EB172A',
+    'actions-icon': 'url(./assets/images/icons/actions-icon.svg)',
+    'edit-icon': 'url(./assets/images/icons/edit-icon.svg)',
+    'trash-icon': 'url(./assets/images/icons/trash-icon.svg)',
+    'active-icon': 'url(./assets/images/icons/active-icon.svg)',
+    'access-icon': 'url(./assets/images/icons/enter-box-icon.svg)',
+    'berry-color': '#FF8E52'
 }
 
 export const lightTheme = {
-    'background-main-color': 'white',
+    'background-main-color': '#E6E6E6',
     'background-main-hover-color': '#f2f2f2',
     'background-main-active-color': '#d9d9d9',
     'background-main-inactive-color': '#b3b3b3',
@@ -48,7 +60,19 @@ export const lightTheme = {
     'active-stroke-color': '#009AEB',
     'inactive-color': '#8f8f8f',
     'active-color': '#D6A912',
-    'active-hover-color': '#EBBA17'
+    'active-hover-color': '#EBBA17',
+    'success-color-rgb': '10, 194, 157',
+    'success-color': '#0AC29D',
+    'warning-color-rgb': '207, 157, 10',
+    'warning-color': '#CF9D0A',
+    'danger-color-rgb': '235, 23, 42',
+    'danger-color': '#EB172A',
+    'actions-icon': 'url(./assets/images/icons/actions-icon-light.svg)',
+    'edit-icon': 'url(./assets/images/icons/edit-icon-light.svg)',
+    'trash-icon': 'url(./assets/images/icons/trash-icon-light.svg)',
+    'active-icon': 'url(./assets/images/icons/active-icon-light.svg)',
+    'access-icon': 'url(./assets/images/icons/enter-box-icon-light.svg)',
+    'berry-color': '#FF8E52'
 }
 
 @Injectable({

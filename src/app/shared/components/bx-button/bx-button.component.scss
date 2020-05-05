@@ -5,7 +5,9 @@
 
 .btn-icon {
     padding: 0.375em;
-    svg {
+    border-width: 1px;
+    border-style: solid;
+    .img-icon {
         height: 19px;
         width: 25px;
     }

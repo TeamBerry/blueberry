@@ -1,29 +1,27 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 import { JukeboxService } from '../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
-import { QueueVideo } from 'app/shared/models/playlist-video.model';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PlaylistService } from 'app/shared/services/playlist.service';
 import { BoxService } from 'app/shared/services/box.service';
 import { ToastrService } from 'ngx-toastr';
-import { QueueItemActionRequest } from '@teamberry/muscadine';
+import { QueueItemActionRequest, QueueItem } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-queue',
     templateUrl: './queue.component.html',
     styleUrls: ['./queue.component.scss'],
 })
-export class QueueComponent implements OnInit {
-    box: Box;
+export class QueueComponent implements OnInit, OnChanges {
+    @Input() box: Box = null;
     @Input() user: User = new User;
 
-    currentlyPlaying: QueueVideo;
-    playedVideos: Array<QueueVideo>;
-    upcomingVideos: Array<QueueVideo>;
+    currentlyPlaying: QueueItem;
+    playedVideos: Array<QueueItem>;
+    upcomingVideos: Array<QueueItem>;
 
     tabSetOptions = [
         { title: `Upcoming`, value: 'upcoming' },
@@ -39,6 +37,10 @@ export class QueueComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.listen();
+    }
+
+    ngOnChanges() {
         this.listen();
     }
 
@@ -61,12 +63,12 @@ export class QueueComponent implements OnInit {
     /**
      * Isolates the currently playing video
      *
-     * @param {Array<QueueVideo>} playlist The playlist of the box
-     * @returns {QueueVideo} The currently playing video
+     * @param {Array<QueueItem>} playlist The playlist of the box
+     * @returns {QueueItem} The currently playing video
      * @memberof PlaylistComponent
      */
-    getCurrentlyPlayingVideo(playlist: Array<QueueVideo>): QueueVideo {
-        return playlist.find((item: QueueVideo) => {
+    getCurrentlyPlayingVideo(playlist: Array<QueueItem>): QueueItem {
+        return playlist.find((item: QueueItem) => {
             return item.startTime !== null && item.endTime === null;
         });
     }
@@ -74,19 +76,19 @@ export class QueueComponent implements OnInit {
     /**
      * Builds a partial list of the playlist of the box based on the wanted state of the videos
      *
-     * @param {Array<QueueVideo>} playlist The playlist of the box
+     * @param {Array<QueueItem>} playlist The playlist of the box
      * @param {string} state The state of the videos. Upcoming or Played
-     * @returns {Array<QueueVideo>}
+     * @returns {Array<QueueItem>}
      * @memberof PlaylistComponent
      */
-    buildPartialPlaylist(playlist: Array<QueueVideo>, state: string): Array<QueueVideo> {
+    buildPartialPlaylist(playlist: Array<QueueItem>, state: string): Array<QueueItem> {
         if (state === 'upcoming') {
-            const upcoming = playlist.filter((item: QueueVideo) => {
+            const upcoming = playlist.filter((item: QueueItem) => {
                 return item.startTime === null;
             });
 
             // Put the preselected video first
-            const preselectedVideoIndex = upcoming.findIndex((item: QueueVideo) => item.isPreselected)
+            const preselectedVideoIndex = upcoming.findIndex((item: QueueItem) => item.isPreselected)
             if (preselectedVideoIndex !== -1) {
                 const preselectedVideo = upcoming[preselectedVideoIndex]
                 upcoming.splice(preselectedVideoIndex, 1)
@@ -98,7 +100,7 @@ export class QueueComponent implements OnInit {
         }
 
         if (state === 'played') {
-            const played = playlist.filter((item: QueueVideo) => {
+            const played = playlist.filter((item: QueueItem) => {
                 return item.startTime !== null && item.endTime !== null;
             });
             this.tabSetOptions[1].title = `Played (${played.length})`
@@ -135,6 +137,10 @@ export class QueueComponent implements OnInit {
             case 'preselect':
                 this.jukeboxService.preselectVideo(actionRequest)
                 break
+
+            case 'forcePlay':
+                this.jukeboxService.forcePlayVideo(actionRequest)
+                break
         }
     }
 
@@ -143,10 +149,10 @@ export class QueueComponent implements OnInit {
      *
      * Resubmits the video in the playlist of the box
      *
-     * @param {QueueVideo['video']['link']} link The Youtube link of the video
+     * @param {QueueItem['video']['link']} link The Youtube link of the video
      * @memberof PlaylistComponent
      */
-    replayVideo(link: QueueVideo['video']['link']) {
+    replayVideo(link: QueueItem['video']['link']) {
         const submissionPayload: SubmissionPayload = {
             link: link,
             userToken: this.user._id,

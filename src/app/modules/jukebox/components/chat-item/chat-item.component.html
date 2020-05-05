@@ -1,6 +1,9 @@
-<p class="message px-3" [ngClass]="{'system-message': message.source === 'system'}" [class]="typeStyle">
+<div class="message px-3" [ngClass]="{'system-message': message.source === 'system', 'feedback-message': message.source === 'feedback'}" [class]="typeStyle">
     <span class="message-time" title="{{message.time}}">{{ message.time | date: 'HH:mm' }}</span>
-    <span class="message-author author-linkback" [hidden]="message.source === 'system'">{{ author }}</span>
+    <span class="message-author author-linkback" [hidden]="message.source !== 'human'">{{ author }}</span>
     <span class="message-contents" [innerHTML]="message.contents"></span>
     <br>
-</p>
+    <div [hidden]="message.source !== 'feedback'">
+        <span class="feedback-alert">Only you can see this</span>
+    </div>
+</div>

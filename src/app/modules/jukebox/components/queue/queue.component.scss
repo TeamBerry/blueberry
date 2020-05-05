@@ -10,6 +10,7 @@
 }
 
 .list-rank {
+    color: var(--text-main-color);
     margin-bottom: 0;
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
@@ -17,9 +18,15 @@
 }
 
 .now-playing-space {
-    height: 107px;
+    // height: 107px;
 }
 
 .no-playing {
     padding: 40px;
+    color: var(--text-main-color);
+}
+
+.lists {
+    height: 100%;
+    overflow: auto;
 }

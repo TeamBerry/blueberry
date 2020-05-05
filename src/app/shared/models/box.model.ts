@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { QueueVideo } from './playlist-video.model';
+import { QueueItem } from '@teamberry/muscadine';
 
 @Injectable()
 export class Box {
@@ -12,7 +12,7 @@ export class Box {
     description: string;
     lang: string;
     name: string;
-    playlist: Array<QueueVideo>;
+    playlist: Array<QueueItem>;
     open: boolean;
     createdAt: Date;
     updatedAt: Date;
@@ -30,6 +30,12 @@ export class Box {
          * @type {Boolean}
          */
         loop: Boolean;
+        /**
+         * Activates the collect of berries and the access to admin actions by users
+         *
+         * @type {Boolean}
+         */
+        berries: Boolean;
     }
 
     constructor(obj?: any) {
@@ -42,7 +48,8 @@ export class Box {
         this.open = obj && obj.open || true;
         this.options = obj && obj.options || {
             random: false,
-            loop: false
+            loop: false,
+            berries: true
         }
         this.createdAt = obj && obj.createdAt || null;
         this.updatedAt = obj && obj.updatedAt || null;

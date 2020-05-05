@@ -1,13 +1,13 @@
-import { QueueVideo } from './playlist-video.model';
+import { QueueItem } from '@teamberry/muscadine';
 
 export class SubmissionPayload {
     /**
      * The YouTube uID of the video to add
      *
-     * @type {QueueVideo['video']['link']}
+     * @type {QueueItem['video']['link']}
      * @memberof SubmissionPayload
      */
-    link: QueueVideo['video']['link'];
+    link: QueueItem['video']['link'];
 
     /**
      * The document ID of the user who submitted the video

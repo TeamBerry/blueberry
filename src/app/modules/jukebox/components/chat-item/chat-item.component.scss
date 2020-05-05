@@ -1,31 +1,60 @@
 @import './../../../../../imports.scss';
 // Chat
-.system-message {
+.system-message, .feedback-message {
     color: var(--text-system-color);
     border-left-width: 3px;
     border-left-style: solid;
     padding-left: 13px !important;
-    &.system-message-success {
-        border-left-color: $success-color;
+}
+
+.system-message {
+    border-left-color: $master-color;
+    font-style: italic;
+}
+
+.context-success {
+    border-left-color: var(--success-color);
+}
+.context-error {
+    border-left-color: var(--danger-color);
+}
+.context-warning {
+    border-left-color: var(--warning-color);
+}
+.context-info {
+    border-left-color: $master-color;
+}
+.context-berries {
+    border-left-color: $berry-color;
+    color: $berry-color;
+}
+
+.feedback-message {
+    color: var(--text-main-color);
+    &.context-success {
+        background-color: rgba(var(--success-color-rgb), 0.075)
     }
-    &.system-message-error {
-        border-left-color: $danger-color;
+    &.context-error {
+        background-color: rgba(var(--danger-color-rgb), 0.075)
     }
-    &.system-message-info {
-        border-left-color: $master-color;
+    &.context-warning {
+        background-color: rgba(var(--warning-color-rgb), 0.075)
     }
-    .message-author {
-        color: $master-color;
+    &.context-info {
+        background-color: transparentize($master-color, 0.925)
     }
-    .message-contents {
-        font-style: italic;
-    }
+}
+
+.feedback-alert {
+    font-size: x-small;
+    color: var(--text-system-color);
 }
 
 .message-contents {
     white-space: pre-wrap;
     word-wrap: break-word;
     padding-left: 5px;
+    color: var(--text-main-color);
 }
 
 .message {
@@ -44,6 +73,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     padding-left: 5px;
+    color: var(--text-main-color);
 }
 
 .bot-icon {

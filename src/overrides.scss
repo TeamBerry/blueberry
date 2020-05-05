@@ -81,7 +81,7 @@
 }
 
 .btn-success {
-    background-color: $success-color;
+    background-color: var(--success-color);
 }
 
 .btn-danger {
@@ -110,29 +110,16 @@
     }
 }
 
+.btn-berries {
+    color: var(--text-main-color);
+    background-color: rgba($berry-color, 0.7);
+    &:hover {
+        background-color: rgba($berry-color, 0.8);
+    }
+}
+
 .display-3 {
     font-family: 'Montserrat', sans-serif;
-}
-
-.navbar-light .navbar-nav .nav-link {
-    color: white;
-    &:hover {
-        color: $master-color;
-    }
-}
-
-.nav-pills {
-    .nav-link {
-        border-radius: 0;
-        color: $master-color;
-        &:hover {
-            color: darken($master-color, 10%);
-        }
-        &.active {
-            background-color: inherit;
-            border-bottom: 5px solid $master-color;
-        }
-    }
 }
 
 .modal-header {
@@ -157,6 +144,20 @@
     background-color: var(--background-main-color);
     color: var(--text-main-color);
     border-radius: 0;
+}
+
+.nav-link {
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-system-color) !important;
+    &:hover {
+        background-color: var(--background-main-hover-color);
+    }
+    &.active {
+        cursor: default;
+        font-weight: 800;
+        background-color: var(--background-main-active-color);
+    }
 }
 
 .form-control {
@@ -206,8 +207,8 @@
         border-color: $danger-color;
     }
     &.alert-success {
-        color: $success-color !important;
-        border-color: $success-color;
+        color: var(--success-color) !important;
+        border-color: var(--success-color);
     }
 }
 
@@ -231,6 +232,7 @@
 
     .bx-dropdown-icon {
         width: 20px;
+        height: 20px;
         margin-right: 2%;
     }
 }

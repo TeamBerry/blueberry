@@ -8,7 +8,6 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { BoxWidgetComponent } from './shared/components/box-widget/box-widget.component';
 import { HomeComponent } from './shared/components/home/home.component';
-import { UserComponent } from './shared/components/user/user.component';
 import { BoxFormComponent } from './shared/components/box-form/box-form.component';
 import { PlaylistFormComponent } from './shared/components/playlist-form/playlist-form.component';
 
@@ -33,7 +32,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         AppComponent,
         BoxWidgetComponent,
         HomeComponent,
-        UserComponent,
         BoxFormComponent,
         LoginFormComponent,
         SignupFormComponent,

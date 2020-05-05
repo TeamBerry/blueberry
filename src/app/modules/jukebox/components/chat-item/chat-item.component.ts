@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { Message, FeedbackMessage } from '@teamberry/muscadine';
+import { Message, FeedbackMessage, SystemMessage } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-chat-item',
@@ -8,19 +8,23 @@ import { Message, FeedbackMessage } from '@teamberry/muscadine';
     encapsulation: ViewEncapsulation.None
 })
 export class ChatItemComponent implements OnInit {
-    @Input() message: Message | FeedbackMessage;
+    @Input() message: FeedbackMessage | Message | SystemMessage;
     @Input() username: string;
 
-    typeStyle: string;
+    typeStyle: string = null;
     author: string;
 
-    constructor() { }
+    constructor() {
+    }
 
     ngOnInit() {
+        if ('context' in this.message) {
+            this.typeStyle = `context-${this.message.context}`;
+        }
+
         this.author = this.message.author
             ? (typeof this.message.author === 'object' ? this.message.author.name : this.message.author)
             : null;
-        this.typeStyle = 'feedbackType' in this.message ? `system-message-${this.message.feedbackType}` : null;
 
         this.message.contents = this.parseString(this.message.contents)
     }

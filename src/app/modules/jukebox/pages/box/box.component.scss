@@ -9,6 +9,9 @@
     padding-right: 0;
     background-color: var(--background-secondary-color);
     color: var(--text-main-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #player {
@@ -17,8 +20,7 @@
 
 .under-player {
     color: var(--text-main-color);
-    padding-top: 15px;
-    @include padding-horizontal(20px);
+    padding: 15px 20px;
     white-space: nowrap;
 }
 
@@ -56,4 +58,17 @@
     border-radius: 2.5px;
     text-transform: uppercase;
     cursor: default;
+    align-self: center;
+    margin-right: 5px;
+}
+
+#box-title-space {
+    display: flex;
+    justify-content: space-between;
+}
+
+#box-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

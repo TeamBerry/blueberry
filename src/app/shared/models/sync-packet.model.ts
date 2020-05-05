@@ -1,4 +1,4 @@
-import { QueueVideo } from './playlist-video.model';
+import { QueueItem } from '@teamberry/muscadine';
 
 /**
  * Packet sent to clients for video sync
@@ -18,7 +18,7 @@ export class SyncPacket {
      * @type {*}
      * @memberof SyncPacket
      */
-    item: QueueVideo;
+    item: QueueItem;
 
     constructor(obj?: any) {
         this.box = obj && obj.box || null;

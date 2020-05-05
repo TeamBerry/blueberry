@@ -82,8 +82,8 @@ button>svg {
         color: $danger-color;
     }
     &.bx-icon-success {
-        fill: $success-color;
-        color: $success-color;
+        fill: var(--success-color);
+        color: var(--success-color);
     }
 }
 
@@ -156,28 +156,18 @@ button>svg {
     fill: $notification-color !important;
 }
 
-.box-option {
-    text-align: center;
-    background-color: grey;
-    color: white;
-    border-radius: 10px;
-    width: 80px;
-    @include margin-horizontal(3px);
-    &.box-option-success {
-        background-color: $success-color;
-        color: black;
-    }
-}
-
 .box-option-button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
-        background-color: transparentize($master-hover-color, 0.8);
+        background-color: transparentize($main-black, 0.8);
     }
     &:active {
-        background-color: transparentize($master-active-color, 0.6);
+        background-color: transparentize($main-black, 0.6);
     }
     &.box-option-button-danger {
         &:hover {
@@ -242,12 +232,14 @@ button>svg {
 .song-list-line {
     margin-bottom: 0;
     font-size: 1rem;
-    @include one-line-text();
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
     a {
         color: $master-color;
-        display: inline-block;
         width: 100%;
-        @include one-line-text();
         &:hover {
             text-decoration: underline;
         }
@@ -255,4 +247,46 @@ button>svg {
             color: darken($master-color, 10%);
         }
     }
+}
+
+img {
+    &.actions-icon {
+        content: var(--actions-icon);
+    }
+    &.active-icon {
+        content: var(--active-icon);
+    }
+    &.edit-icon {
+        content: var(--edit-icon);
+    }
+    &.trash-icon {
+        content: var(--trash-icon);
+    }
+    &.access-icon {
+        content: var(--access-icon);
+    }
+}
+
+.panel-tab-title-section {
+    border-bottom: 1px solid darken($main-black, 20%);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    height: 50px;
+    align-items: center;
+}
+
+.panel-tab-title {
+    text-align: center;
+    color: var(--text-main-color);
+    font-style: 'Montserrat';
+    font-size: 1rem;
+    padding: 5px;
+    margin-bottom: 0;
+    justify-self: center;
+}
+
+.panel-tab-title-button {
+    display: flex;
+    justify-content: flex-end;
 }

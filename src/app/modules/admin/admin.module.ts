@@ -2,22 +2,22 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from './../../shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
+import { JukeboxModule } from '../jukebox/jukebox.module';
 
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
-import { BoxesTabComponent } from './components/boxes-tab/boxes-tab.component';
-import { PlaylistsTabComponent } from './components/playlists-tab/playlists-tab.component';
-import { BoxAdminWidgetComponent } from './components/box-admin-widget/box-admin-widget.component';
+import { BoxesManagerComponent } from './components/boxes-manager/boxes-manager.component';
+import { PlaylistsManagerComponent } from './components/playlists-manager/playlists-manager.component';
 
 @NgModule({
     declarations: [
         AdminPanelComponent,
-        BoxesTabComponent,
-        PlaylistsTabComponent,
-        BoxAdminWidgetComponent,
+        BoxesManagerComponent,
+        PlaylistsManagerComponent,
     ],
     imports: [
         AdminRoutingModule,
-        SharedModule
+        SharedModule,
+        JukeboxModule
     ]
 })
 export class AdminModule { }

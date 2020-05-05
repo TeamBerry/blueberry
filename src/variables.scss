@@ -4,17 +4,16 @@ $master-color: #009AEB;
 $master-hover-color: lighten($master-color, 10%);
 $master-active-color: lighten($master-color, 20%);
 $grey-on-master-color: #D3E2EA;
-$main-purple: #2C3D4F;
 $main-black: #444;
 // Text colors
 $placeholder-color: white;
 // Feedback colors
-$success-color: #0CEBC0;
-$danger-color: #B30F4F;
-$info-color: #FF9EB0;
+$danger-color: #EB172A;
 // Status colors
 $notification-color: #F01833;
 // Type colors
 $command-color: #A091FF;
 // SVG
 $fill-color: none;
+// Berries
+$berry-color: #FF8E52;

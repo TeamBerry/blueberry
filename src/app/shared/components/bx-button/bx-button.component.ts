@@ -7,14 +7,14 @@ export interface ButtonOptions {
      * @type {('play' | 'replay' | 'cancel' | 'skip')}
      * @memberof ButtonOptions
      */
-    type: 'play' | 'replay' | 'cancel' | 'skip' | 'addToLibrary' | 'preselect',
+    type: 'play' | 'replay' | 'cancel' | 'skip' | 'addToLibrary' | 'forceNext' | 'forcePlay',
     /**
      * Context of the button. Will affect its display
      *
      * @type {('primary' | 'secondary' | 'default' | 'warning' | 'default')}
      * @memberof ButtonOptions
      */
-    context?: 'primary' | 'secondary' | 'danger' | 'warning' | 'default' | 'queue',
+    context?: 'primary' | 'secondary' | 'danger' | 'warning' | 'default' | 'queue' | 'berries',
     /**
      * Button text. Will default to the type if not specified
      *
