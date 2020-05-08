@@ -7,8 +7,9 @@
 <div class="modal-body">
     <form (ngSubmit)="onSubmit()" #playlistForm="ngForm">
         <div class="form-group">
-            <label for="name" class="col-form-label">Title</label>
+            <label for="name" class="col-form-label">Title <app-bx-required-input-indicator></app-bx-required-input-indicator></label>
             <input type="text" class="form-control" id="name" name="name" [(ngModel)]="playlist.name">
+            <app-bx-alert [options]="{'type': 'danger', 'icon': false, 'message': 'The box name is required'}" *ngIf="playlistForm.controls['name'].invalid && (playlistForm.controls['name'].dirty || playlistForm.controls['name'].touched)"></app-bx-alert>
         </div>
 
         <div class="form-group">
@@ -24,6 +25,6 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-default btn-block">{{ playlist._id ? 'Update' : 'Create'}}</button>
+        <button type="submit" class="btn btn-default btn-block" [disabled]="!playlistForm.valid">{{ playlist._id ? 'Update' : 'Create'}}</button>
     </form>
 </div>

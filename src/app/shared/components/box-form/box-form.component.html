@@ -7,8 +7,9 @@
 <div class="modal-body">
     <form (ngSubmit)="onSubmit()" #boxForm="ngForm">
         <div class="form-group">
-            <label for="name">Title</label>
-            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="box.name">
+            <label for="name">Title <app-bx-required-input-indicator></app-bx-required-input-indicator></label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="box.name" required>
+            <app-bx-alert [options]="{'type': 'danger', 'icon': false, 'message': 'The box name is required'}" *ngIf="boxForm.controls['name'].invalid && (boxForm.controls['name'].dirty || boxForm.controls['name'].touched)"></app-bx-alert>
         </div>
 
         <div class="form-group">
@@ -55,6 +56,6 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-default btn-block">{{ context }}</button>
+        <button type="submit" class="btn btn-default btn-block" [disabled]="!boxForm.valid">{{ context }}</button>
     </form>
 </div>
