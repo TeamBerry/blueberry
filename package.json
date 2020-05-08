@@ -1,6 +1,6 @@
 {
   "name": "blueberry",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "license": "MIT",
   "scripts": {
     "ng": "./node_modules/.bin/ng",
