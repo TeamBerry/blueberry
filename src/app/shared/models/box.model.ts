@@ -37,6 +37,7 @@ export class Box {
          */
         berries: Boolean;
     }
+    users?: number
 
     constructor(obj?: any) {
         this._id = obj && obj._id || null;
@@ -51,6 +52,7 @@ export class Box {
             loop: false,
             berries: true
         }
+        this.users = obj && obj.users || null;
         this.createdAt = obj && obj.createdAt || null;
         this.updatedAt = obj && obj.updatedAt || null;
     }
