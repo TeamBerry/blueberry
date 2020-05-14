@@ -6,4 +6,4 @@ export interface Session {
     expiresIn: number | string
 }
 
-export type AuthSubject = Pick<User, '_id' | 'name' | 'settings'>
+export type AuthSubject = Pick<User, '_id' | 'name' | 'mail' | 'settings'>

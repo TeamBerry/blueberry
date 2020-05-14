@@ -27,6 +27,7 @@ export class AuthService {
             session = {
                 _id: `user-${authToken}`,
                 name: null,
+                mail: null,
                 settings: {
                     theme: 'dark',
                     picture: null
