@@ -1,10 +1,12 @@
 <div class="d-flex overflow-auto" id="settings">
     <div class="col-4 menu pt-5">
         <nav class="nav flex-column p-0 text-right">
-            <a class="nav-link" (click)="currentTab = 'account'" [ngClass]="{'active':currentTab === 'account'}">Account</a>
+            <a class="nav-link" (click)="currentTab = 'account'"
+                [ngClass]="{'active':currentTab === 'account'}">Account</a>
             <!-- <a class="nav-link" (click)="currentTab = 'privacy'" [ngClass]="{'active':currentTab === 'privacy'}">Privacy</a> -->
             <!-- <a class="nav-link" (click)="currentTab = 'notifications'" [ngClass]="{'active':currentTab === 'notifications'}">Notifications</a> -->
-            <a class="nav-link" (click)="currentTab = 'display'" [ngClass]="{'active':currentTab === 'display'}">Display</a>
+            <a class="nav-link" (click)="currentTab = 'display'"
+                [ngClass]="{'active':currentTab === 'display'}">Display</a>
         </nav>
     </div>
     <div class="col settings-tabs">
@@ -16,85 +18,45 @@
         <div class="col-7">
             <div id="account-tab" *ngIf="currentTab === 'account'">
                 <h3 class="tab-title">Account</h3>
+                <h5 class="section-title">Profile Picture</h5>
                 <div class="form-group">
-                    <label for="picture">Profile Picture</label>
                     <div class="picture-edit-space d-flex">
                         <div class="col-3 text-center">
                             <img class="profile-picture profile-picture-lg" src="{{pictureLocation}}" alt="">
                         </div>
                         <div class="col m-auto">
-                            <button type="button" class="btn btn-primary" (click)="openPictureUploader()">Change your profile picture</button>
+                            <button type="button" class="btn btn-primary" (click)="openPictureUploader()">Change your
+                                profile picture</button>
                             <p class="help-text text-muted">Accepted formats: JPEG, PNG. Maximum size: 2MB.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- <div id="privacy-tab" *ngIf="currentTab === 'privacy'">
-                <h3 class="tab-title">Privacy</h3>
-                <div class="form-group">
-                    <label for="messaging">Who can message you</label>
-                    <div class="form-option">
-                        <span>Everyone</span>
-                        <app-slide-toggle class="checkbox" [(value)]="user.settings.messagedByEveryone"></app-slide-toggle>
+                <h5 class="section-title">Details</h5>
+                <div class="form-group d-flex flex-row justify-content-between align-items-center">
+                    <div class="col-3 p-0">
+                        <label for="mail">Name</label>
                     </div>
-                    <div class="form-option">
-                        <span>Friends only</span>
-                        <app-slide-toggle class="checkbox" [(value)]="user.settings.messagedByFriends"></app-slide-toggle>
-                    </div>
-                    <div class="form-option">
-                        <span>Box members</span>
-                        <app-slide-toggle class="checkbox" [(value)]="user.settings.messagedByBoxMembers"></app-slide-toggle>
+                    <div class="col">
+                        <input type="text" readonly class="form-control-plaintext" value="{{ session.name }}">
+                        <p class="help-text text-muted">You cannot change your username.</p>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="inviting">Who can send you a friend request</label>
-                    <div class="form-option">
-                        <span>Everyone</span>
-                        <app-slide-toggle class="checkbox" [(value)]="user.settings.invitedByEveryone"></app-slide-toggle>
+                <div class="form-group d-flex flex-row justify-content-between align-items-center">
+                    <div class="col-3 p-0">
+                        <label for="mail">Mail address</label>
                     </div>
-                    <div class="form-option">
-                        <span>Friends of friends</span>
-                        <app-slide-toggle class="checkbox" [(value)]="user.settings.invitedByFriendsOfFriends"></app-slide-toggle>
-                    </div>
-                    <div class="form-option">
-                        <span>Box members</span>
-                        <app-slide-toggle class="checkbox" [(value)]="user.settings.invitedByBoxMembers"></app-slide-toggle>
+                    <div class="col">
+                        <input type="text" readonly class="form-control-plaintext" value="{{ session.mail }}">
+                        <p class="help-text text-muted">You cannot change your mail address.</p>
                     </div>
                 </div>
             </div>
-            <div id="notifications-tab" *ngIf="currentTab === 'notifications'">
-                <h3 class="tab-title">Notifications</h3>
-                <div class="form-group">
-                    <label for="in-app-notifications">Enable in-app notifications</label>
-                    <app-slide-toggle class="checkbox" [(value)]="user.settings.inAppNotifications"></app-slide-toggle>
-                    <p class="help-text">Enable notifications displayed while you're in Berrybox</p>
-                </div>
-                <div class="form-group">
-                    <label for="desktop-notifications">Enable desktop notifications</label>
-                    <app-slide-toggle class="checkbox" [(value)]="user.settings.desktopNotifications"></app-slide-toggle>
-                    <p class="help-text">Enables your browser to relay Berrybox notifications (if possible)</p>
-                </div>
-                <div class="form-group">
-                    <label for="friend-notifications">Customize</label>
-                    <div class="form-option">
-                        <span>Friend request received</span>
-                        <app-slide-toggle class="checkbox" [(value)]="user.settings.friendRequestReceived"></app-slide-toggle>
-                    </div>
-                    <div class="form-option">
-                        <span>Direct message received</span>
-                        <app-slide-toggle class="checkbox" [(value)]="user.settings.directMessageReceived"></app-slide-toggle>
-                    </div>
-                    <div class="form-option">
-                        <span>Box opened by friend</span>
-                        <app-slide-toggle class="checkbox" [(value)]="user.settings.boxOpenedByFriend"></app-slide-toggle>
-                    </div>
-                </div>
-            </div> -->
             <div id="display-tab" *ngIf="currentTab === 'display'">
                 <h3 class="tab-title">Display</h3>
                 <div class="form-group">
                     <label for="theme">Dark Theme</label>
-                    <app-slide-toggle class="checkbox" [value]="isDarkThemeEnabled" (valueChange)="toggleDarkTheme()"></app-slide-toggle>
+                    <app-slide-toggle class="checkbox" [value]="isDarkThemeEnabled" (valueChange)="toggleDarkTheme()">
+                    </app-slide-toggle>
                 </div>
             </div>
         </div>
