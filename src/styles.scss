@@ -22,13 +22,20 @@ svg.berrybox-svg {
         .berrybox-path {
             fill: $master-color;
         }
+        .berrybox-stroke {
+            stroke: $master-color;
+        }
     }
     .berrybox-path {
-        stroke: var(--text-system-color);
         fill: var(--text-system-color);
         &:active {
-            stroke: var(--active-stroke-color);
             fill: var(--active-stroke-color);
+        }
+    }
+    .berrybox-stroke {
+        stroke: var(--text-system-color);
+        &:active {
+            stroke: var(--active-stroke-color);
         }
     }
 }
@@ -251,19 +258,20 @@ button>svg {
 
 img {
     &.actions-icon {
-        content: var(--actions-icon);
+        content: '';
+        background: var(--actions-icon);
     }
     &.active-icon {
-        content: var(--active-icon);
+        background: var(--active-icon);
     }
     &.edit-icon {
-        content: var(--edit-icon);
+        background: var(--edit-icon);
     }
     &.trash-icon {
-        content: var(--trash-icon);
+        background: var(--trash-icon);
     }
     &.access-icon {
-        content: var(--access-icon);
+        background: var(--access-icon);
     }
 }
 
