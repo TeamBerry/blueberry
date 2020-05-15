@@ -19,13 +19,13 @@ export class BxChipComponent implements OnInit {
         {
             type: 'random',
             chipText: 'Random',
-            tooltipText: 'The system will automatically requeue old videos.',
+            tooltipText: 'The next video will be picked at random from the upcoming pool.',
             icon: 'random'
         },
         {
             type: 'loop',
             chipText: 'Loop',
-            tooltipText: 'The next video will be picked at random from the upcoming pool.',
+            tooltipText: 'The system will automatically requeue old videos.',
             icon: 'replay'
         },
         {
