@@ -28,7 +28,9 @@
     </div>
     <div *ngIf="selectedPlaylist.videos.length > 0; else noFavorites" class="selected-playlist-items">
         <app-video-entry *ngFor="let video of selectedPlaylist.videos | filter:filterValue:['name', 'link']"
-            [video]="video" [options]="{'submit': true}" (submit)="submitVideo($event)"></app-video-entry>
+            [video]="video"
+            [options]="{'submit': videosInQueue.indexOf(video.link) === -1, 'inQueue': videosInQueue.indexOf(video.link) !== -1}"
+            (submit)="submitVideo($event)"></app-video-entry>
     </div>
     <ng-template #noFavorites>
         <div class="text-center no-contents">
