@@ -12,7 +12,7 @@
     <div class="entry-info d-flex">
         <div class="entry-image-container">
             <img class="entry-image h-100" src="http://img.youtube.com/vi/{{ item?.video?.link }}/0.jpg" alt="">
-            <span class="submission-duration">
+            <span class="submission-duration d-flex align-items-center justify-content-center">
                 {{ item?.video.duration | duration }}
             </span>
         </div>
@@ -47,16 +47,18 @@
                         (click)="togglePreselection(item)"
                         [options]="{'type': 'forceNext', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play next'}">
                     </app-bx-button>
-                    <app-bx-button *ngIf="status === 'upcoming' && user._id !== box?.creator?._id && box?.options?.berries" class="ml-1"
-                        (click)="togglePreselection(item)"
+                    <app-bx-button
+                        *ngIf="status === 'upcoming' && user._id !== box?.creator?._id && box?.options?.berries"
+                        class="ml-1" (click)="togglePreselection(item)"
                         [options]="{'type': 'forceNext', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 10 berries to play next'}">
                     </app-bx-button>
                     <app-bx-button *ngIf="status === 'upcoming' && user._id === box?.creator?._id" class="ml-1"
                         (click)="forcePlay(item)"
                         [options]="{'type': 'forcePlay', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play now', 'context': 'queue'}">
                     </app-bx-button>
-                    <app-bx-button *ngIf="status === 'upcoming' && user._id !== box?.creator?._id && box?.options?.berries" class="ml-1"
-                        (click)="forcePlay(item)"
+                    <app-bx-button
+                        *ngIf="status === 'upcoming' && user._id !== box?.creator?._id && box?.options?.berries"
+                        class="ml-1" (click)="forcePlay(item)"
                         [options]="{'type': 'forcePlay', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 50 berries to play now'}">
                     </app-bx-button>
                     <app-bx-button *ngIf="status === 'played'" class="ml-1" (click)="replayVideo(item)"
