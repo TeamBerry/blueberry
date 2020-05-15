@@ -25,6 +25,12 @@
     @include padding-vertical(10px);
 }
 
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-focus-color);
+    font-weight: 700;
+}
+
 // Override forms
 .form-group {
     margin-bottom: 2rem;
@@ -32,8 +38,9 @@
 
 label {
     font-family: 'Montserrat', sans-serif;
-    color: var(--text-focus-color);
-    font-weight: 700;
+    color: var(--text-main-color);
+    margin-bottom: 0;
+    font-weight: 600;
 }
 
 .save-button {
