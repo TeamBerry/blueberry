@@ -18,9 +18,32 @@ export class BoxFormComponent implements OnInit {
     @Input() box: Box;
 
     public langs: string[] = [
+        'Dansk',
+        'Deutsch',
         'English',
+        'Español',
         'Français',
+        'Italiano',
+        'Magyar',
+        'Nederlands',
+        'Norsk',
+        'Polski',
+        'Português',
+        'Română',
+        'Slovenčina',
+        'Suomi',
+        'Svenska',
+        'Tiếng Việt',
+        'Türkçe',
+        'Čeština',
+        'Ελληνικά',
+        'Български',
+        'Русский',
+        'ภาษาไทย',
+        '中文 简体',
+        '中文 繁體',
         '日本語',
+        '한국어'
     ];
     submitted = false;
 

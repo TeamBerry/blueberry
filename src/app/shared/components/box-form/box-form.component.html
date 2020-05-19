@@ -6,53 +6,61 @@
 </div>
 <div class="modal-body">
     <form (ngSubmit)="onSubmit()" #boxForm="ngForm">
-        <div class="form-group">
-            <label for="name">Title <app-bx-required-input-indicator></app-bx-required-input-indicator></label>
-            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="box.name" required>
-            <app-bx-alert [options]="{'type': 'danger', 'icon': false, 'message': 'The box name is required'}" *ngIf="boxForm.controls['name'].invalid && (boxForm.controls['name'].dirty || boxForm.controls['name'].touched)"></app-bx-alert>
-        </div>
+        <div class="d-flex flex-row">
+            <div class="col">
+                <h4>Information</h4>
+                <div class="form-group">
+                    <label for="name">Title <app-bx-required-input-indicator></app-bx-required-input-indicator></label>
+                    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="box.name" required>
+                    <app-bx-alert [options]="{'type': 'danger', 'icon': false, 'message': 'The box name is required'}" *ngIf="boxForm.controls['name'].invalid && (boxForm.controls['name'].dirty || boxForm.controls['name'].touched)"></app-bx-alert>
+                </div>
 
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea class="form-control" name="description" id="description" cols="30" rows="5" [(ngModel)]="box.description"></textarea>
-        </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" name="description" id="description" cols="30" rows="5" [(ngModel)]="box.description"></textarea>
+                </div>
 
-        <!-- <div class="form-group">
-            <label for="lang">Spoken language</label>
-            <select name="lang" id="lang" class="form-control" [(ngModel)]="box.lang">
-                <option value="">Select a language</option>
-                <option *ngFor="let lang of langs" [value]="lang">{{ lang }}</option>
-            </select>
-        </div> -->
+                <div class="form-group">
+                    <label for="lang">Main spoken language</label>
+                    <select name="lang" id="lang" class="form-control" [(ngModel)]="box.lang">
+                        <option value="">Select a language</option>
+                        <option *ngFor="let lang of langs" [value]="lang">{{ lang }}</option>
+                    </select>
+                    <p class="help-text text-muted">Can help users find a community</p>
+                </div>
+            </div>
+            <div class="col">
+                <h4>Settings</h4>
+                <div class="form-group d-flex no-gutters">
+                    <div class="col-10">
+                        <label for="random" class="col-form-label pb-0">Pick at Random</label>
+                        <p class="help-text text-muted">When a video ends, the next one will be picked at random from the upcoming pool of videos</p>
+                    </div>
+                    <div class="col m-auto">
+                        <app-slide-toggle class="float-right" [(value)]="box.options.random"></app-slide-toggle>
+                    </div>
+                </div>
 
-        <div class="form-group d-flex no-gutters">
-            <div class="col-10">
-                <label for="random" class="col-form-label pb-0">Random Mode</label>
-                <p class="help-text text-muted">When a video ends, the next one will be picked at random from the upcoming pool of videos</p>
-            </div>
-            <div class="col m-auto">
-                <app-slide-toggle class="float-right" [(value)]="box.options.random"></app-slide-toggle>
-            </div>
-        </div>
+                <div class="form-group d-flex no-gutters">
+                    <div class="col-10">
+                        <label for="random" class="col-form-label pb-0">Loop Queue</label>
+                        <p class="help-text text-muted">The system will automatically requeue old videos. Combined with Random Mode, videos will be picked randomly.</p>
+                    </div>
+                    <div class="col m-auto">
+                        <app-slide-toggle class="float-right" [(value)]="box.options.loop"></app-slide-toggle>
+                    </div>
+                </div>
 
-        <div class="form-group d-flex no-gutters">
-            <div class="col-10">
-                <label for="random" class="col-form-label pb-0">Loop Mode</label>
-                <p class="help-text text-muted">The system will automatically requeue old videos. Combined with Random Mode, videos will be picked randomly.</p>
-            </div>
-            <div class="col m-auto">
-                <app-slide-toggle class="float-right" [(value)]="box.options.loop"></app-slide-toggle>
-            </div>
-        </div>
-
-        <div class="form-group d-flex no-gutters">
-            <div class="col-10">
-                <label for="berries" class="col-form-label pb-0">Berries</label>
-                <p class="help-text text-muted">Your users will be able to collect Berries while they are in your box. They will then be able to spend the berries to skip a video or select the next video to play.
-                </p>
-            </div>
-            <div class="col m-auto">
-                <app-slide-toggle class="float-right" [(value)]="box.options.berries"></app-slide-toggle>
+                <div class="form-group d-flex no-gutters">
+                    <div class="col-10">
+                        <label for="berries" class="col-form-label pb-0">Berries System</label>
+                        <p class="help-text text-muted">Your users will be able to collect Berries while they are in your box. They will then be able to spend the berries to skip a video or select the next video to play.
+                        </p>
+                    </div>
+                    <div class="col m-auto">
+                        <app-slide-toggle class="float-right" [(value)]="box.options.berries"></app-slide-toggle>
+                    </div>
+                </div>
             </div>
         </div>
 

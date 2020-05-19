@@ -60,7 +60,7 @@ export class NavComponent implements OnInit {
     }
 
     openCreateModal() {
-        const modalRef = this.modalService.open(BoxFormComponent);
+        const modalRef = this.modalService.open(BoxFormComponent, { size: 'xl' });
         modalRef.componentInstance.title = 'Create a box';
 
         this.settingsHost.viewContainerRef.clear();

@@ -11,6 +11,14 @@ body {
     font-size: pxtorem($base-font-size);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Montserrat', 'sans-serif';
+}
+
 svg.berrybox-svg {
     height: 1em;
     stroke: var(--stroke-color);
