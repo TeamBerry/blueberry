@@ -11,8 +11,7 @@ import { BoxFormComponent } from 'app/shared/components/box-form/box-form.compon
 import { BoxService } from 'app/shared/services/box.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
-import { QueueItem } from '@teamberry/muscadine';
-import { SyncPacket } from 'app/shared/models/sync-packet.model';
+import { PlayingItem, SyncPacket } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-boxes-manager',
@@ -36,7 +35,7 @@ export class BoxesManagerComponent implements OnInit {
      *
      * @memberof BoxComponent
      */
-    currentVideo: QueueItem = null;
+    currentVideo: PlayingItem = null;
 
     constructor(
         private boxService: BoxService,
@@ -70,12 +69,12 @@ export class BoxesManagerComponent implements OnInit {
         modalRef.componentInstance.box = box;
     }
 
-        /**
-     * Toggles the box between open or closed
-     *
-     * @param {Box} box The box to close
-     * @memberof BoxesManagerComponent
-     */
+    /**
+ * Toggles the box between open or closed
+ *
+ * @param {Box} box The box to close
+ * @memberof BoxesManagerComponent
+ */
     toggleBoxState(box: Box) {
         if (box.open) {
             this.boxService.close(box).subscribe(
@@ -159,13 +158,11 @@ export class BoxesManagerComponent implements OnInit {
     connectToSyncStream() {
         this.jukeboxService.getBoxStream()
             .pipe(
-                filter(syncPacket => syncPacket instanceof SyncPacket && syncPacket.box === this.selectedBox._id)
-        )
+                filter((syncPacket: SyncPacket) => syncPacket.box === this.selectedBox._id)
+            )
             .subscribe(
                 (syncPacket: SyncPacket) => {
-                    if (_.has(syncPacket.item, 'video')) {
-                        this.currentVideo = syncPacket.item;
-                    }
+                    this.currentVideo = syncPacket?.item ?? null;
                 }
             )
     }
