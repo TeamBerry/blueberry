@@ -1,6 +1,6 @@
 {
   "name": "blueberry",
-  "version": "1.8.4",
+  "version": "1.8.5",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -2208,9 +2208,9 @@
       }
     },
     "@teamberry/muscadine": {
-      "version": "0.6.4",
-      "resolved": "https://npm.pkg.github.com/download/@teamberry/muscadine/0.6.4/f1cc9206dfc16fcc68dfd807bc71c6179e41a1cefa93f5234ebb1914624429dd",
-      "integrity": "sha512-1lV/x404YQhfgJqtbUqfvTj7Da9YfgD+6Jojfu2Ustu4vXJlQHM51CmllsFumURXAbjHaWX1an+meRTUdzaOVQ=="
+      "version": "0.7.0",
+      "resolved": "https://npm.pkg.github.com/download/@teamberry/muscadine/0.7.0/ffc80fd5a902b0e925360a39c2e926c0a43d5fda878d91c2be7bde32da43ebe5",
+      "integrity": "sha512-x8ww4WTK4Z+6qLY58fiT6+SHzhdLGmqkTwtQDItrz6LxobeSF+8o/Gpfhjhp6mTIkGmfvLyvKqFrodhLurq8AA=="
     },
     "@tootallnate/once": {
       "version": "1.0.0",

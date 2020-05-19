@@ -1,9 +1,7 @@
 import { Component, OnInit, Input, OnDestroy, OnChanges, SimpleChange } from '@angular/core';
 import * as _ from 'lodash';
-import * as moment from 'moment';
-import { QueueItem } from '@teamberry/muscadine';
+import { SyncPacket, PlayingItem } from '@teamberry/muscadine';
 import { JukeboxService } from '../../jukebox.service';
-import { SyncPacket } from 'app/shared/models/sync-packet.model';
 import { filter } from 'rxjs/operators';
 
 /**
@@ -45,7 +43,7 @@ export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
      * @param {{boxToken: SimpleChange}} changes
      * @memberof PlayerComponent
      */
-    ngOnChanges(changes: {boxToken: SimpleChange}) {
+    ngOnChanges(changes: { boxToken: SimpleChange }) {
         if (changes.boxToken.previousValue !== changes.boxToken.currentValue && !changes.boxToken.firstChange) {
             this.boxToken = changes.boxToken.currentValue;
             this.player.stopVideo();
@@ -105,13 +103,13 @@ export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
     connectToStream() {
         this.streamSubscription = this.jukeboxService.getBoxStream()
             .pipe(
-                filter(syncPacket => syncPacket instanceof SyncPacket && syncPacket.box === this.boxToken)
-        )
+                filter((syncPacket: SyncPacket) => syncPacket.box === this.boxToken)
+            )
             .subscribe(
                 (syncPacket: SyncPacket) => {
                     this.playVideo(syncPacket.item);
-            }
-        )
+                }
+            )
     }
 
     /**
@@ -123,11 +121,11 @@ export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
      * if the computed starting time is inferior to this value. This is done to avoid weird video plays in the case
      * of normal auto-play sync. The grace period is of 2 seconds
      *
-     * @param {QueueItem} video The playlist item to play
+     * @param {PlayingItem} video The playlist item to play
      * @memberof PlayerComponent
      */
-    playVideo(video: QueueItem) {
-        let startingTime = moment().diff(video.startTime) / 1000;
+    playVideo(video: PlayingItem) {
+        let startingTime = video?.position ?? 0
 
         if (startingTime <= 2) {
             startingTime = 0;
