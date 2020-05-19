@@ -162,7 +162,7 @@ export class BoxComponent implements OnInit {
 
     openBoxSettings() {
         if (this.jukeboxService.evaluateCommandPower()) {
-            const modalRef = this.modalService.open(BoxFormComponent)
+            const modalRef = this.modalService.open(BoxFormComponent, { size: 'xl' })
             modalRef.componentInstance.title = `Edit Box Settings`
             modalRef.componentInstance.box = _.cloneDeep(this.box)
         }

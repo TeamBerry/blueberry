@@ -64,7 +64,7 @@ export class BoxesManagerComponent implements OnInit {
     }
 
     openCreateModal(box?: Box) {
-        const modalRef = this.modalService.open(BoxFormComponent);
+        const modalRef = this.modalService.open(BoxFormComponent, { size: 'xl' });
         modalRef.componentInstance.title = !box ? 'Create a box' : `Edit ${box.name}`;
         modalRef.componentInstance.box = box;
     }

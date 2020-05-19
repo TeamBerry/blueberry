@@ -43,7 +43,7 @@ export class Box {
         this._id = obj && obj._id || null;
         this.creator = obj && obj.creator || null;
         this.description = obj && obj.description || null;
-        this.lang = obj && obj.lang || 'English';
+        this.lang = obj && obj.lang || 'en';
         this.name = obj && obj.name || null;
         this.playlist = obj && obj.playlist || [];
         this.open = obj && obj.open || true;

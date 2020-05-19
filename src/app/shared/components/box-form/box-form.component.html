@@ -23,10 +23,9 @@
                 <div class="form-group">
                     <label for="lang">Main spoken language</label>
                     <select name="lang" id="lang" class="form-control" [(ngModel)]="box.lang">
-                        <option value="">Select a language</option>
-                        <option *ngFor="let lang of langs" [value]="lang">{{ lang }}</option>
+                        <option *ngFor="let lang of langs" [value]="lang.key">{{ lang.value }}</option>
                     </select>
-                    <p class="help-text text-muted">Can help users find a community</p>
+                    <p class="help-text text-muted">Can help users find a community. Don't worry, everyone will be able to join, regardless of the language.</p>
                 </div>
             </div>
             <div class="col">

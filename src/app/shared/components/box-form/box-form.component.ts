@@ -17,34 +17,125 @@ export class BoxFormComponent implements OnInit {
     @Input() title;
     @Input() box: Box;
 
-    public langs: string[] = [
-        'Dansk',
-        'Deutsch',
-        'English',
-        'Español',
-        'Français',
-        'Italiano',
-        'Magyar',
-        'Nederlands',
-        'Norsk',
-        'Polski',
-        'Português',
-        'Română',
-        'Slovenčina',
-        'Suomi',
-        'Svenska',
-        'Tiếng Việt',
-        'Türkçe',
-        'Čeština',
-        'Ελληνικά',
-        'Български',
-        'Русский',
-        'ภาษาไทย',
-        '中文 简体',
-        '中文 繁體',
-        '日本語',
-        '한국어'
+    public langs: Array<{ key: string, value: string }> = [
+        {
+            key: 'cs',
+            value: 'Čeština'
+        },
+        {
+            key: 'da',
+            value: 'Dansk'
+        },
+        {
+            key: 'de',
+            value: 'Deutsch'
+        },
+        {
+            key: 'en',
+            value: 'English'
+        },
+        {
+            key: 'es',
+            value: 'Español'
+        },
+        {
+            key: 'fr',
+            value: 'Français'
+        },
+        {
+            key: 'hr',
+            value: 'Hrvatski jezik'
+        },
+        {
+            key: 'it',
+            value: 'Italiano'
+        },
+        {
+            key: 'pl',
+            value: 'Język polski'
+        },
+        {
+            key: 'lv',
+            value: 'Latviešu valoda'
+        },
+        {
+            key: 'lt',
+            value: 'Lietuvių kalba'
+        },
+        {
+            key: 'hu',
+            value: 'Magyar'
+        },
+        {
+            key: 'nl',
+            value: 'Nederlands'
+        },
+        {
+            key: 'no',
+            value: 'Norsk'
+        },
+        {
+            key: 'pt',
+            value: 'Português'
+        },
+        {
+            key: 'ro',
+            value: 'Română'
+        },
+        {
+            key: 'sk',
+            value: 'Slovenčina'
+        },
+        {
+            key: 'fi',
+            value: 'Suomi'
+        },
+        {
+            key: 'sv',
+            value: 'Svenska'
+        },
+        {
+            key: 'vi',
+            value: 'Tiếng Việt'
+        },
+        {
+            key: 'tr',
+            value: 'Türkçe'
+        },
+        {
+            key: 'el',
+            value: 'Ελληνικά'
+        },
+        {
+            key: 'bg',
+            value: 'Български език'
+        },
+        {
+            key: 'ru',
+            value: 'Pусский'
+        },
+        {
+            key: 'th',
+            value: 'ภาษาไทย'
+        },
+        {
+            key: 'zh-cn',
+            value: '中文 简体'
+        },
+        {
+            key: 'zh-tw',
+            value: '中文 繁體'
+        },
+        {
+            key: 'ja',
+            value: '日本語'
+        },
+        {
+            key: 'ko',
+            value: '한국어'
+        }
     ];
+
     submitted = false;
 
     context = 'Edit';
