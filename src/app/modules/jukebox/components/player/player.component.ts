@@ -125,7 +125,7 @@ export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
      * @memberof PlayerComponent
      */
     playVideo(video: PlayingItem) {
-        let startingTime = video.position ?? 0
+        let startingTime = video?.position ?? 0
 
         if (startingTime <= 2) {
             startingTime = 0;
