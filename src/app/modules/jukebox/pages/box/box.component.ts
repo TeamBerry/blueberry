@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BoxService } from './../../../../shared/services/box.service';
 import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
@@ -6,7 +6,6 @@ import * as _ from 'lodash';
 import { JukeboxService } from './../../jukebox.service';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Box } from 'app/shared/models/box.model';
-import { SyncPacket } from 'app/shared/models/sync-packet.model';
 import { filter } from 'rxjs/operators';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { environment } from 'environments/environment';
@@ -15,7 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
-import { QueueItem } from '@teamberry/muscadine';
+import { QueueItem, SyncPacket } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-box',
@@ -127,14 +126,11 @@ export class BoxComponent implements OnInit {
     connectToSyncStream() {
         this.jukeboxService.getBoxStream()
             .pipe(
-                filter(syncPacket => syncPacket instanceof SyncPacket && syncPacket.box === this.box._id)
+                filter((syncPacket: SyncPacket) => syncPacket.box === this.box._id)
             )
             .subscribe(
                 (syncPacket: SyncPacket) => {
-                    // Dirty, to be changed
-                    if (_.has(syncPacket.item, 'video')) {
-                        this.currentVideo = syncPacket.item; // Given to the player by 1-way binding
-                    }
+                    this.currentVideo = syncPacket?.item ?? null;
                 },
                 error => {
                     console.error(error);

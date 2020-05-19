@@ -6,8 +6,7 @@ import * as _ from 'lodash';
 
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
-import { Message, FeedbackMessage, QueueItemActionRequest } from '@teamberry/muscadine';
-import { SyncPacket } from 'app/shared/models/sync-packet.model';
+import { Message, FeedbackMessage, QueueItemActionRequest, SyncPacket } from '@teamberry/muscadine';
 import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
@@ -248,7 +247,7 @@ export class JukeboxService {
 
             this.boxSocket.on('sync', (syncPacket: SyncPacket) => {
                 if (syncPacket.box === this.box._id) {
-                    observer.next(new SyncPacket(syncPacket));
+                    observer.next(syncPacket);
                 }
             });
 
