@@ -36,11 +36,11 @@ export class QueueVideoComponent implements OnInit {
     }
 
     computeStatus(): 'upcoming' | 'playing' | 'played' {
-        if (this.item.startTime === null) {
-            return 'upcoming'
-        }
         if (this.item.startTime !== null && this.item.endTime === null) {
             return 'playing'
+        }
+        if (this.item.startTime === null || this.box.options.loop) {
+            return 'upcoming'
         }
         return 'played'
     }
