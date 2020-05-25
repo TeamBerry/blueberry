@@ -1,16 +1,13 @@
 <div class="panel-tab-title-section">
     <div class="col"></div>
     <p class="panel-tab-title col">Queue</p>
-    <app-bx-button (click)="startConversion()" class="panel-tab-title-button col pr-0"
-        [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add all videos to a Playlist', 'context': 'queue'}">
+    <app-bx-button (click)="startConversion()" class="panel-tab-title-button col pr-0" [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add all videos to a Playlist', 'context': 'queue'}">
     </app-bx-button>
 </div>
 <div *ngIf="box" style="height: calc(100% - 60px);">
     <div *ngIf="box.playlist.length > 0; else noVideos" class="d-flex flex-column h-100">
         <div class="d-flex align-items-center pl-2 pt-3">
-            <img *ngIf="currentlyPlaying?.stateForcedWithBerries"
-                src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 30px;"
-                ngbTooltip="This video is playing thanks to the use of berries.">
+            <img *ngIf="currentlyPlaying?.stateForcedWithBerries" src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 30px;" ngbTooltip="This video is playing thanks to the use of berries.">
             <p class="list-rank pl-2">Now playing: </p>
         </div>
         <div class="now-playing-space">
@@ -24,15 +21,32 @@
                 </div>
             </ng-template>
         </div>
-        <app-bx-tabset [options]="tabSetOptions" (clickedOption)="displayTab = $event"></app-bx-tabset>
+        <div>
+            <div class="d-flex align-items-center pl-2 pt-3" *ngIf="box.options.loop">
+                <p class="list-rank pl-2">Videos in Queue: </p>
+            </div>
+            <app-bx-tabset *ngIf="!box.options.loop" [options]="tabSetOptions" (clickedOption)="displayTab = $event"></app-bx-tabset>
+        </div>
         <div class="lists">
-            <div *ngIf="displayTab === 'upcoming'">
+            <div *ngIf="!box.options.loop">
+                <div *ngIf="displayTab === 'upcoming'">
+                    <div *ngFor="let entry of upcomingVideos; let i = index">
+                        <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
+                        </app-queue-video>
+                    </div>
+                </div>
+                <div *ngIf="displayTab === 'played'">
+                    <div *ngFor="let entry of playedVideos; let i = index">
+                        <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
+                        </app-queue-video>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="box.options.loop">
                 <div *ngFor="let entry of upcomingVideos; let i = index">
                     <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
                     </app-queue-video>
                 </div>
-            </div>
-            <div *ngIf="displayTab === 'played'">
                 <div *ngFor="let entry of playedVideos; let i = index">
                     <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
                     </app-queue-video>
@@ -47,8 +61,7 @@
                     d="M475.56 307.09L293.21 201.81v210.56l182.35-105.28M0 0h456.59v56.04H0zM0 93.02h456.59v56.04H0zM0 186.04h269.23v56.04H0zM0 279.07h269.23v56.04H0zM0 372.09h269.23v56.04H0z" />
             </svg>
             <h3>Your queue is empty</h3>
-            <p>You can add youtube links in the chat input with the <span class="command-key">!add</span> command or use
-                the lens icon to search directly on YouTube.</p>
+            <p>You can add youtube links in the chat input with the <span class="command-key">!add</span> command or use the lens icon to search directly on YouTube.</p>
         </div>
     </ng-template>
 </div>
