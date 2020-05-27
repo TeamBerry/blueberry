@@ -14,6 +14,7 @@ export class Box {
     name: string;
     playlist: Array<QueueItem>;
     open: boolean;
+    private: boolean;
     createdAt: Date;
     updatedAt: Date;
     options: {
@@ -47,6 +48,7 @@ export class Box {
         this.name = obj && obj.name || null;
         this.playlist = obj && obj.playlist || [];
         this.open = obj && obj.open || true;
+        this.private = obj && obj.private || false;
         this.options = obj && obj.options || {
             random: false,
             loop: false,
