@@ -62,7 +62,6 @@ export class BxChipComponent implements OnInit {
         this.computedConfiguration.chipText = this.options.chipText ?? matchingDefaultConfiguration.chipText
         this.computedConfiguration.tooltipText = this.options.tooltipText ?? matchingDefaultConfiguration.tooltipText
         this.computedConfiguration.icon = matchingDefaultConfiguration.icon
-        this.computedConfiguration.category = matchingDefaultConfiguration.category
     }
 
 }
