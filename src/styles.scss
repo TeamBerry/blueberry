@@ -11,7 +11,7 @@ body {
     font-size: pxtorem($base-font-size);
 }
 
-svg.berrybox-svg {
+.berrybox-svg {
     height: 1em;
     stroke: var(--stroke-color);
     fill: $fill-color;
@@ -25,6 +25,27 @@ svg.berrybox-svg {
         .berrybox-stroke {
             stroke: $master-color;
         }
+    }
+    .berrybox-path {
+        fill: var(--text-system-color);
+        &:active {
+            fill: var(--active-stroke-color);
+        }
+    }
+    .berrybox-stroke {
+        stroke: var(--text-system-color);
+        &:active {
+            stroke: var(--active-stroke-color);
+        }
+    }
+}
+
+.berrybox-svg-static {
+    height: 1em;
+    stroke: var(--stroke-color);
+    fill: $fill-color;
+    circle {
+        fill: var(--stroke-color);
     }
     .berrybox-path {
         fill: var(--text-system-color);
