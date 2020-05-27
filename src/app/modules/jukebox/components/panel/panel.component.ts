@@ -147,7 +147,7 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
     openBoxSettings() {
         if (this.jukeboxService.evaluateCommandPower()) {
-            const modalRef = this.modalService.open(BoxFormComponent)
+            const modalRef = this.modalService.open(BoxFormComponent, { size: 'xl' })
             modalRef.componentInstance.title = `Edit Box Settings`
             modalRef.componentInstance.box = _.cloneDeep(this.box)
         }
