@@ -23,6 +23,7 @@ import { BxTabsetComponent } from './components/bx-tabset/bx-tabset.component';
 import { BxChipComponent } from './components/bx-chip/bx-chip.component';
 import { BoxStatusIndicatorComponent } from './components/box-status-indicator/box-status-indicator.component';
 import { BxRequiredInputIndicatorComponent } from './components/bx-required-input-indicator/bx-required-input-indicator.component';
+import { ProfilePictureComponent } from './components/profile-picture/profile-picture.component';
 
 @NgModule({
     imports: [
@@ -44,7 +45,8 @@ import { BxRequiredInputIndicatorComponent } from './components/bx-required-inpu
         BxTabsetComponent,
         BxChipComponent,
         BoxStatusIndicatorComponent,
-        BxRequiredInputIndicatorComponent
+        BxRequiredInputIndicatorComponent,
+        ProfilePictureComponent
     ],
     exports: [
         CommonModule,
@@ -65,7 +67,8 @@ import { BxRequiredInputIndicatorComponent } from './components/bx-required-inpu
         BxTabsetComponent,
         BxChipComponent,
         BoxStatusIndicatorComponent,
-        BxRequiredInputIndicatorComponent
+        BxRequiredInputIndicatorComponent,
+        ProfilePictureComponent
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
