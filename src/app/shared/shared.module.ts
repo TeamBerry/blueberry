@@ -24,6 +24,7 @@ import { BxChipComponent } from './components/bx-chip/bx-chip.component';
 import { BoxStatusIndicatorComponent } from './components/box-status-indicator/box-status-indicator.component';
 import { BxRequiredInputIndicatorComponent } from './components/bx-required-input-indicator/bx-required-input-indicator.component';
 import { ProfilePictureComponent } from './components/profile-picture/profile-picture.component';
+import { FromNowPipe } from './pipes/from-now.pipe';
 
 @NgModule({
     imports: [
@@ -46,7 +47,8 @@ import { ProfilePictureComponent } from './components/profile-picture/profile-pi
         BxChipComponent,
         BoxStatusIndicatorComponent,
         BxRequiredInputIndicatorComponent,
-        ProfilePictureComponent
+        ProfilePictureComponent,
+        FromNowPipe
     ],
     exports: [
         CommonModule,
@@ -68,7 +70,8 @@ import { ProfilePictureComponent } from './components/profile-picture/profile-pi
         BxChipComponent,
         BoxStatusIndicatorComponent,
         BxRequiredInputIndicatorComponent,
-        ProfilePictureComponent
+        ProfilePictureComponent,
+        FromNowPipe
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [
