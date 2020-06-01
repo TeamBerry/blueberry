@@ -3,13 +3,22 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: grey;
-    color: white;
-    border-radius: 10px;
-    width: 100px;
+    border-radius: 15px;
+    height: 30px;
+    &.bx-chip-display-full {
+        width: 100px;
+    }
+    &.bx-chip-display-icon {
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     margin: 3px;
     img {
-        height: 20px;
-        padding: .2rem;
+        height: 26px;
+        padding: 4px;
     }
+    background-color: grey;
+    color: white;
 }

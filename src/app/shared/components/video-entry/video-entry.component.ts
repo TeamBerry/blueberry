@@ -16,6 +16,7 @@ export class VideoEntryComponent implements OnInit {
     @Input() options: {
         none?: boolean,
         submit?: boolean,
+        inQueue?: boolean,
         forceNext?: boolean,
         forcePlay?: boolean,
         removeFromPlaylist?: boolean,
@@ -25,6 +26,7 @@ export class VideoEntryComponent implements OnInit {
     appliedOptions = {
         none: false,
         submit: false,
+        inQueue: false,
         forceNext: false,
         forcePlay: false,
         removeFromPlaylist: false,

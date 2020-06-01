@@ -5,16 +5,33 @@
     </div>
     <div class="card-block p-2 d-flex align-items-center">
         <div class="bb-box-picture mr-2">
-            <img src="{{ pictureLocation }}" alt="{{ box.creator['name'] }}" (error)="loadDefaultPicture()" class="profile-picture profile-picture-md">
+            <app-profile-picture [userId]="box?.creator?._id" [size]="'md'"></app-profile-picture>
         </div>
         <div class="d-flex flex-column" id="box-info-container">
-            <h4 class="card-name m-0">{{ box.name }}</h4>
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                <h4 class="card-name m-0">{{ box.name }}</h4>
+                <span ngbTooltip="Number of users currently in the box">
+                    <svg class="berrybox-svg mr-1" style="height: 1.5em;" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 334.45 460">
+                        <path class="berrybox-path"
+                            d="M271.41 190.25a63 63 0 0 0-63 63v190.17h126.04V253.28a63 63 0 0 0-63.04-63.03z" />
+                        <circle class="berrybox-path" cx="268.81" cy="129.3" r="52.62" />
+                        <path class="berrybox-path"
+                            d="M66.15 185.75A66.15 66.15 0 0 0 0 251.9v199.52h132.29V251.89a66.15 66.15 0 0 0-66.14-66.14z" />
+                        <circle class="berrybox-path" cx="63.41" cy="121.79" r="55.21" />
+                        <path class="berrybox-path"
+                            d="M170.23 145.13a78.39 78.39 0 0 0-78.39 78.39V460h156.78V223.52a78.39 78.39 0 0 0-78.39-78.39z" />
+                        <circle class="berrybox-path" cx="166.98" cy="65.44" r="65.44" />
+                    </svg>
+                    {{ box.users || 0 }}</span>
+            </div>
             <div id="box-info">
                 <p id="box-admin" class="mb-0">{{ box.creator['name'] }}</p>
                 <p id="currently-playing" class="mb-0">{{ currentVideo?.video?.name || "--" }}</p>
                 <div class="modes pb-2">
-                    <app-bx-chip [options]="{'type': 'random'}" *ngIf="box?.options?.random"></app-bx-chip>
-                    <app-bx-chip [options]="{'type': 'loop'}" *ngIf="box?.options?.loop"></app-bx-chip>
+                    <app-bx-chip [options]="{'type': 'random'}" [display]="'icon'" *ngIf="box?.options?.random"></app-bx-chip>
+                    <app-bx-chip [options]="{'type': 'loop'}" [display]="'icon'" *ngIf="box?.options?.loop"></app-bx-chip>
+                    <app-bx-chip [options]="{'type': 'lock'}" [display]="'icon'" *ngIf="box?.private"></app-bx-chip>
                     <app-bx-chip [options]="{'type': 'no-coin'}" *ngIf="!box?.options?.berries"></app-bx-chip>
                 </div>
             </div>

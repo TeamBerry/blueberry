@@ -14,6 +14,7 @@ export class Box {
     name: string;
     playlist: Array<QueueItem>;
     open: boolean;
+    private: boolean;
     createdAt: Date;
     updatedAt: Date;
     options: {
@@ -37,20 +38,23 @@ export class Box {
          */
         berries: Boolean;
     }
+    users?: number
 
     constructor(obj?: any) {
         this._id = obj && obj._id || null;
         this.creator = obj && obj.creator || null;
         this.description = obj && obj.description || null;
-        this.lang = obj && obj.lang || 'English';
+        this.lang = obj && obj.lang || 'en';
         this.name = obj && obj.name || null;
         this.playlist = obj && obj.playlist || [];
         this.open = obj && obj.open || true;
+        this.private = obj && obj.private || false;
         this.options = obj && obj.options || {
             random: false,
             loop: false,
             berries: true
         }
+        this.users = obj && obj.users || null;
         this.createdAt = obj && obj.createdAt || null;
         this.updatedAt = obj && obj.updatedAt || null;
     }

@@ -21,6 +21,7 @@ import { UserPlaylist } from 'app/shared/models/user-playlist.model';
 export class PlaylistsSearchTabComponent implements OnInit, AfterViewInit {
     @Input() boxToken: string;
     @Input() user: AuthSubject;
+    @Input() videosInQueue: Array<string>;
     @ViewChild('filterInput') input: ElementRef
 
     favorites$: Observable<User['favorites']>

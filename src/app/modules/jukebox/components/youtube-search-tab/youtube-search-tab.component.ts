@@ -13,6 +13,7 @@ import { AuthSubject } from 'app/shared/models/session.model';
 export class YoutubeSearchTabComponent implements OnInit {
     @Input() boxToken: string;
     @Input() user: AuthSubject;
+    @Input() videosInQueue: Array<string>;
     searchValue = ''
     errorMessage
     defaultSearchCooldown = 5

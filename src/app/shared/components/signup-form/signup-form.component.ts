@@ -26,17 +26,22 @@ export class SignupFormComponent implements OnInit {
         this.signupForm = new FormGroup({
             username: new FormControl('', [
                 Validators.required,
-                Validators.minLength(5),
-                Validators.maxLength(20)
+                Validators.minLength(4),
+                Validators.maxLength(20),
+                this.noWhitespaceValidator
             ]),
-            mail: new FormControl('', [Validators.required]),
+            mail: new FormControl('', [
+                Validators.required,
+                Validators.email,
+                this.noWhitespaceValidator
+            ]),
             password: new FormControl('', [
                 Validators.required,
                 Validators.minLength(8)
             ]),
             passwordVerify: new FormControl('', [
                 Validators.required,
-                Validators.minLength(8)
+                Validators.minLength(8),
             ])
         })
     }
@@ -45,6 +50,10 @@ export class SignupFormComponent implements OnInit {
     get mail() { return this.signupForm.get('mail'); }
     get password() { return this.signupForm.get('password'); }
     get passwordVerify() { return this.signupForm.get('passwordVerify'); }
+
+    public noWhitespaceValidator(control: FormControl) {
+        return /[\s]+/gmi.test(control.value) ? { 'whitespace': true } : null;
+    }
 
     /**
      * Checks if the password verification input has the same value as the password input
@@ -57,15 +66,14 @@ export class SignupFormComponent implements OnInit {
     };
 
     signup() {
-
         if (!this.passwordMatchVerify()) {
-            this.errorMessage = 'Your password verification is invalid';
+            this.errorMessage = 'Your password verification is invalid.';
             return;
         }
 
-        const mail = this.signupForm.value.mail,
-            password = this.signupForm.value.password,
-            username = this.signupForm.value.username;
+        const mail = this.signupForm.value.mail.trim(),
+            password = this.signupForm.value.password.trim(),
+            username = this.signupForm.value.username.trim();
 
         this.authService.signup(mail, password, username).subscribe(
             (session: Session) => {

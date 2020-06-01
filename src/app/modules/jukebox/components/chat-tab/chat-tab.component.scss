@@ -1,5 +1,4 @@
 @import './../../../../../imports.scss';
-
 #filter-options {
     padding: 20px;
     justify-content: space-evenly;
@@ -33,17 +32,19 @@
 .scroll-resumer {
     position: relative;
     bottom: 0;
-    width: 100%;
+    width: 80%;
     border-radius: 5px;
-    background-color: var(--active-color);
-    color: black;
+    background-color: rgba(black, 0.2);
+    padding: 4px;
+    color: var(--text-main-color);
     font-family: 'Montserrat';
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-self: center;
+    align-items: center;
     font-weight: 700;
     &:hover {
-        background-color: var(--active-hover-color);
+        background-color: rgba(black, 0.3);
     }
 }

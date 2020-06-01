@@ -40,13 +40,6 @@ export class BoxComponent implements OnInit {
     box: Box;
 
     /**
-     * Profile picture of the box creator
-     *
-     * @memberof BoxComponent
-     */
-    public pictureLocation = '../../../assets/images/berrybox-staff-logo.png';
-
-    /**
      * Loading flag to hide or show parts of the DOM depending on their state of readiness
      *
      * @memberof BoxComponent
@@ -96,7 +89,6 @@ export class BoxComponent implements OnInit {
         this.boxService.show(this.token).subscribe(
             (box: Box) => {
                 this.box = box;
-                this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${box.creator._id}-picture`
                 // Start box once it's loaded
                 this.jukeboxService.startBox(this.box);
                 this.connectToSyncStream();
@@ -111,10 +103,6 @@ export class BoxComponent implements OnInit {
                 this.box = updatedBox
             }
         )
-    }
-
-    loadDefaultPicture() {
-        this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/default-picture`;
     }
 
     /**
@@ -162,7 +150,7 @@ export class BoxComponent implements OnInit {
 
     openBoxSettings() {
         if (this.jukeboxService.evaluateCommandPower()) {
-            const modalRef = this.modalService.open(BoxFormComponent)
+            const modalRef = this.modalService.open(BoxFormComponent, { size: 'xl' })
             modalRef.componentInstance.title = `Edit Box Settings`
             modalRef.componentInstance.box = _.cloneDeep(this.box)
         }
