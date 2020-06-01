@@ -5,7 +5,7 @@
     </div>
     <div class="card-block p-2 d-flex align-items-center">
         <div class="bb-box-picture mr-2">
-            <img src="{{ pictureLocation }}" alt="{{ box.creator['name'] }}" (error)="loadDefaultPicture()" class="profile-picture profile-picture-md">
+            <app-profile-picture [userId]="box?.creator?._id" [size]="'md'"></app-profile-picture>
         </div>
         <div class="d-flex flex-column" id="box-info-container">
             <div class="d-flex flex-row justify-content-between align-items-center">

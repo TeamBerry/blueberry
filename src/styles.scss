@@ -219,6 +219,9 @@ button>svg {
     &.profile-picture-nav {
         @include profile-picture-size(28px);
     }
+    &.profile-picture-xs {
+        @include profile-picture-size(20px);
+    }
     &.profile-picture-sm {
         @include profile-picture-size(30px);
     }
