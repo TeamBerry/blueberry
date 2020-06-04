@@ -11,7 +11,7 @@ export const darkTheme = {
     'background-main-inactive-color': '#252525',
     'background-main-border-color': '#979797',
     // Main Color, lighten 15%
-    'background-secondary-color': '#404040',
+    'background-secondary-color': '#303030',
     // Secondary Color, lighten 5%
     'background-secondary-color-alternate': '#4d4d4d',
     'input-main-color': '#D0D0D0',
