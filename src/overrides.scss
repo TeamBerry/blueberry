@@ -160,6 +160,17 @@
     }
 }
 
+.nav-link-inverted {
+    &:hover {
+        background-color: var(--background-main-color);
+    }
+    &.active {
+        cursor: default;
+        font-weight: 800;
+        background-color: var(--background-main-color);
+    }
+}
+
 .form-control {
     &:not(.no-border) {
         border: 1px solid $master-color !important;
@@ -233,7 +244,6 @@
             background-color: var(--background-main-hover-color);
         }
     }
-
     .bx-dropdown-icon {
         width: 20px;
         height: 20px;

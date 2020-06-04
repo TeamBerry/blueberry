@@ -26,6 +26,7 @@ import { PasswordResetComponent } from './pages/password-reset/password-reset.co
 
 // External Modules
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         SharedModule,
         CoreModule,
         JukeboxModule,
-        NgbModule
+        NgbModule,
+        ColorPickerModule
     ],
     exports: [
         AppComponent

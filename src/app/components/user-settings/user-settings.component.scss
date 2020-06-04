@@ -4,17 +4,17 @@
 }
 
 .menu {
-    background-color: var(--background-main-color);
+    background-color: var(--background-secondary-color);
 }
 
 .settings-tabs {
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-main-color);
 }
 
 .tab-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    color: white;
+    color: var(--text-main-color);
     padding-bottom: 20px;
 }
 
@@ -57,4 +57,31 @@ label {
 
 button.close {
     font-size: 40px;
+}
+
+.chat-preview {
+    height: 90px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    .chat-preview-light {
+        background-color: #d9d9d9;
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .chat-preview-dark {
+        background-color: #404040;
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
 }

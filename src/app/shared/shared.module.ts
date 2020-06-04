@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthDirective } from '../shared/directive/auth.directive';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
 import { VideoEntryComponent } from './components/video-entry/video-entry.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe';
 import { PlaylistSelectorComponent } from './components/playlist-selector/playlist-selector.component';
 import { ThemeService } from './services/theme.service';

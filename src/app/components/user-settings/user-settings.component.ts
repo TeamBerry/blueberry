@@ -23,6 +23,8 @@ export class UserSettingsComponent implements OnInit {
     public session: AuthSubject = AuthService.getAuthSubject();
     public pictureLocation: string
 
+    public color: '#EF4034'
+
     constructor(
         private modalService: NgbModal,
         private themeService: ThemeService,
