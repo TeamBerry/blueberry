@@ -21,7 +21,7 @@ export class User {
         this.settings = user && user.settings || {
             theme: 'light',
             picture: null,
-            color: 'DF62A9'
+            color: '#DF62A9'
         }
         this.favorites = user && user.favorites || [];
     }

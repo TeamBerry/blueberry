@@ -55,9 +55,13 @@ export class UserSettingsComponent implements OnInit {
     }
 
     saveChatColor() {
-        this.userService.updateSettings({ color: this.color }).subscribe();
-        this.session.settings.color = this.color;
-        localStorage.setItem('BBOX-user', JSON.stringify(this.session));
+        this.userService.updateSettings({ color: this.color }).subscribe(
+            () => {
+                this.session.settings.color = this.color;
+                localStorage.setItem('BBOX-user', JSON.stringify(this.session));
+                console.log('Color saved.');
+            }
+        );
     }
 
     openPictureUploader() {

@@ -30,7 +30,8 @@ export class AuthService {
                 mail: null,
                 settings: {
                     theme: 'dark',
-                    picture: null
+                    picture: null,
+                    color: '#DF62A9'
                 }
             }
         }
