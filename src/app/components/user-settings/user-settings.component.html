@@ -49,6 +49,7 @@
             </div>
             <div id="display-tab" *ngIf="currentTab === 'display'">
                 <h3 class="tab-title">Display</h3>
+                <h5 class="section-title">Theme</h5>
                 <div class="form-group d-flex no-gutters">
                     <div class="col-10">
                         <label for="theme">Dark Theme</label>
@@ -59,6 +60,7 @@
                         </app-slide-toggle>
                     </div>
                 </div>
+                <h5 class="section-title">Customized Colors</h5>
                 <div class="form-group">
                     <label for="color">Chat Color</label>
                     <p class="help-text text-muted">Choose a color for your username in chat. Be careful, some colors might be <strong>difficult to read</strong> in light or dark themes and for users with <strong>color blindness</strong>.
@@ -87,7 +89,7 @@
                 <div class="form-group d-flex no-gutters">
                     <div class="col-10">
                         <label for="colorblind">Enable Color Blindness Display</label>
-                        <p class="help-text text-muted">Removes custom user colors in chat. Saved automatically.</p>
+                        <p class="help-text text-muted">Removes all custom user colors in chat, including yours. Saved automatically.</p>
                     </div>
                     <div class="col m-auto">
                         <app-slide-toggle class="checkbox" [(value)]="session.settings.isColorblind" (valueChange)="toggleColorBlindMode()">
