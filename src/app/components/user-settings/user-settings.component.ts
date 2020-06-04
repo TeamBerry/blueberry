@@ -6,6 +6,7 @@ import { AuthService } from 'app/core/auth/auth.service';
 import { environment } from 'environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PictureUploaderComponent } from 'app/shared/components/picture-uploader/picture-uploader.component';
+import { UserService } from 'app/shared/services/user.service';
 
 @Component({
     selector: 'app-user-settings',
@@ -23,11 +24,12 @@ export class UserSettingsComponent implements OnInit {
     public session: AuthSubject = AuthService.getAuthSubject();
     public pictureLocation: string
 
-    public color: '#EF4034'
+    public color: string
 
     constructor(
         private modalService: NgbModal,
         private themeService: ThemeService,
+        private userService: UserService
     ) { }
 
     ngOnInit() {
@@ -35,6 +37,7 @@ export class UserSettingsComponent implements OnInit {
             this.isDarkThemeEnabled = false;
         }
         this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${this.session.settings.picture}`
+        this.color = this.session.settings.color ?? '#DF62A9';
     }
 
     closeSettings() {
@@ -49,6 +52,12 @@ export class UserSettingsComponent implements OnInit {
             this.themeService.toggleDark()
             this.isDarkThemeEnabled = true
         }
+    }
+
+    saveChatColor() {
+        this.userService.updateSettings({ color: this.color }).subscribe();
+        this.session.settings.color = this.color;
+        localStorage.setItem('BBOX-user', JSON.stringify(this.session));
     }
 
     openPictureUploader() {

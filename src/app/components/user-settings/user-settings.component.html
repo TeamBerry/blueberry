@@ -49,28 +49,40 @@
             </div>
             <div id="display-tab" *ngIf="currentTab === 'display'">
                 <h3 class="tab-title">Display</h3>
-                <div class="form-group">
-                    <label for="theme">Dark Theme</label>
-                    <app-slide-toggle class="checkbox" [value]="isDarkThemeEnabled" (valueChange)="toggleDarkTheme()">
-                    </app-slide-toggle>
+                <div class="form-group d-flex no-gutters">
+                    <div class="col-10">
+                        <label for="theme">Dark Theme</label>
+                        <p class="help-text text-muted">Toggles between light colors and dark colors for the overall appearance of the application. The modification will be saved automatically.</p>
+                    </div>
+                    <div class="col m-auto">
+                        <app-slide-toggle class="checkbox" [value]="isDarkThemeEnabled" (valueChange)="toggleDarkTheme()">
+                        </app-slide-toggle>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="color">Chat Color</label>
-                    <p class="help-text text-muted">Choose a color for your username in chat. Be careful, some colors might be <strong>difficult to read</strong> in light or dark themes and for users with color blindness.
+                    <p class="help-text text-muted">Choose a color for your username in chat. Be careful, some colors might be <strong>difficult to read</strong> in light or dark themes and for users with <strong>color blindness</strong>.
                     </p>
-                    <div class="d-flex">
+                    <div class="d-flex flex-row mt-2">
                         <div class="mr-4">
                             <span [style.background]="color" [cpToggle]="true" [cpDialogDisplay]="'inline'" [cpAlphaChannel]="'disabled'" [cpCancelButton]="false" [(colorPicker)]="color" [cpOutputFormat]="'hex'"></span>
                         </div>
-                        <div class="chat-preview">
-                            <div class="chat-preview-light">
-                                <span [style.color]="color">{{ session.name }}</span>
+                        <div class="display-flex flex-column h-100 align-items-between">
+                            <div class="chat-preview">
+                                <p class="help-text text-muted">Preview on Light Mode:</p>
+                                <div class="chat-preview-theme chat-preview-theme-light">
+                                    <span [style.color]="color">{{ session.name }}</span>
+                                </div>
                             </div>
-                            <div class="chat-preview-dark">
-                                <span [style.color]="color">{{ session.name }}</span>
+                            <div class="chat-preview mt-3">
+                                <p class="help-text text-muted">Preview on Dark Mode:</p>
+                                <div class="chat-preview-theme chat-preview-theme-dark">
+                                    <span [style.color]="color">{{ session.name }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <button class="btn btn-success btn-block mt-3">Save Color</button>
                 </div>
             </div>
         </div>

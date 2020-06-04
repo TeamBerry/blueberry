@@ -60,28 +60,21 @@ button.close {
 }
 
 .chat-preview {
-    height: 90px;
     width: 200px;
-    display: flex;
-    flex-direction: column;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    .chat-preview-light {
-        background-color: #d9d9d9;
-        height: 50%;
+    .chat-preview-theme {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-    }
-    .chat-preview-dark {
-        background-color: #404040;
-        height: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+        border-radius: 5px;
+        height: 40px;
+        &.chat-preview-theme-light {
+            background-color: #d9d9d9;
+        }
+        &.chat-preview-theme-dark {
+            background-color: #404040;
+        }
     }
 }
