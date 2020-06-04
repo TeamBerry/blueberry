@@ -31,7 +31,8 @@ export class AuthService {
                 settings: {
                     theme: 'dark',
                     picture: null,
-                    color: '#DF62A9'
+                    color: '#DF62A9',
+                    isColorblind: false
                 }
             }
         }

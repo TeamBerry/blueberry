@@ -52,7 +52,7 @@
                 <div class="form-group d-flex no-gutters">
                     <div class="col-10">
                         <label for="theme">Dark Theme</label>
-                        <p class="help-text text-muted">Toggles between light colors and dark colors for the overall appearance of the application. The modification will be saved automatically.</p>
+                        <p class="help-text text-muted">Toggles between light colors and dark colors for the overall appearance of the application. Saved automatically.</p>
                     </div>
                     <div class="col m-auto">
                         <app-slide-toggle class="checkbox" [value]="isDarkThemeEnabled" (valueChange)="toggleDarkTheme()">
@@ -83,6 +83,16 @@
                         </div>
                     </div>
                     <button class="btn btn-success btn-block mt-3" (click)="saveChatColor()">Save Color</button>
+                </div>
+                <div class="form-group d-flex no-gutters">
+                    <div class="col-10">
+                        <label for="colorblind">Enable Color Blindness Display</label>
+                        <p class="help-text text-muted">Removes custom user colors in chat. Saved automatically.</p>
+                    </div>
+                    <div class="col m-auto">
+                        <app-slide-toggle class="checkbox" [(value)]="session.settings.isColorblind" (valueChange)="toggleColorBlindMode()">
+                        </app-slide-toggle>
+                    </div>
                 </div>
             </div>
         </div>

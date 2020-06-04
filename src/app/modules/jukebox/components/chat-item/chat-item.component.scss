@@ -1,6 +1,7 @@
 @import './../../../../../imports.scss';
 // Chat
-.system-message, .feedback-message {
+.system-message,
+.feedback-message {
     color: var(--text-system-color);
     border-left-width: 3px;
     border-left-style: solid;
@@ -15,15 +16,19 @@
 .context-success {
     border-left-color: var(--success-color);
 }
+
 .context-error {
     border-left-color: var(--danger-color);
 }
+
 .context-warning {
     border-left-color: var(--warning-color);
 }
+
 .context-info {
     border-left-color: $master-color;
 }
+
 .context-berries {
     border-left-color: $berry-color;
     color: $berry-color;
@@ -73,7 +78,9 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     padding-left: 5px;
-    color: var(--text-main-color);
+    &.message-author-classic {
+        color: var(--text-main-color) !important;
+    }
 }
 
 .bot-icon {

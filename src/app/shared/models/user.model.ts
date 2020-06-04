@@ -9,7 +9,8 @@ export class User {
     settings: {
         theme: 'light' | 'dark',
         picture: string,
-        color: string
+        color: string,
+        isColorblind: boolean
     };
     favorites: any[];
 
@@ -21,7 +22,8 @@ export class User {
         this.settings = user && user.settings || {
             theme: 'light',
             picture: null,
-            color: '#DF62A9'
+            color: '#DF62A9',
+            isColorblind: false
         }
         this.favorites = user && user.favorites || [];
     }

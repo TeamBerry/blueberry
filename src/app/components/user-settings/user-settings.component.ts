@@ -64,6 +64,15 @@ export class UserSettingsComponent implements OnInit {
         );
     }
 
+    toggleColorBlindMode() {
+        this.userService.updateSettings({ isColorblind: this.session.settings.isColorblind }).subscribe(
+            () => {
+                localStorage.setItem('BBOX-user', JSON.stringify(this.session));
+                console.log('Saved.');
+            }
+        )
+    }
+
     openPictureUploader() {
         const modalRef = this.modalService.open(PictureUploaderComponent)
     }
