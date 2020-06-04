@@ -13,6 +13,7 @@ export class ChatItemComponent implements OnInit {
 
     typeStyle: string = null;
     author: string;
+    color: string;
 
     constructor() {
     }
@@ -22,9 +23,12 @@ export class ChatItemComponent implements OnInit {
             this.typeStyle = `context-${this.message.context}`;
         }
 
-        this.author = this.message.author
-            ? (typeof this.message.author === 'object' ? this.message.author.name : this.message.author)
-            : null;
+        if (typeof this.message.author === 'object') {
+            this.author = this.message.author.name;
+            this.color = this.message.author?.color ?? '#DF62A9';
+        } else {
+            this.author = this.message.author ?? null;
+        }
 
         this.message.contents = this.parseString(this.message.contents)
     }
