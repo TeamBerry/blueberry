@@ -222,6 +222,10 @@
         color: $danger-color !important;
         border-color: $danger-color;
     }
+    &.alert-warning {
+        color: var(--warning-color) !important;
+        border-color: var(--warning-color);
+    }
     &.alert-success {
         color: var(--success-color) !important;
         border-color: var(--success-color);

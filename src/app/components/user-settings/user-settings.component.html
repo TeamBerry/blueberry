@@ -83,10 +83,10 @@
                                 </div>
                             </div>
                             <app-bx-alert *ngIf="colorWarning && !colorError" [options]="{'type': 'warning', 'message': 'Watch out! This color might not be very readable in light or dark mode!'}"></app-bx-alert>
-                            <app-bx-alert *ngIf="colorError" [options]="{'type': 'danger', 'message': 'This color is not visible enough in light or dark mode. Please adjust your color.'}"></app-bx-alert>
+                            <app-bx-alert *ngIf="colorError" [options]="{'type': 'danger', 'message': 'This color is not visible enough. Please adjust your color.'}"></app-bx-alert>
                         </div>
                     </div>
-                    <button class="btn btn-success btn-block mt-3" (click)="saveChatColor()" [disabled]="!colorError">Save Color</button>
+                    <button class="btn btn-success btn-block mt-3" (click)="saveChatColor()" [disabled]="colorError">Save Color</button>
                 </div>
                 <div class="form-group d-flex no-gutters">
                     <div class="col-10">
