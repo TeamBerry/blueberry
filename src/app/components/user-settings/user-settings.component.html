@@ -67,7 +67,7 @@
                     </p>
                     <div class="d-flex flex-row mt-2">
                         <div class="mr-4">
-                            <span [style.background]="color" [cpToggle]="true" [cpDialogDisplay]="'inline'" [cpAlphaChannel]="'disabled'" [cpCancelButton]="false" [(colorPicker)]="color" [cpOutputFormat]="'hex'"></span>
+                            <span [style.background]="color" [cpToggle]="true" [cpDialogDisplay]="'inline'" [cpAlphaChannel]="'disabled'" [cpCancelButton]="false" [(colorPicker)]="color" [cpOutputFormat]="'hex'" (colorPickerChange)="onColorChange($event)"></span>
                         </div>
                         <div class="display-flex flex-column h-100 align-items-between">
                             <div class="chat-preview">
@@ -81,6 +81,9 @@
                                 <div class="chat-preview-theme chat-preview-theme-dark">
                                     <span [style.color]="color">{{ session.name }}</span>
                                 </div>
+                            </div>
+                            <div class="mt-3" *ngIf="colorWarning">
+                                <p class="help-text text-muted"><strong>Watch out</strong>, this color might not be very readable in light or dark mode!</p>
                             </div>
                         </div>
                     </div>

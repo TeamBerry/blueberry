@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
+import colorContrast from 'color-contrast'
 
 import { ThemeService } from 'app/shared/services/theme.service';
 import { AuthSubject } from 'app/shared/models/session.model';
@@ -25,6 +26,7 @@ export class UserSettingsComponent implements OnInit {
     public pictureLocation: string
 
     public color: string
+    public colorWarning: boolean
 
     constructor(
         private modalService: NgbModal,
@@ -52,6 +54,13 @@ export class UserSettingsComponent implements OnInit {
             this.themeService.toggleDark()
             this.isDarkThemeEnabled = true
         }
+    }
+
+    onColorChange(color: string) {
+        console.log(color);
+        console.log('LIGHT MODE CONTRAST: ', colorContrast(color, '#efefef'))
+        console.log('DARK MODE CONTRAST: ', colorContrast(color, '#404040'))
+        this.colorWarning = colorContrast(color, '#efefef') < 3 || colorContrast(color, '#404040') < 3
     }
 
     saveChatColor() {
