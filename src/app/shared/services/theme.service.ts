@@ -40,14 +40,14 @@ export const darkTheme = {
 }
 
 export const lightTheme = {
-    'background-main-color': '#E6E6E6',
+    'background-main-color': '#FFFFFF',
     'background-main-hover-color': '#f2f2f2',
     'background-main-active-color': '#d9d9d9',
     'background-main-inactive-color': '#b3b3b3',
     'background-main-border-color': '#979797',
     'nav-color': '#009AEB',
     // Main Color, darken 15%
-    'background-secondary-color': '#d9d9d9',
+    'background-secondary-color': '#EFEFEF',
     // Secondary Color, darken 5%
     'background-secondary-color-alternate': '#cccccc',
     'input-main-color': '#d0d0d0',
