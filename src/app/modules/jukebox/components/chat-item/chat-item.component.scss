@@ -10,7 +10,9 @@
 
 .system-message {
     border-left-color: $master-color;
-    font-style: italic;
+    .message-contents {
+        color: var(--text-system-color);
+    }
 }
 
 .context-success {
