@@ -3,7 +3,6 @@
     background-color: var(--nav-color);
     margin-bottom: 0 !important;
     height: 60px;
-    //@include fontFace('geometria', 'Geometria-Light-webfont');
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -46,7 +45,6 @@
     #user-menu {
         cursor: pointer;
     }
-
     #nav-dropdown {
         height: 38px;
     }
