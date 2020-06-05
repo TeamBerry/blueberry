@@ -82,6 +82,7 @@
                                     <span [style.color]="color">{{ session.name }}</span>
                                 </div>
                             </div>
+                            <app-bx-alert *ngIf="colorSuccess" [options]="{'type': 'success', 'message': 'Your color has been saved! Please refresh your browser if you do not see the change.'}"></app-bx-alert>
                             <app-bx-alert *ngIf="colorWarning && !colorError" [options]="{'type': 'warning', 'message': 'Watch out! This color might not be very readable in light or dark mode!'}"></app-bx-alert>
                             <app-bx-alert *ngIf="colorError" [options]="{'type': 'danger', 'message': 'This color is not visible enough. Please adjust your color.'}"></app-bx-alert>
                         </div>

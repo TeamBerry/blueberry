@@ -28,6 +28,7 @@ export class UserSettingsComponent implements OnInit {
     public color: string
     public colorWarning: boolean
     public colorError: boolean
+    public colorSuccess: boolean
 
     constructor(
         private modalService: NgbModal,
@@ -58,10 +59,9 @@ export class UserSettingsComponent implements OnInit {
     }
 
     onColorChange(color: string) {
-        console.log('LIGHT MODE CONTRAST: ', colorContrast(color, '#efefef'))
-        console.log('DARK MODE CONTRAST: ', colorContrast(color, '#303030'))
-        this.colorWarning = (colorContrast(color, '#efefef') < 3 || colorContrast(color, '#404040') < 2)
-        this.colorError = (colorContrast(color, '#efefef') < 1.5 || colorContrast(color, '#404040') < 1.5)
+        this.colorSuccess = false;
+        this.colorWarning = (colorContrast(color, '#efefef') < 2.5 || colorContrast(color, '#404040') < 1.5);
+        this.colorError = (colorContrast(color, '#efefef') < 1.5 || colorContrast(color, '#404040') < 1.2);
     }
 
     saveChatColor() {
@@ -69,7 +69,8 @@ export class UserSettingsComponent implements OnInit {
             () => {
                 this.session.settings.color = this.color;
                 localStorage.setItem('BBOX-user', JSON.stringify(this.session));
-                console.log('Color saved.');
+                this.colorWarning = false;
+                this.colorSuccess = true;
             }
         );
     }
