@@ -255,3 +255,10 @@
         margin-right: 2%;
     }
 }
+
+.table {
+    color: var(--text-main-color) !important;
+    tr:hover {
+        color: var(--text-main-color);
+    }
+}
