@@ -1,6 +1,6 @@
 <div class="message px-3" [ngClass]="{'system-message': message.source === 'system', 'feedback-message': message.source === 'feedback'}" [class]="typeStyle">
-    <span class="message-time" title="{{message.time}}">{{ message.time | date: 'HH:mm' }}</span>
-    <span class="message-author author-linkback" [hidden]="message.source !== 'human'">{{ author }}</span>
+    <span class="message-time" ngbTooltip="{{ message.time }}" container="body">{{ message.time | date: 'HH:mm' }}</span>
+    <span class="message-author" [ngClass]="{'message-author-classic': session.settings.isColorblind}" [style.color]="color" [hidden]="message.source !== 'human'">{{ author }}</span>
     <span class="message-contents" [innerHTML]="message.contents"></span>
     <br>
     <div [hidden]="message.source !== 'feedback'">

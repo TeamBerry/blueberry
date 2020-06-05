@@ -4,17 +4,17 @@
 }
 
 .menu {
-    background-color: var(--background-main-color);
+    background-color: var(--background-secondary-color);
 }
 
 .settings-tabs {
-    background-color: var(--background-secondary-color);
+    background-color: var(--background-main-color);
 }
 
 .tab-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    color: white;
+    color: var(--text-main-color);
     padding-bottom: 20px;
 }
 
@@ -57,4 +57,24 @@ label {
 
 button.close {
     font-size: 40px;
+}
+
+.chat-preview {
+    width: 200px;
+    font-family: 'Montserrat', sans-serif;
+    .chat-preview-theme {
+        font-weight: 700;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        height: 40px;
+        &.chat-preview-theme-light {
+            background-color: #efefef;
+        }
+        &.chat-preview-theme-dark {
+            background-color: #303030;
+        }
+    }
 }

@@ -84,7 +84,7 @@ export class UserService {
      * @returns
      * @memberof UserService
      */
-    updateSettings(settings) {
+    updateSettings(settings: Partial<User['settings']>) {
         return this.http.patch(`${environment.araza}/user/settings`, settings);
     }
 

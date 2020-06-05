@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, Input, EventEmitter, ViewChild, ElementRef, OnChanges } from '@angular/core';
 
-import { User } from 'app/shared/models/user.model';
 import { JukeboxService } from '../../jukebox.service';
 import { filter } from 'rxjs/operators';
 import { Message, FeedbackMessage, SystemMessage } from '@teamberry/muscadine';
+import { AuthSubject } from 'app/shared/models/session.model';
 
 @Component({
     selector: 'app-chat-tab',
@@ -12,7 +12,7 @@ import { Message, FeedbackMessage, SystemMessage } from '@teamberry/muscadine';
 })
 export class ChatTabComponent implements OnInit, OnChanges {
     @Input() boxToken: string;
-    @Input() user: User = new User;
+    @Input() user: AuthSubject;
     @Output() socketStatus = new EventEmitter();
     @ViewChild('chat') chat: ElementRef;
     contents = '';

@@ -3,7 +3,7 @@
 </div>
 <app-bx-tabset [options]="tabsetOptions" (clickedOption)="setTab($event)"></app-bx-tabset>
 <div class="message-list" #chat (scroll)="onScroll()">
-    <app-chat-item *ngFor="let message of messages" [message]="message" [username]="user.name" [hidden]="
+    <app-chat-item *ngFor="let message of messages" [message]="message" [session]="user" [hidden]="
             (filter === 'system' && message.source === 'human')
             || (filter === 'human' && message.source !== 'human')
         ">

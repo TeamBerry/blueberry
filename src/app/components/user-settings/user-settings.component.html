@@ -1,17 +1,13 @@
 <div class="d-flex overflow-auto" id="settings">
     <div class="col-4 menu pt-5">
         <nav class="nav flex-column p-0 text-right">
-            <a class="nav-link" (click)="currentTab = 'account'"
-                [ngClass]="{'active':currentTab === 'account'}">Account</a>
-            <!-- <a class="nav-link" (click)="currentTab = 'privacy'" [ngClass]="{'active':currentTab === 'privacy'}">Privacy</a> -->
-            <!-- <a class="nav-link" (click)="currentTab = 'notifications'" [ngClass]="{'active':currentTab === 'notifications'}">Notifications</a> -->
-            <a class="nav-link" (click)="currentTab = 'display'"
-                [ngClass]="{'active':currentTab === 'display'}">Display</a>
+            <a class="nav-link nav-link-inverted" (click)="currentTab = 'account'" [ngClass]="{'active':currentTab === 'account'}">Account</a>
+            <a class="nav-link nav-link-inverted" (click)="currentTab = 'display'" [ngClass]="{'active':currentTab === 'display'}">Display</a>
         </nav>
     </div>
     <div class="col settings-tabs">
         <div class="d-flex flex-row-reverse close-button-space">
-            <button type="button" class="close" aria-label="close" (click)="closeSettings()">
+            <button type="button" class="close mr-2" aria-label="close" (click)="closeSettings()">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -53,10 +49,55 @@
             </div>
             <div id="display-tab" *ngIf="currentTab === 'display'">
                 <h3 class="tab-title">Display</h3>
+                <h5 class="section-title">Theme</h5>
+                <div class="form-group d-flex no-gutters">
+                    <div class="col-10">
+                        <label for="theme">Dark Theme</label>
+                        <p class="help-text text-muted">Toggles between light colors and dark colors for the overall appearance of the application. Saved automatically.</p>
+                    </div>
+                    <div class="col m-auto">
+                        <app-slide-toggle class="checkbox" [value]="isDarkThemeEnabled" (valueChange)="toggleDarkTheme()">
+                        </app-slide-toggle>
+                    </div>
+                </div>
+                <h5 class="section-title">Customized Colors</h5>
                 <div class="form-group">
-                    <label for="theme">Dark Theme</label>
-                    <app-slide-toggle class="checkbox" [value]="isDarkThemeEnabled" (valueChange)="toggleDarkTheme()">
-                    </app-slide-toggle>
+                    <label for="color">Chat Color</label>
+                    <p class="help-text text-muted">Choose a color for your username in chat. Be careful, some colors might be <strong>difficult to read</strong> in light or dark themes and for users with <strong>color blindness</strong>.
+                    </p>
+                    <div class="d-flex flex-row mt-2">
+                        <div class="mr-4">
+                            <span [style.background]="color" [cpToggle]="true" [cpDialogDisplay]="'inline'" [cpAlphaChannel]="'disabled'" [cpCancelButton]="false" [(colorPicker)]="color" [cpOutputFormat]="'hex'" (colorPickerChange)="onColorChange($event)"></span>
+                        </div>
+                        <div class="display-flex flex-column h-100 align-items-between">
+                            <div class="chat-preview">
+                                <p class="help-text text-muted">Preview on Light Mode:</p>
+                                <div class="chat-preview-theme chat-preview-theme-light">
+                                    <span [style.color]="color">{{ session.name }}</span>
+                                </div>
+                            </div>
+                            <div class="chat-preview mt-3">
+                                <p class="help-text text-muted">Preview on Dark Mode:</p>
+                                <div class="chat-preview-theme chat-preview-theme-dark">
+                                    <span [style.color]="color">{{ session.name }}</span>
+                                </div>
+                            </div>
+                            <app-bx-alert *ngIf="colorSuccess" [options]="{'type': 'success', 'message': 'Your color has been saved! Please refresh your browser if you do not see the change.'}"></app-bx-alert>
+                            <app-bx-alert *ngIf="colorWarning && !colorError" [options]="{'type': 'warning', 'message': 'Watch out! This color might not be very readable in light or dark mode!'}"></app-bx-alert>
+                            <app-bx-alert *ngIf="colorError" [options]="{'type': 'danger', 'message': 'This color is not visible enough. Please adjust your color.'}"></app-bx-alert>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-primary btn-block mt-3" (click)="saveChatColor()" [disabled]="colorError">Save Color</button>
+                </div>
+                <div class="form-group d-flex no-gutters">
+                    <div class="col-10">
+                        <label for="colorblind">Enable Color Blindness Display</label>
+                        <p class="help-text text-muted">Removes all custom user colors for your chat. Saved automatically.</p>
+                    </div>
+                    <div class="col m-auto">
+                        <app-slide-toggle class="checkbox" [(value)]="session.settings.isColorblind" (valueChange)="toggleColorBlindMode()">
+                        </app-slide-toggle>
+                    </div>
                 </div>
             </div>
         </div>
