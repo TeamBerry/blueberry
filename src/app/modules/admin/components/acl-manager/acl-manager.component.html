@@ -1,78 +1,10 @@
 <div class="row justify-content-center">
     <h2 class="admin-tab-title">Moderation</h2>
-    <div class="d-flex acl-manager justify-content-center">
-        <table class="table table-hover table-borderless col-8 my-4">
-            <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col" class="text-center col-2 role-name">Moderators</th>
-                    <th scope="col" class="text-center col-2 role-name">VIPs</th>
-                    <th scope="col" class="text-center col-2 role-name">Community Members</th>
-                </tr>
-            </thead>
-            <tbody>
-                <td colspan="4" class="section-title">Queue Actions</td>
-                <tr *ngFor="let permission of queuePermissions">
-                    <td>
-                        <div class="d-flex flex-row">
-                            <span class="permission-name">{{ permission.name }}</span>
-                            <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 20px;" *ngIf="permission.key === 'forcePlay' || permission.key === 'forceNext' || permission.key === 'skipVideo'" ngbTooltip="If disabled, this action can still be executed with Berries. You can disable Berries when creating a box."
-                                class="ml-3">
-                        </div>
-                        <p class="help-text text-muted">{{ permission.explanation }}</p>
-                    </td>
-                    <td>
-                        <app-slide-toggle class="checkbox d-flex justify-content-center" [value]="true">
-                        </app-slide-toggle>
-                    </td>
-                    <td>
-                        <app-slide-toggle class="checkbox d-flex justify-content-center" [value]="true">
-                        </app-slide-toggle>
-                    </td>
-                    <td>
-                        <app-slide-toggle class="checkbox d-flex justify-content-center" [value]="true">
-                        </app-slide-toggle>
-                    </td>
-                </tr>
-                <td colspan="4" class="section-title">Box Actions</td>
-                <tr *ngFor="let permission of boxPermissions">
-                    <td>
-                        <p class="permission-name">{{ permission.name }}</p>
-                        <p class="help-text text-muted">{{ permission.explanation }}</p>
-                    </td>
-                    <td>
-                        <app-slide-toggle class="checkbox d-flex justify-content-center" [value]="true">
-                        </app-slide-toggle>
-                    </td>
-                    <td>
-                        <app-slide-toggle class="checkbox d-flex justify-content-center" [value]="true">
-                        </app-slide-toggle>
-                    </td>
-                    <td>
-                        <app-slide-toggle class="checkbox d-flex justify-content-center" [value]="true">
-                        </app-slide-toggle>
-                    </td>
-                </tr>
-                <td colspan="4" class="section-title">User Actions</td>
-                <tr *ngFor="let permission of userPermissions">
-                    <td>
-                        <p class="permission-name">{{ permission.name }}</p>
-                        <p class="help-text text-muted">{{ permission.explanation }}</p>
-                    </td>
-                    <td>
-                        <app-slide-toggle class="checkbox d-flex justify-content-center" [value]="true">
-                        </app-slide-toggle>
-                    </td>
-                    <td>
-                        <app-slide-toggle class="checkbox d-flex justify-content-center" [value]="true">
-                        </app-slide-toggle>
-                    </td>
-                    <td>
-                        <app-slide-toggle class="checkbox d-flex justify-content-center" [value]="true">
-                        </app-slide-toggle>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="d-flex flex-column acl-manager">
+        <div class="col-8 m-auto py-5">
+            <p class="help-text text-muted text-center">You can adjust a template of the actions available to the roles of users in your boxes. When creating a box, you will be able to customize those further.</p>
+            <app-acl-form [(config)]="userACLConfig" class="acl-configurator" *ngIf="this.userACLConfig"></app-acl-form>
+            <button class="btn btn-outline-primary float-right">Update Template</button>
+        </div>
     </div>
 </div>

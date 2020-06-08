@@ -28,7 +28,7 @@ export class UserService {
      * @memberof UserService
      */
     show(token: string): Observable<User> {
-        return this.http.get<User>(environment.araza + '/user/' + token);
+        return this.http.get<User>(`${environment.araza}/user/${token}`);
     }
 
     /**
@@ -86,6 +86,17 @@ export class UserService {
      */
     updateSettings(settings: Partial<User['settings']>) {
         return this.http.patch(`${environment.araza}/user/settings`, settings);
+    }
+
+    /**
+     * Updates the default ACL config tof the user
+     *
+     * @param {User['acl']} aclConfig
+     * @returns {Observable<User['acl']>}
+     * @memberof UserService
+     */
+    updateACL(aclConfig: User['acl']): Observable<User['acl']> {
+        return this.http.patch(`${environment.araza}/user/acl`, aclConfig)
     }
 
     stats(token: string) { }

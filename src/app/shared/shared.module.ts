@@ -25,6 +25,7 @@ import { BoxStatusIndicatorComponent } from './components/box-status-indicator/b
 import { BxRequiredInputIndicatorComponent } from './components/bx-required-input-indicator/bx-required-input-indicator.component';
 import { ProfilePictureComponent } from './components/profile-picture/profile-picture.component';
 import { FromNowPipe } from './pipes/from-now.pipe';
+import { AclFormComponent } from './components/acl-form/acl-form.component';
 
 @NgModule({
     imports: [
@@ -48,7 +49,8 @@ import { FromNowPipe } from './pipes/from-now.pipe';
         BoxStatusIndicatorComponent,
         BxRequiredInputIndicatorComponent,
         ProfilePictureComponent,
-        FromNowPipe
+        FromNowPipe,
+        AclFormComponent
     ],
     exports: [
         CommonModule,
@@ -71,7 +73,8 @@ import { FromNowPipe } from './pipes/from-now.pipe';
         BoxStatusIndicatorComponent,
         BxRequiredInputIndicatorComponent,
         ProfilePictureComponent,
-        FromNowPipe
+        FromNowPipe,
+        AclFormComponent
     ],
     providers: [AuthDirective, ThemeService, UserService],
     entryComponents: [

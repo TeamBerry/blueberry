@@ -5,15 +5,9 @@
     background-color: var(--background-secondary-color);
 }
 
-.section-title {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text-focus-color);
-    font-weight: 700;
-    font-size: 16px;
-    border-bottom: 1px solid;
-}
-
-.role-name {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
+.acl-configurator {
+    display: flex;
+    height: 76%;
+    overflow: auto;
+    margin-bottom: 20px;
 }

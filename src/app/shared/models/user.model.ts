@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ACLConfig } from '@teamberry/muscadine';
 
 @Injectable()
 export class User {
@@ -12,6 +13,7 @@ export class User {
         color: string,
         isColorblind: boolean
     };
+    acl: ACLConfig;
     favorites: any[];
 
     constructor(user?: Partial<User>) {
