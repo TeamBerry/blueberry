@@ -13,21 +13,20 @@
             <td>
                 <div class="d-flex flex-row">
                     <span class="permission-name">{{ permission.name }}</span>
-                    <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 20px;" *ngIf="permission.key === 'forcePlay' || permission.key === 'forceNext' || permission.key === 'skipVideo'" ngbTooltip="If disabled, this action can still be executed with Berries. You can disable Berries when creating a box."
-                        class="ml-3">
+                    <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 20px;" *ngIf="permission.withBerries" ngbTooltip="If disabled, this action can still be executed with Berries. You can disable Berries when creating a box." class="ml-3">
                 </div>
                 <p class="help-text text-muted">{{ permission.explanation }}</p>
             </td>
             <td>
-                <app-slide-toggle class="checkbox d-flex justify-content-center" [(value)]="editableConfig[0][permission.key]">
+                <app-slide-toggle class="checkbox d-flex justify-content-center" [(value)]="editableConfig[0][permission.key]" (valueChange)="this.buildACLConfig()">
                 </app-slide-toggle>
             </td>
             <td>
-                <app-slide-toggle class="checkbox d-flex justify-content-center" [(value)]="editableConfig[1][permission.key]">
+                <app-slide-toggle class="checkbox d-flex justify-content-center" [(value)]="editableConfig[1][permission.key]" (valueChange)="this.buildACLConfig()">
                 </app-slide-toggle>
             </td>
             <td>
-                <app-slide-toggle class="checkbox d-flex justify-content-center" [(value)]="editableConfig[2][permission.key]">
+                <app-slide-toggle class="checkbox d-flex justify-content-center" [(value)]="editableConfig[2][permission.key]" (valueChange)="this.buildACLConfig()">
                 </app-slide-toggle>
             </td>
         </tr>

@@ -32,6 +32,12 @@ export class AclFormComponent implements OnInit {
                     withBerries: false
                 },
                 {
+                    key: 'skipVideo',
+                    name: 'Skip the currently playing video',
+                    explanation: null,
+                    withBerries: true
+                },
+                {
                     key: 'forceNext',
                     name: 'Force the next video',
                     explanation: null,
@@ -39,13 +45,7 @@ export class AclFormComponent implements OnInit {
                 },
                 {
                     key: 'forcePlay',
-                    name: 'Plays another video instead of the currently playing',
-                    explanation: null,
-                    withBerries: true
-                },
-                {
-                    key: 'skipVideo',
-                    name: 'Skips the currently playing video',
+                    name: 'Play another video instead of the currently playing',
                     explanation: null,
                     withBerries: true
                 }
@@ -82,7 +82,7 @@ export class AclFormComponent implements OnInit {
     ]
 
     @Input() config: User['acl'] = {}
-    @Output() updatedConfig: EventEmitter<User['acl']> = new EventEmitter();
+    @Output() configChange: EventEmitter<User['acl']> = new EventEmitter();
 
     // 0: Moderator, 1: VIP, 2: Community Members
     editableConfig: Array<Object> = []
@@ -102,7 +102,7 @@ export class AclFormComponent implements OnInit {
                 this.allPermissionKeys.push(...section.permissions.map((permission) => permission.key))
             }
         )
-        this.buildForm()
+        this.buildEditableConfig()
     }
 
     /**
@@ -110,7 +110,7 @@ export class AclFormComponent implements OnInit {
      *
      * @memberof AclFormComponent
      */
-    buildForm() {
+    buildEditableConfig() {
         for (const role of this.roles) {
             const config = {}
             const matchingSet = this.config[role]
@@ -121,8 +121,28 @@ export class AclFormComponent implements OnInit {
         }
     }
 
+    /**
+     * Builds an updated version of the ACL Config of the user and emits it
+     *
+     * @memberof AclFormComponent
+     */
     buildACLConfig() {
-
+        const updatedConfig = {
+            moderator: [],
+            simple: [],
+            vip: []
+        }
+        for (let i = 0; i < this.editableConfig.length; i++){
+            const currentRole = this.editableConfig[i];
+            Object.keys(currentRole).map(
+                (key: string) => {
+                    if (currentRole[key]) {
+                        updatedConfig[this.roles[i]].push(key)
+                    }
+                }
+            )
+        }
+        this.configChange.emit(updatedConfig)
     }
 
 }
