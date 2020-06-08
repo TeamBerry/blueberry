@@ -2,11 +2,13 @@
 .acl-manager {
     height: 86.8vh;
     width: 100%;
+    overflow: auto;
     background-color: var(--background-secondary-color);
 }
 
 .acl-configurator {
     display: flex;
+    flex-direction: column;
     height: 65%;
     overflow: auto;
     margin-bottom: 20px;
