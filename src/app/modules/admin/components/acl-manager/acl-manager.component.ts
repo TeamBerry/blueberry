@@ -3,6 +3,7 @@ import { User } from 'app/shared/models/user.model';
 import { UserService } from 'app/shared/services/user.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-acl-manager',
@@ -14,7 +15,8 @@ export class AclManagerComponent implements OnInit {
     public userACLConfig: User['acl'];
 
     constructor(
-        private userService: UserService
+        private userService: UserService,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
@@ -28,7 +30,7 @@ export class AclManagerComponent implements OnInit {
     saveACL() {
         this.userService.updateACL(this.userACLConfig).subscribe(
             () => {
-                console.log('SAVED')
+                this.toastr.success('Your moderation template has been saved.', 'Success');
             }
         )
     }
