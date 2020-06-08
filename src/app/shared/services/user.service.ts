@@ -96,7 +96,7 @@ export class UserService {
      * @memberof UserService
      */
     updateACL(aclConfig: User['acl']): Observable<User['acl']> {
-        return this.http.patch(`${environment.araza}/user/acl`, aclConfig)
+        return this.http.patch(`${environment.araza}/user/acl`, aclConfig);
     }
 
     stats(token: string) { }
