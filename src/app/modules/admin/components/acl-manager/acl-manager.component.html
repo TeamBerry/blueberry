@@ -3,6 +3,21 @@
     <div class="d-flex flex-column acl-manager">
         <div class="col-8 m-auto py-5">
             <p class="help-text text-muted text-center">You can adjust a template of the actions available to the roles of users in your boxes. When creating a box, you will be able to customize those further.</p>
+            <details class="help-text text-muted mt-3">
+                <summary class="btn btn-outline-secondary">
+                    Need some help?
+                </summary>
+                <div>
+                    Here's how it works:
+                    <ul>
+                        <li>Users can only have <strong>one</strong> role.</li>
+                        <li><strong>Only you can promote Moderators.</strong> In most cases, Moderators are here to enforce your rules when you're not in a box. They should be users you trust.</li>
+                        <li><strong>Permissions are not cumulative!</strong> Which means promoting someone might make them lose some privileges. Adjust your roles carefully.</li>
+                        <li>As Box Creator, <strong>you will always have all privileges.</strong></li>
+                        <li>This is just a template to ease the creation of your boxes. You will have the opportunity to adjust the actions for each box you have, <strong>at any time.</strong></li>
+                    </ul>
+                </div>
+            </details>
             <app-acl-form [(config)]="userACLConfig" class="acl-configurator" *ngIf="this.userACLConfig"></app-acl-form>
             <button class="btn btn-outline-primary float-right" (click)="saveACL()">Update Template</button>
         </div>
