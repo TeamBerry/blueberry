@@ -16,8 +16,7 @@
         <div class="col-sm-auto">
             <p class="text-center selected-playlist-name mb-0">{{ selectedPlaylist.name }}</p>
         </div>
-        <app-bx-button (click)="submitPlaylist(selectedPlaylist._id)" class="panel-tab-title-button col"
-            [options]="{'type': 'play', 'textDisplay': 'tooltip', 'text': 'Queue the whole playlist', 'context': 'queue'}">
+        <app-bx-button *appAcl="'addVideo'" (click)="submitPlaylist(selectedPlaylist._id)" class="panel-tab-title-button col" [options]="{'type': 'play', 'textDisplay': 'tooltip', 'text': 'Queue the whole playlist', 'context': 'queue'}">
         </app-bx-button>
     </div>
     <div class="p-3 input-group">
@@ -27,10 +26,7 @@
         </div>
     </div>
     <div *ngIf="selectedPlaylist.videos.length > 0; else noFavorites" class="selected-playlist-items">
-        <app-video-entry *ngFor="let video of selectedPlaylist.videos | filter:filterValue:['name', 'link']"
-            [video]="video"
-            [options]="{'submit': videosInQueue.indexOf(video.link) === -1, 'inQueue': videosInQueue.indexOf(video.link) !== -1}"
-            (submit)="submitVideo($event)"></app-video-entry>
+        <app-video-entry *ngFor="let video of selectedPlaylist.videos | filter:filterValue:['name', 'link']" [video]="video" [options]="{'submit': videosInQueue.indexOf(video.link) === -1, 'inQueue': videosInQueue.indexOf(video.link) !== -1}" (submit)="submitVideo($event)"></app-video-entry>
     </div>
     <ng-template #noFavorites>
         <div class="text-center no-contents">

@@ -81,7 +81,11 @@ export class AclFormComponent implements OnInit {
         }
     ]
 
-    @Input() config: User['acl'] = {}
+    @Input() config: User['acl'] = {
+        moderator: [],
+        vip: [],
+        simple: []
+    }
     @Output() configChange: EventEmitter<User['acl']> = new EventEmitter();
 
     // 0: Moderator, 1: VIP, 2: Community Members

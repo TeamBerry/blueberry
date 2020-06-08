@@ -1,7 +1,8 @@
-<div *ngIf="!loading">
+<div *ngIf="!loading && connectionStatus === 'success'">
     <div class="box-space row no-gutters">
         <div class="col-9 d-flex flex-column">
-            <app-player *ngIf="box && currentVideo" [boxToken]="box._id" style="height: 100%; width: 100%;"></app-player>
+            <app-player *ngIf="box && currentVideo" [boxToken]="box._id" style="height: 100%; width: 100%;">
+            </app-player>
             <div class="row under-player">
                 <div class="col-5 box-info">
                     <div class="d-flex">
@@ -15,7 +16,7 @@
                                     </app-box-status-indicator>
                                     <span class="box-title" title="{{box.name}}">{{ box.name }}</span>
                                 </div>
-                                <div class="d-flex align-items-center" ngbTooltip="Settings" *ngIf="user._id === box?.creator?._id" (click)="openBoxSettings()">
+                                <div class="d-flex align-items-center" ngbTooltip="Settings" *appAcl="'editBox'" (click)="openBoxSettings()">
                                     <svg class="berrybox-svg" style="height: 1.4em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 550">
                                         <rect class="berrybox-path" x="205.98" y="50.17" width="138.04" height="56" />
                                         <rect class="berrybox-path" x="205.98" y="445.83" width="138.04" height="56" />
@@ -43,8 +44,10 @@
                                     <span class="ml-1">{{ box?.creator?.name }}</span>
                                 </div>
                                 <app-bx-chip [options]="{'type': 'random'}" [display]="'icon'" *ngIf="box?.options?.random"></app-bx-chip>
-                                <app-bx-chip [options]="{'type': 'loop'}" [display]="'icon'" *ngIf="box?.options?.loop"></app-bx-chip>
-                                <app-bx-chip [options]="{'type': 'lock'}" [display]="'icon'" *ngIf="box?.private"></app-bx-chip>
+                                <app-bx-chip [options]="{'type': 'loop'}" [display]="'icon'" *ngIf="box?.options?.loop">
+                                </app-bx-chip>
+                                <app-bx-chip [options]="{'type': 'lock'}" [display]="'icon'" *ngIf="box?.private">
+                                </app-bx-chip>
                                 <app-bx-chip [options]="{'type': 'no-coin'}" *ngIf="!box?.options?.berries">
                                 </app-bx-chip>
                             </div>
@@ -58,10 +61,14 @@
                             <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}</p>
                         </div>
                         <div class="col-2 text-right" *appAuth="true">
-                            <app-bx-button *ngIf="user._id === box.creator._id" (click)="skipVideo()" [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'queue'}" class="mr-2">
+                            <app-bx-button *appAcl="'skipVideo'" (click)="skipVideo()" [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'queue'}" class="mr-2">
                             </app-bx-button>
-                            <app-bx-button *ngIf="user._id !== box.creator._id && box?.options?.berries" (click)="skipVideo()" [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 30 berries to skip'}" class="mr-2">
-                            </app-bx-button>
+                            <span *appAcl="'!skipVideo'">
+                                <app-bx-button *ngIf="box?.options?.berries" (click)="skipVideo()"
+                                    [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 30 berries to skip'}"
+                                    class="mr-2">
+                                </app-bx-button>
+                            </span>
                             <app-bx-button *ngIf="currentVideo" (click)="addToPlaylist()" [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to a Playlist', 'context': 'queue'}">
                             </app-bx-button>
                         </div>

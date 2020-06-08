@@ -47,8 +47,8 @@ export class JukeboxService {
 
     public box: Box;
 
-    // TODO: Refactor this into the stream
     public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(this.box);
+    public connectionSubject: BehaviorSubject<string> = new BehaviorSubject<string>('offline');
 
     public user: AuthSubject = AuthService.getAuthSubject();
 
@@ -94,6 +94,10 @@ export class JukeboxService {
      */
     public getBox(): Observable<Box> {
         return this.boxSubject.asObservable();
+    }
+
+    public getConnection(): Observable<string> {
+        return this.connectionSubject.asObservable();
     }
 
     /**
@@ -212,6 +216,7 @@ export class JukeboxService {
     private startBoxSocket(boxToken: string, userToken: string) {
         if (this.boxSocket) {
             this.boxSocket.disconnect();
+            this.connectionSubject.next('offline');
         }
 
         this.boxSocket = io(environment.boquila, {
@@ -229,6 +234,12 @@ export class JukeboxService {
                     boxToken,
                     userToken
                 });
+                this.connectionSubject.next('pending');
+            });
+
+            this.boxSocket.on('permissions', (permissions: Array<string>) => {
+                localStorage.setItem('BBOX-Scope', JSON.stringify(permissions));
+                this.connectionSubject.next('pending');
             });
 
             this.boxSocket.on('confirm', (feedback: FeedbackMessage) => {
@@ -238,10 +249,12 @@ export class JukeboxService {
                     boxToken,
                     userToken
                 });
+                this.connectionSubject.next('success');
             });
 
             this.boxSocket.on('denied', (feedback) => {
                 observer.error(JSON.parse(feedback));
+                this.connectionSubject.next('error');
                 // TODO: Add feedback in the chat
             })
 
@@ -286,6 +299,7 @@ export class JukeboxService {
 
             return () => {
                 this.boxSocket.disconnect();
+                this.connectionSubject.next('offline');
             };
         });
     }

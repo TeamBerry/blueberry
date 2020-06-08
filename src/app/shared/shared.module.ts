@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthDirective } from '../shared/directive/auth.directive';
+import { ACLDirective } from '../shared/directive/acl.directive';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
 import { VideoEntryComponent } from './components/video-entry/video-entry.component';
 import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe';
@@ -34,6 +35,7 @@ import { AclFormComponent } from './components/acl-form/acl-form.component';
     ],
     declarations: [
         AuthDirective,
+        ACLDirective,
         SlideToggleComponent,
         VideoEntryComponent,
         BoxDeletionEstimationPipe,
@@ -57,6 +59,7 @@ import { AclFormComponent } from './components/acl-form/acl-form.component';
         FormsModule,
         ReactiveFormsModule,
         AuthDirective,
+        ACLDirective,
         SlideToggleComponent,
         VideoEntryComponent,
         NgbModule,
@@ -76,7 +79,7 @@ import { AclFormComponent } from './components/acl-form/acl-form.component';
         FromNowPipe,
         AclFormComponent
     ],
-    providers: [AuthDirective, ThemeService, UserService],
+    providers: [AuthDirective, ACLDirective, ThemeService, UserService],
     entryComponents: [
         PictureUploaderComponent,
         PlaylistSelectorComponent
