@@ -16,10 +16,6 @@ import { environment } from 'environments/environment';
 export class UserlistComponent implements OnInit {
     box: Box;
 
-    pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}`
-
-    users$: Observable<Array<ActiveSubscriber>>
-
     admin: ActiveSubscriber
     moderators: Array<ActiveSubscriber>
     vips: Array<ActiveSubscriber>

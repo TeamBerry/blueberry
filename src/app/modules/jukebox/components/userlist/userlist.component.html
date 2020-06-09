@@ -10,7 +10,7 @@
         </div>
     </div>
     <div *ngIf="moderators.length > 0">
-        <p class="role-title">Moderators</p>
+        <p class="role-title">Moderators - {{ moderators.length }}</p>
         <div *ngFor="let moderator of moderators" class="user-item my-1 d-flex">
             <div class="d-flex align-items-center">
                 <app-profile-picture [userId]="moderator._id" [size]="'xs'"></app-profile-picture>
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div *ngIf="vips.length > 0">
-        <p class="role-title">VIPs</p>
+        <p class="role-title">VIPs - {{ vips.length }}</p>
         <div *ngFor="let vip of vips" class="user-item my-1 d-flex">
             <div class="d-flex align-items-center">
                 <app-profile-picture [userId]="vip._id" [size]="'xs'"></app-profile-picture>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div *ngIf="community.length > 0">
-        <p class="role-title">Community Members</p>
+        <p class="role-title">Community Members - {{ community.length }}</p>
         <div *ngFor="let user of community" class="user-item my-1 d-flex">
             <div class="d-flex align-items-center">
                 <app-profile-picture [userId]="user._id" [size]="'xs'"></app-profile-picture>
