@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from 'app/shared/models/user.model';
-import { BoxService } from 'app/shared/services/box.service';
+import { BoxService, ActiveSubscriber } from 'app/shared/services/box.service';
 import { Observable } from 'rxjs';
 import { Box } from 'app/shared/models/box.model';
 import { JukeboxService } from '../../jukebox.service';
@@ -18,7 +18,12 @@ export class UserlistComponent implements OnInit {
 
     pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}`
 
-    users$: Observable<Array<User>>
+    users$: Observable<Array<ActiveSubscriber>>
+
+    admin: ActiveSubscriber
+    moderators: Array<ActiveSubscriber>
+    vips: Array<ActiveSubscriber>
+    community: Array<ActiveSubscriber>
 
     constructor(
         private jukeboxService: JukeboxService,
@@ -29,7 +34,18 @@ export class UserlistComponent implements OnInit {
         this.jukeboxService.getBox().subscribe(
             (box: Box) => {
                 this.box = box
-                this.users$ = this.boxService.users(this.box._id)
+                this.getCommunity()
+            }
+        )
+    }
+
+    getCommunity() {
+        this.boxService.users(this.box._id).subscribe(
+            (subscribers) => {
+                this.admin = subscribers.find((subscriber) => subscriber._id === this.box.creator._id)
+                this.moderators = subscribers.filter((subscriber) => subscriber.role === 'moderator')
+                this.vips = subscribers.filter((subscriber) => subscriber.role === 'vip')
+                this.community = subscribers.filter((subscriber) => subscriber.role === 'simple')
             }
         )
     }
