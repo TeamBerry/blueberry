@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from 'app/shared/models/user.model';
-import { BoxService, ActiveSubscriber } from 'app/shared/services/box.service';
-import { Observable } from 'rxjs';
+import { BoxService } from 'app/shared/services/box.service';
 import { Box } from 'app/shared/models/box.model';
 import { JukeboxService } from '../../jukebox.service';
-import { environment } from 'environments/environment';
+import { ActiveSubscriber } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-userlist',
