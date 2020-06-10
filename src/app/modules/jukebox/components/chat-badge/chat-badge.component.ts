@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Message } from '@teamberry/muscadine';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-chat-badge',
@@ -9,9 +10,12 @@ import { Message } from '@teamberry/muscadine';
 export class ChatBadgeComponent implements OnInit {
     @Input() author: Message['author'];
 
+    isStaff;
+
     constructor() { }
 
     ngOnInit() {
+        this.isStaff = environment.adminId === this.author._id
     }
 
 }

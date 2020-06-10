@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { BoxService } from 'app/shared/services/box.service';
 import { Box } from 'app/shared/models/box.model';
 import { JukeboxService } from '../../jukebox.service';
-import { ActiveSubscriber } from '@teamberry/muscadine';
+import { ActiveSubscriber, Role, BoxScope } from '@teamberry/muscadine';
+import { AuthSubject } from 'app/shared/models/session.model';
+import { RoleChangeRequest } from 'app/shared/models/role-change.model';
 
 @Component({
     selector: 'app-userlist',
@@ -13,6 +15,7 @@ import { ActiveSubscriber } from '@teamberry/muscadine';
 })
 export class UserlistComponent implements OnInit {
     box: Box;
+    @Input() user: AuthSubject;
 
     admin: ActiveSubscriber
     moderators: Array<ActiveSubscriber> = []
@@ -42,6 +45,19 @@ export class UserlistComponent implements OnInit {
                 this.community = subscribers.filter((subscriber) => subscriber.role === 'simple')
             }
         )
+    }
+
+    changeRole(target: string, role: Role) {
+        const roleChangeRequest: RoleChangeRequest = {
+            scope: {
+                userToken: target,
+                boxToken: this.box._id
+            },
+            role,
+            source: this.user._id
+        }
+
+        this.jukeboxService.changeRoleOfUser(roleChangeRequest)
     }
 
 }

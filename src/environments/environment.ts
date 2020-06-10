@@ -8,5 +8,6 @@ export const environment = {
     araza: 'http://localhost:3000',
     boquila: 'http://localhost:8008',
     amazonBuckets: 'https://berrybox-user-pictures.s3.eu-west-1.amazonaws.com',
-    profilePictureBuckets: 'profile-pictures'
+    profilePictureBuckets: 'profile-pictures',
+    adminId: '5ec2aa4d2be532283948ee35'
 };

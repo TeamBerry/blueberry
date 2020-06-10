@@ -13,6 +13,7 @@ import { User } from 'app/shared/models/user.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { BerryCount } from '@teamberry/muscadine/dist/interfaces/subscriber.interface';
 import { SystemMessage } from '@teamberry/muscadine/dist/models/message.model';
+import { RoleChangeRequest } from 'app/shared/models/role-change.model';
 
 export type subjects = Box | Message | FeedbackMessage | SystemMessage | SyncPacket | BerryCount
 @Injectable({
@@ -142,6 +143,10 @@ export class JukeboxService {
 
     public forcePlayVideo = (actionRequest: QueueItemActionRequest): void => {
         this.boxSocket.emit('forcePlay', actionRequest)
+    }
+
+    public changeRoleOfUser = (roleChangeRequest: RoleChangeRequest): void => {
+        this.boxSocket.emit('roleChange', roleChangeRequest)
     }
 
     /**
