@@ -15,9 +15,9 @@ export class UserlistComponent implements OnInit {
     box: Box;
 
     admin: ActiveSubscriber
-    moderators: Array<ActiveSubscriber>
-    vips: Array<ActiveSubscriber>
-    community: Array<ActiveSubscriber>
+    moderators: Array<ActiveSubscriber> = []
+    vips: Array<ActiveSubscriber> = []
+    community: Array<ActiveSubscriber> = []
 
     constructor(
         private jukeboxService: JukeboxService,
