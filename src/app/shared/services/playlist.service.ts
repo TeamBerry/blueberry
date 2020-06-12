@@ -41,7 +41,7 @@ export class PlaylistService {
      * @returns {Observable<UserPlaylist>}
      * @memberof PlaylistService
      */
-    store(playlist: Partial<UserPlaylist>): Observable<UserPlaylist>{
+    store(playlist: Partial<UserPlaylist>): Observable<UserPlaylist> {
         return this.http.post<UserPlaylist>(`${environment.araza}/playlists`, playlist);
     }
 
@@ -70,7 +70,6 @@ export class PlaylistService {
     removeVideoFromPlaylist(playlist: string, video: string): Observable<UserPlaylist> {
         return this.http.delete<UserPlaylist>(`${environment.araza}/playlists/${playlist}/videos/${video}`)
     }
-
 
     /**
      * Deletes a playlist
