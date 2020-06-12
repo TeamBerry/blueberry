@@ -53,7 +53,10 @@ export class QueueComponent implements OnInit, OnChanges {
         this.jukeboxService.getBox().subscribe(
             (box: Box) => {
                 this.box = box;
-                this.currentlyPlaying = this.getCurrentlyPlayingVideo(this.box.playlist);
+                this.currentlyPlaying = null;
+                setTimeout(() => {
+                    this.currentlyPlaying = this.getCurrentlyPlayingVideo(this.box.playlist);
+                }, 100);
                 this.playedVideos = this.buildPartialPlaylist(this.box.playlist, 'played');
                 this.upcomingVideos = this.buildPartialPlaylist(this.box.playlist, 'upcoming').reverse();
             }
