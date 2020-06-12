@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter, OnChanges, AfterViewInit } from '@angular/core';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { EmojiData } from '@ctrl/ngx-emoji-mart/ngx-emoji/public_api';
 import { EmojiSearch } from '@ctrl/ngx-emoji-mart';
@@ -22,7 +22,7 @@ export interface ChatInputOptions {
   templateUrl: './chat-input.component.html',
   styleUrls: ['./chat-input.component.scss']
 })
-export class ChatInputComponent implements OnInit, OnChanges {
+export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
     @Input() boxToken: string;
     @Input() options: Partial<ChatInputOptions>
     berryCount: number = null;
