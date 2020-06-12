@@ -136,7 +136,7 @@ export class AclFormComponent implements OnInit {
             simple: [],
             vip: []
         }
-        for (let i = 0; i < this.editableConfig.length; i++){
+        for (let i = 0; i < this.editableConfig.length; i++) {
             const currentRole = this.editableConfig[i];
             Object.keys(currentRole).map(
                 (key: string) => {
