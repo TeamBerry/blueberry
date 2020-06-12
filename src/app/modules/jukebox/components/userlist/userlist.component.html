@@ -12,22 +12,30 @@
     <div *ngIf="moderators.length > 0">
         <p class="role-title">Moderators - {{ moderators.length }}</p>
         <div *ngFor="let moderator of moderators" class="user-item my-1 d-flex">
-            <div class="d-flex align-items-center">
-                <app-profile-picture [userId]="moderator._id" [size]="'xs'"></app-profile-picture>
-                <span class="ml-1 user-name">{{ moderator.name }}</span>
-                <button class="btn btn-outline-primary btn-promotion" *appAcl="'demoteModerator'">Promote to
-                    Moderator</button>
+            <div class="d-flex w-100 align-items-center justify-content-between">
+                <div>
+                    <app-profile-picture [userId]="moderator._id" [size]="'xs'"></app-profile-picture>
+                    <span class="ml-1 user-name">{{ moderator.name }}</span>
+                </div>
+                <div>
+                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'demoteModerator'"
+                        (click)="changeRole(moderator._id, 'vip')">Demote to VIP</button>
+                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'demoteModerator'"
+                        (click)="changeRole(moderator._id, 'simple')">Demote to Community</button>
+                </div>
             </div>
         </div>
     </div>
     <div *ngIf="vips.length > 0">
         <p class="role-title">VIPs - {{ vips.length }}</p>
         <div *ngFor="let vip of vips" class="user-item my-1 d-flex">
-            <div class="d-flex align-items-center">
+            <div class="d-flex w-100 align-items-center justify-content-between">
                 <app-profile-picture [userId]="vip._id" [size]="'xs'"></app-profile-picture>
                 <span class="ml-1 user-name">{{ vip.name }}</span>
-                <button class="btn btn-outline-primary btn-promotion" *appAcl="'demote'">Demote</button>
-                <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteModerator'">Promote to
+                <button class="btn btn-outline-primary btn-promotion" *appAcl="'demote'"
+                    (click)="changeRole(vip._id, 'simple')">Demote to Community</button>
+                <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteModerator'"
+                    (click)="changeRole(vip._id, 'moderator')">Promote to
                     Moderator</button>
             </div>
         </div>
@@ -35,12 +43,18 @@
     <div *ngIf="community.length > 0">
         <p class="role-title">Community Members - {{ community.length }}</p>
         <div *ngFor="let user of community" class="user-item my-1 d-flex">
-            <div class="d-flex align-items-center">
-                <app-profile-picture [userId]="user._id" [size]="'xs'"></app-profile-picture>
-                <span class="ml-1 user-name">{{ user.name }}</span>
-                <button class="btn btn-outline-primary btn-promotion" *appAcl="'promote'">Promote to VIP</button>
-                <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteModerator'">Promote to
-                    Moderator</button>
+            <div class="d-flex w-100 align-items-center justify-content-between">
+                <div>
+                    <app-profile-picture [userId]="user._id" [size]="'xs'"></app-profile-picture>
+                    <span class="ml-1 user-name">{{ user.name }}</span>
+                </div>
+                <div>
+                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'promote'"
+                        (click)="changeRole(user._id, 'vip')">Promote to VIP</button>
+                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteModerator'"
+                        (click)="changeRole(user._id, 'moderator')">Promote to
+                        Moderator</button>
+                </div>
             </div>
         </div>
     </div>
