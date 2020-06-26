@@ -145,6 +145,7 @@ export class JukeboxService {
         this.boxSocket.emit('forcePlay', actionRequest)
     }
 
+    // TODO: Link to the rest of the app
     public changeRoleOfUser = (roleChangeRequest: RoleChangeRequest): void => {
         this.boxSocket.emit('roleChange', roleChangeRequest)
     }
