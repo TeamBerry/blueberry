@@ -1,0 +1,12 @@
+<span *ngIf="isStaff" ngbTooltip="Berrybox Staff">
+    <img src="../../../../../assets/images/badges/staff-badge.png" alt="">
+</span>
+<span *ngIf="author.role === 'vip'" ngbTooltip="VIP">
+    <img src="../../../../../assets/images/badges/vip-badge.png" alt="">
+</span>
+<span *ngIf="author.role === 'admin'" ngbTooltip="Creator">
+    <img src="../../../../../assets/images/badges/creator-badge.png" alt="">
+</span>
+<span *ngIf="author.role === 'moderator'" ngbTooltip="Moderator">
+    <img src="../../../../../assets/images/badges/moderator-badge.png" alt="">
+</span>

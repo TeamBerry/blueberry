@@ -2,19 +2,59 @@
     <p class="panel-tab-title col">Users</p>
 </div>
 <div class="px-3">
-    <div *ngIf="users$ | async as users; else loading">
-        <div *ngFor="let user of users" class="user-item my-1 d-flex">
-            <div class="bb-box-picture d-flex align-items-center justify-content-center mr-2">
-                <img src="{{pictureLocation}}/{{user._id}}-picture" alt="" class="profile-picture profile-picture-sm">
+    <div *ngIf="admin">
+        <p class="role-title">Creator</p>
+        <div class="d-flex align-items-center">
+            <app-profile-picture [userId]="admin._id" [size]="'xs'"></app-profile-picture>
+            <span class="ml-1 user-name">{{ admin.name }}</span>
+        </div>
+    </div>
+    <div *ngIf="moderators.length > 0">
+        <p class="role-title">Moderators - {{ moderators.length }}</p>
+        <div *ngFor="let moderator of moderators" class="user-item my-1 d-flex">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+                <div>
+                    <app-profile-picture [userId]="moderator._id" [size]="'xs'"></app-profile-picture>
+                    <span class="ml-1 user-name">{{ moderator.name }}</span>
+                </div>
+                <div>
+                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'demoteModerator'"
+                        (click)="changeRole(moderator._id, 'vip')">Demote to VIP</button>
+                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'demoteModerator'"
+                        (click)="changeRole(moderator._id, 'simple')">Demote to Community</button>
+                </div>
             </div>
-            <div class="d-flex align-items-center">
-                <svg *ngIf="user._id === box?.creator?._id" class="berrybox-svg-icon crown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" title="Administrator">
-                <rect x="29.61" y="209.46" width="440.78" height="181.69"/>
-                <polygon points="250 53.84 148.6 229.46 351.4 229.46 250 53.84"/>
-                <polygon points="470.39 54.84 368.99 230.46 470.39 230.46 470.39 54.84"/>
-                <polygon points="131.01 230.46 29.61 54.84 29.61 230.46 131.01 230.46"/>
-            </svg>
-                <span class="ml-1 user-name">{{ user.name }}</span>
+        </div>
+    </div>
+    <div *ngIf="vips.length > 0">
+        <p class="role-title">VIPs - {{ vips.length }}</p>
+        <div *ngFor="let vip of vips" class="user-item my-1 d-flex">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+                <app-profile-picture [userId]="vip._id" [size]="'xs'"></app-profile-picture>
+                <span class="ml-1 user-name">{{ vip.name }}</span>
+                <button class="btn btn-outline-primary btn-promotion" *appAcl="'demote'"
+                    (click)="changeRole(vip._id, 'simple')">Demote to Community</button>
+                <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteModerator'"
+                    (click)="changeRole(vip._id, 'moderator')">Promote to
+                    Moderator</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="community.length > 0">
+        <p class="role-title">Community Members - {{ community.length }}</p>
+        <div *ngFor="let user of community" class="user-item my-1 d-flex">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+                <div>
+                    <app-profile-picture [userId]="user._id" [size]="'xs'"></app-profile-picture>
+                    <span class="ml-1 user-name">{{ user.name }}</span>
+                </div>
+                <div>
+                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'promote'"
+                        (click)="changeRole(user._id, 'vip')">Promote to VIP</button>
+                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteModerator'"
+                        (click)="changeRole(user._id, 'moderator')">Promote to
+                        Moderator</button>
+                </div>
             </div>
         </div>
     </div>

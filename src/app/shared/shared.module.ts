@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthDirective } from '../shared/directive/auth.directive';
+import { ACLDirective } from '../shared/directive/acl.directive';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
 import { VideoEntryComponent } from './components/video-entry/video-entry.component';
 import { BoxDeletionEstimationPipe } from './pipes/box-deletion-estimation.pipe';
@@ -25,6 +26,7 @@ import { BoxStatusIndicatorComponent } from './components/box-status-indicator/b
 import { BxRequiredInputIndicatorComponent } from './components/bx-required-input-indicator/bx-required-input-indicator.component';
 import { ProfilePictureComponent } from './components/profile-picture/profile-picture.component';
 import { FromNowPipe } from './pipes/from-now.pipe';
+import { AclFormComponent } from './components/acl-form/acl-form.component';
 
 @NgModule({
     imports: [
@@ -33,6 +35,7 @@ import { FromNowPipe } from './pipes/from-now.pipe';
     ],
     declarations: [
         AuthDirective,
+        ACLDirective,
         SlideToggleComponent,
         VideoEntryComponent,
         BoxDeletionEstimationPipe,
@@ -48,13 +51,15 @@ import { FromNowPipe } from './pipes/from-now.pipe';
         BoxStatusIndicatorComponent,
         BxRequiredInputIndicatorComponent,
         ProfilePictureComponent,
-        FromNowPipe
+        FromNowPipe,
+        AclFormComponent
     ],
     exports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         AuthDirective,
+        ACLDirective,
         SlideToggleComponent,
         VideoEntryComponent,
         NgbModule,
@@ -71,9 +76,10 @@ import { FromNowPipe } from './pipes/from-now.pipe';
         BoxStatusIndicatorComponent,
         BxRequiredInputIndicatorComponent,
         ProfilePictureComponent,
-        FromNowPipe
+        FromNowPipe,
+        AclFormComponent
     ],
-    providers: [AuthDirective, ThemeService, UserService],
+    providers: [AuthDirective, ACLDirective, ThemeService, UserService],
     entryComponents: [
         PictureUploaderComponent,
         PlaylistSelectorComponent

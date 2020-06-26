@@ -1,7 +1,7 @@
 <div class="row no-gutters h-100">
     <div class="col-11 side-panel">
         <div class="box-side-panel" id="panel-space">
-            <app-userlist [hidden]="activePanel !== 'users'"></app-userlist>
+            <app-userlist [hidden]="activePanel !== 'users'" [user]="user"></app-userlist>
             <app-command-list [hidden]="activePanel !== 'commands'" (clickedCommand)="kickstartCommand($event)">
             </app-command-list>
             <app-help-tab [hidden]="activePanel !== 'help'"></app-help-tab>

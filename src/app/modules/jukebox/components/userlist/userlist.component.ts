@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-import { User } from 'app/shared/models/user.model';
 import { BoxService } from 'app/shared/services/box.service';
-import { Observable } from 'rxjs';
 import { Box } from 'app/shared/models/box.model';
 import { JukeboxService } from '../../jukebox.service';
-import { environment } from 'environments/environment';
+import { ActiveSubscriber, Role, BoxScope } from '@teamberry/muscadine';
+import { AuthSubject } from 'app/shared/models/session.model';
+import { RoleChangeRequest } from 'app/shared/models/role-change.model';
 
 @Component({
     selector: 'app-userlist',
@@ -15,10 +15,12 @@ import { environment } from 'environments/environment';
 })
 export class UserlistComponent implements OnInit {
     box: Box;
+    @Input() user: AuthSubject;
 
-    pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}`
-
-    users$: Observable<Array<User>>
+    admin: ActiveSubscriber
+    moderators: Array<ActiveSubscriber> = []
+    vips: Array<ActiveSubscriber> = []
+    community: Array<ActiveSubscriber> = []
 
     constructor(
         private jukeboxService: JukeboxService,
@@ -29,9 +31,33 @@ export class UserlistComponent implements OnInit {
         this.jukeboxService.getBox().subscribe(
             (box: Box) => {
                 this.box = box
-                this.users$ = this.boxService.users(this.box._id)
+                this.getCommunity()
             }
         )
+    }
+
+    getCommunity() {
+        this.boxService.users(this.box._id).subscribe(
+            (subscribers) => {
+                this.admin = subscribers.find((subscriber) => subscriber._id === this.box.creator._id)
+                this.moderators = subscribers.filter((subscriber) => subscriber.role === 'moderator')
+                this.vips = subscribers.filter((subscriber) => subscriber.role === 'vip')
+                this.community = subscribers.filter((subscriber) => subscriber.role === 'simple')
+            }
+        )
+    }
+
+    changeRole(target: string, role: Role) {
+        const roleChangeRequest: RoleChangeRequest = {
+            scope: {
+                userToken: target,
+                boxToken: this.box._id
+            },
+            role,
+            source: this.user._id
+        }
+
+        this.jukeboxService.changeRoleOfUser(roleChangeRequest)
     }
 
 }

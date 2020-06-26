@@ -158,7 +158,7 @@ export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
     handleMessage(contents: string) {
         this.emojiTypeahead.close();
         const message = new Message({
-            author: this.user._id,
+            author: { _id: this.user._id },
             contents: contents,
             scope: this.boxToken,
             source: 'human',

@@ -61,6 +61,8 @@ export class BoxComponent implements OnInit {
      */
     user: AuthSubject = AuthService.getAuthSubject();
 
+    connectionStatus = 'offline';
+
     constructor(
         private boxService: BoxService,
         private jukeboxService: JukeboxService,
@@ -74,6 +76,7 @@ export class BoxComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.token = params.token;
             this.loadBox();
+            this.monitorConnectionStatus();
             this.listenForBoxChanges();
         });
     }
@@ -95,6 +98,14 @@ export class BoxComponent implements OnInit {
                 this.loading = false;
             }
         );
+    }
+
+    monitorConnectionStatus() {
+        this.jukeboxService.getConnection().subscribe(
+            (status: string) => {
+                this.connectionStatus = status;
+            }
+        )
     }
 
     listenForBoxChanges() {

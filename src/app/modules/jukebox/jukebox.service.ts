@@ -13,6 +13,7 @@ import { User } from 'app/shared/models/user.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { BerryCount } from '@teamberry/muscadine/dist/interfaces/subscriber.interface';
 import { SystemMessage } from '@teamberry/muscadine/dist/models/message.model';
+import { RoleChangeRequest } from 'app/shared/models/role-change.model';
 
 export type subjects = Box | Message | FeedbackMessage | SystemMessage | SyncPacket | BerryCount
 @Injectable({
@@ -47,8 +48,8 @@ export class JukeboxService {
 
     public box: Box;
 
-    // TODO: Refactor this into the stream
     public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(this.box);
+    public connectionSubject: BehaviorSubject<string> = new BehaviorSubject<string>('offline');
 
     public user: AuthSubject = AuthService.getAuthSubject();
 
@@ -96,6 +97,10 @@ export class JukeboxService {
         return this.boxSubject.asObservable();
     }
 
+    public getConnection(): Observable<string> {
+        return this.connectionSubject.asObservable();
+    }
+
     /**
      * Submits a video to the queue of the box
      *
@@ -138,6 +143,11 @@ export class JukeboxService {
 
     public forcePlayVideo = (actionRequest: QueueItemActionRequest): void => {
         this.boxSocket.emit('forcePlay', actionRequest)
+    }
+
+    // TODO: Link to the rest of the app
+    public changeRoleOfUser = (roleChangeRequest: RoleChangeRequest): void => {
+        this.boxSocket.emit('roleChange', roleChangeRequest)
     }
 
     /**
@@ -212,6 +222,7 @@ export class JukeboxService {
     private startBoxSocket(boxToken: string, userToken: string) {
         if (this.boxSocket) {
             this.boxSocket.disconnect();
+            this.connectionSubject.next('offline');
         }
 
         this.boxSocket = io(environment.boquila, {
@@ -229,6 +240,17 @@ export class JukeboxService {
                     boxToken,
                     userToken
                 });
+                this.connectionSubject.next('pending');
+            });
+
+            this.boxSocket.on('permissions', (permissions: Array<string>) => {
+                localStorage.setItem('BBOX-Scope', JSON.stringify(permissions));
+                // TODO: Refresh without reloading
+                if (this.connectionSubject.value === 'success') {
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 10000);
+                }
             });
 
             this.boxSocket.on('confirm', (feedback: FeedbackMessage) => {
@@ -238,10 +260,12 @@ export class JukeboxService {
                     boxToken,
                     userToken
                 });
+                this.connectionSubject.next('success');
             });
 
             this.boxSocket.on('denied', (feedback) => {
                 observer.error(JSON.parse(feedback));
+                this.connectionSubject.next('error');
                 // TODO: Add feedback in the chat
             })
 
@@ -286,6 +310,7 @@ export class JukeboxService {
 
             return () => {
                 this.boxSocket.disconnect();
+                this.connectionSubject.next('offline');
             };
         });
     }

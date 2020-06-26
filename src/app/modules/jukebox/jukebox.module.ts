@@ -18,6 +18,7 @@ import { HelpTabComponent } from './components/help-tab/help-tab.component';
 import { SearchTabComponent } from './components/search-tab/search-tab.component';
 import { ChatItemComponent } from './components/chat-item/chat-item.component';
 import { ChatInputComponent } from './components/chat-input/chat-input.component';
+import { ChatBadgeComponent } from './components/chat-badge/chat-badge.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { ChatInputComponent } from './components/chat-input/chat-input.component
         HelpTabComponent,
         SearchTabComponent,
         ChatItemComponent,
-        ChatInputComponent
+        ChatInputComponent,
+        ChatBadgeComponent
     ],
     imports: [
         JukeboxRoutingModule,

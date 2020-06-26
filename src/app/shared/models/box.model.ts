@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { QueueItem } from '@teamberry/muscadine';
+import { QueueItem, ACLConfig } from '@teamberry/muscadine';
 
 @Injectable()
 export class Box {
@@ -38,6 +38,7 @@ export class Box {
          */
         berries: Boolean;
     }
+    acl: ACLConfig;
     users?: number
 
     constructor(obj?: any) {
