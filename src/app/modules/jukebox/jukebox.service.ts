@@ -245,7 +245,6 @@ export class JukeboxService {
 
             this.boxSocket.on('permissions', (permissions: Array<string>) => {
                 localStorage.setItem('BBOX-Scope', JSON.stringify(permissions));
-                this.connectionSubject.next('pending');
             });
 
             this.boxSocket.on('confirm', (feedback: FeedbackMessage) => {
