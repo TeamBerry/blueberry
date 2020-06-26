@@ -27,6 +27,7 @@ import { BxRequiredInputIndicatorComponent } from './components/bx-required-inpu
 import { ProfilePictureComponent } from './components/profile-picture/profile-picture.component';
 import { FromNowPipe } from './pipes/from-now.pipe';
 import { AclFormComponent } from './components/acl-form/acl-form.component';
+import { LanguageFlagPipe } from './pipes/language-flag.pipe';
 
 @NgModule({
     imports: [
@@ -52,7 +53,8 @@ import { AclFormComponent } from './components/acl-form/acl-form.component';
         BxRequiredInputIndicatorComponent,
         ProfilePictureComponent,
         FromNowPipe,
-        AclFormComponent
+        AclFormComponent,
+        LanguageFlagPipe
     ],
     exports: [
         CommonModule,
@@ -77,7 +79,8 @@ import { AclFormComponent } from './components/acl-form/acl-form.component';
         BxRequiredInputIndicatorComponent,
         ProfilePictureComponent,
         FromNowPipe,
-        AclFormComponent
+        AclFormComponent,
+        LanguageFlagPipe
     ],
     providers: [AuthDirective, ACLDirective, ThemeService, UserService],
     entryComponents: [
