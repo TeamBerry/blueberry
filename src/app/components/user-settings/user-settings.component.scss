@@ -29,6 +29,9 @@
     font-family: 'Montserrat', sans-serif;
     color: var(--text-focus-color);
     font-weight: 700;
+    &.section-title-danger {
+        color: var(--danger-color);
+    }
 }
 
 // Override forms
