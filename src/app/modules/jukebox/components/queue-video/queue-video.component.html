@@ -1,6 +1,8 @@
-<div class="row playlist-entry no-gutters video px-3 py-2" [ngClass]="{'force-next': item.isPreselected, 'playing': item.startTime !== null && item.endTime === null}">
+<div class="row playlist-entry no-gutters video px-3 py-2"
+    [ngClass]="{'force-next': item.isPreselected, 'playing': item.startTime !== null && item.endTime === null}">
     <div *ngIf="item.isPreselected" class="d-flex align-items-center">
-        <img *ngIf="item?.stateForcedWithBerries" src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 30px;" ngbTooltip="This video is preselected thanks to the use of berries.">
+        <img *ngIf="item?.stateForcedWithBerries" src="../../../../../assets/images/icons/berry-coin-icon.svg" alt=""
+            style="height: 30px;" ngbTooltip="This video is preselected thanks to the use of berries.">
         <svg class="next-indicator-icon mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
             <polygon points="261.49 250 39.58 121.88 39.58 378.12 261.49 250" />
             <polygon points="483.4 250 261.49 121.88 261.49 378.12 483.4 250" />
@@ -17,7 +19,8 @@
         <div class="entry-details pl-3 pr-0">
             <div>
                 <p class="song-list-line">
-                    <a href="https://youtube.com/watch?v={{item?.video?.link}}" title="{{item?.video?.name}}">{{item?.video?.name}}</a>
+                    <a href="https://youtube.com/watch?v={{item?.video?.link}}"
+                        title="{{item?.video?.name}}">{{item?.video?.name}}</a>
                 </p>
             </div>
             <div class="submission-details" ngbTooltip="{{ item?.submittedAt | date:'dd/MM/yyyy HH:mm:ss'}}">
@@ -34,13 +37,19 @@
             </div>
             <div *appAuth="true" class="d-flex justify-content-between">
                 <div class="d-flex">
-                    <app-bx-button *ngIf="item.video" (click)="addToPlaylist()" [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to a Playlist', 'context': 'queue'}">
+                    <app-bx-button *ngIf="item.video" (click)="addToPlaylist()"
+                        [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to a Playlist', 'context': 'queue'}">
                     </app-bx-button>
                 </div>
                 <div class="d-flex">
                     <span *appAcl="'skipVideo'">
                         <app-bx-button *ngIf="status === 'playing'" class="ml-1" (click)="skipVideo(item)"
                             [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'queue'}">
+                        </app-bx-button>
+                    </span>
+                    <span *appAcl="'!skipVideo'">
+                        <app-bx-button *ngIf="status === 'playing'" class="ml-1" (click)="skipVideo(item)"
+                            [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 30 berries to skip'}">
                         </app-bx-button>
                     </span>
                     <span *appAcl="'forceNext'">
