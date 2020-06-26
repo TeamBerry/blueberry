@@ -245,6 +245,12 @@ export class JukeboxService {
 
             this.boxSocket.on('permissions', (permissions: Array<string>) => {
                 localStorage.setItem('BBOX-Scope', JSON.stringify(permissions));
+                // TODO: Refresh without reloading
+                if (this.connectionSubject.value === 'success') {
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 10000);
+                }
             });
 
             this.boxSocket.on('confirm', (feedback: FeedbackMessage) => {
