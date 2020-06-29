@@ -96,6 +96,10 @@ export class AuthService {
         location.reload();
     }
 
+    deactivateAccount() {
+        return this.http.post(`${environment.araza}/auth/deactivate`, {});
+    }
+
     /**
      * Sets the session for the user based on the bearer token
      *

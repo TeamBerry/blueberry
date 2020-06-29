@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PictureUploaderComponent } from 'app/shared/components/picture-uploader/picture-uploader.component';
 import { UserService } from 'app/shared/services/user.service';
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-user-settings',
@@ -34,9 +35,11 @@ export class UserSettingsComponent implements OnInit {
     deactivationForm: FormGroup;
 
     constructor(
+        private authService: AuthService,
         private modalService: NgbModal,
         private themeService: ThemeService,
-        private userService: UserService
+        private userService: UserService,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
@@ -103,6 +106,13 @@ export class UserSettingsComponent implements OnInit {
     }
 
     deactivateAccount() {
-        console.log('GOODBYE')
+        this.authService.deactivateAccount().subscribe(
+            () => {
+                this.authService.logout();
+            },
+            (error) => {
+                this.toastr.error(`You still have boxes. Please delete all of them and try again.`, 'Error')
+            }
+        )
     }
 }
