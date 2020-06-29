@@ -25,6 +25,9 @@
 }
 
 .box-info:after {
+    @media(max-width: 992px){
+        display: none;   
+    }
     content: '';
     width: 1px;
     position: absolute;
@@ -71,4 +74,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.md-separator {
+    border: .1rem solid $master-color;
+    width: 100%;
 }
