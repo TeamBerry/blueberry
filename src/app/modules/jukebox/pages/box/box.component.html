@@ -4,7 +4,7 @@
             <app-player *ngIf="box && currentVideo" [boxToken]="box._id" style="height: 100%; width: 100%;">
             </app-player>
             <div class="row under-player">
-                <div class="col-5 box-info">
+                <div class="col-lg-5 col-md-12 box-info">
                     <div class="d-flex">
                         <div class="bb-box-picture d-flex align-items-center justify-content-center mr-2">
                             <app-profile-picture [userId]="box?.creator?._id" [size]="'md'"></app-profile-picture>
@@ -58,7 +58,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-7 video-info m-auto" *ngIf="currentVideo">
+                <hr class="md-separator d-lg-none">
+                <div class="col-lg-7 col-md-12 video-info m-auto" *ngIf="currentVideo">
                     <div class="row">
                         <div class="col-lg-10 col-md-8 d-flex justify-content-start align-items-center">
                             <img *ngIf="currentVideo?.stateForcedWithBerries"
