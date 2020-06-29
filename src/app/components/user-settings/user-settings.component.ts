@@ -8,6 +8,8 @@ import { environment } from 'environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PictureUploaderComponent } from 'app/shared/components/picture-uploader/picture-uploader.component';
 import { UserService } from 'app/shared/services/user.service';
+import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-user-settings',
@@ -30,10 +32,14 @@ export class UserSettingsComponent implements OnInit {
     public colorError: boolean
     public colorSuccess: boolean
 
+    deactivationForm: FormGroup;
+
     constructor(
+        private authService: AuthService,
         private modalService: NgbModal,
         private themeService: ThemeService,
-        private userService: UserService
+        private userService: UserService,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
@@ -42,7 +48,13 @@ export class UserSettingsComponent implements OnInit {
         }
         this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${this.session.settings.picture}`
         this.color = this.session.settings.color ?? '#DF62A9';
+
+        this.deactivationForm = new FormGroup({
+            deactivationName: new FormControl('', [Validators.required, this.deactivationValidator.bind(this)])
+        })
     }
+
+    get deactivationName() { return this.deactivationForm.get('deactivationName');}
 
     closeSettings() {
         this.close.emit();
@@ -86,5 +98,21 @@ export class UserSettingsComponent implements OnInit {
 
     openPictureUploader() {
         const modalRef = this.modalService.open(PictureUploaderComponent)
+    }
+
+    // Deactivation
+    public deactivationValidator(control: FormControl): ValidationErrors {
+        return control.value !== this.session.name ? { 'mismatch': true } : null;
+    }
+
+    deactivateAccount() {
+        this.authService.deactivateAccount().subscribe(
+            () => {
+                this.authService.logout();
+            },
+            (error) => {
+                this.toastr.error(`You still have boxes. Please delete all of them and try again.`, 'Error')
+            }
+        )
     }
 }
