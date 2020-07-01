@@ -25,7 +25,7 @@
     "@ctrl/ngx-emoji-mart": "3.0.4",
     "@ng-bootstrap/ng-bootstrap": "6.0.2",
     "@teamberry/muscadine": "^0.8.2",
-    "bootstrap": "4.4.1",
+    "bootstrap": "4.5.0",
     "color-contrast": "0.0.1",
     "core-js": "2.6.11",
     "lodash": "4.17.15",
