@@ -6,6 +6,8 @@ import { Box } from './../../models/box.model';
 import { BoxService } from './../../services/box.service';
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
+import { AuthSubject } from 'app/shared/models/session.model';
+import { UserService } from 'app/shared/services/user.service';
 
 @Component({
     selector: 'app-box-form',
@@ -16,6 +18,14 @@ import { User } from 'app/shared/models/user.model';
 export class BoxFormComponent implements OnInit {
     @Input() title;
     @Input() box: Box;
+
+    tabSetOptions = [
+        { title: `Details`, value: 'details' },
+        { title: 'Moderation', value: 'moderation' }
+    ]
+    displayTab: 'details' | 'moderation' = 'details';
+
+    public session: AuthSubject = AuthService.getAuthSubject();
 
     public langs: Array<{ key: string, value: string }> = [
         {
@@ -139,26 +149,31 @@ export class BoxFormComponent implements OnInit {
     submitted = false;
 
     context = 'Edit';
+    ready = false;
 
     constructor(
-        private authService: AuthService,
         public boxService: BoxService,
         public activeModal: NgbActiveModal,
-        private router: Router
+        private router: Router,
+        private userService: UserService
     ) { }
 
     ngOnInit() {
         if (!this.box) {
             this.context = 'Create';
             this.box = new Box();
-            this.authService.getUser().subscribe(
+            this.userService.show(this.session._id).subscribe(
                 (user: User) => {
                     this.box.creator = {
-                        _id: user._id,
-                        name: user.name
+                        _id: this.session._id,
+                        name: this.session.name
                     }
+                    this.box.acl = user.acl;
+                    this.ready = true;
                 }
             )
+        } else {
+            this.ready = true;
         }
     }
 

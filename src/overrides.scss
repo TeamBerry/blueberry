@@ -82,6 +82,7 @@
 
 .btn-success {
     background-color: var(--success-color);
+    color: black;
 }
 
 .btn-danger {
@@ -160,6 +161,17 @@
     }
 }
 
+.nav-link-inverted {
+    &:hover {
+        background-color: var(--background-main-color);
+    }
+    &.active {
+        cursor: default;
+        font-weight: 800;
+        background-color: var(--background-main-color);
+    }
+}
+
 .form-control {
     &:not(.no-border) {
         border: 1px solid $master-color !important;
@@ -210,6 +222,10 @@
         color: $danger-color !important;
         border-color: $danger-color;
     }
+    &.alert-warning {
+        color: var(--warning-color) !important;
+        border-color: var(--warning-color);
+    }
     &.alert-success {
         color: var(--success-color) !important;
         border-color: var(--success-color);
@@ -233,10 +249,16 @@
             background-color: var(--background-main-hover-color);
         }
     }
-
     .bx-dropdown-icon {
         width: 20px;
         height: 20px;
         margin-right: 2%;
+    }
+}
+
+.table {
+    color: var(--text-main-color) !important;
+    tr:hover {
+        color: var(--text-main-color);
     }
 }

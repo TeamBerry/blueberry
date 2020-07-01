@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
+import colorContrast from 'color-contrast'
 
 import { ThemeService } from 'app/shared/services/theme.service';
 import { AuthSubject } from 'app/shared/models/session.model';
@@ -6,6 +7,9 @@ import { AuthService } from 'app/core/auth/auth.service';
 import { environment } from 'environments/environment';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PictureUploaderComponent } from 'app/shared/components/picture-uploader/picture-uploader.component';
+import { UserService } from 'app/shared/services/user.service';
+import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-user-settings',
@@ -23,9 +27,19 @@ export class UserSettingsComponent implements OnInit {
     public session: AuthSubject = AuthService.getAuthSubject();
     public pictureLocation: string
 
+    public color: string
+    public colorWarning: boolean
+    public colorError: boolean
+    public colorSuccess: boolean
+
+    deactivationForm: FormGroup;
+
     constructor(
+        private authService: AuthService,
         private modalService: NgbModal,
         private themeService: ThemeService,
+        private userService: UserService,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit() {
@@ -33,7 +47,14 @@ export class UserSettingsComponent implements OnInit {
             this.isDarkThemeEnabled = false;
         }
         this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${this.session.settings.picture}`
+        this.color = this.session.settings.color ?? '#DF62A9';
+
+        this.deactivationForm = new FormGroup({
+            deactivationName: new FormControl('', [Validators.required, this.deactivationValidator.bind(this)])
+        })
     }
+
+    get deactivationName() { return this.deactivationForm.get('deactivationName');}
 
     closeSettings() {
         this.close.emit();
@@ -49,7 +70,49 @@ export class UserSettingsComponent implements OnInit {
         }
     }
 
+    onColorChange(color: string) {
+        this.colorSuccess = false;
+        this.colorWarning = (colorContrast(color, '#efefef') < 2.5 || colorContrast(color, '#404040') < 1.5);
+        this.colorError = (colorContrast(color, '#efefef') < 1.5 || colorContrast(color, '#404040') < 1.2);
+    }
+
+    saveChatColor() {
+        this.userService.updateSettings({ color: this.color }).subscribe(
+            () => {
+                this.session.settings.color = this.color;
+                localStorage.setItem('BBOX-user', JSON.stringify(this.session));
+                this.colorWarning = false;
+                this.colorSuccess = true;
+            }
+        );
+    }
+
+    toggleColorBlindMode() {
+        this.userService.updateSettings({ isColorblind: this.session.settings.isColorblind }).subscribe(
+            () => {
+                localStorage.setItem('BBOX-user', JSON.stringify(this.session));
+                console.log('Saved.');
+            }
+        )
+    }
+
     openPictureUploader() {
         const modalRef = this.modalService.open(PictureUploaderComponent)
+    }
+
+    // Deactivation
+    public deactivationValidator(control: FormControl): ValidationErrors {
+        return control.value !== this.session.name ? { 'mismatch': true } : null;
+    }
+
+    deactivateAccount() {
+        this.authService.deactivateAccount().subscribe(
+            () => {
+                this.authService.logout();
+            },
+            (error) => {
+                this.toastr.error(`You still have boxes. Please delete all of them and try again.`, 'Error')
+            }
+        )
     }
 }

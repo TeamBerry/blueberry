@@ -2208,9 +2208,9 @@
       }
     },
     "@teamberry/muscadine": {
-      "version": "0.7.0",
-      "resolved": "https://npm.pkg.github.com/download/@teamberry/muscadine/0.7.0/ffc80fd5a902b0e925360a39c2e926c0a43d5fda878d91c2be7bde32da43ebe5",
-      "integrity": "sha512-x8ww4WTK4Z+6qLY58fiT6+SHzhdLGmqkTwtQDItrz6LxobeSF+8o/Gpfhjhp6mTIkGmfvLyvKqFrodhLurq8AA=="
+      "version": "0.8.2",
+      "resolved": "https://npm.pkg.github.com/download/@teamberry/muscadine/0.8.2/1b9062ad66b1bb009732e6957be54d09a02336817424e8b1f9ff904c98fef704",
+      "integrity": "sha512-4qtSdNkbPi7Dhi+ViHBuvqgREsZWlWDV3i10wlPhXvqdGxa0a5PghsILBrSvF6KZqhDgMTYvmrtwqPuqlQiimA=="
     },
     "@tootallnate/once": {
       "version": "1.0.0",
@@ -4093,6 +4093,14 @@
       "requires": {
         "color-convert": "^1.9.1",
         "color-string": "^1.5.2"
+      }
+    },
+    "color-contrast": {
+      "version": "0.0.1",
+      "resolved": "https://registry.npmjs.org/color-contrast/-/color-contrast-0.0.1.tgz",
+      "integrity": "sha1-7/ruezhlrMlOH9HrB4zeX/deOPc=",
+      "requires": {
+        "onecolor": "^3.0.5"
       }
     },
     "color-convert": {
@@ -9371,6 +9379,11 @@
       "integrity": "sha1-yobR/ogoFpsBICCOPchCS524NCw=",
       "dev": true
     },
+    "ngx-color-picker": {
+      "version": "9.1.0",
+      "resolved": "https://registry.npmjs.org/ngx-color-picker/-/ngx-color-picker-9.1.0.tgz",
+      "integrity": "sha512-ViYBfXb4IL1UbM15LaZHYqHyHPYVEKg+rZB1GWSLqXVuDol3Cgt38D8XfOcivVAO60CziQ77k3ThDo31T6wC6A=="
+    },
     "ngx-toastr": {
       "version": "12.0.1",
       "resolved": "https://registry.npmjs.org/ngx-toastr/-/ngx-toastr-12.0.1.tgz",
@@ -9951,6 +9964,11 @@
       "requires": {
         "wrappy": "1"
       }
+    },
+    "onecolor": {
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/onecolor/-/onecolor-3.1.0.tgz",
+      "integrity": "sha512-YZSypViXzu3ul5LMu/m6XjJ9ol8qAy9S2VjHl5E6UlhUH1KGKWabyEJifn0Jjpw23bYDzC2ucKMPGiH5kfwSGQ=="
     },
     "onetime": {
       "version": "1.1.0",

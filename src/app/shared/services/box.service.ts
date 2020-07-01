@@ -6,8 +6,8 @@ import * as _ from 'lodash';
 
 import { environment } from './../../../environments/environment';
 import { Box } from './../models/box.model';
-import { User } from '../models/user.model';
 import { UserPlaylist } from '../models/user-playlist.model';
+import { ActiveSubscriber } from '@teamberry/muscadine';
 
 @Injectable()
 export class BoxService {
@@ -110,9 +110,10 @@ export class BoxService {
      * Lists the users currently connected to the box
      *
      * @param {string} box
+     * @returns {Observable<Array<ActiveSubscriber>>}
      * @memberof JukeboxService
      */
-    public users(box: string) {
-        return this.http.get<Array<User>>(`${environment.araza}/box/${box}/users`)
+    public users(box: string): Observable<Array<ActiveSubscriber>> {
+        return this.http.get<Array<ActiveSubscriber>>(`${environment.araza}/box/${box}/users`)
     }
 }

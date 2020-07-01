@@ -266,6 +266,8 @@ button>svg {
     color: var(--text-main-color);
     font-family: 'Montserrat';
     font-weight: 700;
+    display: flex;
+    align-items: center;
 }
 
 .song-list-line {
@@ -329,4 +331,13 @@ img {
 .panel-tab-title-button {
     display: flex;
     justify-content: flex-end;
+}
+
+span.beta {
+    font-size: 8px;
+    border: 1px solid #340953;
+    background-color: lighten(#340953, 15%);
+    border-radius: 5px;
+    padding: 2px;
+    cursor: default;
 }

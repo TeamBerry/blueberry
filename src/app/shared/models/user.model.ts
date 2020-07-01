@@ -1,4 +1,5 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
+import { ACLConfig } from '@teamberry/muscadine';
 
 @Injectable()
 export class User {
@@ -8,8 +9,11 @@ export class User {
     mail: string;
     settings: {
         theme: 'light' | 'dark',
-        picture: string
+        picture: string,
+        color: string,
+        isColorblind: boolean
     };
+    acl: ACLConfig;
     favorites: any[];
 
     constructor(user?: Partial<User>) {
@@ -19,7 +23,9 @@ export class User {
         this.mail = user && user.mail || null;
         this.settings = user && user.settings || {
             theme: 'light',
-            picture: null
+            picture: null,
+            color: '#DF62A9',
+            isColorblind: false
         }
         this.favorites = user && user.favorites || [];
     }

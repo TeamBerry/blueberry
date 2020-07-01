@@ -25,6 +25,9 @@
 }
 
 .box-info:after {
+    @media(max-width: 992px){
+        display: none;   
+    }
     content: '';
     width: 1px;
     position: absolute;
@@ -37,7 +40,7 @@
 .box-title,
 .video-title {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 1.6rem;
     margin-bottom: 0;
     text-overflow: ellipsis;
@@ -71,4 +74,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.md-separator {
+    border: .1rem solid $master-color;
+    width: 100%;
 }

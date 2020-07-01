@@ -30,7 +30,9 @@ export class AuthService {
                 mail: null,
                 settings: {
                     theme: 'dark',
-                    picture: null
+                    picture: null,
+                    color: '#DF62A9',
+                    isColorblind: false
                 }
             }
         }
@@ -92,6 +94,10 @@ export class AuthService {
         localStorage.removeItem('BBOX-expires_at');
         localStorage.removeItem('BBOX-user');
         location.reload();
+    }
+
+    deactivateAccount() {
+        return this.http.post(`${environment.araza}/auth/deactivate`, {});
     }
 
     /**

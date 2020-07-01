@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-export type TabOption = {
+export interface TabOption {
     title: string,
     value?: string
 }
