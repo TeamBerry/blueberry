@@ -34,8 +34,7 @@ export class YouTubeMiniatureDropzoneDirective {
 
         const imageUrl = event.dataTransfer.getData('text/html');
 
-        const url = /src="?([^"\s]+)"?\s*/.exec(imageUrl)[1];
         this.isDragging.emit(false);
-        this.fileDropped.emit(url);
+        this.fileDropped.emit(imageUrl);
     }
 }

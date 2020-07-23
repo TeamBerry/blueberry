@@ -181,21 +181,29 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
         }
     }
 
-    submitFromMiniature(string) {
-        const res = new RegExp(/ytimg.com\/vi\/([a-z0-9\-\_]+)\//i).exec(string);
-
+    submitFromMiniature(miniatureSource: string) {
         try {
-            if (res) {
-                const video: SubmissionPayload = {
-                    link: res[1],
-                    userToken: this.user._id,
-                    boxToken: this.box._id
-                }
+            const miniatureUrl = /src="?([^"\s]+)"?\s*/.exec(miniatureSource);
 
-                this.jukeboxService.submitVideo(video);
-            } else {
+            if (!miniatureUrl) {
                 this.handleMiniatureError();
+                return;
             }
+
+            const extractedLink = new RegExp(/ytimg.com\/vi\/([a-z0-9\-\_]+)\//i).exec(miniatureUrl[1]);
+
+            if (!extractedLink) {
+                this.handleMiniatureError();
+                return;
+            }
+
+            const video: SubmissionPayload = {
+                link: extractedLink[1],
+                userToken: this.user._id,
+                boxToken: this.box._id
+            }
+
+            this.jukeboxService.submitVideo(video);
         } catch (error) {
             this.handleMiniatureError();
         }
