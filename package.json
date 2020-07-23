@@ -42,7 +42,7 @@
     "@angular/cli": "9.1.9",
     "@angular/compiler-cli": "9.1.12",
     "@types/jasmine": "3.5.11",
-    "@types/node": "12.12.47",
+    "@types/node": "12.12.51",
     "@types/youtube": "0.0.39",
     "codelyzer": "5.2.2",
     "jasmine-core": "3.5.0",
