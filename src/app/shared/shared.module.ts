@@ -28,7 +28,6 @@ import { ProfilePictureComponent } from './components/profile-picture/profile-pi
 import { FromNowPipe } from './pipes/from-now.pipe';
 import { AclFormComponent } from './components/acl-form/acl-form.component';
 import { LanguageFlagPipe } from './pipes/language-flag.pipe';
-import { YouTubeMiniatureDropzoneDirective } from './directive/youtube-miniature-dropzone.directive';
 
 @NgModule({
     imports: [
@@ -55,8 +54,7 @@ import { YouTubeMiniatureDropzoneDirective } from './directive/youtube-miniature
         ProfilePictureComponent,
         FromNowPipe,
         AclFormComponent,
-        LanguageFlagPipe,
-        YouTubeMiniatureDropzoneDirective
+        LanguageFlagPipe
     ],
     exports: [
         CommonModule,
@@ -82,10 +80,9 @@ import { YouTubeMiniatureDropzoneDirective } from './directive/youtube-miniature
         ProfilePictureComponent,
         FromNowPipe,
         AclFormComponent,
-        LanguageFlagPipe,
-        YouTubeMiniatureDropzoneDirective
+        LanguageFlagPipe
     ],
-    providers: [AuthDirective, ACLDirective, ThemeService, UserService, YouTubeMiniatureDropzoneDirective],
+    providers: [AuthDirective, ACLDirective, ThemeService, UserService],
     entryComponents: [
         PictureUploaderComponent,
         PlaylistSelectorComponent

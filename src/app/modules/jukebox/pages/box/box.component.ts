@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { BoxService } from './../../../../shared/services/box.service';
 import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
@@ -13,7 +13,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
-import { QueueItem, SyncPacket } from '@teamberry/muscadine';
+import { QueueItem, SyncPacket, FeedbackMessage } from '@teamberry/muscadine';
+import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 
 @Component({
     selector: 'app-box',
@@ -61,6 +62,34 @@ export class BoxComponent implements OnInit {
     user: AuthSubject = AuthService.getAuthSubject();
 
     connectionStatus = 'offline';
+
+    isDraggingMiniature = false;
+
+    @HostListener('dragover') public onDragOver() {
+        event.stopPropagation();
+        event.preventDefault();
+        console.log('DRAGOVER');
+        this.isDraggingMiniature = true;
+    }
+
+    @HostListener('dragleave') public onDragLeave() {
+        event.stopPropagation();
+        event.preventDefault();
+        console.log('DRAGLEAVE');
+        this.isDraggingMiniature = false;
+    }
+
+    @HostListener('drop', ['$event']) public onDrop(event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        const imageUrl = event.dataTransfer.getData('text/html');
+
+        const url = /src="?([^"\s]+)"?\s*/.exec(imageUrl)[1];
+        console.log(url);
+        this.submitFromMiniature(url);
+        this.isDraggingMiniature = false;
+    }
 
     constructor(
         private boxService: BoxService,
@@ -178,5 +207,33 @@ export class BoxComponent implements OnInit {
 
     submitFromMiniature(string) {
         console.log('SUBMIT FROM MINIATURE: ', string);
+
+        const res = new RegExp(/ytimg.com\/vi\/([a-z0-9\-\_]+)\//i).exec(string);
+
+        try {
+            if (res) {
+                const video: SubmissionPayload = {
+                    link: res[1],
+                    userToken: this.user._id,
+                    boxToken: this.box._id
+                }
+
+                this.jukeboxService.submitVideo(video);
+            } else {
+                this.handleMiniatureError();
+            }
+        } catch (error) {
+            this.handleMiniatureError();
+        }
+    }
+
+    handleMiniatureError() {
+        const message: FeedbackMessage = new FeedbackMessage({
+            contents: 'The miniature image is corrupted or not from YouTube. Please retry with a miniature from YouTube.',
+            scope: this.box._id,
+            time: new Date(),
+            context: 'error'
+        });
+        this.jukeboxService.postMessageToStream(message);
     }
 }

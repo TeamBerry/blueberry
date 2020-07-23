@@ -92,14 +92,6 @@
         font-size: 30px;
         font-weight: 600;
     }
-    .dropzone-help {
-        display: none;
-    }
-    &.fileover {
-        .dropzone-help {
-            display: block;
-        }
-        border: 2px dotted white;
-        background-color: rgba(50, 50, 50, 0.7);
-    }
+    border: 5px dashed $master-color;
+    background-color: rgba(50, 50, 50, 0.7);
 }
