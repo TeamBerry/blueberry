@@ -29,4 +29,5 @@
 .lists {
     height: 100%;
     overflow: auto;
+    @include can-search();
 }

@@ -62,3 +62,10 @@
     $remSize: $px / 16px;
     @return #{$remSize}rem;
 }
+
+@mixin can-search(){
+    transition: background-color 0.2s ease;
+    &.is-searching {
+        background-color: transparentize($master-color, 0.91);
+    }
+}
