@@ -27,6 +27,8 @@ export class FilterPipe implements PipeTransform {
 
         filter = filter.toLocaleLowerCase()
 
-        return items.filter(item => filterFields.some(key => item[key].toLocaleLowerCase().indexOf(filter) !== -1))
+        return items.filter(item => filterFields.some(key => this.getProp(item, key).toLocaleLowerCase().indexOf(filter) !== -1))
     }
+
+    getProp = (object, property) => property.split('.').reduce((r, e) => { return r[e]; }, object)
 }
