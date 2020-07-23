@@ -23,7 +23,7 @@
     "@angular/platform-server": "9.1.12",
     "@angular/router": "9.1.12",
     "@ctrl/ngx-emoji-mart": "3.1.0",
-    "@ng-bootstrap/ng-bootstrap": "6.0.2",
+    "@ng-bootstrap/ng-bootstrap": "6.2.0",
     "@teamberry/muscadine": "^0.8.2",
     "bootstrap": "4.5.0",
     "color-contrast": "0.0.1",
