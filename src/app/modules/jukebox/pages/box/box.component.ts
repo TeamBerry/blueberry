@@ -8,7 +8,6 @@ import { AuthService } from 'app/core/auth/auth.service';
 import { Box } from 'app/shared/models/box.model';
 import { filter } from 'rxjs/operators';
 import { AuthSubject } from 'app/shared/models/session.model';
-import { environment } from 'environments/environment';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
@@ -175,5 +174,9 @@ export class BoxComponent implements OnInit {
                 this.toastr.success('Video added', 'Success')
             }
         )
+    }
+
+    submitFromMiniature(string) {
+        console.log('SUBMIT FROM MINIATURE: ', string);
     }
 }

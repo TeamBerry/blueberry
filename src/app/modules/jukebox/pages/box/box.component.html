@@ -1,4 +1,16 @@
 <div *ngIf="!loading && connectionStatus === 'success'">
+    <div class="dropzone d-flex justify-content-center align-items-center" appYouTubeMiniatureDropZone
+        (fileUrl)="submitFromMiniature($event)">
+        <div class="text-center dropzone-help">
+            <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" style="height: 10em;">
+                <path class="berrybox-path"
+                    d="M258.12,466.45,383.63,291.72a10,10,0,0,0-8.13-15.84h-251a10,10,0,0,0-8.13,15.84L241.88,466.45A10,10,0,0,0,258.12,466.45Z" />
+                <rect class="berrybox-path" x="96.05" y="122.63" width="307.91" height="121.43" rx="10"
+                    transform="translate(433.34 -66.66) rotate(90)" />
+            </svg>
+            <p class="m-auto">Drop the YouTube Miniature to add the video to the queue</p>
+        </div>
+    </div>
     <div class="box-space row no-gutters">
         <div class="col-lg-9 col-sm-6 d-flex flex-column h-100">
             <app-player *ngIf="box && currentVideo" [boxToken]="box._id" style="height: 100%; width: 100%;">
@@ -66,7 +78,8 @@
                                 src="../../../../../assets/images/icons/berry-coin-icon.svg" alt=""
                                 style="height: 30px;" class="pr-2"
                                 ngbTooltip="This video is playing thanks to the use of berries.">
-                            <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}</p>
+                            <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}
+                            </p>
                         </div>
                         <div class="col-lg-2 col-md-4 text-right" *appAuth="true">
                             <app-bx-button *appAcl="'skipVideo'" (click)="skipVideo()"
