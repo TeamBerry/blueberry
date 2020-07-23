@@ -27,7 +27,7 @@
     "@teamberry/muscadine": "^0.8.2",
     "bootstrap": "4.5.0",
     "color-contrast": "0.0.1",
-    "core-js": "2.6.11",
+    "core-js": "3.6.5",
     "lodash": "4.17.19",
     "moment": "2.27.0",
     "ngx-color-picker": "9.1.0",
