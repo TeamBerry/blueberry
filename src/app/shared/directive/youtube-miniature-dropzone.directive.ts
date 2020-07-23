@@ -1,30 +1,29 @@
-import { Directive, ViewContainerRef, HostListener, HostBinding, EventEmitter, ElementRef } from "@angular/core";
+import { Directive, ViewContainerRef, HostListener, HostBinding, EventEmitter, ElementRef, Output } from "@angular/core";
 
 @Directive({
     selector: '[appYouTubeMiniatureDropZone]'
 })
 export class YouTubeMiniatureDropzoneDirective {
-    fileUrl: EventEmitter<string> = new EventEmitter();
+    @Output() isDragging: EventEmitter<boolean> = new EventEmitter();
+    @Output() fileDropped: EventEmitter<string> = new EventEmitter();
 
     constructor(
         public viewContainerRef: ViewContainerRef
     ) {
     }
 
-    @HostBinding('class.fileover') fileOver: boolean;
-
     @HostListener('dragover') public onDragOver() {
         event.stopPropagation();
         event.preventDefault();
         console.log('DRAGOVER');
-        this.fileOver = true;
+        this.isDragging.emit(true);
     }
 
     @HostListener('dragleave') public onDragLeave() {
         event.stopPropagation();
         event.preventDefault();
         console.log('DRAGLEAVE');
-        this.fileOver = false;
+        this.isDragging.emit(false);
     }
 
     @HostListener('drop', ['$event']) public onDrop(event) {
@@ -32,12 +31,11 @@ export class YouTubeMiniatureDropzoneDirective {
         event.preventDefault();
 
         console.log('DROP')
-        this.fileOver = false;
 
         const imageUrl = event.dataTransfer.getData('text/html');
 
         const url = /src="?([^"\s]+)"?\s*/.exec(imageUrl)[1];
-        console.log(url);
-        this.fileUrl.emit(url);
+        this.isDragging.emit(false);
+        this.fileDropped.emit(url);
     }
 }

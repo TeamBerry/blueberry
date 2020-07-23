@@ -80,18 +80,3 @@
     border: .1rem solid $master-color;
     width: 100%;
 }
-
-.dropzone {
-    height: calc(100vh - 60px);
-    width: 100vw;
-    position: absolute;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    z-index: 100;
-    p {
-        font-size: 30px;
-        font-weight: 600;
-    }
-    border: 5px dashed $master-color;
-    background-color: rgba(50, 50, 50, 0.7);
-}

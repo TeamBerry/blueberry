@@ -1,4 +1,19 @@
-<div class="row no-gutters h-100">
+<div class="row no-gutters h-100" appYouTubeMiniatureDropZone (isDragging)="handleMiniatureDrag($event)"
+    (fileDropped)="submitFromMiniature($event)">
+    <div class="dropzone" [hidden]="isDraggingMiniature === false">
+        <div class="d-flex justify-content-center align-items-center h-100">
+            <div class="text-center dropzone-help">
+                <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"
+                    style="height: 10em;">
+                    <path class="berrybox-path"
+                        d="M258.12,466.45,383.63,291.72a10,10,0,0,0-8.13-15.84h-251a10,10,0,0,0-8.13,15.84L241.88,466.45A10,10,0,0,0,258.12,466.45Z" />
+                    <rect class="berrybox-path" x="96.05" y="122.63" width="307.91" height="121.43" rx="10"
+                        transform="translate(433.34 -66.66) rotate(90)" />
+                </svg>
+                <p class="m-auto">Drop the YouTube Miniature to add the video to the queue</p>
+            </div>
+        </div>
+    </div>
     <div class="col-11 side-panel">
         <div class="box-side-panel" id="panel-space">
             <app-userlist [hidden]="activePanel !== 'users'" [user]="user"></app-userlist>
