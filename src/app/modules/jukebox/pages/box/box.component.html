@@ -16,9 +16,13 @@
     </div>
     <div class="box-space row no-gutters">
         <div class="col-lg-9 col-sm-6 d-flex flex-column h-100">
-            <app-player *ngIf="box && currentVideo" [boxToken]="box._id"
-                style="height: 100%; width: 100%; pointer-events: auto;" [ngClass]="{'no-events': isDraggingMiniature}">
-            </app-player>
+            <div *ngIf="box && currentVideo" class="h-100" style="background-color: black;"
+                [ngClass]="{'no-events': isDraggingMiniature}">
+                <div class="px-2 h-100">
+                    <app-player [boxToken]="box._id" style="height: 100%; width: 100%; pointer-events: auto;">
+                    </app-player>
+                </div>
+            </div>
             <div class="row under-player">
                 <div class="col-lg-5 col-md-12 box-info">
                     <div class="d-flex">
