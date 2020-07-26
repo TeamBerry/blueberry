@@ -181,24 +181,27 @@ export class BoxComponent implements OnInit {
 
     handleMiniatureDrag(isDraggingMiniature: boolean) {
         this.isDraggingMiniature = isDraggingMiniature;
-        if (isDraggingMiniature) {
-            this.activePanel = 'queue'
-        }
     }
 
     submitFromMiniature(miniatureSource: string) {
+
+        if (!this.user.mail) {
+            this.handleMiniatureError('ANONYMOUS_ACCOUNT')
+            return;
+        }
+
         try {
             const miniatureUrl = /src="?([^"\s]+)"?\s*/.exec(miniatureSource);
 
             if (!miniatureUrl) {
-                this.handleMiniatureError();
+                this.handleMiniatureError('WRONG_URL');
                 return;
             }
 
             const extractedLink = new RegExp(/ytimg.com\/vi\/([a-z0-9\-\_]+)\//i).exec(miniatureUrl[1]);
 
             if (!extractedLink) {
-                this.handleMiniatureError();
+                this.handleMiniatureError('WRONG_URL');
                 return;
             }
 
@@ -210,13 +213,21 @@ export class BoxComponent implements OnInit {
 
             this.jukeboxService.submitVideo(video);
         } catch (error) {
-            this.handleMiniatureError();
+            this.handleMiniatureError('WRONG_URL');
         }
     }
 
-    handleMiniatureError() {
+    handleMiniatureError(error: 'WRONG_URL' | 'ANONYMOUS_ACCOUNT') {
+        let contents: string = ''
+        if (error = 'WRONG_URL') {
+            contents = 'The miniature image is corrupted or not from YouTube. Please retry with a miniature from YouTube.'
+        }
+        if (error = 'ANONYMOUS_ACCOUNT') {
+            contents = 'You need to be logged in to add videos to the queue. Please log in or create an account.'
+        }
+
         const message: FeedbackMessage = new FeedbackMessage({
-            contents: 'The miniature image is corrupted or not from YouTube. Please retry with a miniature from YouTube.',
+            contents,
             scope: this.box._id,
             time: new Date(),
             context: 'error'
