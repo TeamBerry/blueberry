@@ -62,6 +62,8 @@ export class BoxComponent implements OnInit {
     user: AuthSubject = AuthService.getAuthSubject();
 
     connectionStatus = 'offline';
+    isDraggingMiniature = false;
+
 
     constructor(
         private boxService: BoxService,
@@ -175,5 +177,50 @@ export class BoxComponent implements OnInit {
                 this.toastr.success('Video added', 'Success')
             }
         )
+    }
+
+    handleMiniatureDrag(isDraggingMiniature: boolean) {
+        this.isDraggingMiniature = isDraggingMiniature;
+        if (isDraggingMiniature) {
+            this.activePanel = 'queue'
+        }
+    }
+
+    submitFromMiniature(miniatureSource: string) {
+        try {
+            const miniatureUrl = /src="?([^"\s]+)"?\s*/.exec(miniatureSource);
+
+            if (!miniatureUrl) {
+                this.handleMiniatureError();
+                return;
+            }
+
+            const extractedLink = new RegExp(/ytimg.com\/vi\/([a-z0-9\-\_]+)\//i).exec(miniatureUrl[1]);
+
+            if (!extractedLink) {
+                this.handleMiniatureError();
+                return;
+            }
+
+            const video: SubmissionPayload = {
+                link: extractedLink[1],
+                userToken: this.user._id,
+                boxToken: this.box._id
+            }
+
+            this.jukeboxService.submitVideo(video);
+        } catch (error) {
+            this.handleMiniatureError();
+        }
+    }
+
+    handleMiniatureError() {
+        const message: FeedbackMessage = new FeedbackMessage({
+            contents: 'The miniature image is corrupted or not from YouTube. Please retry with a miniature from YouTube.',
+            scope: this.box._id,
+            time: new Date(),
+            context: 'error'
+        });
+        this.jukeboxService.postMessageToStream(message);
     }
 }

@@ -80,3 +80,7 @@
     border: .1rem solid $master-color;
     width: 100%;
 }
+
+.no-events {
+    pointer-events: none;
+}
