@@ -22,6 +22,7 @@ export class PlaylistsSearchTabComponent implements OnInit, AfterViewInit {
     @Input() boxToken: string;
     @Input() user: AuthSubject;
     @Input() videosInQueue: Array<string>;
+    @Input() berriesEnabled: boolean;
     @ViewChild('filterInput') input: ElementRef
 
     favorites$: Observable<User['favorites']>

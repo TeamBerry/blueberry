@@ -14,6 +14,7 @@ export class YoutubeSearchTabComponent implements OnInit {
     @Input() boxToken: string;
     @Input() user: AuthSubject;
     @Input() videosInQueue: Array<string>;
+    @Input() berriesEnabled: boolean;
     searchValue = ''
     errorMessage
     defaultSearchCooldown = 5
