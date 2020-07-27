@@ -13,7 +13,6 @@ import { Box } from 'app/shared/models/box.model';
 import { LoginFormComponent } from 'app/shared/components/login-form/login-form.component';
 import { SignupFormComponent } from 'app/shared/components/signup-form/signup-form.component';
 import { ChatInputComponent } from '../chat-input/chat-input.component';
-import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 
 export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorites' | 'search'
 

@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Video } from '../../models/video.model';
 import { UserService } from 'app/shared/services/user.service';
 import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
+import { QueueItem } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-video-entry',
@@ -20,7 +21,8 @@ export class VideoEntryComponent implements OnInit {
         forceNext?: boolean,
         forcePlay?: boolean,
         removeFromPlaylist?: boolean,
-        addToPlaylist?: boolean
+        addToPlaylist?: boolean,
+        berries?: boolean,
     } = {}
 
     appliedOptions = {
@@ -30,10 +32,11 @@ export class VideoEntryComponent implements OnInit {
         forceNext: false,
         forcePlay: false,
         removeFromPlaylist: false,
-        addToPlaylist: false
+        addToPlaylist: false,
+        berries: false,
     }
 
-    @Output() submit: EventEmitter<Video> = new EventEmitter();
+    @Output() submit: EventEmitter<{ video: Video, flag?: 'next' | 'now' }> = new EventEmitter();
     @Output() addedToPlaylist: EventEmitter<Video> = new EventEmitter();
     @Output() removedFromPlaylist: EventEmitter<Video> = new EventEmitter();
 
@@ -55,8 +58,8 @@ export class VideoEntryComponent implements OnInit {
         )
     }
 
-    submitVideo() {
-        this.submit.emit(this.video);
+    submitVideo(flag?: 'now' | 'next') {
+        this.submit.emit({ video: this.video, flag });
     }
 
     addToPlaylist() {

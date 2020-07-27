@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SearchService } from 'app/shared/services/search.service';
 import { Video } from 'app/shared/models/video.model';
-import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { JukeboxService } from '../../jukebox.service';
 import { AuthSubject } from 'app/shared/models/session.model';
+import { VideoSubmissionRequest } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-youtube-search-tab',
@@ -81,14 +81,17 @@ export class YoutubeSearchTabComponent implements OnInit {
      * to the box, via the jukebox service method "submitVideo"
      *
      * @param {Video} video The video to submit
+     * @param {null | 'next' | 'now'} flag
      * @memberof FavoriteSearchTabComponent
      */
-    submitVideo(video: Video) {
-        const submissionPayload: SubmissionPayload = {
-            link: video.link,
+    submitVideo(event: { video: Video, flag?: 'next' | 'now'}) {
+        const submissionPayload: VideoSubmissionRequest = {
+            link: event.video.link,
             userToken: this.user._id,
-            boxToken: this.boxToken
+            boxToken: this.boxToken,
+            flag: event?.flag
         };
+
         this.jukeboxService.submitVideo(submissionPayload);
     }
 

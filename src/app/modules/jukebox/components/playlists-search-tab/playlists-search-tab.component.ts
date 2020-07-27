@@ -8,10 +8,10 @@ import { Video } from 'app/shared/models/video.model';
 import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
 import { LoginFormComponent } from '../../../../shared/components/login-form/login-form.component';
 import { SignupFormComponent } from '../../../../shared/components/signup-form/signup-form.component';
-import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { UserService } from 'app/shared/services/user.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { UserPlaylist } from 'app/shared/models/user-playlist.model';
+import { VideoSubmissionRequest } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-playlists-search-tab',
@@ -68,7 +68,7 @@ export class PlaylistsSearchTabComponent implements OnInit, AfterViewInit {
      * @memberof FavoriteSearchTabComponent
      */
     submitVideo(video: Video) {
-        const submissionPayload: SubmissionPayload = {
+        const submissionPayload: VideoSubmissionRequest = {
             link: video.link,
             userToken: this.user._id,
             boxToken: this.boxToken
