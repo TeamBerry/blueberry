@@ -21,22 +21,22 @@ export class Box {
         /**
          * The next video will be picked at random from the playlist
          *
-         * @type {Boolean}
+         * @type {boolean}
          */
-        random: Boolean;
+        random: boolean;
         /**
          * If there are more than 10 submitted videos and less than 3 upcoming videos, one video at random from the
          * pool of 10 will be added to the list of upcoming videos
          *
-         * @type {Boolean}
+         * @type {boolean}
          */
-        loop: Boolean;
+        loop: boolean;
         /**
          * Activates the collect of berries and the access to admin actions by users
          *
-         * @type {Boolean}
+         * @type {boolean}
          */
-        berries: Boolean;
+        berries: boolean;
     }
     acl: ACLConfig;
     users?: number
