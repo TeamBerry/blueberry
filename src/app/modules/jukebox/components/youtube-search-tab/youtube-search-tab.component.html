@@ -17,6 +17,6 @@
         <app-bx-alert [options]="{'type': 'danger', 'message': errorMessage}"></app-bx-alert>
     </div>
     <app-video-entry *ngFor="let video of searchResults" [video]="video"
-        [options]="{'submit': videosInQueue.indexOf(video.link) === -1, 'inQueue': videosInQueue.indexOf(video.link) !== -1}"
+        [options]="{'submit': videosInQueue.indexOf(video.link) === -1, 'inQueue': videosInQueue.indexOf(video.link) !== -1, 'berries': this.berriesEnabled, 'forcePlay': true, 'forceNext': true}"
         (submit)="submitVideo($event)"></app-video-entry>
 </div>

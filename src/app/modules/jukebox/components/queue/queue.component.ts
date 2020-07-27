@@ -7,10 +7,9 @@ import { ToastrService } from 'ngx-toastr';
 import { JukeboxService } from '../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
-import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
 import { BoxService } from 'app/shared/services/box.service';
-import { QueueItemActionRequest, QueueItem } from '@teamberry/muscadine';
+import { QueueItemActionRequest, QueueItem, VideoSubmissionRequest } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-queue',
@@ -183,7 +182,7 @@ export class QueueComponent implements OnInit, OnChanges {
      * @memberof PlaylistComponent
      */
     replayVideo(link: QueueItem['video']['link']) {
-        const submissionPayload: SubmissionPayload = {
+        const submissionPayload: VideoSubmissionRequest = {
             link: link,
             userToken: this.user._id,
             boxToken: this.box._id

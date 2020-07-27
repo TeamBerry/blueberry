@@ -31,7 +31,7 @@
         [ngClass]="{'is-searching': filterValue !== ''}">
         <app-video-entry *ngFor="let video of selectedPlaylist.videos | filter:filterValue:['name', 'link']"
             [video]="video"
-            [options]="{'submit': videosInQueue.indexOf(video.link) === -1, 'inQueue': videosInQueue.indexOf(video.link) !== -1}"
+            [options]="{'submit': videosInQueue.indexOf(video.link) === -1, 'inQueue': videosInQueue.indexOf(video.link) !== -1, 'berries': this.berriesEnabled, 'forcePlay': true, 'forceNext': true}"
             (submit)="submitVideo($event)"></app-video-entry>
     </div>
     <ng-template #noFavorites>

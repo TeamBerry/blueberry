@@ -5,9 +5,8 @@ import { EmojiData } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
-import { FeedbackMessage, Message, BerryCount } from '@teamberry/muscadine';
+import { FeedbackMessage, Message, BerryCount, VideoSubmissionRequest } from '@teamberry/muscadine';
 import { JukeboxService } from '../../jukebox.service';
-import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Box } from 'app/shared/models/box.model';
@@ -256,7 +255,7 @@ export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
         const res = reg.exec(url);
 
         try {
-            const video: SubmissionPayload = {
+            const video: VideoSubmissionRequest = {
                 link: (res[2]) ? res[2] : res[4],
                 userToken: this.user._id,
                 boxToken: this.boxToken,

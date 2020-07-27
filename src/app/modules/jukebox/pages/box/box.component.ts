@@ -13,8 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
-import { QueueItem, SyncPacket, FeedbackMessage } from '@teamberry/muscadine';
-import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
+import { QueueItem, SyncPacket, FeedbackMessage, VideoSubmissionRequest } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-box',
@@ -205,7 +204,7 @@ export class BoxComponent implements OnInit {
                 return;
             }
 
-            const video: SubmissionPayload = {
+            const video: VideoSubmissionRequest = {
                 link: extractedLink[1],
                 userToken: this.user._id,
                 boxToken: this.box._id
