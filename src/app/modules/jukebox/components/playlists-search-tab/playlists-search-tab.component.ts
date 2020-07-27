@@ -67,11 +67,12 @@ export class PlaylistsSearchTabComponent implements OnInit, AfterViewInit {
      * @param {Video} video The video to submit
      * @memberof FavoriteSearchTabComponent
      */
-    submitVideo(video: Video) {
+    submitVideo(event: { video: Video, flag?: 'next' | 'now'}) {
         const submissionPayload: VideoSubmissionRequest = {
-            link: video.link,
+            link: event.video.link,
             userToken: this.user._id,
-            boxToken: this.boxToken
+            boxToken: this.boxToken,
+            flag: event?.flag
         };
         this.jukeboxService.submitVideo(submissionPayload);
     }
