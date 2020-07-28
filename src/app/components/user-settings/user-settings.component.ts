@@ -33,6 +33,7 @@ export class UserSettingsComponent implements OnInit {
     public colorSuccess: boolean
 
     deactivationForm: FormGroup;
+    passwordResetForm: FormGroup;
 
     constructor(
         private authService: AuthService,
@@ -52,9 +53,21 @@ export class UserSettingsComponent implements OnInit {
         this.deactivationForm = new FormGroup({
             deactivationName: new FormControl('', [Validators.required, this.deactivationValidator.bind(this)])
         })
+
+        this.passwordResetForm = new FormGroup({
+            currentPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
+            newPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
+            newPasswordVerify: new FormControl('', [Validators.required, Validators.minLength(8)])
+        })
     }
 
-    get deactivationName() { return this.deactivationForm.get('deactivationName');}
+    // Deactivation form
+    get deactivationName() { return this.deactivationForm.get('deactivationName'); }
+
+    // Reset password form
+    get currentPassword() { return this.passwordResetForm.get('currentPassword'); }
+    get newPassword() { return this.passwordResetForm.get('newPassword'); }
+    get newPasswordVerify() { return this.passwordResetForm.get('newPasswordVerify'); }
 
     closeSettings() {
         this.close.emit();
