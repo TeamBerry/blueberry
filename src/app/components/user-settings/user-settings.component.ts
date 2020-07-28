@@ -35,6 +35,8 @@ export class UserSettingsComponent implements OnInit {
     deactivationForm: FormGroup;
     passwordResetForm: FormGroup;
 
+    errorMessage: string = null;
+
     constructor(
         private authService: AuthService,
         private modalService: NgbModal,
@@ -43,7 +45,7 @@ export class UserSettingsComponent implements OnInit {
         private toastr: ToastrService
     ) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
         if (this.session.settings.theme === 'light') {
             this.isDarkThemeEnabled = false;
         }
@@ -55,9 +57,18 @@ export class UserSettingsComponent implements OnInit {
         })
 
         this.passwordResetForm = new FormGroup({
-            currentPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
-            newPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
-            newPasswordVerify: new FormControl('', [Validators.required, Validators.minLength(8)])
+            currentPassword: new FormControl('', [
+                Validators.required,
+                Validators.minLength(8)
+            ]),
+            newPassword: new FormControl('', [
+                Validators.required,
+                Validators.minLength(8)
+            ]),
+            newPasswordVerify: new FormControl('', [
+                Validators.required,
+                Validators.minLength(8)
+            ])
         })
     }
 
@@ -125,6 +136,43 @@ export class UserSettingsComponent implements OnInit {
             },
             (error) => {
                 this.toastr.error(`You still have boxes. Please delete all of them and try again.`, 'Error')
+            }
+        )
+    }
+
+    // Password reset
+
+    /**
+     * Checks if the password verification input has the same value as the password input
+     *
+     * @returns {boolean} Result of the check
+     * @memberof SignupFormComponent
+     */
+    passwordMatchVerify(): boolean {
+        return (this.passwordResetForm.value.newPassword === this.passwordResetForm.value.newPasswordVerify);
+    };
+
+
+    resetPassword(): void {
+        this.errorMessage = null;
+        if (!this.passwordMatchVerify()) {
+            this.errorMessage = 'Your password verification is invalid.';
+            return;
+        }
+
+        this.authService.login(this.session.mail, this.passwordResetForm.value.currentPassword).subscribe(
+            () => {
+                this.authService.updatePassword(this.passwordResetForm.value.newPassword).subscribe(
+                    () => {
+                        this.authService.logout();
+                    },
+                    error => {
+                        this.errorMessage = "Your request could not be processed. Please try again."
+                    }
+                )
+            },
+            error => {
+                this.errorMessage = "Your current password is incorrect."
             }
         )
     }

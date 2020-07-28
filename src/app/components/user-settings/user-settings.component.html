@@ -150,7 +150,7 @@
                 <p class="help-text text-muted">This operation is <strong>irreversible</strong>. Once you password is
                     reset, you will be disconnected.</p>
                 <div class="mt-2">
-                    <form [formGroup]="passwordResetForm">
+                    <form [formGroup]="passwordResetForm" (ngSubmit)="resetPassword()">
                         <div class="form-group">
                             <div class="d-flex align-items-center">
                                 <div class="col-3">
@@ -201,11 +201,15 @@
                                 <app-bx-alert
                                     [options]="{'type': 'danger', 'icon': false, 'message': 'Your password cannot have less than 8 symbols'}"
                                     *ngIf="newPasswordVerify.errors['minlength']"></app-bx-alert>
+                                <app-bx-alert
+                                    [options]="{'type': 'danger', 'icon': false, 'message': 'Your passwords do not match'}"
+                                    *ngIf="newPasswordVerify.errors['passwordMismatch']"></app-bx-alert>
                             </div>
                         </div>
+                        <app-bx-alert [options]="{'type': 'danger', 'message': errorMessage}" *ngIf="errorMessage">
+                        </app-bx-alert>
                         <button type="submit" class="btn btn-block btn-default"
-                            [disabled]="!passwordResetForm.valid">Reset
-                            my password</button>
+                            [disabled]="!passwordResetForm.valid">Reset my password</button>
                     </form>
                 </div>
             </div>
