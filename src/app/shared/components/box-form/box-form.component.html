@@ -75,8 +75,8 @@
                                     </app-bx-chip>
                                     <label for="random" class="col-form-label">Loop Queue</label>
                                 </div>
-                                <p class="help-text text-muted">The system will automatically requeue old videos.
-                                    Combined with Random Mode, videos will be picked randomly.</p>
+                                <p class="help-text text-muted">The system will automatically requeue old videos. The
+                                    queue display will change to no longer separate "upcoming" and "passed" videos.</p>
                             </div>
                             <div class="col m-auto">
                                 <app-slide-toggle class="float-right" [(value)]="box.options.loop"></app-slide-toggle>
@@ -109,7 +109,7 @@
                                         Restriction</label>
                                 </div>
                                 <p class="help-text text-muted">Videos that exceed the set limit will not be accepted
-                                    into the queue. Specifying <strong>0</strong> will disable this restriction
+                                    into the queue. Specifying <strong>0</strong> will disable this restriction.
                                 </p>
                             </div>
                             <div class="col m-auto">
