@@ -40,6 +40,12 @@ export class BxChipComponent implements OnInit {
             chipText: 'Private',
             tooltipText: 'Can only be accessed by directly sharing the box link',
             icon: 'lock',
+        },
+        {
+            type: 'duration-limit',
+            chipText: 'Video Duration Restriction',
+            tooltipText: 'Longer videos will be rejected.',
+            icon: 'duration-limit'
         }
     ]
 

@@ -96,6 +96,10 @@
                                 <app-bx-chip [options]="{'type': 'coin-enabled'}" [display]="'icon'"
                                     *ngIf="box?.options?.berries">
                                 </app-bx-chip>
+                                <app-bx-chip
+                                    [options]="{'type': 'duration-limit', 'chipText': box.options.videoMaxDurationLimit + ' mins.'}"
+                                    [display]="'full'" *ngIf="box?.options?.videoMaxDurationLimit !== 0">
+                                </app-bx-chip>
                             </div>
                         </div>
                     </div>

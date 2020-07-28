@@ -6,12 +6,14 @@
         <app-bx-tabset [options]="[{title: 'Youtube', value: 'youtube'}, {title: 'Playlists', value: 'playlists'}]"
             (clickedOption)="displayedTab = $event">
         </app-bx-tabset>
-        <div *appAcl="'!bypassVideoDurationLimit'" class="text-center">
-            <p class="mb-0 help-text text-muted" *ngIf="durationRestriction !== 0"><strong>Warning!</strong> Currently,
-                videos above
-                {{ durationRestriction }} minutes are not
-                accepted.
-            </p>
+        <div *appAcl="'!bypassVideoDurationLimit'" class="px-3">
+            <div class="d-flex align-items-center justify-content-center" *ngIf="durationRestriction !== 0">
+                <app-bx-chip [options]="{'type': 'duration-limit'}" [display]="'icon'">
+                </app-bx-chip>
+                <p class="mb-0 help-text text-muted"><strong>Warning!</strong>
+                    Videos longer than {{ durationRestriction }} minutes will be rejected.
+                </p>
+            </div>
         </div>
         <app-youtube-search-tab *ngIf="displayedTab === 'youtube'" [boxToken]="boxToken" [user]="user"
             [videosInQueue]="videosInQueue" [berriesEnabled]="berriesEnabled">

@@ -39,6 +39,9 @@
                     <app-bx-chip [options]="{'type': 'lock'}" [display]="'icon'" *ngIf="box?.private"></app-bx-chip>
                     <app-bx-chip [options]="{'type': 'coin-enabled'}" [display]="'icon'" *ngIf="box?.options?.berries">
                     </app-bx-chip>
+                    <app-bx-chip [options]="{'type': 'duration-limit'}" [display]="'icon'"
+                        *ngIf="box?.options?.videoMaxDurationLimit !== 0">
+                    </app-bx-chip>
                 </div>
             </div>
         </div>
