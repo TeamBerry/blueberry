@@ -93,7 +93,8 @@
                                 </app-bx-chip>
                                 <app-bx-chip [options]="{'type': 'lock'}" [display]="'icon'" *ngIf="box?.private">
                                 </app-bx-chip>
-                                <app-bx-chip [options]="{'type': 'no-coin'}" *ngIf="!box?.options?.berries">
+                                <app-bx-chip [options]="{'type': 'coin-enabled'}" [display]="'icon'"
+                                    *ngIf="box?.options?.berries">
                                 </app-bx-chip>
                             </div>
                         </div>

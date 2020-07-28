@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export interface ChipOptions {
     chipText?: string
     tooltipText?: string
-    type: 'random' | 'loop' | 'no-coin' | 'lock'
+    type: 'random' | 'loop' | 'coin-enabled' | 'lock' | 'duration-limit'
     icon?: string
 }
 
@@ -30,10 +30,10 @@ export class BxChipComponent implements OnInit {
             icon: 'replay',
         },
         {
-            type: 'no-coin',
-            chipText: 'No Berries',
-            tooltipText: 'You will not collect Berry Coins in this box.',
-            icon: 'no-coin',
+            type: 'coin-enabled',
+            chipText: 'Berries Enabled',
+            tooltipText: 'You will collect Berry Coins in this box.',
+            icon: 'coin-enabled',
         },
         {
             type: 'lock',
