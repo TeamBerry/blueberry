@@ -3,6 +3,8 @@
         <nav class="nav flex-column p-0 text-right">
             <a class="nav-link nav-link-inverted" (click)="currentTab = 'account'"
                 [ngClass]="{'active':currentTab === 'account'}">Account</a>
+            <a class="nav-link nav-link-inverted" (click)="currentTab = 'security'"
+                [ngClass]="{'active':currentTab === 'security'}">Security</a>
             <a class="nav-link nav-link-inverted" (click)="currentTab = 'display'"
                 [ngClass]="{'active':currentTab === 'display'}">Display</a>
         </nav>
@@ -140,6 +142,75 @@
                             (valueChange)="toggleColorBlindMode()">
                         </app-slide-toggle>
                     </div>
+                </div>
+            </div>
+            <div id="security-tab" *ngIf="currentTab === 'security'">
+                <h3 class="tab-title">Security</h3>
+                <h5 class="section-title">Password Change</h5>
+                <p class="help-text text-muted">This operation is <strong>irreversible</strong>. Once you password is
+                    reset, you will be disconnected.</p>
+                <div class="mt-2">
+                    <form [formGroup]="passwordResetForm" (ngSubmit)="resetPassword()">
+                        <div class="form-group">
+                            <div class="d-flex align-items-center">
+                                <div class="col-3">
+                                    <label for="password">Current password</label>
+                                </div>
+                                <input type="password" class="form-control input-lg" formControlName="currentPassword"
+                                    placeholder="Enter your current password here" required minlength="8">
+                            </div>
+                            <div *ngIf="currentPassword.invalid && (currentPassword.dirty || currentPassword.touched)">
+                                <app-bx-alert
+                                    [options]="{'type': 'danger', 'icon': false, 'message': 'Your current password is required'}"
+                                    *ngIf="currentPassword.errors['required']"></app-bx-alert>
+                                <app-bx-alert
+                                    [options]="{'type': 'danger', 'icon': false, 'message': 'Your password cannot have less than 8 symbols'}"
+                                    *ngIf="currentPassword.errors['minlength']"></app-bx-alert>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="d-flex align-items-center">
+                                <div class="col-3">
+                                    <label for="password">New password</label>
+                                </div>
+                                <input type="password" class="form-control input-lg" formControlName="newPassword"
+                                    placeholder="Enter your new password here" required minlength="8">
+                            </div>
+                            <div *ngIf="newPassword.invalid && (newPassword.dirty || newPassword.touched)">
+                                <app-bx-alert
+                                    [options]="{'type': 'danger', 'icon': false, 'message': 'Your new password is required'}"
+                                    *ngIf="newPassword.errors['required']"></app-bx-alert>
+                                <app-bx-alert
+                                    [options]="{'type': 'danger', 'icon': false, 'message': 'Your password cannot have less than 8 symbols'}"
+                                    *ngIf="newPassword.errors['minlength']"></app-bx-alert>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="d-flex align-items-center">
+                                <div class="col-3">
+                                    <label for="password">New password verification</label>
+                                </div>
+                                <input type="password" class="form-control input-lg" formControlName="newPasswordVerify"
+                                    placeholder="Verify your new password here" required minlength="8">
+                            </div>
+                            <div
+                                *ngIf="newPasswordVerify.invalid && (newPasswordVerify.dirty || newPasswordVerify.touched)">
+                                <app-bx-alert
+                                    [options]="{'type': 'danger', 'icon': false, 'message': 'The password verification is required'}"
+                                    *ngIf="newPasswordVerify.errors['required']"></app-bx-alert>
+                                <app-bx-alert
+                                    [options]="{'type': 'danger', 'icon': false, 'message': 'Your password cannot have less than 8 symbols'}"
+                                    *ngIf="newPasswordVerify.errors['minlength']"></app-bx-alert>
+                                <app-bx-alert
+                                    [options]="{'type': 'danger', 'icon': false, 'message': 'Your passwords do not match'}"
+                                    *ngIf="newPasswordVerify.errors['passwordMismatch']"></app-bx-alert>
+                            </div>
+                        </div>
+                        <app-bx-alert [options]="{'type': 'danger', 'message': errorMessage}" *ngIf="errorMessage">
+                        </app-bx-alert>
+                        <button type="submit" class="btn btn-block btn-default"
+                            [disabled]="!passwordResetForm.valid">Reset my password</button>
+                    </form>
                 </div>
             </div>
         </div>
