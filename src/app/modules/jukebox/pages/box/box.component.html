@@ -97,7 +97,7 @@
                                     *ngIf="box?.options?.berries">
                                 </app-bx-chip>
                                 <app-bx-chip
-                                    [options]="{'type': 'duration-limit', 'chipText': box.options.videoMaxDurationLimit + ' mins.'}"
+                                    [options]="{'type': 'duration-limit', 'chipText': box.options.videoMaxDurationLimit + ' mins.', 'tooltipText': 'Videos longer than ' + box.options.videoMaxDurationLimit + ' mins will be rejected.'}"
                                     [display]="'full'" *ngIf="box?.options?.videoMaxDurationLimit !== 0">
                                 </app-bx-chip>
                             </div>
