@@ -37,6 +37,12 @@ export class Box {
          * @type {boolean}
          */
         berries: boolean;
+        /**
+         * Indicates the maximum allowed duration of a video for submission
+         *
+         * @type {boolean}
+         */
+        videoMaxDurationLimit: number;
     }
     acl: ACLConfig;
     users?: number
@@ -53,7 +59,8 @@ export class Box {
         this.options = obj && obj.options || {
             random: false,
             loop: false,
-            berries: true
+            berries: true,
+            videoMaxDurationLimit: 0
         }
         this.users = obj && obj.users || null;
         this.createdAt = obj && obj.createdAt || null;
