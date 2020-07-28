@@ -84,6 +84,11 @@ export class AuthService {
         return this.http.post(`${environment.araza}/auth/reset/${resetToken}`, { password })
     }
 
+    // PASSWORD UPDATE
+    updatePassword(password: string) {
+        return this.http.put(`${environment.araza}/auth`, { password })
+    }
+
     /**
      * Logs the user out by destroying its session
      *
