@@ -40,7 +40,10 @@
 
                         <div class="form-group d-flex no-gutters">
                             <div class="col-10">
-                                <label for="berries" class="col-form-label pb-0">Access Restriction</label>
+                                <div class="d-flex align-items-center">
+                                    <app-bx-chip [options]="{'type': 'lock'}" [display]="'icon'"></app-bx-chip>
+                                    <label for="berries" class="col-form-label">Access Restriction</label>
+                                </div>
                                 <p class="help-text text-muted">Your box will not appear in the home page. You will only
                                     be able to grant access by sharing its link directly.</p>
                             </div>
@@ -53,7 +56,10 @@
                         <h4>Settings</h4>
                         <div class="form-group d-flex no-gutters">
                             <div class="col-10">
-                                <label for="random" class="col-form-label pb-0">Pick at Random</label>
+                                <div class="d-flex align-items-center">
+                                    <app-bx-chip [options]="{'type': 'random'}" [display]="'icon'"></app-bx-chip>
+                                    <label for="random" class="col-form-label">Pick at Random</label>
+                                </div>
                                 <p class="help-text text-muted">When a video ends, the next one will be picked at random
                                     from the upcoming pool of videos</p>
                             </div>
@@ -64,7 +70,11 @@
 
                         <div class="form-group d-flex no-gutters">
                             <div class="col-10">
-                                <label for="random" class="col-form-label pb-0">Loop Queue</label>
+                                <div class="d-flex align-items-center">
+                                    <app-bx-chip [options]="{'type': 'loop'}" [display]="'icon'">
+                                    </app-bx-chip>
+                                    <label for="random" class="col-form-label">Loop Queue</label>
+                                </div>
                                 <p class="help-text text-muted">The system will automatically requeue old videos.
                                     Combined with Random Mode, videos will be picked randomly.</p>
                             </div>
@@ -75,7 +85,10 @@
 
                         <div class="form-group d-flex no-gutters">
                             <div class="col-10">
-                                <label for="berries" class="col-form-label pb-0">Berries System</label>
+                                <div class="d-flex align-items-center">
+                                    <app-bx-chip [options]="{'type': 'coin-enabled'}" [display]="'icon'"></app-bx-chip>
+                                    <label for="berries" class="col-form-label">Berries System</label>
+                                </div>
                                 <p class="help-text text-muted">Your users will be able to collect Berries while they
                                     are in your box. They will then be able to spend the berries to skip a video or
                                     select the next video to play.
@@ -89,12 +102,14 @@
 
                         <div class="form-group d-flex no-gutters">
                             <div class="col-8">
-                                <label for="durationRestriction" class="col-form-label pb-0">Video Duration
-                                    Restriction</label>
+                                <div class="d-flex align-items-center">
+                                    <app-bx-chip [options]="{'type': 'duration-limit'}" [display]="'icon'">
+                                    </app-bx-chip>
+                                    <label for="durationRestriction" class="col-form-label">Video Duration
+                                        Restriction</label>
+                                </div>
                                 <p class="help-text text-muted">Videos that exceed the set limit will not be accepted
-                                    into
-                                    the queue.
-                                    Specifying <strong>0</strong> will disable this restriction
+                                    into the queue. Specifying <strong>0</strong> will disable this restriction
                                 </p>
                             </div>
                             <div class="col m-auto">
