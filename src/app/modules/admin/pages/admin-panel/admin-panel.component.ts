@@ -9,7 +9,7 @@ import { AuthService } from 'app/core/auth/auth.service';
     styleUrls: ['./admin-panel.component.scss']
 })
 export class AdminPanelComponent implements OnInit {
-    public currentTab = 'acl';
+    public currentTab = 'boxes';
 
     constructor() { }
 
