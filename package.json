@@ -32,7 +32,7 @@
     "moment": "2.27.0",
     "ngx-color-picker": "9.1.0",
     "ngx-toastr": "13.0.0",
-    "rxjs": "6.6.0",
+    "rxjs": "6.6.2",
     "socket.io-client": "2.3.0",
     "tslib": "2.0.0",
     "zone.js": "0.10.3"
