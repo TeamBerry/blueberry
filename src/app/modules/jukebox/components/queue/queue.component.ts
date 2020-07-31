@@ -1,14 +1,15 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef } from '@angular/core';
+import { fromEvent } from 'rxjs';
+import { filter, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 import { JukeboxService } from '../../jukebox.service';
 import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
-import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BoxService } from 'app/shared/services/box.service';
-import { ToastrService } from 'ngx-toastr';
-import { QueueItemActionRequest, QueueItem } from '@teamberry/muscadine';
+import { QueueItemActionRequest, QueueItem, VideoSubmissionRequest } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-queue',
@@ -18,6 +19,9 @@ import { QueueItemActionRequest, QueueItem } from '@teamberry/muscadine';
 export class QueueComponent implements OnInit, OnChanges {
     @Input() box: Box = null;
     @Input() user: User = new User;
+
+    @ViewChild('filterInput') input: ElementRef;
+    filterValue = '';
 
     currentlyPlaying: QueueItem;
     playedVideos: Array<QueueItem>;
@@ -42,6 +46,28 @@ export class QueueComponent implements OnInit, OnChanges {
 
     ngOnChanges() {
         this.listen();
+    }
+
+    ngAfterViewInit() {
+        this.bindSearch();
+    }
+
+    bindSearch() {
+        fromEvent(this.input.nativeElement, 'keyup')
+            .pipe(
+                filter(Boolean),
+                debounceTime(500),
+                distinctUntilChanged(),
+                tap(() => {
+                    this.filterValue = this.input.nativeElement.value
+                })
+            )
+            .subscribe()
+    }
+
+    resetFilter() {
+        this.filterValue = ''
+        this.input.nativeElement.value = ''
     }
 
     /**
@@ -156,7 +182,7 @@ export class QueueComponent implements OnInit, OnChanges {
      * @memberof PlaylistComponent
      */
     replayVideo(link: QueueItem['video']['link']) {
-        const submissionPayload: SubmissionPayload = {
+        const submissionPayload: VideoSubmissionRequest = {
             link: link,
             userToken: this.user._id,
             boxToken: this.box._id

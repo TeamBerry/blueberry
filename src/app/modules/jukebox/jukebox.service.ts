@@ -6,8 +6,7 @@ import * as _ from 'lodash';
 
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
-import { Message, FeedbackMessage, QueueItemActionRequest, SyncPacket } from '@teamberry/muscadine';
-import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
+import { Message, FeedbackMessage, QueueItemActionRequest, SyncPacket, VideoSubmissionRequest } from '@teamberry/muscadine';
 import { AuthService } from 'app/core/auth/auth.service';
 import { User } from 'app/shared/models/user.model';
 import { AuthSubject } from 'app/shared/models/session.model';
@@ -104,10 +103,10 @@ export class JukeboxService {
     /**
      * Submits a video to the queue of the box
      *
-     * @param {SubmissionPayload} video
+     * @param {VideoSubmissionRequest} video
      * @memberof JukeboxService
      */
-    public submitVideo(video: SubmissionPayload): void {
+    public submitVideo(video: VideoSubmissionRequest): void {
         this.boxSocket.emit('video', video);
     }
 

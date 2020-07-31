@@ -14,6 +14,8 @@ export class SearchTabComponent implements OnInit {
     @Input() user: AuthSubject;
 
     videosInQueue: Array<string>;
+    berriesEnabled: boolean;
+    durationRestriction: number;
 
     displayedTab: 'youtube' | 'playlists' = 'youtube';
 
@@ -26,6 +28,8 @@ export class SearchTabComponent implements OnInit {
             (box: Box) => {
                 if (box) {
                     this.videosInQueue = box.playlist.map((queueItem: QueueItem) => queueItem.video.link)
+                    this.berriesEnabled = box.options.berries
+                    this.durationRestriction = box.options.videoMaxDurationLimit;
                 }
             }
         )

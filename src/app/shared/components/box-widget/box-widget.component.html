@@ -37,7 +37,12 @@
                     <app-bx-chip [options]="{'type': 'loop'}" [display]="'icon'" *ngIf="box?.options?.loop">
                     </app-bx-chip>
                     <app-bx-chip [options]="{'type': 'lock'}" [display]="'icon'" *ngIf="box?.private"></app-bx-chip>
-                    <app-bx-chip [options]="{'type': 'no-coin'}" *ngIf="!box?.options?.berries"></app-bx-chip>
+                    <app-bx-chip [options]="{'type': 'coin-enabled'}" [display]="'icon'" *ngIf="box?.options?.berries">
+                    </app-bx-chip>
+                    <app-bx-chip
+                        [options]="{'type': 'duration-limit', 'tooltipText': 'Videos longer than ' + box.options.videoMaxDurationLimit + ' mins will be rejected.'}"
+                        [display]="'icon'" *ngIf="box?.options?.videoMaxDurationLimit !== 0">
+                    </app-bx-chip>
                 </div>
             </div>
         </div>

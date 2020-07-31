@@ -33,6 +33,9 @@ export class UserSettingsComponent implements OnInit {
     public colorSuccess: boolean
 
     deactivationForm: FormGroup;
+    passwordResetForm: FormGroup;
+
+    errorMessage: string = null;
 
     constructor(
         private authService: AuthService,
@@ -42,7 +45,7 @@ export class UserSettingsComponent implements OnInit {
         private toastr: ToastrService
     ) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
         if (this.session.settings.theme === 'light') {
             this.isDarkThemeEnabled = false;
         }
@@ -52,9 +55,30 @@ export class UserSettingsComponent implements OnInit {
         this.deactivationForm = new FormGroup({
             deactivationName: new FormControl('', [Validators.required, this.deactivationValidator.bind(this)])
         })
+
+        this.passwordResetForm = new FormGroup({
+            currentPassword: new FormControl('', [
+                Validators.required,
+                Validators.minLength(8)
+            ]),
+            newPassword: new FormControl('', [
+                Validators.required,
+                Validators.minLength(8)
+            ]),
+            newPasswordVerify: new FormControl('', [
+                Validators.required,
+                Validators.minLength(8)
+            ])
+        })
     }
 
-    get deactivationName() { return this.deactivationForm.get('deactivationName');}
+    // Deactivation form
+    get deactivationName() { return this.deactivationForm.get('deactivationName'); }
+
+    // Reset password form
+    get currentPassword() { return this.passwordResetForm.get('currentPassword'); }
+    get newPassword() { return this.passwordResetForm.get('newPassword'); }
+    get newPasswordVerify() { return this.passwordResetForm.get('newPasswordVerify'); }
 
     closeSettings() {
         this.close.emit();
@@ -112,6 +136,43 @@ export class UserSettingsComponent implements OnInit {
             },
             (error) => {
                 this.toastr.error(`You still have boxes. Please delete all of them and try again.`, 'Error')
+            }
+        )
+    }
+
+    // Password reset
+
+    /**
+     * Checks if the password verification input has the same value as the password input
+     *
+     * @returns {boolean} Result of the check
+     * @memberof SignupFormComponent
+     */
+    passwordMatchVerify(): boolean {
+        return (this.passwordResetForm.value.newPassword === this.passwordResetForm.value.newPasswordVerify);
+    };
+
+
+    resetPassword(): void {
+        this.errorMessage = null;
+        if (!this.passwordMatchVerify()) {
+            this.errorMessage = 'Your password verification is invalid.';
+            return;
+        }
+
+        this.authService.login(this.session.mail, this.passwordResetForm.value.currentPassword).subscribe(
+            () => {
+                this.authService.updatePassword(this.passwordResetForm.value.newPassword).subscribe(
+                    () => {
+                        this.authService.logout();
+                    },
+                    error => {
+                        this.errorMessage = "Your request could not be processed. Please try again."
+                    }
+                )
+            },
+            error => {
+                this.errorMessage = "Your current password is incorrect."
             }
         )
     }

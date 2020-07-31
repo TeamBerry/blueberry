@@ -66,6 +66,7 @@ export class SignupFormComponent implements OnInit {
     };
 
     signup() {
+        this.errorMessage = null;
         if (!this.passwordMatchVerify()) {
             this.errorMessage = 'Your password verification is invalid.';
             return;

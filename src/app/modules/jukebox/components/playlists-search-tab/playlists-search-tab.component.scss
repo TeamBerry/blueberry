@@ -30,4 +30,5 @@
 .selected-playlist-items {
     height: 55.5vh;
     overflow: auto;
+    @include can-search();
 }

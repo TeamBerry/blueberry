@@ -26,6 +26,12 @@ export class AclFormComponent implements OnInit {
                     withBerries: false
                 },
                 {
+                    key: 'bypassVideoDurationRestriction',
+                    name: 'Bypass Video Duration Restriction',
+                    explanation: 'Allows to ignore the video duration restriction set in place for the box',
+                    withBerries: false
+                },
+                {
                     key: 'removeVideo',
                     name: 'Remove a video from the Queue',
                     explanation: null,

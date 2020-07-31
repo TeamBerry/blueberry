@@ -8,10 +8,10 @@ import { Video } from 'app/shared/models/video.model';
 import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
 import { LoginFormComponent } from '../../../../shared/components/login-form/login-form.component';
 import { SignupFormComponent } from '../../../../shared/components/signup-form/signup-form.component';
-import { SubmissionPayload } from 'app/shared/models/playlist-payload.model';
 import { UserService } from 'app/shared/services/user.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { UserPlaylist } from 'app/shared/models/user-playlist.model';
+import { VideoSubmissionRequest } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-playlists-search-tab',
@@ -22,6 +22,7 @@ export class PlaylistsSearchTabComponent implements OnInit, AfterViewInit {
     @Input() boxToken: string;
     @Input() user: AuthSubject;
     @Input() videosInQueue: Array<string>;
+    @Input() berriesEnabled: boolean;
     @ViewChild('filterInput') input: ElementRef
 
     favorites$: Observable<User['favorites']>
@@ -67,11 +68,12 @@ export class PlaylistsSearchTabComponent implements OnInit, AfterViewInit {
      * @param {Video} video The video to submit
      * @memberof FavoriteSearchTabComponent
      */
-    submitVideo(video: Video) {
-        const submissionPayload: SubmissionPayload = {
-            link: video.link,
+    submitVideo(event: { video: Video, flag?: 'next' | 'now'}) {
+        const submissionPayload: VideoSubmissionRequest = {
+            link: event.video.link,
             userToken: this.user._id,
-            boxToken: this.boxToken
+            boxToken: this.boxToken,
+            flag: event?.flag
         };
         this.jukeboxService.submitVideo(submissionPayload);
     }

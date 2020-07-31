@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { BoxService } from './../../../../shared/services/box.service';
 import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
@@ -8,13 +8,12 @@ import { AuthService } from 'app/core/auth/auth.service';
 import { Box } from 'app/shared/models/box.model';
 import { filter } from 'rxjs/operators';
 import { AuthSubject } from 'app/shared/models/session.model';
-import { environment } from 'environments/environment';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
-import { QueueItem, SyncPacket } from '@teamberry/muscadine';
+import { QueueItem, SyncPacket, FeedbackMessage, VideoSubmissionRequest } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-box',
@@ -62,6 +61,8 @@ export class BoxComponent implements OnInit {
     user: AuthSubject = AuthService.getAuthSubject();
 
     connectionStatus = 'offline';
+    isDraggingMiniature = false;
+
 
     constructor(
         private boxService: BoxService,
@@ -175,5 +176,61 @@ export class BoxComponent implements OnInit {
                 this.toastr.success('Video added', 'Success')
             }
         )
+    }
+
+    handleMiniatureDrag(isDraggingMiniature: boolean) {
+        this.isDraggingMiniature = isDraggingMiniature;
+    }
+
+    submitFromMiniature(miniatureSource: string) {
+
+        if (!this.user.mail) {
+            this.handleMiniatureError('ANONYMOUS_ACCOUNT')
+            return;
+        }
+
+        try {
+            const miniatureUrl = /src="?([^"\s]+)"?\s*/.exec(miniatureSource);
+
+            if (!miniatureUrl) {
+                this.handleMiniatureError('WRONG_URL');
+                return;
+            }
+
+            const extractedLink = new RegExp(/ytimg.com\/vi\/([a-z0-9\-\_]+)\//i).exec(miniatureUrl[1]);
+
+            if (!extractedLink) {
+                this.handleMiniatureError('WRONG_URL');
+                return;
+            }
+
+            const video: VideoSubmissionRequest = {
+                link: extractedLink[1],
+                userToken: this.user._id,
+                boxToken: this.box._id
+            }
+
+            this.jukeboxService.submitVideo(video);
+        } catch (error) {
+            this.handleMiniatureError('WRONG_URL');
+        }
+    }
+
+    handleMiniatureError(error: 'WRONG_URL' | 'ANONYMOUS_ACCOUNT') {
+        let contents: string = ''
+        if (error = 'WRONG_URL') {
+            contents = 'The miniature image is corrupted or not from YouTube. Please retry with a miniature from YouTube.'
+        }
+        if (error = 'ANONYMOUS_ACCOUNT') {
+            contents = 'You need to be logged in to add videos to the queue. Please log in or create an account.'
+        }
+
+        const message: FeedbackMessage = new FeedbackMessage({
+            contents,
+            scope: this.box._id,
+            time: new Date(),
+            context: 'error'
+        });
+        this.jukeboxService.postMessageToStream(message);
     }
 }
