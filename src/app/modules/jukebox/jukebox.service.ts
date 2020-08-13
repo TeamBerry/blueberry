@@ -158,7 +158,8 @@ export class JukeboxService {
     public skipVideo(): void {
         this.boxSocket.emit('sync', {
             order: 'next',
-            boxToken: this.box._id
+            boxToken: this.box._id,
+            userToken: this.user._id
         });
     }
 
