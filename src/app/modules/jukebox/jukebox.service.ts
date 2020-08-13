@@ -13,6 +13,7 @@ import { AuthSubject } from 'app/shared/models/session.model';
 import { BerryCount } from '@teamberry/muscadine/dist/interfaces/subscriber.interface';
 import { SystemMessage } from '@teamberry/muscadine/dist/models/message.model';
 import { RoleChangeRequest } from 'app/shared/models/role-change.model';
+import { QueueService } from 'app/shared/services/queue.service';
 
 export type subjects = Box | Message | FeedbackMessage | SystemMessage | SyncPacket | BerryCount
 @Injectable({
@@ -52,7 +53,9 @@ export class JukeboxService {
 
     public user: AuthSubject = AuthService.getAuthSubject();
 
-    constructor() {
+    constructor(
+        private queueService: QueueService
+    ) {
     }
 
     /**
@@ -107,7 +110,11 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public submitVideo(video: VideoSubmissionRequest): void {
-        this.boxSocket.emit('video', video);
+        this.queueService.addVideo(video).subscribe(
+            () => {
+                console.log('Video added yay')
+            }
+        )
     }
 
     /**
@@ -117,7 +124,11 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public submitPlaylist(playlist: { playlistId: string, userToken: string, boxToken: string }): void {
-        this.boxSocket.emit('playlist', playlist);
+        this.queueService.addPlaylist(playlist.boxToken, playlist.playlistId).subscribe(
+            () => {
+                console.log('Add playlist yay')
+            }
+        )
     }
 
     /**
@@ -127,7 +138,11 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public cancelVideo = (actionRequest: QueueItemActionRequest): void => {
-        this.boxSocket.emit('cancel', actionRequest)
+        this.queueService.removeVideo(actionRequest).subscribe(
+            () => {
+                console.log('Cancel yay')
+            }
+        )
     }
 
     /**
@@ -137,16 +152,19 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public preselectVideo = (actionRequest: QueueItemActionRequest): void => {
-        this.boxSocket.emit('preselect', actionRequest)
+        this.queueService.playNext(actionRequest).subscribe(
+            () => {
+                console.log('Play next yay')
+            }
+        )
     }
 
     public forcePlayVideo = (actionRequest: QueueItemActionRequest): void => {
-        this.boxSocket.emit('forcePlay', actionRequest)
-    }
-
-    // TODO: Link to the rest of the app
-    public changeRoleOfUser = (roleChangeRequest: RoleChangeRequest): void => {
-        this.boxSocket.emit('roleChange', roleChangeRequest)
+        this.queueService.playNow(actionRequest).subscribe(
+            () => {
+                console.log('Play now yay')
+            }
+        )
     }
 
     /**
@@ -156,11 +174,9 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public skipVideo(): void {
-        this.boxSocket.emit('sync', {
-            order: 'next',
-            boxToken: this.box._id,
-            userToken: this.user._id
-        });
+        this.queueService.skipVideo(this.box._id).subscribe(
+            () => { console.log('yay') }
+        )
     }
 
     // TODO: The following 2
@@ -313,6 +329,11 @@ export class JukeboxService {
                 this.connectionSubject.next('offline');
             };
         });
+    }
+
+    // TODO: Link to the rest of the app
+    public changeRoleOfUser = (roleChangeRequest: RoleChangeRequest): void => {
+        this.boxSocket.emit('roleChange', roleChangeRequest)
     }
 
     /**
