@@ -8,7 +8,6 @@ import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
 import { Message, FeedbackMessage, QueueItemActionRequest, SyncPacket, VideoSubmissionRequest } from '@teamberry/muscadine';
 import { AuthService } from 'app/core/auth/auth.service';
-import { User } from 'app/shared/models/user.model';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { BerryCount } from '@teamberry/muscadine/dist/interfaces/subscriber.interface';
 import { SystemMessage } from '@teamberry/muscadine/dist/models/message.model';
