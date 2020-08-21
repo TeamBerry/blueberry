@@ -68,6 +68,7 @@ export class YoutubeSearchTabComponent implements OnInit {
                 },
                 (error) => {
                     this.canSearch = true
+                    this.errorMessage = 'Your search could not be executed. Please try again later.'
                 }
             )
         }
