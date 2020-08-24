@@ -10,14 +10,19 @@
     <div *ngIf="state === 'login'">
         <form [formGroup]="loginForm" (ngSubmit)="login()">
             <div class="form-group">
-                <label for="mail">Mail address</label>
-                <input type="email" formControlName="mail" class="form-control input-lg" id="mail" placeholder="Mail address" required>
-                <app-bx-alert [options]="{'type': 'danger', 'icon': false, 'message': 'The mail address is required'}" *ngIf="mail.invalid && (mail.dirty || mail.touched)"></app-bx-alert>
+                <label for="mail">Email address</label>
+                <input type="email" formControlName="mail" class="form-control input-lg" id="mail"
+                    placeholder="Mail address" required>
+                <app-bx-alert [options]="{'type': 'danger', 'icon': false, 'message': 'The mail address is required'}"
+                    *ngIf="mail.invalid && (mail.dirty || mail.touched)"></app-bx-alert>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" formControlName="password" class="form-control input-lg" name="password" placeholder="Password" required>
-                <app-bx-alert [options]="{'type': 'danger', 'icon': false, 'message': 'The password address is required'}" *ngIf="password.invalid && (password.dirty || password.touched)"></app-bx-alert>
+                <input type="password" formControlName="password" class="form-control input-lg" name="password"
+                    placeholder="Password" required>
+                <app-bx-alert
+                    [options]="{'type': 'danger', 'icon': false, 'message': 'The password address is required'}"
+                    *ngIf="password.invalid && (password.dirty || password.touched)"></app-bx-alert>
             </div>
             <div class="alert alert-danger text-center" *ngIf="errorMessage">{{ errorMessage }}</div>
             <div class="form-group align-center">
@@ -30,19 +35,24 @@
     </div>
     <div *ngIf="state === 'reset'">
         <div *ngIf="!isResetDone">
+            <p>Enter your email address to receive a reset link.</p>
             <form [formGroup]="resetForm" (ngSubmit)="resetPassword()">
                 <div class="form-group">
-                    <label for="mail">Mail address</label>
-                    <input type="email" formControlName="mail" class="form-control input-lg" placeholder="Mail address" required autofocus>
+                    <label for="mail">Email address</label>
+                    <input type="email" formControlName="mail" class="form-control input-lg" placeholder="Mail address"
+                        required autofocus>
                 </div>
                 <div class="form-group">
-                    <button type="submit" [disabled]="!resetForm.valid" class="btn btn-block btn-default">Reset</button>
+                    <button type="submit" [disabled]="!resetForm.valid" class="btn btn-block btn-default">Get my Reset
+                        link</button>
                 </div>
                 <div class="form-group">
                     <a href="#" (click)="state = 'login'">Go back to the login</a>
                 </div>
             </form>
         </div>
-        <app-bx-alert [options]="{'type': 'success', 'message': 'Your password has been reset. Check your inbox for a mail containing the next steps to define your new password.'}" *ngIf="isResetDone"></app-bx-alert>
+        <app-bx-alert
+            [options]="{'type': 'success', 'message': 'Your password has been reset. Check your inbox for a mail containing the next steps to define your new password.'}"
+            *ngIf="isResetDone"></app-bx-alert>
     </div>
 </div>
