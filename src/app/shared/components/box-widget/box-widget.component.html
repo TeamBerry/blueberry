@@ -27,7 +27,7 @@
                     {{ box.users || 0 }}</span>
             </div>
             <div id="box-info">
-                <p id="box-admin" class="mb-0">{{ box.creator['name'] }} <span class="m-1">&#9679;</span>
+                <p id="box-admin" class="mb-0">{{ box?.creator['name'] }} <span class="m-1">&#9679;</span>
                     {{ box.lang | languageFlagPipe }}
                 </p>
                 <p id="currently-playing" class="mb-0">{{ currentVideo?.video?.name || "--" }}</p>
