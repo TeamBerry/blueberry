@@ -68,6 +68,7 @@ export class YoutubeSearchTabComponent implements OnInit {
                 },
                 (error) => {
                     this.canSearch = true
+                    this.errorMessage = 'Your search could not be executed. Please try again later.'
                 }
             )
         }
@@ -82,10 +83,10 @@ export class YoutubeSearchTabComponent implements OnInit {
      * to the box, via the jukebox service method "submitVideo"
      *
      * @param {Video} video The video to submit
-     * @param {null | 'next' | 'now'} flag
+     * @param {VideoSubmissionRequest['flag']} flag
      * @memberof FavoriteSearchTabComponent
      */
-    submitVideo(event: { video: Video, flag?: 'next' | 'now'}) {
+    submitVideo(event: { video: Video, flag?: VideoSubmissionRequest['flag']}) {
         const submissionPayload: VideoSubmissionRequest = {
             link: event.video.link,
             userToken: this.user._id,

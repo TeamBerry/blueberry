@@ -1,0 +1,11 @@
+@import './../../../imports.scss';
+h5 {
+    color: $master-color;
+    margin-top: 2em;
+}
+.main-background {
+    color: var(--text-main-color);
+    height: calc(100vh - #{$nav-height});
+    overflow-y: auto;
+    margin-bottom: 200px;
+}
