@@ -82,6 +82,12 @@ export class AclFormComponent implements OnInit {
                     name: 'Demote an user from VIP to Community Member',
                     explanation: null,
                     withBerries: false
+                },
+                {
+                    key: 'inviteUser',
+                    name: 'Invite users to the box',
+                    explanation: 'Allows users to generate an invite link to the box',
+                    withBerries: false
                 }
             ]
         }

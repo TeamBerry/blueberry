@@ -1,11 +1,20 @@
 <button class="btn btn-{{computedOptions.context}} btn-icon"
     [ngbTooltip]="computedOptions.textDisplay === 'tooltip' ? buttonText : ''" container="body">
-    <img src="../../../../assets/images/icons/play-icon.svg" alt="" *ngIf="computedOptions.type === 'play'" class="img-icon">
-    <img src="../../../../assets/images/icons/replay-icon.svg" alt="" *ngIf="computedOptions.type === 'replay'" class="img-icon">
-    <img src="../../../../assets/images/icons/skip-icon.svg" alt="" *ngIf="computedOptions.type === 'skip'" class="img-icon">
-    <img src="../../../../assets/images/icons/trash-icon.svg" alt="" *ngIf="computedOptions.type === 'cancel'" class="img-icon">
-    <img src="../../../../assets/images/icons/add-to-library-icon.svg" alt="" *ngIf="computedOptions.type === 'addToLibrary'" class="img-icon">
-    <img src="../../../../assets/images/icons/force-next-icon.svg" alt="" *ngIf="computedOptions.type === 'forceNext'" class="img-icon">
-    <img src="../../../../assets/images/icons/force-play-icon.svg" alt="" *ngIf="computedOptions.type === 'forcePlay'" class="img-icon">
+    <img src="../../../../assets/images/icons/play-icon.svg" alt="" *ngIf="computedOptions.type === 'play'"
+        class="img-icon">
+    <img src="../../../../assets/images/icons/replay-icon.svg" alt="" *ngIf="computedOptions.type === 'replay'"
+        class="img-icon">
+    <img src="../../../../assets/images/icons/skip-icon.svg" alt="" *ngIf="computedOptions.type === 'skip'"
+        class="img-icon">
+    <img src="../../../../assets/images/icons/trash-icon.svg" alt="" *ngIf="computedOptions.type === 'cancel'"
+        class="img-icon">
+    <img src="../../../../assets/images/icons/add-to-library-icon.svg" alt=""
+        *ngIf="computedOptions.type === 'addToLibrary'" class="img-icon">
+    <img src="../../../../assets/images/icons/force-next-icon.svg" alt="" *ngIf="computedOptions.type === 'forceNext'"
+        class="img-icon">
+    <img src="../../../../assets/images/icons/force-play-icon.svg" alt="" *ngIf="computedOptions.type === 'forcePlay'"
+        class="img-icon">
+    <img src="../../../../assets/images/icons/invite-icon.svg" alt="" *ngIf="computedOptions.type === 'inviteUser'"
+        class="img-icon">
     <span *ngIf="computedOptions.textDisplay === 'button'" class="btn-text ml-2">{{ buttonText }}</span>
 </button>
