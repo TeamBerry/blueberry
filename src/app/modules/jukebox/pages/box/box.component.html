@@ -58,7 +58,7 @@
                                     <span class="box-title" title="{{box.name}}">{{ box.name }}</span>
                                 </div>
                                 <div class="d-flex align-items-center">
-                                    <app-bx-button *appAcl="'inviteUser'"
+                                    <app-bx-button (click)="openInviteModal()" *appAcl="'inviteUser'"
                                         [options]="{'type': 'inviteUser', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Generate Invite'}">
                                     </app-bx-button>
                                     <div class="d-flex align-items-center px-2" ngbTooltip="Settings"
