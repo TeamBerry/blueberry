@@ -12,7 +12,7 @@ import { Invite } from 'app/shared/models/invite.model';
 export class InviteFormComponent implements OnInit {
     @Input() boxToken: string;
     invite: Invite = null;
-    fullLink: string = 'https://berrybox.tv/invite/';
+    fullLink: string = 'berrybox.tv/invite/';
 
     constructor(
         public boxService: BoxService,

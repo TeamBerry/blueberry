@@ -29,6 +29,7 @@ import { PasswordResetComponent } from './pages/password-reset/password-reset.co
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ClipboardModule } from 'ngx-clipboard';
+import { BoxJoinComponent } from './shared/components/box-join/box-join.component';
 
 @NgModule({
     declarations: [
@@ -43,7 +44,8 @@ import { ClipboardModule } from 'ngx-clipboard';
         UserSettingsComponent,
         PlaylistFormComponent,
         PasswordResetComponent,
-        InviteFormComponent
+        InviteFormComponent,
+        BoxJoinComponent
     ],
     imports: [
         AppRoutingModule,
@@ -66,7 +68,8 @@ import { ClipboardModule } from 'ngx-clipboard';
         SignupFormComponent,
         UserSettingsComponent,
         PlaylistFormComponent,
-        InviteFormComponent
+        InviteFormComponent,
+        BoxJoinComponent
     ]
 })
 export class AppModule { }
