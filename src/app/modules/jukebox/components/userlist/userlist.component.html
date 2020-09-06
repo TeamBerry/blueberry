@@ -1,5 +1,11 @@
 <div class="panel-tab-title-section">
+    <div class="col"></div>
     <p class="panel-tab-title col">Users</p>
+    <div class="col pr-0">
+        <app-bx-button (click)="openInviteModal()" *appAcl="'inviteUser'" class="panel-tab-title-button"
+            [options]="{'type': 'inviteUser', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Invite users'}">
+        </app-bx-button>
+    </div>
 </div>
 <div class="px-3">
     <div *ngIf="admin">

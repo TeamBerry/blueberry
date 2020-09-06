@@ -6,6 +6,8 @@ import { JukeboxService } from '../../jukebox.service';
 import { ActiveSubscriber, Role, BoxScope } from '@teamberry/muscadine';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { RoleChangeRequest } from 'app/shared/models/role-change.model';
+import { InviteFormComponent } from 'app/shared/components/invite-form/invite-form.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-userlist',
@@ -24,7 +26,8 @@ export class UserlistComponent implements OnInit {
 
     constructor(
         private jukeboxService: JukeboxService,
-        private boxService: BoxService
+        private boxService: BoxService,
+        private modalService: NgbModal
     ) { }
 
     ngOnInit() {
@@ -58,6 +61,11 @@ export class UserlistComponent implements OnInit {
         }
 
         this.jukeboxService.changeRoleOfUser(roleChangeRequest)
+    }
+
+    openInviteModal() {
+        const modalRef = this.modalService.open(InviteFormComponent)
+        modalRef.componentInstance.boxToken = this.box._id
     }
 
 }
