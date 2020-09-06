@@ -11,7 +11,7 @@ import { AuthSubject, Session } from 'app/shared/models/session.model';
 @Injectable()
 export class AuthService {
     authSubject: AuthSubject;
-    public subject: BehaviorSubject<AuthSubject> = new BehaviorSubject<AuthSubject>(this.authSubject);
+    public subject: BehaviorSubject<AuthSubject> = new BehaviorSubject<AuthSubject>(null);
 
     static getAuthSubject(): AuthSubject {
         let session: AuthSubject = JSON.parse(localStorage.getItem('BBOX-user'));
