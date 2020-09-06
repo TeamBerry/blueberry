@@ -8,7 +8,12 @@
     <div class="container-fluid featured home-section">
         <div class="free-text text-center">
             <h1 class="display-3">Join a box</h1>
-            <p class="lead">Find other people who watch the videos you like.</p>
+            <p class="lead">
+                Find other people who watch the videos you like or
+                <button class="btn btn-outline-primary" (click)="openJoinModal()">
+                    Join a box with an invite link
+                </button>
+            </p>
         </div>
         <div class="row">
             <app-box-widget class="col-sm-6 col-lg-3 py-2" *ngFor="let box of boxes; let i = index" [box]="box"
