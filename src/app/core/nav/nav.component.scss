@@ -69,3 +69,7 @@
 .dropdown-divider {
     color: white;
 }
+
+.nav-item {
+    @include margin-horizontal(5px);
+}

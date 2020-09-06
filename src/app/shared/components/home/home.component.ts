@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Box } from '../../models/box.model';
 import { BoxFormComponent } from './../box-form/box-form.component';
 import { BoxService } from './../../services/box.service';
+import { BoxJoinComponent } from '../box-join/box-join.component';
 
 @Component({
     selector: 'app-home',
@@ -39,6 +40,10 @@ export class HomeComponent implements OnInit {
      */
     enter(token: string) {
         this.router.navigate(['box/', token]);
+    }
+
+    openJoinModal() {
+        const modalRef = this.modalService.open(BoxJoinComponent);
     }
 
     openCreateModal() {

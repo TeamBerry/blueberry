@@ -14,7 +14,6 @@ import { UserSettingsComponent } from '../../components/user-settings/user-setti
 import { ThemeService } from 'app/shared/services/theme.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { environment } from 'environments/environment';
-import { BoxJoinComponent } from 'app/shared/components/box-join/box-join.component';
 
 @Component({
     selector: 'app-nav',
@@ -58,11 +57,6 @@ export class NavComponent implements OnInit {
         }
 
         this.themeService.init()
-    }
-
-    openJoinModal() {
-        const modalRef = this.modalService.open(BoxJoinComponent);
-        this.settingsHost.viewContainerRef.clear();
     }
 
     openCreateModal() {

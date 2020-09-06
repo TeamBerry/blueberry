@@ -111,6 +111,10 @@ export class BoxService {
         return this.http.post<Invite>(`${environment.araza}/boxes/${boxToken}/invite`, null);
     }
 
+    matchInvite(link: string): Observable<Invite> {
+        return this.http.get<Invite>(`${environment.araza}/invites/${link}`);
+    }
+
     /**
      * Lists the users currently connected to the box
      *
