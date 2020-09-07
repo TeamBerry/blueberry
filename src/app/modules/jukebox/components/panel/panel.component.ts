@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { JukeboxService } from './../../jukebox.service';
-import { Message, FeedbackMessage } from '@teamberry/muscadine';
+import { Message, FeedbackMessage, SystemMessage } from '@teamberry/muscadine';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
@@ -129,16 +129,33 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
                 filter(message =>
-                    message instanceof Message && message.scope === this.boxToken
+                    (message instanceof Message || message instanceof SystemMessage || message instanceof FeedbackMessage) && message.scope === this.boxToken
                 ),
             )
             .subscribe(
-                (contents: Message) => {
+                (message) => {
                     if (this.activePanel !== 'chat') {
-                        if (contents.source !== 'system') {
+                        if (message.source !== 'feedback') {
                             this.newMessages = true
                         } else {
-                            this.toastr.info(contents.contents, 'System')
+                            switch (message.context) {
+                                case 'success':
+                                    this.toastr.success(message.contents, 'Success');
+                                    break;
+
+                                case 'warning':
+                                    this.toastr.warning(message.contents, 'Warning');
+                                    break;
+
+                                case 'error':
+                                    this.toastr.error(message.contents, 'Error');
+                                    break;
+
+                                case 'info':
+                                default:
+                                    this.toastr.info(message.contents, 'System Information');
+                                    break;
+                            }
                         }
                     }
                 },
