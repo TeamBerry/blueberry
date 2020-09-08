@@ -5,14 +5,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     templateUrl: './bx-checkbox.component.html',
     styleUrls: ['./bx-checkbox.component.scss']
 })
-export class BxCheckboxComponent implements OnInit {
+export class BxCheckboxComponent {
     @Input() value: boolean;
-    @Output() valueChange: EventEmitter<any> = new EventEmitter(this.value);
+    @Output() valueChange: EventEmitter<any> = new EventEmitter(null);
 
     constructor() { }
-
-    ngOnInit() {
-    }
 
     /**
      * When a click is registered, it toggles the slider. We get the value back from the chain of events, sent

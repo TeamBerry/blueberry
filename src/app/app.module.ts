@@ -10,6 +10,7 @@ import { BoxWidgetComponent } from './shared/components/box-widget/box-widget.co
 import { HomeComponent } from './shared/components/home/home.component';
 import { BoxFormComponent } from './shared/components/box-form/box-form.component';
 import { PlaylistFormComponent } from './shared/components/playlist-form/playlist-form.component';
+import { InviteFormComponent } from './shared/components/invite-form/invite-form.component';
 
 // Auth component
 import { NavComponent } from './core/nav/nav.component'; // Exceptional, so it can benefit from the auth directive
@@ -27,6 +28,8 @@ import { PasswordResetComponent } from './pages/password-reset/password-reset.co
 // External Modules
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { ClipboardModule } from 'ngx-clipboard';
+import { BoxJoinComponent } from './shared/components/box-join/box-join.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +43,9 @@ import { ColorPickerModule } from 'ngx-color-picker';
         SettingsDirective,
         UserSettingsComponent,
         PlaylistFormComponent,
-        PasswordResetComponent
+        PasswordResetComponent,
+        InviteFormComponent,
+        BoxJoinComponent
     ],
     imports: [
         AppRoutingModule,
@@ -50,7 +55,8 @@ import { ColorPickerModule } from 'ngx-color-picker';
         CoreModule,
         JukeboxModule,
         NgbModule,
-        ColorPickerModule
+        ColorPickerModule,
+        ClipboardModule
     ],
     exports: [
         AppComponent
@@ -61,7 +67,9 @@ import { ColorPickerModule } from 'ngx-color-picker';
         LoginFormComponent,
         SignupFormComponent,
         UserSettingsComponent,
-        PlaylistFormComponent
+        PlaylistFormComponent,
+        InviteFormComponent,
+        BoxJoinComponent
     ]
 })
 export class AppModule { }

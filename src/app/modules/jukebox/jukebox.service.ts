@@ -47,7 +47,7 @@ export class JukeboxService {
 
     public box: Box;
 
-    public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(this.box);
+    public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(null);
     public connectionSubject: BehaviorSubject<string> = new BehaviorSubject<string>('offline');
 
     public user: AuthSubject = AuthService.getAuthSubject();

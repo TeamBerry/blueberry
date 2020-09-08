@@ -14,6 +14,7 @@ import { PlaylistSelectorComponent } from 'app/shared/components/playlist-select
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
 import { QueueItem, SyncPacket, FeedbackMessage, VideoSubmissionRequest } from '@teamberry/muscadine';
+import { InviteFormComponent } from 'app/shared/components/invite-form/invite-form.component';
 
 @Component({
     selector: 'app-box',
@@ -166,6 +167,11 @@ export class BoxComponent implements OnInit {
             modalRef.componentInstance.title = `Edit Box Settings`
             modalRef.componentInstance.box = _.cloneDeep(this.box)
         }
+    }
+
+    openInviteModal() {
+        const modalRef = this.modalService.open(InviteFormComponent)
+        modalRef.componentInstance.boxToken = this.box._id
     }
 
     addToPlaylist() {

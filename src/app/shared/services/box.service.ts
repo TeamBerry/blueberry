@@ -8,6 +8,7 @@ import { environment } from './../../../environments/environment';
 import { Box } from './../models/box.model';
 import { UserPlaylist } from '../models/user-playlist.model';
 import { ActiveSubscriber } from '@teamberry/muscadine';
+import { Invite } from '../models/invite.model';
 
 @Injectable()
 export class BoxService {
@@ -104,6 +105,14 @@ export class BoxService {
                 _id: targetPlaylist
             }
         )
+    }
+
+    generateInvite(boxToken: string): Observable<Invite> {
+        return this.http.post<Invite>(`${environment.araza}/boxes/${boxToken}/invite`, null);
+    }
+
+    matchInvite(link: string): Observable<Invite> {
+        return this.http.get<Invite>(`${environment.araza}/invites/${link}`);
     }
 
     /**
