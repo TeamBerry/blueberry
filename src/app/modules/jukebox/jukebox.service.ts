@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
-import { Message, FeedbackMessage, QueueItemActionRequest, SyncPacket, VideoSubmissionRequest } from '@teamberry/muscadine';
+import { Message, FeedbackMessage, QueueItemActionRequest, SyncPacket, VideoSubmissionRequest, Permission } from '@teamberry/muscadine';
 import { AuthService } from 'app/core/auth/auth.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { BerryCount } from '@teamberry/muscadine/dist/interfaces/subscriber.interface';
@@ -342,10 +342,11 @@ export class JukeboxService {
      * @returns {boolean}
      * @memberof JukeboxService
      */
-    public evaluateCommandPower(): boolean {
+    public evaluateCommandPower(permission: Permission): boolean {
+        const permissions: Array<Permission> = JSON.parse(localStorage.getItem('BBOX-Scope'))
+
         // Send error if the user doing this is not the creator
-        const creator = this.box.creator['_id'] || this.box.creator;
-        if (this.user._id !== creator) {
+        if (!permissions.includes(permission)) {
             const message: Message = new Message({
                 contents: 'You do not have the power to execute this action.',
                 source: 'system',
