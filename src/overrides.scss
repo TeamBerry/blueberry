@@ -216,17 +216,19 @@
 
 // Alerts
 .alert {
-    background-color: transparent;
     font-weight: 700;
     &.alert-danger {
+        background-color: transparent;
         color: $danger-color !important;
         border-color: $danger-color;
     }
     &.alert-warning {
+        background-color: transparent;
         color: var(--warning-color) !important;
         border-color: var(--warning-color);
     }
     &.alert-success {
+        background-color: transparent;
         color: var(--success-color) !important;
         border-color: var(--success-color);
     }
