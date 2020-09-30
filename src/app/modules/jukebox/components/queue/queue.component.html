@@ -28,7 +28,7 @@
         </div>
         <div>
             <div class="d-flex align-items-center pl-2 pt-3" *ngIf="box.options.loop">
-                <p class="list-rank pl-2">Videos in Queue ({{ upcomingVideos.length + playedVideos.length }}): </p>
+                <p class="list-rank pl-2">Videos in Queue ({{ upcomingVideos.length }}): </p>
             </div>
             <app-bx-tabset *ngIf="!box.options.loop" [options]="tabSetOptions" (clickedOption)="displayTab = $event">
             </app-bx-tabset>
@@ -59,11 +59,6 @@
             <div *ngIf="box.options.loop">
                 <div
                     *ngFor="let entry of upcomingVideos | filter:filterValue:['video.name', 'video.link', 'submitted_by.name']; let i = index">
-                    <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
-                    </app-queue-video>
-                </div>
-                <div
-                    *ngFor="let entry of playedVideos | filter:filterValue:['video.name', 'video.link', 'submitted_by.name']; let i = index">
                     <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
                     </app-queue-video>
                 </div>

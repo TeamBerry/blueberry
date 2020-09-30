@@ -85,6 +85,11 @@ export class QueueComponent implements OnInit, OnChanges {
                 }, 100);
                 this.playedVideos = this.buildPartialPlaylist(this.box.playlist, 'played');
                 this.upcomingVideos = this.buildPartialPlaylist(this.box.playlist, 'upcoming').reverse();
+
+                if (this.box.options.loop) {
+                    this.upcomingVideos = [...this.upcomingVideos, ...this.playedVideos]
+                }
+                this.upcomingVideos = this.putPreselectedFirst(this.upcomingVideos);
             }
         );
     }
@@ -116,14 +121,6 @@ export class QueueComponent implements OnInit, OnChanges {
                 return item.startTime === null;
             });
 
-            // Put the preselected video first
-            const preselectedVideoIndex = upcoming.findIndex((item: QueueItem) => item.isPreselected)
-            if (preselectedVideoIndex !== -1) {
-                const preselectedVideo = upcoming[preselectedVideoIndex]
-                upcoming.splice(preselectedVideoIndex, 1)
-                upcoming.push(preselectedVideo)
-            }
-
             this.tabSetOptions[0].title = `Upcoming (${upcoming.length})`
             return upcoming
         }
@@ -135,6 +132,18 @@ export class QueueComponent implements OnInit, OnChanges {
             this.tabSetOptions[1].title = `Played (${played.length})`
             return played
         }
+    }
+
+    putPreselectedFirst(playlist: Array<QueueItem>): Array<QueueItem> {
+        // Put the preselected video first
+        const preselectedVideoIndex = playlist.findIndex((item: QueueItem) => item.isPreselected)
+        if (preselectedVideoIndex !== -1) {
+            const preselectedVideo = playlist[preselectedVideoIndex]
+            playlist.splice(preselectedVideoIndex, 1)
+            playlist.unshift(preselectedVideo)
+        }
+
+        return playlist
     }
 
     /**
