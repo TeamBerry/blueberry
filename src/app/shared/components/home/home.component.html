@@ -21,8 +21,7 @@
                 </button>
             </p>
         </div>
-        <div class="featured home-section d-flex flex-column justify-content-center align-items-center"
-            *ngIf="featuredBoxes.length > 0">
+        <div class="d-flex flex-column justify-content-center align-items-center" *ngIf="featuredBoxes.length > 0">
             <h2 class="featured-title">Our Picks</h2>
             <app-featured-boxes-carousel [boxes]="featuredBoxes"></app-featured-boxes-carousel>
         </div>
