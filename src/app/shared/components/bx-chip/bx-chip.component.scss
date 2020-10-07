@@ -5,9 +5,7 @@
     align-items: center;
     border-radius: 15px;
     height: 30px;
-    &.bx-chip-display-full {
-        width: 100px;
-    }
+    width: max-content;
     &.bx-chip-display-icon {
         width: 30px;
         display: flex;
@@ -21,4 +19,7 @@
     }
     background-color: grey;
     color: white;
+    .chip-text {
+        margin-right: 8px;
+    }
 }
