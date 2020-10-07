@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Box } from 'app/shared/models/box.model';
 
 @Component({
@@ -6,13 +6,17 @@ import { Box } from 'app/shared/models/box.model';
   templateUrl: './featured-box-card.component.html',
   styleUrls: ['./featured-box-card.component.scss']
 })
-export class FeaturedBoxCardComponent implements OnInit {
+export class FeaturedBoxCardComponent implements OnInit, OnChanges {
     @Input() box: Box;
     currentVideo: any;
 
     constructor() { }
 
     ngOnInit() {
+        this.displayCurrentVideo();
+    }
+
+    ngOnChanges() {
         this.displayCurrentVideo();
     }
 

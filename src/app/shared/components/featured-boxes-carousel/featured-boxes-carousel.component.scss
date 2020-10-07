@@ -1,0 +1,5 @@
+@import './../../../../imports.scss';
+.featured-box-card {
+    @include margin-horizontal(50px);
+    width: 1020px;
+}

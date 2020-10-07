@@ -18,6 +18,14 @@
     padding-bottom: 50px;
 }
 
+.featured-title {
+    color: var(--active-color);
+}
+
+.box-list-cta {
+    color: var(--text-main-color);
+}
+
 .footer {
     background-color: darken($main-black, 10%);
 }
