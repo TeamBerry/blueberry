@@ -21,6 +21,15 @@
                 </button>
             </p>
         </div>
+    </div>
+    <div class="container-fluid featured home-section featured-section">
+        <h2>Featured</h2>
+        <!-- <div class="row">
+            <app-featured-box-card class="col-sm-12 col-lg-5 py-2" *ngFor="let box of featuredBoxes; let i = index"
+                [box]="box" (click)="enter(box._id)"></app-featured-box-card>
+        </div> -->
+    </div>
+    <div class="featured home-section">
         <div class="row">
             <app-box-widget class="col-sm-6 col-lg-3 py-2" *ngFor="let box of boxes; let i = index" [box]="box"
                 (click)="enter(box._id)"></app-box-widget>
