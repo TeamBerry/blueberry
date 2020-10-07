@@ -6,11 +6,9 @@
     cursor: pointer;
     border: 1px solid var(--active-color);
     height: 352px;
+    width: 1023px;
     .card-img-top {
         border-radius: inherit;
-    }
-    .no-playing {
-        width: 70%;
     }
     &:hover {
         background-color: var(--background-main-hover-color);
@@ -27,12 +25,9 @@
 
 .img-container {
     height: 350px;
+    width: 465.5px;
     flex-shrink: 0;
     overflow: hidden;
-    img {
-        width: inherit;
-        height: inherit;
-    }
 }
 
 #box-info-container {
@@ -66,7 +61,6 @@
 
 .box-description {
     display: flex;
-    height: 180px;
     overflow-x: auto;
 }
 
