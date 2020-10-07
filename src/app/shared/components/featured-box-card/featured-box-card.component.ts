@@ -1,15 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import * as _ from 'lodash';
-
-import { Box } from '../../models/box.model';
-import { environment } from 'environments/environment';
+import { Component, Input, OnInit } from '@angular/core';
+import { Box } from 'app/shared/models/box.model';
 
 @Component({
-    selector: 'app-box-widget',
-    templateUrl: './box-widget.component.html',
-    styleUrls: ['./box-widget.component.scss']
+  selector: 'app-featured-box-card',
+  templateUrl: './featured-box-card.component.html',
+  styleUrls: ['./featured-box-card.component.scss']
 })
-export class BoxWidgetComponent implements OnInit {
+export class FeaturedBoxCardComponent implements OnInit {
     @Input() box: Box;
     currentVideo: any;
 
