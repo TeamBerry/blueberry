@@ -24,24 +24,14 @@ export class FeaturedBoxesCarouselComponent implements OnInit {
         this.selectedBox = this.boxes[this.selectedIndex];
     }
 
-    // FIXME: Need to click twice on wrap?
     previous() {
-        this.selectedIndex -= 1;
-        if (this.selectedIndex < 0) {
-            this.selectedIndex = this.boxes.length;
-        }
+        this.selectedIndex = (this.selectedIndex - 1 < 0) ? this.boxes.length - 1 : this.selectedIndex - 1
 
         this.selectBox()
     }
 
-    // FIXME: Need to click twice on wrap?
     next() {
-        const newIndex = this.selectedIndex + 1;
-        if (newIndex > this.boxes.length) {
-            this.selectedIndex = 0;
-        } else {
-            this.selectedIndex = newIndex;
-        }
+        this.selectedIndex = (this.selectedIndex + 1 >= this.boxes.length) ? 0 : this.selectedIndex + 1
 
         this.selectBox()
     }
