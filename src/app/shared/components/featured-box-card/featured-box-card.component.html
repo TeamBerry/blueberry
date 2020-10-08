@@ -1,0 +1,60 @@
+<div class="card-box d-flex">
+    <div class="d-flex align-items-center justify-content-center col-5 p-0">
+        <img *ngIf="currentVideo" src="https://i.ytimg.com/vi/{{ currentVideo?.video?.link }}/hqdefault.jpg" alt=""
+            class="card-img-top">
+        <img *ngIf="!currentVideo" src="assets/images/berrybox-logo-master.png" alt="" class="card-img-top">
+    </div>
+    <div class="col-7 p-3 d-flex flex-column">
+        <div class="d-flex flex-column justify-content-between">
+            <div class="d-flex">
+                <div class="bb-box-picture mr-2">
+                    <app-profile-picture [userId]="box?.creator?._id" [size]="'md'"></app-profile-picture>
+                </div>
+                <div style="flex: 1; flex-shrink: 1;">
+                    <h4 class="card-name m-0">{{ box.name }}</h4>
+                    <p id="box-admin" class="mb-0">{{ box?.creator['name'] }} <span class="m-1">&#9679;</span>
+                        {{ box.lang | languageFlagPipe }}
+                    </p>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span ngbTooltip="Number of users currently in the box">
+                        <svg class="berrybox-svg mr-1" style="height: 1.5em;" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 500 500">
+                            <path class="berrybox-path"
+                                d="M376,143.42a79.68,79.68,0,0,1-39.9,69.08,105.63,105.63,0,0,0-12.52-.74h-50a79.76,79.76,0,0,0-9.19-141.42A79.74,79.74,0,0,1,376,143.42Z" />
+                            <path class="berrybox-path"
+                                d="M336.06,212.5a79,79,0,0,1-29.95,10,104,104,0,0,0-33.84-10l1.26-.74h50A105.63,105.63,0,0,1,336.06,212.5Z" />
+                            <path class="berrybox-path"
+                                d="M428.49,316.71v109.6a10,10,0,0,1-10,10h-63.8a10,10,0,0,0,10-10V316.71a104.92,104.92,0,0,0-58.58-94.17,79,79,0,0,0,29.95-10A105,105,0,0,1,428.49,316.71Z" />
+                            <path class="berrybox-path"
+                                d="M293.46,143.42a79.69,79.69,0,0,1-38.63,68.34l-1.26.74a78.52,78.52,0,0,1-7.93,4,79.39,79.39,0,0,1-31.9,6.64q-3.78,0-7.46-.35a79.74,79.74,0,1,1,87.18-79.38Z" />
+                            <path class="berrybox-path"
+                                d="M346,316.71v109.6a10,10,0,0,1-10,10H91.48a10,10,0,0,1-10-10V320.57A108.74,108.74,0,0,1,190.29,211.76H241q3.24,0,6.44.21t6.09.53A104.92,104.92,0,0,1,346,316.71Z" />
+                        </svg>
+                        {{ box.users || 0 }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <p id="currently-playing" class="mb-0">{{ currentVideo?.video?.name || "--" }}</p>
+            <div class="modes">
+                <app-bx-chip [options]="{'type': 'random'}" [display]="'full'" *ngIf="box?.options?.random">
+                </app-bx-chip>
+                <app-bx-chip [options]="{'type': 'loop'}" [display]="'full'" *ngIf="box?.options?.loop">
+                </app-bx-chip>
+                <app-bx-chip [options]="{'type': 'coin-enabled'}" [display]="'full'" *ngIf="box?.options?.berries">
+                </app-bx-chip>
+                <app-bx-chip
+                    [options]="{'type': 'duration-limit', 'tooltipText': 'Videos longer than ' + box.options.videoMaxDurationLimit + ' mins will be rejected.'}"
+                    [display]="'full'" *ngIf="box?.options?.videoMaxDurationLimit !== 0">
+                </app-bx-chip>
+            </div>
+        </div>
+        <hr>
+        <div class="box-description">
+            {{ box.description }}
+        </div>
+    </div>
+</div>

@@ -21,9 +21,16 @@
                 </button>
             </p>
         </div>
-        <div class="row">
-            <app-box-widget class="col-sm-6 col-lg-3 py-2" *ngFor="let box of boxes; let i = index" [box]="box"
-                (click)="enter(box._id)"></app-box-widget>
+        <div class="d-flex flex-column justify-content-center align-items-center" *ngIf="featuredBoxes.length > 0">
+            <h2 class="featured-title">Our Picks</h2>
+            <app-featured-boxes-carousel [boxes]="featuredBoxes"></app-featured-boxes-carousel>
+        </div>
+        <div class="featured home-section">
+            <h2 class="box-list-cta">Find your Community</h2>
+            <div class="row">
+                <app-box-widget class="col-sm-6 col-md-6 col-lg-4 col-xl-3 py-2"
+                    *ngFor="let box of boxes; let i = index" [box]="box" (click)="enter(box._id)"></app-box-widget>
+            </div>
         </div>
     </div>
 
