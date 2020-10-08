@@ -124,9 +124,13 @@
                             </div>
                         </div>
                     </div>
+                    <div *ngIf="box.featured">
+                        <p class="featured-indicator mb-0">Featured until
+                            <span>{{ box.featured | date:'dd/MM/yyyy HH:mm:ss' }}</span></p>
+                    </div>
                     <div *ngIf="!box.open">
                         <p class="deletion-indicator mb-0">Scheduled for deletion on
-                            <span>{{ setDeletionDate(box.updatedAt) | date }}</span></p>
+                            <span>{{ setDeletionDate(box.updatedAt) | date:'dd/MM/yyyy HH:mm:ss' }}</span></p>
                     </div>
                 </div>
             </div>

@@ -31,6 +31,14 @@
     }
 }
 
+.featured-indicator {
+    color: var(--text-main-color);
+    font-weight: 700;
+    span {
+        color: var(--active-color)
+    }
+}
+
 .deletion-indicator {
     color: var(--text-main-color);
     font-weight: 700;
