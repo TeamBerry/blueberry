@@ -28,8 +28,8 @@
         <div class="featured home-section">
             <h2 class="box-list-cta">Find your Community</h2>
             <div class="row">
-                <app-box-widget class="col-sm-6 col-lg-3 py-2" *ngFor="let box of boxes; let i = index" [box]="box"
-                    (click)="enter(box._id)"></app-box-widget>
+                <app-box-widget class="col-sm-6 col-md-6 col-lg-4 col-xl-3 py-2"
+                    *ngFor="let box of boxes; let i = index" [box]="box" (click)="enter(box._id)"></app-box-widget>
             </div>
         </div>
     </div>
