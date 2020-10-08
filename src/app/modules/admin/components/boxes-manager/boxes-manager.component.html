@@ -124,6 +124,10 @@
                             </div>
                         </div>
                     </div>
+                    <div *ngIf="!box.open">
+                        <p class="deletion-indicator mb-0">Scheduled for deletion on
+                            <span>{{ setDeletionDate(box.updatedAt) | date }}</span></p>
+                    </div>
                 </div>
             </div>
             <div class="px-2 pb-2">

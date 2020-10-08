@@ -31,6 +31,14 @@
     }
 }
 
+.deletion-indicator {
+    color: var(--text-main-color);
+    font-weight: 700;
+    span {
+        color: var(--danger-color);
+    }
+}
+
 .box-stats-banner {
     display: flex;
     justify-content: center;
