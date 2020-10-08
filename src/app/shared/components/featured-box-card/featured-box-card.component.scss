@@ -1,0 +1,73 @@
+@import './../../../../imports.scss';
+.card-box {
+    background-color: var(--background-main-color);
+    color: var(--text-main-color);
+    border-radius: 0 !important;
+    cursor: pointer;
+    border: 1px solid var(--active-color);
+    height: 352px;
+    width: 1023px;
+    .card-img-top {
+        border-radius: inherit;
+    }
+    &:hover {
+        background-color: var(--background-main-hover-color);
+    }
+}
+
+.card-name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-main-color);
+}
+
+.img-container {
+    height: 350px;
+    width: 465.5px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+#box-info-container {
+    width: 85%;
+}
+
+#box-admin {
+    font-family: 'Montserrat';
+    color: var(--text-system-color);
+}
+
+#currently-playing {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: 700;
+}
+
+#box-info {
+    font-size: pxtorem(14px);
+}
+
+.box-pp {
+    @include profile-picture-size(40px);
+}
+
+.modes {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.box-description {
+    display: flex;
+    overflow-x: auto;
+}
+
+hr {
+    width: 65%;
+    height: 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: var(--active-color);
+}

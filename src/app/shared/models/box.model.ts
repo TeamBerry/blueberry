@@ -45,6 +45,7 @@ export class Box {
         videoMaxDurationLimit: number;
     }
     acl: ACLConfig;
+    featured: Date;
     users?: number
 
     constructor(obj?: any) {
@@ -62,6 +63,7 @@ export class Box {
             berries: true,
             videoMaxDurationLimit: 0
         }
+        this.featured = obj && obj.featured || null;
         this.users = obj && obj.users || null;
         this.createdAt = obj && obj.createdAt || null;
         this.updatedAt = obj && obj.updatedAt || null;

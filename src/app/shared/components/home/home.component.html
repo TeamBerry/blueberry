@@ -21,9 +21,16 @@
                 </button>
             </p>
         </div>
-        <div class="row">
-            <app-box-widget class="col-sm-6 col-lg-3 py-2" *ngFor="let box of boxes; let i = index" [box]="box"
-                (click)="enter(box._id)"></app-box-widget>
+        <div class="d-flex flex-column justify-content-center align-items-center" *ngIf="featuredBoxes.length > 0">
+            <h2 class="featured-title">Our Picks</h2>
+            <app-featured-boxes-carousel [boxes]="featuredBoxes"></app-featured-boxes-carousel>
+        </div>
+        <div class="featured home-section">
+            <h2 class="box-list-cta">Find your Community</h2>
+            <div class="row">
+                <app-box-widget class="col-sm-6 col-md-6 col-lg-4 col-xl-3 py-2"
+                    *ngFor="let box of boxes; let i = index" [box]="box" (click)="enter(box._id)"></app-box-widget>
+            </div>
         </div>
     </div>
 
@@ -32,7 +39,7 @@
             <h1 class="display-3">Watch YouTube together.</h1>
         </div>
         <div class="row no-gutters">
-            <div class="col">
+            <div class="col-sm-12 col-md-6 col-lg-4">
                 <span class="glyphicon glyphicon-th-large"></span>
                 <h3 class="how-to-point">Create a box</h3>
                 <p class="how-to-text">Enter a name and you're set. Share the unique link and your friends will be able
@@ -40,14 +47,14 @@
                 </p>
             </div>
 
-            <div class="col">
+            <div class="col-sm-12 col-md-6 col-lg-4">
                 <span class="glyphicon glyphicon-play"></span>
                 <h3 class="how-to-point">Build playlists together</h3>
                 <p class="how-to-text">Submit a YouTube link and it will be queued. You have total control over the
                     playlist.</p>
             </div>
 
-            <div class="col">
+            <div class="col-sm-12 col-md-6 col-lg-4">
                 <span class="glyphicon glyphicon-search"></span>
                 <h3 class="how-to-point">Discover</h3>
                 <p class="how-to-text">If you feel adventurous, join a box. You might find videos you like.</p>

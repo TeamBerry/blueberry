@@ -205,4 +205,8 @@ export class BoxesManagerComponent implements OnInit {
 
         this.lifetime = computedDuration;
     }
+
+    setDeletionDate(date: Date) {
+        return new Date(date).setSeconds(new Date(date).getSeconds() + 604800)
+    }
 }

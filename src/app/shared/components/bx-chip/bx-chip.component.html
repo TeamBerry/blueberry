@@ -1,3 +1,4 @@
 <div class="bx-chip bx-chip-display-{{display}}" [ngbTooltip]="computedConfiguration.tooltipText" container="body">
-    <img src="../../../../assets/images/icons/{{computedConfiguration.icon}}-icon.svg" alt=""> <span *ngIf="display==='full'">{{ computedConfiguration.chipText }}</span>
+    <img src="../../../../assets/images/icons/{{computedConfiguration.icon}}-icon.svg" alt="">
+    <span *ngIf="display==='full'" class="chip-text">{{ computedConfiguration.chipText }}</span>
 </div>

@@ -16,6 +16,7 @@ import { BoxJoinComponent } from '../box-join/box-join.component';
 export class HomeComponent implements OnInit {
     title = 'YouTube. With everyone.';
     boxes: Box[] = [];
+    featuredBoxes: Box[] = [];
     loading = true;
 
     constructor(public router: Router,
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         this.boxService.index().subscribe(
             boxes => {
+                this.featuredBoxes = boxes.filter(box => box.featured)
                 this.boxes = boxes;
                 this.loading = false;
             },
