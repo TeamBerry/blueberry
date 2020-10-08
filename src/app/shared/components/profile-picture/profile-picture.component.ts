@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { environment } from 'environments/environment';
 
 @Component({
@@ -6,7 +6,7 @@ import { environment } from 'environments/environment';
     templateUrl: './profile-picture.component.html',
     styleUrls: ['./profile-picture.component.scss']
 })
-export class ProfilePictureComponent implements OnInit {
+export class ProfilePictureComponent implements OnInit, OnChanges {
     @Input() userId: string;
     @Input() size: 'xs' | 'sm' | 'md' | 'lg' = 'md';
 
@@ -20,6 +20,14 @@ export class ProfilePictureComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        this.loadUserPicture();
+    }
+
+    ngOnChanges() {
+        this.loadUserPicture();
+    }
+
+    loadUserPicture() {
         if (this.userId) {
             this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${this.userId}-picture`
         } else {
