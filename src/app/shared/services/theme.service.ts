@@ -36,7 +36,8 @@ export const darkTheme = {
     'trash-icon': 'url(./assets/images/icons/trash-icon.svg)',
     'active-icon': 'url(./assets/images/icons/active-icon.svg)',
     'access-icon': 'url(./assets/images/icons/enter-box-icon.svg)',
-    'berry-color': '#FF8E52'
+    'berry-color': '#FF8E52',
+    'video-separator-color': '#555555',
 }
 
 export const lightTheme = {
@@ -72,7 +73,8 @@ export const lightTheme = {
     'trash-icon': 'url(./assets/images/icons/trash-icon-light.svg)',
     'active-icon': 'url(./assets/images/icons/active-icon-light.svg)',
     'access-icon': 'url(./assets/images/icons/enter-box-icon-light.svg)',
-    'berry-color': '#FF8E52'
+    'berry-color': '#FF8E52',
+    'video-separator-color': '#C5C5C5',
 }
 
 @Injectable({

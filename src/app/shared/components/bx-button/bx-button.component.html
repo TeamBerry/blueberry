@@ -1,6 +1,6 @@
 <button class="btn btn-{{computedOptions.context}} btn-icon"
     [ngbTooltip]="computedOptions.textDisplay === 'tooltip' ? buttonText : ''" container="body">
-    <img src="../../../../assets/images/icons/play-icon.svg" alt="" *ngIf="computedOptions.type === 'play'"
+    <img src="../../../../assets/images/icons/play-later-icon.svg" alt="" *ngIf="computedOptions.type === 'play'"
         class="img-icon">
     <img src="../../../../assets/images/icons/replay-icon.svg" alt="" *ngIf="computedOptions.type === 'replay'"
         class="img-icon">
@@ -10,9 +10,9 @@
         class="img-icon">
     <img src="../../../../assets/images/icons/add-to-library-icon.svg" alt=""
         *ngIf="computedOptions.type === 'addToLibrary'" class="img-icon">
-    <img src="../../../../assets/images/icons/force-next-icon.svg" alt="" *ngIf="computedOptions.type === 'forceNext'"
+    <img src="../../../../assets/images/icons/play-next-icon.svg" alt="" *ngIf="computedOptions.type === 'forceNext'"
         class="img-icon">
-    <img src="../../../../assets/images/icons/force-play-icon.svg" alt="" *ngIf="computedOptions.type === 'forcePlay'"
+    <img src="../../../../assets/images/icons/play-now-icon.svg" alt="" *ngIf="computedOptions.type === 'forcePlay'"
         class="img-icon">
     <img src="../../../../assets/images/icons/invite-icon.svg" alt="" *ngIf="computedOptions.type === 'inviteUser'"
         class="img-icon">

@@ -9,14 +9,12 @@
         </div>
         <div class="entry-details pl-3 pr-0">
             <p class="song-list-line">
+                <span *ngIf="appliedOptions.inQueue" id="in-queue-indicator">Already in Queue: </span>
                 <a href="https://youtube.com/watch?v={{ video?.link }}" title="{{ video?.name }}">{{ video?.name }}</a>
             </p>
             <div class="entry-actions" *ngIf="!appliedOptions.none">
                 <app-bx-button *ngIf="appliedOptions.addToPlaylist" (click)="addToPlaylist()"
                     [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to the selected Playlist', 'context': 'queue'}">
-                </app-bx-button>
-                <app-bx-button *ngIf="appliedOptions.inQueue" class="ml-1"
-                    [options]="{'type': 'play', 'context': 'success', 'textDisplay': 'tooltip', 'text': 'This video is already in the queue'}">
                 </app-bx-button>
                 <span *appAcl="'addVideo'">
                     <app-bx-button *ngIf="appliedOptions.submit" (click)="submitVideo()" class="ml-1"
