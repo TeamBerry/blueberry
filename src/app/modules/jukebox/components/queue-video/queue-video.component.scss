@@ -1,6 +1,9 @@
 @import './../../../../../imports.scss';
 .playlist-entry {
     padding: 5px 0;
+    &:not(.playing){
+        border-bottom: 1px solid var(--video-separator-color);
+    }
     &:hover {
         background-color: var(--background-secondary-color-alternate);
     }
