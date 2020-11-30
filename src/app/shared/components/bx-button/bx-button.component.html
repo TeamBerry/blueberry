@@ -1,5 +1,7 @@
 <button class="btn btn-{{computedOptions.context}} btn-icon"
     [ngbTooltip]="computedOptions.textDisplay === 'tooltip' ? buttonText : ''" container="body">
+    <img src="../../../../assets/images/icons/settings-icon.svg" alt="" *ngIf="computedOptions.type === 'settings'"
+        class="img-icon">
     <img src="../../../../assets/images/icons/play-later-icon.svg" alt="" *ngIf="computedOptions.type === 'play'"
         class="img-icon">
     <img src="../../../../assets/images/icons/replay-icon.svg" alt="" *ngIf="computedOptions.type === 'replay'"
