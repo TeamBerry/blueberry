@@ -132,6 +132,17 @@ export class UserService {
      * @memberof UserService
      */
     uploadPicture(picture: FormData, user: AuthSubject): Observable<{ file: string }> {
-        return this.http.post<{ file: string }>(`${environment.araza}/users/${user._id}/picture`, picture)
+        return this.http.post<{ file: string }>(`${environment.araza}/user/picture`, picture)
+    }
+
+    /**
+     * Deletes the profile picture of the user
+     *
+     * @param {AuthSubject} user
+     * @returns {Observable<boolean>}
+     * @memberof UserService
+     */
+    deletePicture(): Observable<{ file: string }> {
+        return this.http.delete<{ file: string }>(`${environment.araza}/user/picture`)
     }
 }

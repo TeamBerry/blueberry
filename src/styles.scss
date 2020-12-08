@@ -231,6 +231,12 @@ button>svg {
     &.profile-picture-lg {
         @include profile-picture-size(80px);
     }
+    &.profile-picture-xl {
+        @include profile-picture-size(120px);
+    }
+    &.profile-picture-bordered {
+        border: 1px solid $master-color;
+    }
 }
 
 .command-key {
