@@ -35,7 +35,8 @@
             </div>
             <div class="submission-details" ngbTooltip="{{ item?.submittedAt | date:'dd/MM/yyyy HH:mm:ss'}}">
                 <div class="bb-box-picture d-flex align-items-center mr-2">
-                    <app-profile-picture [userId]="item.submitted_by._id" [size]="'xs'"></app-profile-picture>
+                    <app-profile-picture [fileName]="item.submitted_by.settings.picture" [size]="'xs'">
+                    </app-profile-picture>
                     <span class="ml-2" *ngIf="item?.submitted_by">
                         {{ item?.submitted_by?.name }}
                     </span>

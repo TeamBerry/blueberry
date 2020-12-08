@@ -29,6 +29,7 @@ import { FromNowPipe } from './pipes/from-now.pipe';
 import { AclFormComponent } from './components/acl-form/acl-form.component';
 import { LanguageFlagPipe } from './pipes/language-flag.pipe';
 import { YouTubeMiniatureDropzoneDirective } from './directive/youtube-miniature-dropzone.directive';
+import { PictureDeleterComponent } from './components/picture-deleter/picture-deleter.component';
 
 @NgModule({
     imports: [
@@ -44,6 +45,7 @@ import { YouTubeMiniatureDropzoneDirective } from './directive/youtube-miniature
         PlaylistSelectorComponent,
         FilterPipe,
         PictureUploaderComponent,
+        PictureDeleterComponent,
         BxAlertComponent,
         DurationPipe,
         BxButtonComponent,
@@ -70,6 +72,7 @@ import { YouTubeMiniatureDropzoneDirective } from './directive/youtube-miniature
         BoxDeletionEstimationPipe,
         FilterPipe,
         PictureUploaderComponent,
+        PictureDeleterComponent,
         BxAlertComponent,
         DurationPipe,
         BxButtonComponent,

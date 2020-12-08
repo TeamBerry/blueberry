@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h5>Delete your profile picture</h5>
+    <button type="button" class="close" aria-label="close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <p class="text-center">Your profile picture will be reset to the default picture. This operation cannot be undone,
+        although you may change your profile picture when you want.</p>
+    <div class="d-flex justify-content-between align-items-center p-3">
+        <!-- Profile picture -->
+        <img class="profile-picture profile-picture-xl profile-picture-bordered" src="{{userPicture}}" alt="">
+
+        <svg class="berrybox-svg" style="height: 5rem; rotate:180deg;" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 500 500">
+            <rect class="berrybox-path" x="193.23" y="56.04" width="84.54" height="261.43" rx="11.01"
+                transform="translate(201.03 -111.82) rotate(45)" />
+            <rect class="berrybox-path" x="193.23" y="182.53" width="84.54" height="261.43" rx="11.01"
+                transform="translate(623.52 368.22) rotate(135)" />
+        </svg>
+
+        <!-- Default picture -->
+        <img class="profile-picture profile-picture-xl profile-picture-bordered" src="{{defaultPicture}}" alt="">
+    </div>
+    <div *ngIf="!success; else successMessage">
+        <button type="button" class="btn btn-danger btn-block" (click)="deletePicture()">Confirm deletion</button>
+    </div>
+    <ng-template #successMessage>
+        <app-bx-alert [options]="{'type': 'success', 'message': 'Your profile picture has been reset.'}"></app-bx-alert>
+    </ng-template>
+</div>

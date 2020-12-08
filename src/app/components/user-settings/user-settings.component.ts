@@ -10,6 +10,7 @@ import { PictureUploaderComponent } from 'app/shared/components/picture-uploader
 import { UserService } from 'app/shared/services/user.service';
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { PictureDeleterComponent } from 'app/shared/components/picture-deleter/picture-deleter.component';
 
 @Component({
     selector: 'app-user-settings',
@@ -112,7 +113,8 @@ export class UserSettingsComponent implements OnInit {
     }
 
     toggleColorBlindMode() {
-        this.userService.updateSettings({ isColorblind: this.session.settings.isColorblind }).subscribe(
+        this.session.settings.color = '#DF62A9';
+        this.userService.updateSettings({ isColorblind: this.session.settings.isColorblind, color: this.session.settings.color }).subscribe(
             () => {
                 localStorage.setItem('BBOX-user', JSON.stringify(this.session));
                 console.log('Saved.');
@@ -122,6 +124,11 @@ export class UserSettingsComponent implements OnInit {
 
     openPictureUploader() {
         const modalRef = this.modalService.open(PictureUploaderComponent)
+    }
+
+    openPictureDeleter() {
+        const modalRef = this.modalService.open(PictureDeleterComponent)
+        modalRef.componentInstance.userPictureName = this.session.settings.picture
     }
 
     // Deactivation

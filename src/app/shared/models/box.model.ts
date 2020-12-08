@@ -8,6 +8,9 @@ export class Box {
     creator: {
         _id: string,
         name: string
+        settings?: {
+            picture: string
+        }
     };
     description: string;
     lang: string;
