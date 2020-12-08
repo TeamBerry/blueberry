@@ -10,6 +10,7 @@ import { PictureUploaderComponent } from 'app/shared/components/picture-uploader
 import { UserService } from 'app/shared/services/user.service';
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { PictureDeleterComponent } from 'app/shared/components/picture-deleter/picture-deleter.component';
 
 @Component({
     selector: 'app-user-settings',
@@ -122,6 +123,11 @@ export class UserSettingsComponent implements OnInit {
 
     openPictureUploader() {
         const modalRef = this.modalService.open(PictureUploaderComponent)
+    }
+
+    openPictureDeleter() {
+        const modalRef = this.modalService.open(PictureDeleterComponent)
+        modalRef.componentInstance.userPictureName = this.session.settings.picture
     }
 
     // Deactivation
