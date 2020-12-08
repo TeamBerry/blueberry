@@ -113,7 +113,8 @@ export class UserSettingsComponent implements OnInit {
     }
 
     toggleColorBlindMode() {
-        this.userService.updateSettings({ isColorblind: this.session.settings.isColorblind }).subscribe(
+        this.session.settings.color = '#DF62A9';
+        this.userService.updateSettings({ isColorblind: this.session.settings.isColorblind, color: this.session.settings.color }).subscribe(
             () => {
                 localStorage.setItem('BBOX-user', JSON.stringify(this.session));
                 console.log('Saved.');

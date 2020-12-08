@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <h5 class="section-title">Customized Colors</h5>
-                <div class="form-group">
+                <div class="form-group" *ngIf="!session.settings.isColorblind">
                     <label for="color">Chat Color</label>
                     <p class="help-text text-muted">Choose a color for your username in chat. Be careful, some colors
                         might be <strong>difficult to read</strong> in light or dark themes and for users with
@@ -137,8 +137,8 @@
                 <div class="form-group d-flex no-gutters">
                     <div class="col-10">
                         <label for="colorblind">Enable Color Blindness Display</label>
-                        <p class="help-text text-muted">Removes all custom user colors for your chat. Saved
-                            automatically.</p>
+                        <p class="help-text text-muted">Removes all custom user colors for your chat and resets your own
+                            color. Saved automatically.</p>
                     </div>
                     <div class="col m-auto">
                         <app-slide-toggle class="checkbox" [(value)]="session.settings.isColorblind"
