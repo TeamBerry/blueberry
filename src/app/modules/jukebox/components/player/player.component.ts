@@ -127,8 +127,10 @@ export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
     playVideo(video: PlayingItem) {
         let startingTime = video?.position ?? 0
 
-        if (startingTime <= 2) {
+        if (startingTime <= 1) {
             startingTime = 0;
+        } else {
+            startingTime += 0.3;
         }
 
         this.player.loadVideoById(video.video.link, startingTime);
