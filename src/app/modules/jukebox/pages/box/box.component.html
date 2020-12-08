@@ -48,7 +48,8 @@
                 <div class="col-lg-5 col-md-12 box-info">
                     <div class="d-flex">
                         <div class="bb-box-picture d-flex align-items-center justify-content-center mr-2">
-                            <app-profile-picture [userId]="box?.creator?._id" [size]="'md'"></app-profile-picture>
+                            <app-profile-picture [fileName]="box?.creator?.settings?.picture" [size]="'md'">
+                            </app-profile-picture>
                         </div>
                         <div class="bb-box-info w-100">
                             <div id="box-title-space">

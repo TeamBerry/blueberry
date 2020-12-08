@@ -11,7 +11,7 @@
     <div *ngIf="admin">
         <p class="role-title">Creator</p>
         <div class="d-flex align-items-center">
-            <app-profile-picture [userId]="admin._id" [size]="'xs'"></app-profile-picture>
+            <app-profile-picture [fileName]="admin.settings.picture" [size]="'xs'"></app-profile-picture>
             <span class="ml-1 user-name">{{ admin.name }}</span>
         </div>
     </div>
@@ -20,7 +20,7 @@
         <div *ngFor="let moderator of moderators" class="user-item my-1 d-flex">
             <div class="d-flex w-100 align-items-center justify-content-between">
                 <div>
-                    <app-profile-picture [userId]="moderator._id" [size]="'xs'"></app-profile-picture>
+                    <app-profile-picture [fileName]="moderator.settings.picture" [size]="'xs'"></app-profile-picture>
                     <span class="ml-1 user-name">{{ moderator.name }}</span>
                 </div>
                 <div>
@@ -36,7 +36,7 @@
         <p class="role-title">VIPs - {{ vips.length }}</p>
         <div *ngFor="let vip of vips" class="user-item my-1 d-flex">
             <div class="d-flex w-100 align-items-center justify-content-between">
-                <app-profile-picture [userId]="vip._id" [size]="'xs'"></app-profile-picture>
+                <app-profile-picture [fileName]="vip.settings.picture" [size]="'xs'"></app-profile-picture>
                 <span class="ml-1 user-name">{{ vip.name }}</span>
                 <button class="btn btn-outline-primary btn-promotion" *appAcl="'demote'"
                     (click)="changeRole(vip._id, 'simple')">Demote to Community</button>
@@ -51,7 +51,7 @@
         <div *ngFor="let user of community" class="user-item my-1 d-flex">
             <div class="d-flex w-100 align-items-center justify-content-between">
                 <div>
-                    <app-profile-picture [userId]="user._id" [size]="'xs'"></app-profile-picture>
+                    <app-profile-picture [fileName]="user.settings.picture" [size]="'xs'"></app-profile-picture>
                     <span class="ml-1 user-name">{{ user.name }}</span>
                 </div>
                 <div>

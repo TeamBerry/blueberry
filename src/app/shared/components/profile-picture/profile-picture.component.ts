@@ -7,11 +7,11 @@ import { environment } from 'environments/environment';
     styleUrls: ['./profile-picture.component.scss']
 })
 export class ProfilePictureComponent implements OnInit, OnChanges {
-    @Input() userId: string;
+    @Input() fileName: string;
     @Input() size: 'xs' | 'sm' | 'md' | 'lg' = 'md';
 
     /**
-     * Profile picture of the box creator
+     * Default picture location
      *
      * @memberof BoxComponent
      */
@@ -28,15 +28,9 @@ export class ProfilePictureComponent implements OnInit, OnChanges {
     }
 
     loadUserPicture() {
-        if (this.userId) {
-            this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${this.userId}-picture`
-        } else {
-            this.loadDefaultPicture();
-        }
-    }
-
-    loadDefaultPicture() {
-        this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/default-picture`;
+        this.pictureLocation = this.fileName
+            ? `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${this.fileName}`
+            : this.pictureLocation
     }
 
 }

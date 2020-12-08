@@ -8,7 +8,7 @@
         <div class="d-flex flex-column justify-content-between">
             <div class="d-flex">
                 <div class="bb-box-picture mr-2">
-                    <app-profile-picture [userId]="box?.creator?._id" [size]="'md'"></app-profile-picture>
+                    <app-profile-picture [fileName]="box.creator.settings.picture" [size]="'md'"></app-profile-picture>
                 </div>
                 <div style="flex: 1; flex-shrink: 1;">
                     <h4 class="card-name m-0">{{ box.name }}</h4>
