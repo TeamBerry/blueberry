@@ -5,7 +5,7 @@
             anyone, at the same time.</p>
     </div>
 
-    <div class="container-fluid featured home-section">
+    <section class="container-fluid featured home-section">
         <div class="free-text text-center">
             <div class="alert alert-info">
                 <a href="https://play.google.com/store/apps/details?id=com.cranberry">
@@ -32,9 +32,9 @@
                     *ngFor="let box of boxes; let i = index" [box]="box" (click)="enter(box._id)"></app-box-widget>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="home-section how-to-container featured featured-reverse">
+    <section class="home-section how-to-container featured featured-reverse">
         <div class="free-text text-center">
             <h1 class="display-3">Watch YouTube together.</h1>
         </div>
@@ -60,18 +60,18 @@
                 <p class="how-to-text">If you feel adventurous, join a box. You might find videos you like.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="home-section container-fluid featured social-space">
+    <section class="home-section container-fluid featured social-space">
         <div class="free-text">
             <h1 class="display-4">Follow us</h1>
             <p class="lead">And never miss anything!</p>
             <a href="https://twitter.com/search/?q=%23BerryboxApp" target="_blank"
                 class="btn btn-outline-default ml-2">Twitter</a>
         </div>
-    </div>
+    </section>
 
-    <div class="home-section footer credits featured featured-reverse">
+    <footer class="home-section footer credits featured featured-reverse">
         <div class="col">
             <div class="text-center">
                 <p>Berrybox is brought to you by <strong>AngelZatch</strong> since 2015.</p>
@@ -85,5 +85,5 @@
                 <a [routerLink]="'/privacy'">Privacy Policy</a>
             </div>
         </div>
-    </div>
+    </footer>
 </div>
