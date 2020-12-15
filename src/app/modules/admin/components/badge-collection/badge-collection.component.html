@@ -1,0 +1,15 @@
+<div class="row justify-content-center">
+    <h2 class="admin-tab-title">Badges</h2>
+    <div class="badge-collection">
+        <p class="help-text text-muted text-center">Click on a badge to display it in chat next to your username!</p>
+        <div class="d-flex">
+            <div *ngFor="let badge of badges" class="badge-card">
+                <figure>
+                    <img src="{{badge.picture}}" alt="">
+                </figure>
+                <h5 class="badge-name">{{ badge.name }}</h5>
+                <p class="badge-description">{{ badge.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>

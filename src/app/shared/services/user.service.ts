@@ -123,6 +123,10 @@ export class UserService {
         return this.http.get<Array<UserPlaylist>>(environment.araza + '/user/' + user._id + '/playlists');
     }
 
+    badges(user: AuthSubject): Observable<any> {
+        return this.http.get(`${environment.araza}/users/${user._id}/badges`)
+    }
+
     /**
      * Uploads the profile picture of the user to the database
      *
