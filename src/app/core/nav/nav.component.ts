@@ -52,7 +52,7 @@ export class NavComponent implements OnInit {
             this.authService.getUser().subscribe(
                 (user: AuthSubject) => {
                     this.user = user;
-                    this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${user.settings.picture}`
+                    this.pictureLocation = `${environment.userContentBucket}/${environment.profilePictureBuckets}/${user.settings.picture}`
                 }
             )
         }
