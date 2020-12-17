@@ -3,6 +3,7 @@ export class Badge {
     picture: string
     name: string
     description: string
+    isSecret: boolean
     availableFrom: string
     availableTo: string
 }
