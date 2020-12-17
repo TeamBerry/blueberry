@@ -32,7 +32,8 @@ export class AuthService {
                     theme: 'dark',
                     picture: null,
                     color: '#DF62A9',
-                    isColorblind: false
+                    isColorblind: false,
+                    badge: null
                 }
             }
         }
