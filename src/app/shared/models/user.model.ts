@@ -16,7 +16,6 @@ export class User {
     };
     acl: ACLConfig;
     badges: any[];
-    favorites: any[];
 
     constructor(user?: Partial<User>) {
         this._id = user && user._id || null;
@@ -30,7 +29,6 @@ export class User {
             isColorblind: false,
             badge: null
         }
-        this.favorites = user && user.favorites || [];
         this.badges = user && user.badges || [];
     }
 }
