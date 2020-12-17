@@ -12,6 +12,7 @@ import { Invite } from 'app/shared/models/invite.model';
 export class InviteFormComponent implements OnInit {
     @Input() boxToken: string;
     invite: Invite = null;
+    expiration: string = '900';
     fullLink: string = 'berrybox.tv/invite/';
 
     constructor(
@@ -21,7 +22,11 @@ export class InviteFormComponent implements OnInit {
 
 
     ngOnInit() {
-        this.boxService.generateInvite(this.boxToken).subscribe(
+
+    }
+
+    generateInvite() {
+        this.boxService.generateInvite(this.boxToken, parseInt(this.expiration, 10)).subscribe(
             (invite: Invite) => {
                 this.invite = invite;
                 this.fullLink += invite.link;
