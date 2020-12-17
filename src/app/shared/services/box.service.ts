@@ -107,8 +107,8 @@ export class BoxService {
         )
     }
 
-    generateInvite(boxToken: string): Observable<Invite> {
-        return this.http.post<Invite>(`${environment.araza}/boxes/${boxToken}/invite`, null);
+    generateInvite(boxToken: string, expiration: number = 900): Observable<Invite> {
+        return this.http.post<Invite>(`${environment.araza}/boxes/${boxToken}/invite`, { expiration });
     }
 
     matchInvite(link: string): Observable<Invite> {
