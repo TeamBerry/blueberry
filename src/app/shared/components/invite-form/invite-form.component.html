@@ -5,6 +5,22 @@
     </button>
 </div>
 <div class="modal-body">
+    <form *ngIf="!invite" (ngSubmit)="generateInvite()" #inviteForm="ngForm" class="py-3">
+        <p>Generate an invite link so your friends can join your box easily. By default, your link will expire after
+            <strong>15 minutes</strong>, but you can adjust this setting below:
+        </p>
+        <fieldset class="form-group">
+            <label for="expiration" class="col-form-label">Set invite to expire in:</label>
+            <select name="expiration" id="" class="form-control" [(ngModel)]="expiration">
+                <option value="900">15 minutes</option>
+                <option value="1800">30 minutes</option>
+                <option value="3600">1 hour</option>
+                <!-- Link, open your eyes -->
+                <option value="3110400000">Never</option>
+            </select>
+        </fieldset>
+        <button type="submit" class="btn btn-primary btn-block">Generate invite</button>
+    </form>
     <div *ngIf="invite">
         <div class="input-group">
             <input type="text" class="form-control" id="name" name="name" [ngModel]="fullLink" #copyTarget>
@@ -12,6 +28,6 @@
                 <button class="btn btn-outline-primary" type="button" [ngxClipboard]="copyTarget">Copy</button>
             </div>
         </div>
-        <p class="help-text text-muted">Your invite link will expire in <strong>15 minutes</strong>.</p>
+        <p class="help-text text-muted">You can now send this invite link to your friends.</p>
     </div>
 </div>
