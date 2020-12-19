@@ -28,10 +28,7 @@ export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
     user: AuthSubject = AuthService.getAuthSubject();
     box: Box;
 
-    @Output() command = new EventEmitter();
-
     @Input() contents = '';
-    hasCommand = false;
 
     @ViewChild('chatbox') chatbox: ElementRef;
     @ViewChild('emojiTypeahead') emojiTypeahead: NgbDropdown;
@@ -107,15 +104,7 @@ export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
 
     watchContents() {
         // Reset everything
-        this.hasCommand = false;
         if (this.contents.length === 0) {
-            this.emojiTypeahead.close();
-            return;
-        }
-
-        // Switch to command mode
-        if (this.contents.indexOf('!') === 0) {
-            this.hasCommand = true;
             this.emojiTypeahead.close();
             return;
         }
@@ -145,13 +134,7 @@ export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
         const contents = this.contents;
         this.contents = '';
         this.emojiResults = [];
-
-        // Since detection is not immediate anymore, detect eventual command mode
-        if (contents.indexOf('!') === 0 && !event.ctrlKey) {
-            this.handleCommands(contents);
-        } else {
-            this.handleMessage(contents);
-        }
+        this.handleMessage(contents);
     }
 
     handleMessage(contents: string) {
@@ -189,57 +172,6 @@ export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
         this.chatbox.nativeElement.focus();
     }
 
-    /**
-     * Kickstarts the use of a command in the chat when a command is clicked in the command list component
-     *
-     * @param {string} commandKey
-     * @memberof PanelComponent
-     */
-    kickstartCommand(commandKey: string) {
-        this.contents += `!${commandKey} `;
-        this.watchContents();
-    }
-
-    handleCommands(contents: string) {
-        // Trim multiple spaces in commands
-        contents = contents.replace(/(\s)+/gm, ' ');
-        const command = contents.substr(1).split(' ');
-        const keyword = command[0];
-        switch (keyword) {
-            case 'add':
-            case 'play':
-                this.submitVideo(command[1]);
-                break;
-
-            case 'skip':
-            case 'next':
-                this.jukeboxService.skipVideo();
-                break;
-
-            case 'shuffle':
-            case 'random':
-                /* this.shuffle(); */
-                break;
-
-            // "Exterior commands"
-            case 'queue':
-            case 'settings':
-            case 'help':
-            case 'chat':
-            case 'playlist':
-            case 'users':
-            case 'userlist':
-            case 'search':
-            case 'commands':
-            case 'macros':
-                this.command.emit(keyword);
-                break;
-
-            default:
-                break;
-        }
-    }
-
     refreshChatStatus(event) {
         console.log(event);
     }
@@ -271,9 +203,5 @@ export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
             });
             this.jukeboxService.postMessageToStream(message);
         }
-    }
-
-    showPanel(panel: string) {
-        this.command.emit(panel);
     }
 }

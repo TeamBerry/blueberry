@@ -126,11 +126,13 @@
                     </div>
                     <div *ngIf="box.featured">
                         <p class="featured-indicator mb-0">Featured until
-                            <span>{{ box.featured | date:'dd/MM/yyyy HH:mm:ss' }}</span></p>
+                            <span>{{ box.featured | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+                        </p>
                     </div>
                     <div *ngIf="!box.open">
                         <p class="deletion-indicator mb-0">Scheduled for deletion on
-                            <span>{{ setDeletionDate(box.updatedAt) | date:'dd/MM/yyyy HH:mm:ss' }}</span></p>
+                            <span>{{ setDeletionDate(box.updatedAt) | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -161,8 +163,6 @@
                         <div class="half-panel" id="chat-panel">
                             <app-chat-tab class="fixed-tab" *ngIf="selectedBox" [boxToken]="selectedBox?._id"
                                 [user]="user" style="height: 75%;"></app-chat-tab>
-                            <app-chat-input [boxToken]="selectedBox?._id"
-                                [options]="{'searchButton': false, 'berryCount': false}"></app-chat-input>
                         </div>
                     </div>
                     <div class="player-space mt-2">

@@ -23,11 +23,7 @@
 .input-group-chatbox {
     margin-bottom: 10px;
     border: 1px solid $master-color;
-    border-top-left-radius: 0 !important;
-    border-radius: 0.25rem;
-    &.chatbox-command {
-        border-color: $command-color !important;
-    }
+    border-radius: 0.3rem;
     .chatbox {
         border-right: none !important;
         resize: none;
@@ -55,26 +51,8 @@
     border-top-right-radius: 40px;
 }
 
-.key-commands {
-    color: var(--text-main-color);
-}
-
 span#span-default-mode {
     background-color: $master-color;
-}
-
-span#span-command-mode {
-    background-color: $command-color;
-}
-
-#command-button {
-    background-color: $command-color;
-    &:hover {
-        background-color: lighten($command-color, 10%);
-    }
-    &:active {
-        background-color: lighten($command-color, 15%);
-    }
 }
 
 .emoji-picker-container.dropdown-menu {
