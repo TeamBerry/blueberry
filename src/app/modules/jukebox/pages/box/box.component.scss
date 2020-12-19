@@ -26,7 +26,12 @@
 
 .under-player {
     color: var(--text-main-color);
-    padding: 15px 0;
+    @include padding-vertical(5px);
+    flex-direction: column;
+    @include md {
+        @include padding-vertical(15px);
+        flex-direction: row;
+    }
     white-space: nowrap;
 }
 
@@ -47,10 +52,13 @@
 .video-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 1.6rem;
+    font-size: 1rem;
+    @include md {
+        font-size: 1.6rem;
+    }
     margin-bottom: 0;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    @include one-line-text();
+    flex-grow: 1;
 }
 
 .minor-text {
@@ -71,11 +79,6 @@
     margin-right: 5px;
 }
 
-#box-title-space {
-    display: flex;
-    justify-content: space-between;
-}
-
 #box-title {
     display: flex;
     justify-content: center;
@@ -85,6 +88,10 @@
 .md-separator {
     border: .1rem solid $master-color;
     width: 100%;
+    @include margin-vertical(5px);
+    @include md {
+        @include margin-vertical(16px);
+    }
 }
 
 .player-bait {
