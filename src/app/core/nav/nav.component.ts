@@ -27,6 +27,7 @@ import { BoxJoinComponent } from 'app/shared/components/box-join/box-join.compon
 export class NavComponent implements OnInit {
     public user: AuthSubject;
     public pictureLocation = '../../../assets/images/berrybox-staff-logo.png';
+    public isMenuCollapsed = true;
 
     /**
      * Directive to dynamically load the settings components without having to leave the box
