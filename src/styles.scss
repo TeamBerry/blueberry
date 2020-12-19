@@ -318,11 +318,14 @@ img {
 
 .panel-tab-title-section {
     border-bottom: 1px solid darken($main-black, 20%);
-    display: flex;
+    display: none;
     justify-content: space-between;
     padding: 10px;
     height: 50px;
     align-items: center;
+    @include md {
+        display: flex;
+    }
 }
 
 .panel-tab-title {
