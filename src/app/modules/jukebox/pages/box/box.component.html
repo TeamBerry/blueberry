@@ -36,13 +36,11 @@
         </div>
     </div>
     <div class="box-space row no-gutters">
-        <div class="col-lg-9 col-sm-6 d-flex flex-column h-100">
-            <div *ngIf="box && currentVideo" class="h-100" style="background-color: black;"
+        <div class="col-lg-9 col-md-6 d-flex flex-column">
+            <div *ngIf="box && currentVideo" id="player-space" style="background-color: black;"
                 [ngClass]="{'no-events': isDraggingMiniature}">
-                <div class="px-2 h-100">
-                    <app-player [boxToken]="box._id" style="height: 100%; width: 100%; pointer-events: auto;">
-                    </app-player>
-                </div>
+                <app-player [boxToken]="box._id" style="height: 100%; width: 100%; pointer-events: auto;">
+                </app-player>
             </div>
             <div class="d-flex under-player">
                 <div class="col-lg-5 col-md-12 box-info">
@@ -130,6 +128,6 @@
                 </div>
             </div>
         </div>
-        <app-panel class="col-lg-3 col-sm-6" id="room-panel" #panel [boxToken]="box._id"></app-panel>
+        <app-panel class="col-lg-3 col-md-6" id="room-panel" #panel [boxToken]="box._id"></app-panel>
     </div>
 </div>

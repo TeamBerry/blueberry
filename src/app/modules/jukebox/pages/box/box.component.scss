@@ -14,6 +14,12 @@
     justify-content: space-between;
 }
 
+#player-space {
+    @include sm {
+        flex-grow: 1;
+    }
+}
+
 #player {
     height: calc(100% - 94px);
 }
