@@ -12,7 +12,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: calc(100vh - #{$nav-height});
+    @include md {
+        height: calc(100vh - #{$nav-height});
+    }
 }
 
 #player-space {
