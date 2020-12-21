@@ -27,9 +27,7 @@
     </svg>
 </div>
 <div id="input-space">
-    <div *appAuth="true">
-        <app-chat-input #chatInput [boxToken]="boxToken"></app-chat-input>
-    </div>
+    <app-chat-input *appAuth="true" #chatInput [boxToken]="boxToken"></app-chat-input>
     <div *appAuth="false" class="text-center p-2">
         <h5>
             <button class="btn btn-primary" (click)="openLoginPrompt()">Log in</button> or <button

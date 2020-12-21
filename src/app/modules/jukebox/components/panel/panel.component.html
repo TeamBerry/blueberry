@@ -1,15 +1,13 @@
-<div class="d-flex no-gutters h-100">
-    <div class="col-11 side-panel h-100">
-        <div class="box-side-panel" id="panel-space">
-            <app-userlist [hidden]="activePanel !== 'users'" [user]="user"></app-userlist>
-            <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user"></app-queue>
-            <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user"
-                (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
-            <app-search-tab [hidden]="activePanel !== 'search'" [boxToken]="boxToken" [user]="user">
-            </app-search-tab>
-        </div>
+<div class="d-flex no-gutters panel-container">
+    <div id="panel-space">
+        <app-userlist [hidden]="activePanel !== 'users'" [user]="user"></app-userlist>
+        <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user"></app-queue>
+        <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user"
+            (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
+        <app-search-tab [hidden]="activePanel !== 'search'" [boxToken]="boxToken" [user]="user">
+        </app-search-tab>
     </div>
-    <div class="col-1" id="panel-menu">
+    <div id="panel-menu">
         <ul class="nav flex-column">
             <li class="nav-item" [ngClass]="{'active': activePanel == 'chat'}" ngbTooltip="Chat" placement="left">
                 <a class="nav-link" (click)="showPanel('chat'); newMessages = false">

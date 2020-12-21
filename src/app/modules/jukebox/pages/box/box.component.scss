@@ -1,10 +1,15 @@
 @import './../../../../../imports.scss';
 .box-space {
     height: calc(100vh - #{$nav-height});
+    width: 100%;
     overflow: hidden;
+    align-content: flex-start;
+    display: flex;
+    // xs to md
     flex-direction: column;
-    @include md {
-        flex-direction: unset;
+    // lg and up
+    @include lg {
+        flex-direction: row;
     }
 }
 
@@ -14,19 +19,20 @@
     background-color: var(--background-secondary-color);
     color: var(--text-main-color);
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     flex: 1;
-}
-
-#player-space {
-    @include sm {
-        flex-grow: 1;
+    height: calc(100vh - (100vh * 9/16) - 50px);
+    @include lg {
+        height: calc(100vh - 60px);
     }
 }
 
-#player {
-    height: calc(100% - 94px);
+#player-space {
+    height: calc(100vw * (9/16));
+    @include lg {
+        flex-grow: 1;
+        height: calc(100% - 94px);
+    }
 }
 
 .player-container {
@@ -36,16 +42,23 @@
 }
 
 .under-player {
-    color: var(--text-main-color);
-    white-space: nowrap;
-    // xs and sm styles
+    flex: 1;
+}
+
+.current-video-space-container {
+    @include padding-horizontal(10px);
+    display: flex;
+    height: 50px;
+    flex-direction: row;
     flex: 0;
-    flex-direction: 'row';
     align-items: center;
-    padding: 5px;
-    // md, lg, xl styles
-    @include md {
-        padding: 15px 0;
+    .current-video-space {
+        padding-left: 5px;
+        width: calc(100% - 35px);
+        flex: 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
     }
 }
 
@@ -70,6 +83,7 @@
 
 .video-title {
     font-weight: 600;
+    color: var(--text-main-color);
 }
 
 
@@ -79,8 +93,7 @@
     font-size: 1rem;
     margin-bottom: 0;
     @include one-line-text();
-    flex-grow: 1;
-    @include lg {
+    @include xl {
         font-weight: 600;
         font-size: 1.6rem;
     }
@@ -90,38 +103,10 @@
     color: var(--text-system-color);
 }
 
-.mood-widget {
-    text-align: center;
-}
-
-.closed-label {
-    background-color: $danger-color;
-    padding: 5px;
-    border-radius: 2.5px;
-    text-transform: uppercase;
-    cursor: default;
-    align-self: center;
-    margin-right: 5px;
-}
-
 #box-title {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.md-separator {
-    border: .1rem solid $master-color;
-    width: 100%;
-    @include margin-vertical(5px);
-    @include md {
-        @include margin-vertical(16px);
-    }
-}
-
-.player-bait {
-    height: 100%;
-    width: 2px;
 }
 
 .no-events {

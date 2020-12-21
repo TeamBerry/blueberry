@@ -35,24 +35,15 @@
             </div>
         </div>
     </div>
-    <div class="box-space row no-gutters">
+    <!-- lg screens and up -->
+    <div class="d-none d-lg-block box-space row no-gutters">
         <div class="col-sm-6 col-md-8 col-lg-9 d-flex flex-column player-container">
-            <div *ngIf="box && currentVideo" id="player-space" style="background-color: black;"
+            <!-- <div *ngIf="box && currentVideo" id="player-space" style="background-color: black;"
                 [ngClass]="{'no-events': isDraggingMiniature}">
                 <app-player [boxToken]="box._id" style="height: 100%; width: 100%; pointer-events: auto;">
                 </app-player>
-            </div>
-            <!-- xs to lg screens -->
-            <div class="d-flex d-lg-none under-player">
-                <app-profile-picture class="mr-2" [fileName]="box?.creator?.settings?.picture" [size]="'sm'">
-                </app-profile-picture>
-                <div class="flex-1 flex-shrink-1">
-                    <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
-                    <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}</p>
-                </div>
-            </div>
-            <!-- lg screens and up -->
-            <div class="d-none d-lg-flex under-player">
+            </div> -->
+            <div class="d-flex under-player">
                 <div class="col-lg-5 col-md-12 box-info d-flex flex-grow-1 align-items-center">
                     <app-profile-picture class="mr-2" [fileName]="box?.creator?.settings?.picture" [size]="'md'">
                     </app-profile-picture>
@@ -125,5 +116,22 @@
             </div>
         </div>
         <app-panel class="col-sm-6 col-md-4 col-lg-3" id="room-panel" #panel [boxToken]="box._id"></app-panel>
+    </div>
+    <!-- xs to md screens -->
+    <div class="d-lg-none box-space">
+        <div *ngIf="box && currentVideo" id="player-space" style="background-color: black;"
+            [ngClass]="{'no-events': isDraggingMiniature}">
+            <app-player [boxToken]="box._id" style="height: 100%; width: 100%; pointer-events: auto;">
+            </app-player>
+        </div>
+        <div class="current-video-space-container">
+            <app-profile-picture class="mr-2" [fileName]="box?.creator?.settings?.picture" [size]="'sm'">
+            </app-profile-picture>
+            <div class="current-video-space">
+                <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
+                <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}</p>
+            </div>
+        </div>
+        <app-panel id="room-panel" #panel [boxToken]="box._id"></app-panel>
     </div>
 </div>

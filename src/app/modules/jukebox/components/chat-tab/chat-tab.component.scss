@@ -1,11 +1,7 @@
 @import './../../../../../imports.scss';
 .message-list {
-    flex-grow: 1;
+    flex: 1;
     overflow: auto;
-}
-
-.chat-space {
-    background-color: 'red';
 }
 
 .scroll-resumer {
