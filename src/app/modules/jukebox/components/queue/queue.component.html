@@ -27,8 +27,14 @@
             </ng-template>
         </div>
         <div>
-            <div class="d-flex align-items-center pl-2 pt-3" *ngIf="box.options.loop">
+            <div class="d-flex align-items-center justify-content-between px-2 pt-3" *ngIf="box.options.loop">
                 <p class="list-rank pl-2">Videos in Queue ({{ upcomingVideos.length }}): </p>
+                <div class="d-flex">
+                    <app-bx-chip [options]="{'type': 'random'}" [display]="'icon'" *ngIf="box?.options?.random">
+                    </app-bx-chip>
+                    <app-bx-chip [options]="{'type': 'loop'}" [display]="'icon'" *ngIf="box?.options?.loop">
+                    </app-bx-chip>
+                </div>
             </div>
             <app-bx-tabset *ngIf="!box.options.loop" [options]="tabSetOptions" (clickedOption)="displayTab = $event">
             </app-bx-tabset>

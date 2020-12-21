@@ -49,6 +49,9 @@
     @include padding-horizontal(10px);
     display: flex;
     height: 50px;
+    @include lg {
+        height: 150px;
+    }
     flex-direction: row;
     flex: 0;
     align-items: center;
@@ -94,19 +97,12 @@
     margin-bottom: 0;
     @include one-line-text();
     @include xl {
-        font-weight: 600;
         font-size: 1.6rem;
     }
 }
 
 .minor-text {
     color: var(--text-system-color);
-}
-
-#box-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .no-events {

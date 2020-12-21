@@ -1,5 +1,6 @@
 @import './../../../../../imports.scss';
 #panel-space {
+    width: 89%;
     flex: 0 1 auto;
     overflow: hidden;
     &::-webkit-scrollbar-thumb {
@@ -24,7 +25,7 @@
 }
 
 #panel-menu {
-    width: 9%;
+    width: 11%;
     border-left: 1px solid lighten($main-black, 10%) !important;
     .nav-item {
         cursor: pointer;
