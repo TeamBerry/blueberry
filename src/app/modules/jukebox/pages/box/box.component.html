@@ -36,13 +36,23 @@
         </div>
     </div>
     <div class="box-space row no-gutters">
-        <div class="col-lg-9 col-md-6 d-flex flex-column">
+        <div class="col-sm-6 col-md-8 col-lg-9 d-flex flex-column player-container">
             <div *ngIf="box && currentVideo" id="player-space" style="background-color: black;"
                 [ngClass]="{'no-events': isDraggingMiniature}">
                 <app-player [boxToken]="box._id" style="height: 100%; width: 100%; pointer-events: auto;">
                 </app-player>
             </div>
-            <div class="d-flex under-player">
+            <!-- xs to lg screens -->
+            <div class="d-flex d-lg-none under-player">
+                <app-profile-picture class="mr-2" [fileName]="box?.creator?.settings?.picture" [size]="'sm'">
+                </app-profile-picture>
+                <div class="flex-1 flex-shrink-1">
+                    <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
+                    <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}</p>
+                </div>
+            </div>
+            <!-- lg screens and up -->
+            <div class="d-none d-lg-flex under-player">
                 <div class="col-lg-5 col-md-12 box-info d-flex flex-grow-1 align-items-center">
                     <app-profile-picture class="mr-2" [fileName]="box?.creator?.settings?.picture" [size]="'md'">
                     </app-profile-picture>
@@ -53,7 +63,8 @@
                                 </app-box-status-indicator>
                             </div>
                             <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
-                            <app-bx-button (click)="openInviteModal()" *appAcl="'inviteUser'" style="padding-left: 7px;"
+                            <app-bx-button class="d-none d-md-block" (click)="openInviteModal()" *appAcl="'inviteUser'"
+                                style="padding-left: 7px;"
                                 [options]="{'type': 'inviteUser', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Invite users'}">
                             </app-bx-button>
                             <app-bx-button (click)="openBoxSettings()" *appAcl="'editBox'" style="padding-left: 7px;"
@@ -87,30 +98,32 @@
                         </div>
                     </div>
                 </div>
-                <hr class="md-separator d-lg-none">
                 <div class="col-lg-7 col-md-12 m-auto" *ngIf="currentVideo">
                     <div class="d-flex align-items-center">
                         <img *ngIf="currentVideo?.stateForcedWithBerries"
                             src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 30px;"
                             class="pr-2" ngbTooltip="This video is playing thanks to the use of berries.">
                         <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}</p>
-                        <app-bx-button *appAcl="'skipVideo'" (click)="skipVideo()"
-                            [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'queue'}" class="mr-2">
-                        </app-bx-button>
-                        <span *appAcl="'!skipVideo'">
-                            <app-bx-button *ngIf="box?.options?.berries" (click)="skipVideo()"
-                                [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 20 berries to skip'}"
-                                class="mr-2">
+                        <div class="d-none d-lg-block">
+                            <app-bx-button *appAcl="'skipVideo'" (click)="skipVideo()"
+                                [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'queue'}" class="mr-2">
                             </app-bx-button>
-                        </span>
-                        <app-bx-button *ngIf="currentVideo" (click)="addToPlaylist()"
-                            [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to a Playlist', 'context': 'queue'}">
-                        </app-bx-button>
+                            <span *appAcl="'!skipVideo'">
+                                <app-bx-button *ngIf="box?.options?.berries" (click)="skipVideo()"
+                                    [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 20 berries to skip'}"
+                                    class="mr-2">
+                                </app-bx-button>
+                            </span>
+                            <app-bx-button *ngIf="currentVideo" (click)="addToPlaylist()"
+                                [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to a Playlist', 'context': 'queue'}">
+                            </app-bx-button>
+                        </div>
                     </div>
-                    <span class="minor-text">Submitted by {{ currentVideo?.submitted_by?.name }}</span>
+                    <span class="minor-text">Submitted by {{ currentVideo?.submitted_by?.name
+                        }}</span>
                 </div>
             </div>
         </div>
-        <app-panel class="col-lg-3 col-md-6" id="room-panel" #panel [boxToken]="box._id"></app-panel>
+        <app-panel class="col-sm-6 col-md-4 col-lg-3" id="room-panel" #panel [boxToken]="box._id"></app-panel>
     </div>
 </div>

@@ -2,6 +2,10 @@
 .box-space {
     height: calc(100vh - #{$nav-height});
     overflow: hidden;
+    flex-direction: column;
+    @include md {
+        flex-direction: unset;
+    }
 }
 
 #room-panel {
@@ -12,9 +16,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    @include md {
-        height: calc(100vh - #{$nav-height});
-    }
+    flex: 1;
 }
 
 #player-space {
@@ -27,15 +29,24 @@
     height: calc(100% - 94px);
 }
 
+.player-container {
+    @include md {
+        flex: 1;
+    }
+}
+
 .under-player {
     color: var(--text-main-color);
-    @include padding-vertical(5px);
-    flex-direction: column;
-    @include md {
-        @include padding-vertical(15px);
-        flex-direction: row;
-    }
     white-space: nowrap;
+    // xs and sm styles
+    flex: 0;
+    flex-direction: 'row';
+    align-items: center;
+    padding: 5px;
+    // md, lg, xl styles
+    @include md {
+        padding: 15px 0;
+    }
 }
 
 .box-info:after {
@@ -51,17 +62,28 @@
     background-color: $master-color;
 }
 
+.box-title {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-system-color);
+}
+
+.video-title {
+    font-weight: 600;
+}
+
+
 .box-title,
 .video-title {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
     font-size: 1rem;
-    @include md {
-        font-size: 1.6rem;
-    }
     margin-bottom: 0;
     @include one-line-text();
     flex-grow: 1;
+    @include lg {
+        font-weight: 600;
+        font-size: 1.6rem;
+    }
 }
 
 .minor-text {
