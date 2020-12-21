@@ -7,7 +7,7 @@
         </app-bx-button>
     </div>
 </div>
-<div *ngIf="box" style="height: calc(100% - 60px);">
+<div *ngIf="box" style="flex: 1; overflow: auto;">
     <div *ngIf="box.playlist.length > 0; else noVideos" class="d-flex flex-column h-100">
         <div class="d-flex align-items-center pl-2 pt-3">
             <img *ngIf="currentlyPlaying?.stateForcedWithBerries"

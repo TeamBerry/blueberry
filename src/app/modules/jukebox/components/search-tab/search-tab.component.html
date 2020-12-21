@@ -1,9 +1,9 @@
 <div class="panel-tab-title-section">
     <p class="panel-tab-title col">Add videos</p>
 </div>
-<div style="height: calc(100% - 60px);">
+<div style="flex: 1; overflow: auto;">
     <div class="d-flex flex-column h-100">
-        <app-bx-tabset [options]="[{title: 'Youtube', value: 'youtube'}, {title: 'Playlists', value: 'playlists'}]"
+        <app-bx-tabset [options]="[{title: 'Youtube' , value: 'youtube' }, {title: 'Playlists' , value: 'playlists'}]"
             (clickedOption)="displayedTab = $event">
         </app-bx-tabset>
         <div *appAcl="'!bypassVideoDurationLimit'" class="px-3">

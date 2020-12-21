@@ -4,7 +4,7 @@
         <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user"></app-queue>
         <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user"
             (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
-        <app-search-tab [hidden]="activePanel !== 'search'" [boxToken]="boxToken" [user]="user">
+        <app-search-tab class="fixed-tab" [hidden]="activePanel !== 'search'" [boxToken]="boxToken" [user]="user">
         </app-search-tab>
     </div>
     <div id="panel-menu">
