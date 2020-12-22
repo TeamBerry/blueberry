@@ -38,7 +38,8 @@
                 </app-bx-chip>
                 <app-bx-chip [options]="{'type': 'loop'}" [display]="'icon'" *ngIf="box?.options?.loop">
                 </app-bx-chip>
-                <app-berry-counter *ngIf="box?.options?.berries" [boxToken]="box._id"></app-berry-counter>
+                <app-berry-counter *ngIf="box?.options?.berries && box?.creator?._id !== user?._id"
+                    [boxToken]="box._id"></app-berry-counter>
             </div>
         </div>
         <div class="p-3 input-group">
