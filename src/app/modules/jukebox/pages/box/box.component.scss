@@ -13,6 +13,13 @@
     }
 }
 
+#room-player {
+    width: 100%;
+    @include lg {
+        width: calc(100% * 9/12);
+    }
+}
+
 #room-panel {
     z-index: 3;
     padding-right: 0;
@@ -22,13 +29,17 @@
     justify-content: space-between;
     flex: 1;
     height: calc(100vh - (100vh * 9/16) - 50px);
+    width: 100%;
     @include lg {
+        width: calc(100% * 3/12);
         height: calc(100vh - 60px);
     }
 }
 
 #player-space {
     height: calc(100vw * (9/16));
+    background-image: url("../../../../../assets/images/berrybox-logo-master.png");
+    background-repeat: no-repeat;
     @include lg {
         height: calc(100% - 100px);
     }
@@ -64,19 +75,6 @@
         align-items: center;
         justify-content: space-between;
     }
-}
-
-.box-info:after {
-    @media(max-width: 992px){
-        display: none;
-    }
-    content: '';
-    width: 1px;
-    position: absolute;
-    height: 70%;
-    top: 15%;
-    right: 0;
-    background-color: $master-color;
 }
 
 .box-title,
