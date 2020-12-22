@@ -102,10 +102,6 @@
     background-color: var(--background-secondary-color);
 }
 
-.playlist-space, .search-space {
-    height: 90.5%;
-}
-
 .box-option-button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -142,5 +138,11 @@
 
 #chat-panel{
     display: flex;
+    flex-direction: column;
+}
+
+.fixed-tab {
+    display: flex;
+    height: 100%;
     flex-direction: column;
 }
