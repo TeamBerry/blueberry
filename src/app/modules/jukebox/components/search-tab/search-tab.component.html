@@ -10,12 +10,14 @@
             </app-bx-tabset>
         </div>
         <div *appAcl="'!bypassVideoDurationLimit'" class="px-3">
-            <div class="d-flex align-items-center justify-content-center" *ngIf="durationRestriction !== 0">
-                <app-bx-chip [options]="{'type': 'duration-limit'}" [display]="'icon'">
-                </app-bx-chip>
-                <p class="mb-0 help-text text-muted"><strong>Warning!</strong>
-                    Videos longer than {{ durationRestriction }} minutes will be rejected.
-                </p>
+            <div class="d-flex align-items-center justify-content-end" *ngIf="durationRestriction !== 0">
+                <span>
+                    <app-bx-chip [options]="{
+                        'type': 'duration-limit',
+                        'chipText': durationRestriction+' minutes'}" [display]="'full'">
+                    </app-bx-chip>
+                </span>
+                <app-berry-counter *ngIf="berriesEnabled" [boxToken]="boxToken"></app-berry-counter>
             </div>
         </div>
         <app-youtube-search-tab *ngIf="displayedTab === 'youtube'" [boxToken]="boxToken" [user]="user"

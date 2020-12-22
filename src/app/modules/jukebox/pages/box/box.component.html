@@ -43,8 +43,14 @@
                 </app-player>
             </div>
             <div class="current-video-space-container">
-                <app-profile-picture class="mr-2" [fileName]="box?.creator?.settings?.picture" [size]="'sm'">
-                </app-profile-picture>
+                <div class="d-lg-none">
+                    <app-profile-picture class="mr-2" [fileName]="box?.creator?.settings?.picture" [size]="'sm'">
+                    </app-profile-picture>
+                </div>
+                <div class="d-none d-lg-block">
+                    <app-profile-picture class="mr-2" [fileName]="box?.creator?.settings?.picture" [size]="'lg'">
+                    </app-profile-picture>
+                </div>
                 <div class="current-video-space">
                     <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
                     <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}</p>

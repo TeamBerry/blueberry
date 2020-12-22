@@ -115,14 +115,4 @@ export class ChatTabComponent implements OnInit, OnChanges {
     openSignupPrompt() {
         this.modalService.open(SignupFormComponent);
     }
-
-    /**
-     * Kickstarts the use of a command in the chat when a command is clicked in the command list component
-     *
-     * @param {string} commandKey
-     * @memberof PanelComponent
-     */
-    kickstartCommand(commandKey: string) {
-        this.chatInput.contents = `!${commandKey}`
-    }
 }

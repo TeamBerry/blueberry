@@ -24,12 +24,7 @@
         <button class="btn btn-primary" (click)="post($event)">Send
             message</button>
         <div *ngIf="appliedOptions.berryCount">
-            <button class="btn btn-outline-berries"
-                ngbTooltip="Your berries. You will collect them over time. Spend them to execute special actions indicated by the buttons of the same color!"
-                *ngIf="box?.creator._id !== user._id && box?.options?.berries">
-                <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="">
-                <span id="berries-count">{{ berryCount }}</span>
-            </button>
+            <app-berry-counter [count]="berryCount"></app-berry-counter>
         </div>
     </div>
 </div>
