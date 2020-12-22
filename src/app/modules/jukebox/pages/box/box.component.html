@@ -55,6 +55,16 @@
                     <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
                     <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}</p>
                 </div>
+                <div class="box-actions">
+                    <app-bx-button (click)="openInviteModal()" *appAcl="'inviteUser'"
+                        [options]="{'type': 'inviteUser', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Invite users'}"
+                        style="padding-left: 7px;">
+                    </app-bx-button>
+                    <app-bx-button (click)="openBoxSettings()" *appAcl="'editBox'"
+                        [options]="{'type': 'settings', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Box Settings'}"
+                        style="padding-left: 7px;">
+                    </app-bx-button>
+                </div>
             </div>
         </div>
         <app-panel id="room-panel" #panel [boxToken]="box._id"></app-panel>
