@@ -9,7 +9,7 @@ import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
 import { BoxService } from 'app/shared/services/box.service';
-import { QueueItemActionRequest, QueueItem, VideoSubmissionRequest } from '@teamberry/muscadine';
+import { QueueItemActionRequest, QueueItem, VideoSubmissionRequest, BerryCount } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-queue',

@@ -2,8 +2,11 @@
 .navbar {
     background-color: var(--nav-color);
     margin-bottom: 0 !important;
-    height: 60px;
     font-family: 'Montserrat', sans-serif;
+    min-height: 60px;
+    @include sm{
+        height: 60px;
+    }
 }
 
 .navbar-brand {

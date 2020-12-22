@@ -4,6 +4,10 @@ import { JukeboxService } from '../../jukebox.service';
 import { filter } from 'rxjs/operators';
 import { Message, FeedbackMessage, SystemMessage } from '@teamberry/muscadine';
 import { AuthSubject } from 'app/shared/models/session.model';
+import { LoginFormComponent } from 'app/shared/components/login-form/login-form.component';
+import { SignupFormComponent } from 'app/shared/components/signup-form/signup-form.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ChatInputComponent } from '../chat-input/chat-input.component';
 
 @Component({
     selector: 'app-chat-tab',
@@ -15,6 +19,7 @@ export class ChatTabComponent implements OnInit, OnChanges {
     @Input() user: AuthSubject;
     @Output() socketStatus = new EventEmitter();
     @ViewChild('chat') chat: ElementRef;
+    @ViewChild('chatInput') chatInput: ChatInputComponent;
     contents = '';
     hasLink = false;
     hasCommand = false;
@@ -30,6 +35,7 @@ export class ChatTabComponent implements OnInit, OnChanges {
     hasNewMessages = false;
 
     constructor(
+        private modalService: NgbModal,
         private jukeboxService: JukeboxService
     ) { }
 
@@ -100,5 +106,13 @@ export class ChatTabComponent implements OnInit, OnChanges {
         if (this.hasAutoScrollEnabled) {
             this.hasNewMessages = false;
         }
+    }
+
+    openLoginPrompt() {
+        this.modalService.open(LoginFormComponent);
+    }
+
+    openSignupPrompt() {
+        this.modalService.open(SignupFormComponent);
     }
 }

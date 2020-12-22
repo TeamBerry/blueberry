@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject, from, Observable, ReplaySubject, Subject } from 'rxjs';
 
 import io from 'socket.io-client';
 import * as _ from 'lodash';
@@ -13,6 +13,7 @@ import { BerryCount } from '@teamberry/muscadine/dist/interfaces/subscriber.inte
 import { SystemMessage } from '@teamberry/muscadine/dist/models/message.model';
 import { RoleChangeRequest } from 'app/shared/models/role-change.model';
 import { QueueService } from 'app/shared/services/queue.service';
+import { filter, switchMap } from 'rxjs/operators';
 
 export type subjects = Box | Message | FeedbackMessage | SystemMessage | SyncPacket | BerryCount
 @Injectable({
@@ -82,6 +83,14 @@ export class JukeboxService {
 
     public getBoxStream(): Observable<any> {
         return this.boxStream.asObservable();
+    }
+
+    public getBerryCount() {
+        return this.boxStream
+            .asObservable()
+            .pipe(
+                filter(message => 'berries' in message && message.boxToken === this.box._id)
+            )
     }
 
     public getOrderStream(): Observable<string> {
