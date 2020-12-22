@@ -8,6 +8,11 @@
     </div>
 </div>
 <div class="px-3">
+    <div class="d-lg-none text-center py-2">
+        <app-bx-button (click)="openInviteModal()" *appAcl="'inviteUser'"
+            [options]="{'type': 'inviteUser', 'textDisplay': 'button', 'context': 'queue', 'text': 'Invite users'}">
+        </app-bx-button>
+    </div>
     <div *ngIf="admin">
         <p class="role-title">Creator</p>
         <div class="d-flex align-items-center">
