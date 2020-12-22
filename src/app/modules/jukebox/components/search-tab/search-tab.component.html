@@ -1,11 +1,14 @@
 <div class="panel-tab-title-section">
     <p class="panel-tab-title col">Add videos</p>
 </div>
-<div style="flex: 1; overflow: auto;">
+<div *ngIf="boxToken" style="flex: 1; overflow: hidden;">
     <div class="d-flex flex-column h-100">
-        <app-bx-tabset [options]="[{title: 'Youtube' , value: 'youtube' }, {title: 'Playlists' , value: 'playlists'}]"
-            (clickedOption)="displayedTab = $event">
-        </app-bx-tabset>
+        <div>
+            <app-bx-tabset
+                [options]="[{title: 'Youtube' , value: 'youtube' }, {title: 'Playlists' , value: 'playlists'}]"
+                (clickedOption)="displayedTab = $event">
+            </app-bx-tabset>
+        </div>
         <div *appAcl="'!bypassVideoDurationLimit'" class="px-3">
             <div class="d-flex align-items-center justify-content-center" *ngIf="durationRestriction !== 0">
                 <app-bx-chip [options]="{'type': 'duration-limit'}" [display]="'icon'">
@@ -16,10 +19,10 @@
             </div>
         </div>
         <app-youtube-search-tab *ngIf="displayedTab === 'youtube'" [boxToken]="boxToken" [user]="user"
-            [videosInQueue]="videosInQueue" [berriesEnabled]="berriesEnabled">
+            [videosInQueue]="videosInQueue" [berriesEnabled]="berriesEnabled" class="search-tab-container">
         </app-youtube-search-tab>
         <app-playlists-search-tab *ngIf="displayedTab === 'playlists'" [boxToken]="boxToken" [user]="user"
-            [videosInQueue]="videosInQueue" [berriesEnabled]="berriesEnabled" style="height: 92%;">
+            [videosInQueue]="videosInQueue" [berriesEnabled]="berriesEnabled" class="search-tab-container">
         </app-playlists-search-tab>
     </div>
 </div>
