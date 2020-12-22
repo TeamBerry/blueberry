@@ -61,6 +61,14 @@ export class BoxComponent implements OnInit {
      */
     user: AuthSubject = AuthService.getAuthSubject();
 
+    /**
+     * The number of berries the user has
+     *
+     * @type {number}
+     * @memberof BoxComponent
+     */
+    berryCount: number;
+
     connectionStatus = 'offline';
     isDraggingMiniature = false;
 

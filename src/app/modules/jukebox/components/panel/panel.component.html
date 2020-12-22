@@ -1,18 +1,13 @@
-<div class="d-flex no-gutters h-100">
-    <div class="col-11 side-panel">
-        <div class="box-side-panel" id="panel-space">
-            <app-userlist [hidden]="activePanel !== 'users'" [user]="user"></app-userlist>
-            <app-command-list [hidden]="activePanel !== 'commands'" (clickedCommand)="kickstartCommand($event)">
-            </app-command-list>
-            <app-help-tab [hidden]="activePanel !== 'help'"></app-help-tab>
-            <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user"></app-queue>
-            <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user"
-                (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
-            <app-search-tab [hidden]="activePanel !== 'search'" [boxToken]="boxToken" [user]="user">
-            </app-search-tab>
-        </div>
+<div class="d-flex no-gutters panel-container">
+    <div id="panel-space">
+        <app-userlist [hidden]="activePanel !== 'users'" [user]="user"></app-userlist>
+        <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user"></app-queue>
+        <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user"
+            (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
+        <app-search-tab class="fixed-tab" [hidden]="activePanel !== 'search'" [boxToken]="boxToken" [user]="user">
+        </app-search-tab>
     </div>
-    <div class="col-1" id="panel-menu">
+    <div id="panel-menu">
         <ul class="nav flex-column">
             <li class="nav-item" [ngClass]="{'active': activePanel == 'chat'}" ngbTooltip="Chat" placement="left">
                 <a class="nav-link" (click)="showPanel('chat'); newMessages = false">
@@ -39,8 +34,8 @@
                 </a>
             </li>
             <li class="nav-item" [ngClass]="{'active': activePanel === 'search'}" *appAuth="true"
-                ngbTooltip="Find Videos" placement="left">
-                <a class="nav-link" (click)="showPanel('search')" title="Find Videos">
+                ngbTooltip="Add Videos" placement="left">
+                <a class="nav-link" (click)="showPanel('search')" title="Add Videos">
                     <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427.28 439.64">
                         <rect class="berrybox-path" x="-10.35" y="290.75" width="245.89" height="72.58"
                             transform="translate(-198.27 175.41) rotate(-45)" />
@@ -66,27 +61,6 @@
                     </svg>
                 </a>
             </li>
-            <li class="nav-separator my-1"></li>
-            <li class="nav-item" [ngClass]="{'active': activePanel === 'commands'}" ngbTooltip="Commands"
-                placement="left" *appAuth="true">
-                <a class="nav-link" (click)="showPanel('commands')" title="Commands">!</a>
-            </li>
-            <li class="nav-item" [ngClass]="{'active': activePanel === 'help'}" ngbTooltip="Help" placement="left"
-                *appAuth="true">
-                <a class="nav-link" (click)="showPanel('help')" title="Help">?</a>
-            </li>
         </ul>
-    </div>
-</div>
-<div id="input-space">
-    <div *appAuth="true">
-        <app-chat-input #chatInput [boxToken]="box?._id" (command)="handleCommands($event)"></app-chat-input>
-    </div>
-    <div *appAuth="false" class="text-center p-2">
-        <h5>
-            <button class="btn btn-primary" (click)="openLoginPrompt()">Log in</button> or <button
-                class="btn btn-primary" (click)="openSignupPrompt()">Sign up</button> to chat and submit videos to the
-            playlist!
-        </h5>
     </div>
 </div>

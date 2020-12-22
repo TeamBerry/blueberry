@@ -113,7 +113,7 @@
 
 .btn-berries {
     color: var(--text-main-color);
-    background-color: rgba($berry-color, 0.7);
+    border: 1px solid $berry-color;
     &:hover {
         background-color: rgba($berry-color, 0.8);
     }

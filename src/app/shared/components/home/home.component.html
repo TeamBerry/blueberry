@@ -1,5 +1,6 @@
 <div class="main-background">
-    <div class="jumbotron jumbotron-home jumbotron-welcome" *appAuth="false">
+    <div class="jumbotron d-flex flex-column align-items-center justify-content-center jumbotron-home jumbotron-welcome"
+        *appAuth="false">
         <h1 class="display-3">{{title}}</h1>
         <p class="lead">Welcome to Berrybox, your app to create virtual rooms where you can watch YouTube videos with
             anyone, at the same time.</p>
@@ -21,7 +22,8 @@
                 </button>
             </p>
         </div>
-        <div class="d-flex flex-column justify-content-center align-items-center" *ngIf="featuredBoxes.length > 0">
+        <div class="d-none d-lg-flex flex-column justify-content-center align-items-center"
+            *ngIf="featuredBoxes.length > 0">
             <h2 class="featured-title">Our Picks</h2>
             <app-featured-boxes-carousel [boxes]="featuredBoxes"></app-featured-boxes-carousel>
         </div>

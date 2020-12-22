@@ -12,13 +12,12 @@ import { QueueComponent } from './components/queue/queue.component';
 import { UserlistComponent } from './components/userlist/userlist.component';
 import { PlaylistsSearchTabComponent } from './components/playlists-search-tab/playlists-search-tab.component';
 import { QueueVideoComponent } from './components/queue-video/queue-video.component';
-import { CommandListComponent } from './components/command-list/command-list.component';
 import { YoutubeSearchTabComponent } from './components/youtube-search-tab/youtube-search-tab.component';
-import { HelpTabComponent } from './components/help-tab/help-tab.component';
 import { SearchTabComponent } from './components/search-tab/search-tab.component';
 import { ChatItemComponent } from './components/chat-item/chat-item.component';
 import { ChatInputComponent } from './components/chat-input/chat-input.component';
 import { ChatBadgeComponent } from './components/chat-badge/chat-badge.component';
+import { BerryCounterComponent } from './components/berry-counter/berry-counter.component';
 
 @NgModule({
     declarations: [
@@ -30,13 +29,12 @@ import { ChatBadgeComponent } from './components/chat-badge/chat-badge.component
         UserlistComponent,
         PlaylistsSearchTabComponent,
         QueueVideoComponent,
-        CommandListComponent,
         YoutubeSearchTabComponent,
-        HelpTabComponent,
         SearchTabComponent,
         ChatItemComponent,
         ChatInputComponent,
-        ChatBadgeComponent
+        ChatBadgeComponent,
+        BerryCounterComponent
     ],
     imports: [
         JukeboxRoutingModule,

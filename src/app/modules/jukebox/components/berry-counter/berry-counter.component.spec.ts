@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { HelpTabComponent } from './help-tab.component';
+import { BerryCounterComponent } from './berry-counter.component';
 
-describe('HelpTabComponent', () => {
-  let component: HelpTabComponent;
-  let fixture: ComponentFixture<HelpTabComponent>;
+describe('BerryCounterComponent', () => {
+  let component: BerryCounterComponent;
+  let fixture: ComponentFixture<BerryCounterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HelpTabComponent ]
+      declarations: [ BerryCounterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HelpTabComponent);
+    fixture = TestBed.createComponent(BerryCounterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

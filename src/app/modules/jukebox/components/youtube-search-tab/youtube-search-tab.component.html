@@ -8,11 +8,11 @@
             </div>
         </div>
     </form>
-</div>
-<div *ngIf="searchResults" id="results">
-    <div *ngIf="!canSearch">
+    <div *ngIf="searchResults && !canSearch">
         <p class="text-muted text-center">Next search available in {{ searchTimeoutValue }} seconds.</p>
     </div>
+</div>
+<div *ngIf="searchResults" id="results">
     <div *ngIf="errorMessage" class="p-4">
         <app-bx-alert [options]="{'type': 'danger', 'message': errorMessage}"></app-bx-alert>
     </div>

@@ -10,13 +10,29 @@
     </app-chat-item>
 </div>
 <div class="scroll-resumer" *ngIf="!hasAutoScrollEnabled && hasNewMessages" (click)="resumeAutoScroll()">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" style="height: 17px; width: 17px" class="berrybox-svg-static">
-            <path class="berrybox-path" d="M258.12,466.45,383.63,291.72a10,10,0,0,0-8.13-15.84h-251a10,10,0,0,0-8.13,15.84L241.88,466.45A10,10,0,0,0,258.12,466.45Z"/>
-            <rect class="berrybox-path" x="96.05" y="122.63" width="307.91" height="121.43" rx="10" transform="translate(433.34 -66.66) rotate(90)"/>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" style="height: 17px; width: 17px"
+        class="berrybox-svg-static">
+        <path class="berrybox-path"
+            d="M258.12,466.45,383.63,291.72a10,10,0,0,0-8.13-15.84h-251a10,10,0,0,0-8.13,15.84L241.88,466.45A10,10,0,0,0,258.12,466.45Z" />
+        <rect class="berrybox-path" x="96.05" y="122.63" width="307.91" height="121.43" rx="10"
+            transform="translate(433.34 -66.66) rotate(90)" />
     </svg>
     <span style="margin-left: 10px; margin-right: 10px;">New messages</span>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" style="height: 17px; width: 17px" class="berrybox-svg-static">
-        <path class="berrybox-path" d="M258.12,466.45,383.63,291.72a10,10,0,0,0-8.13-15.84h-251a10,10,0,0,0-8.13,15.84L241.88,466.45A10,10,0,0,0,258.12,466.45Z"/>
-        <rect class="berrybox-path" x="96.05" y="122.63" width="307.91" height="121.43" rx="10" transform="translate(433.34 -66.66) rotate(90)"/>
-</svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" style="height: 17px; width: 17px"
+        class="berrybox-svg-static">
+        <path class="berrybox-path"
+            d="M258.12,466.45,383.63,291.72a10,10,0,0,0-8.13-15.84h-251a10,10,0,0,0-8.13,15.84L241.88,466.45A10,10,0,0,0,258.12,466.45Z" />
+        <rect class="berrybox-path" x="96.05" y="122.63" width="307.91" height="121.43" rx="10"
+            transform="translate(433.34 -66.66) rotate(90)" />
+    </svg>
+</div>
+<div id="input-space">
+    <app-chat-input *appAuth="true" #chatInput [boxToken]="boxToken"></app-chat-input>
+    <div *appAuth="false" class="text-center p-2">
+        <h5>
+            <button class="btn btn-primary" (click)="openLoginPrompt()">Log in</button> or <button
+                class="btn btn-primary" (click)="openSignupPrompt()">Sign up</button> to chat and submit videos to the
+            playlist!
+        </h5>
+    </div>
 </div>
