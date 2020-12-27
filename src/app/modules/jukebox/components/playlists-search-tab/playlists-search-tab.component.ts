@@ -25,7 +25,6 @@ export class PlaylistsSearchTabComponent implements OnInit, AfterViewInit {
     @Input() berriesEnabled: boolean;
     @ViewChild('filterInput') input: ElementRef
 
-    favorites$: Observable<User['favorites']>
     playlists: Array<UserPlaylist>
     selectedPlaylist = null
 
