@@ -8,27 +8,23 @@ import { environment } from './../../../environments/environment';
 import { User } from 'app/shared/models/user.model';
 import { Box } from '../models/box.model';
 import { AuthSubject } from '../models/session.model';
-import { shareReplay } from 'rxjs/operators';
 import { UserPlaylist } from '../models/user-playlist.model';
-import { Video } from '../models/video.model';
 
 @Injectable()
 export class UserService {
-    public favorites$: Observable<User['favorites']> = null;
-
     constructor(
         private http: HttpClient
     ) { }
 
     /**
-     * Gets a single user. User is served with their favorites
+     * Gets the active user
      *
      * @param {string} token The token of the user
      * @returns {Observable<User>}
      * @memberof UserService
      */
     show(token: string): Observable<User> {
-        return this.http.get<User>(`${environment.araza}/user/${token}`);
+        return this.http.get<User>(`${environment.araza}/user/me`);
     }
 
     /**
@@ -41,40 +37,6 @@ export class UserService {
      */
     update(token: string, user: User): Observable<User> {
         return this.http.put<User>(environment.araza + '/user/' + token, user);
-    }
-
-    /**
-     * Gets the favorites of an user
-     *
-     * @param {boolean} [refresh=false]
-     * @returns {Observable<User['favorites']>}
-     * @memberof UserService
-     */
-    favorites(refresh = false): Observable<User['favorites']> {
-        if (refresh === true || this.favorites$ === null) {
-            this.favorites$ = null;
-        }
-
-        if (!this.favorites$) {
-            this.favorites$ = this.http
-                .get<User['favorites']>(`${environment.araza}/user/favorites`)
-                .pipe(shareReplay(1));
-        }
-
-        return this.favorites$;
-    }
-
-    /**
-     * Updates the favorites of an user. Will refresh favorites and send them back.
-     *
-     * @param {User} user
-     * @returns {Observable<User>}
-     * @memberof UserService
-     */
-    updateFavorites(command: { action: 'like' | 'unlike', target: string }): Observable<User['favorites']> {
-        this.http.post<User>(`${environment.araza}/user/favorites`, command).subscribe();
-        this.favorites$ = null;
-        return this.favorites(true);
     }
 
     /**
@@ -121,10 +83,6 @@ export class UserService {
      */
     playlists(user: AuthSubject): Observable<Array<UserPlaylist>> {
         return this.http.get<Array<UserPlaylist>>(environment.araza + '/user/' + user._id + '/playlists');
-    }
-
-    badges(user: AuthSubject): Observable<any> {
-        return this.http.get(`${environment.araza}/users/${user._id}/badges`)
     }
 
     /**

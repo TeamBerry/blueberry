@@ -57,7 +57,7 @@ export class AuthService {
     }
 
     showConnectedUser(token: string): Observable<User> {
-        return this.http.get<User>(environment.araza + '/user/' + token);
+        return this.http.get<User>(`${environment.araza}/users/me`);
     }
 
     signup(mail: string, password: string, name: string): Observable<Session> {

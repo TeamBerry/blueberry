@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Badge } from 'app/shared/models/badge.model';
 import { AuthSubject } from 'app/shared/models/session.model';
+import { User } from 'app/shared/models/user.model';
 import { BadgeService } from 'app/shared/services/badge.service';
 import { UserService } from 'app/shared/services/user.service';
 import { environment } from 'environments/environment';
@@ -27,11 +28,11 @@ export class BadgeCollectionComponent implements OnInit {
 
     ngOnInit() {
         forkJoin([
-            this.http.get<any[]>(`${environment.araza}/users/${this.user._id}/badges`),
+            this.http.get<User>(`${environment.araza}/users/me`),
             this.http.get<Badge[]>(`${environment.araza}/badges`)
         ]).subscribe(
             (result) => {
-                this.userBadges = result[0];
+                this.userBadges = result[0].badges;
                 this.badges = result[1];
             }
         )
