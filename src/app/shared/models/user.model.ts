@@ -15,7 +15,10 @@ export class User {
         badge: string
     };
     acl: ACLConfig;
-    badges: any[];
+    badges: Array<{
+        badge: string,
+        unlockedAt: Date
+    }>;
 
     constructor(user?: Partial<User>) {
         this._id = user && user._id || null;

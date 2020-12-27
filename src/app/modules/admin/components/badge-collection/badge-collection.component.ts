@@ -17,7 +17,8 @@ import { forkJoin } from 'rxjs';
 })
 export class BadgeCollectionComponent implements OnInit {
     badges: Array<Badge> = []
-    userBadges = []
+    userBadges: User["badges"] = []
+    userBadgeIds: Array<string> = []
     user: AuthSubject = AuthService.getAuthSubject();
 
     constructor(
@@ -31,14 +32,32 @@ export class BadgeCollectionComponent implements OnInit {
             this.http.get<User>(`${environment.araza}/users/me`),
             this.http.get<Badge[]>(`${environment.araza}/badges`)
         ]).subscribe(
-            (result) => {
+            (result: [User, Badge[]]) => {
                 this.userBadges = result[0].badges;
+                this.userBadgeIds = result[0].badges.map((ub) => ub.badge)
                 this.badges = result[1];
             }
         )
     }
 
     selectBadge(badge: string) {
-        this.userService.updateSettings({ badge }).subscribe();
+        this.userService.updateSettings({ badge }).subscribe(
+            () => {
+                this.user.settings.badge = badge
+                localStorage.setItem('BBOX-user', JSON.stringify(this.user));
+            }
+        );
+    }
+
+    isUnlocked(badge: string): boolean {
+        return this.userBadgeIds.includes(badge)
+    }
+
+    isDisplayed(badge: string): boolean {
+        return this.user.settings.badge === badge
+    }
+
+    matchingBadge(badge: Badge): User["badges"][0] {
+        return this.userBadges.find((ub) => ub.badge === badge._id)
     }
 }
