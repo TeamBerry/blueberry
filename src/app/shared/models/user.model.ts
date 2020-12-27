@@ -11,10 +11,14 @@ export class User {
         theme: 'light' | 'dark',
         picture: string,
         color: string,
-        isColorblind: boolean
+        isColorblind: boolean,
+        badge: string
     };
     acl: ACLConfig;
-    favorites: any[];
+    badges: Array<{
+        badge: string,
+        unlockedAt: Date
+    }>;
 
     constructor(user?: Partial<User>) {
         this._id = user && user._id || null;
@@ -25,8 +29,9 @@ export class User {
             theme: 'light',
             picture: null,
             color: '#DF62A9',
-            isColorblind: false
+            isColorblind: false,
+            badge: null
         }
-        this.favorites = user && user.favorites || [];
+        this.badges = user && user.badges || [];
     }
 }

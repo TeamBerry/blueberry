@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <h2 class="admin-tab-title">Badges</h2>
+    <div class="badge-collection">
+        <p class="help-text text-muted text-center mb-4">You can display a badge you've unlocked in chat
+        </p>
+        <div class="d-flex">
+            <div *ngFor="let badge of badges" class="badge-card col-md-6 col-lg-2"
+                [ngClass]="{'badge-locked': !isUnlocked(badge._id)}">
+                <figure>
+                    <img src="{{badge.picture}}" alt="">
+                    <figcaption class="badge-name">{{ badge.name }}</figcaption>
+                    <p class="badge-description">{{ badge.description }}</p>
+                </figure>
+                <div class="badge-life">
+                    <div *ngIf="isUnlocked(badge._id); else lockedDetails">
+                        <p class="unlocked-details">
+                            Unlocked {{ matchingBadge(badge).unlockedAt | date:'dd/MM/yyyy HH:mm:ss' }}
+                        </p>
+                        <div *ngIf="isDisplayed(badge._id); else notDisplayed">
+                            <span class="displayed-indicator">Currently displayed</span>
+                        </div>
+                        <ng-template #notDisplayed>
+                            <button class="btn btn-primary" (click)="selectBadge(badge._id)">Display in chat</button>
+                        </ng-template>
+                    </div>
+                    <ng-template #lockedDetails>
+                        <p class="locked-details" *ngIf="badge.availableFrom || badge.availableTo">
+                            Available
+                            <span *ngIf="badge.availableFrom">
+                                from {{ badge.availableFrom | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </span>
+                            <span *ngIf="badge.availableTo">
+                                until {{ badge.availableTo | date:'dd/MM/yyyy HH:mm:ss'}}
+                            </span>
+                        </p>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

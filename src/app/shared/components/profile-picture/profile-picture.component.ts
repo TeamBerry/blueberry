@@ -15,7 +15,7 @@ export class ProfilePictureComponent implements OnInit, OnChanges {
      *
      * @memberof BoxComponent
      */
-    public pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/default-picture`;
+    public pictureLocation = `${environment.userContentBucket}/${environment.profilePictureBuckets}/default-picture`;
 
     constructor() { }
 
@@ -29,7 +29,7 @@ export class ProfilePictureComponent implements OnInit, OnChanges {
 
     loadUserPicture() {
         this.pictureLocation = this.fileName
-            ? `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${this.fileName}`
+            ? `${environment.userContentBucket}/${environment.profilePictureBuckets}/${this.fileName}`
             : this.pictureLocation
     }
 

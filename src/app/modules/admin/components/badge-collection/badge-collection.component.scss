@@ -1,0 +1,59 @@
+@import './../../../../../imports.scss';
+.badge-collection {
+    height: 86.8vh;
+    width: 100%;
+    overflow: auto;
+    background-color: var(--background-secondary-color);
+    padding: 20px;
+}
+
+.badge-card {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    @include padding-vertical(20px);
+    @include padding-horizontal(10px);
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: var(--background-secondary-color-alternate);
+    }
+    &.badge-locked {
+        figure > img {
+            -webkit-filter: grayscale(0.95);
+            filter: grayscale(0.95);
+        }
+    }
+    figure {
+        img {
+            width: 150px;
+        }
+        .badge-name {
+            font-size: 1.5rem;
+            color: var(--text-main-color);
+            @include padding-vertical(5px)
+        }
+        .badge-description {
+            color: var(--text-system-color)
+        }
+    }
+    .badge-life {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .unlocked-details {
+            color: var(--text-main-color);
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        .locked-details {
+            color: var(--warning-color);
+        }
+        .displayed-indicator {
+            color: var(--success-color);
+        }
+    }
+}
