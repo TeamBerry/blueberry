@@ -50,7 +50,7 @@ export class UserSettingsComponent implements OnInit {
         if (this.session.settings.theme === 'light') {
             this.isDarkThemeEnabled = false;
         }
-        this.pictureLocation = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${this.session.settings.picture}`
+        this.pictureLocation = `${environment.userContentBucket}/${environment.profilePictureBuckets}/${this.session.settings.picture}`
         this.color = this.session.settings.color ?? '#DF62A9';
 
         this.deactivationForm = new FormGroup({

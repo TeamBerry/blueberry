@@ -143,44 +143,54 @@
             </div>
         </div>
         <div class="col box-panel px-0">
-            <div class="box-stats-banner d-flex mx-2">
-                <div class="box-stat" id="box-lifetime">
-                    <p class="mb-0 stat-title">Life</p>
-                    <span *ngIf="lifetime">{{ lifetime | duration }}</span>
-                </div>
-                <div class="box-stat" id="box-users">
-                    <p class="mb-0 stat-title">Current Users</p>
-                    <span *ngIf="users !== null">{{ users }}</span>
-                </div>
-                <div class="box-stat" id="box-users">
-                    <p class="mb-0 stat-title">Videos</p>
-                    <span>{{ selectedBox?.playlist.length }}</span>
-                </div>
-            </div>
-            <div class="d-flex pt-1 h-100">
-                <div class="col-4 pl-2 pr-1">
-                    <div class="chat-space mb-2">
-                        <div class="half-panel" id="chat-panel">
-                            <app-chat-tab class="fixed-tab" *ngIf="selectedBox" [boxToken]="selectedBox?._id"
-                                [user]="user"></app-chat-tab>
-                        </div>
+            <div *ngIf="selectedBox; else noBox">
+                <div class="box-stats-banner d-flex mx-2">
+                    <div class="box-stat" id="box-lifetime">
+                        <p class="mb-0 stat-title">Life</p>
+                        <span *ngIf="lifetime">{{ lifetime | duration }}</span>
                     </div>
-                    <div class="player-space mt-2">
-                        <div class="panel-tab-title-section">
-                            <p class="panel-tab-title col">Player</p>
-                        </div>
-                        <app-player *ngIf="selectedBox && selectedBox.open" [boxToken]="selectedBox._id"></app-player>
+                    <div class="box-stat" id="box-users">
+                        <p class="mb-0 stat-title">Current Users</p>
+                        <span *ngIf="users !== null">{{ users }}</span>
+                    </div>
+                    <div class="box-stat" id="box-users">
+                        <p class="mb-0 stat-title">Videos</p>
+                        <span>{{ selectedBox?.playlist.length }}</span>
                     </div>
                 </div>
-                <div class="col-4 px-1">
-                    <app-queue class="fixed-tab playlist-space" *ngIf="selectedBox" [user]="user" [box]="selectedBox">
-                    </app-queue>
-                </div>
-                <div class="col-4 pl-1 pr-2">
-                    <app-search-tab [boxToken]="selectedBox?._id" [user]="user" class="fixed-tab search-space">
-                    </app-search-tab>
+                <div class="d-flex pt-1 h-100">
+                    <div class="col-4 pl-2 pr-1">
+                        <div class="chat-space mb-2">
+                            <div class="half-panel" id="chat-panel">
+                                <app-chat-tab class="fixed-tab" *ngIf="selectedBox" [boxToken]="selectedBox?._id"
+                                    [user]="user"></app-chat-tab>
+                            </div>
+                        </div>
+                        <div class="player-space mt-2">
+                            <div class="panel-tab-title-section">
+                                <p class="panel-tab-title col">Player</p>
+                            </div>
+                            <app-player *ngIf="selectedBox && selectedBox.open" [boxToken]="selectedBox._id">
+                            </app-player>
+                        </div>
+                    </div>
+                    <div class="col-4 px-1">
+                        <app-queue class="fixed-tab playlist-space" *ngIf="selectedBox" [user]="user"
+                            [box]="selectedBox">
+                        </app-queue>
+                    </div>
+                    <div class="col-4 pl-1 pr-2">
+                        <app-search-tab [boxToken]="selectedBox?._id" [user]="user" class="fixed-tab search-space">
+                        </app-search-tab>
+                    </div>
                 </div>
             </div>
+            <ng-template #noBox>
+                <div class="h-100 d-flex align-items-center justify-content-center">
+                    <p class="text-muted text-center" style="font-size: 2rem;">Create or select a box to enable the
+                        display</p>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>
