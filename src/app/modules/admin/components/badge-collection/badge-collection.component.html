@@ -33,6 +33,9 @@
                                 until {{ badge.availableTo | date:'dd/MM/yyyy HH:mm:ss'}}
                             </span>
                         </p>
+                        <p class="locked-details" *ngIf="!badge.availableFrom && !badge.availableTo">
+                            Locked
+                        </p>
                     </ng-template>
                 </div>
             </div>
