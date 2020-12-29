@@ -35,101 +35,38 @@
             </div>
         </div>
     </div>
-    <div class="box-space row no-gutters">
-        <div class="col-lg-9 col-sm-6 d-flex flex-column h-100">
-            <div *ngIf="box && currentVideo" class="h-100" style="background-color: black;"
+    <div class="box-space">
+        <div id="room-player">
+            <div *ngIf="box && currentVideo" id="player-space" style="background-color: black;"
                 [ngClass]="{'no-events': isDraggingMiniature}">
-                <div class="px-2 h-100">
-                    <app-player [boxToken]="box._id" style="height: 100%; width: 100%; pointer-events: auto;">
-                    </app-player>
-                </div>
+                <app-player [boxToken]="box._id" style="height: 100%; width: 100%; pointer-events: auto;">
+                </app-player>
             </div>
-            <div class="d-flex under-player">
-                <div class="col-lg-5 col-md-12 box-info">
-                    <div class="d-flex">
-                        <div class="bb-box-picture d-flex align-items-center justify-content-center mr-2">
-                            <app-profile-picture [fileName]="box?.creator?.settings?.picture" [size]="'md'">
-                            </app-profile-picture>
-                        </div>
-                        <div class="bb-box-info w-100">
-                            <div id="box-title-space">
-                                <div id="box-title">
-                                    <app-box-status-indicator [isOpen]="box?.open" class="mr-2">
-                                    </app-box-status-indicator>
-                                    <span class="box-title" title="{{box.name}}">{{ box.name }}</span>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <app-bx-button (click)="openInviteModal()" *appAcl="'inviteUser'"
-                                        [options]="{'type': 'inviteUser', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Invite users'}">
-                                    </app-bx-button>
-                                    <app-bx-button (click)="openBoxSettings()" *appAcl="'editBox'"
-                                        style="padding-left: 7px;"
-                                        [options]="{'type': 'settings', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Box Settings'}">
-                                    </app-bx-button>
-                                </div>
-                            </div>
-                            <div class="col d-flex flex-row flex-wrap align-items-center p-0">
-                                <div class="mr-2">
-                                    <svg class="berrybox-svg-icon crown" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 500 500" title="Administrator">
-                                        <rect x="29.61" y="209.46" width="440.78" height="181.69" />
-                                        <polygon points="250 53.84 148.6 229.46 351.4 229.46 250 53.84" />
-                                        <polygon points="470.39 54.84 368.99 230.46 470.39 230.46 470.39 54.84" />
-                                        <polygon points="131.01 230.46 29.61 54.84 29.61 230.46 131.01 230.46" />
-                                    </svg>
-                                    <span class="ml-1">{{ box?.creator?.name }}</span>
-                                </div>
-                                <app-bx-chip [options]="{'type': 'random'}" [display]="'icon'"
-                                    *ngIf="box?.options?.random"></app-bx-chip>
-                                <app-bx-chip [options]="{'type': 'loop'}" [display]="'icon'" *ngIf="box?.options?.loop">
-                                </app-bx-chip>
-                                <app-bx-chip [options]="{'type': 'lock'}" [display]="'icon'" *ngIf="box?.private">
-                                </app-bx-chip>
-                                <app-bx-chip [options]="{'type': 'coin-enabled'}" [display]="'icon'"
-                                    *ngIf="box?.options?.berries">
-                                </app-bx-chip>
-                                <app-bx-chip
-                                    [options]="{'type': 'duration-limit', 'chipText': box.options.videoMaxDurationLimit + ' mins.', 'tooltipText': 'Videos longer than ' + box.options.videoMaxDurationLimit + ' mins will be rejected.'}"
-                                    [display]="'full'" *ngIf="box?.options?.videoMaxDurationLimit !== 0">
-                                </app-bx-chip>
-                            </div>
-                        </div>
-                    </div>
+            <div class="current-video-space-container">
+                <div class="d-lg-none">
+                    <app-profile-picture class="mr-2" [fileName]="box?.creator?.settings?.picture" [size]="'sm'">
+                    </app-profile-picture>
                 </div>
-                <hr class="md-separator d-lg-none">
-                <div class="col-lg-7 col-md-12 video-info m-auto" *ngIf="currentVideo">
-                    <div class="row">
-                        <div class="col-lg-10 col-md-8 d-flex justify-content-start align-items-center">
-                            <img *ngIf="currentVideo?.stateForcedWithBerries"
-                                src="../../../../../assets/images/icons/berry-coin-icon.svg" alt=""
-                                style="height: 30px;" class="pr-2"
-                                ngbTooltip="This video is playing thanks to the use of berries.">
-                            <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}
-                            </p>
-                        </div>
-                        <div class="col-lg-2 col-md-4 text-right" *appAuth="true">
-                            <app-bx-button *appAcl="'skipVideo'" (click)="skipVideo()"
-                                [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'queue'}" class="mr-2">
-                            </app-bx-button>
-                            <span *appAcl="'!skipVideo'">
-                                <app-bx-button *ngIf="box?.options?.berries" (click)="skipVideo()"
-                                    [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 20 berries to skip'}"
-                                    class="mr-2">
-                                </app-bx-button>
-                            </span>
-                            <app-bx-button *ngIf="currentVideo" (click)="addToPlaylist()"
-                                [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to a Playlist', 'context': 'queue'}">
-                            </app-bx-button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-9">
-                            <span class="minor-text">Submitted by {{ currentVideo?.submitted_by?.name }}</span>
-                        </div>
-                    </div>
+                <div class="d-none d-lg-block">
+                    <app-profile-picture class="mr-2" [fileName]="box?.creator?.settings?.picture" [size]="'lg'">
+                    </app-profile-picture>
+                </div>
+                <div class="current-video-space">
+                    <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
+                    <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}</p>
+                </div>
+                <div class="box-actions">
+                    <app-bx-button (click)="openInviteModal()" *appAcl="'inviteUser'"
+                        [options]="{'type': 'inviteUser', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Invite users'}"
+                        style="padding-left: 7px;">
+                    </app-bx-button>
+                    <app-bx-button (click)="openBoxSettings()" *appAcl="'editBox'"
+                        [options]="{'type': 'settings', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Box Settings'}"
+                        style="padding-left: 7px;">
+                    </app-bx-button>
                 </div>
             </div>
         </div>
-        <app-panel class="col-lg-3 col-sm-6" id="room-panel" #panel [boxToken]="box._id"></app-panel>
+        <app-panel id="room-panel" #panel [boxToken]="box._id"></app-panel>
     </div>
 </div>

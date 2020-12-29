@@ -1,7 +1,23 @@
 @import './../../../../../imports.scss';
 .box-space {
     height: calc(100vh - #{$nav-height});
+    width: 100%;
     overflow: hidden;
+    align-content: flex-start;
+    display: flex;
+    // xs to md
+    flex-direction: column;
+    // lg and up
+    @include lg {
+        flex-direction: row;
+    }
+}
+
+#room-player {
+    width: 100%;
+    @include lg {
+        width: calc(100% * 9/12);
+    }
 }
 
 #room-panel {
@@ -10,82 +26,86 @@
     background-color: var(--background-secondary-color);
     color: var(--text-main-color);
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
+    flex: 1;
+    height: calc(100vh - (100vh * 9/16) - 50px);
+    width: 100%;
+    @include lg {
+        width: calc(100% * 3/12);
+        height: calc(100vh - 60px);
+    }
 }
 
-#player {
-    height: calc(100% - 94px);
+#player-space {
+    height: calc(100vw * (9/16));
+    background-image: url("../../../../../assets/images/berrybox-logo-master.png");
+    background-repeat: no-repeat;
+    @include lg {
+        height: calc(100% - 100px);
+    }
+}
+
+.player-container {
+    @include md {
+        flex: 1;
+    }
 }
 
 .under-player {
-    color: var(--text-main-color);
-    padding: 15px 0;
-    white-space: nowrap;
+    flex: 1;
 }
 
-.box-info:after {
-    @media(max-width: 992px){
-        display: none;
+.current-video-space-container {
+    padding: 0 10px;
+    display: flex;
+    height: 50px;
+    flex-direction: row;
+    flex: 0;
+    align-items: center;
+    @include lg {
+        flex: 1;
+        height: 100px;
+        padding: 10px;
     }
-    content: '';
-    width: 1px;
-    position: absolute;
-    height: 70%;
-    top: 15%;
-    right: 0;
-    background-color: $master-color;
+    .current-video-space {
+        padding-left: 5px;
+        width: calc(100% - 135px);
+        flex: 1;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 
 .box-title,
 .video-title {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 1.6rem;
     margin-bottom: 0;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    @include one-line-text();
 }
 
-.minor-text {
+.box-title {
+    font-size: 1rem;
+    font-weight: 400;
     color: var(--text-system-color);
+    @include xl {
+        font-size: 1.3rem;
+    }
 }
 
-.mood-widget {
-    text-align: center;
-}
-
-.closed-label {
-    background-color: $danger-color;
-    padding: 5px;
-    border-radius: 2.5px;
-    text-transform: uppercase;
-    cursor: default;
-    align-self: center;
-    margin-right: 5px;
-}
-
-#box-title-space {
-    display: flex;
-    justify-content: space-between;
-}
-
-#box-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.md-separator {
-    border: .1rem solid $master-color;
-    width: 100%;
-}
-
-.player-bait {
-    height: 100%;
-    width: 2px;
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main-color);
+    @include xl {
+        font-size: 1.6rem;
+    }
 }
 
 .no-events {
     pointer-events: none;
+}
+
+.box-actions {
+    display: flex;
 }

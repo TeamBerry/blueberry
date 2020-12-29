@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { HelpTabComponent } from './help-tab.component';
+import { BadgeCollectionComponent } from './badge-collection.component';
 
-describe('HelpTabComponent', () => {
-  let component: HelpTabComponent;
-  let fixture: ComponentFixture<HelpTabComponent>;
+describe('BadgeCollectionComponent', () => {
+  let component: BadgeCollectionComponent;
+  let fixture: ComponentFixture<BadgeCollectionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HelpTabComponent ]
+      declarations: [ BadgeCollectionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HelpTabComponent);
+    fixture = TestBed.createComponent(BadgeCollectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

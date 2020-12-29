@@ -1,0 +1,20 @@
+@import './../../../../../imports.scss';
+.berry-counter {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    cursor: default;
+    img {
+        width: 32px;
+        height: 32px;
+    }
+    span {
+        display: flex;
+        align-self: center;
+        font-family: 'Montserrat';
+        font-weight: 700;
+        color: var(--text-main-color);
+        font-size: 1.2rem;
+        padding-left: 5px;
+    }
+}

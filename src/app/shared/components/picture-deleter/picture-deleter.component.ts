@@ -18,7 +18,7 @@ export class PictureDeleterComponent implements OnInit, OnChanges {
      *
      * @memberof BoxComponent
      */
-    public defaultPicture = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/default-picture`;
+    public defaultPicture = `${environment.userContentBucket}/${environment.profilePictureBuckets}/default-picture`;
     public userPicture = this.defaultPicture;
     authSubject: AuthSubject = AuthService.getAuthSubject();
     success = false;
@@ -30,11 +30,11 @@ export class PictureDeleterComponent implements OnInit, OnChanges {
     ) { }
 
     ngOnInit() {
-      this.userPicture = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${this.userPictureName}`
+      this.userPicture = `${environment.userContentBucket}/${environment.profilePictureBuckets}/${this.userPictureName}`
     }
 
     ngOnChanges() {
-      this.userPicture = `${environment.amazonBuckets}/${environment.profilePictureBuckets}/${this.userPictureName}`
+      this.userPicture = `${environment.userContentBucket}/${environment.profilePictureBuckets}/${this.userPictureName}`
     }
 
     deletePicture() {

@@ -40,8 +40,8 @@
                     <span class="ml-2" *ngIf="item?.submitted_by">
                         {{ item?.submitted_by?.name }}
                     </span>
-                    <span class="m-1">&#9679;</span>
-                    <span>
+                    <span class="m-1 d-none d-lg-block">&#9679;</span>
+                    <span class="d-none d-lg-block">
                         {{ item?.submittedAt | fromNow }}
                     </span>
                 </div>
