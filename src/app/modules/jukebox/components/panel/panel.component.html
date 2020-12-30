@@ -1,10 +1,10 @@
 <div class="d-flex no-gutters panel-container">
     <div id="panel-space">
         <app-userlist [hidden]="activePanel !== 'users'" [user]="user"></app-userlist>
-        <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user"></app-queue>
-        <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="boxToken" [user]="user"
+        <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user" [box]="box"></app-queue>
+        <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="box._id" [user]="user"
             (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
-        <app-search-tab class="fixed-tab" [hidden]="activePanel !== 'search'" [boxToken]="boxToken" [user]="user">
+        <app-search-tab class="fixed-tab" [hidden]="activePanel !== 'search'" [box]="box" [user]="user">
         </app-search-tab>
     </div>
     <div id="panel-menu">

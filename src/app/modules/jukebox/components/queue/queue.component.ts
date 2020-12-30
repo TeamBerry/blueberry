@@ -20,6 +20,8 @@ export class QueueComponent implements OnInit, OnChanges {
     @Input() box: Box = null;
     @Input() user: User = new User;
 
+    queue: Array<QueueItem> = [];
+
     @ViewChild('filterInput') input: ElementRef;
     filterValue = '';
 
@@ -48,10 +50,6 @@ export class QueueComponent implements OnInit, OnChanges {
         this.listen();
     }
 
-    ngAfterViewInit() {
-        this.bindSearch();
-    }
-
     bindSearch() {
         fromEvent(this.input.nativeElement, 'keyup')
             .pipe(
@@ -76,22 +74,24 @@ export class QueueComponent implements OnInit, OnChanges {
      * @memberof PlaylistComponent
      */
     listen() {
-        this.jukeboxService.getBox().subscribe(
-            (box: Box) => {
-                this.box = box;
-                this.currentlyPlaying = null;
-                setTimeout(() => {
-                    this.currentlyPlaying = this.getCurrentlyPlayingVideo(this.box.playlist);
-                }, 100);
-                this.playedVideos = this.buildPartialPlaylist(this.box.playlist, 'played');
-                this.upcomingVideos = this.buildPartialPlaylist(this.box.playlist, 'upcoming').reverse();
+        this.jukeboxService.getQueueStream().subscribe(
+            (queue: Array<QueueItem>) => {
+                this.queue = queue;
+                this.currentlyPlaying = queue.find((queueItem) => queueItem.startTime !== null && queueItem.endTime === null);
+
+                this.playedVideos = this.buildPartialPlaylist(queue, 'played');
+                this.upcomingVideos = this.buildPartialPlaylist(queue, 'upcoming').reverse();
 
                 if (this.box.options.loop) {
                     this.upcomingVideos = [...this.upcomingVideos, ...this.playedVideos]
                 }
                 this.upcomingVideos = this.putPreselectedFirst(this.upcomingVideos);
+
+                setTimeout(() => {
+                    this.bindSearch();
+                }, 2000)
             }
-        );
+        )
     }
 
     /**
@@ -197,25 +197,6 @@ export class QueueComponent implements OnInit, OnChanges {
             boxToken: this.box._id
         };
         this.jukeboxService.submitVideo(submissionPayload);
-    }
-
-    swap(video: any, direction: string) {
-        const action = {
-            room_history_id: video.room_history_id,
-            playlist_order: video.playlist_order,
-            direction: direction
-        };
-
-        this.jukeboxService.swap();
-    }
-
-    /**
-     * Requests the currently playing video be skipped.
-     *
-     * @memberof PlaylistComponent
-     */
-    requestSkip() {
-
     }
 
     startConversion() {

@@ -8,7 +8,7 @@
     </div>
 </div>
 <div *ngIf="box" style="flex: 1; overflow: auto;">
-    <div *ngIf="box.playlist.length > 0; else noVideos" class="d-flex flex-column h-100">
+    <div *ngIf="queue.length > 0; else noVideos" class="d-flex flex-column h-100">
         <div class="d-flex align-items-center pl-2 pt-3">
             <img *ngIf="currentlyPlaying?.stateForcedWithBerries"
                 src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 30px;"

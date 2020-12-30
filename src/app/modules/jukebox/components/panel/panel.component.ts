@@ -20,9 +20,8 @@ export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorite
     styleUrls: ['./panel.component.scss'],
 })
 export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
-    @Input() boxToken: string;
+    @Input() box: Box;
     user: AuthSubject = AuthService.getAuthSubject();
-    box: Box;
 
     @Output() skipEvent = new EventEmitter();
     activePanel: Panel = 'chat';
@@ -45,11 +44,6 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
     ngOnInit() {
         this.activePanel = 'chat';
         this.connectToStream();
-        this.jukeboxService.getBox().subscribe(
-            (box: Box) => {
-                this.box = box;
-            }
-        )
     }
 
     ngAfterViewInit() {
