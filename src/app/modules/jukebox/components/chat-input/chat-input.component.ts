@@ -131,6 +131,11 @@ export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
 
     post(event) {
         event.preventDefault();
+        // Guard to prevent sending empty messages
+        if (this.contents === '' || this.contents.trim() === '') {
+            return;
+        }
+
         const contents = this.contents;
         this.contents = '';
         this.emojiResults = [];

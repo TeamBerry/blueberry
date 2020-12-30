@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="chat-actions no-gutters">
-        <button class="btn btn-primary" (click)="post($event)">Send
+        <button class="btn btn-primary d-none d-lg-block" (click)="post($event)">Send
             message</button>
         <div *ngIf="appliedOptions.berryCount && box?.creator?._id !== user?._id">
             <app-berry-counter [boxToken]="boxToken"></app-berry-counter>
