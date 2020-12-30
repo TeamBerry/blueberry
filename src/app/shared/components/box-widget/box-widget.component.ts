@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as _ from 'lodash';
 
 import { Box } from '../../models/box.model';
-import { environment } from 'environments/environment';
 
 @Component({
     selector: 'app-box-widget',
@@ -25,7 +24,6 @@ export class BoxWidgetComponent implements OnInit {
      * @memberof BoxWidgetComponent
      */
     displayCurrentVideo() {
-        const playingVideo = this.box.playlist.filter((video) => video.startTime !== null && video.endTime === null );
-        this.currentVideo = playingVideo[0];
+        this.currentVideo = this.box.currentVideo;
     }
 }

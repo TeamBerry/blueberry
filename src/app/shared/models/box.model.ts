@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { QueueItem, ACLConfig } from '@teamberry/muscadine';
+import { QueueItem, ACLConfig, PlayingItem } from '@teamberry/muscadine';
 
 @Injectable()
 export class Box {
@@ -15,7 +15,6 @@ export class Box {
     description: string;
     lang: string;
     name: string;
-    playlist: Array<QueueItem>;
     open: boolean;
     private: boolean;
     createdAt: Date;
@@ -49,7 +48,8 @@ export class Box {
     }
     acl: ACLConfig;
     featured: Date;
-    users?: number
+    users?: number;
+    currentVideo?: QueueItem | PlayingItem;
 
     constructor(obj?: any) {
         this._id = obj && obj._id || null;
@@ -57,7 +57,6 @@ export class Box {
         this.description = obj && obj.description || null;
         this.lang = obj && obj.lang || 'en';
         this.name = obj && obj.name || null;
-        this.playlist = obj && obj.playlist || [];
         this.open = obj && obj.open || true;
         this.private = obj && obj.private || false;
         this.options = obj && obj.options || {
