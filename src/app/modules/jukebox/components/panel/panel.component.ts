@@ -77,7 +77,7 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
                 filter(message =>
-                    (message instanceof Message || message instanceof SystemMessage || message instanceof FeedbackMessage) && message.scope === this.boxToken
+                    (message instanceof Message || message instanceof SystemMessage || message instanceof FeedbackMessage) && message.scope === this.box._id
                 ),
             )
             .subscribe(
