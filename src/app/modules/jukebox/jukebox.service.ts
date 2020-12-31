@@ -2,18 +2,17 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, from, Observable, ReplaySubject, Subject } from 'rxjs';
 
 import io from 'socket.io-client';
-import * as _ from 'lodash';
 
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
-import { Message, FeedbackMessage, QueueItemActionRequest, SyncPacket, VideoSubmissionRequest, Permission } from '@teamberry/muscadine';
+import { Message, FeedbackMessage, QueueItemActionRequest, SyncPacket, VideoSubmissionRequest, Permission, QueueItem } from '@teamberry/muscadine';
 import { AuthService } from 'app/core/auth/auth.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { BerryCount } from '@teamberry/muscadine/dist/interfaces/subscriber.interface';
 import { SystemMessage } from '@teamberry/muscadine/dist/models/message.model';
 import { RoleChangeRequest } from 'app/shared/models/role-change.model';
 import { QueueService } from 'app/shared/services/queue.service';
-import { filter, switchMap } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 
 export type subjects = Box | Message | FeedbackMessage | SystemMessage | SyncPacket | BerryCount
 @Injectable({
@@ -32,6 +31,7 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     private boxStream: ReplaySubject<subjects> = new ReplaySubject<subjects>();
+    private queueStream: ReplaySubject<Array<QueueItem>> = new ReplaySubject<Array<QueueItem>>();
 
     /**
      * Subject for every component in the box that will need to do stuff based on the actions of other components.
@@ -85,6 +85,10 @@ export class JukeboxService {
         return this.boxStream.asObservable();
     }
 
+    public getQueueStream(): Observable<any> {
+        return this.queueStream.asObservable();
+    }
+
     public getBerryCount() {
         return this.boxStream
             .asObservable()
@@ -118,11 +122,7 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public submitVideo(video: VideoSubmissionRequest): void {
-        this.queueService.addVideo(video).subscribe(
-            () => {
-                console.log('Video added yay')
-            }
-        )
+        this.queueService.addVideo(video).subscribe()
     }
 
     /**
@@ -132,11 +132,7 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public submitPlaylist(playlist: { playlistId: string, userToken: string, boxToken: string }): void {
-        this.queueService.addPlaylist(playlist.boxToken, playlist.playlistId).subscribe(
-            () => {
-                console.log('Add playlist yay')
-            }
-        )
+        this.queueService.addPlaylist(playlist.boxToken, playlist.playlistId).subscribe()
     }
 
     /**
@@ -146,11 +142,7 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public cancelVideo = (actionRequest: QueueItemActionRequest): void => {
-        this.queueService.removeVideo(actionRequest).subscribe(
-            () => {
-                console.log('Cancel yay')
-            }
-        )
+        this.queueService.removeVideo(actionRequest).subscribe()
     }
 
     /**
@@ -160,19 +152,15 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public preselectVideo = (actionRequest: QueueItemActionRequest): void => {
-        this.queueService.playNext(actionRequest).subscribe(
-            () => {
-                console.log('Play next yay')
-            }
-        )
+        this.queueService.playNext(actionRequest).subscribe()
     }
 
     public forcePlayVideo = (actionRequest: QueueItemActionRequest): void => {
-        this.queueService.playNow(actionRequest).subscribe(
-            () => {
-                console.log('Play now yay')
-            }
-        )
+        this.queueService.playNow(actionRequest).subscribe()
+    }
+
+    public replayVideo = (actionRequest: QueueItemActionRequest): void => {
+        this.queueService.replayVideo(actionRequest).subscribe()
     }
 
     /**
@@ -182,18 +170,7 @@ export class JukeboxService {
      * @memberof JukeboxService
      */
     public skipVideo(): void {
-        this.queueService.skipVideo(this.box._id).subscribe(
-            () => { console.log('yay') }
-        )
-    }
-
-    // TODO: The following 2
-    public shuffle() {
-
-    }
-
-    public swap() {
-
+        this.queueService.skipVideo(this.box._id).subscribe()
     }
 
     /**
@@ -312,6 +289,10 @@ export class JukeboxService {
                     this.sendBox();
                 }
             });
+
+            this.boxSocket.on('queue', (queue: Array<QueueItem>) => {
+                this.queueStream.next(queue);
+            })
 
             // On chat. Regular event.
             this.boxSocket.on('chat', (message: Message | FeedbackMessage | SystemMessage) => {

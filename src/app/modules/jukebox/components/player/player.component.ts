@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, OnDestroy, OnChanges, SimpleChange } from '@angular/core';
-import * as _ from 'lodash';
 import { SyncPacket, PlayingItem } from '@teamberry/muscadine';
 import { JukeboxService } from '../../jukebox.service';
 import { filter } from 'rxjs/operators';

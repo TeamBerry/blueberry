@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { JukeboxService } from '../../jukebox.service';
 import { Box } from 'app/shared/models/box.model';
@@ -9,8 +9,8 @@ import { QueueItem } from '@teamberry/muscadine';
     templateUrl: './search-tab.component.html',
     styleUrls: ['./search-tab.component.scss']
 })
-export class SearchTabComponent implements OnInit {
-    @Input() boxToken: string;
+export class SearchTabComponent implements OnInit, OnChanges {
+    @Input() box: Box;
     @Input() user: AuthSubject;
 
     videosInQueue: Array<string>;
@@ -24,15 +24,16 @@ export class SearchTabComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.jukeboxService.getBox().subscribe(
-            (box: Box) => {
-                if (box) {
-                    this.videosInQueue = box.playlist.map((queueItem: QueueItem) => queueItem.video.link)
-                    this.berriesEnabled = box.options.berries
-                    this.durationRestriction = box.options.videoMaxDurationLimit;
-                }
+        this.jukeboxService.getQueueStream().subscribe(
+            (queue: Array<QueueItem>) => {
+                this.videosInQueue = queue.map((queueItem: QueueItem) => queueItem.video.link)
             }
         )
+    }
+
+    ngOnChanges() {
+        this.berriesEnabled = this.box.options.berries
+        this.durationRestriction = this.box.options.videoMaxDurationLimit;
     }
 
 }
