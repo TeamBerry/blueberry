@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, from, Observable, ReplaySubject, Subject } from 'rxjs';
 
 import io from 'socket.io-client';
-import * as _ from 'lodash';
 
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import * as _ from 'lodash';
 import { filter } from 'rxjs/operators';
 
 import { UserService } from 'app/shared/services/user.service';

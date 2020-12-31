@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as _ from 'lodash';
 
 import { Box } from '../../models/box.model';
 
