@@ -159,6 +159,10 @@ export class JukeboxService {
         this.queueService.playNow(actionRequest).subscribe()
     }
 
+    public replayVideo = (actionRequest: QueueItemActionRequest): void => {
+        this.queueService.replayVideo(actionRequest).subscribe()
+    }
+
     /**
      * Skips the currently playing video.
      *

@@ -161,7 +161,7 @@ export class QueueComponent implements OnInit, OnChanges {
 
         switch (event.order) {
             case 'replay':
-                this.replayVideo(event.item)
+                this.jukeboxService.replayVideo(actionRequest)
                 break
 
             case 'cancel':
@@ -180,23 +180,6 @@ export class QueueComponent implements OnInit, OnChanges {
                 this.jukeboxService.forcePlayVideo(actionRequest)
                 break
         }
-    }
-
-    /**
-     * Triggered by the order$ event of the playlist item component.
-     *
-     * Resubmits the video in the playlist of the box
-     *
-     * @param {QueueItem['video']['link']} link The Youtube link of the video
-     * @memberof PlaylistComponent
-     */
-    replayVideo(link: QueueItem['video']['link']) {
-        const submissionPayload: VideoSubmissionRequest = {
-            link: link,
-            userToken: this.user._id,
-            boxToken: this.box._id
-        };
-        this.jukeboxService.submitVideo(submissionPayload);
     }
 
     startConversion() {

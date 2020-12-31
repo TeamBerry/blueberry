@@ -35,6 +35,10 @@ export class QueueService {
         return this.http.put(`${environment.araza}/boxes/${playNowRequest.boxToken}/queue/${playNowRequest.item}/now`, {})
     }
 
+    replayVideo(replayVideoRequest: QueueItemActionRequest) {
+        return this.http.put(`${environment.araza}/boxes/${replayVideoRequest.boxToken}/queue/${replayVideoRequest.item}/replay`, {})
+    }
+
     removeVideo(videoCancelRequest: QueueItemActionRequest) {
         return this.http.delete(`${environment.araza}/boxes/${videoCancelRequest.boxToken}/queue/${videoCancelRequest.item}`)
     }
