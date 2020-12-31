@@ -72,7 +72,7 @@ export class QueueVideoComponent implements OnInit {
      * @memberof PlaylistItemComponent
      */
     replayVideo(item: QueueItem) {
-        this.order.emit({ item: item.video.link, order: 'replay' });
+        this.order.emit({ item: item._id, order: 'replay' });
     }
 
     /**
