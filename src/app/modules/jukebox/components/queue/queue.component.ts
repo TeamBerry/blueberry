@@ -80,7 +80,7 @@ export class QueueComponent implements OnInit, OnChanges {
                 this.currentlyPlaying = queue.find((queueItem) => queueItem.startTime !== null && queueItem.endTime === null);
 
                 this.playedVideos = this.buildPartialPlaylist(queue, 'played');
-                this.upcomingVideos = this.buildPartialPlaylist(queue, 'upcoming').reverse();
+                this.upcomingVideos = this.buildPartialPlaylist(queue, 'upcoming');
 
                 if (this.box.options.loop) {
                     this.upcomingVideos = [...this.upcomingVideos, ...this.playedVideos]
