@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, from, Observable, ReplaySubject, Subject } from 'rxjs';
 
-import io from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
@@ -19,7 +19,7 @@ export type subjects = Box | Message | FeedbackMessage | SystemMessage | SyncPac
     providedIn: 'root'
 })
 export class JukeboxService {
-    private boxSocket;
+    private boxSocket: Socket;
 
     /**
      * Replay Subject for components that need to connect to the box stream. The Jukebox Service will connect
