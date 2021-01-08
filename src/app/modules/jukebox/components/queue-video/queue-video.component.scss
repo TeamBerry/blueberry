@@ -42,11 +42,6 @@
     }
 }
 
-.force-next {
-    outline: 3px solid var(--active-color);
-    outline-offset: -6px;
-}
-
 .next-indicator-icon {
     height: 18px;
     fill: var(--active-color) !important;
@@ -55,8 +50,18 @@
 .next-indicator {
     font-family: 'Montserrat';
     color: var(--active-color);
-    font-weight: 800;
+    font-weight: 600;
+    .priority-value {
+        border: 2px solid black;
+        background-color: var(--active-color);
+        color: black;
+        padding: 0 5px;
+        margin-left: 5px;
+        font-weight: 800;
+        cursor: default;
+    }
 }
+
 
 .submission-details {
     margin-top: .25rem;
