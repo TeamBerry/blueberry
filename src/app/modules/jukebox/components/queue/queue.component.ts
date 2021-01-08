@@ -21,13 +21,14 @@ export class QueueComponent implements OnInit, OnChanges {
     @Input() user: User = new User;
 
     queue: Array<QueueItem> = [];
-
+    
     @ViewChild('filterInput') input: ElementRef;
     filterValue = '';
-
+    
     currentlyPlaying: QueueItem;
     playedVideos: Array<QueueItem>;
     upcomingVideos: Array<QueueItem>;
+    priorityVideos: Array<QueueItem>;
 
     tabSetOptions = [
         { title: `Upcoming`, value: 'upcoming' },
@@ -135,15 +136,15 @@ export class QueueComponent implements OnInit, OnChanges {
     }
 
     putPreselectedFirst(playlist: Array<QueueItem>): Array<QueueItem> {
-        // Put the preselected video first
-        const preselectedVideoIndex = playlist.findIndex((item: QueueItem) => item.isPreselected)
-        if (preselectedVideoIndex !== -1) {
-            const preselectedVideo = playlist[preselectedVideoIndex]
-            playlist.splice(preselectedVideoIndex, 1)
-            playlist.unshift(preselectedVideo)
-        }
+        const priorityVideos = playlist
+            .filter(queueItem => queueItem.setToNext)
+            .sort((a, b) => +new Date(a.setToNext) - +new Date(b.setToNext))
+        
+        this.priorityVideos = priorityVideos;
 
-        return playlist
+        const rest = playlist.filter(queueItem => !queueItem.setToNext)
+
+        return [...priorityVideos, ...rest]
     }
 
     /**

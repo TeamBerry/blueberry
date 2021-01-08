@@ -19,6 +19,14 @@ export class QueueVideoComponent implements OnInit {
 
     @Input() item: QueueItem;
 
+    /**
+     * Variable that displays the position in the "next in line" if set
+     *
+     * @type {number}
+     * @memberof QueueVideoComponent
+     */
+    @Input() priority: number;
+
     @Output() order: EventEmitter<{ item: any, order: string }> = new EventEmitter();
 
     user: AuthSubject = AuthService.getAuthSubject()

@@ -53,7 +53,8 @@
                 <div *ngIf="displayTab === 'upcoming'">
                     <div
                         *ngFor="let entry of upcomingVideos | filter:filterValue:['video.name', 'video.link', 'submitted_by.name']; let i = index">
-                        <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
+                        <app-queue-video [item]="entry" [priority]="priorityVideos.indexOf(entry) + 1" [box]="box"
+                            (order)="handlePlaylistOrder($event)">
                         </app-queue-video>
                     </div>
                 </div>
@@ -68,7 +69,8 @@
             <div *ngIf="box.options.loop">
                 <div
                     *ngFor="let entry of upcomingVideos | filter:filterValue:['video.name', 'video.link', 'submitted_by.name']; let i = index">
-                    <app-queue-video [item]="entry" [box]="box" (order)="handlePlaylistOrder($event)">
+                    <app-queue-video [item]="entry" [priority]="priorityVideos.indexOf(entry) + 1" [box]="box"
+                        (order)="handlePlaylistOrder($event)">
                     </app-queue-video>
                 </div>
             </div>
