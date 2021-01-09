@@ -31,7 +31,7 @@ jobs:
           npm install
           npx ng build --aot --prod --no-progress
       - name: Clean dist folder
-        uses: garygrossgarten/github-action-ssh@v0.6.3
+        uses: garygrossgarten/github-action-ssh@v0.6.4
         with:
           command: rm -rf ${{ secrets.LOCATION }}/dist/*
           host: ${{ secrets.HOST }}
