@@ -9,10 +9,8 @@ export class DurationLineComponent implements OnChanges {
     @Input() current: number;
     @Input() videoDuration: string;
 
-
     displayInterval;
-    durationWidthUnit;
-    displayWidth;
+    displayWidth: number;
 
   constructor() { }
 
@@ -23,11 +21,9 @@ export class DurationLineComponent implements OnChanges {
             this.current = 0;
         }
 
-        this.durationWidthUnit = 100 / this.convertDurationToSeconds(this.videoDuration);
-
         this.displayInterval = setInterval(() => {
             this.current += 1;
-            this.displayWidth = this.current * this.durationWidthUnit;
+            this.displayWidth = this.current * (100 / this.convertDurationToSeconds(this.videoDuration));
         }, 1000);
     }
 
