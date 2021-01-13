@@ -20,6 +20,8 @@ import { filter } from 'rxjs/operators';
 export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
     @Input() boxToken: string;
     private player: YT.Player;
+    public currentVideoDuration: string;
+    public playingPosition: number;
 
     streamSubscription
 
@@ -131,6 +133,9 @@ export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
         } else {
             startingTime += 0.3;
         }
+
+        this.currentVideoDuration = video.video?.duration;
+        this.playingPosition = startingTime;
 
         this.player.loadVideoById(video.video.link, startingTime);
     }
