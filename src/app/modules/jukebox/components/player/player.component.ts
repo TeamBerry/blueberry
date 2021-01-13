@@ -135,7 +135,7 @@ export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
         }
 
         this.currentVideoDuration = video.video?.duration;
-        this.playingPosition = startingTime;
+        this.playingPosition = startingTime ?? 0;
 
         this.player.loadVideoById(video.video.link, startingTime);
     }
