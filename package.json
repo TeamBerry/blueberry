@@ -27,7 +27,7 @@
     "@teamberry/muscadine": "^0.11.0",
     "bootstrap": "4.5.3",
     "color-contrast": "1.0.0",
-    "core-js": "3.8.2",
+    "core-js": "3.8.3",
     "lodash": "4.17.20",
     "moment": "2.29.1",
     "ngx-clipboard": "14.0.1",
