@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'app-duration-line',
@@ -12,18 +12,25 @@ export class DurationLineComponent implements OnChanges {
     displayInterval;
     displayWidth: number;
 
-  constructor() { }
+    constructor() { }
 
-    ngOnChanges() {
+    ngOnChanges(changes: { current: SimpleChange, videoDuration: SimpleChange }) {
         clearInterval(this.displayInterval);
 
-        if (!this.current) {
+        if (!changes?.current) {
             this.current = 0;
+            this.displayWidth = 0;
         }
+
+        if (!changes.videoDuration && !this.videoDuration) {
+            return;
+        }
+
+        const widthUnit = 100 / this.convertDurationToSeconds(this.videoDuration);
 
         this.displayInterval = setInterval(() => {
             this.current += 1;
-            this.displayWidth = this.current * (100 / this.convertDurationToSeconds(this.videoDuration));
+            this.displayWidth = this.current * widthUnit;
         }, 1000);
     }
 
