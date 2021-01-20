@@ -45,6 +45,14 @@
     }
 }
 
+#player-component {
+    height: 100%;
+    width: 100%;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+}
+
 .player-container {
     @include md {
         flex: 1;
