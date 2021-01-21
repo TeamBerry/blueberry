@@ -45,7 +45,7 @@ export class AclFormComponent implements OnInit {
                 },
                 {
                     key: 'forceNext',
-                    name: 'Force the next video',
+                    name: 'Put a video into the priority queue',
                     explanation: null,
                     withBerries: true
                 },
