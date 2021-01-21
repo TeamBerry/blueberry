@@ -65,6 +65,12 @@ export class AclFormComponent implements OnInit {
                     name: 'Edit Box',
                     explanation: null,
                     withBerries: false
+                },
+                {
+                    key: 'bypassBerries',
+                    name: 'Bypass Berries',
+                    explanation: 'Allows to bypass any action that consumed berries. With this permission, skipping a video played with berries is possible.',
+                    withBerries: false
                 }
             ]
         },
