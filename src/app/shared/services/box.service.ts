@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import * as _ from 'lodash';
-
 import { environment } from './../../../environments/environment';
 import { Box } from './../models/box.model';
 import { UserPlaylist } from '../models/user-playlist.model';
@@ -50,7 +48,7 @@ export class BoxService {
      */
     store(box: Box): Observable<Box> {
         // Omitting the _id so mongo can send it correctly created
-        box = _.omit(box, '_id');
+        delete box._id
         return this.http.post<Box>(environment.araza + '/box', box);
     }
 

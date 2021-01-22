@@ -18,6 +18,7 @@ import { ChatItemComponent } from './components/chat-item/chat-item.component';
 import { ChatInputComponent } from './components/chat-input/chat-input.component';
 import { ChatBadgeComponent } from './components/chat-badge/chat-badge.component';
 import { BerryCounterComponent } from './components/berry-counter/berry-counter.component';
+import { DurationLineComponent } from './components/duration-line/duration-line.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { BerryCounterComponent } from './components/berry-counter/berry-counter.
         ChatItemComponent,
         ChatInputComponent,
         ChatBadgeComponent,
-        BerryCounterComponent
+        BerryCounterComponent,
+        DurationLineComponent
     ],
     imports: [
         JukeboxRoutingModule,

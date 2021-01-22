@@ -26,7 +26,6 @@ export class FeaturedBoxCardComponent implements OnInit, OnChanges {
      * @memberof BoxWidgetComponent
      */
     displayCurrentVideo() {
-        const playingVideo = this.box.playlist.filter((video) => video.startTime !== null && video.endTime === null );
-        this.currentVideo = playingVideo[0];
+        this.currentVideo = this.box.currentVideo;
     }
 }

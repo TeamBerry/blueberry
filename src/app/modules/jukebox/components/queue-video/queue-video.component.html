@@ -1,6 +1,6 @@
 <div class="row playlist-entry no-gutters video px-3 py-2"
-    [ngClass]="{'force-next': item.isPreselected, 'playing': item.startTime !== null && item.endTime === null}">
-    <div *ngIf="item.isPreselected" class="d-flex align-items-center">
+    [ngClass]="{'force-next': item.setToNext, 'playing': item.startTime !== null && item.endTime === null}">
+    <div *ngIf="item.setToNext" class="d-flex align-items-center">
         <img *ngIf="item?.stateForcedWithBerries" src="../../../../../assets/images/icons/berry-coin-icon.svg" alt=""
             style="height: 30px;" ngbTooltip="This video is preselected thanks to the use of berries.">
         <svg class="next-indicator-icon mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
@@ -17,7 +17,7 @@
                 d="M77.45,110h83.77a3,3,0,0,1,3,3v25a3,3,0,0,1-3,3H53.67a3,3,0,0,1-3-3v-1.21A26.8,26.8,0,0,1,77.45,110Z" />
             <path d="M94.69,141h-11v11Q84.35,141.67,94.69,141Z" />
         </svg>
-        <span class="next-indicator">PLAYING NEXT</span>
+        <span class="next-indicator">Next in line: <span class="priority-value">{{ priority }}</span></span>
     </div>
     <div class="entry-info d-flex">
         <div class="entry-image-container">
@@ -64,17 +64,17 @@
                         </app-bx-button>
                     </span>
                     <span *appAcl="'forceNext'">
-                        <app-bx-button *ngIf="status === 'upcoming' && !item.isPreselected" class="ml-1"
+                        <app-bx-button *ngIf="status === 'upcoming' && !item.setToNext" class="ml-1"
                             (click)="togglePreselection(item)"
                             [options]="{'type': 'forceNext', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play next'}">
                         </app-bx-button>
-                        <app-bx-button *ngIf="status === 'upcoming' && item.isPreselected" class="ml-1"
+                        <app-bx-button *ngIf="status === 'upcoming' && item.setToNext" class="ml-1"
                             (click)="togglePreselection(item)"
                             [options]="{'type': 'play', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play later'}">
                         </app-bx-button>
                     </span>
                     <span *appAcl="'!forceNext'">
-                        <app-bx-button *ngIf="status === 'upcoming' && box?.options?.berries && !item.isPreselected"
+                        <app-bx-button *ngIf="status === 'upcoming' && box?.options?.berries && !item.setToNext"
                             class="ml-1" (click)="togglePreselection(item)"
                             [options]="{'type': 'forceNext', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 10 berries to play next'}">
                         </app-bx-button>

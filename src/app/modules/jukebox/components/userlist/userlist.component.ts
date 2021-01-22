@@ -16,7 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
     providers: [BoxService]
 })
 export class UserlistComponent implements OnInit {
-    box: Box;
+    @Input() box: Box;
     @Input() user: AuthSubject;
 
     admin: ActiveSubscriber
@@ -31,12 +31,10 @@ export class UserlistComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.jukeboxService.getBox().subscribe(
-            (box: Box) => {
-                this.box = box
-                this.getCommunity()
-            }
-        )
+    }
+
+    ngOnChanges() {
+        this.getCommunity()
     }
 
     getCommunity() {

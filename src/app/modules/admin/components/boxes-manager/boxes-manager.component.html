@@ -155,7 +155,7 @@
                     </div>
                     <div class="box-stat" id="box-users">
                         <p class="mb-0 stat-title">Videos</p>
-                        <span>{{ selectedBox?.playlist.length }}</span>
+                        <span *ngIf="selectedBoxQueueLength">{{ selectedBoxQueueLength }}</span>
                     </div>
                 </div>
                 <div class="d-flex pt-1 h-100">
@@ -180,7 +180,7 @@
                         </app-queue>
                     </div>
                     <div class="col-4 pl-1 pr-2">
-                        <app-search-tab [boxToken]="selectedBox?._id" [user]="user" class="fixed-tab search-space">
+                        <app-search-tab [box]="selectedBox" [user]="user" class="fixed-tab search-space">
                         </app-search-tab>
                     </div>
                 </div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import * as _ from 'lodash';
 import { filter } from 'rxjs/operators';
 
 import { UserService } from 'app/shared/services/user.service';
@@ -24,6 +23,7 @@ export class BoxesManagerComponent implements OnInit {
 
     public boxes: Array<Box>;
     selectedBox: Box = null;
+    selectedBoxQueueLength: number = 0;
 
     lifetime = null;
     clockInterval;
@@ -133,6 +133,11 @@ export class BoxesManagerComponent implements OnInit {
             this.selectedBox = this.boxes.find((box: Box) => box._id === boxId)
             this.setupClock(this.selectedBox.createdAt)
             this.jukeboxService.startBox(this.selectedBox)
+            this.jukeboxService.getQueueStream().subscribe(
+                (queue) => {
+                    this.selectedBoxQueueLength = queue.length
+                }
+            )
             this.boxService.users(boxId).subscribe(
                 (users) => {
                     this.users = users.length;

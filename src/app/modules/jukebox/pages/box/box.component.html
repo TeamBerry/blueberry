@@ -39,8 +39,7 @@
         <div id="room-player">
             <div *ngIf="box && currentVideo" id="player-space" style="background-color: black;"
                 [ngClass]="{'no-events': isDraggingMiniature}">
-                <app-player [boxToken]="box._id" style="height: 100%; width: 100%; pointer-events: auto;">
-                </app-player>
+                <app-player id="player-component" [boxToken]="box._id"></app-player>
             </div>
             <div class="current-video-space-container">
                 <div class="d-lg-none">
@@ -67,6 +66,6 @@
                 </div>
             </div>
         </div>
-        <app-panel id="room-panel" #panel [boxToken]="box._id"></app-panel>
+        <app-panel id="room-panel" #panel [box]="box"></app-panel>
     </div>
 </div>
