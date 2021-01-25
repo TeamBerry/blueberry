@@ -1,17 +1,30 @@
 @import './../../../../../imports.scss';
+.userlist {
+    padding: 20px;
+}
+
 .user-name {
-    font-size: 1rem;
+    margin-left: 5px;
+    font-size: 1.3rem;
     font-family: 'Montserrat', sans-serif;
 }
 
-.role-title{
-    color: var(--text-main-color);
-    margin-bottom: 0;
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    padding-top: 10px;
+.role-title-container {
+    display: flex;
+    align-items: center;
+    img {
+        height: 25px;
+        width: 25px;
+        margin-right: 10px;
+    }
+    .role-title{
+        color: var(--text-main-color);
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+    }
 }
+
 
 .btn-promotion {
     font-size: 10px;
