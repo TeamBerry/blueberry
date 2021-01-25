@@ -43,7 +43,7 @@
             <div class="d-flex w-100 align-items-center justify-content-between">
                 <app-profile-picture [fileName]="vip.settings.picture" [size]="'xs'"></app-profile-picture>
                 <span class="ml-1 user-name">{{ vip.name }}</span>
-                <button class="btn btn-outline-primary btn-promotion" *appAcl="'demote'"
+                <button class="btn btn-outline-primary btn-promotion" *appAcl="'demoteVIP'"
                     (click)="changeRole(vip._id, 'simple')">Demote to Community</button>
                 <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteModerator'"
                     (click)="changeRole(vip._id, 'moderator')">Promote to
@@ -60,7 +60,7 @@
                     <span class="ml-1 user-name">{{ user.name }}</span>
                 </div>
                 <div>
-                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'promote'"
+                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteVIP'"
                         (click)="changeRole(user._id, 'vip')">Promote to VIP</button>
                     <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteModerator'"
                         (click)="changeRole(user._id, 'moderator')">Promote to
