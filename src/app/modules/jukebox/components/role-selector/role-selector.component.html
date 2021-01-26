@@ -8,15 +8,15 @@
         </svg>
     </div>
     <div ngbDropdownMenu>
-        <button ngbDropdownItem *ngIf="availableActions.includes('setModerator') && context !== 'moderator'"
+        <button ngbDropdownItem *ngIf="permissions.includes('setModerator') && context !== 'moderator'"
             (click)="selectedRole.emit('moderator')">Set as
             Moderator</button>
-        <button ngbDropdownItem *ngIf="availableActions.includes('setVIP') && context !== 'vip'"
+        <button ngbDropdownItem *ngIf="permissions.includes('setVIP') && context !== 'vip'"
             (click)="selectedRole.emit('vip')">Set as VIP</button>
-        <button ngbDropdownItem *ngIf="availableActions.includes('unsetModerator') && context === 'moderator'"
+        <button ngbDropdownItem *ngIf="permissions.includes('unsetModerator') && context === 'moderator'"
             (click)="selectedRole.emit('simple')">Remove
             privileges</button>
-        <button ngbDropdownItem *ngIf="availableActions.includes('unsetVIP') && context === 'vip'"
+        <button ngbDropdownItem *ngIf="permissions.includes('unsetVIP') && context === 'vip'"
             (click)="selectedRole.emit('simple')">Remove privileges</button>
     </div>
 </div>

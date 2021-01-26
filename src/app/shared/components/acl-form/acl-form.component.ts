@@ -78,14 +78,14 @@ export class AclFormComponent implements OnInit {
             name: 'User Actions',
             permissions: [
                 {
-                    key: 'promote',
-                    name: 'Promote an user to VIP',
+                    key: 'setVIP',
+                    name: 'Give VIP privileges to an user',
                     explanation: null,
                     withBerries: false
                 },
                 {
-                    key: 'demote',
-                    name: 'Demote an user from VIP to Community Member',
+                    key: 'unsetVIP',
+                    name: 'Remove VIP privileges from an user',
                     explanation: null,
                     withBerries: false
                 },

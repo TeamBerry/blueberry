@@ -37,9 +37,10 @@
                                     [size]="'md'" [isOnline]="member.origin !== null"></app-profile-picture>
                                 <span class="ml-3 user-name">{{ member.name }}</span>
                             </div>
-                            <app-role-selector *ngIf="member._id !== user._id && section.context"
-                                [availableActions]="permissions" [context]="section.context"
-                                (selectedRole)="changeRole(member._id, $event)"></app-role-selector>
+                            <app-role-selector *ngIf="member._id !== user._id
+                            && section.context && section.actionsDisplayed" [permissions]="permissions"
+                                [context]="section.context" (selectedRole)="changeRole(member._id, $event)">
+                            </app-role-selector>
                         </div>
                     </div>
                 </div>

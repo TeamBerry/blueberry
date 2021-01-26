@@ -6,7 +6,7 @@ import { Permission, Role } from '@teamberry/muscadine';
   styleUrls: ['./role-selector.component.scss']
 })
 export class RoleSelectorComponent implements OnInit {
-    @Input() availableActions: Array<Permission> = [];
+    @Input() permissions: Array<Permission> = [];
     @Input() context: Exclude<Role, 'admin'>;
 
     @Output() selectedRole: EventEmitter<Exclude<Role, 'admin'>> = new EventEmitter();
