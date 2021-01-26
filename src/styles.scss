@@ -217,6 +217,7 @@ button>svg {
 }
 
 .profile-picture {
+    background-color: white;
     &.profile-picture-nav {
         @include profile-picture-size(28px);
     }

@@ -20,19 +20,24 @@
             <p class="role-title mb-0">Creator</p>
         </div>
         <div class="d-flex align-items-center">
-            <app-profile-picture [fileName]="admin.settings.picture" [size]="'md'"></app-profile-picture>
-            <span class="ml-3 user-name">{{ admin.name }}</span>
+            <div class="user-name-container">
+                <app-profile-picture style="height: 50px;" [fileName]="admin.settings.picture" [size]="'md'"
+                    [isOnline]="admin.origin !== null">
+                </app-profile-picture>
+                <span class="ml-3 user-name">{{ admin.name }}</span>
+            </div>
         </div>
     </div>
-    <div *ngIf="moderators.length > 0" class="mt-5">
+    <div *ngIf="moderators.length > 0" class="mt-3">
         <div class="role-title-container my-2">
             <img src="../../../../../assets/images/badges/moderator-badge.png" alt="">
             <p class="role-title mb-0">Moderators - {{ moderators.length }}</p>
         </div>
         <div *ngFor="let moderator of moderators" class="user-item my-1 d-flex">
             <div class="d-flex w-100 align-items-center justify-content-between">
-                <div>
-                    <app-profile-picture [fileName]="moderator.settings.picture" [size]="'md'"></app-profile-picture>
+                <div class="user-name-container">
+                    <app-profile-picture style="height: 50px;" [fileName]="moderator.settings.picture" [size]="'md'"
+                        [isOnline]="moderator.origin !== null"></app-profile-picture>
                     <span class="ml-3 user-name">{{ moderator.name }}</span>
                 </div>
                 <app-role-selector *ngIf="moderator._id !== user._id" [availableActions]="permissions"
@@ -40,15 +45,16 @@
             </div>
         </div>
     </div>
-    <div *ngIf="vips.length > 0" class="mt-5">
+    <div *ngIf="vips.length > 0" class="mt-3">
         <div class="role-title-container my-2">
             <img src="../../../../../assets/images/badges/vip-badge.png" alt="">
             <p class="role-title mb-0">VIPs - {{ vips.length }}</p>
         </div>
         <div *ngFor="let vip of vips" class="user-item my-1 d-flex">
             <div class="d-flex w-100 align-items-center justify-content-between">
-                <div>
-                    <app-profile-picture [fileName]="vip.settings.picture" [size]="'md'"></app-profile-picture>
+                <div class="user-name-container">
+                    <app-profile-picture style="height: 50px;" [fileName]="vip.settings.picture" [size]="'md'"
+                        [isOnline]="vip.origin !== null"></app-profile-picture>
                     <span class="ml-3 user-name">{{ vip.name }}</span>
                 </div>
                 <app-role-selector *ngIf="vip._id !== user._id" [availableActions]="permissions" [context]="'vip'"
@@ -56,14 +62,15 @@
             </div>
         </div>
     </div>
-    <div *ngIf="community.length > 0" class="mt-5">
+    <div *ngIf="community.length > 0" class="mt-3">
         <div class="role-title-container my-2">
             <p class="role-title mb-0">Community Members - {{ community.length }}</p>
         </div>
         <div *ngFor="let member of community" class="user-item my-1 d-flex">
             <div class="d-flex w-100 align-items-center justify-content-between">
-                <div>
-                    <app-profile-picture [fileName]="member.settings.picture" [size]="'md'"></app-profile-picture>
+                <div class="user-name-container">
+                    <app-profile-picture style="height: 50px;" [fileName]="member.settings.picture" [size]="'md'"
+                        [isOnline]="member.origin !== null"></app-profile-picture>
                     <span class="ml-3 user-name">{{ member.name }}</span>
                 </div>
                 <app-role-selector *ngIf="member._id !== user._id" [availableActions]="permissions" [context]="'simple'"

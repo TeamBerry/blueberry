@@ -9,6 +9,7 @@ import { environment } from 'environments/environment';
 export class ProfilePictureComponent implements OnInit, OnChanges {
     @Input() fileName: string;
     @Input() size: 'xs' | 'sm' | 'md' | 'lg' = 'md';
+    @Input() isOnline: boolean = undefined;
 
     /**
      * Default picture location

@@ -3,12 +3,6 @@
     padding: 20px;
 }
 
-.user-name {
-    margin-left: 5px;
-    font-size: 1.3rem;
-    font-family: 'Montserrat', sans-serif;
-}
-
 .role-title-container {
     display: flex;
     align-items: center;
@@ -25,7 +19,15 @@
     }
 }
 
-
-.btn-promotion {
-    font-size: 10px;
+.user-name-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    align-items: center;
+    margin-bottom: 10px;
+    .user-name {
+        margin-left: 5px;
+        font-size: 1.2rem;
+        font-family: 'Montserrat', sans-serif;
+    }
 }
