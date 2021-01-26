@@ -6,7 +6,7 @@ import { PlaylistSelectorComponent } from 'app/shared/components/playlist-select
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
 import { Box } from 'app/shared/models/box.model';
-import { QueueItem } from '@teamberry/muscadine';
+import { Permission, QueueItem } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-queue-video',
@@ -18,6 +18,8 @@ export class QueueVideoComponent implements OnInit {
     @Input() box: Box;
 
     @Input() item: QueueItem;
+
+    @Input() permissions: Array<Permission>;
 
     /**
      * Variable that displays the position in the "next in line" if set

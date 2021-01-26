@@ -9,7 +9,7 @@ import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
 import { BoxService } from 'app/shared/services/box.service';
-import { QueueItemActionRequest, QueueItem, VideoSubmissionRequest, BerryCount } from '@teamberry/muscadine';
+import { QueueItemActionRequest, QueueItem, VideoSubmissionRequest, BerryCount, Permission } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-queue',
@@ -19,6 +19,7 @@ import { QueueItemActionRequest, QueueItem, VideoSubmissionRequest, BerryCount }
 export class QueueComponent implements OnInit, OnChanges {
     @Input() box: Box = null;
     @Input() user: User = new User;
+    @Input() permissions: Array<Permission> = [];
 
     queue: Array<QueueItem> = [];
     

@@ -11,7 +11,7 @@ import { SignupFormComponent } from '../../../../shared/components/signup-form/s
 import { UserService } from 'app/shared/services/user.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { UserPlaylist } from 'app/shared/models/user-playlist.model';
-import { VideoSubmissionRequest } from '@teamberry/muscadine';
+import { Permission, VideoSubmissionRequest } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-playlists-search-tab',
@@ -23,6 +23,7 @@ export class PlaylistsSearchTabComponent implements OnInit, AfterViewInit {
     @Input() user: AuthSubject;
     @Input() videosInQueue: Array<string>;
     @Input() berriesEnabled: boolean;
+    @Input() permissions: Array<Permission> = [];
     @ViewChild('filterInput') input: ElementRef
 
     playlists: Array<UserPlaylist>

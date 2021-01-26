@@ -176,11 +176,12 @@
                     </div>
                     <div class="col-4 px-1">
                         <app-queue class="fixed-tab playlist-space" *ngIf="selectedBox" [user]="user"
-                            [box]="selectedBox">
+                            [box]="selectedBox" [permissions]="permissions">
                         </app-queue>
                     </div>
                     <div class="col-4 pl-1 pr-2">
-                        <app-search-tab [box]="selectedBox" [user]="user" class="fixed-tab search-space">
+                        <app-search-tab [box]="selectedBox" [user]="user" class="fixed-tab search-space"
+                            [permissions]="permissions">
                         </app-search-tab>
                     </div>
                 </div>

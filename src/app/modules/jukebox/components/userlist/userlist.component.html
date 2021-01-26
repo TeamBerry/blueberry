@@ -2,14 +2,15 @@
     <div class="col"></div>
     <p class="panel-tab-title col">Users</p>
     <div class="col pr-0">
-        <app-bx-button (click)="openInviteModal()" *appAcl="'inviteUser'" class="panel-tab-title-button"
+        <app-bx-button (click)="openInviteModal()" *ngIf="permissions.includes('inviteUser')"
+            class="panel-tab-title-button"
             [options]="{'type': 'inviteUser', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Invite users'}">
         </app-bx-button>
     </div>
 </div>
 <div class="userlist">
     <div class="d-lg-none text-center py-2">
-        <app-bx-button (click)="openInviteModal()" *appAcl="'inviteUser'"
+        <app-bx-button (click)="openInviteModal()" *ngIf="permissions.includes('inviteUser')"
             [options]="{'type': 'inviteUser', 'textDisplay': 'button', 'context': 'queue', 'text': 'Invite users'}">
         </app-bx-button>
     </div>
@@ -34,12 +35,7 @@
                     <app-profile-picture [fileName]="moderator.settings.picture" [size]="'md'"></app-profile-picture>
                     <span class="ml-3 user-name">{{ moderator.name }}</span>
                 </div>
-                <div>
-                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'demoteModerator'"
-                        (click)="changeRole(moderator._id, 'vip')">Demote to VIP</button>
-                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'demoteModerator'"
-                        (click)="changeRole(moderator._id, 'simple')">Demote to Community</button>
-                </div>
+                <app-role-selector [availableActions]="permissions" [context]="'moderator'"></app-role-selector>
             </div>
         </div>
     </div>
@@ -54,11 +50,7 @@
                     <app-profile-picture [fileName]="vip.settings.picture" [size]="'md'"></app-profile-picture>
                     <span class="ml-3 user-name">{{ vip.name }}</span>
                 </div>
-                <button class="btn btn-outline-primary btn-promotion" *appAcl="'demoteVIP'"
-                    (click)="changeRole(vip._id, 'simple')">Demote to Community</button>
-                <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteModerator'"
-                    (click)="changeRole(vip._id, 'moderator')">Promote to
-                    Moderator</button>
+                <app-role-selector [availableActions]="permissions" [context]="'vip'"></app-role-selector>
             </div>
         </div>
     </div>
@@ -70,13 +62,7 @@
                     <app-profile-picture [fileName]="user.settings.picture" [size]="'md'"></app-profile-picture>
                     <span class="ml-3 user-name">{{ user.name }}</span>
                 </div>
-                <div>
-                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteVIP'"
-                        (click)="changeRole(user._id, 'vip')">Promote to VIP</button>
-                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteModerator'"
-                        (click)="changeRole(user._id, 'moderator')">Promote to
-                        Moderator</button>
-                </div>
+                <app-role-selector [availableActions]="permissions" [context]="'simple'"></app-role-selector>
             </div>
         </div>
     </div>

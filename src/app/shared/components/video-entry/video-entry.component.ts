@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Video } from '../../models/video.model';
 import { UserService } from 'app/shared/services/user.service';
 import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
-import { QueueItem } from '@teamberry/muscadine';
+import { Permission, QueueItem } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-video-entry',
@@ -12,8 +12,8 @@ import { QueueItem } from '@teamberry/muscadine';
     styleUrls: ['./video-entry.component.scss']
 })
 export class VideoEntryComponent implements OnInit {
-
     @Input() video: Video;
+    @Input() permissions: Array<Permission> = [];
     @Input() options: {
         none?: boolean,
         submit?: boolean,

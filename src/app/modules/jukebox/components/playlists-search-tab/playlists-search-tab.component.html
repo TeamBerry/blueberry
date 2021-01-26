@@ -16,7 +16,7 @@
         <div class="col-sm-auto">
             <p class="text-center selected-playlist-name mb-0">{{ selectedPlaylist.name }}</p>
         </div>
-        <app-bx-button *appAcl="'addVideo'" (click)="submitPlaylist(selectedPlaylist._id)"
+        <app-bx-button *ngIf="permissions.includes('appVideo')" (click)="submitPlaylist(selectedPlaylist._id)"
             class="panel-tab-title-button col"
             [options]="{'type': 'play', 'textDisplay': 'tooltip', 'text': 'Queue the whole playlist', 'context': 'queue'}">
         </app-bx-button>

@@ -1,0 +1,27 @@
+<div ngbDropdown container="body">
+    <div ngbDropdownToggle>
+        <svg class="berrybox-svg" style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 500 500">
+            <rect class="berrybox-path" x="183.33" y="183.33" width="133.33" height="133.33" rx="10" />
+            <rect class="berrybox-path" x="183.33" y="27.67" width="133.33" height="133.33" rx="10" />
+            <rect class="berrybox-path" x="183.33" y="339" width="133.33" height="133.33" rx="10" />
+        </svg>
+    </div>
+    <div ngbDropdownMenu>
+        <!-- <ng-template *ngIf="availableActions.includes('setModerator')">
+            <button ngbDropdownItem>Set as Moderator</button>
+        </ng-template>
+        <ng-template *ngIf="availableActions.includes('setVIP')">
+            <button ngbDropdownItem>Set as VIP</button>
+        </ng-template>
+        <ng-template *ngIf="availableActions.includes('unsetModerator')">
+            <button ngbDropdownItem>Remove privileges</button>
+        </ng-template>
+        <ng-template *ngIf="availableActions.includes('unsetVIP')">
+            <button ngbDropdownItem>Remove privileges</button>
+        </ng-template> -->
+        <button ngbDropdownItem *ngIf="context !== 'moderator'">Set as Moderator</button>
+        <button ngbDropdownItem *ngIf="context !== 'vip'">Set as VIP</button>
+        <button ngbDropdownItem *ngIf="context !== 'simple'">Remove Privileges</button>
+    </div>
+</div>

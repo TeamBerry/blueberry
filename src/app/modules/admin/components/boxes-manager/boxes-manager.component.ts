@@ -10,7 +10,7 @@ import { BoxFormComponent } from 'app/shared/components/box-form/box-form.compon
 import { BoxService } from 'app/shared/services/box.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
-import { PlayingItem, SyncPacket } from '@teamberry/muscadine';
+import { Permission, PlayingItem, SyncPacket } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-boxes-manager',
@@ -20,6 +20,7 @@ import { PlayingItem, SyncPacket } from '@teamberry/muscadine';
 })
 export class BoxesManagerComponent implements OnInit {
     user: AuthSubject = AuthService.getAuthSubject();
+    permissions: Array<Permission> = [];
 
     public boxes: Array<Box>;
     selectedBox: Box = null;
@@ -144,6 +145,7 @@ export class BoxesManagerComponent implements OnInit {
                 }
             )
             this.connectToSyncStream();
+            this.jukeboxService.getPermissions().subscribe(permissions => this.permissions = permissions);
         }
     }
 

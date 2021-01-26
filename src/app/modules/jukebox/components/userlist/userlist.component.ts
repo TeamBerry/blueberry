@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BoxService } from 'app/shared/services/box.service';
 import { Box } from 'app/shared/models/box.model';
 import { JukeboxService } from '../../jukebox.service';
-import { ActiveSubscriber, Role, BoxScope } from '@teamberry/muscadine';
+import { ActiveSubscriber, Role, BoxScope, Permission } from '@teamberry/muscadine';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { RoleChangeRequest } from 'app/shared/models/role-change.model';
 import { InviteFormComponent } from 'app/shared/components/invite-form/invite-form.component';
@@ -18,6 +18,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class UserlistComponent implements OnInit {
     @Input() box: Box;
     @Input() user: AuthSubject;
+    @Input() permissions: Array<Permission> = [];
 
     admin: ActiveSubscriber
     moderators: Array<ActiveSubscriber> = []

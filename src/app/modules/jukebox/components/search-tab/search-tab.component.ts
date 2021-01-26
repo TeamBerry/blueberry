@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { JukeboxService } from '../../jukebox.service';
 import { Box } from 'app/shared/models/box.model';
-import { QueueItem } from '@teamberry/muscadine';
+import { Permission, QueueItem } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-search-tab',
@@ -12,6 +12,7 @@ import { QueueItem } from '@teamberry/muscadine';
 export class SearchTabComponent implements OnInit, OnChanges {
     @Input() box: Box;
     @Input() user: AuthSubject;
+    @Input() permissions: Array<Permission> = [];
 
     videosInQueue: Array<string>;
     berriesEnabled: boolean;
