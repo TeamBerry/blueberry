@@ -20,8 +20,10 @@
         <ng-template *ngIf="availableActions.includes('unsetVIP')">
             <button ngbDropdownItem>Remove privileges</button>
         </ng-template> -->
-        <button ngbDropdownItem *ngIf="context !== 'moderator'">Set as Moderator</button>
-        <button ngbDropdownItem *ngIf="context !== 'vip'">Set as VIP</button>
-        <button ngbDropdownItem *ngIf="context !== 'simple'">Remove Privileges</button>
+        <button ngbDropdownItem *ngIf="context !== 'moderator'" (click)="selectedRole.emit('moderator')">Set as
+            Moderator</button>
+        <button ngbDropdownItem *ngIf="context !== 'vip'" (click)="selectedRole.emit('vip')">Set as VIP</button>
+        <button ngbDropdownItem *ngIf="context !== 'simple'" (click)="selectedRole.emit('simple')">Remove
+            Privileges</button>
     </div>
 </div>

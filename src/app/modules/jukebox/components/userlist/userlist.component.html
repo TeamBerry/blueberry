@@ -35,7 +35,8 @@
                     <app-profile-picture [fileName]="moderator.settings.picture" [size]="'md'"></app-profile-picture>
                     <span class="ml-3 user-name">{{ moderator.name }}</span>
                 </div>
-                <app-role-selector [availableActions]="permissions" [context]="'moderator'"></app-role-selector>
+                <app-role-selector *ngIf="moderator._id !== user._id" [availableActions]="permissions"
+                    [context]="'moderator'" (selectedRole)="changeRole(moderator._id, $event)"></app-role-selector>
             </div>
         </div>
     </div>
@@ -50,19 +51,23 @@
                     <app-profile-picture [fileName]="vip.settings.picture" [size]="'md'"></app-profile-picture>
                     <span class="ml-3 user-name">{{ vip.name }}</span>
                 </div>
-                <app-role-selector [availableActions]="permissions" [context]="'vip'"></app-role-selector>
+                <app-role-selector *ngIf="vip._id !== user._id" [availableActions]="permissions" [context]="'vip'"
+                    (selectedRole)="changeRole(vip._id, $event)"></app-role-selector>
             </div>
         </div>
     </div>
     <div *ngIf="community.length > 0" class="mt-5">
-        <p class="role-title">Community Members - {{ community.length }}</p>
-        <div *ngFor="let user of community" class="user-item my-1 d-flex">
+        <div class="role-title-container my-2">
+            <p class="role-title mb-0">Community Members - {{ community.length }}</p>
+        </div>
+        <div *ngFor="let member of community" class="user-item my-1 d-flex">
             <div class="d-flex w-100 align-items-center justify-content-between">
                 <div>
-                    <app-profile-picture [fileName]="user.settings.picture" [size]="'md'"></app-profile-picture>
-                    <span class="ml-3 user-name">{{ user.name }}</span>
+                    <app-profile-picture [fileName]="member.settings.picture" [size]="'md'"></app-profile-picture>
+                    <span class="ml-3 user-name">{{ member.name }}</span>
                 </div>
-                <app-role-selector [availableActions]="permissions" [context]="'simple'"></app-role-selector>
+                <app-role-selector *ngIf="member._id !== user._id" [availableActions]="permissions" [context]="'simple'"
+                    (selectedRole)="changeRole(member._id, $event)"></app-role-selector>
             </div>
         </div>
     </div>

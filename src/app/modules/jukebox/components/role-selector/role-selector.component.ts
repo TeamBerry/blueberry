@@ -1,19 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Permission } from '@teamberry/muscadine';
-
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Permission, Role } from '@teamberry/muscadine';
 @Component({
   selector: 'app-role-selector',
   templateUrl: './role-selector.component.html',
   styleUrls: ['./role-selector.component.scss']
 })
 export class RoleSelectorComponent implements OnInit {
-    @Input() availableActions: Array<string>;
-    @Input() context: 'moderator' | 'vip' | 'simple';
-    
-  constructor() { }
+    @Input() availableActions: Array<Permission> = [];
+    @Input() context: Exclude<Role, 'admin'>;
 
-    ngOnInit() {
-        console.log(this.availableActions);
-  }
+    @Output() selectedRole: EventEmitter<Exclude<Role, 'admin'>> = new EventEmitter();
+    
+    constructor() { }
+
+    ngOnInit() {}
 
 }

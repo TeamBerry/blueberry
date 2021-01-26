@@ -249,7 +249,6 @@ export class JukeboxService {
             });
 
             this.boxSocket.on('permissions', (permissions: Array<Permission>) => {
-                console.log('PERMISSIONS UPDATED: ', permissions);
                 this.permissionsSubject.next(permissions);
             });
 
@@ -319,7 +318,6 @@ export class JukeboxService {
         });
     }
 
-    // TODO: Link to the rest of the app
     public changeRoleOfUser = (roleChangeRequest: RoleChangeRequest): void => {
         this.boxSocket.emit('roleChange', roleChangeRequest)
     }
