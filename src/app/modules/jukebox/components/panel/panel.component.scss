@@ -11,6 +11,11 @@
             visibility: visible;
         }
     }
+    .fixed-tab {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+    }
 }
 
 .panel-container {
@@ -53,10 +58,4 @@
         height: 1px;
         background-color: lighten($main-black, 10%);
     }
-}
-
-.fixed-tab {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
 }

@@ -1,6 +1,7 @@
 <div class="d-flex no-gutters panel-container">
     <div id="panel-space">
-        <app-userlist *ngIf="activePanel === 'users'" [box]="box" [user]="user" [permissions]="permissions">
+        <app-userlist class="fixed-tab" *ngIf="activePanel === 'users'" [box]="box" [user]="user"
+            [permissions]="permissions">
         </app-userlist>
         <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user" [box]="box"
             [permissions]="permissions"></app-queue>
