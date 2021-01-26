@@ -8,22 +8,15 @@
         </svg>
     </div>
     <div ngbDropdownMenu>
-        <!-- <ng-template *ngIf="availableActions.includes('setModerator')">
-            <button ngbDropdownItem>Set as Moderator</button>
-        </ng-template>
-        <ng-template *ngIf="availableActions.includes('setVIP')">
-            <button ngbDropdownItem>Set as VIP</button>
-        </ng-template>
-        <ng-template *ngIf="availableActions.includes('unsetModerator')">
-            <button ngbDropdownItem>Remove privileges</button>
-        </ng-template>
-        <ng-template *ngIf="availableActions.includes('unsetVIP')">
-            <button ngbDropdownItem>Remove privileges</button>
-        </ng-template> -->
-        <button ngbDropdownItem *ngIf="context !== 'moderator'" (click)="selectedRole.emit('moderator')">Set as
+        <button ngbDropdownItem *ngIf="availableActions.includes('setModerator') && context !== 'moderator'"
+            (click)="selectedRole.emit('moderator')">Set as
             Moderator</button>
-        <button ngbDropdownItem *ngIf="context !== 'vip'" (click)="selectedRole.emit('vip')">Set as VIP</button>
-        <button ngbDropdownItem *ngIf="context !== 'simple'" (click)="selectedRole.emit('simple')">Remove
-            Privileges</button>
+        <button ngbDropdownItem *ngIf="availableActions.includes('setVIP') && context !== 'vip'"
+            (click)="selectedRole.emit('vip')">Set as VIP</button>
+        <button ngbDropdownItem *ngIf="availableActions.includes('unsetModerator') && context === 'moderator'"
+            (click)="selectedRole.emit('simple')">Remove
+            privileges</button>
+        <button ngbDropdownItem *ngIf="availableActions.includes('unsetVIP') && context === 'vip'"
+            (click)="selectedRole.emit('simple')">Remove privileges</button>
     </div>
 </div>
