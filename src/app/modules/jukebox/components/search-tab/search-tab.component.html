@@ -9,7 +9,8 @@
                 (clickedOption)="displayedTab = $event">
             </app-bx-tabset>
         </div>
-        <div class="d-flex align-items-center justify-content-end px-3" *appAcl="'!bypassVideoDurationLimit'">
+        <div class="d-flex align-items-center justify-content-end px-3"
+            *ngIf="!permissions.includes('bypassVideoDurationLimit')">
             <span *ngIf="durationRestriction !== 0">
                 <app-bx-chip [options]="{
                         'type': 'duration-limit',
@@ -19,10 +20,12 @@
             <app-berry-counter *ngIf="berriesEnabled" [boxToken]="box._id"></app-berry-counter>
         </div>
         <app-youtube-search-tab *ngIf="displayedTab === 'youtube'" [boxToken]="box._id" [user]="user"
-            [videosInQueue]="videosInQueue" [berriesEnabled]="berriesEnabled" class="search-tab-container">
+            [videosInQueue]="videosInQueue" [berriesEnabled]="berriesEnabled" [permissions]="permissions"
+            class="search-tab-container">
         </app-youtube-search-tab>
         <app-playlists-search-tab *ngIf="displayedTab === 'playlists'" [boxToken]="box._id" [user]="user"
-            [videosInQueue]="videosInQueue" [berriesEnabled]="berriesEnabled" class="search-tab-container">
+            [videosInQueue]="videosInQueue" [berriesEnabled]="berriesEnabled" [permissions]="permissions"
+            class="search-tab-container">
         </app-playlists-search-tab>
     </div>
 </div>

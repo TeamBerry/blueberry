@@ -130,9 +130,7 @@
                 </div>
             </div>
             <div *ngIf="displayTab === 'moderation'">
-                <h4 style="display: flex; align-items: center;">Moderation <span class="beta ml-2"
-                        ngbTooltip="This feature is still in beta. Some aspects are not available yet."
-                        placement="right" container="body">BETA</span></h4>
+                <h4 style="display: flex; align-items: center;">Moderation</h4>
                 <p class="help-text text-muted text-center">The modifications you do here will only impact this box.
                     They will not modify your template. They will not modify your other boxes.</p>
                 <app-acl-form [(config)]="box.acl"></app-acl-form>

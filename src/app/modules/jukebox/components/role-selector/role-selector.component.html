@@ -1,0 +1,22 @@
+<div ngbDropdown container="body">
+    <div ngbDropdownToggle>
+        <svg class="berrybox-svg" style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 500 500">
+            <rect class="berrybox-path" x="183.33" y="183.33" width="133.33" height="133.33" rx="10" />
+            <rect class="berrybox-path" x="183.33" y="27.67" width="133.33" height="133.33" rx="10" />
+            <rect class="berrybox-path" x="183.33" y="339" width="133.33" height="133.33" rx="10" />
+        </svg>
+    </div>
+    <div ngbDropdownMenu>
+        <button ngbDropdownItem *ngIf="permissions.includes('setModerator') && context !== 'moderator'"
+            (click)="selectedRole.emit('moderator')">Set as
+            Moderator</button>
+        <button ngbDropdownItem *ngIf="permissions.includes('setVIP') && context !== 'vip'"
+            (click)="selectedRole.emit('vip')">Set as VIP</button>
+        <button ngbDropdownItem *ngIf="permissions.includes('unsetModerator') && context === 'moderator'"
+            (click)="selectedRole.emit('simple')">Remove
+            privileges</button>
+        <button ngbDropdownItem *ngIf="permissions.includes('unsetVIP') && context === 'vip'"
+            (click)="selectedRole.emit('simple')">Remove privileges</button>
+    </div>
+</div>

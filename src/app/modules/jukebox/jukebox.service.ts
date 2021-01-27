@@ -14,7 +14,7 @@ import { RoleChangeRequest } from 'app/shared/models/role-change.model';
 import { QueueService } from 'app/shared/services/queue.service';
 import { filter } from 'rxjs/operators';
 
-export type subjects = Box | Message | FeedbackMessage | SystemMessage | SyncPacket | BerryCount
+export type subjects = Box | Message | FeedbackMessage | SystemMessage | SyncPacket | BerryCount | Array<Permission>
 @Injectable({
     providedIn: 'root'
 })
@@ -50,13 +50,13 @@ export class JukeboxService {
 
     public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(null);
     public connectionSubject: BehaviorSubject<string> = new BehaviorSubject<string>('offline');
+    public permissionsSubject: BehaviorSubject<Array<Permission>> = new BehaviorSubject<Array<Permission>>([]);
 
     public user: AuthSubject = AuthService.getAuthSubject();
 
     constructor(
         private queueService: QueueService
-    ) {
-    }
+    ) {}
 
     /**
      * Sets the box in memory of the service to provide it to subscribers
@@ -113,6 +113,10 @@ export class JukeboxService {
 
     public getConnection(): Observable<string> {
         return this.connectionSubject.asObservable();
+    }
+
+    public getPermissions(): Observable<Array<Permission>> {
+        return this.permissionsSubject.asObservable();
     }
 
     /**
@@ -244,14 +248,8 @@ export class JukeboxService {
                 this.connectionSubject.next('pending');
             });
 
-            this.boxSocket.on('permissions', (permissions: Array<string>) => {
-                localStorage.setItem('BBOX-Scope', JSON.stringify(permissions));
-                // TODO: Refresh without reloading
-                if (this.connectionSubject.value === 'success') {
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 10000);
-                }
+            this.boxSocket.on('permissions', (permissions: Array<Permission>) => {
+                this.permissionsSubject.next(permissions);
             });
 
             this.boxSocket.on('confirm', (feedback: FeedbackMessage) => {
@@ -320,32 +318,7 @@ export class JukeboxService {
         });
     }
 
-    // TODO: Link to the rest of the app
     public changeRoleOfUser = (roleChangeRequest: RoleChangeRequest): void => {
         this.boxSocket.emit('roleChange', roleChangeRequest)
-    }
-
-    /**
-     * Evaluates whether of not the user can execute a command
-     *
-     * @private
-     * @returns {boolean}
-     * @memberof JukeboxService
-     */
-    public evaluateCommandPower(permission: Permission): boolean {
-        const permissions: Array<Permission> = JSON.parse(localStorage.getItem('BBOX-Scope'))
-
-        // Send error if the user doing this is not the creator
-        if (!permissions.includes(permission)) {
-            const message: Message = new Message({
-                contents: 'You do not have the power to execute this action.',
-                source: 'system',
-                scope: this.box._id,
-                time: new Date()
-            });
-            this.boxStream.next(message);
-            return false;
-        }
-        return true
     }
 }

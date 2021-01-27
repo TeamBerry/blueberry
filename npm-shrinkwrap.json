@@ -3402,9 +3402,9 @@
       }
     },
     "@teamberry/muscadine": {
-      "version": "0.12.0",
-      "resolved": "https://npm.pkg.github.com/download/@teamberry/muscadine/0.12.0/d7b69400e9daf27bd0e17465d3edf81a325f5c67b9328759f7659d32cf21309f",
-      "integrity": "sha512-Gy6HotddctfDwYT251/87zN5i+2UPmR/I2PYjcjWvattnwQitEcnGINpDZaGq6QyI6B7KjHRnY1ddG/K6kYMAw=="
+      "version": "0.13.0",
+      "resolved": "https://npm.pkg.github.com/download/@teamberry/muscadine/0.13.0/dbfbb37b7be186dd6f876751639faccc4385feb4feb89c2d3e592f2e1350115d",
+      "integrity": "sha512-7hx8zBb0RejU9TZwWLGKvWnyaLCTk1Fit1e0ecXunNBEAFcAlaCJgpgwMzJJ93zTYs26bRivR9UNlt9epDXs6w=="
     },
     "@tootallnate/once": {
       "version": "1.1.2",
@@ -3914,7 +3914,7 @@
     "aproba": {
       "version": "1.2.0",
       "resolved": "https://registry.npmjs.org/aproba/-/aproba-1.2.0.tgz",
-      "integrity": "sha512-Y9J6ZjXtoYh8RnXVCMOU/ttDmk1aBjunq9vO0ta5x85WDQiQfUF9sIPBITdbiiIVcBo03Hi3jMxigBtsddlXRw==",
+      "integrity": "sha1-aALmJk79GMeQobDVF/DyYnvyyUo=",
       "dev": true
     },
     "are-we-there-yet": {
@@ -6846,7 +6846,7 @@
     "error-ex": {
       "version": "1.3.2",
       "resolved": "https://registry.npmjs.org/error-ex/-/error-ex-1.3.2.tgz",
-      "integrity": "sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==",
+      "integrity": "sha1-tKxAZIEH/c3PriQvQovqihTU8b8=",
       "dev": true,
       "requires": {
         "is-arrayish": "^0.2.1"

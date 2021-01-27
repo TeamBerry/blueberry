@@ -13,7 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
-import { QueueItem, SyncPacket, FeedbackMessage, VideoSubmissionRequest } from '@teamberry/muscadine';
+import { QueueItem, SyncPacket, FeedbackMessage, VideoSubmissionRequest, Permission } from '@teamberry/muscadine';
 import { InviteFormComponent } from 'app/shared/components/invite-form/invite-form.component';
 
 @Component({
@@ -72,6 +72,7 @@ export class BoxComponent implements OnInit {
     connectionStatus = 'offline';
     isDraggingMiniature = false;
 
+    permissions: Array<Permission> = [];
 
     constructor(
         private boxService: BoxService,
@@ -89,6 +90,7 @@ export class BoxComponent implements OnInit {
             this.monitorConnectionStatus();
             this.listenForBoxChanges();
         });
+        this.jukeboxService.getPermissions().subscribe(permissions => this.permissions = permissions);
     }
 
     /**
@@ -170,11 +172,9 @@ export class BoxComponent implements OnInit {
     }
 
     openBoxSettings() {
-        if (this.jukeboxService.evaluateCommandPower('editBox')) {
-            const modalRef = this.modalService.open(BoxFormComponent, { size: 'xl' })
-            modalRef.componentInstance.title = `Edit Box Settings`
-            modalRef.componentInstance.box = _.cloneDeep(this.box)
-        }
+        const modalRef = this.modalService.open(BoxFormComponent, { size: 'xl' })
+        modalRef.componentInstance.title = `Edit Box Settings`
+        modalRef.componentInstance.box = _.cloneDeep(this.box)
     }
 
     openInviteModal() {

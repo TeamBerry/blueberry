@@ -3,7 +3,7 @@ import { SearchService } from 'app/shared/services/search.service';
 import { Video } from 'app/shared/models/video.model';
 import { JukeboxService } from '../../jukebox.service';
 import { AuthSubject } from 'app/shared/models/session.model';
-import { VideoSubmissionRequest } from '@teamberry/muscadine';
+import { Permission, VideoSubmissionRequest } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-youtube-search-tab',
@@ -15,6 +15,7 @@ export class YoutubeSearchTabComponent implements OnInit {
     @Input() user: AuthSubject;
     @Input() videosInQueue: Array<string>;
     @Input() berriesEnabled: boolean;
+    @Input() permissions: Array<Permission> = [];
     searchValue = ''
     errorMessage
     defaultSearchCooldown = 5
