@@ -8,7 +8,7 @@ const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
     { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
-    // { path: 'playlists', loadChildren: () => import('./modules/user-playlists/user-playlists.module').then(m => m.UserPlaylistsModule) },
+    { path: 'collection', loadChildren: () => import('./modules/collection/collection.module').then(m => m.CollectionModule) },
     { path: 'password/reset', component: PasswordResetComponent },
     { path: 'privacy', component: PrivacyPolicyComponent }
 ];
