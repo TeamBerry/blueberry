@@ -21,40 +21,40 @@ export class AclFormComponent implements OnInit {
             permissions: [
                 {
                     key: 'addVideo',
-                    name: 'Add a video to the Queue',
-                    explanation: null,
-                    withBerries: false
-                },
-                {
-                    key: 'bypassVideoDurationRestriction',
-                    name: 'Bypass Video Duration Restriction',
-                    explanation: 'Allows to ignore the video duration restriction set in place for the box',
-                    withBerries: false
-                },
-                {
+                    name: 'Add video',
+                    explanation: 'Adds a video to the playing queue.',
+                    withBerries: false,
+                  },
+                  {
+                    key: 'bypassVideoDurationLimit',
+                    name: 'Bypass Duration Restriction',
+                    explanation: 'Allows the submission of videos longer than the maximum duration allowed',
+                    withBerries: false,
+                  },
+                  {
                     key: 'removeVideo',
-                    name: 'Remove a video from the Queue',
-                    explanation: null,
-                    withBerries: false
-                },
-                {
+                    name: 'Remove video',
+                    explanation: 'Removes a video from the queue',
+                    withBerries: false,
+                  },
+                  {
                     key: 'skipVideo',
-                    name: 'Skip the currently playing video',
-                    explanation: null,
-                    withBerries: true
-                },
-                {
+                    name: 'Skip video',
+                    explanation: 'Skips the currently playing video',
+                    withBerries: true,
+                  },
+                  {
                     key: 'forceNext',
-                    name: 'Put a video into the priority queue',
-                    explanation: null,
-                    withBerries: true
-                },
-                {
+                    name: 'Add video to Priority Queue',
+                    explanation: 'Puts the selected video in the priority queue.',
+                    withBerries: true,
+                  },
+                  {
                     key: 'forcePlay',
-                    name: 'Play another video instead of the currently playing',
-                    explanation: null,
-                    withBerries: true
-                }
+                    name: 'Force play a video',
+                    explanation: 'Skips the currently playing video for the selected one.',
+                    withBerries: true,
+                  },
             ]
         },
         {
@@ -63,7 +63,7 @@ export class AclFormComponent implements OnInit {
                 {
                     key: 'editBox',
                     name: 'Edit Box',
-                    explanation: null,
+                    explanation: 'Edits the box information and permissions',
                     withBerries: false
                 },
                 {
@@ -79,16 +79,16 @@ export class AclFormComponent implements OnInit {
             permissions: [
                 {
                     key: 'setVIP',
-                    name: 'Give VIP privileges to an user',
-                    explanation: null,
-                    withBerries: false
-                },
-                {
+                    name: 'Give VIP privileges',
+                    explanation: 'Gives VIP privileges to an user.',
+                    withBerries: false,
+                  },
+                  {
                     key: 'unsetVIP',
-                    name: 'Remove VIP privileges from an user',
-                    explanation: null,
-                    withBerries: false
-                },
+                    name: 'Remove VIP privileges',
+                    explanation: 'Removes VIP privileges from an user.',
+                    withBerries: false,
+                  },
                 {
                     key: 'inviteUser',
                     name: 'Invite users to the box',
