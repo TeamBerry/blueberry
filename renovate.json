@@ -4,5 +4,23 @@
     ],
     "reviewers": [
         "AngelZatch"
-    ]
+    ],
+    "labels": [
+        "dependencies"
+    ],
+    "packageRules": [
+        {
+            "matchUpdateTypes": [
+                "patch",
+                "pin"
+            ],
+            "automerge": true
+        }
+    ],
+    "vulnerabilityAlerts": {
+        "labels": [
+            "dependencies",
+            "security"
+        ]
+    }
 }
