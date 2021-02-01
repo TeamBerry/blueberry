@@ -17,7 +17,7 @@ import { forkJoin } from 'rxjs';
 })
 export class BadgeCollectionComponent implements OnInit {
     badges: Array<Badge> = []
-    userBadges: User["badges"] = []
+    userBadges: User['badges'] = []
     userBadgeIds: Array<string> = []
     user: AuthSubject = AuthService.getAuthSubject();
 
@@ -57,7 +57,7 @@ export class BadgeCollectionComponent implements OnInit {
         return this.user.settings.badge === badge
     }
 
-    matchingBadge(badge: Badge): User["badges"][0] {
+    matchingBadge(badge: Badge): User['badges'][0] {
         return this.userBadges.find((ub) => ub.badge === badge._id)
     }
 }

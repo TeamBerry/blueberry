@@ -24,7 +24,7 @@ export class BoxesManagerComponent implements OnInit {
 
     public boxes: Array<Box>;
     selectedBox: Box = null;
-    selectedBoxQueueLength: number = 0;
+    selectedBoxQueueLength = 0;
 
     lifetime = null;
     clockInterval;
@@ -71,11 +71,11 @@ export class BoxesManagerComponent implements OnInit {
     }
 
     /**
- * Toggles the box between open or closed
- *
- * @param {Box} box The box to close
- * @memberof BoxesManagerComponent
- */
+     * Toggles the box between open or closed
+     *
+     * @param box The box to close
+     * @memberof BoxesManagerComponent
+     */
     toggleBoxState(box: Box) {
         if (box.open) {
             this.boxService.close(box).subscribe(
@@ -97,7 +97,7 @@ export class BoxesManagerComponent implements OnInit {
     /**
      * Deletes a closed box
      *
-     * @param {Box} box
+     * @param box
      * @memberof BoxesManagerComponent
      */
     deleteBox(box: Box) {
@@ -153,7 +153,7 @@ export class BoxesManagerComponent implements OnInit {
     /**
      * Actions when the player changes state
      *
-     * @param {*} event
+     * @param event
      * @memberof BoxComponent
      */
     onPlayerStateChange(event: any) {

@@ -24,14 +24,15 @@ export interface ChatInputOptions {
 export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
     @Input() boxToken: string;
     @Input() options: Partial<ChatInputOptions>
-    berryCount: number = null;
-    user: AuthSubject = AuthService.getAuthSubject();
-    box: Box;
-
     @Input() contents = '';
 
     @ViewChild('chatbox') chatbox: ElementRef;
     @ViewChild('emojiTypeahead') emojiTypeahead: NgbDropdown;
+
+    berryCount: number = null;
+    user: AuthSubject = AuthService.getAuthSubject();
+    box: Box;
+
 
     emojiDetectionRegEx = new RegExp(/:[\w]{2,}/, 'gmi');
     emojiReplacementRegEx = new RegExp(/:[\w]{2,}:/, 'gmi');
@@ -146,7 +147,7 @@ export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
         this.emojiTypeahead.close();
         const message = new Message({
             author: { _id: this.user._id },
-            contents: contents,
+            contents,
             scope: this.boxToken,
             source: 'human',
         });
@@ -156,7 +157,7 @@ export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
     /**
      * Adds the selected emoji to the contents of the message
      *
-     * @param {*} event
+     * @param event
      * @memberof PanelComponent
      */
     addEmoji(event) {
@@ -166,7 +167,7 @@ export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
     /**
      * Replaces the text by the emoji
      *
-     * @param {EmojiData} emoji
+     * @param emoji
      * @memberof PanelComponent
      */
     replaceEmoji(emoji: EmojiData) {
@@ -184,7 +185,7 @@ export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
     /**
      * Submits a video by its URL. Will control if the url is valid.
      *
-     * @param {string} url The YouTube URL of the video.
+     * @param url The YouTube URL of the video.
      * @memberof PanelComponent
      */
     submitVideo(url: string) {

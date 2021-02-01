@@ -65,7 +65,7 @@ export class PlaylistsSearchTabComponent implements OnInit, AfterViewInit {
      * Relays the output event from the video-entry component and submits the video
      * to the box, via the jukebox service method "submitVideo"
      *
-     * @param {Video} video The video to submit
+     * @param video The video to submit
      * @memberof FavoriteSearchTabComponent
      */
     submitVideo(event: { video: Video, flag?: 'next' | 'now'}) {
@@ -80,7 +80,7 @@ export class PlaylistsSearchTabComponent implements OnInit, AfterViewInit {
 
     submitPlaylist(playlistId: string) {
         this.jukeboxService.submitPlaylist({
-            playlistId: playlistId,
+            playlistId,
             userToken: this.user._id,
             boxToken: this.boxToken
         })

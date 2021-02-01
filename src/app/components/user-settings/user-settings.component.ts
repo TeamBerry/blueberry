@@ -74,12 +74,20 @@ export class UserSettingsComponent implements OnInit {
     }
 
     // Deactivation form
-    get deactivationName() { return this.deactivationForm.get('deactivationName'); }
+    get deactivationName() {
+ return this.deactivationForm.get('deactivationName');
+}
 
     // Reset password form
-    get currentPassword() { return this.passwordResetForm.get('currentPassword'); }
-    get newPassword() { return this.passwordResetForm.get('newPassword'); }
-    get newPasswordVerify() { return this.passwordResetForm.get('newPasswordVerify'); }
+    get currentPassword() {
+ return this.passwordResetForm.get('currentPassword');
+}
+    get newPassword() {
+ return this.passwordResetForm.get('newPassword');
+}
+    get newPasswordVerify() {
+ return this.passwordResetForm.get('newPasswordVerify');
+}
 
     closeSettings() {
         this.close.emit();
@@ -133,7 +141,7 @@ export class UserSettingsComponent implements OnInit {
 
     // Deactivation
     public deactivationValidator(control: FormControl): ValidationErrors {
-        return control.value !== this.session.name ? { 'mismatch': true } : null;
+        return control.value !== this.session.name ? { mismatch: true } : null;
     }
 
     deactivateAccount() {
@@ -152,7 +160,7 @@ export class UserSettingsComponent implements OnInit {
     /**
      * Checks if the password verification input has the same value as the password input
      *
-     * @returns {boolean} Result of the check
+     * @returns Result of the check
      * @memberof SignupFormComponent
      */
     passwordMatchVerify(): boolean {
@@ -174,12 +182,12 @@ export class UserSettingsComponent implements OnInit {
                         this.authService.logout();
                     },
                     error => {
-                        this.errorMessage = "Your request could not be processed. Please try again."
+                        this.errorMessage = 'Your request could not be processed. Please try again.'
                     }
                 )
             },
             error => {
-                this.errorMessage = "Your current password is incorrect."
+                this.errorMessage = 'Your current password is incorrect.'
             }
         )
     }
