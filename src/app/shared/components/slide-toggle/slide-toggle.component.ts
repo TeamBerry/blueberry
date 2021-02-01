@@ -15,7 +15,7 @@ export class SlideToggleComponent {
      * When a click is registered, it toggles the slider. We get the value back from the chain of events, sent
      * by the checkbox inside of it
      *
-     * @param {*} event
+     * @param event
      * @memberof SlideToggleComponent
      */
     emitValue(event) {

@@ -16,7 +16,7 @@ export class PlaylistService {
     /**
      * Gets all public playlists
      *
-     * @returns {Observable<Array<UserPlaylist>>} The list of public playlists
+     * @returns The list of public playlists
      * @memberof PlaylistService
      */
     index(): Observable<Array<UserPlaylist>> {
@@ -26,8 +26,8 @@ export class PlaylistService {
     /**
      * Gets one playlist
      *
-     * @param {string} id The ObjectId of the playlist
-     * @returns {Observable<UserPlaylist>}
+     * @param id The ObjectId of the playlist
+     * @returns
      * @memberof PlaylistService
      */
     show(id: string): Observable<UserPlaylist> {
@@ -37,8 +37,8 @@ export class PlaylistService {
     /**
      * Stores a new playlist in the database
      *
-     * @param {Partial<UserPlaylist>} playlist
-     * @returns {Observable<UserPlaylist>}
+     * @param playlist
+     * @returns
      * @memberof PlaylistService
      */
     store(playlist: Partial<UserPlaylist>): Observable<UserPlaylist> {
@@ -48,8 +48,8 @@ export class PlaylistService {
     /**
      * Updates a playlist
      *
-     * @param {Partial<UserPlaylist>} playlist
-     * @returns {Observable<UserPlaylist>}
+     * @param playlist
+     * @returns
      * @memberof PlaylistService
      */
     update(playlist: Partial<UserPlaylist>): Observable<UserPlaylist> {
@@ -59,8 +59,8 @@ export class PlaylistService {
     /**
      * Updates a playlist
      *
-     * @param {({ action: 'add' | 'remove', video: Video['link'] | Video['_id'], playlist: string })} command
-     * @returns {Observable<UserPlaylist>}
+     * @param command
+     * @returns
      * @memberof UserService
      */
     addVideoToPlaylist(playlist: string, video: { videoId?: string, videoLink?: string }): Observable<UserPlaylist> {
@@ -74,8 +74,8 @@ export class PlaylistService {
     /**
      * Deletes a playlist
      *
-     * @param {string} id
-     * @returns {Observable<UserPlaylist>}
+     * @param id
+     * @returns
      * @memberof PlaylistService
      */
     delete(id: string): Observable<UserPlaylist> {

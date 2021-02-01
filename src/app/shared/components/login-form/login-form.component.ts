@@ -36,9 +36,13 @@ export class LoginFormComponent implements OnInit {
         })
     }
 
-    get mail() { return this.loginForm.get('mail'); }
+    get mail() {
+        return this.loginForm.get('mail');
+    }
 
-    get password() { return this.loginForm.get('password'); }
+    get password() {
+        return this.loginForm.get('password');
+    }
 
     /**
      * Sends the form data to the server to attempt connection
@@ -53,8 +57,9 @@ export class LoginFormComponent implements OnInit {
      * @memberof LoginFormComponent
      */
     login() {
-        const mail = this.loginForm.value.mail,
-            password = this.loginForm.value.password;
+        const mail = this.loginForm.value.mail;
+        const password = this.loginForm.value.password;
+
         this.authService.login(mail, password).subscribe(
             (session: Session) => {
                 this.errorMessage = null;

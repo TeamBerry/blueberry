@@ -58,7 +58,7 @@ export class QueueVideoComponent implements OnInit {
     /**
      * Skips the video
      *
-     * @param {QueueItem} item
+     * @param item
      * @memberof PlaylistVideoComponent
      */
     skipVideo(item: QueueItem) {
@@ -68,7 +68,7 @@ export class QueueVideoComponent implements OnInit {
     /**
      * Cancels a video from the upcoming section
      *
-     * @param {QueueItem} item
+     * @param item
      * @memberof PlaylistVideoComponent
      */
     cancelVideo(item: QueueItem) {
@@ -78,7 +78,7 @@ export class QueueVideoComponent implements OnInit {
     /**
      * Resubmits a video that was played back in the queue of the playlist
      *
-     * @param {QueueItem} item The playlist item
+     * @param item The playlist item
      * @memberof PlaylistItemComponent
      */
     replayVideo(item: QueueItem) {
@@ -88,7 +88,7 @@ export class QueueVideoComponent implements OnInit {
     /**
      * Preselects/Unselects a video from the upcoming section
      *
-     * @param {QueueItem} item
+     * @param item
      * @memberof QueueVideoComponent
      */
     togglePreselection(item: QueueItem) {
@@ -98,7 +98,7 @@ export class QueueVideoComponent implements OnInit {
     /**
      * Force plays a video from the upcoming section
      *
-     * @param {QueueItem} item
+     * @param item
      * @memberof QueueItemComponent
      */
     forcePlay(item: QueueItem) {

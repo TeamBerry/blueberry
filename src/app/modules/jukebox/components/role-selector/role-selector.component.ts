@@ -10,7 +10,7 @@ export class RoleSelectorComponent implements OnInit {
     @Input() context: Exclude<Role, 'admin'>;
 
     @Output() selectedRole: EventEmitter<Exclude<Role, 'admin'>> = new EventEmitter();
-    
+
     constructor() { }
 
     ngOnInit() {}

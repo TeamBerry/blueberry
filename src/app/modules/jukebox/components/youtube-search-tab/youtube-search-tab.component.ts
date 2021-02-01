@@ -83,8 +83,8 @@ export class YoutubeSearchTabComponent implements OnInit {
      * Relays the output event from the video-entry component and submits the video
      * to the box, via the jukebox service method "submitVideo"
      *
-     * @param {Video} video The video to submit
-     * @param {VideoSubmissionRequest['flag']} flag
+     * @param video The video to submit
+     * @param flag
      * @memberof FavoriteSearchTabComponent
      */
     submitVideo(event: { video: Video, flag?: VideoSubmissionRequest['flag']}) {

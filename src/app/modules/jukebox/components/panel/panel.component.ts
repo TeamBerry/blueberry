@@ -22,9 +22,11 @@ export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorite
 export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
     @Input() box: Box;
     @Input() permissions: Array<Permission> = [];
+    @Output() skipEvent = new EventEmitter();
+    @ViewChild('chatInput') chatInput: ChatInputComponent;
+
     user: AuthSubject = AuthService.getAuthSubject();
 
-    @Output() skipEvent = new EventEmitter();
     activePanel: Panel = 'chat';
 
     /**
@@ -33,8 +35,6 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
      * @memberof PanelComponent
      */
     newMessages = false;
-
-    @ViewChild('chatInput') chatInput: ChatInputComponent;
 
     constructor(
         private modalService: NgbModal,
@@ -78,7 +78,10 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
                 filter(message =>
-                    (message instanceof Message || message instanceof SystemMessage || message instanceof FeedbackMessage) && message.scope === this.box._id
+                    (message instanceof Message
+                        || message instanceof SystemMessage
+                        || message instanceof FeedbackMessage)
+                    && message.scope === this.box._id
                 ),
             )
             .subscribe(

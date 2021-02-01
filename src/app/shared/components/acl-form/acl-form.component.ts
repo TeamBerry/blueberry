@@ -15,6 +15,13 @@ interface Permission {
     styleUrls: ['./acl-form.component.scss']
 })
 export class AclFormComponent implements OnInit {
+    @Input() config: User['acl'] = {
+        moderator: [],
+        vip: [],
+        simple: []
+    }
+    @Output() configChange: EventEmitter<User['acl']> = new EventEmitter();
+
     public sections: Array<{ name: string, permissions: Array<Permission> }> = [
         {
             name: 'Queue Actions',
@@ -99,15 +106,8 @@ export class AclFormComponent implements OnInit {
         }
     ]
 
-    @Input() config: User['acl'] = {
-        moderator: [],
-        vip: [],
-        simple: []
-    }
-    @Output() configChange: EventEmitter<User['acl']> = new EventEmitter();
-
     // 0: Moderator, 1: VIP, 2: Community Members
-    editableConfig: Array<Object> = []
+    editableConfig: Array<unknown> = []
     // Dictionary of roles
     roles: Array<string> = ['moderator', 'vip', 'simple']
     // Dictionary of permissions
