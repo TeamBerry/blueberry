@@ -120,11 +120,11 @@ export class ThemeService {
      * The flag is present so the default theme can be applied even when no user is connected
      *
      * @private
-     * @param {{}} theme
-     * @param {boolean} [refreshSettings=true]
+     * @param theme
+     * @param [refreshSettings=true]
      * @memberof ThemeService
      */
-    private setTheme(theme: {}, refreshSettings = true) {
+    private setTheme(theme: unknown, refreshSettings = true) {
         Object.keys(theme).forEach(key =>
             document.documentElement.style.setProperty(`--${key}`, theme[key])
         );

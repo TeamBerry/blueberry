@@ -19,7 +19,7 @@ export class BoxService {
     /**
      * Gets all boxes
      *
-     * @returns {Observable<Box[]>}
+     * @returns
      * @memberof BoxService
      */
     index(): Observable<Box[]> {
@@ -30,8 +30,8 @@ export class BoxService {
     /**
      * Gets one box
      *
-     * @param {string} id The unique token of the box
-     * @returns {Observable<Box>}
+     * @param id The unique token of the box
+     * @returns
      * @memberof BoxService
      */
     show(id: string): Observable<Box> {
@@ -42,8 +42,8 @@ export class BoxService {
     /**
      * Stores a new box in the database
      *
-     * @param {Box} box
-     * @returns {Observable<Box>}
+     * @param box
+     * @returns
      * @memberof BoxService
      */
     store(box: Box): Observable<Box> {
@@ -55,8 +55,8 @@ export class BoxService {
     /**
      * Updates a box in the database
      *
-     * @param {Box} box
-     * @returns {Observable<Box>}
+     * @param box
+     * @returns
      * @memberof BoxService
      */
     update(box: Box): Observable<Box> {
@@ -66,8 +66,8 @@ export class BoxService {
     /**
      * Deletes a box
      *
-     * @param {string} id The Mongo ObjectId of the box
-     * @returns {Observable<Box>}
+     * @param id The Mongo ObjectId of the box
+     * @returns
      * @memberof BoxService
      */
     delete(id: string): Observable<Box> {
@@ -77,8 +77,8 @@ export class BoxService {
     /**
      * Closes a box.
      *
-     * @param {Box} box The box to close
-     * @returns {Observable<Box>} The closed box
+     * @param box The box to close
+     * @returns The closed box
      * @memberof BoxService
      */
     close(box: Box): Observable<Box> {
@@ -88,8 +88,8 @@ export class BoxService {
     /**
      * Opens a box
      *
-     * @param {Box} box The box to close
-     * @returns {Observable<Box>} The opened box
+     * @param box The box to close
+     * @returns The opened box
      * @memberof BoxService
      */
     open(box: Box): Observable<Box> {
@@ -116,8 +116,8 @@ export class BoxService {
     /**
      * Lists the users currently connected to the box
      *
-     * @param {string} box
-     * @returns {Observable<Array<ActiveSubscriber>>}
+     * @param box
+     * @returns
      * @memberof JukeboxService
      */
     public users(box: string): Observable<Array<ActiveSubscriber>> {

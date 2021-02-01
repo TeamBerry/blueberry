@@ -32,7 +32,7 @@
         <app-video-entry *ngFor="let video of selectedPlaylist.videos | filter:filterValue:['name', 'link']"
             [video]="video"
             [options]="{'submit': videosInQueue.indexOf(video.link) === -1, 'inQueue': videosInQueue.indexOf(video.link) !== -1, 'berries': this.berriesEnabled, 'forcePlay': true, 'forceNext': true}"
-            [permissions]="permissions" (submit)="submitVideo($event)"></app-video-entry>
+            [permissions]="permissions" (addedToQueue)="submitVideo($event)"></app-video-entry>
         <div class="text-center mt-3">
             <span class="m-1" style="color: var(--video-separator-color);">&#9679;</span>
         </div>

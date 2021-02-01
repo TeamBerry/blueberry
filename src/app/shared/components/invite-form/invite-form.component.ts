@@ -12,8 +12,8 @@ import { Invite } from 'app/shared/models/invite.model';
 export class InviteFormComponent implements OnInit {
     @Input() boxToken: string;
     invite: Invite = null;
-    expiration: string = '900';
-    fullLink: string = 'berrybox.tv/invite/';
+    expiration = '900';
+    fullLink = 'berrybox.tv/invite/';
 
     constructor(
         public boxService: BoxService,

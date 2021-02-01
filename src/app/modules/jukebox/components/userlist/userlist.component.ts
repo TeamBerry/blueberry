@@ -22,7 +22,11 @@ export class UserlistComponent implements OnChanges {
     @Input() user: AuthSubject;
     @Input() permissions: Array<Permission> = [];
 
-    users: Array<{ title: string, icon: string, context: Exclude<Role, 'admin'>, actionsDisplayed: boolean, list: Array<ActiveSubscriber> }> = [
+    @ViewChild('filterInput') input: ElementRef;
+
+    users: Array<{
+        title: string, icon: string, context: Exclude<Role, 'admin'>, actionsDisplayed: boolean, list: Array<ActiveSubscriber>
+    }> = [
         {
             title: 'Creator',
             icon: '../../../../../assets/images/badges/creator-badge.png',
@@ -53,7 +57,6 @@ export class UserlistComponent implements OnChanges {
         }
     ]
 
-    @ViewChild('filterInput') input: ElementRef;
     filterValue = '';
 
     constructor(
@@ -61,7 +64,7 @@ export class UserlistComponent implements OnChanges {
         private boxService: BoxService,
         private modalService: NgbModal
     ) { }
-    
+
     ngOnChanges() {
         // Triggered on changes so that when permissions changed, the UI is refreshed
         this.getCommunity()
@@ -71,19 +74,19 @@ export class UserlistComponent implements OnChanges {
         this.boxService.users(this.box._id).subscribe(
             (subscribers) => {
                 this.users[0].list = subscribers.filter((subscriber) => subscriber._id === this.box.creator._id);
-                
+
                 // Handling Moderators
                 this.users[1].list = subscribers.filter((subscriber) => subscriber.role === 'moderator');
                 this.users[1].actionsDisplayed = this.permissions.includes('setModerator')
 
                 // Handling VIPs
                 this.users[2].list = subscribers.filter((subscriber) => subscriber.role === 'vip');
-                this.users[2].actionsDisplayed = (<Permission[]>['setVIP', 'unsetVIP']).some(p => this.permissions.includes(p))
+                this.users[2].actionsDisplayed = (['setVIP', 'unsetVIP'] as Array<Permission>).some(p => this.permissions.includes(p))
 
                 // Handling Community
                 this.users[3].list = subscribers.filter((subscriber) => subscriber.role === 'simple');
-                this.users[3].actionsDisplayed = (<Permission[]>['setModerator', 'setVIP']).some(p => this.permissions.includes(p))
-                
+                this.users[3].actionsDisplayed = (['setModerator', 'setVIP'] as Array<Permission>).some(p => this.permissions.includes(p))
+
                 setTimeout(() => {
                     this.bindSearch();
                 }, 2000)

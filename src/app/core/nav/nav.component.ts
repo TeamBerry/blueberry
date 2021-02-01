@@ -25,10 +25,6 @@ import { BoxJoinComponent } from 'app/shared/components/box-join/box-join.compon
     ]
 })
 export class NavComponent implements OnInit {
-    public user: AuthSubject;
-    public pictureLocation = '../../../assets/images/berrybox-staff-logo.png';
-    public isMenuCollapsed = true;
-
     /**
      * Directive to dynamically load the settings components without having to leave the box
      *
@@ -37,9 +33,9 @@ export class NavComponent implements OnInit {
      */
     @ViewChild(SettingsDirective, { static: true }) settingsHost: SettingsDirective;
 
-    @HostListener('document:keydown.escape', ['$event']) onEscape(event: KeyboardEvent) {
-        this.settingsHost.viewContainerRef.clear();
-    }
+    public user: AuthSubject;
+    public pictureLocation = '../../../assets/images/berrybox-staff-logo.png';
+    public isMenuCollapsed = true;
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
@@ -47,6 +43,10 @@ export class NavComponent implements OnInit {
         private themeService: ThemeService,
         private authService: AuthService
     ) { }
+
+    @HostListener('document:keydown.escape', ['$event']) onEscape(event: KeyboardEvent) {
+        this.settingsHost.viewContainerRef.clear();
+    }
 
     ngOnInit() {
         if (this.authService.isLoggedIn()) {

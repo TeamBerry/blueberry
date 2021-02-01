@@ -25,6 +25,10 @@ export class VideoEntryComponent implements OnInit {
         berries?: boolean,
     } = {}
 
+    @Output() addedToQueue: EventEmitter<{ video: Video, flag?: 'next' | 'now' }> = new EventEmitter();
+    @Output() addedToPlaylist: EventEmitter<Video> = new EventEmitter();
+    @Output() removedFromPlaylist: EventEmitter<Video> = new EventEmitter();
+
     appliedOptions = {
         none: false,
         submit: false,
@@ -35,10 +39,6 @@ export class VideoEntryComponent implements OnInit {
         addToPlaylist: false,
         berries: false,
     }
-
-    @Output() submit: EventEmitter<{ video: Video, flag?: 'next' | 'now' }> = new EventEmitter();
-    @Output() addedToPlaylist: EventEmitter<Video> = new EventEmitter();
-    @Output() removedFromPlaylist: EventEmitter<Video> = new EventEmitter();
 
     constructor() { }
 
@@ -59,7 +59,7 @@ export class VideoEntryComponent implements OnInit {
     }
 
     submitVideo(flag?: 'now' | 'next') {
-        this.submit.emit({ video: this.video, flag });
+        this.addedToQueue.emit({ video: this.video, flag });
     }
 
     addToPlaylist() {

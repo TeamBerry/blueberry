@@ -153,7 +153,7 @@ export class BoxComponent implements OnInit {
     /**
      * Actions when the player changes state
      *
-     * @param {*} event
+     * @param event
      * @memberof BoxComponent
      */
     onPlayerStateChange(event: any) {
@@ -231,11 +231,11 @@ export class BoxComponent implements OnInit {
     }
 
     handleMiniatureError(error: 'WRONG_URL' | 'ANONYMOUS_ACCOUNT') {
-        let contents: string = ''
-        if (error = 'WRONG_URL') {
+        let contents = ''
+        if (error === 'WRONG_URL') {
             contents = 'The miniature image is corrupted or not from YouTube. Please retry with a miniature from YouTube.'
         }
-        if (error = 'ANONYMOUS_ACCOUNT') {
+        if (error === 'ANONYMOUS_ACCOUNT') {
             contents = 'You need to be logged in to add videos to the queue. Please log in or create an account.'
         }
 

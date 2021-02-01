@@ -14,12 +14,12 @@ import { AuthSubject } from 'app/shared/models/session.model';
     providers: [UserService]
 })
 export class PlaylistSelectorComponent implements OnInit {
+    @Output() selectedPlaylist$: EventEmitter<UserPlaylist['_id']> = new EventEmitter<UserPlaylist['_id']>();
 
     userPlaylists$: Observable<UserPlaylist[]>
 
     user: AuthSubject = AuthService.getAuthSubject()
 
-    @Output() selectedPlaylist$: EventEmitter<UserPlaylist['_id']> = new EventEmitter<UserPlaylist['_id']>();
 
     constructor(
         public activeModal: NgbActiveModal,

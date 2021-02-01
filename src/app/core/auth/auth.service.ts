@@ -13,6 +13,10 @@ export class AuthService {
     authSubject: AuthSubject;
     public subject: BehaviorSubject<AuthSubject> = new BehaviorSubject<AuthSubject>(null);
 
+    constructor(
+        private http: HttpClient,
+    ) { }
+
     static getAuthSubject(): AuthSubject {
         let session: AuthSubject = JSON.parse(localStorage.getItem('BBOX-user'));
         if (!session) {
@@ -41,19 +45,15 @@ export class AuthService {
         return session as AuthSubject
     }
 
-    constructor(
-        private http: HttpClient,
-    ) { }
-
     /**
      * Logs the user in
      *
-     * @param {string} mail
-     * @param {string} password
+     * @param mail
+     * @param password
      * @memberof AuthService
      */
     login(mail: string, password: string): Observable<Session> {
-        return this.http.post<Session>(environment.araza + '/auth/login', { mail: mail, password: password });
+        return this.http.post<Session>(environment.araza + '/auth/login', { mail, password });
     }
 
     showConnectedUser(token: string): Observable<User> {
@@ -69,7 +69,7 @@ export class AuthService {
     /**
      * Consumes the API that will trigger a password reset for the given mail address
      *
-     * @param {string} mail
+     * @param mail
      * @returns
      * @memberof AuthService
      */
@@ -110,7 +110,7 @@ export class AuthService {
      * Sets the session for the user based on the bearer token
      *
      * @public // Should be private
-     * @param {*} session Result of the authentification process
+     * @param session Result of the authentification process
      * @memberof AuthService
      */
     public setSession(session: Session) {
