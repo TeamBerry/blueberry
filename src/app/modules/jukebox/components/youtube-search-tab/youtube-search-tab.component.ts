@@ -42,7 +42,7 @@ export class YoutubeSearchTabComponent implements OnInit {
         }
         // Timeout
         if (this.canSearch === false) {
-            // tslint:disable-next-line: max-line-length
+            // eslint-disable-next-line max-len
             this.errorMessage = `You have to wait at least ${this.defaultSearchCooldown} seconds before two requests. Please wait until you can search again.`
             return false
         }
