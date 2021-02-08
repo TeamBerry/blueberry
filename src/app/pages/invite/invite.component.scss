@@ -1,0 +1,13 @@
+@import './../../../imports.scss';
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - #{$nav-height});
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
