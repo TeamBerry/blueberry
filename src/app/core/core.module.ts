@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
-import { throwIfAlreadyLoaded } from './module-import-guard';
-
 import { AuthService } from './auth/auth.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
 
@@ -36,6 +34,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 })
 export class CoreModule {
     constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
-        throwIfAlreadyLoaded(parentModule, 'CoreModule');
+        if (parentModule) {
+            throw new Error(`CoreModule has already been loaded. Import Core modules in the AppModule only.`);
+        }
     }
 }

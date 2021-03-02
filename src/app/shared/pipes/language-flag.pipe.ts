@@ -153,7 +153,7 @@ export class LanguageFlagPipe implements PipeTransform {
     ];
 
     transform(value: string): string {
-        const lang = this.langs.find(lang => lang.key === value);
+        const lang = this.langs.find(l => l.key === value);
         return `${lang.flag} (${lang.value})`;
     }
 }

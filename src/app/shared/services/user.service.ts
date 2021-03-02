@@ -19,8 +19,8 @@ export class UserService {
     /**
      * Gets the active user
      *
-     * @param {string} token The token of the user
-     * @returns {Observable<User>}
+     * @param token The token of the user
+     * @returns
      * @memberof UserService
      */
     show(token: string): Observable<User> {
@@ -30,9 +30,9 @@ export class UserService {
     /**
      * Updates an user
      *
-     * @param {string} token The token of the user
-     * @param {User} user The user to update
-     * @returns {Observable<User>} The updated user
+     * @param token The token of the user
+     * @param user The user to update
+     * @returns The updated user
      * @memberof UserService
      */
     update(token: string, user: User): Observable<User> {
@@ -42,7 +42,7 @@ export class UserService {
     /**
      * Update user settings
      *
-     * @param {*} settings
+     * @param settings
      * @returns
      * @memberof UserService
      */
@@ -53,8 +53,8 @@ export class UserService {
     /**
      * Updates the default ACL config tof the user
      *
-     * @param {User['acl']} aclConfig
-     * @returns {Observable<User['acl']>}
+     * @param aclConfig
+     * @returns
      * @memberof UserService
      */
     updateACL(aclConfig: User['acl']): Observable<User['acl']> {
@@ -66,8 +66,8 @@ export class UserService {
     /**
      * Gets all active boxes for an user
      *
-     * @param {User} user
-     * @returns {Observable<Array<Box>>}
+     * @param user
+     * @returns
      * @memberof UserService
      */
     boxes(user: AuthSubject): Observable<Array<Box>> {
@@ -77,8 +77,8 @@ export class UserService {
     /**
      * Gets all playlists for an user
      *
-     * @param {User} user
-     * @returns {Observable<Array<UserPlaylist>>}
+     * @param user
+     * @returns
      * @memberof UserService
      */
     playlists(user: AuthSubject): Observable<Array<UserPlaylist>> {
@@ -88,9 +88,9 @@ export class UserService {
     /**
      * Uploads the profile picture of the user to the database
      *
-     * @param {FormData} picture
-     * @param {AuthSubject} user
-     * @returns {Observable<string>} The name of the file
+     * @param picture
+     * @param user
+     * @returns The name of the file
      * @memberof UserService
      */
     uploadPicture(picture: FormData, user: AuthSubject): Observable<{ file: string }> {
@@ -100,8 +100,8 @@ export class UserService {
     /**
      * Deletes the profile picture of the user
      *
-     * @param {AuthSubject} user
-     * @returns {Observable<boolean>}
+     * @param user
+     * @returns
      * @memberof UserService
      */
     deletePicture(): Observable<{ file: string }> {

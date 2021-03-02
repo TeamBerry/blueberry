@@ -16,7 +16,7 @@ export class SearchService {
     /**
      * Uses the search API of YouTube to fetch videos
      *
-     * @param {string} value
+     * @param value
      * @returns
      * @memberof YoutubeService
      */

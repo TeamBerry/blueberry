@@ -26,6 +26,7 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 /* Feature Modules */
 import { JukeboxModule } from './modules/jukebox/jukebox.module';
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
+import { InviteComponent } from './pages/invite/invite.component';
 
 // External Modules
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -49,7 +50,8 @@ import { BoxJoinComponent } from './shared/components/box-join/box-join.componen
         PasswordResetComponent,
         InviteFormComponent,
         BoxJoinComponent,
-        FeaturedBoxesCarouselComponent
+        FeaturedBoxesCarouselComponent,
+        InviteComponent,
     ],
     imports: [
         AppRoutingModule,

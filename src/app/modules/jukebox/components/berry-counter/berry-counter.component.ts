@@ -11,7 +11,7 @@ import { JukeboxService } from '../../jukebox.service';
 export class BerryCounterComponent implements OnInit {
     @Input() boxToken: string;
     count: number;
-    
+
     constructor(
       private jukeboxService: JukeboxService
   ) { }

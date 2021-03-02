@@ -3,7 +3,7 @@ import { SearchService } from 'app/shared/services/search.service';
 import { Video } from 'app/shared/models/video.model';
 import { JukeboxService } from '../../jukebox.service';
 import { AuthSubject } from 'app/shared/models/session.model';
-import { VideoSubmissionRequest } from '@teamberry/muscadine';
+import { Permission, VideoSubmissionRequest } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-youtube-search-tab',
@@ -15,6 +15,7 @@ export class YoutubeSearchTabComponent implements OnInit {
     @Input() user: AuthSubject;
     @Input() videosInQueue: Array<string>;
     @Input() berriesEnabled: boolean;
+    @Input() permissions: Array<Permission> = [];
     searchValue = ''
     errorMessage
     defaultSearchCooldown = 5
@@ -41,7 +42,7 @@ export class YoutubeSearchTabComponent implements OnInit {
         }
         // Timeout
         if (this.canSearch === false) {
-            // tslint:disable-next-line: max-line-length
+            // eslint-disable-next-line max-len
             this.errorMessage = `You have to wait at least ${this.defaultSearchCooldown} seconds before two requests. Please wait until you can search again.`
             return false
         }
@@ -82,8 +83,8 @@ export class YoutubeSearchTabComponent implements OnInit {
      * Relays the output event from the video-entry component and submits the video
      * to the box, via the jukebox service method "submitVideo"
      *
-     * @param {Video} video The video to submit
-     * @param {VideoSubmissionRequest['flag']} flag
+     * @param video The video to submit
+     * @param flag
      * @memberof FavoriteSearchTabComponent
      */
     submitVideo(event: { video: Video, flag?: VideoSubmissionRequest['flag']}) {

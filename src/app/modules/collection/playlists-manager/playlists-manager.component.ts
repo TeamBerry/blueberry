@@ -81,7 +81,7 @@ export class PlaylistsManagerComponent implements OnInit {
         }
         // Timeout
         if (this.canSearch === false) {
-            // tslint:disable-next-line: max-line-length
+            // eslint-disable-next-line max-len
             this.errorMessage = `You have to wait at least ${this.defaultSearchCooldown} seconds before two requests. Please wait until you can search again.`
             return false
         }
@@ -122,7 +122,7 @@ export class PlaylistsManagerComponent implements OnInit {
         modalRef.componentInstance.title = !playlist ? 'Create a playlist' : `Edit ${playlist.name}`
         modalRef.componentInstance.playlist = playlist ? Object.assign({}, playlist) : null
         modalRef.componentInstance.user = this.user
-        modalRef.componentInstance.submit.subscribe(
+        modalRef.componentInstance.playlistSaved.subscribe(
             () => {
                 const message = playlist ? 'Playlist updated' : 'Playlist created';
                 this.toastr.success(message, 'Success')

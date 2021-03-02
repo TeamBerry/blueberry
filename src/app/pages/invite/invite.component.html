@@ -1,0 +1,32 @@
+<div class="container">
+    <div *ngIf="!isInviteInvalid">
+        <h5>Parsing your invite, please wait...</h5>
+    </div>
+    <div *ngIf="isInviteInvalid">
+        <svg class="berrybox-svg-static" style="height: 30em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+            <g id="broken-link-icon">
+                <rect class="berrybox-stroke" style="stroke-width: 22px;" x="297.38" y="64.04" width="80.94"
+                    height="175.23" rx="23.87" transform="translate(206.19 -194.48) rotate(45)" />
+                <rect class="berrybox-stroke" style="stroke-width: 22px;" x="104.57" y="256.84" width="80.94"
+                    height="175.23" rx="23.87" transform="translate(286.05 -1.67) rotate(45)" />
+                <path class="berrybox-path"
+                    d="M300.2,216.65l-28.84,28.83-39.09-15.59,40.58-40.59a19.31,19.31,0,0,1,27.31,0l0,0A19.33,19.33,0,0,1,300.2,216.65Z" />
+                <path class="berrybox-path"
+                    d="M250.62,266.22,211.14,305.7a19.3,19.3,0,0,1-27.31,0l0,0a19.3,19.3,0,0,1,0-27.31l27.73-27.74Z" />
+                <rect class="berrybox-path" x="146.89" y="178.03" width="51.84" height="8.29" rx="4.15"
+                    transform="translate(179.43 -68.84) rotate(45)" />
+                <rect class="berrybox-path" x="175.86" y="158.08" width="51.84" height="8.29" rx="4.15"
+                    transform="matrix(0, 1, -1, 0, 364.01, -39.56)" />
+                <rect class="berrybox-path" x="126.94" y="207" width="51.84" height="8.29" rx="4.15" />
+                <rect class="berrybox-path" x="281.4" y="312.54" width="51.84" height="8.29" rx="4.15"
+                    transform="translate(300.7 757.92) rotate(-135)" />
+                <rect class="berrybox-path" x="252.43" y="332.49" width="51.84" height="8.29" rx="4.15"
+                    transform="translate(-58.28 614.99) rotate(-90)" />
+                <rect class="berrybox-path" x="301.35" y="283.57" width="51.84" height="8.29" rx="4.15"
+                    transform="matrix(-1, 0, 0, -1, 654.54, 575.43)" />
+            </g>
+        </svg>
+        <h5>Your invite link is invalid or has expired.</h5>
+        <a routerLink="/home" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>

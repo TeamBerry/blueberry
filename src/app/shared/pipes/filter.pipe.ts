@@ -14,10 +14,10 @@ export class FilterPipe implements PipeTransform {
      * Filters the list of items by the filter criteria on some of the fields of the items as specified by
      * filterFields
      *
-     * @param {Array<any>} items The items to filter on
-     * @param {string} filter The filter value
-     * @param {Array<string>} filterFields The fields of items to compare against
-     * @returns {Array<any>} An array of the valid items.
+     * @param items The items to filter on
+     * @param filter The filter value
+     * @param filterFields The fields of items to compare against
+     * @returns An array of the valid items.
      * @memberof FilterPipe
      */
     transform(items: Array<any>, filter: string, filterFields: Array<string>): Array<any> {
@@ -30,5 +30,5 @@ export class FilterPipe implements PipeTransform {
         return items.filter(item => filterFields.some(key => this.getProp(item, key).toLocaleLowerCase().indexOf(filter) !== -1))
     }
 
-    getProp = (object, property) => property.split('.').reduce((r, e) => { return r[e]; }, object)
+    getProp = (object, property) => property.split('.').reduce((r, e) => r[e], object)
 }

@@ -6,7 +6,7 @@ import { PlaylistSelectorComponent } from 'app/shared/components/playlist-select
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
 import { Box } from 'app/shared/models/box.model';
-import { QueueItem } from '@teamberry/muscadine';
+import { Permission, QueueItem } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-queue-video',
@@ -18,6 +18,8 @@ export class QueueVideoComponent implements OnInit {
     @Input() box: Box;
 
     @Input() item: QueueItem;
+
+    @Input() permissions: Array<Permission>;
 
     /**
      * Variable that displays the position in the "next in line" if set
@@ -56,7 +58,7 @@ export class QueueVideoComponent implements OnInit {
     /**
      * Skips the video
      *
-     * @param {QueueItem} item
+     * @param item
      * @memberof PlaylistVideoComponent
      */
     skipVideo(item: QueueItem) {
@@ -66,7 +68,7 @@ export class QueueVideoComponent implements OnInit {
     /**
      * Cancels a video from the upcoming section
      *
-     * @param {QueueItem} item
+     * @param item
      * @memberof PlaylistVideoComponent
      */
     cancelVideo(item: QueueItem) {
@@ -76,7 +78,7 @@ export class QueueVideoComponent implements OnInit {
     /**
      * Resubmits a video that was played back in the queue of the playlist
      *
-     * @param {QueueItem} item The playlist item
+     * @param item The playlist item
      * @memberof PlaylistItemComponent
      */
     replayVideo(item: QueueItem) {
@@ -86,7 +88,7 @@ export class QueueVideoComponent implements OnInit {
     /**
      * Preselects/Unselects a video from the upcoming section
      *
-     * @param {QueueItem} item
+     * @param item
      * @memberof QueueVideoComponent
      */
     togglePreselection(item: QueueItem) {
@@ -96,7 +98,7 @@ export class QueueVideoComponent implements OnInit {
     /**
      * Force plays a video from the upcoming section
      *
-     * @param {QueueItem} item
+     * @param item
      * @memberof QueueItemComponent
      */
     forcePlay(item: QueueItem) {

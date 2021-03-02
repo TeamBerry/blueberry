@@ -3,20 +3,19 @@ name: Deploy
 on:
   push:
     tags:
-      - '**'
+      - "**"
 
 jobs:
   deploy:
-
     runs-on: ubuntu-18.04
 
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: [14.x]
 
     steps:
       - uses: actions/checkout@v2
-      - uses: webfactory/ssh-agent@v0.4.1
+      - uses: webfactory/ssh-agent@v0.5.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Use Node.js ${{ matrix.node-version }}
@@ -45,6 +44,3 @@ jobs:
           host: ${{ secrets.HOST }}
           user: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-
-

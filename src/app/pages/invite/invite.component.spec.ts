@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { BadgeCollectionComponent } from './badge-collection.component';
+import { InviteComponent } from './invite.component';
 
-describe('BadgeCollectionComponent', () => {
-  let component: BadgeCollectionComponent;
-  let fixture: ComponentFixture<BadgeCollectionComponent>;
+describe('InviteComponent', () => {
+  let component: InviteComponent;
+  let fixture: ComponentFixture<InviteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BadgeCollectionComponent ]
+      declarations: [ InviteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BadgeCollectionComponent);
+    fixture = TestBed.createComponent(InviteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -10,7 +10,7 @@ import { BoxFormComponent } from 'app/shared/components/box-form/box-form.compon
 import { BoxService } from 'app/shared/services/box.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
-import { PlayingItem, SyncPacket } from '@teamberry/muscadine';
+import { Permission, PlayingItem, SyncPacket } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-boxes-manager',
@@ -20,10 +20,11 @@ import { PlayingItem, SyncPacket } from '@teamberry/muscadine';
 })
 export class BoxesManagerComponent implements OnInit {
     user: AuthSubject = AuthService.getAuthSubject();
+    permissions: Array<Permission> = [];
 
     public boxes: Array<Box>;
     selectedBox: Box = null;
-    selectedBoxQueueLength: number = 0;
+    selectedBoxQueueLength = 0;
 
     lifetime = null;
     clockInterval;
@@ -70,11 +71,11 @@ export class BoxesManagerComponent implements OnInit {
     }
 
     /**
- * Toggles the box between open or closed
- *
- * @param {Box} box The box to close
- * @memberof BoxesManagerComponent
- */
+     * Toggles the box between open or closed
+     *
+     * @param box The box to close
+     * @memberof BoxesManagerComponent
+     */
     toggleBoxState(box: Box) {
         if (box.open) {
             this.boxService.close(box).subscribe(
@@ -96,7 +97,7 @@ export class BoxesManagerComponent implements OnInit {
     /**
      * Deletes a closed box
      *
-     * @param {Box} box
+     * @param box
      * @memberof BoxesManagerComponent
      */
     deleteBox(box: Box) {
@@ -144,6 +145,7 @@ export class BoxesManagerComponent implements OnInit {
                 }
             )
             this.connectToSyncStream();
+            this.jukeboxService.getPermissions().subscribe(permissions => this.permissions = permissions);
         }
     }
 
@@ -151,7 +153,7 @@ export class BoxesManagerComponent implements OnInit {
     /**
      * Actions when the player changes state
      *
-     * @param {*} event
+     * @param event
      * @memberof BoxComponent
      */
     onPlayerStateChange(event: any) {

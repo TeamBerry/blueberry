@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { JukeboxService } from './../../jukebox.service';
-import { Message, FeedbackMessage, SystemMessage } from '@teamberry/muscadine';
+import { Message, FeedbackMessage, SystemMessage, Permission } from '@teamberry/muscadine';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { AuthService } from 'app/core/auth/auth.service';
 import { BoxFormComponent } from 'app/shared/components/box-form/box-form.component';
@@ -21,9 +21,12 @@ export type Panel = 'chat' | 'queue' | 'users' | 'commands' | 'help' | 'favorite
 })
 export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
     @Input() box: Box;
+    @Input() permissions: Array<Permission> = [];
+    @Output() skipEvent = new EventEmitter();
+    @ViewChild('chatInput') chatInput: ChatInputComponent;
+
     user: AuthSubject = AuthService.getAuthSubject();
 
-    @Output() skipEvent = new EventEmitter();
     activePanel: Panel = 'chat';
 
     /**
@@ -32,8 +35,6 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
      * @memberof PanelComponent
      */
     newMessages = false;
-
-    @ViewChild('chatInput') chatInput: ChatInputComponent;
 
     constructor(
         private modalService: NgbModal,
@@ -77,7 +78,10 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.jukeboxService.getBoxStream()
             .pipe( // Filtering to only act on Message instances
                 filter(message =>
-                    (message instanceof Message || message instanceof SystemMessage || message instanceof FeedbackMessage) && message.scope === this.box._id
+                    (message instanceof Message
+                        || message instanceof SystemMessage
+                        || message instanceof FeedbackMessage)
+                    && message.scope === this.box._id
                 ),
             )
             .subscribe(
@@ -108,13 +112,5 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
                     }
                 },
             );
-    }
-
-    openBoxSettings() {
-        if (this.jukeboxService.evaluateCommandPower('editBox')) {
-            const modalRef = this.modalService.open(BoxFormComponent, { size: 'xl' })
-            modalRef.componentInstance.title = `Edit Box Settings`
-            modalRef.componentInstance.box = _.cloneDeep(this.box)
-        }
     }
 }

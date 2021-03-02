@@ -15,7 +15,7 @@ export class PlaylistFormComponent implements OnInit {
     @Input() playlist: UserPlaylist
     @Input() user: AuthSubject
 
-    @Output() submit: EventEmitter<any> = new EventEmitter()
+    @Output() playlistSaved: EventEmitter<any> = new EventEmitter()
 
     context: 'create' | 'edit' = 'edit'
 
@@ -35,14 +35,14 @@ export class PlaylistFormComponent implements OnInit {
         if (this.context === 'create') {
             this.playlistService.store(this.playlist).subscribe(
                 (response: UserPlaylist) => {
-                    this.submit.emit();
+                    this.playlistSaved.emit();
                     this.activeModal.close();
                 }
             )
         } else {
             this.playlistService.update(this.playlist).subscribe(
                 (response: UserPlaylist) => {
-                    this.submit.emit();
+                    this.playlistSaved.emit();
                     this.activeModal.close();
                 }
             )

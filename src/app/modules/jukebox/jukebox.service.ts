@@ -5,7 +5,9 @@ import { io, Socket } from 'socket.io-client';
 
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
-import { Message, FeedbackMessage, QueueItemActionRequest, SyncPacket, VideoSubmissionRequest, Permission, QueueItem } from '@teamberry/muscadine';
+import {
+    Message, FeedbackMessage, QueueItemActionRequest, SyncPacket, VideoSubmissionRequest, Permission, QueueItem
+} from '@teamberry/muscadine';
 import { AuthService } from 'app/core/auth/auth.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { BerryCount } from '@teamberry/muscadine/dist/interfaces/subscriber.interface';
@@ -14,11 +16,19 @@ import { RoleChangeRequest } from 'app/shared/models/role-change.model';
 import { QueueService } from 'app/shared/services/queue.service';
 import { filter } from 'rxjs/operators';
 
-export type subjects = Box | Message | FeedbackMessage | SystemMessage | SyncPacket | BerryCount
+export type Subjects = Box | Message | FeedbackMessage | SystemMessage | SyncPacket | BerryCount | Array<Permission>
 @Injectable({
     providedIn: 'root'
 })
 export class JukeboxService {
+    public box: Box;
+
+    public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(null);
+    public connectionSubject: BehaviorSubject<string> = new BehaviorSubject<string>('offline');
+    public permissionsSubject: BehaviorSubject<Array<Permission>> = new BehaviorSubject<Array<Permission>>([]);
+
+    public user: AuthSubject = AuthService.getAuthSubject();
+
     private boxSocket: Socket;
 
     /**
@@ -27,10 +37,10 @@ export class JukeboxService {
      * in the stream for components. Acts as a middleware.
      *
      * @private
-     * @type {ReplaySubject<subjects>}
+     * @type {ReplaySubject<Subjects>}
      * @memberof JukeboxService
      */
-    private boxStream: ReplaySubject<subjects> = new ReplaySubject<subjects>();
+    private boxStream: ReplaySubject<Subjects> = new ReplaySubject<Subjects>();
     private queueStream: ReplaySubject<Array<QueueItem>> = new ReplaySubject<Array<QueueItem>>();
 
     /**
@@ -46,22 +56,14 @@ export class JukeboxService {
      */
     private orderStream: Subject<string> = new Subject<string>();
 
-    public box: Box;
-
-    public boxSubject: BehaviorSubject<Box> = new BehaviorSubject<Box>(null);
-    public connectionSubject: BehaviorSubject<string> = new BehaviorSubject<string>('offline');
-
-    public user: AuthSubject = AuthService.getAuthSubject();
-
     constructor(
         private queueService: QueueService
-    ) {
-    }
+    ) {}
 
     /**
      * Sets the box in memory of the service to provide it to subscribers
      *
-     * @param {Box} box
+     * @param box
      * @memberof JukeboxService
      */
     public startBox(box: Box) {
@@ -104,7 +106,7 @@ export class JukeboxService {
     /**
      * Returns the observable of the box for any component who needs it
      *
-     * @returns {Observable<Box>}
+     * @returns
      * @memberof JukeboxService
      */
     public getBox(): Observable<Box> {
@@ -115,10 +117,14 @@ export class JukeboxService {
         return this.connectionSubject.asObservable();
     }
 
+    public getPermissions(): Observable<Array<Permission>> {
+        return this.permissionsSubject.asObservable();
+    }
+
     /**
      * Submits a video to the queue of the box
      *
-     * @param {VideoSubmissionRequest} video
+     * @param video
      * @memberof JukeboxService
      */
     public submitVideo(video: VideoSubmissionRequest): void {
@@ -128,7 +134,7 @@ export class JukeboxService {
     /**
      * Submits a playlist to the queue of the box
      *
-     * @param {{ playlistId: string, userToken: string, boxToken: string }} playlist
+     * @param playlist
      * @memberof JukeboxService
      */
     public submitPlaylist(playlist: { playlistId: string, userToken: string, boxToken: string }): void {
@@ -138,7 +144,7 @@ export class JukeboxService {
     /**
      * Cancels a video from the playlist
      *
-     * @param {QueueItemActionRequest} actionRequest
+     * @param actionRequest
      * @memberof JukeboxService
      */
     public cancelVideo = (actionRequest: QueueItemActionRequest): void => {
@@ -148,7 +154,7 @@ export class JukeboxService {
     /**
      * Preselects/Unselects a video from the upcoming pool
      *
-     * @param {QueueItemActionRequest} actionRequest
+     * @param actionRequest
      * @memberof JukeboxService
      */
     public preselectVideo = (actionRequest: QueueItemActionRequest): void => {
@@ -176,7 +182,7 @@ export class JukeboxService {
     /**
      * Sends a message to the socket
      *
-     * @param {Message} message The message to send
+     * @param message The message to send
      * @memberof JukeboxService
      */
     public postMessageToSocket(message: Message): void {
@@ -186,7 +192,7 @@ export class JukeboxService {
     /**
      * Allows components to send messages via the box stream
      *
-     * @param {Message} message The message to dispatch
+     * @param message The message to dispatch
      * @memberof JukeboxService
      */
     public postMessageToStream(message: Message): void {
@@ -196,6 +202,10 @@ export class JukeboxService {
     // ORDERS
     public sendOrder(order: string) {
         this.emitOrder(order)
+    }
+
+    public changeRoleOfUser = (roleChangeRequest: RoleChangeRequest): void => {
+        this.boxSocket.emit('roleChange', roleChangeRequest)
     }
 
     protected emitOrder(order) {
@@ -215,8 +225,8 @@ export class JukeboxService {
      * Connects to the box socket and start real-time stuff
      *
      * @private Will connect itself to the socket and relay sync packets through the syncStream ReplaySubject
-     * @param {string} boxToken The document ID (_id) of the box
-     * @param {string} userToken The document ID (_id) of the user
+     * @param boxToken The document ID (_id) of the box
+     * @param userToken The document ID (_id) of the user
      * @returns
      * @memberof JukeboxService
      */
@@ -233,7 +243,7 @@ export class JukeboxService {
             reconnectionAttempts: 10
         });
 
-        return new Observable<subjects>(observer => {
+        return new Observable<Subjects>(observer => {
             this.boxSocket.on('connect', () => {
                 this.boxSocket.emit('auth', {
                     origin: 'Blueberry',
@@ -244,14 +254,8 @@ export class JukeboxService {
                 this.connectionSubject.next('pending');
             });
 
-            this.boxSocket.on('permissions', (permissions: Array<string>) => {
-                localStorage.setItem('BBOX-Scope', JSON.stringify(permissions));
-                // TODO: Refresh without reloading
-                if (this.connectionSubject.value === 'success') {
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 10000);
-                }
+            this.boxSocket.on('permissions', (permissions: Array<Permission>) => {
+                this.permissionsSubject.next(permissions);
             });
 
             this.boxSocket.on('confirm', (feedback: FeedbackMessage) => {
@@ -318,34 +322,5 @@ export class JukeboxService {
                 this.connectionSubject.next('offline');
             };
         });
-    }
-
-    // TODO: Link to the rest of the app
-    public changeRoleOfUser = (roleChangeRequest: RoleChangeRequest): void => {
-        this.boxSocket.emit('roleChange', roleChangeRequest)
-    }
-
-    /**
-     * Evaluates whether of not the user can execute a command
-     *
-     * @private
-     * @returns {boolean}
-     * @memberof JukeboxService
-     */
-    public evaluateCommandPower(permission: Permission): boolean {
-        const permissions: Array<Permission> = JSON.parse(localStorage.getItem('BBOX-Scope'))
-
-        // Send error if the user doing this is not the creator
-        if (!permissions.includes(permission)) {
-            const message: Message = new Message({
-                contents: 'You do not have the power to execute this action.',
-                source: 'system',
-                scope: this.box._id,
-                time: new Date()
-            });
-            this.boxStream.next(message);
-            return false;
-        }
-        return true
     }
 }

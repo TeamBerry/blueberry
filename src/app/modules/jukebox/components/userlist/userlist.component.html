@@ -2,72 +2,49 @@
     <div class="col"></div>
     <p class="panel-tab-title col">Users</p>
     <div class="col pr-0">
-        <app-bx-button (click)="openInviteModal()" *appAcl="'inviteUser'" class="panel-tab-title-button"
+        <app-bx-button (click)="openInviteModal()" *ngIf="permissions.includes('inviteUser')"
+            class="panel-tab-title-button"
             [options]="{'type': 'inviteUser', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Invite users'}">
         </app-bx-button>
     </div>
 </div>
-<div class="px-3">
-    <div class="d-lg-none text-center py-2">
-        <app-bx-button (click)="openInviteModal()" *appAcl="'inviteUser'"
-            [options]="{'type': 'inviteUser', 'textDisplay': 'button', 'context': 'queue', 'text': 'Invite users'}">
-        </app-bx-button>
-    </div>
-    <div *ngIf="admin">
-        <p class="role-title">Creator</p>
-        <div class="d-flex align-items-center">
-            <app-profile-picture [fileName]="admin.settings.picture" [size]="'xs'"></app-profile-picture>
-            <span class="ml-1 user-name">{{ admin.name }}</span>
+<div style="flex: 1; overflow: hidden;">
+    <div class="d-flex flex-column h-100">
+        <div class="d-lg-none text-center py-2">
+            <app-bx-button (click)="openInviteModal()" *ngIf="permissions.includes('inviteUser')"
+                [options]="{'type': 'inviteUser', 'textDisplay': 'button', 'context': 'queue', 'text': 'Invite users'}">
+            </app-bx-button>
         </div>
-    </div>
-    <div *ngIf="moderators.length > 0">
-        <p class="role-title">Moderators - {{ moderators.length }}</p>
-        <div *ngFor="let moderator of moderators" class="user-item my-1 d-flex">
-            <div class="d-flex w-100 align-items-center justify-content-between">
-                <div>
-                    <app-profile-picture [fileName]="moderator.settings.picture" [size]="'xs'"></app-profile-picture>
-                    <span class="ml-1 user-name">{{ moderator.name }}</span>
-                </div>
-                <div>
-                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'demoteModerator'"
-                        (click)="changeRole(moderator._id, 'vip')">Demote to VIP</button>
-                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'demoteModerator'"
-                        (click)="changeRole(moderator._id, 'simple')">Demote to Community</button>
+        <div class="p-3 pb-0 input-group">
+            <input type="text" class="form-control" placeholder="Type to filter users..." #filterInput>
+            <div class="input-group-append">
+                <button class="btn btn-outline-default" type="button" (click)="resetFilter()">Reset</button>
+            </div>
+        </div>
+        <div class="userlist" [ngClass]="{'is-searching': filterValue !== ''}">
+            <ng-template #loading>Loading users...</ng-template>
+            <div *ngFor="let section of users; let i = index" [ngClass]="{'mt-3': i > 0}">
+                <div *ngIf="section.list.length > 0">
+                    <div class="role-title-container my-2">
+                        <img *ngIf="section.icon" src="{{section.icon}}" alt="">
+                        <p class="role-title mb-0">{{ section.title }} - {{ section.list.length }}</p>
+                    </div>
+                    <div *ngFor="let member of section.list | filter:filterValue:['name']"
+                        class="user-item my-1 d-flex">
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+                            <div class="user-name-container">
+                                <app-profile-picture style="height: 50px;" [fileName]="member.settings.picture"
+                                    [size]="'md'" [isOnline]="member.origin !== null"></app-profile-picture>
+                                <span class="ml-3 user-name">{{ member.name }}</span>
+                            </div>
+                            <app-role-selector *ngIf="member._id !== user._id
+                            && section.context && section.actionsDisplayed" [permissions]="permissions"
+                                [context]="section.context" (selectedRole)="changeRole(member._id, $event)">
+                            </app-role-selector>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div *ngIf="vips.length > 0">
-        <p class="role-title">VIPs - {{ vips.length }}</p>
-        <div *ngFor="let vip of vips" class="user-item my-1 d-flex">
-            <div class="d-flex w-100 align-items-center justify-content-between">
-                <app-profile-picture [fileName]="vip.settings.picture" [size]="'xs'"></app-profile-picture>
-                <span class="ml-1 user-name">{{ vip.name }}</span>
-                <button class="btn btn-outline-primary btn-promotion" *appAcl="'demote'"
-                    (click)="changeRole(vip._id, 'simple')">Demote to Community</button>
-                <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteModerator'"
-                    (click)="changeRole(vip._id, 'moderator')">Promote to
-                    Moderator</button>
-            </div>
-        </div>
-    </div>
-    <div *ngIf="community.length > 0">
-        <p class="role-title">Community Members - {{ community.length }}</p>
-        <div *ngFor="let user of community" class="user-item my-1 d-flex">
-            <div class="d-flex w-100 align-items-center justify-content-between">
-                <div>
-                    <app-profile-picture [fileName]="user.settings.picture" [size]="'xs'"></app-profile-picture>
-                    <span class="ml-1 user-name">{{ user.name }}</span>
-                </div>
-                <div>
-                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'promote'"
-                        (click)="changeRole(user._id, 'vip')">Promote to VIP</button>
-                    <button class="btn btn-outline-primary btn-promotion" *appAcl="'promoteModerator'"
-                        (click)="changeRole(user._id, 'moderator')">Promote to
-                        Moderator</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <ng-template #loading>Loading users...</ng-template>
 </div>

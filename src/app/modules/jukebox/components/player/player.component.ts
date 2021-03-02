@@ -19,11 +19,12 @@ import { filter } from 'rxjs/operators';
 })
 export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
     @Input() boxToken: string;
-    private player: YT.Player;
     public currentVideoDuration: string;
     public playingPosition: number;
 
     streamSubscription
+
+    private player: YT.Player;
 
     constructor(
         private jukeboxService: JukeboxService
@@ -41,7 +42,7 @@ export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
     /**
      * On Changes, stops the video and resubscribes to the jukebox stream with the changed box token
      *
-     * @param {{boxToken: SimpleChange}} changes
+     * @param changes
      * @memberof PlayerComponent
      */
     ngOnChanges(changes: { boxToken: SimpleChange }) {
@@ -80,7 +81,7 @@ export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
                 controls: 1
             },
             events: {
-                'onReady': this.onPlayerReady.bind(this)
+                onReady: this.onPlayerReady.bind(this)
             }
         })
     }
@@ -88,7 +89,7 @@ export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
     /**
      * Fires when the YouTube player is ready.
      *
-     * @param {YT.PlayerEvent} event
+     * @param event
      * @memberof PlayerComponent
      */
     onPlayerReady(event: YT.PlayerEvent) {
@@ -122,7 +123,7 @@ export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
      * if the computed starting time is inferior to this value. This is done to avoid weird video plays in the case
      * of normal auto-play sync. The grace period is of 2 seconds
      *
-     * @param {PlayingItem} video The playlist item to play
+     * @param video The playlist item to play
      * @memberof PlayerComponent
      */
     playVideo(video: PlayingItem) {

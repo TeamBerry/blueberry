@@ -9,7 +9,7 @@ import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
 import { BoxService } from 'app/shared/services/box.service';
-import { QueueItemActionRequest, QueueItem, VideoSubmissionRequest, BerryCount } from '@teamberry/muscadine';
+import { QueueItemActionRequest, QueueItem, VideoSubmissionRequest, BerryCount, Permission } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-queue',
@@ -18,13 +18,14 @@ import { QueueItemActionRequest, QueueItem, VideoSubmissionRequest, BerryCount }
 })
 export class QueueComponent implements OnInit, OnChanges {
     @Input() box: Box = null;
-    @Input() user: User = new User;
+    @Input() user: User = null;
+    @Input() permissions: Array<Permission> = [];
+    @ViewChild('filterInput') input: ElementRef;
 
     queue: Array<QueueItem> = [];
-    
-    @ViewChild('filterInput') input: ElementRef;
+
     filterValue = '';
-    
+
     currentlyPlaying: QueueItem;
     playedVideos: Array<QueueItem>;
     upcomingVideos: Array<QueueItem>;
@@ -98,38 +99,32 @@ export class QueueComponent implements OnInit, OnChanges {
     /**
      * Isolates the currently playing video
      *
-     * @param {Array<QueueItem>} playlist The playlist of the box
-     * @returns {QueueItem} The currently playing video
+     * @param playlist The playlist of the box
+     * @returns The currently playing video
      * @memberof PlaylistComponent
      */
     getCurrentlyPlayingVideo(playlist: Array<QueueItem>): QueueItem {
-        return playlist.find((item: QueueItem) => {
-            return item.startTime !== null && item.endTime === null;
-        });
+        return playlist.find((item: QueueItem) => item.startTime !== null && item.endTime === null);
     }
 
     /**
      * Builds a partial list of the playlist of the box based on the wanted state of the videos
      *
-     * @param {Array<QueueItem>} playlist The playlist of the box
-     * @param {string} state The state of the videos. Upcoming or Played
-     * @returns {Array<QueueItem>}
+     * @param playlist The playlist of the box
+     * @param state The state of the videos. Upcoming or Played
+     * @returns
      * @memberof PlaylistComponent
      */
     buildPartialPlaylist(playlist: Array<QueueItem>, state: string): Array<QueueItem> {
         if (state === 'upcoming') {
-            const upcoming = playlist.filter((item: QueueItem) => {
-                return item.startTime === null;
-            });
+            const upcoming = playlist.filter((item: QueueItem) => item.startTime === null);
 
             this.tabSetOptions[0].title = `Upcoming (${upcoming.length})`
             return upcoming
         }
 
         if (state === 'played') {
-            const played = playlist.filter((item: QueueItem) => {
-                return item.startTime !== null && item.endTime !== null;
-            });
+            const played = playlist.filter((item: QueueItem) => item.startTime !== null && item.endTime !== null);
             this.tabSetOptions[1].title = `Played (${played.length})`
             return played
         }
@@ -139,7 +134,7 @@ export class QueueComponent implements OnInit, OnChanges {
         const priorityVideos = playlist
             .filter(queueItem => queueItem.setToNext)
             .sort((a, b) => +new Date(a.setToNext) - +new Date(b.setToNext))
-        
+
         this.priorityVideos = priorityVideos;
 
         const rest = playlist.filter(queueItem => !queueItem.setToNext)
@@ -150,7 +145,7 @@ export class QueueComponent implements OnInit, OnChanges {
     /**
      * Triggered by the order$ event of the playlist item component.
      *
-     * @param {*} event
+     * @param event
      * @memberof PlaylistComponent
      */
     handlePlaylistOrder(event) {

@@ -9,7 +9,7 @@ import { Box } from 'app/shared/models/box.model';
 })
 export class FeaturedBoxesCarouselComponent implements OnInit {
     @Input() boxes: Box[];
-    selectedIndex: number = 0;
+    selectedIndex = 0;
     selectedBox: Box;
 
     constructor(
@@ -40,7 +40,7 @@ export class FeaturedBoxesCarouselComponent implements OnInit {
     /**
      * When the user clicks on the widget box, he enters the box
      *
-     * @param {string} token The Mongo _id of the box
+     * @param token The Mongo _id of the box
      * @memberof HomeComponent
      */
     enter(token: string) {

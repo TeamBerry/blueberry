@@ -1,18 +1,39 @@
 @import './../../../../../imports.scss';
-.user-name {
-    font-size: 1rem;
-    font-family: 'Montserrat', sans-serif;
+.userlist {
+    padding: 0 20px;
+    height: calc(100% - 61px);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: auto;
+    @include can-search();
 }
 
-.role-title{
-    color: var(--text-main-color);
-    margin-bottom: 0;
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    padding-top: 10px;
+.role-title-container {
+    display: flex;
+    align-items: center;
+    img {
+        height: 25px;
+        width: 25px;
+        margin-right: 10px;
+    }
+    .role-title{
+        color: var(--text-main-color);
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+    }
 }
 
-.btn-promotion {
-    font-size: 10px;
+.user-name-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    align-items: center;
+    margin-bottom: 10px;
+    .user-name {
+        margin-left: 5px;
+        font-size: 1.2rem;
+        font-family: 'Montserrat', sans-serif;
+    }
 }

@@ -1,5 +1,26 @@
 {
-  "extends": [
-    "config:base"
-  ]
+    "extends": [
+        "config:base"
+    ],
+    "reviewers": [
+        "AngelZatch"
+    ],
+    "labels": [
+        "dependencies"
+    ],
+    "packageRules": [
+        {
+            "matchUpdateTypes": [
+                "patch",
+                "pin"
+            ],
+            "automerge": true
+        }
+    ],
+    "vulnerabilityAlerts": {
+        "labels": [
+            "dependencies",
+            "security"
+        ]
+    }
 }
