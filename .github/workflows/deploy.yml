@@ -3,16 +3,15 @@ name: Deploy
 on:
   push:
     tags:
-      - '**'
+      - "**"
 
 jobs:
   deploy:
-
     runs-on: ubuntu-18.04
 
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: [14.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -45,6 +44,3 @@ jobs:
           host: ${{ secrets.HOST }}
           user: ${{ secrets.USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-
-
