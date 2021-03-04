@@ -4187,9 +4187,9 @@
       }
     },
     "@ctrl/ngx-emoji-mart": {
-      "version": "4.1.1",
-      "resolved": "https://registry.npmjs.org/@ctrl/ngx-emoji-mart/-/ngx-emoji-mart-4.1.1.tgz",
-      "integrity": "sha512-QieGpyvbOhCc8Pea4YMLEn63Z74Z2z6YYXQDL6UC13MtbIPJ6VwcOq7aPltY+W+9Jwi1Mi0LLHwHsPDDVGg1iA==",
+      "version": "5.0.2",
+      "resolved": "https://registry.npmjs.org/@ctrl/ngx-emoji-mart/-/ngx-emoji-mart-5.0.2.tgz",
+      "integrity": "sha512-P/yrv2q/2589pvDNo4riX2vi4hSGqJkX2qLOXQSGGicg5Yz9cMKzVHkzao4uBgkaGLX3u8eoiP4CPWQhDNUhJQ==",
       "requires": {
         "tslib": "^2.0.0"
       }
