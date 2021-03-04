@@ -23,7 +23,7 @@
         </div>
         <div class="userlist" [ngClass]="{'is-searching': filterValue !== ''}">
             <ng-template #loading>Loading users...</ng-template>
-            <div *ngFor="let section of users; let i = index" [ngClass]="{'mt-3': i > 0}">
+            <div *ngFor="let section of users; let i = index" [ngClass]="{'mt-3': i > 0 && section.list.length > 0}">
                 <div *ngIf="section.list.length > 0">
                     <div class="role-title-container my-2">
                         <img *ngIf="section.icon" src="{{section.icon}}" alt="">
