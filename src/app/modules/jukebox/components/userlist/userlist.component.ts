@@ -58,6 +58,7 @@ export class UserlistComponent implements OnChanges {
     ]
 
     filterValue = '';
+    offlineUsersShown = true;
 
     constructor(
         private jukeboxService: JukeboxService,
