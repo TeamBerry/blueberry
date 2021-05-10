@@ -137,7 +137,7 @@ export class PlaylistsManagerComponent implements OnInit {
         this.playlistService.addVideoToPlaylist(this.selectedPlaylist._id, videoPacket)
             .subscribe((updatedPlaylist: UserPlaylist) => {
                 this.toastr.success('Video added to the playlist', 'Success')
-                const playlistIndex = _.findIndex(this.playlists, { _id: updatedPlaylist._id })
+                const playlistIndex = this.playlists.findIndex((playlist) => updatedPlaylist._id === playlist._id);
                 this.playlists[playlistIndex] = updatedPlaylist
                 this.selectedPlaylist = updatedPlaylist
             })
@@ -147,7 +147,7 @@ export class PlaylistsManagerComponent implements OnInit {
         this.playlistService.removeVideoFromPlaylist(this.selectedPlaylist._id, video._id)
             .subscribe((updatedPlaylist: UserPlaylist) => {
                 this.toastr.success('Video removed from the playlist', 'Success')
-                const playlistIndex = _.findIndex(this.playlists, { _id: updatedPlaylist._id })
+                const playlistIndex = this.playlists.findIndex((playlist) => updatedPlaylist._id === playlist._id);
                 this.playlists[playlistIndex] = updatedPlaylist
                 this.selectedPlaylist = updatedPlaylist
             })
@@ -157,7 +157,7 @@ export class PlaylistsManagerComponent implements OnInit {
         this.playlistService.delete(this.selectedPlaylist._id)
             .subscribe(() => {
                 this.toastr.success('Playlist deleted', 'Success')
-                let playlistIndex = _.findIndex(this.playlists, { _id: this.selectedPlaylist._id })
+                let playlistIndex = this.playlists.findIndex((playlist) => this.selectedPlaylist._id === playlist._id);
                 this.playlists.splice(playlistIndex, 1)
                 if (playlistIndex === 0) {
                     this.selectedPlaylist = this.playlists[0]
