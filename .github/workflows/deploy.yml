@@ -37,7 +37,7 @@ jobs:
           username: ${{ secrets.USER }}
           privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Deploy via SCP
-        uses: horochx/deploy-via-scp@v1.0.1
+        uses: horochx/deploy-via-scp@1.1.0
         with:
           local: dist
           remote: ${{ secrets.LOCATION }}
