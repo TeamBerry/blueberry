@@ -12,6 +12,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DurationPipe implements PipeTransform {
     transform(value: string): string {
+        if (!value) {
+            return null;
+        }
+
         let duration = ''
 
         const [_, years, days, hours, mins, secs] = value.match(/PT(?:(\d+)Y)?(?:(\d+)D)?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);

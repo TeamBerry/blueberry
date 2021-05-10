@@ -15,15 +15,23 @@
                 [options]="{'type': 'inviteUser', 'textDisplay': 'button', 'context': 'queue', 'text': 'Invite users'}">
             </app-bx-button>
         </div>
-        <div class="p-3 pb-0 input-group">
-            <input type="text" class="form-control" placeholder="Type to filter users..." #filterInput>
-            <div class="input-group-append">
-                <button class="btn btn-outline-default" type="button" (click)="resetFilter()">Reset</button>
+        <div class="d-flex align-items-center">
+            <div class="p-3 mt-1 input-group">
+                <input type="text" class="form-control" placeholder="Type to filter users..." #filterInput>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-default" type="button" (click)="resetFilter()">Reset</button>
+                </div>
+            </div>
+            <div class="p-2 d-flex flex-column align-items-center justify-content-center">
+                <span id="offline-toggle">Show Offline</span>
+                <div class="col m-auto">
+                    <app-slide-toggle class="checkbox" [(value)]="offlineUsersShown"></app-slide-toggle>
+                </div>
             </div>
         </div>
         <div class="userlist" [ngClass]="{'is-searching': filterValue !== ''}">
             <ng-template #loading>Loading users...</ng-template>
-            <div *ngFor="let section of users; let i = index" [ngClass]="{'mt-3': i > 0}">
+            <div *ngFor="let section of users; let i = index" [ngClass]="{'mt-3': i > 0 && section.list.length > 0}">
                 <div *ngIf="section.list.length > 0">
                     <div class="role-title-container my-2">
                         <img *ngIf="section.icon" src="{{section.icon}}" alt="">
@@ -31,7 +39,8 @@
                     </div>
                     <div *ngFor="let member of section.list | filter:filterValue:['name']"
                         class="user-item my-1 d-flex">
-                        <div class="d-flex w-100 align-items-center justify-content-between">
+                        <div class="d-flex w-100 align-items-center justify-content-between"
+                            *ngIf="offlineUsersShown || (!offlineUsersShown && member.origin !== null)">
                             <div class="user-name-container">
                                 <app-profile-picture style="height: 50px;" [fileName]="member.settings.picture"
                                     [size]="'md'" [isOnline]="member.origin !== null"></app-profile-picture>

@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { BoxService } from './../../../../shared/services/box.service';
 import { ActivatedRoute } from '@angular/router';
-import * as _ from 'lodash';
+import { cloneDeep } from 'lodash';
 
 import { JukeboxService } from './../../jukebox.service';
 import { AuthService } from 'app/core/auth/auth.service';
@@ -174,7 +174,7 @@ export class BoxComponent implements OnInit {
     openBoxSettings() {
         const modalRef = this.modalService.open(BoxFormComponent, { size: 'xl' })
         modalRef.componentInstance.title = `Edit Box Settings`
-        modalRef.componentInstance.box = _.cloneDeep(this.box)
+        modalRef.componentInstance.box = cloneDeep(this.box)
     }
 
     openInviteModal() {
