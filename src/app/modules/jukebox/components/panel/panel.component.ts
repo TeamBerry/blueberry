@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, Input, EventEmitter, AfterViewChecked, ViewChild, AfterViewInit, HostListener } from '@angular/core';
-import * as _ from 'lodash'
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import * as _ from 'lodash';
 
 import { AuthService } from 'app/core/auth/auth.service';
 import { UserPlaylist } from 'app/shared/models/user-playlist.model';
