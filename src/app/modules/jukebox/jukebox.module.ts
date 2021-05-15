@@ -49,6 +49,7 @@ import { RoleSelectorComponent } from './components/role-selector/role-selector.
         PlayerComponent,
         QueueComponent,
         SearchTabComponent,
+        UserlistComponent,
         ChatInputComponent
     ],
     providers: [
