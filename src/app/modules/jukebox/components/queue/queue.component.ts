@@ -37,6 +37,8 @@ export class QueueComponent implements OnInit, OnChanges {
     ]
     displayTab: 'upcoming' | 'played' = 'upcoming';
 
+    inAddingProcess = false;
+
     constructor(
         private jukeboxService: JukeboxService,
         private modalService: NgbModal,

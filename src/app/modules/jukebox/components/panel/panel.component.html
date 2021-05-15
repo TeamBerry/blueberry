@@ -7,9 +7,6 @@
             [permissions]="permissions"></app-queue>
         <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="box._id" [user]="user"
             (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
-        <app-search-tab class="fixed-tab" [hidden]="activePanel !== 'search'" [box]="box" [user]="user"
-            [permissions]="permissions">
-        </app-search-tab>
     </div>
     <div id="panel-menu">
         <ul class="nav flex-column">
@@ -34,23 +31,6 @@
                         <rect class="berrybox-path" x="58.63" y="354.65" width="195.03" height="40.12" rx="7.2" />
                         <rect class="berrybox-path" x="58.63" y="179.19" width="290.63" height="40.12" rx="8.79" />
                         <rect class="berrybox-path" x="58.63" y="91.46" width="290.63" height="40.12" rx="8.79" />
-                    </svg>
-                </a>
-            </li>
-            <li class="nav-item" [ngClass]="{'active': activePanel === 'search'}" *appAuth="true"
-                ngbTooltip="Add Videos" placement="left">
-                <a class="nav-link" (click)="showPanel('search')" title="Add Videos">
-
-                    <svg class="berrybox-svg" style="height: 1.5rem;" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 500 500">
-                        <rect class="berrybox-path" x="60.13" y="266.92" width="195.03" height="40.12" rx="7.2" />
-                        <rect class="berrybox-path" x="60.13" y="354.65" width="195.03" height="40.12" rx="7.2" />
-                        <rect class="berrybox-path" x="60.13" y="179.19" width="290.63" height="40.12" rx="8.79" />
-                        <rect class="berrybox-path" x="60.13" y="91.46" width="290.63" height="40.12" rx="8.79" />
-                        <rect class="berrybox-path" x="294.54" y="304.84" width="172.68" height="51.48" rx="12.63"
-                            transform="translate(711.46 -50.3) rotate(90)" />
-                        <rect class="berrybox-path" x="294.54" y="304.84" width="172.68" height="51.48" rx="12.63"
-                            transform="translate(761.76 661.16) rotate(180)" />
                     </svg>
                 </a>
             </li>
