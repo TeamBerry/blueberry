@@ -86,7 +86,7 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
             .subscribe(
                 (message) => {
                     if (this.activePanel !== 'chat') {
-                        if (message.source !== 'feedback') {
+                        if (message.source !== 'feedback' && message.source !== 'system') {
                             this.newMessages = true
                         } else {
                             switch (message.context) {
