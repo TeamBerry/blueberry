@@ -94,7 +94,7 @@ export class ChatInputComponent implements OnInit, OnChanges, AfterViewInit {
 
         this.jukeboxService.getBoxStream()
             .pipe(
-                filter(message => 'berries' in message && message.boxToken === this.box._id)
+                filter((message: BerryCount) => 'berries' in message && message.boxToken === this.box._id)
         )
             .subscribe(
                 (contents: BerryCount) => {

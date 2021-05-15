@@ -95,7 +95,7 @@ export class JukeboxService {
         return this.boxStream
             .asObservable()
             .pipe(
-                filter(message => 'berries' in message && message.boxToken === this.box._id)
+                filter((message: BerryCount) => 'berries' in message && message.boxToken === this.box._id)
             )
     }
 
