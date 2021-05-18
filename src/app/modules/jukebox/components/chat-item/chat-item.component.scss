@@ -65,6 +65,7 @@
 }
 
 .message {
+    font-size: 0.95rem;
     margin-bottom: 4px;
     padding: 4px 0;
 }
@@ -77,7 +78,7 @@
     // &:hover {
     //     text-decoration: underline;
     // }
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 700;
     padding-left: 2px;
     &.message-author-classic {
