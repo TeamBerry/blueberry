@@ -21,6 +21,7 @@ export class UserlistComponent implements OnChanges {
     @Input() box: Box;
     @Input() user: AuthSubject;
     @Input() permissions: Array<Permission> = [];
+    @Input() withHeader = true;
 
     @ViewChild('filterInput') input: ElementRef;
 

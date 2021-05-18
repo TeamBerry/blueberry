@@ -1,19 +1,21 @@
-<div class="panel-tab-title-section" *ngIf="inAddingProcess">
-    <div class="col"></div>
-    <p class="panel-tab-title col">Add Videos</p>
-    <div class="col pr-0">
-        <button type="button" class="close mr-2" aria-label="close" (click)="inAddingProcess = false">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<div *ngIf="withHeader">
+    <div class="panel-tab-title-section" *ngIf="inAddingProcess">
+        <div class="col"></div>
+        <p class="panel-tab-title col">Add Videos</p>
+        <div class="col pr-0">
+            <button type="button" class="close mr-2" aria-label="close" (click)="inAddingProcess = false">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
-</div>
-<div *ngIf="!inAddingProcess" class="panel-tab-title-section">
-    <div class="col"></div>
-    <p class="panel-tab-title col">Queue</p>
-    <div class="col pr-0">
-        <app-bx-button *appAuth="true" (click)="startConversion()" class="panel-tab-title-button"
-            [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add all videos to a Playlist', 'context': 'queue'}">
-        </app-bx-button>
+    <div *ngIf="!inAddingProcess" class="panel-tab-title-section">
+        <div class="col"></div>
+        <p class="panel-tab-title col">Queue</p>
+        <div class="col pr-0">
+            <app-bx-button *appAuth="true" (click)="startConversion()" class="panel-tab-title-button"
+                [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add all videos to a Playlist', 'context': 'queue'}">
+            </app-bx-button>
+        </div>
     </div>
 </div>
 <div *ngIf="box" style="flex: 1; overflow: auto;">

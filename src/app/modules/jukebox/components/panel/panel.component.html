@@ -49,11 +49,11 @@
     </div>
     <div id="panel-space">
         <app-userlist class="fixed-tab" *ngIf="activePanel === 'users'" [box]="box" [user]="user"
-            [permissions]="permissions">
+            [permissions]="permissions" [withHeader]="false">
         </app-userlist>
         <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user" [box]="box"
-            [permissions]="permissions"></app-queue>
+            [permissions]="permissions" [withHeader]="false"></app-queue>
         <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="box._id" [user]="user"
-            (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
+            [withHeader]="false" (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
     </div>
 </div>

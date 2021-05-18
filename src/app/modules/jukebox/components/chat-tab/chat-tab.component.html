@@ -1,4 +1,4 @@
-<div class="panel-tab-title-section">
+<div class="panel-tab-title-section" *ngIf="withHeader">
     <p class="panel-tab-title col">Chat</p>
 </div>
 <app-bx-tabset [options]="tabsetOptions" (clickedOption)="setTab($event)"></app-bx-tabset>

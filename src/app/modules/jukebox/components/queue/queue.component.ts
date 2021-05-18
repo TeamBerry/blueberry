@@ -20,6 +20,7 @@ export class QueueComponent implements OnInit, OnChanges {
     @Input() box: Box = null;
     @Input() user: User = null;
     @Input() permissions: Array<Permission> = [];
+    @Input() withHeader = true;
     @ViewChild('filterInput') input: ElementRef;
 
     queue: Array<QueueItem> = [];
