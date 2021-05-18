@@ -20,8 +20,7 @@
     .role-title{
         color: var(--text-main-color);
         font-weight: 600;
-        font-family: 'Montserrat', sans-serif;
-        text-transform: uppercase;
+        font-family: 'Nunito', sans-serif;
     }
 }
 
@@ -34,10 +33,12 @@
     .user-name {
         margin-left: 5px;
         font-size: 1.2rem;
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Nunito', sans-serif;
+        color: var(--text-main-color);
     }
 }
 
 #offline-toggle {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-main-color);
 }

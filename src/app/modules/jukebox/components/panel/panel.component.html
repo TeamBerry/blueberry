@@ -1,20 +1,8 @@
-<div class="d-flex no-gutters panel-container">
-    <div id="panel-space">
-        <app-userlist class="fixed-tab" *ngIf="activePanel === 'users'" [box]="box" [user]="user"
-            [permissions]="permissions">
-        </app-userlist>
-        <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user" [box]="box"
-            [permissions]="permissions"></app-queue>
-        <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="box._id" [user]="user"
-            (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
-        <app-search-tab class="fixed-tab" [hidden]="activePanel !== 'search'" [box]="box" [user]="user"
-            [permissions]="permissions">
-        </app-search-tab>
-    </div>
+<div class="d-flex no-gutters panel-container flex-column">
     <div id="panel-menu">
-        <ul class="nav flex-column">
-            <li class="nav-item" [ngClass]="{'active': activePanel == 'chat'}" ngbTooltip="Chat" placement="left">
-                <a class="nav-link" (click)="showPanel('chat'); newMessages = false">
+        <ul class="nav flex-row justify-content-around">
+            <li class="nav-item" [ngClass]="{'active': activePanel == 'chat'}">
+                <a class="nav-link" (click)="showPanel('chat'); newMessages = false" title="Chat">
                     <svg class="berrybox-svg" id="chat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 550"
                         style="height:1.4em;">
                         <polygon class="berrybox-path"
@@ -22,9 +10,10 @@
                         <circle *ngIf="newMessages" class="berrybox-path notification-indicator" cx="430.41" cy="122.83"
                             r="111" />
                     </svg>
+                    <span>Chat</span>
                 </a>
             </li>
-            <li class="nav-item" [ngClass]="{'active': activePanel == 'queue'}" ngbTooltip="Queue" placement="left">
+            <li class="nav-item" [ngClass]="{'active': activePanel == 'queue'}">
                 <a class="nav-link" (click)="showPanel('queue')" title="Queue">
                     <svg style="height: 1.5rem;" class="berrybox-svg" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 500 500">
@@ -35,26 +24,10 @@
                         <rect class="berrybox-path" x="58.63" y="179.19" width="290.63" height="40.12" rx="8.79" />
                         <rect class="berrybox-path" x="58.63" y="91.46" width="290.63" height="40.12" rx="8.79" />
                     </svg>
+                    <span>Queue</span>
                 </a>
             </li>
-            <li class="nav-item" [ngClass]="{'active': activePanel === 'search'}" *appAuth="true"
-                ngbTooltip="Add Videos" placement="left">
-                <a class="nav-link" (click)="showPanel('search')" title="Add Videos">
-
-                    <svg class="berrybox-svg" style="height: 1.5rem;" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 500 500">
-                        <rect class="berrybox-path" x="60.13" y="266.92" width="195.03" height="40.12" rx="7.2" />
-                        <rect class="berrybox-path" x="60.13" y="354.65" width="195.03" height="40.12" rx="7.2" />
-                        <rect class="berrybox-path" x="60.13" y="179.19" width="290.63" height="40.12" rx="8.79" />
-                        <rect class="berrybox-path" x="60.13" y="91.46" width="290.63" height="40.12" rx="8.79" />
-                        <rect class="berrybox-path" x="294.54" y="304.84" width="172.68" height="51.48" rx="12.63"
-                            transform="translate(711.46 -50.3) rotate(90)" />
-                        <rect class="berrybox-path" x="294.54" y="304.84" width="172.68" height="51.48" rx="12.63"
-                            transform="translate(761.76 661.16) rotate(180)" />
-                    </svg>
-                </a>
-            </li>
-            <li class="nav-item" [ngClass]="{'active': activePanel == 'users'}" ngbTooltip="Users" placement="left">
+            <li class="nav-item" [ngClass]="{'active': activePanel == 'users'}">
                 <a class="nav-link" (click)="showPanel('users')" title="Users">
                     <svg class="berrybox-svg" style="height: 1.5em;" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 500 500">
@@ -69,8 +42,18 @@
                         <path class="berrybox-path"
                             d="M346,316.71v109.6a10,10,0,0,1-10,10H91.48a10,10,0,0,1-10-10V320.57A108.74,108.74,0,0,1,190.29,211.76H241q3.24,0,6.44.21t6.09.53A104.92,104.92,0,0,1,346,316.71Z" />
                     </svg>
+                    <span>Users</span>
                 </a>
             </li>
         </ul>
+    </div>
+    <div id="panel-space">
+        <app-userlist class="fixed-tab" *ngIf="activePanel === 'users'" [box]="box" [user]="user"
+            [permissions]="permissions" [withHeader]="false">
+        </app-userlist>
+        <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user" [box]="box"
+            [permissions]="permissions" [withHeader]="false"></app-queue>
+        <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="box._id" [user]="user"
+            [withHeader]="false" (socketStatus)="refreshChatStatus($event)"></app-chat-tab>
     </div>
 </div>

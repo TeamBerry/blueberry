@@ -17,6 +17,7 @@ import { ChatInputComponent } from '../chat-input/chat-input.component';
 export class ChatTabComponent implements OnInit, OnChanges {
     @Input() boxToken: string;
     @Input() user: AuthSubject;
+    @Input() withHeader = true;
     @Output() socketStatus = new EventEmitter();
     @ViewChild('chat') chat: ElementRef;
     @ViewChild('chatInput') chatInput: ChatInputComponent;

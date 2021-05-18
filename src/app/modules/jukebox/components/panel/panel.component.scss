@@ -1,7 +1,6 @@
 @import './../../../../../imports.scss';
 #panel-space {
-    width: 89%;
-    flex: 0 1 auto;
+    flex: 1 1 auto;
     overflow: hidden;
     &::-webkit-scrollbar-thumb {
         visibility: hidden;
@@ -26,22 +25,23 @@
     text-transform: capitalize;
     padding: 10px;
     border-bottom: 1px solid darken($main-black, 20%);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 #panel-menu {
-    width: 11%;
-    border-left: 1px solid lighten($main-black, 10%) !important;
+    border-bottom: 1px solid lighten($main-black, 10%) !important;
     .nav-item {
         cursor: pointer;
+        flex: 1;
         &:hover {
             color: darken($master-color, 10%);
         }
         &.active {
             background-color: inherit;
-            border-right: 5px solid $master-color;
+            border-bottom: 5px solid $master-color;
+            font-weight: 600;
             .nav-link {
-                margin-right: -5px;
+                margin-bottom: -5px;
             }
         }
     }

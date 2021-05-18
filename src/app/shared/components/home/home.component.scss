@@ -6,13 +6,14 @@
 }
 
 .jumbotron-welcome {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     min-height: 400px;
     background-color: transparent;
     text-align: center;
 }
 
 .home-section {
+    font-family: 'Nunito', sans-serif;
     padding-top: 50px;
     padding-bottom: 50px;
 }
@@ -44,13 +45,13 @@
 }
 
 .how-to {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 .featured {
     background-color: var(--background-main-color);
     .free-text {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Nunito', sans-serif;
         color: var(--text-focus-color);
         margin-bottom: 40px;
         text-align: center
@@ -79,6 +80,7 @@
 }
 
 .how-to-text {
+    font-family: 'Nunito', sans-serif;
     color: var(--text-secondary-color);
     opacity: 0.8;
 }

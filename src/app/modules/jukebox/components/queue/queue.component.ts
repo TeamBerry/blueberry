@@ -20,6 +20,7 @@ export class QueueComponent implements OnInit, OnChanges {
     @Input() box: Box = null;
     @Input() user: User = null;
     @Input() permissions: Array<Permission> = [];
+    @Input() withHeader = true;
     @ViewChild('filterInput') input: ElementRef;
 
     queue: Array<QueueItem> = [];
@@ -36,6 +37,8 @@ export class QueueComponent implements OnInit, OnChanges {
         { title: 'Played', value: 'played' }
     ]
     displayTab: 'upcoming' | 'played' = 'upcoming';
+
+    inAddingProcess = false;
 
     constructor(
         private jukeboxService: JukeboxService,

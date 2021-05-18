@@ -180,9 +180,9 @@
                         </app-queue>
                     </div>
                     <div class="col-4 pl-1 pr-2">
-                        <app-search-tab [box]="selectedBox" [user]="user" class="fixed-tab search-space"
-                            [permissions]="permissions">
-                        </app-search-tab>
+                        <app-userlist *ngIf="selectedBox" [box]="selectedBox" [user]="user"
+                            class="fixed-tab search-space" [permissions]="permissions">
+                        </app-userlist>
                     </div>
                 </div>
             </div>

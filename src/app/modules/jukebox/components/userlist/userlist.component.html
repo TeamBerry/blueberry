@@ -1,20 +1,8 @@
-<div class="panel-tab-title-section">
-    <div class="col"></div>
+<div class="panel-tab-title-section" *ngIf="withHeader">
     <p class="panel-tab-title col">Users</p>
-    <div class="col pr-0">
-        <app-bx-button (click)="openInviteModal()" *ngIf="permissions.includes('inviteUser')"
-            class="panel-tab-title-button"
-            [options]="{'type': 'inviteUser', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Invite users'}">
-        </app-bx-button>
-    </div>
 </div>
 <div style="flex: 1; overflow: hidden;">
     <div class="d-flex flex-column h-100">
-        <div class="d-lg-none text-center py-2">
-            <app-bx-button (click)="openInviteModal()" *ngIf="permissions.includes('inviteUser')"
-                [options]="{'type': 'inviteUser', 'textDisplay': 'button', 'context': 'queue', 'text': 'Invite users'}">
-            </app-bx-button>
-        </div>
         <div class="d-flex align-items-center">
             <div class="p-3 mt-1 input-group">
                 <input type="text" class="form-control" placeholder="Type to filter users..." #filterInput>
@@ -55,5 +43,9 @@
                 </div>
             </div>
         </div>
+        <button class="fab" (click)="openInviteModal()" ngbTooltip="Invite users"
+            *ngIf="permissions.includes('inviteUser')">
+            <img src="../../../../assets/images/icons/invite-icon.svg" alt="">
+        </button>
     </div>
 </div>

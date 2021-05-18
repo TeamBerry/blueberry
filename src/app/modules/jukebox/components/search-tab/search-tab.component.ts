@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { JukeboxService } from '../../jukebox.service';
 import { Box } from 'app/shared/models/box.model';
@@ -13,6 +13,7 @@ export class SearchTabComponent implements OnInit, OnChanges {
     @Input() box: Box;
     @Input() user: AuthSubject;
     @Input() permissions: Array<Permission> = [];
+    @Output() back: EventEmitter<any> = new EventEmitter();
 
     videosInQueue: Array<string>;
     berriesEnabled: boolean;
