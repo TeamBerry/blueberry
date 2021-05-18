@@ -31,26 +31,3 @@
     overflow: auto;
     @include can-search();
 }
-
-.fab {
-    height: 60px;
-    width: 60px;
-    background-color: $master-color;
-    border: none;
-    color: var(--text-main-color);
-    border-radius: 30px;
-    position: absolute;
-    bottom: 30px;
-    right: 90px;
-    font-size: 3rem;
-    display: flex;
-    align-items: center;
-    padding-left: 15px;
-    cursor: pointer;
-    &:hover {
-        background-color: $master-hover-color;
-    }
-    &:active {
-        background-color: $master-active-color;
-    }
-}

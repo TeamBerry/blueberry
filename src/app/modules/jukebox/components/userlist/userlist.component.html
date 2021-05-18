@@ -1,12 +1,5 @@
 <div class="panel-tab-title-section">
-    <div class="col"></div>
     <p class="panel-tab-title col">Users</p>
-    <div class="col pr-0">
-        <app-bx-button (click)="openInviteModal()" *ngIf="permissions.includes('inviteUser')"
-            class="panel-tab-title-button"
-            [options]="{'type': 'inviteUser', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Invite users'}">
-        </app-bx-button>
-    </div>
 </div>
 <div style="flex: 1; overflow: hidden;">
     <div class="d-flex flex-column h-100">
@@ -55,5 +48,9 @@
                 </div>
             </div>
         </div>
+        <button class="fab" (click)="openInviteModal()" ngbTooltip="Invite users"
+            *ngIf="permissions.includes('inviteUser')">
+            <img src="../../../../assets/images/icons/invite-icon.svg" alt="">
+        </button>
     </div>
 </div>
