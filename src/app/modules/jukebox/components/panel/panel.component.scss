@@ -33,8 +33,17 @@
     .nav-item {
         cursor: pointer;
         flex: 1;
-        &:hover {
-            color: darken($master-color, 10%);
+        .nav-link {
+            @include padding-horizontal(0);
+            margin: auto;
+            text-align: center;
+            &:hover {
+                color: $master-color !important;
+                background-color: transparent;
+                .berrybox-path {
+                    fill: $master-color !important;
+                }
+            }
         }
         &.active {
             background-color: inherit;
@@ -42,15 +51,8 @@
             font-weight: 600;
             .nav-link {
                 margin-bottom: -5px;
+                color: var(--text-main-color) !important;
             }
-        }
-    }
-    .nav-link {
-        @include padding-horizontal(0);
-        margin: auto;
-        text-align: center;
-        &:hover {
-            background-color: transparent;
         }
     }
     .nav-separator {
