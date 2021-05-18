@@ -16,7 +16,8 @@ h2,
 h3,
 h4,
 h5,
-.col-form-label {
+.col-form-label,
+.form-label {
     font-family: 'Nunito', sans-serif;
     color: var(--text-main-color);
 }
@@ -155,6 +156,7 @@ button>svg {
 }
 
 .help-text {
+    font-family: 'Nunito', sans-serif;
     color: var(--text-system-color);
     margin: 0;
 }
@@ -273,13 +275,14 @@ button>svg {
 
 .admin-tab-title {
     color: var(--text-main-color);
-    font-family: 'Nunito';
+    font-family: 'Nunito', sans-serif;
     font-weight: 700;
     display: flex;
     align-items: center;
 }
 
 .song-list-line {
+    font-family: 'Nunito', sans-serif;
     margin-bottom: 0;
     font-size: 1rem;
     text-overflow: ellipsis;

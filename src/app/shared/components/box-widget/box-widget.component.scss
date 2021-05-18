@@ -39,13 +39,14 @@
 }
 
 #currently-playing {
+    font-family: 'Nunito';
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 
 #box-info {
-    font-size: pxtorem(14px);
+    font-size: pxtorem(16px);
 }
 
 .box-pp {

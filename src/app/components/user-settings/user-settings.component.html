@@ -37,7 +37,7 @@
                 <h5 class="section-title">Details</h5>
                 <div class="form-group d-flex flex-row justify-content-between align-items-center">
                     <div class="col-3 p-0">
-                        <label for="mail">Name</label>
+                        <label for="mail" class="form-label">Name</label>
                     </div>
                     <div class="col">
                         <input type="text" readonly class="form-control-plaintext" value="{{ session.name }}">
@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group d-flex flex-row justify-content-between align-items-center">
                     <div class="col-3 p-0">
-                        <label for="mail">Mail address</label>
+                        <label for="mail" class="form-label">Mail address</label>
                     </div>
                     <div class="col">
                         <input type="text" readonly class="form-control-plaintext" value="{{ session.mail }}">
@@ -84,7 +84,7 @@
                 <h5 class="section-title">Theme</h5>
                 <div class="form-group d-flex no-gutters">
                     <div class="col-10">
-                        <label for="theme">Dark Theme</label>
+                        <label for="theme" class="form-label">Dark Theme</label>
                         <p class="help-text text-muted">Toggles between light colors and dark colors for the overall
                             appearance of the application. Saved automatically.</p>
                     </div>
@@ -96,7 +96,7 @@
                 </div>
                 <h5 class="section-title">Customized Colors</h5>
                 <div class="form-group" *ngIf="!session.settings.isColorblind">
-                    <label for="color">Chat Color</label>
+                    <label for="color" class="form-label">Chat Color</label>
                     <p class="help-text text-muted">Choose a color for your username in chat. Be careful, some colors
                         might be <strong>difficult to read</strong> in light or dark themes and for users with
                         <strong>color blindness</strong>.
@@ -136,7 +136,7 @@
                 </div>
                 <div class="form-group d-flex no-gutters">
                     <div class="col-10">
-                        <label for="colorblind">Enable Color Blindness Display</label>
+                        <label for="colorblind" class="form-label">Enable Color Blindness Display</label>
                         <p class="help-text text-muted">Removes all custom user colors for your chat and resets your own
                             color. Saved automatically.</p>
                     </div>
@@ -157,7 +157,7 @@
                         <div class="form-group">
                             <div class="d-flex align-items-center">
                                 <div class="col-3">
-                                    <label for="password">Current password</label>
+                                    <label for="password" class="form-label">Current password</label>
                                 </div>
                                 <input type="password" class="form-control input-lg" formControlName="currentPassword"
                                     placeholder="Enter your current password here" required minlength="8">
@@ -174,7 +174,7 @@
                         <div class="form-group">
                             <div class="d-flex align-items-center">
                                 <div class="col-3">
-                                    <label for="password">New password</label>
+                                    <label for="password" class="form-label">New password</label>
                                 </div>
                                 <input type="password" class="form-control input-lg" formControlName="newPassword"
                                     placeholder="Enter your new password here" required minlength="8">
@@ -191,7 +191,7 @@
                         <div class="form-group">
                             <div class="d-flex align-items-center">
                                 <div class="col-3">
-                                    <label for="password">New password verification</label>
+                                    <label for="password" class="form-label">New password verification</label>
                                 </div>
                                 <input type="password" class="form-control input-lg" formControlName="newPasswordVerify"
                                     placeholder="Verify your new password here" required minlength="8">
