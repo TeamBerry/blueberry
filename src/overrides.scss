@@ -162,6 +162,7 @@
 }
 
 .nav-link-inverted {
+    border-radius: 0.25rem;
     &:hover {
         background-color: var(--background-main-color);
     }
