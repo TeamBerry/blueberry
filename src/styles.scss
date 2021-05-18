@@ -340,11 +340,6 @@ img {
     justify-self: center;
 }
 
-.panel-tab-title-button {
-    display: flex;
-    justify-content: flex-end;
-}
-
 span.beta {
     font-size: 8px;
     border: 1px solid #340953;
@@ -378,7 +373,8 @@ span.beta {
     border-radius: 30px;
     position: absolute;
     bottom: 30px;
-    right: 90px;
+    right: 30px;
+    box-shadow: 0 4px 11px 0 var(--background-main-color);
     font-size: 3rem;
     display: flex;
     align-items: center;

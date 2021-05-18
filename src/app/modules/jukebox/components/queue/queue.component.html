@@ -1,11 +1,5 @@
 <div class="panel-tab-title-section" *ngIf="withHeader">
-    <div class="col"></div>
     <p class="panel-tab-title col">Queue</p>
-    <div class="col pr-0">
-        <app-bx-button *appAuth="true" (click)="startConversion()" class="panel-tab-title-button"
-            [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add all videos to a Playlist', 'context': 'queue'}">
-        </app-bx-button>
-    </div>
 </div>
 <div *ngIf="box" style="flex: 1; overflow: auto;">
     <div *ngIf="inAddingProcess">
@@ -14,6 +8,9 @@
     </div>
     <div *ngIf="!inAddingProcess">
         <div *ngIf="queue.length > 0; else noVideos" class="d-flex flex-column h-100">
+            <app-bx-button *appAuth="true" (click)="startConversion()" class="d-flex justify-content-center mt-3"
+                [options]="{'type': 'addToLibrary', 'textDisplay': 'button', 'text': 'Add all videos to a Playlist', 'context': 'queue'}">
+            </app-bx-button>
             <div class="d-flex align-items-center pl-2 pt-3">
                 <img *ngIf="currentlyPlaying?.stateForcedWithBerries"
                     src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 30px;"
@@ -88,14 +85,18 @@
         </div>
         <ng-template #noVideos>
             <div class="text-center no-contents">
-                <svg class="berrybox-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 475.55 428.13">
+                <svg style="height: 1.5rem;" class="berrybox-svg" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 500 500">
                     <path class="berrybox-path"
-                        d="M475.56 307.09L293.21 201.81v210.56l182.35-105.28M0 0h456.59v56.04H0zM0 93.02h456.59v56.04H0zM0 186.04h269.23v56.04H0zM0 279.07h269.23v56.04H0zM0 372.09h269.23v56.04H0z" />
+                        d="M462.39,334.36l-152.34-88a10,10,0,0,0-15,8.66V431a10,10,0,0,0,15,8.66l152.34-88A10,10,0,0,0,462.39,334.36Z" />
+                    <rect class="berrybox-path" x="58.63" y="266.92" width="195.03" height="40.12" rx="7.2" />
+                    <rect class="berrybox-path" x="58.63" y="354.65" width="195.03" height="40.12" rx="7.2" />
+                    <rect class="berrybox-path" x="58.63" y="179.19" width="290.63" height="40.12" rx="8.79" />
+                    <rect class="berrybox-path" x="58.63" y="91.46" width="290.63" height="40.12" rx="8.79" />
                 </svg>
                 <h3>Your queue is empty</h3>
-                <p>You can add youtube links in the chat input with the <span class="command-key">!add</span> command or
-                    use
-                    the lens icon to search directly on YouTube.</p>
+                <p>You can add youtube videos by clicking on the button below or by dragging YouTube miniatures over the
+                    screen (only available in the box screen and not the manager).</p>
             </div>
         </ng-template>
         <button class="fab" (click)="inAddingProcess = true" ngbTooltip="Add Videos">
