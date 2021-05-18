@@ -17,7 +17,7 @@ h3,
 h4,
 h5,
 .col-form-label {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: var(--text-main-color);
 }
 
@@ -171,7 +171,7 @@ button>svg {
 
 // Auth modals
 #auth-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 600;
     font-size: 1.5rem;
 }
@@ -183,7 +183,7 @@ button>svg {
 .featured {
     background-color: var(--background-main-color);
     .free-text {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Nunito', sans-serif;
         color: var(--text-focus-color);
         margin-bottom: 40px;
         text-align: center
@@ -273,7 +273,7 @@ button>svg {
 
 .admin-tab-title {
     color: var(--text-main-color);
-    font-family: 'Montserrat';
+    font-family: 'Nunito';
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -333,7 +333,7 @@ img {
 .panel-tab-title {
     text-align: center;
     color: var(--text-main-color);
-    font-style: 'Montserrat';
+    font-style: 'Nunito';
     font-size: 1rem;
     padding: 5px;
     margin-bottom: 0;
@@ -359,7 +359,7 @@ span.beta {
     width: 100vw;
     position: absolute;
     color: white;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     z-index: 100;
     p {
         font-size: 30px;

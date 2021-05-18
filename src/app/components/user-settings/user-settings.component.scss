@@ -12,7 +12,7 @@
 }
 
 .tab-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 800;
     color: var(--text-main-color);
     padding-bottom: 20px;
@@ -26,7 +26,7 @@
 }
 
 .section-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: var(--text-focus-color);
     font-weight: 700;
     &.section-title-danger {
@@ -40,7 +40,7 @@
 }
 
 label {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: var(--text-main-color);
     margin-bottom: 0;
     font-weight: 600;
@@ -64,7 +64,7 @@ button.close {
 
 .chat-preview {
     width: 200px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     .chat-preview-theme {
         font-weight: 700;
         display: flex;
