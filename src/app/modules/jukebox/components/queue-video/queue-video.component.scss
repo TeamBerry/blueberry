@@ -9,6 +9,11 @@
         img {
             border: 2px solid $master-color;
         }
+        .submission-duration {
+            left: 2px;
+            top: calc(77% - 4px);
+            width: calc(100% - 4px);
+        }
     }
 }
 
