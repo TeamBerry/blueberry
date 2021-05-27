@@ -7,6 +7,13 @@
     @include sm{
         height: 60px;
     }
+    .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
 }
 
 .navbar-brand {
