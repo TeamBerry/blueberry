@@ -18,7 +18,8 @@
         }
     ],
     "ignoreDeps": [
-        "rxjs"
+        "rxjs",
+        "typescript"
     ],
     "vulnerabilityAlerts": {
         "labels": [
