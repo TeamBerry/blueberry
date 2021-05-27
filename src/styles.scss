@@ -51,6 +51,12 @@ h5,
     }
 }
 
+.icon-button {
+    height: 20px;
+    width: 20px;
+    fill: var(--text-main-color);
+}
+
 .berrybox-svg-static {
     height: 1em;
     stroke: var(--stroke-color);
@@ -285,6 +291,9 @@ button>svg {
     font-family: 'Nunito', sans-serif;
     margin-bottom: 0;
     font-size: 1rem;
+    @media (max-width: 767.89px){
+        font-size: 0.9rem;
+    }
     text-overflow: ellipsis;
     overflow: hidden;
     -webkit-line-clamp: 2;

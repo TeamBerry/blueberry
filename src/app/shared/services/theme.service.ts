@@ -10,6 +10,7 @@ export const darkTheme = {
     'background-main-active-color': '#3f3f3f',
     'background-main-inactive-color': '#252525',
     'background-main-border-color': '#979797',
+    'background-alternate-color': '#111111',
     // Main Color, lighten 15%
     'background-secondary-color': '#303030',
     // Secondary Color, lighten 5%
@@ -37,7 +38,7 @@ export const darkTheme = {
     'active-icon': 'url(./assets/images/icons/active-icon.svg)',
     'access-icon': 'url(./assets/images/icons/enter-box-icon.svg)',
     'berry-color': '#FF8E52',
-    'video-separator-color': '#555555',
+    'video-separator-color': '#191919',
 }
 
 export const lightTheme = {
@@ -46,6 +47,7 @@ export const lightTheme = {
     'background-main-active-color': '#d9d9d9',
     'background-main-inactive-color': '#b3b3b3',
     'background-main-border-color': '#979797',
+    'background-alternate-color': '#E0E0E0',
     'nav-color': '#009AEB',
     // Main Color, darken 15%
     'background-secondary-color': '#EFEFEF',
@@ -74,7 +76,7 @@ export const lightTheme = {
     'active-icon': 'url(./assets/images/icons/active-icon-light.svg)',
     'access-icon': 'url(./assets/images/icons/enter-box-icon-light.svg)',
     'berry-color': '#FF8E52',
-    'video-separator-color': '#C5C5C5',
+    'video-separator-color': '#D9D9D9',
 }
 
 @Injectable({

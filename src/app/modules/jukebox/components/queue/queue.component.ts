@@ -25,6 +25,7 @@ export class QueueComponent implements OnInit, OnChanges {
 
     queue: Array<QueueItem> = [];
 
+    isFiltering = false;
     filterValue = '';
 
     currentlyPlaying: QueueItem;
@@ -53,6 +54,18 @@ export class QueueComponent implements OnInit, OnChanges {
 
     ngOnChanges() {
         this.listen();
+    }
+
+    showFilter() {
+        if (this.isFiltering) {
+            this.resetFilter();
+            this.isFiltering = false;
+        } else {
+            this.isFiltering = true;
+            setTimeout(() => {
+                this.bindSearch();
+            }, 2000);
+        }
     }
 
     bindSearch() {
@@ -91,10 +104,6 @@ export class QueueComponent implements OnInit, OnChanges {
                     this.upcomingVideos = [...this.upcomingVideos, ...this.playedVideos]
                 }
                 this.upcomingVideos = this.putPreselectedFirst(this.upcomingVideos);
-
-                setTimeout(() => {
-                    this.bindSearch();
-                }, 2000)
             }
         )
     }

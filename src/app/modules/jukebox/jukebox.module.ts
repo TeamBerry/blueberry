@@ -20,6 +20,7 @@ import { ChatBadgeComponent } from './components/chat-badge/chat-badge.component
 import { BerryCounterComponent } from './components/berry-counter/berry-counter.component';
 import { DurationLineComponent } from './components/duration-line/duration-line.component';
 import { RoleSelectorComponent } from './components/role-selector/role-selector.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { RoleSelectorComponent } from './components/role-selector/role-selector.
     imports: [
         JukeboxRoutingModule,
         SharedModule,
+        AngularSvgIconModule,
     ],
     exports: [
         ChatTabComponent,

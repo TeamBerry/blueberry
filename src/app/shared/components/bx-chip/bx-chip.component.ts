@@ -15,6 +15,7 @@ export interface ChipOptions {
 export class BxChipComponent implements OnInit {
     @Input() options: ChipOptions
     @Input() display: 'full' | 'icon' = 'full'
+    @Input() small = false;
 
     availableCombinations: Array<ChipOptions> = [
         {

@@ -1,30 +1,34 @@
 <div id="input-space">
-    <div class="d-flex" ngbDropdown placement="top-left" #emojiTypeahead="ngbDropdown">
-        <div ngbDropdownMenu class="w-100">
-            <p id="emoji-typeahead-title">Emoji Results</p>
-            <p class="text-center help-text" *ngIf="emojiResults.length === 0">No results</p>
-            <button ngbDropdownItem *ngFor="let result of emojiResults" (click)="replaceEmoji(result)">
-                {{ result.native }} {{ result.shortName }}
-            </button>
+    <div class="d-flex justify-content-betweeen">
+        <div *ngIf="appliedOptions.berryCount && box?.creator?._id !== user?._id" class="mr-2">
+            <app-berry-counter [boxToken]="boxToken"></app-berry-counter>
         </div>
-        <div class="input-group input-group-chatbox">
-            <input type="text" class="form-control chatbox no-border no-focus" placeholder="Type to chat"
-                [(ngModel)]="contents" ngbDropdownAnchor ngbDropdownToggle (click)="watchContents()"
-                (keydown.enter)="post($event)" (keydown.control.enter)="post($event)" #chatbox>
-            <div class="input-group-append no-border" ngbTooltip="Use Emojis" ngbDropdown #emojiPicker="ngbDropdown">
-                <div ngbDropdownMenu class="emoji-picker-container">
-                    <emoji-mart class="emoji-picker" [set]="'google'" [color]="'#009AEB'"
-                        (emojiClick)="addEmoji($event)"></emoji-mart>
+        <div class="d-flex" style="flex: 1;" ngbDropdown placement="top-left" #emojiTypeahead="ngbDropdown">
+            <div ngbDropdownMenu class="w-100">
+                <p id="emoji-typeahead-title">Emoji Results</p>
+                <p class="text-center help-text" *ngIf="emojiResults.length === 0">No results</p>
+                <button ngbDropdownItem *ngFor="let result of emojiResults" (click)="replaceEmoji(result)">
+                    {{ result.native }} {{ result.shortName }}
+                </button>
+            </div>
+            <div class="input-group input-group-chatbox">
+                <input type="text" class="form-control chatbox no-border no-focus" placeholder="Type to chat"
+                    [(ngModel)]="contents" ngbDropdownAnchor ngbDropdownToggle (click)="watchContents()"
+                    (keydown.enter)="post($event)" (keydown.control.enter)="post($event)" #chatbox>
+                <div class="input-group-append no-border" ngbTooltip="Use Emojis" ngbDropdown
+                    #emojiPicker="ngbDropdown">
+                    <div ngbDropdownMenu class="emoji-picker-container">
+                        <emoji-mart class="emoji-picker" [set]="'google'" [color]="'#009AEB'"
+                            (emojiClick)="addEmoji($event)"></emoji-mart>
+                    </div>
+                    <button class="btn btn-outline-secondary no-border no-focus" type="button"
+                        ngbDropdownToggle>🙂</button>
                 </div>
-                <button class="btn btn-outline-secondary no-border no-focus" type="button" ngbDropdownToggle>🙂</button>
             </div>
         </div>
     </div>
     <div class="chat-actions no-gutters">
         <button class="btn btn-primary d-none d-lg-block" (click)="post($event)">Send
             message</button>
-        <div *ngIf="appliedOptions.berryCount && box?.creator?._id !== user?._id">
-            <app-berry-counter [boxToken]="boxToken"></app-berry-counter>
-        </div>
     </div>
 </div>
