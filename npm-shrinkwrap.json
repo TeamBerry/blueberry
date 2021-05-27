@@ -5068,9 +5068,9 @@
       "dev": true
     },
     "@ctrl/ngx-emoji-mart": {
-      "version": "4.1.1",
-      "resolved": "https://registry.npmjs.org/@ctrl/ngx-emoji-mart/-/ngx-emoji-mart-4.1.1.tgz",
-      "integrity": "sha512-QieGpyvbOhCc8Pea4YMLEn63Z74Z2z6YYXQDL6UC13MtbIPJ6VwcOq7aPltY+W+9Jwi1Mi0LLHwHsPDDVGg1iA==",
+      "version": "5.1.2",
+      "resolved": "https://registry.npmjs.org/@ctrl/ngx-emoji-mart/-/ngx-emoji-mart-5.1.2.tgz",
+      "integrity": "sha512-AUQbaW1wj3NLEOPnJeS/ygSAmSxj4Z4aEpFwZsxgl1DPWLm96hHfD/Cf23yburiYNujv89vSFUc0tJFSI9aORQ==",
       "requires": {
         "tslib": "^2.0.0"
       }
