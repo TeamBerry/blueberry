@@ -12,12 +12,15 @@
         class="img-icon">
     <img src="../../../../assets/images/icons/add-to-library-icon.svg" alt=""
         *ngIf="computedOptions.type === 'addToLibrary'" class="img-icon">
-    <img src="../../../../assets/images/icons/play-next-icon.svg" alt="" *ngIf="computedOptions.type === 'forceNext'"
-        class="img-icon">
-    <img src="../../../../assets/images/icons/play-now-icon.svg" alt="" *ngIf="computedOptions.type === 'forcePlay'"
-        class="img-icon">
-    <img src="../../../../assets/images/icons/invite-icon.svg" alt="" *ngIf="computedOptions.type === 'inviteUser'"
-        class="img-icon">
+    <svg-icon src="../../../../assets/images/icons/play-next-icon.svg" *ngIf="computedOptions.type === 'forceNext'"
+        [svgClass]="'img-icon'">
+    </svg-icon>
+    <svg-icon src="../../../../assets/images/icons/play-now-icon.svg" *ngIf="computedOptions.type === 'forcePlay'"
+        [svgClass]="'img-icon'">
+    </svg-icon>
+    <svg-icon src="../../../../assets/images/icons/invite-icon.svg" *ngIf="computedOptions.type === 'inviteUser'"
+        [svgClass]="'img-icon'">
+    </svg-icon>
     <span *ngIf="computedOptions.textDisplay === 'button'" class="btn-text d-none d-md-inline ml-2 mr-1">{{ buttonText
         }}</span>
 </button>

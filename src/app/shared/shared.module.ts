@@ -29,11 +29,13 @@ import { AclFormComponent } from './components/acl-form/acl-form.component';
 import { LanguageFlagPipe } from './pipes/language-flag.pipe';
 import { YouTubeMiniatureDropzoneDirective } from './directive/youtube-miniature-dropzone.directive';
 import { PictureDeleterComponent } from './components/picture-deleter/picture-deleter.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
     imports: [
         CommonModule,
         NgbModule,
+        AngularSvgIconModule,
     ],
     declarations: [
         AuthDirective,
