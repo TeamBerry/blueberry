@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 import { AuthService } from './auth/auth.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -12,6 +13,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
         CommonModule,
         FormsModule,
         HttpClientModule,
+        AngularSvgIconModule.forRoot(),
         ToastrModule.forRoot({
             timeOut: 4000,
             positionClass: 'toast-bottom-right',
