@@ -1,7 +1,7 @@
 <div class="panel-tab-title-section" *ngIf="withHeader">
     <p class="panel-tab-title col">Chat</p>
 </div>
-<div class="d-none ds-md-block">
+<div class="d-none d-md-block">
     <app-bx-tabset [options]="tabsetOptions" (clickedOption)="setTab($event)"></app-bx-tabset>
 </div>
 <div class="message-list" #chat (scroll)="onScroll()">
