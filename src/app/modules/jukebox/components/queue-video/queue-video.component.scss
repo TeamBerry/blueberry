@@ -53,28 +53,35 @@
     }
 }
 
-
-.next-indicator {
+.state-indicator {
     align-content: center;
     justify-content: center;
-    position: absolute;
-    top: 5px;
-    right: 5px;
     display: flex;
     flex-direction: row;
-    .next-indicator-icon {
-        height: 15px;
-        width: 15px;
-        fill: var(--active-color) !important;
+    margin-right: 10px;
+    &.next-indicator {
+        .next-indicator-icon {
+            height: 15px;
+            width: 15px;
+            fill: var(--active-color) !important;
+        }
+        .priority-value {
+            font-family: 'Nunito';
+            color: var(--active-color);
+            font-weight: 800;
+            cursor: default;
+            padding-top: 3px;
+        }
     }
-    .priority-value {
-        font-family: 'Nunito';
-        color: var(--active-color);
-        font-weight: 800;
-        cursor: default;
-        padding-top: 3px;
+    &.current-indicator {
+        .current-indicator-icon {
+            height: 20px;
+            width: 20px;
+            fill: $master-color !important;
+        }
     }
 }
+
 
 
 
