@@ -2,6 +2,9 @@
 .message-list {
     flex: 1;
     overflow: auto;
+    @media (max-width: 767.89px){
+        margin-top: 0.6rem;
+    }
 }
 
 .scroll-resumer {

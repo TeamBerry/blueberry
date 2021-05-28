@@ -3,8 +3,42 @@
     padding: 0.25em;
     border-width: 1px;
     border-style: solid;
-    .img-icon {
-        height: 19px;
-        width: 25px;
+}
+
+.img-icon {
+    height: 19px;
+    width: 25px;
+    fill: var(--text-main-color);
+}
+
+.replay-icon {
+    height: 19px;
+    width: 25px;
+    .abfe4fea-2fc0-453a-aeba-431b9215adf3{
+        fill:none;
+        stroke:var(--text-main-color);
+        stroke-linecap:round;
+        stroke-miterlimit:10;
+        stroke-width:70px;
+    }
+    .f57eb0fe-a54e-49fe-a1ff-e3eee3c733c1{
+        fill:var(--text-main-color);
+    }
+}
+
+.settings-icon {
+    height: 19px;
+    width: 25px;
+    .cls-1{
+        fill:none;
+        stroke-width:50px;
+    }
+    .cls-1,.cls-2{
+        stroke: var(--text-main-color);
+        stroke-miterlimit:10;
+    }
+    .cls-2{
+        fill: var(--text-main-color);
+        stroke-width:10px;
     }
 }

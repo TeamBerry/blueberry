@@ -22,4 +22,12 @@
     .chip-text {
         margin-right: 8px;
     }
+    &.bx-chip-size-sm {
+        height: 20px;
+        width: 20px;
+        img {
+            height: 14px;
+            padding: 2px;
+        }
+    }
 }

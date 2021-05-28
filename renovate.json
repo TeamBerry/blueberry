@@ -17,6 +17,10 @@
             "automerge": true
         }
     ],
+    "ignoreDeps": [
+        "rxjs",
+        "typescript"
+    ],
     "vulnerabilityAlerts": {
         "labels": [
             "dependencies",

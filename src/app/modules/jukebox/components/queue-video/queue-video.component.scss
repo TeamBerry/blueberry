@@ -1,11 +1,19 @@
 @import './../../../../../imports.scss';
 .playlist-entry {
     padding: 5px 0;
-    &:not(.playing){
-        border-bottom: 1px solid var(--video-separator-color);
-    }
+    position: relative;
     &:hover {
         background-color: var(--background-secondary-color-alternate);
+    }
+    &.playing {
+        img {
+            border: 2px solid $master-color;
+        }
+        .submission-duration {
+            left: 2px;
+            top: calc(77% - 4px);
+            width: calc(100% - 4px);
+        }
     }
 }
 
@@ -45,25 +53,29 @@
     }
 }
 
-.next-indicator-icon {
-    height: 18px;
-    fill: var(--active-color) !important;
-}
 
 .next-indicator {
-    font-family: 'Nunito';
-    color: var(--active-color);
-    font-weight: 600;
+    align-content: center;
+    justify-content: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    flex-direction: row;
+    .next-indicator-icon {
+        height: 15px;
+        width: 15px;
+        fill: var(--active-color) !important;
+    }
     .priority-value {
-        border: 2px solid black;
-        background-color: var(--active-color);
-        color: black;
-        padding: 0 5px;
-        margin-left: 5px;
+        font-family: 'Nunito';
+        color: var(--active-color);
         font-weight: 800;
         cursor: default;
+        padding-top: 3px;
     }
 }
+
 
 
 .submission-details {

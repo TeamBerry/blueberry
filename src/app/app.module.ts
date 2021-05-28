@@ -62,7 +62,7 @@ import { BoxJoinComponent } from './shared/components/box-join/box-join.componen
         JukeboxModule,
         NgbModule,
         ColorPickerModule,
-        ClipboardModule
+        ClipboardModule,
     ],
     exports: [
         AppComponent

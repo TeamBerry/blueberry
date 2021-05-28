@@ -15,6 +15,7 @@ export interface ChipOptions {
 export class BxChipComponent implements OnInit {
     @Input() options: ChipOptions
     @Input() display: 'full' | 'icon' = 'full'
+    @Input() small = false;
 
     availableCombinations: Array<ChipOptions> = [
         {
@@ -27,7 +28,7 @@ export class BxChipComponent implements OnInit {
             type: 'loop',
             chipText: 'Loop',
             tooltipText: 'The system will automatically requeue old videos.',
-            icon: 'replay',
+            icon: 'loop',
         },
         {
             type: 'coin-enabled',

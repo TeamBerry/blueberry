@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges, SimpleChange, Output, EventEmitter } from '@angular/core';
 import { SyncPacket, PlayingItem } from '@teamberry/muscadine';
 import { JukeboxService } from '../../jukebox.service';
 import { filter } from 'rxjs/operators';
@@ -81,7 +81,8 @@ export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
                 controls: 1
             },
             events: {
-                onReady: this.onPlayerReady.bind(this)
+                onReady: this.onPlayerReady.bind(this),
+                onError: this.onError.bind(this)
             }
         })
     }
@@ -95,6 +96,14 @@ export class PlayerComponent implements OnInit, OnChanges, OnDestroy {
     onPlayerReady(event: YT.PlayerEvent) {
         this.player = event.target;
         this.connectToStream();
+    }
+
+    onError(error: YT.OnErrorEvent) {
+        if (error.data === 100 ||
+            error.data === 101 ||
+            error.data === 150) {
+            console.error('Video removed')
+        }
     }
 
     /**
