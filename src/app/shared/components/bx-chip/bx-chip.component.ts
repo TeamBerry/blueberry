@@ -28,7 +28,7 @@ export class BxChipComponent implements OnInit {
             type: 'loop',
             chipText: 'Loop',
             tooltipText: 'The system will automatically requeue old videos.',
-            icon: 'replay',
+            icon: 'loop',
         },
         {
             type: 'coin-enabled',
