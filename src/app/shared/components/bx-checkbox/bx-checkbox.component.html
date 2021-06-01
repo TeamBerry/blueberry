@@ -1,4 +1,4 @@
-<label class="bx-checkbox m-0">
+<label class="bx-checkbox m-0" [ngClass]="{'active': value}">
     <input type="checkbox" [checked]="value" (change)="emitValue($event)">
-    <span class="bx-checkmark"></span>
+    <img src="../../../../assets/images/icons/success-icon.svg" [hidden]="!value" />
 </label>

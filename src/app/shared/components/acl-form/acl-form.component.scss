@@ -3,11 +3,21 @@
     font-family: 'Nunito', sans-serif;
     color: var(--text-focus-color);
     font-weight: 700;
-    font-size: 16px;
+    font-size: 1.3rem;
     border-bottom: 1px solid;
 }
 
 .role-name {
     font-family: 'Nunito', sans-serif;
     font-size: 16px;
+    @media (max-width: 767.89px){
+        font-size: 1.4rem;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+}
+
+.role-badge {
+    width: 20px;
+    height: 20px;
 }

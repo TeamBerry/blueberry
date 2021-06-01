@@ -6,13 +6,43 @@
         Here's how it works:
         <ul>
             <li>Users can only have <strong>one</strong> role.</li>
-            <li><strong>Only you can promote Moderators.</strong> In most cases, Moderators are here to enforce your rules when you're not in a box. They should be users you trust.</li>
-            <li><strong>Permissions are not cumulative!</strong> Which means promoting someone might make them lose some privileges. Adjust your roles carefully.</li>
+            <li><strong>Only you can promote Moderators.</strong> In most cases, Moderators are here to enforce your
+                rules when you're not in a box. They should be users you trust.</li>
+            <li><strong>Permissions are not cumulative!</strong> Which means promoting someone might make them lose some
+                privileges. Adjust your roles carefully.</li>
             <li>As Box Creator, <strong>you will always have all privileges.</strong></li>
         </ul>
     </div>
 </details>
-<table class="table table-hover table-borderless my-4">
+<section class="d-block d-md-none my-5">
+    <div *ngFor="let role of roles; index as roleIndex">
+        <div class="d-flex align-items-center pt-2">
+            <img *ngIf="role !== 'simple'" src="https://role-badges.s3-eu-west-1.amazonaws.com/{{ role }}-badge.png"
+                class="role-badge mr-1" />
+            <span class="role-name">{{(role !== 'simple') ? role : 'Community Members'}}</span>
+        </div>
+        <div *ngFor="let section of sections" class="my-3">
+            <h5 class="section-title mt-1">{{ section.name }}</h5>
+            <div *ngFor="let permission of section.permissions"
+                class="permission-group d-flex justify-content-between my-3">
+                <div class="d-flex flex-column">
+                    <div class="d-flex">
+                        <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 20px;"
+                            *ngIf="permission.withBerries"
+                            ngbTooltip="If disabled, this action can still be executed with Berries. You can disable Berries when creating a box."
+                            class="mr-1">
+                        <span class="permission-name">{{ permission.name }}</span>
+                    </div>
+                    <span class="help-text text-muted" *ngIf="permission.explanation">{{ permission.explanation
+                        }}</span>
+                </div>
+                <app-slide-toggle class="checkbox d-flex" [(value)]="editableConfig[roleIndex][permission.key]"
+                    (valueChange)="this.buildACLConfig()"></app-slide-toggle>
+            </div>
+        </div>
+    </div>
+</section>
+<table class="d-none d-md-block table table-hover table-borderless my-4">
     <thead>
         <tr>
             <th scope="col"></th>
@@ -27,21 +57,27 @@
             <td>
                 <div class="d-flex flex-row">
                     <span class="permission-name">{{ permission.name }}</span>
-                    <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 20px;" *ngIf="permission.withBerries" ngbTooltip="If disabled, this action can still be executed with Berries. You can disable Berries when creating a box." class="ml-3">
+                    <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 20px;"
+                        *ngIf="permission.withBerries"
+                        ngbTooltip="If disabled, this action can still be executed with Berries. You can disable Berries when creating a box."
+                        class="ml-3">
                 </div>
                 <p class="help-text text-muted">{{ permission.explanation }}</p>
             </td>
             <td>
-                <app-slide-toggle class="checkbox d-flex justify-content-center" [(value)]="editableConfig[0][permission.key]" (valueChange)="this.buildACLConfig()">
-                </app-slide-toggle>
+                <app-bx-checkbox class="d-flex justify-content-center" [(value)]="editableConfig[0][permission.key]"
+                    (valueChange)="this.buildACLConfig()">
+                </app-bx-checkbox>
             </td>
             <td>
-                <app-slide-toggle class="checkbox d-flex justify-content-center" [(value)]="editableConfig[1][permission.key]" (valueChange)="this.buildACLConfig()">
-                </app-slide-toggle>
+                <app-bx-checkbox class="d-flex justify-content-center" [(value)]="editableConfig[1][permission.key]"
+                    (valueChange)="this.buildACLConfig()">
+                </app-bx-checkbox>
             </td>
             <td>
-                <app-slide-toggle class="checkbox d-flex justify-content-center" [(value)]="editableConfig[2][permission.key]" (valueChange)="this.buildACLConfig()">
-                </app-slide-toggle>
+                <app-bx-checkbox class="d-flex justify-content-center" [(value)]="editableConfig[2][permission.key]"
+                    (valueChange)="this.buildACLConfig()">
+                </app-bx-checkbox>
             </td>
         </tr>
     </tbody>

@@ -15,7 +15,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <div class="col-7">
+        <div class="col col-xl-7">
             <div id="account-tab" *ngIf="currentTab === 'account'">
                 <h3 class="tab-title">Account</h3>
                 <h5 class="section-title">Profile Picture</h5>
@@ -88,9 +88,8 @@
                         <p class="help-text text-muted">Toggles between light colors and dark colors for the overall
                             appearance of the application. Saved automatically.</p>
                     </div>
-                    <div class="col m-auto">
-                        <app-slide-toggle class="checkbox" [value]="isDarkThemeEnabled"
-                            (valueChange)="toggleDarkTheme()">
+                    <div class="col d-flex align-items-center justify-content-end">
+                        <app-slide-toggle [value]="isDarkThemeEnabled" (valueChange)="toggleDarkTheme()">
                         </app-slide-toggle>
                     </div>
                 </div>
@@ -140,8 +139,8 @@
                         <p class="help-text text-muted">Removes all custom user colors for your chat and resets your own
                             color. Saved automatically.</p>
                     </div>
-                    <div class="col m-auto">
-                        <app-slide-toggle class="checkbox" [(value)]="session.settings.isColorblind"
+                    <div class="col d-flex align-items-center justify-content-end">
+                        <app-slide-toggle [(value)]="session.settings.isColorblind"
                             (valueChange)="toggleColorBlindMode()">
                         </app-slide-toggle>
                     </div>
