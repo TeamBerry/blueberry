@@ -16,6 +16,9 @@
 #room-player {
     width: 100%;
     @include lg {
+        width: calc(100% * 8/12);
+    }
+    @include xl {
         width: calc(100% * 9/12);
     }
 }
@@ -31,8 +34,11 @@
     height: calc(100vh - (100vh * 9/16) - 50px);
     width: 100%;
     @include lg {
-        width: calc(100% * 3/12);
+        width: calc(100% * 4/12);
         height: calc(100vh - 60px);
+    }
+    @include xl {
+        width: calc(100% * 3/12);
     }
 }
 
