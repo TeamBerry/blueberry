@@ -1,54 +1,23 @@
 @import './../../../../imports.scss';
 .bx-checkbox {
     position: relative;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    border: 3px solid var(--text-main-color);
+    border-radius: 4px;
+    background-color: transparent;
+    cursor: pointer;
+    &.active {
+        background-color: var(--active-color);
+        border: 3px solid var(--active-color);
+    }
+    img {
+        width: 85%
+    }
     input {
         display: none;
-        &:checked~.bx-checkmark{
-            background-color: var(--background-main-inactive-color);
-        }
-        &:checked~.bx-checkmark:before {
-            display: block;
-        }
-        &:checked~.bx-checkmark:after {
-            display: block;
-        }
-    }
-    .bx-checkmark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 20px;
-        width: 20px;
-        background-color: transparent;
-        border: 1px solid var(--stroke-color);
-        border-radius: 4px;
-        &::before, &::after {
-            content: "";
-            display: none;
-            position: absolute;
-            border: solid white;
-            border-width: 0 3px 0 0;
-        }
-        &::before {
-            left: 5px;
-            top: 3px;
-            width: 6px;
-            height: 13px;
-            -webkit-transform: rotate(-45deg);
-            -ms-transform: rotate(-45deg);
-            transform: rotate(-45deg);
-        }
-        &::after {
-            left: 5px;
-            top: 1px;
-            width: 6px;
-            height: 13px;
-            -webkit-transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            transform: rotate(45deg);
-        }
     }
 }

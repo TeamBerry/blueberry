@@ -65,19 +65,19 @@
                 <p class="help-text text-muted">{{ permission.explanation }}</p>
             </td>
             <td>
-                <app-slide-toggle class="checkbox d-flex justify-content-center"
-                    [(value)]="editableConfig[0][permission.key]" (valueChange)="this.buildACLConfig()">
-                </app-slide-toggle>
+                <app-bx-checkbox class="d-flex justify-content-center" [(value)]="editableConfig[0][permission.key]"
+                    (valueChange)="this.buildACLConfig()">
+                </app-bx-checkbox>
             </td>
             <td>
-                <app-slide-toggle class="checkbox d-flex justify-content-center"
-                    [(value)]="editableConfig[1][permission.key]" (valueChange)="this.buildACLConfig()">
-                </app-slide-toggle>
+                <app-bx-checkbox class="d-flex justify-content-center" [(value)]="editableConfig[1][permission.key]"
+                    (valueChange)="this.buildACLConfig()">
+                </app-bx-checkbox>
             </td>
             <td>
-                <app-slide-toggle class="checkbox d-flex justify-content-center"
-                    [(value)]="editableConfig[2][permission.key]" (valueChange)="this.buildACLConfig()">
-                </app-slide-toggle>
+                <app-bx-checkbox class="d-flex justify-content-center" [(value)]="editableConfig[2][permission.key]"
+                    (valueChange)="this.buildACLConfig()">
+                </app-bx-checkbox>
             </td>
         </tr>
     </tbody>

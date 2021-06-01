@@ -48,8 +48,8 @@
                                 be able to grant access by sharing its link directly. <strong>Private boxes cannot
                                     be featured.</strong></p>
                         </div>
-                        <div class="col m-auto">
-                            <app-slide-toggle class="float-right" [(value)]="box.private"></app-slide-toggle>
+                        <div class="col d-flex align-items-center justify-content-end">
+                            <app-bx-checkbox [(value)]="box.private"></app-bx-checkbox>
                         </div>
                     </div>
                 </section>
@@ -64,8 +64,8 @@
                             <p class="help-text text-muted">When a video ends, the next one will be picked at random
                                 from the upcoming pool of videos</p>
                         </div>
-                        <div class="col m-auto">
-                            <app-slide-toggle class="float-right" [(value)]="box.options.random"></app-slide-toggle>
+                        <div class="col d-flex align-items-center justify-content-end">
+                            <app-bx-checkbox [(value)]="box.options.random"></app-bx-checkbox>
                         </div>
                     </div>
 
@@ -79,8 +79,8 @@
                             <p class="help-text text-muted">The system will automatically requeue old videos. The
                                 queue display will change to no longer separate "upcoming" and "passed" videos.</p>
                         </div>
-                        <div class="col m-auto">
-                            <app-slide-toggle class="float-right" [(value)]="box.options.loop"></app-slide-toggle>
+                        <div class="col d-flex align-items-center justify-content-end">
+                            <app-bx-checkbox [(value)]="box.options.loop"></app-bx-checkbox>
                         </div>
                     </div>
 
@@ -95,9 +95,8 @@
                                 select the next video to play.
                             </p>
                         </div>
-                        <div class="col m-auto">
-                            <app-slide-toggle class="float-right" [(value)]="box.options.berries">
-                            </app-slide-toggle>
+                        <div class="col m-auto d-flex align-items-center justify-content-end">
+                            <app-bx-checkbox [(value)]="box.options.berries"></app-bx-checkbox>
                         </div>
                     </div>
 
