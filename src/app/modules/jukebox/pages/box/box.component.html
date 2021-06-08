@@ -38,8 +38,14 @@
     <div class="box-space">
         <div id="room-player">
             <div *ngIf="box" id="player-space"
-                [ngClass]="{'no-events': isDraggingMiniature, 'no-video': !currentVideo}">
-                <app-player id="player-component" [boxToken]="box._id" *ngIf="currentVideo"></app-player>
+                [ngClass]="{'no-events': isDraggingMiniature, 'no-video': !currentVideo, 'control-mode': isRemoteControl}">
+                <span *ngIf="!isRemoteControl; else remoteController">
+                    <app-player id="player-component" [boxToken]="box._id" *ngIf="currentVideo"></app-player>
+                </span>
+                <ng-template #remoteController>
+                    <p class="mb-0">Remote Controller Activated</p>
+                    <span>Your player is disabled.</span>
+                </ng-template>
             </div>
             <div class="current-video-space-container">
                 <div class="d-lg-none">
@@ -54,15 +60,20 @@
                     <p class="box-title" title="{{box.name}}">{{ box.name }}</p>
                     <p class="video-title" title="{{currentVideo?.video.name}}">{{currentVideo?.video.name}}</p>
                 </div>
-                <div class="box-actions" *appAuth="true">
-                    <app-bx-button (click)="openInviteModal()" *ngIf="permissions.includes('inviteUser')"
-                        [options]="{'type': 'inviteUser', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Invite users'}"
-                        style="padding-left: 7px;">
-                    </app-bx-button>
-                    <app-bx-button (click)="openBoxSettings()" *ngIf="permissions.includes('editBox')"
-                        [options]="{'type': 'settings', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Box Settings'}"
-                        style="padding-left: 7px;">
-                    </app-bx-button>
+                <div class="box-actions">
+                    <span *appAuth="true">
+                        <app-bx-button (click)="openInviteModal()" *ngIf="permissions.includes('inviteUser')"
+                            [options]="{'type': 'inviteUser', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Invite users'}"
+                            style="padding-left: 7px;">
+                        </app-bx-button>
+                    </span>
+                    <span *appAuth="true">
+                        <app-bx-button (click)="openBoxSettings()" *ngIf="permissions.includes('editBox')"
+                            [options]="{'type': 'settings', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Box Settings'}"
+                            style="padding-left: 7px;">
+                        </app-bx-button>
+                    </span>
+                    <button class="btn btn-primary" (click)="isRemoteControl = !isRemoteControl">T</button>
                 </div>
             </div>
         </div>

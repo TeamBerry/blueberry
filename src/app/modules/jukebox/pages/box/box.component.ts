@@ -71,6 +71,7 @@ export class BoxComponent implements OnInit {
 
     connectionStatus = 'offline';
     isDraggingMiniature = false;
+    isRemoteControl = false;
 
     permissions: Array<Permission> = [];
 
