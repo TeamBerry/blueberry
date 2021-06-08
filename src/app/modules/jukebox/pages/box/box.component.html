@@ -37,7 +37,7 @@
     </div>
     <div class="box-space">
         <div id="room-player">
-            <div *ngIf="box" id="player-space" style="background-color: black;"
+            <div *ngIf="box" id="player-space"
                 [ngClass]="{'no-events': isDraggingMiniature, 'no-video': !currentVideo}">
                 <app-player id="player-component" [boxToken]="box._id" *ngIf="currentVideo"></app-player>
             </div>

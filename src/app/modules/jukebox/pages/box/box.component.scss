@@ -44,7 +44,9 @@
 
 #player-space {
     height: calc(100vw * (9/16));
+    background-color: black;
     &.no-video{
+        background-color: var(--background-secondary-color);
         background-image: url("../../../../../assets/images/berrybox-logo-master.png");
         background-repeat: no-repeat;
         background-position: center;
