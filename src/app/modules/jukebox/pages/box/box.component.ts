@@ -13,7 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
 import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
-import { QueueItem, SyncPacket, FeedbackMessage, VideoSubmissionRequest, Permission } from '@teamberry/muscadine';
+import { SyncPacket, FeedbackMessage, VideoSubmissionRequest, Permission, PlayingItem } from '@teamberry/muscadine';
 import { InviteFormComponent } from 'app/shared/components/invite-form/invite-form.component';
 
 @Component({
@@ -51,7 +51,7 @@ export class BoxComponent implements OnInit {
      *
      * @memberof BoxComponent
      */
-    currentVideo: QueueItem = null;
+    currentVideo: PlayingItem = null;
 
     /**
      * Connected user. Obtained from the auth service
