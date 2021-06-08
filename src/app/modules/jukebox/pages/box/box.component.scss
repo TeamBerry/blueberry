@@ -44,8 +44,12 @@
 
 #player-space {
     height: calc(100vw * (9/16));
-    background-image: url("../../../../../assets/images/berrybox-logo-master.png");
-    background-repeat: no-repeat;
+    &.no-video{
+        background-image: url("../../../../../assets/images/berrybox-logo-master.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
     @include lg {
         height: calc(100% - 100px);
     }
