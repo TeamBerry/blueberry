@@ -18,8 +18,10 @@
                         <app-bx-chip [options]="{'type': 'loop'}" [display]="'icon'" [small]="true"
                             *ngIf="box?.options?.loop">
                         </app-bx-chip>
-                        <app-berry-counter *ngIf="box?.options?.berries && box?.creator?._id !== user?._id"
-                            [boxToken]="box._id"></app-berry-counter>
+                        <span *appAuth="true">
+                            <app-berry-counter *ngIf="box?.options?.berries && box?.creator?._id !== user?._id"
+                                [boxToken]="box._id"></app-berry-counter>
+                        </span>
                     </div>
                     <app-bx-button *appAuth="true" (click)="startConversion()" class="d-flex justify-content-center"
                         [options]="{'type': 'addToLibrary', 'textDisplay': 'button', 'text': 'Add all videos to a Playlist', 'context': 'queue'}">
@@ -117,7 +119,8 @@
                     screen (only available in the box screen and not the manager).</p>
             </div>
         </ng-template>
-        <button class="fab" (click)="inAddingProcess = true" ngbTooltip="Add Videos">
+        <button class="fab" *ngIf="permissions.includes('addVideo')" (click)="inAddingProcess = true"
+            ngbTooltip="Add Videos">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
                 <defs>
                     <style>
