@@ -1,6 +1,7 @@
 @import './../../../../imports.scss';
 .btn{
-    background-color: var(--background-alternate-color);
+    background-color: transparent;
+    border: .5px solid var(--background-alternate-color);
     padding: .25rem;
     margin-left: 7px;
     .img-icon {

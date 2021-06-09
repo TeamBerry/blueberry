@@ -87,7 +87,6 @@ export class BoxComponent implements OnInit {
         private deviceService: DeviceDetectorService
     ) {
         this.isMobile = !this.deviceService.isDesktop();
-        console.log(this.isMobile)
     }
 
     ngOnInit() {
