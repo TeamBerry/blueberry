@@ -1,0 +1,25 @@
+@import './../../../../imports.scss';
+.btn{
+    background-color: var(--background-alternate-color);
+    padding: .25rem;
+    margin-left: 7px;
+    .img-icon {
+        height: 25px;
+        width: 25px;
+        fill: var(--text-main-color);
+    }
+    &.active {
+        background-color: var(--active-color);
+        .img-icon {
+            height: 25px;
+            width: 25px;
+            fill: white;
+        }
+    }
+}
+
+.btn-icon {
+    padding: 0.25em;
+    border-width: 1px;
+    border-style: solid;
+}
