@@ -69,7 +69,8 @@
                         style="padding-left: 7px;">
                     </app-bx-button>
                     <span ngbTooltip="Toggle Remote Controller Mode" *ngIf="isMobile">
-                        <app-toggle-button [(active)]="isRemoteControl">
+                        <app-toggle-button [active]="isRemoteControl"
+                            (activeChange)="toggleRemoteContollerMode($event)">
                         </app-toggle-button>
                     </span>
                 </div>

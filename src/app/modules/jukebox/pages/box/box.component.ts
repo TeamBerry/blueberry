@@ -155,6 +155,13 @@ export class BoxComponent implements OnInit {
             );
     }
 
+    toggleRemoteContollerMode(event: boolean) {
+        this.isRemoteControl = event;
+        if (!this.isRemoteControl) {
+            this.jukeboxService.resync({ boxToken: this.box._id, userToken: this.user._id })
+        }
+    }
+
 
     /**
      * Actions when the player changes state
