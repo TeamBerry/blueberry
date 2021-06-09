@@ -15,6 +15,7 @@ import { PlaylistService } from 'app/shared/services/playlist.service';
 import { ToastrService } from 'ngx-toastr';
 import { SyncPacket, FeedbackMessage, VideoSubmissionRequest, Permission, PlayingItem } from '@teamberry/muscadine';
 import { InviteFormComponent } from 'app/shared/components/invite-form/invite-form.component';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
     selector: 'app-box',
@@ -71,6 +72,8 @@ export class BoxComponent implements OnInit {
 
     connectionStatus = 'offline';
     isDraggingMiniature = false;
+    isRemoteControl = false;
+    isMobile = false;
 
     permissions: Array<Permission> = [];
 
@@ -80,8 +83,11 @@ export class BoxComponent implements OnInit {
         private playlistService: PlaylistService,
         private modalService: NgbModal,
         private route: ActivatedRoute,
-        private toastr: ToastrService
-    ) { }
+        private toastr: ToastrService,
+        private deviceService: DeviceDetectorService
+    ) {
+        this.isMobile = !this.deviceService.isDesktop();
+    }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
@@ -147,6 +153,13 @@ export class BoxComponent implements OnInit {
                     console.error(error);
                 }
             );
+    }
+
+    toggleRemoteContollerMode(event: boolean) {
+        this.isRemoteControl = event;
+        if (!this.isRemoteControl) {
+            this.jukeboxService.resync({ boxToken: this.box._id, userToken: this.user._id })
+        }
     }
 
 

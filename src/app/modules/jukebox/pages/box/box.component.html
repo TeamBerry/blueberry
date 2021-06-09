@@ -38,8 +38,13 @@
     <div class="box-space">
         <div id="room-player">
             <div *ngIf="box" id="player-space"
-                [ngClass]="{'no-events': isDraggingMiniature, 'no-video': !currentVideo}">
-                <app-player id="player-component" [boxToken]="box._id" *ngIf="currentVideo"></app-player>
+                [ngClass]="{'no-events': isDraggingMiniature, 'no-video': !currentVideo, 'control-mode': isRemoteControl}">
+                <span *ngIf="!isRemoteControl; else remoteController">
+                    <app-player id="player-component" [boxToken]="box._id" *ngIf="currentVideo"></app-player>
+                </span>
+                <ng-template #remoteController>
+                    <app-remote-controller-incidator></app-remote-controller-incidator>
+                </ng-template>
             </div>
             <div class="current-video-space-container">
                 <div class="d-lg-none">
@@ -63,6 +68,11 @@
                         [options]="{'type': 'settings', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Box Settings'}"
                         style="padding-left: 7px;">
                     </app-bx-button>
+                    <span ngbTooltip="Toggle Remote Controller Mode" *ngIf="isMobile">
+                        <app-toggle-button [active]="isRemoteControl"
+                            (activeChange)="toggleRemoteContollerMode($event)">
+                        </app-toggle-button>
+                    </span>
                 </div>
             </div>
         </div>

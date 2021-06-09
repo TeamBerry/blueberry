@@ -6,7 +6,7 @@ import { io, Socket } from 'socket.io-client';
 import { environment } from './../../../environments/environment';
 import { Box } from 'app/shared/models/box.model';
 import {
-    Message, FeedbackMessage, QueueItemActionRequest, SyncPacket, VideoSubmissionRequest, Permission, QueueItem
+    Message, FeedbackMessage, QueueItemActionRequest, SyncPacket, VideoSubmissionRequest, Permission, QueueItem, BoxScope
 } from '@teamberry/muscadine';
 import { AuthService } from 'app/core/auth/auth.service';
 import { AuthSubject } from 'app/shared/models/session.model';
@@ -197,6 +197,10 @@ export class JukeboxService {
      */
     public postMessageToStream(message: Message): void {
         this.boxStream.next(message);
+    }
+
+    public resync(scope: BoxScope): void {
+        this.boxSocket.emit('sync', scope);
     }
 
     // ORDERS
