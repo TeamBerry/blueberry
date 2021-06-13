@@ -42,3 +42,11 @@
         stroke-width:10px;
     }
 }
+
+.success-icon {
+    height: 24px;
+    width: 24px;
+    .cls-1 {
+        fill: var(--success-color);
+    }
+}

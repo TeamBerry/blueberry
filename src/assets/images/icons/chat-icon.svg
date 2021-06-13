@@ -1,4 +1,1 @@
-<svg id="chat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
-<title>chat-icon</title>
-<polygon points="467.08 69.66 32.92 69.66 32.92 352.99 100.97 352.99 66.1 430.34 237.73 352.99 467.08 352.99 467.08 69.66" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="30"/>
-</svg>
+<svg id="chat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:30px;}</style></defs><path class="cls-1" d="M457.08,69.66H42.92a10,10,0,0,0-10,10V343a10,10,0,0,0,10,10h56.5a1,1,0,0,1,.91,1.42L67.19,427.93a1,1,0,0,0,1.32,1.33l169-76.19A1,1,0,0,1,238,353H457.08a10,10,0,0,0,10-10V79.66A10,10,0,0,0,457.08,69.66Z"/></svg>
