@@ -46,8 +46,10 @@ export class QueueVideoComponent implements OnInit {
         this.status = this.computeStatus()
     }
 
-    handleYouTubeError() {
-        this.isReachable = false;
+    handleImageLoad(event) {
+        if (event.target.naturalWidth === 120 && event.target.naturalHeight === 90) {
+            this.isReachable = false;
+        }
     }
 
     computeStatus(): 'upcoming' | 'playing' | 'played' {
