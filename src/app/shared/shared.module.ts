@@ -30,6 +30,8 @@ import { LanguageFlagPipe } from './pipes/language-flag.pipe';
 import { YouTubeMiniatureDropzoneDirective } from './directive/youtube-miniature-dropzone.directive';
 import { PictureDeleterComponent } from './components/picture-deleter/picture-deleter.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { ToggleButtonComponent } from './components/toggle-button/toggle-button.component';
+import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 
 @NgModule({
     imports: [
@@ -58,7 +60,9 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
         FromNowPipe,
         AclFormComponent,
         LanguageFlagPipe,
-        YouTubeMiniatureDropzoneDirective
+        YouTubeMiniatureDropzoneDirective,
+        ToggleButtonComponent,
+        LoadingIndicatorComponent,
     ],
     exports: [
         CommonModule,
@@ -85,7 +89,9 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
         FromNowPipe,
         AclFormComponent,
         LanguageFlagPipe,
-        YouTubeMiniatureDropzoneDirective
+        YouTubeMiniatureDropzoneDirective,
+        ToggleButtonComponent,
+        LoadingIndicatorComponent
     ],
     providers: [AuthDirective, ThemeService, UserService, YouTubeMiniatureDropzoneDirective],
     entryComponents: [

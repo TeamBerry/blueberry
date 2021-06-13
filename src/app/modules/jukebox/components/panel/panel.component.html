@@ -1,7 +1,7 @@
 <div class="d-flex no-gutters panel-container flex-column">
     <div id="panel-menu">
         <ul class="nav flex-row justify-content-around">
-            <li class="nav-item" [ngClass]="{'active': activePanel == 'chat'}">
+            <li class="nav-item" [ngClass]="{'active': activePanel === 'chat'}">
                 <a class="nav-link" (click)="showPanel('chat'); newMessages = false" title="Chat">
                     <svg class="berrybox-svg" id="chat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 550"
                         style="height:1.4em;">
@@ -13,7 +13,7 @@
                     <span>Chat</span>
                 </a>
             </li>
-            <li class="nav-item" [ngClass]="{'active': activePanel == 'queue'}">
+            <li class="nav-item" [ngClass]="{'active': activePanel === 'queue'}">
                 <a class="nav-link" (click)="showPanel('queue')" title="Queue">
                     <svg style="height: 1.5rem;" class="berrybox-svg" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 500 500">
@@ -27,7 +27,7 @@
                     <span>Queue</span>
                 </a>
             </li>
-            <li class="nav-item" [ngClass]="{'active': activePanel == 'users'}">
+            <li class="nav-item" [ngClass]="{'active': activePanel === 'users'}">
                 <a class="nav-link" (click)="showPanel('users')" title="Users">
                     <svg class="berrybox-svg" style="height: 1.5em;" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 500 500">
@@ -51,7 +51,7 @@
         <app-userlist class="fixed-tab" *ngIf="activePanel === 'users'" [box]="box" [user]="user"
             [permissions]="permissions" [withHeader]="false">
         </app-userlist>
-        <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user" [box]="box"
+        <app-queue class="fixed-tab" *ngIf="activePanel === 'queue'" [user]="user" [box]="box"
             [permissions]="permissions" [withHeader]="false"></app-queue>
         <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="box._id" [user]="user"
             [withHeader]="false" (socketStatus)="refreshChatStatus($event)"></app-chat-tab>

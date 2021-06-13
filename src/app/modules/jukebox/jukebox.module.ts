@@ -21,6 +21,7 @@ import { BerryCounterComponent } from './components/berry-counter/berry-counter.
 import { DurationLineComponent } from './components/duration-line/duration-line.component';
 import { RoleSelectorComponent } from './components/role-selector/role-selector.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { RemoteControllerIncidatorComponent } from './components/remote-controller-incidator/remote-controller-incidator.component';
 
 @NgModule({
     declarations: [
@@ -40,6 +41,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
         BerryCounterComponent,
         DurationLineComponent,
         RoleSelectorComponent,
+        RemoteControllerIncidatorComponent
     ],
     imports: [
         JukeboxRoutingModule,

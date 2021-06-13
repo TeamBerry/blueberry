@@ -6,13 +6,19 @@
     </div>
     <div class="entry-info d-flex">
         <div class="entry-image-container">
-            <img class="entry-image h-100" src="http://img.youtube.com/vi/{{ item?.video?.link }}/0.jpg" alt="">
+            <img class="entry-image h-100" src="http://img.youtube.com/vi/{{ item?.video?.link }}/0.jpg" alt=""
+                (load)="handleImageLoad($event)">
             <span class="submission-duration d-flex align-items-center justify-content-center">
                 {{ item?.video.duration | duration }}
             </span>
         </div>
         <div class="entry-details pl-3 pr-0">
             <div class="d-flex flex-row align-items-center">
+                <div class="state-indicator" *ngIf="!isReachable"
+                    ngbTooltip="This video could not be reached. Berrybox might not be able to play it."
+                    container="body">
+                    <span>⚠️</span>
+                </div>
                 <div class="state-indicator next-indicator" *ngIf="item.setToNext" ngbTooltip="Will play in priority"
                     container="body">
                     <svg-icon src="../../../../../assets/images/icons/play-next-icon.svg"
@@ -51,17 +57,17 @@
                     </app-bx-button>
                 </div>
                 <div class="d-flex">
-                    <span *ngIf="permissions.includes('skipVideo')">
+                    <span *ngIf="permissions.includes('skipVideo'); else noskip">
                         <app-bx-button *ngIf="status === 'playing'" class="ml-1" (click)="skipVideo(item)"
                             [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'queue'}">
                         </app-bx-button>
                     </span>
-                    <span *ngIf="!permissions.includes('skipVideo')">
+                    <ng-template #noskip>
                         <app-bx-button *ngIf="status === 'playing'" class="ml-1" (click)="skipVideo(item)"
                             [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 20 berries to skip'}">
                         </app-bx-button>
-                    </span>
-                    <span *ngIf="permissions.includes('forceNext')">
+                    </ng-template>
+                    <span *ngIf="permissions.includes('forceNext'); else nonext">
                         <app-bx-button *ngIf="status === 'upcoming' && !item.setToNext" class="ml-1"
                             (click)="togglePreselection(item)"
                             [options]="{'type': 'forceNext', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play next'}">
@@ -71,37 +77,29 @@
                             [options]="{'type': 'play', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play later'}">
                         </app-bx-button>
                     </span>
-                    <span *ngIf="!permissions.includes('forceNext')">
+                    <ng-template #nonext>
                         <app-bx-button *ngIf="status === 'upcoming' && box?.options?.berries && !item.setToNext"
                             class="ml-1" (click)="togglePreselection(item)"
                             [options]="{'type': 'forceNext', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 10 berries to play next'}">
                         </app-bx-button>
-                    </span>
-                    <span *ngIf="permissions.includes('forcePlay')">
+                    </ng-template>
+                    <span *ngIf="permissions.includes('forcePlay'); else nonow">
                         <app-bx-button *ngIf="status === 'upcoming'" class="ml-1" (click)="forcePlay(item)"
                             [options]="{'type': 'forcePlay', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play now', 'context': 'queue'}">
                         </app-bx-button>
                     </span>
-                    <span *ngIf="!permissions.includes('forcePlay')">
+                    <ng-template #nonow>
                         <app-bx-button *ngIf="status === 'upcoming' && box?.options?.berries" class="ml-1"
                             (click)="forcePlay(item)"
                             [options]="{'type': 'forcePlay', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 30 berries to play now'}">
                         </app-bx-button>
-                    </span>
+                    </ng-template>
                     <span *ngIf="permissions.includes('addVideo')">
                         <app-bx-button *ngIf="status === 'played'" class="ml-1" (click)="replayVideo(item)"
                             [options]="{'type': 'replay', 'textDisplay': 'tooltip', 'context': 'queue'}">
                         </app-bx-button>
                     </span>
-                    <span *ngIf="!permissions.includes('removeVideo')">
-                        <span *ngIf="item?.submitted_by?._id === user._id">
-                            <app-bx-button *ngIf="(status === 'upcoming' || status === 'played')" class="ml-1"
-                                (click)="cancelVideo(item)"
-                                [options]="{'type': 'cancel', 'context': 'danger', 'textDisplay': 'tooltip', 'text': 'Remove from Queue'}">
-                            </app-bx-button>
-                        </span>
-                    </span>
-                    <span *ngIf="permissions.includes('removeVideo')">
+                    <span *ngIf="permissions.includes('removeVideo') || item?.submitted_by?._id === user._id">
                         <app-bx-button *ngIf="(status === 'upcoming' || status === 'played')" class="ml-1"
                             (click)="cancelVideo(item)"
                             [options]="{'type': 'cancel', 'context': 'danger', 'textDisplay': 'tooltip', 'text': 'Remove from Queue'}">

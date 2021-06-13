@@ -25,6 +25,7 @@ export class QueueComponent implements OnInit, OnChanges {
 
     queue: Array<QueueItem> = [];
 
+    isLoading = true;
     isFiltering = false;
     filterValue = '';
 
@@ -104,6 +105,7 @@ export class QueueComponent implements OnInit, OnChanges {
                     this.upcomingVideos = [...this.upcomingVideos, ...this.playedVideos]
                 }
                 this.upcomingVideos = this.putPreselectedFirst(this.upcomingVideos);
+                this.isLoading = false;
             }
         )
     }
