@@ -32,6 +32,7 @@ import { PictureDeleterComponent } from './components/picture-deleter/picture-de
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ToggleButtonComponent } from './components/toggle-button/toggle-button.component';
 import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
+import { IssueIndicatorComponent } from './components/issue-indicator/issue-indicator.component';
 
 @NgModule({
     imports: [
@@ -63,6 +64,7 @@ import { LoadingIndicatorComponent } from './components/loading-indicator/loadin
         YouTubeMiniatureDropzoneDirective,
         ToggleButtonComponent,
         LoadingIndicatorComponent,
+        IssueIndicatorComponent,
     ],
     exports: [
         CommonModule,
@@ -91,7 +93,8 @@ import { LoadingIndicatorComponent } from './components/loading-indicator/loadin
         LanguageFlagPipe,
         YouTubeMiniatureDropzoneDirective,
         ToggleButtonComponent,
-        LoadingIndicatorComponent
+        LoadingIndicatorComponent,
+        IssueIndicatorComponent
     ],
     providers: [AuthDirective, ThemeService, UserService, YouTubeMiniatureDropzoneDirective],
     entryComponents: [
