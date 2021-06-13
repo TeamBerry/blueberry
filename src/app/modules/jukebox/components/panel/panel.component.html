@@ -51,7 +51,7 @@
         <app-userlist class="fixed-tab" *ngIf="activePanel === 'users'" [box]="box" [user]="user"
             [permissions]="permissions" [withHeader]="false">
         </app-userlist>
-        <app-queue class="fixed-tab" [hidden]="activePanel !== 'queue'" [user]="user" [box]="box"
+        <app-queue class="fixed-tab" *ngIf="activePanel === 'queue'" [user]="user" [box]="box"
             [permissions]="permissions" [withHeader]="false"></app-queue>
         <app-chat-tab class="fixed-tab" [hidden]="activePanel !== 'chat'" [boxToken]="box._id" [user]="user"
             [withHeader]="false" (socketStatus)="refreshChatStatus($event)"></app-chat-tab>

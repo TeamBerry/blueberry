@@ -31,6 +31,7 @@ import { YouTubeMiniatureDropzoneDirective } from './directive/youtube-miniature
 import { PictureDeleterComponent } from './components/picture-deleter/picture-deleter.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ToggleButtonComponent } from './components/toggle-button/toggle-button.component';
+import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 
 @NgModule({
     imports: [
@@ -61,6 +62,7 @@ import { ToggleButtonComponent } from './components/toggle-button/toggle-button.
         LanguageFlagPipe,
         YouTubeMiniatureDropzoneDirective,
         ToggleButtonComponent,
+        LoadingIndicatorComponent,
     ],
     exports: [
         CommonModule,
@@ -88,7 +90,8 @@ import { ToggleButtonComponent } from './components/toggle-button/toggle-button.
         AclFormComponent,
         LanguageFlagPipe,
         YouTubeMiniatureDropzoneDirective,
-        ToggleButtonComponent
+        ToggleButtonComponent,
+        LoadingIndicatorComponent
     ],
     providers: [AuthDirective, ThemeService, UserService, YouTubeMiniatureDropzoneDirective],
     entryComponents: [
