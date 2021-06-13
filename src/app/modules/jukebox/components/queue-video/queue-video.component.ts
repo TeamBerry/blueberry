@@ -34,6 +34,7 @@ export class QueueVideoComponent implements OnInit {
     user: AuthSubject = AuthService.getAuthSubject()
 
     status: 'upcoming' | 'playing' | 'played'
+    isReachable = true;
 
     constructor(
         private modalService: NgbModal,
@@ -43,6 +44,10 @@ export class QueueVideoComponent implements OnInit {
 
     ngOnInit() {
         this.status = this.computeStatus()
+    }
+
+    handleYouTubeError() {
+        this.isReachable = false;
     }
 
     computeStatus(): 'upcoming' | 'playing' | 'played' {
