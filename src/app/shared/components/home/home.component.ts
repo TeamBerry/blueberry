@@ -14,7 +14,6 @@ import { BoxJoinComponent } from '../box-join/box-join.component';
     providers: [BoxService]
 })
 export class HomeComponent implements OnInit {
-    title = 'YouTube. With everyone.';
     boxes: Box[] = [];
     featuredBoxes: Box[] = [];
     loading = true;
