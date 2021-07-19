@@ -36,8 +36,9 @@
                     <span class="help-text text-muted" *ngIf="permission.explanation">{{ permission.explanation
                         }}</span>
                 </div>
-                <app-slide-toggle class="checkbox d-flex" [(value)]="editableConfig[roleIndex][permission.key]"
-                    (valueChange)="this.buildACLConfig()"></app-slide-toggle>
+                <app-bx-checkbox class="d-flex justify-content-center align-items-center"
+                    [(value)]="editableConfig[roleIndex][permission.key]" (valueChange)="this.buildACLConfig()">
+                </app-bx-checkbox>
             </div>
         </div>
     </div>
