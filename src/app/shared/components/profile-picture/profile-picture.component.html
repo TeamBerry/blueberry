@@ -1,4 +1,4 @@
-<img src="{{ pictureLocation }}" class="profile-picture profile-picture-{{size}}">
+<img src="{{ pictureLocation }}" alt="Profile Picture" class="profile-picture profile-picture-{{size}}">
 <div *ngIf="isOnline !== undefined" class="presence-indicator-container">
     <span class="presence-indicator" [ngClass]="{'presence--online': isOnline}"></span>
 </div>
