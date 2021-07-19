@@ -1,24 +1,23 @@
 <div class="main-background">
     <div class="jumbotron d-flex flex-column align-items-center justify-content-center jumbotron-home jumbotron-welcome"
         *appAuth="false">
-        <h1 class="display-3">{{title}}</h1>
-        <p class="lead">Welcome to Berrybox, your app to create virtual rooms where you can watch YouTube videos with
-            anyone, at the same time.</p>
+        <h1 class="display-2">Watch YouTube together.</h1>
+        <p class="lead">Welcome to Berrybox, your app to watch YouTube with your friends.</p>
     </div>
 
     <section class="container-fluid featured home-section">
         <div class="free-text text-center">
-            <h1 class="display-3">Join a box</h1>
+            <h2 class="display-4">Join a Community</h2>
             <p class="lead">
                 Find other people who watch the videos you like or
                 <button class="btn btn-outline-primary" (click)="openJoinModal()">
-                    Join a box with an invite link
+                    Join with an invite link
                 </button>
             </p>
         </div>
         <div class="d-none d-lg-flex flex-column justify-content-center align-items-center"
             *ngIf="featuredBoxes.length > 0">
-            <h2 class="featured-title">Our Picks</h2>
+            <h3 class="featured-title">Our Picks</h3>
             <app-featured-boxes-carousel [boxes]="featuredBoxes"></app-featured-boxes-carousel>
         </div>
         <div class="featured home-section">
@@ -32,12 +31,12 @@
 
     <section class="home-section how-to-container featured featured-reverse">
         <div class="free-text text-center">
-            <h1 class="display-3">Watch YouTube together.</h1>
+            <h2 class="display-3">Making the magic work</h2>
         </div>
         <div class="row no-gutters">
             <div class="col-sm-12 col-md-6 col-lg-4">
                 <span class="glyphicon glyphicon-th-large"></span>
-                <h3 class="how-to-point">Create a box</h3>
+                <h3 class="how-to-point">Create a community</h3>
                 <p class="how-to-text">Enter a name and you're set. Share the unique link and your friends will be able
                     to enjoy the playlist with you.
                 </p>
@@ -60,7 +59,7 @@
 
     <section class="home-section container-fluid featured social-space">
         <div class="free-text">
-            <h1 class="display-4">Follow us</h1>
+            <h2 class="display-4">Follow us</h2>
             <p class="lead">And never miss anything!</p>
             <a href="https://twitter.com/search/?q=%23BerryboxApp" target="_blank"
                 class="btn btn-outline-default ml-2">Twitter</a>
