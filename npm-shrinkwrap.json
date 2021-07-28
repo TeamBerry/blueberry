@@ -5028,6 +5028,14 @@
                 "comment-parser": "1.1.6-beta.0",
                 "esquery": "^1.4.0",
                 "jsdoc-type-pratt-parser": "1.0.4"
+            },
+            "dependencies": {
+                "jsdoc-type-pratt-parser": {
+                    "version": "1.0.4",
+                    "resolved": "https://registry.npmjs.org/jsdoc-type-pratt-parser/-/jsdoc-type-pratt-parser-1.0.4.tgz",
+                    "integrity": "sha512-jzmW9gokeq9+bHPDR1nCeidMyFUikdZlbOhKzh9+/nJqB75XhpNKec1/UuxW5c4+O+Pi31Gc/dCboyfSm/pSpQ==",
+                    "dev": true
+                }
             }
         },
         "@eslint/eslintrc": {
@@ -9682,12 +9690,12 @@
             }
         },
         "eslint-plugin-jsdoc": {
-            "version": "35.4.5",
-            "resolved": "https://registry.npmjs.org/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-35.4.5.tgz",
-            "integrity": "sha512-CguI9uhIJoihCsW5WTUY9xX2w9EpovmmHCz/JzAevC7Fcop+wyJLDjzaBnTh2LlSJvG9qVfkr7OJ+9i4cv1Kzg==",
+            "version": "35.5.1",
+            "resolved": "https://registry.npmjs.org/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-35.5.1.tgz",
+            "integrity": "sha512-pPYPWtsykwVEue1tYEyoppBj4dgF7XicF67tLLLraY6RQYBq7qMKjUHji19+hfiTtYKKBD0YfeK8hgjPAE5viw==",
             "dev": true,
             "requires": {
-                "@es-joy/jsdoccomment": "^0.9.0-alpha.1",
+                "@es-joy/jsdoccomment": "0.9.0-alpha.1",
                 "comment-parser": "1.1.6-beta.0",
                 "debug": "^4.3.2",
                 "esquery": "^1.4.0",
@@ -11996,9 +12004,9 @@
             "optional": true
         },
         "jsdoc-type-pratt-parser": {
-            "version": "1.0.4",
-            "resolved": "https://registry.npmjs.org/jsdoc-type-pratt-parser/-/jsdoc-type-pratt-parser-1.0.4.tgz",
-            "integrity": "sha512-jzmW9gokeq9+bHPDR1nCeidMyFUikdZlbOhKzh9+/nJqB75XhpNKec1/UuxW5c4+O+Pi31Gc/dCboyfSm/pSpQ==",
+            "version": "1.1.1",
+            "resolved": "https://registry.npmjs.org/jsdoc-type-pratt-parser/-/jsdoc-type-pratt-parser-1.1.1.tgz",
+            "integrity": "sha512-uelRmpghNwPBuZScwgBG/OzodaFk5RbO5xaivBdsAY70icWfShwZ7PCMO0x1zSkOa8T1FzHThmrdoyg/0AwV5g==",
             "dev": true
         },
         "jsesc": {
