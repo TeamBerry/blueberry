@@ -34,12 +34,14 @@ import { ToggleButtonComponent } from './components/toggle-button/toggle-button.
 import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 import { IssueIndicatorComponent } from './components/issue-indicator/issue-indicator.component';
 import { InvitesManagerComponent } from './components/invites-manager/invites-manager.component';
+import { QrCodeModule } from 'ng-qrcode';
 
 @NgModule({
     imports: [
         CommonModule,
         NgbModule,
         AngularSvgIconModule,
+        QrCodeModule,
     ],
     declarations: [
         AuthDirective,
