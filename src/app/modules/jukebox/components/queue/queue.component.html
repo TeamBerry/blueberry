@@ -41,14 +41,11 @@
                         <div class="p-2 input-group">
                             <input type="text" class="form-control" placeholder="Type to search in the queue..."
                                 #filterInput>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-default" type="button"
-                                    (click)="resetFilter()">Reset</button>
-                            </div>
+                            <button class="btn btn-outline-default" type="button" (click)="resetFilter()">Reset</button>
                         </div>
                     </ng-template>
                 </div>
-                <div *ngIf="currentlyPlaying?.stateForcedWithBerries" class="d-flex align-items-center pl-2 pt-3">
+                <div *ngIf="currentlyPlaying?.stateForcedWithBerries" class="d-flex align-items-center ps-2 pt-3">
                     <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 30px;"
                         ngbTooltip="This video is playing thanks to the use of berries.">
                 </div>

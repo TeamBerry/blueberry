@@ -6,14 +6,14 @@
             class="card-img-top no-playing">
     </div>
     <div class="card-block p-2 d-flex align-items-center">
-        <div class="bb-box-picture mr-2">
+        <div class="bb-box-picture me-2">
             <app-profile-picture [fileName]="box.creator.settings.picture" [size]="'md'"></app-profile-picture>
         </div>
         <div class="d-flex flex-column" id="box-info-container">
-            <div class="d-flex flex-row justify-content-between align-items-center">
+            <div class="d-flex flex-row justify-content-between align-items-center pe-2">
                 <h2 class="card-name m-0">{{ box.name }}</h2>
                 <span ngbTooltip="Number of users currently in the box">
-                    <svg class="berrybox-svg mr-1" style="height: 1.5em;" xmlns="http://www.w3.org/2000/svg"
+                    <svg class="berrybox-svg me-1" style="height: 1.5em;" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 500 500">
                         <path class="berrybox-path"
                             d="M376,143.42a79.68,79.68,0,0,1-39.9,69.08,105.63,105.63,0,0,0-12.52-.74h-50a79.76,79.76,0,0,0-9.19-141.42A79.74,79.74,0,0,1,376,143.42Z" />
@@ -49,7 +49,7 @@
             </div>
         </div>
     </div>
-    <div class="box-actions p-2">
-        <button class="btn btn-default btn-block">Join</button>
+    <div class="box-actions p-2 d-grid">
+        <button class="btn btn-default">Join</button>
     </div>
 </div>

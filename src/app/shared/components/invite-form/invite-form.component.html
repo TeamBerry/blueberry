@@ -1,7 +1,6 @@
 <div class="modal-header">
     <h5 class="modal-title">Generate Invite</h5>
-    <button type="button" class="close" aria-label="close" (click)="activeModal.dismiss()">
-        <span aria-hidden="true">&times;</span>
+    <button type="button" class="btn-close" aria-label="close" (click)="activeModal.dismiss()">
     </button>
 </div>
 <div class="modal-body">
@@ -9,7 +8,7 @@
         <p>Generate an invite link so your friends can join your box easily. By default, your link will expire after
             <strong>15 minutes</strong>, but you can adjust this setting below:
         </p>
-        <fieldset class="form-group">
+        <fieldset class="py-2">
             <label for="expiration" class="col-form-label">Set invite to expire in:</label>
             <select name="expiration" id="" class="form-control" [(ngModel)]="expiration">
                 <option value="900">15 minutes</option>
@@ -19,15 +18,24 @@
                 <option value="3110400000">Never</option>
             </select>
         </fieldset>
-        <button type="submit" class="btn btn-primary btn-block">Generate invite</button>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Generate invite</button>
+        </div>
     </form>
     <div *ngIf="invite">
-        <div class="input-group">
-            <input type="text" class="form-control" id="name" name="name" [ngModel]="fullLink" #copyTarget>
-            <div class="input-group-append">
+        <p class="success-text">Your invite has been created!</p>
+        <div class="py-2">
+            <p class="mb-0">Copy this link:</p>
+            <div class="input-group">
+                <input type="text" class="form-control" id="name" name="name" [ngModel]="fullLink" #copyTarget>
                 <button class="btn btn-outline-primary" type="button" [ngxClipboard]="copyTarget">Copy</button>
             </div>
         </div>
-        <p class="help-text text-muted">You can now send this invite link to your friends.</p>
+        <div class="py-2">
+            <p class="mb-0">Or share this QR Code:</p>
+            <div class="d-flex align-items-center justify-content-center">
+                <qr-code [value]="fullLink" size="300"></qr-code>
+            </div>
+        </div>
     </div>
 </div>

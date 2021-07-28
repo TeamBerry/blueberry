@@ -8,7 +8,7 @@
                     <div class="d-flex">
                         <div class="col px-0">
                             <div class="d-flex align-items-center">
-                                <app-box-status-indicator [isOpen]="box?.open" class="mr-2"></app-box-status-indicator>
+                                <app-box-status-indicator [isOpen]="box?.open" class="me-2"></app-box-status-indicator>
                                 <p class="mb-0 box-name">{{ box?.name }}</p>
                             </div>
                             <div class="modes">
@@ -136,8 +136,8 @@
                     </div>
                 </div>
             </div>
-            <div class="px-2 pb-2">
-                <button class="btn btn-primary btn-block" (click)="openCreateModal()">
+            <div class="px-2 pb-2 d-grid">
+                <button class="btn btn-primary" (click)="openCreateModal()">
                     Create a box
                 </button>
             </div>
@@ -159,7 +159,7 @@
                     </div>
                 </div>
                 <div class="d-flex pt-1 h-100">
-                    <div class="col-4 pl-2 pr-1">
+                    <div class="col-4 ps-2 pe-1">
                         <div class="chat-space mb-2">
                             <div class="half-panel" id="chat-panel">
                                 <app-chat-tab class="fixed-tab" *ngIf="selectedBox" [boxToken]="selectedBox?._id"
@@ -179,7 +179,7 @@
                             [box]="selectedBox" [permissions]="permissions">
                         </app-queue>
                     </div>
-                    <div class="col-4 pl-1 pr-2">
+                    <div class="col-4 ps-1 pe-2">
                         <app-userlist *ngIf="selectedBox" [box]="selectedBox" [user]="user"
                             class="fixed-tab search-space" [permissions]="permissions">
                         </app-userlist>

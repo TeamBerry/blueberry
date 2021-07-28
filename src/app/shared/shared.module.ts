@@ -33,12 +33,15 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ToggleButtonComponent } from './components/toggle-button/toggle-button.component';
 import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 import { IssueIndicatorComponent } from './components/issue-indicator/issue-indicator.component';
+import { InvitesManagerComponent } from './components/invites-manager/invites-manager.component';
+import { QrCodeModule } from 'ng-qrcode';
 
 @NgModule({
     imports: [
         CommonModule,
         NgbModule,
         AngularSvgIconModule,
+        QrCodeModule,
     ],
     declarations: [
         AuthDirective,
@@ -65,6 +68,7 @@ import { IssueIndicatorComponent } from './components/issue-indicator/issue-indi
         ToggleButtonComponent,
         LoadingIndicatorComponent,
         IssueIndicatorComponent,
+        InvitesManagerComponent
     ],
     exports: [
         CommonModule,
@@ -94,7 +98,8 @@ import { IssueIndicatorComponent } from './components/issue-indicator/issue-indi
         YouTubeMiniatureDropzoneDirective,
         ToggleButtonComponent,
         LoadingIndicatorComponent,
-        IssueIndicatorComponent
+        IssueIndicatorComponent,
+        InvitesManagerComponent
     ],
     providers: [AuthDirective, ThemeService, UserService, YouTubeMiniatureDropzoneDirective],
     entryComponents: [
