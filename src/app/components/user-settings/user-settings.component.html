@@ -10,16 +10,15 @@
         </nav>
     </div>
     <div class="col ps-4 settings-tabs">
-        <div class="d-flex flex-row-reverse close-button-space">
-            <button type="button" class="close me-2" aria-label="close" (click)="closeSettings()">
-                <span aria-hidden="true">&times;</span>
+        <div class="d-flex flex-row-reverse align-items-center close-button-space">
+            <button type="button" class="btn-close me-2" aria-label="close" (click)="closeSettings()">
             </button>
         </div>
         <div class="col col-xl-7">
             <div id="account-tab" *ngIf="currentTab === 'account'">
                 <h3 class="tab-title">Account</h3>
                 <h5 class="section-title">Profile Picture</h5>
-                <div class="form-group">
+                <div class="py-2">
                     <div class="picture-edit-space d-flex">
                         <div class="col-3 text-center">
                             <img class="profile-picture profile-picture-lg" src="{{pictureLocation}}" alt="">
@@ -35,7 +34,7 @@
                     </div>
                 </div>
                 <h5 class="section-title">Details</h5>
-                <div class="form-group d-flex flex-row justify-content-between align-items-center">
+                <div class="py-2 d-flex flex-row justify-content-between align-items-center">
                     <div class="col-3 p-0">
                         <label for="mail" class="form-label">Name</label>
                     </div>
@@ -44,7 +43,7 @@
                         <p class="help-text text-muted">You cannot change your username.</p>
                     </div>
                 </div>
-                <div class="form-group d-flex flex-row justify-content-between align-items-center">
+                <div class="py-2 d-flex flex-row justify-content-between align-items-center">
                     <div class="col-3 p-0">
                         <label for="mail" class="form-label">Mail address</label>
                     </div>
@@ -82,7 +81,7 @@
             <div id="display-tab" *ngIf="currentTab === 'display'">
                 <h3 class="tab-title">Display</h3>
                 <h5 class="section-title">Theme</h5>
-                <div class="form-group d-flex g-0">
+                <div class="py-2 d-flex g-0">
                     <div class="col-10">
                         <label for="theme" class="form-label">Dark Theme</label>
                         <p class="help-text text-muted">Toggles between light colors and dark colors for the overall
@@ -94,7 +93,7 @@
                     </div>
                 </div>
                 <h5 class="section-title">Customized Colors</h5>
-                <div class="form-group" *ngIf="!session.settings.isColorblind">
+                <div class="py-2" *ngIf="!session.settings.isColorblind">
                     <label for="color" class="form-label">Chat Color</label>
                     <p class="help-text text-muted">Choose a color for your username in chat. Be careful, some colors
                         might be <strong>difficult to read</strong> in light or dark themes and for users with
@@ -135,7 +134,7 @@
                             [disabled]="colorError">Save Color</button>
                     </div>
                 </div>
-                <div class="form-group d-flex g-0">
+                <div class="py-2 d-flex g-0">
                     <div class="col-10">
                         <label for="colorblind" class="form-label">Enable Color Blindness Display</label>
                         <p class="help-text text-muted">Removes all custom user colors for your chat and resets your own
@@ -155,7 +154,7 @@
                     reset, you will be disconnected.</p>
                 <div class="mt-2">
                     <form [formGroup]="passwordResetForm" (ngSubmit)="resetPassword()">
-                        <div class="form-group">
+                        <div class="py-2">
                             <div class="d-flex align-items-center">
                                 <div class="col-3">
                                     <label for="password" class="form-label">Current password</label>
@@ -172,7 +171,7 @@
                                     *ngIf="currentPassword.errors['minlength']"></app-bx-alert>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="py-2">
                             <div class="d-flex align-items-center">
                                 <div class="col-3">
                                     <label for="password" class="form-label">New password</label>
@@ -189,7 +188,7 @@
                                     *ngIf="newPassword.errors['minlength']"></app-bx-alert>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="py-2">
                             <div class="d-flex align-items-center">
                                 <div class="col-3">
                                     <label for="password" class="form-label">New password verification</label>

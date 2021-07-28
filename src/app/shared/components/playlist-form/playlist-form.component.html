@@ -1,12 +1,11 @@
 <div class="modal-header">
     <h5 class="modal-title">{{ title }}</h5>
-    <button type="button" class="close" aria-label="close" (click)="activeModal.dismiss()">
-        <span aria-hidden="true">&times;</span>
+    <button type="button" class="btn-close" aria-label="close" (click)="activeModal.dismiss()">
     </button>
 </div>
 <div class="modal-body">
     <form (ngSubmit)="onSubmit()" #playlistForm="ngForm">
-        <div class="form-group">
+        <div class="py-2">
             <label for="name" class="col-form-label">Title <app-bx-required-input-indicator>
                 </app-bx-required-input-indicator></label>
             <input type="text" class="form-control" id="name" name="name" [(ngModel)]="playlist.name">
@@ -15,7 +14,7 @@
             </app-bx-alert>
         </div>
 
-        <div class="form-group">
+        <div class="py-2">
             <label for="isPrivate" class="col-form-label">Privacy</label>
             <div class="d-flex g-0 text-center align-items-center">
                 <div class="col-3">

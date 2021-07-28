@@ -9,14 +9,14 @@
 <div class="modal-body">
     <div *ngIf="state === 'login'">
         <form [formGroup]="loginForm" (ngSubmit)="login()">
-            <div class="form-group">
+            <div class="py-2">
                 <label for="mail" class="form-label">Email address</label>
                 <input type="email" formControlName="mail" class="form-control input-lg" id="mail"
                     placeholder="Mail address" required>
                 <app-bx-alert [options]="{'type': 'danger', 'icon': false, 'message': 'The mail address is required'}"
                     *ngIf="mail.invalid && (mail.dirty || mail.touched)"></app-bx-alert>
             </div>
-            <div class="form-group">
+            <div class="py-2">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" formControlName="password" class="form-control input-lg" name="password"
                     placeholder="Password" required>
@@ -25,10 +25,10 @@
                     *ngIf="password.invalid && (password.dirty || password.touched)"></app-bx-alert>
             </div>
             <div class="alert alert-danger text-center" *ngIf="errorMessage">{{ errorMessage }}</div>
-            <div class="form-group align-center d-grid">
+            <div class="py-2 align-center d-grid">
                 <button type="submit" class="btn btn-default" [disabled]="!loginForm.valid">Log in</button>
             </div>
-            <div class="form-group">
+            <div class="py-2">
                 <a href="#" (click)="state = 'reset'">Forgot password?</a>
             </div>
         </form>
@@ -37,16 +37,16 @@
         <div *ngIf="!isResetDone">
             <p>Enter your email address to receive a reset link.</p>
             <form [formGroup]="resetForm" (ngSubmit)="resetPassword()">
-                <div class="form-group">
+                <div class="py-2">
                     <label for="mail" class="form-label">Email address</label>
                     <input type="email" formControlName="mail" class="form-control input-lg" placeholder="Mail address"
                         required autofocus>
                 </div>
-                <div class="form-group d-grid">
+                <div class="py-2 d-grid">
                     <button type="submit" [disabled]="!resetForm.valid" class="btn btn-default">Get my Reset
                         link</button>
                 </div>
-                <div class="form-group">
+                <div class="py-2">
                     <a href="#" (click)="state = 'login'">Go back to the login</a>
                 </div>
             </form>
