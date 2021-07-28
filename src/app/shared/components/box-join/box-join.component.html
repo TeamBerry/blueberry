@@ -15,8 +15,8 @@
             <p class="help-text text-muted">berrybox.tv/invite/Z0dfeDa4</p>
             <p class="help-text text-muted">berrybox.tv/i/Z0dfeDa4</p>
         </div>
-        <div class="box-actions">
-            <button type="submit" class="btn btn-default btn-block" [disabled]="!joinForm.valid">Join</button>
+        <div class="box-actions d-grid">
+            <button type="submit" class="btn btn-default" [disabled]="!joinForm.valid">Join</button>
         </div>
     </form>
     <app-bx-alert *ngIf="error" [options]="{'type': 'danger', 'message': error}"></app-bx-alert>

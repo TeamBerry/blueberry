@@ -32,7 +32,7 @@
                             <div class="user-name-container">
                                 <app-profile-picture style="height: 50px;" [fileName]="member.settings.picture"
                                     [size]="'md'" [isOnline]="member.origin !== null"></app-profile-picture>
-                                <span class="ml-3 user-name">{{ member.name }}</span>
+                                <span class="ms-3 user-name">{{ member.name }}</span>
                             </div>
                             <app-role-selector *ngIf="member._id !== user._id
                             && section.context && section.actionsDisplayed" [permissions]="permissions"

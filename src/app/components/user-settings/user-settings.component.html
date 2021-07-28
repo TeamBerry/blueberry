@@ -11,7 +11,7 @@
     </div>
     <div class="col settings-tabs">
         <div class="d-flex flex-row-reverse close-button-space">
-            <button type="button" class="close mr-2" aria-label="close" (click)="closeSettings()">
+            <button type="button" class="close me-2" aria-label="close" (click)="closeSettings()">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -25,7 +25,7 @@
                             <img class="profile-picture profile-picture-lg" src="{{pictureLocation}}" alt="">
                         </div>
                         <div class="col m-auto">
-                            <button type="button" class="btn btn-primary mr-3" (click)="openPictureUploader()">Change
+                            <button type="button" class="btn btn-primary me-3" (click)="openPictureUploader()">Change
                                 your profile picture</button>
                             <button *ngIf="session.settings.picture !== 'default-picture'" type="button"
                                 class="btn btn-primary" (click)="openPictureDeleter()">Delete your
@@ -82,7 +82,7 @@
             <div id="display-tab" *ngIf="currentTab === 'display'">
                 <h3 class="tab-title">Display</h3>
                 <h5 class="section-title">Theme</h5>
-                <div class="form-group d-flex no-gutters">
+                <div class="form-group d-flex g-0">
                     <div class="col-10">
                         <label for="theme" class="form-label">Dark Theme</label>
                         <p class="help-text text-muted">Toggles between light colors and dark colors for the overall
@@ -101,7 +101,7 @@
                         <strong>color blindness</strong>.
                     </p>
                     <div class="d-flex flex-row mt-2">
-                        <div class="mr-4">
+                        <div class="me-4">
                             <span [style.background]="color" [cpToggle]="true" [cpDialogDisplay]="'inline'"
                                 [cpAlphaChannel]="'disabled'" [cpCancelButton]="false" [(colorPicker)]="color"
                                 [cpOutputFormat]="'hex'" (colorPickerChange)="onColorChange($event)"></span>
@@ -130,10 +130,12 @@
                             </app-bx-alert>
                         </div>
                     </div>
-                    <button class="btn btn-outline-primary btn-block mt-3" (click)="saveChatColor()"
-                        [disabled]="colorError">Save Color</button>
+                    <div class="d-grid">
+                        <button class="btn btn-outline-primary mt-3" (click)="saveChatColor()"
+                            [disabled]="colorError">Save Color</button>
+                    </div>
                 </div>
-                <div class="form-group d-flex no-gutters">
+                <div class="form-group d-flex g-0">
                     <div class="col-10">
                         <label for="colorblind" class="form-label">Enable Color Blindness Display</label>
                         <p class="help-text text-muted">Removes all custom user colors for your chat and resets your own
@@ -210,8 +212,10 @@
                         </div>
                         <app-bx-alert [options]="{'type': 'danger', 'message': errorMessage}" *ngIf="errorMessage">
                         </app-bx-alert>
-                        <button type="submit" class="btn btn-block btn-default"
-                            [disabled]="!passwordResetForm.valid">Reset my password</button>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-default" [disabled]="!passwordResetForm.valid">Reset my
+                                password</button>
+                        </div>
                     </form>
                 </div>
             </div>

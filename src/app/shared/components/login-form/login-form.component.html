@@ -25,8 +25,8 @@
                     *ngIf="password.invalid && (password.dirty || password.touched)"></app-bx-alert>
             </div>
             <div class="alert alert-danger text-center" *ngIf="errorMessage">{{ errorMessage }}</div>
-            <div class="form-group align-center">
-                <button type="submit" class="btn btn-block btn-default" [disabled]="!loginForm.valid">Log in</button>
+            <div class="form-group align-center d-grid">
+                <button type="submit" class="btn btn-default" [disabled]="!loginForm.valid">Log in</button>
             </div>
             <div class="form-group">
                 <a href="#" (click)="state = 'reset'">Forgot password?</a>
@@ -42,8 +42,8 @@
                     <input type="email" formControlName="mail" class="form-control input-lg" placeholder="Mail address"
                         required autofocus>
                 </div>
-                <div class="form-group">
-                    <button type="submit" [disabled]="!resetForm.valid" class="btn btn-block btn-default">Get my Reset
+                <div class="form-group d-grid">
+                    <button type="submit" [disabled]="!resetForm.valid" class="btn btn-default">Get my Reset
                         link</button>
                 </div>
                 <div class="form-group">

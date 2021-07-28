@@ -72,8 +72,8 @@
             </div>
         </div>
         <app-bx-alert [options]="{'type': 'danger', 'message': errorMessage}" *ngIf="errorMessage"></app-bx-alert>
-        <div class="form-group align-center">
-            <button type="submit" class="btn btn-block btn-default" [disabled]="!signupForm.valid">Sign up</button>
+        <div class="form-group align-center d-grid">
+            <button type="submit" class="btn btn-default" [disabled]="!signupForm.valid">Sign up</button>
         </div>
     </form>
 </div>

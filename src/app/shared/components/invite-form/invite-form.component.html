@@ -19,7 +19,9 @@
                 <option value="3110400000">Never</option>
             </select>
         </fieldset>
-        <button type="submit" class="btn btn-primary btn-block">Generate invite</button>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Generate invite</button>
+        </div>
     </form>
     <div *ngIf="invite">
         <p class="success-text">Your invite has been created!</p>

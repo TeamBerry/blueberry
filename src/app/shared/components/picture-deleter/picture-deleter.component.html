@@ -22,8 +22,8 @@
         <!-- Default picture -->
         <img class="profile-picture profile-picture-xl profile-picture-bordered" src="{{defaultPicture}}" alt="">
     </div>
-    <div *ngIf="!success; else successMessage">
-        <button type="button" class="btn btn-danger btn-block" (click)="deletePicture()">Confirm deletion</button>
+    <div *ngIf="!success; else successMessage" class="d-grid">
+        <button type="button" class="btn btn-danger" (click)="deletePicture()">Confirm deletion</button>
     </div>
     <ng-template #successMessage>
         <app-bx-alert [options]="{'type': 'success', 'message': 'Your profile picture has been reset.'}"></app-bx-alert>
