@@ -16,14 +16,14 @@ import { UserService } from 'app/shared/services/user.service';
     providers: [BoxService]
 })
 export class BoxFormComponent implements OnInit {
-    @Input() title;
+    @Input() title: string;
     @Input() box: Box;
 
     tabSetOptions = [
-        { title: `Details`, value: 'details' },
-        { title: 'Moderation', value: 'moderation' }
+        { title: `General`, value: 'details' },
+        { title: 'Moderation', value: 'moderation' },
     ]
-    displayTab: 'details' | 'moderation' = 'details';
+    displayTab: 'details' | 'moderation' | 'invites' = 'details';
 
     public session: AuthSubject = AuthService.getAuthSubject();
 
@@ -173,6 +173,7 @@ export class BoxFormComponent implements OnInit {
                 }
             )
         } else {
+            this.tabSetOptions.push({ title: 'Invites', value: 'invites' });
             this.ready = true;
         }
     }

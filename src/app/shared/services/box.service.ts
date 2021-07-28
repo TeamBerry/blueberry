@@ -6,7 +6,7 @@ import { environment } from './../../../environments/environment';
 import { Box } from './../models/box.model';
 import { UserPlaylist } from '../models/user-playlist.model';
 import { ActiveSubscriber } from '@teamberry/muscadine';
-import { Invite } from '../models/invite.model';
+import { Invite, PopulatedInvite } from '../models/invite.model';
 
 @Injectable()
 export class BoxService {
@@ -111,6 +111,14 @@ export class BoxService {
 
     matchInvite(link: string): Observable<Invite> {
         return this.http.get<Invite>(`${environment.araza}/invites/${link}`);
+    }
+
+    public invites(boxToken: string): Observable<Array<PopulatedInvite>> {
+        return this.http.get<Array<PopulatedInvite>>(`${environment.araza}/boxes/${boxToken}/invites`)
+    }
+
+    public revokeInvite(boxToken: string, id: string) {
+        return this.http.delete(`${environment.araza}/boxes/${boxToken}/invites/${id}`)
     }
 
     /**
