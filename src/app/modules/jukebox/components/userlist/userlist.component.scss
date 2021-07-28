@@ -9,6 +9,15 @@
     @include can-search();
 }
 
+.user-filters {
+    :first-child {
+        flex: 5;
+    }
+    :last-child {
+        flex: 1;
+    }
+}
+
 .role-title-container {
     display: flex;
     align-items: center;

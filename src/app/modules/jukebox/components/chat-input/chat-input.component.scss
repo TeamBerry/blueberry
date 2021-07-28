@@ -1,10 +1,4 @@
 @import './../../../../../imports.scss';
-.chat-actions {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-}
-
 // Input
 #input-space {
     width: 100%;
@@ -13,7 +7,6 @@
     padding: 5px;
     @include lg {
         padding: 10px;
-        height: 106px;
     }
 }
 
@@ -27,7 +20,7 @@
         border-right: none !important;
         resize: none;
     }
-    .input-group-append {
+    .emoji-button {
         background-color: rgba(0, 0, 0, 0.15);
         border-top-right-radius: 0.3rem;
         border-bottom-right-radius: 0.3rem;
@@ -43,29 +36,11 @@
     }
 }
 
-.input-mode {
-    color: white;
-    padding: 3px 10px;
-    font-family: 'Nunito', sans-serif;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 40px;
-}
-
-span#span-default-mode {
-    background-color: $master-color;
-}
-
 .emoji-picker-container.dropdown-menu {
     box-shadow: none;
     padding: 0;
     width: 343px;
     border-radius: 20px;
-}
-
-.fixed-tab {
-    display: flex;
-    height: inherit;
-    flex-direction: column;
 }
 
 #emoji-typeahead-title {

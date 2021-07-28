@@ -15,8 +15,7 @@
                 <input type="text" class="form-control chatbox no-border no-focus" placeholder="Type to chat"
                     [(ngModel)]="contents" ngbDropdownAnchor ngbDropdownToggle (click)="watchContents()"
                     (keydown.enter)="post($event)" (keydown.control.enter)="post($event)" #chatbox>
-                <div class="input-group-append no-border" ngbTooltip="Use Emojis" ngbDropdown
-                    #emojiPicker="ngbDropdown">
+                <div class="emoji-button no-border" ngbTooltip="Use Emojis" ngbDropdown #emojiPicker="ngbDropdown">
                     <div ngbDropdownMenu class="emoji-picker-container">
                         <emoji-mart class="emoji-picker" [set]="'google'" [color]="'#009AEB'"
                             (emojiClick)="addEmoji($event)"></emoji-mart>
@@ -26,9 +25,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="chat-actions g-0">
-        <button class="btn btn-primary d-none d-lg-block" (click)="post($event)">Send
-            message</button>
     </div>
 </div>

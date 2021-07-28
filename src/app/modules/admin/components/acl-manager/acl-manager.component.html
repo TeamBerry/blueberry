@@ -5,7 +5,7 @@
             <p class="help-text text-muted text-center">You can adjust a template of the actions available to the roles
                 of users in your boxes. When creating a box, you will be able to customize those further.</p>
             <app-acl-form [(config)]="userACLConfig" class="acl-configurator" *ngIf="this.userACLConfig"></app-acl-form>
-            <div class="text-right">
+            <div class="text-end">
                 <button class="btn btn-outline-primary" (click)="saveACL()">Update Template</button>
             </div>
         </div>
