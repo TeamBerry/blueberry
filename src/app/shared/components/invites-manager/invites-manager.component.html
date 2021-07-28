@@ -2,8 +2,11 @@
     <div *ngIf="!isLoading; else loading" class="d-flex flex-column">
         <div *ngFor="let invite of invites" class="d-flex p-3 my-1 invite-item">
             <div class="d-flex flex-column invite-info">
-                <div class="d-flex flex-row">
+                <div class="d-flex flex-column">
                     <p class=" mb-0 invite-link">{{ invite.link }}</p>
+                    <p class="mb-0 d-xs-block d-lg-none">Expiry:
+                        <span class="invite-expiry">{{ invite.expiresAt | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+                    </p>
                 </div>
                 <div class="d-flex flex-row align-items-center">
                     <app-profile-picture [filename]="invite.userToken.settings.picture" [size]="'xs'">
@@ -11,7 +14,7 @@
                     <span class="ml-2">{{ invite.userToken.name }}</span>
                 </div>
             </div>
-            <div class="d-flex align-items-center invite-info">
+            <div class="align-items-center invite-info d-none d-lg-flex">
                 <p class="mb-0">Expiry:
                     <span class="invite-expiry">{{ invite.expiresAt | date:'dd/MM/yyyy HH:mm:ss'}}</span>
                 </p>
