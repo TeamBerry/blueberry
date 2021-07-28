@@ -301,6 +301,7 @@ button>svg {
     a {
         color: $master-color;
         width: 100%;
+        text-decoration: none;
         &:hover {
             text-decoration: underline;
         }
