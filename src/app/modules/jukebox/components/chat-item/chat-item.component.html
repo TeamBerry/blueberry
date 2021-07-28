@@ -4,8 +4,8 @@
     <span class="message-time" ngbTooltip="{{ message.time }}" container="body">{{ message.time | date: 'HH:mm'
         }}</span>
     <span *ngIf="message.author">
-        <img *ngIf="message.author.badge" src="{{ message.author.badge }}" alt="" class="user-badge ml-1">
-        <app-chat-badge [author]="message.author" class="ml-1"></app-chat-badge>
+        <img *ngIf="message.author.badge" src="{{ message.author.badge }}" alt="" class="user-badge ms-1">
+        <app-chat-badge [author]="message.author" class="ms-1"></app-chat-badge>
         <span class="message-author" [ngClass]="{'message-author-classic': session.settings.isColorblind}"
             [style.color]="message.author.color" [hidden]="message.source !== 'human'">{{ message.author.name }}</span>
     </span>

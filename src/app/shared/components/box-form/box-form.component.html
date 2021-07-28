@@ -1,7 +1,6 @@
 <div class="modal-header">
     <h5 class="modal-title">{{ title }}</h5>
-    <button type="button" class="close" aria-label="close" (click)="activeModal.dismiss()">
-        <span aria-hidden="true">&times;</span>
+    <button type="button" class="btn-close" aria-label="close" (click)="activeModal.dismiss()">
     </button>
 </div>
 <div class="modal-body">
@@ -13,7 +12,7 @@
                     <div class="details-space">
                         <section>
                             <h4>Information</h4>
-                            <div class="form-group">
+                            <div class="py-2">
                                 <label class="col-form-label" for="name">Title <app-bx-required-input-indicator>
                                     </app-bx-required-input-indicator></label>
                                 <input type="text" class="form-control" id="name" name="name" [(ngModel)]="box.name"
@@ -24,7 +23,7 @@
                                 </app-bx-alert>
                             </div>
 
-                            <div class="form-group">
+                            <div class="py-2">
                                 <label class="col-form-label" for="description">Description</label>
                                 <p class="help-text text-muted">Describe your box and its community! Will be shown if
                                     your
@@ -33,7 +32,7 @@
                                     [(ngModel)]="box.description"></textarea>
                             </div>
 
-                            <div class="form-group">
+                            <div class="py-2">
                                 <label class="col-form-label" for="lang">Main spoken language</label>
                                 <p class="help-text text-muted">Can help users find a community. Don't worry, everyone
                                     will
@@ -43,7 +42,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group d-flex no-gutters">
+                            <div class="py-2 d-flex g-0">
                                 <div class="col-10">
                                     <div class="d-flex align-items-center">
                                         <app-bx-chip [options]="{'type': 'lock'}" [display]="'icon'"></app-bx-chip>
@@ -62,7 +61,7 @@
                         </section>
                         <section>
                             <h4>Settings</h4>
-                            <div class="form-group d-flex no-gutters">
+                            <div class="py-2 d-flex g-0">
                                 <div class="col-10">
                                     <div class="d-flex align-items-center">
                                         <app-bx-chip [options]="{'type': 'random'}" [display]="'icon'"></app-bx-chip>
@@ -77,7 +76,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group d-flex no-gutters">
+                            <div class="py-2 d-flex g-0">
                                 <div class="col-10">
                                     <div class="d-flex align-items-center">
                                         <app-bx-chip [options]="{'type': 'loop'}" [display]="'icon'">
@@ -94,7 +93,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group d-flex no-gutters">
+                            <div class="py-2 d-flex g-0">
                                 <div class="col-10">
                                     <div class="d-flex align-items-center">
                                         <app-bx-chip [options]="{'type': 'coin-enabled'}" [display]="'icon'">
@@ -112,7 +111,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group d-flex no-gutters">
+                            <div class="py-2 d-flex g-0">
                                 <div class="col-8">
                                     <div class="d-flex align-items-center">
                                         <app-bx-chip [options]="{'type': 'duration-limit'}" [display]="'icon'">
@@ -130,16 +129,16 @@
                                         <input type="number" class="form-control" id="durationRestriction"
                                             name="durationRestriction" min="0"
                                             [(ngModel)]="box.options.videoMaxDurationLimit">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">Minutes</span>
-                                        </div>
+                                        <span class="input-group-text">Minutes</span>
                                     </div>
                                 </div>
                             </div>
                         </section>
                     </div>
-                    <button type="submit" class="btn btn-default btn-block" [disabled]="!boxForm.valid">{{ context
-                        }}</button>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-default" [disabled]="!boxForm.valid">{{ context
+                            }}</button>
+                    </div>
                 </div>
             </div>
             <div [hidden]="displayTab!=='moderation'">
@@ -147,8 +146,10 @@
                 <p class="help-text text-muted text-center">The modifications you do here will only impact this box.
                     They will not modify your template. They will not modify your other boxes.</p>
                 <app-acl-form [(config)]="box.acl"></app-acl-form>
-                <button type="submit" class="btn btn-default btn-block" [disabled]="!boxForm.valid">{{ context
-                    }}</button>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-default" [disabled]="!boxForm.valid">{{ context
+                        }}</button>
+                </div>
             </div>
         </form>
         <div *ngIf="context === 'Edit'">

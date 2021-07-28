@@ -1,4 +1,4 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center g-0">
     <h2 class="admin-tab-title">Playlists</h2>
     <div class="d-flex playlist-manager">
         <div class="d-flex playlist-space col-9 px-0">
@@ -67,8 +67,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="px-2 pb-2">
-                    <button class="btn btn-primary btn-block" (click)="openCreateModal()">
+                <div class="px-2 pb-2 d-grid">
+                    <button class="btn btn-primary" (click)="openCreateModal()">
                         Create a playlist
                     </button>
                 </div>
@@ -97,10 +97,8 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Type to search on YouTube..."
                             [(ngModel)]="searchValue" name="searchCriterion">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-default" type="submit"
-                                [disabled]="canSearch === false">Search</button>
-                        </div>
+                        <button class="btn btn-outline-default" type="submit"
+                            [disabled]="canSearch === false">Search</button>
                     </div>
                 </form>
             </div>

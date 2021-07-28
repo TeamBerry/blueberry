@@ -18,7 +18,7 @@
     <div *ngFor="let role of roles; index as roleIndex">
         <div class="d-flex align-items-center pt-2">
             <img *ngIf="role !== 'simple'" src="https://role-badges.s3-eu-west-1.amazonaws.com/{{ role }}-badge.png"
-                class="role-badge mr-1" />
+                class="role-badge me-1" />
             <span class="role-name">{{(role !== 'simple') ? role : 'Community Members'}}</span>
         </div>
         <div *ngFor="let section of sections" class="my-3">
@@ -30,7 +30,7 @@
                         <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 20px;"
                             *ngIf="permission.withBerries"
                             ngbTooltip="If disabled, this action can still be executed with Berries. You can disable Berries when creating a box."
-                            class="mr-1">
+                            class="me-1">
                         <span class="permission-name">{{ permission.name }}</span>
                     </div>
                     <span class="help-text text-muted" *ngIf="permission.explanation">{{ permission.explanation
@@ -61,7 +61,7 @@
                     <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 20px;"
                         *ngIf="permission.withBerries"
                         ngbTooltip="If disabled, this action can still be executed with Berries. You can disable Berries when creating a box."
-                        class="ml-3">
+                        class="ms-3">
                 </div>
                 <p class="help-text text-muted">{{ permission.explanation }}</p>
             </td>
