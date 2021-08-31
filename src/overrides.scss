@@ -5,6 +5,9 @@
 .btn {
     cursor: pointer;
     font-family: 'Nunito', sans-serif;
+    &:focus {
+        box-shadow: none;
+    }
 }
 
 .btn-primary {
@@ -100,22 +103,6 @@
     &:hover {
         background-color: $danger-color;
         color: white;
-    }
-}
-
-.btn-queue {
-    color: var(--text-main-color);
-    background-color: rgba(black, 0.2);
-    &:hover {
-        background-color: rgba(black, 0.3);
-    }
-}
-
-.btn-berries {
-    color: var(--text-main-color);
-    border: 1px solid $berry-color;
-    &:hover {
-        background-color: rgba($berry-color, 0.8);
     }
 }
 

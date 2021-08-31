@@ -7,14 +7,15 @@ export interface ButtonOptions {
      * @type {('play' | 'replay' | 'cancel' | 'skip')}
      * @memberof ButtonOptions
      */
-    type: 'play' | 'replay' | 'cancel' | 'skip' | 'addToLibrary' | 'forceNext' | 'forcePlay' | 'inviteUser' | 'settings' | 'resolve',
+    type: 'play' | 'replay' | 'cancel' | 'skip' | 'addToLibrary' | 'forceNext' | 'forcePlay' | 'inviteUser' | 'settings'
+    | 'resolve' | 'menu',
     /**
      * Context of the button. Will affect its display
      *
      * @type {('primary' | 'secondary' | 'default' | 'warning' | 'default')}
      * @memberof ButtonOptions
      */
-    context?: 'primary' | 'secondary' | 'danger' | 'warning' | 'success' | 'default' | 'queue' | 'berries',
+    context?: 'primary' | 'secondary' | 'danger' | 'warning' | 'success' | 'default' | 'queue',
     /**
      * Button text. Will default to the type if not specified
      *
@@ -51,7 +52,7 @@ export class BxButtonComponent implements OnInit {
         this.computedOptions.context = this.options.context || 'default'
         this.computedOptions.type = this.options.type
         this.computedOptions.text = this.options.text || this.options.type
-        this.computedOptions.textDisplay = this.options.textDisplay || 'button'
+        this.computedOptions.textDisplay = this.options.textDisplay || undefined
 
         this.buttonText = this.buildText(this.computedOptions.text)
     }

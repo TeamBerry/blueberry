@@ -1,4 +1,14 @@
 @import './../../../../imports.scss';
+.btn-queue {
+    color: var(--text-main-color);
+    &:hover {
+        background-color: rgba(black, 0.2);
+    }
+    &:active {
+        background-color: rgba(black, 0.3);
+    }
+}
+
 .btn-icon {
     padding: 0.25em;
     border-width: 1px;
