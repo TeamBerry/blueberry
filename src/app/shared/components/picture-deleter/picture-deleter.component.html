@@ -1,7 +1,7 @@
 <div class="modal-header">
     <h5>Delete your profile picture</h5>
-    <button type="button" class="btn-close" aria-label="close" (click)="activeModal.dismiss()">
-    </button>
+    <app-bx-button [options]="{'type': 'close', 'context': 'queue'}" (click)="activeModal.dismiss()" aria-label="close">
+    </app-bx-button>
 </div>
 <div class="modal-body">
     <p class="text-center">Your profile picture will be reset to the default picture. This operation cannot be undone,

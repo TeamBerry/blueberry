@@ -31,10 +31,6 @@
     @include can-search();
 }
 
-.video-item {
-    border-bottom: 1px solid var(--video-separator-color);
-}
-
 .queue-details {
     background-color: var(--background-main-color);
 }

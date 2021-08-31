@@ -8,7 +8,7 @@ export interface ButtonOptions {
      * @memberof ButtonOptions
      */
     type: 'play' | 'replay' | 'cancel' | 'skip' | 'addToLibrary' | 'forceNext' | 'forcePlay' | 'inviteUser' | 'settings'
-    | 'resolve' | 'menu',
+    | 'resolve' | 'menu' | 'close',
     /**
      * Context of the button. Will affect its display
      *

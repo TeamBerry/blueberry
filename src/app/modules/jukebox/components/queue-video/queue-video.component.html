@@ -1,4 +1,4 @@
-<div class="row playlist-entry g-0 video px-2 py-1"
+<div class="row playlist-entry g-0 video p-2"
     [ngClass]="{'force-next': item.setToNext, 'playing': item.startTime !== null && item.endTime === null}">
     <div *ngIf="item.setToNext" class="d-flex align-items-center">
         <img *ngIf="item?.stateForcedWithBerries" src="../../../../../assets/images/icons/berry-coin-icon.svg" alt=""

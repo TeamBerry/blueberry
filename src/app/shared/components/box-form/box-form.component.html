@@ -1,7 +1,7 @@
 <div class="modal-header">
     <h5 class="modal-title">{{ title }}</h5>
-    <button type="button" class="btn-close" aria-label="close" (click)="activeModal.dismiss()">
-    </button>
+    <app-bx-button [options]="{'type': 'close', 'context': 'queue'}" (click)="activeModal.dismiss()" aria-label="close">
+    </app-bx-button>
 </div>
 <div class="modal-body">
     <app-bx-tabset [options]="tabSetOptions" (clickedOption)="displayTab = $event"></app-bx-tabset>

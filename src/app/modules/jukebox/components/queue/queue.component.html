@@ -66,35 +66,28 @@
                     <div class="lists" [ngClass]="{'is-searching': filterValue !== ''}">
                         <div *ngIf="!box.options.loop">
                             <div *ngIf="displayTab === 'upcoming'">
-                                <div
-                                    *ngFor="let entry of upcomingVideos | filter:filterValue:['video.name', 'video.link', 'submitted_by.name']; let i = index">
-                                    <div class="video-item">
-                                        <app-queue-video [item]="entry" [priority]="priorityVideos.indexOf(entry) + 1"
-                                            [box]="box" [permissions]="permissions"
-                                            (order)="handlePlaylistOrder($event)">
-                                        </app-queue-video>
-                                    </div>
-                                </div>
-                            </div>
-                            <div *ngIf="displayTab === 'played'">
-                                <div
-                                    *ngFor="let entry of playedVideos | filter:filterValue:['video.name', 'video.link', 'submitted_by.name']; let i = index">
-                                    <div class="video-item">
-                                        <app-queue-video [item]="entry" [box]="box" [permissions]="permissions"
-                                            (order)="handlePlaylistOrder($event)">
-                                        </app-queue-video>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div *ngIf="box.options.loop">
-                            <div
-                                *ngFor="let entry of upcomingVideos | filter:filterValue:['video.name', 'video.link', 'submitted_by.name']; let i = index">
-                                <div class="video-item">
+                                <div *ngFor="let entry of upcomingVideos | filter:filterValue:['video.name', 'video.link', 'submitted_by.name']; let i = index"
+                                    class="video-item">
                                     <app-queue-video [item]="entry" [priority]="priorityVideos.indexOf(entry) + 1"
                                         [box]="box" [permissions]="permissions" (order)="handlePlaylistOrder($event)">
                                     </app-queue-video>
                                 </div>
+                            </div>
+                            <div *ngIf="displayTab === 'played'">
+                                <div *ngFor="let entry of playedVideos | filter:filterValue:['video.name', 'video.link', 'submitted_by.name']; let i = index"
+                                    class="video-item">
+                                    <app-queue-video [item]="entry" [box]="box" [permissions]="permissions"
+                                        (order)="handlePlaylistOrder($event)">
+                                    </app-queue-video>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="box.options.loop">
+                            <div *ngFor="let entry of upcomingVideos | filter:filterValue:['video.name', 'video.link', 'submitted_by.name']; let i = index"
+                                class="video-item">
+                                <app-queue-video [item]="entry" [priority]="priorityVideos.indexOf(entry) + 1"
+                                    [box]="box" [permissions]="permissions" (order)="handlePlaylistOrder($event)">
+                                </app-queue-video>
                             </div>
                         </div>
                         <div class="text-center mt-3">
