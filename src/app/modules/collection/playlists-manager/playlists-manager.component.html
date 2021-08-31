@@ -75,15 +75,9 @@
             </div>
             <div class="col-9 playlist-videos px-0"
                 *ngIf="selectedPlaylist && selectedPlaylist.videos.length > 0; else noVideos">
-                <div *ngFor="let video of selectedPlaylist.videos" class="playlist-video-item py-3 d-flex">
-                    <app-video-entry class="col-10 p-0" [video]="video" [options]="{'none': true}">
-                    </app-video-entry>
-                    <div class="col-2 d-flex align-items-center justify-content-center">
-                        <app-bx-button (click)="removeVideoFromPlaylist(video)"
-                            [options]="{'type': 'cancel', 'context': 'danger', 'textDisplay': 'button', 'text': 'Remove'}">
-                        </app-bx-button>
-                    </div>
-                </div>
+                <app-video-entry *ngFor="let video of selectedPlaylist.videos" [video]="video"
+                    [options]="{'removeFromPlaylist': true}" (removedFromPlaylist)="removeVideoFromPlaylist(video)">
+                </app-video-entry>
             </div>
             <ng-template #noVideos>
                 <div class="col-9 pt-3 d-flex align-items-center text-center no-videos-indicator">

@@ -19,43 +19,60 @@
                         }}</a>
                 </p>
             </div>
-            <div class="d-flex justify-content-between" *ngIf="!appliedOptions.none">
-                <div class="d-flex">
-                    <app-bx-button *ngIf="appliedOptions.addToPlaylist" (click)="addToPlaylist()"
-                        [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to the selected Playlist', 'context': 'queue'}">
-                    </app-bx-button>
-                    <span *ngIf="permissions.includes('addVideo')">
-                        <app-bx-button *ngIf="appliedOptions.submit" (click)="submitVideo()" class="ms-1"
-                            [options]="{'type': 'play', 'context': 'queue', 'textDisplay': 'tooltip', 'text': 'Add to Queue'}">
-                        </app-bx-button>
-                    </span>
-                    <span *ngIf="appliedOptions.forceNext">
-                        <span *ngIf="permissions.includes('forceNext')">
-                            <app-bx-button class="ms-1" (click)="submitVideo('next')"
-                                [options]="{'type': 'forceNext', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play next'}">
-                            </app-bx-button>
+        </div>
+        <div *ngIf="!appliedOptions.none">
+            <div ngbDropdown container="body">
+                <div ngbDropdownToggle>
+                    <svg class="berrybox-svg" style="height: 30px; width: 30px;" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 500 500">
+                        <rect class="berrybox-path" x="183.33" y="183.33" width="133.33" height="133.33" rx="10" />
+                        <rect class="berrybox-path" x="183.33" y="27.67" width="133.33" height="133.33" rx="10" />
+                        <rect class="berrybox-path" x="183.33" y="339" width="133.33" height="133.33" rx="10" />
+                    </svg>
+                </div>
+                <div ngbDropdownMenu>
+                    <button *ngIf="permissions.includes('addVideo') && appliedOptions.submit" class="dropdown-item"
+                        (click)="submitVideo()">
+                        <svg-icon src="../../../../assets/images/icons/play-later-icon.svg" [svgClass]="'img-icon'">
+                        </svg-icon>
+                        <span>
+                            Add to Queue
                         </span>
-                        <span *ngIf="!permissions.includes('forceNext')">
-                            <app-bx-button *ngIf="appliedOptions.berries" class="ms-1" (click)="submitVideo('next')"
-                                [options]="{'type': 'forceNext', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 10 berries to play next'}">
-                            </app-bx-button>
+                    </button>
+                    <button
+                        *ngIf="appliedOptions.forceNext && (permissions.includes('forceNext') || appliedOptions.berries)"
+                        class="dropdown-item" (click)="submitVideo('next')">
+                        <svg-icon src="../../../../assets/images/icons/play-next-icon.svg" [svgClass]="'img-icon'">
+                        </svg-icon>
+                        <span>
+                            Play Next <span *ngIf="!permissions.includes('forceNext') && appliedOptions.berries">
+                                (<app-berry-cost value="10"></app-berry-cost>)
+                            </span>
                         </span>
-                    </span>
-                    <span *ngIf="appliedOptions.forcePlay">
-                        <span *ngIf="permissions.includes('forcePlay')">
-                            <app-bx-button class="ms-1" (click)="submitVideo('now')"
-                                [options]="{'type': 'forcePlay', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play now', 'context': 'queue'}">
-                            </app-bx-button>
+                    </button>
+                    <button
+                        *ngIf="appliedOptions.forcePlay && (permissions.includes('forcePlay') || appliedOptions.berries)"
+                        class="dropdown-item" (click)="submitVideo('now')">
+                        <svg-icon src="../../../../assets/images/icons/play-now-icon.svg" [svgClass]="'img-icon'">
+                        </svg-icon>
+                        <span>
+                            Play Now <span *ngIf="!permissions.includes('forcePlay') && appliedOptions.berries">
+                                (<app-berry-cost value="30"></app-berry-cost>)
+                            </span>
                         </span>
-                        <span *ngIf="!permissions.includes('forcePlay')">
-                            <app-bx-button *ngIf="appliedOptions.berries" class="ms-1" (click)="submitVideo('now')"
-                                [options]="{'type': 'forcePlay', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 30 berries to play now'}">
-                            </app-bx-button>
-                        </span>
-                    </span>
-                    <app-bx-button *ngIf="appliedOptions.removeFromPlaylist" (click)="removeFromPlaylist()" class="ms-1"
-                        [options]="{'type': 'cancel', 'textDisplay': 'button', 'text': 'Remove from the Playlist', 'context': 'danger'}">
-                    </app-bx-button>
+                    </button>
+                    <div class="dropdown-divider"></div>
+                    <button *ngIf="appliedOptions.addToPlaylist" class="dropdown-item" (click)="addToPlaylist()">
+                        <svg-icon src="../../../../assets/images/icons/add-to-library-icon.svg" [svgClass]="'img-icon'">
+                        </svg-icon>
+                        Add to playlist
+                    </button>
+                    <button *ngIf="appliedOptions.removeFromPlaylist" class="dropdown-item dropdown-item-danger"
+                        (click)="removeFromPlaylist()">
+                        <svg-icon src="../../../../assets/images/icons/trash-icon.svg" [svgClass]="'trash-icon'">
+                        </svg-icon>
+                        Remove from playlist
+                    </button>
                 </div>
             </div>
         </div>

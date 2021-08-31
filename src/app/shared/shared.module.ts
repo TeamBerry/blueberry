@@ -35,6 +35,7 @@ import { LoadingIndicatorComponent } from './components/loading-indicator/loadin
 import { IssueIndicatorComponent } from './components/issue-indicator/issue-indicator.component';
 import { InvitesManagerComponent } from './components/invites-manager/invites-manager.component';
 import { QrCodeModule } from 'ng-qrcode';
+import { BerryCostComponent } from './components/berry-cost/berry-cost.component';
 
 @NgModule({
     imports: [
@@ -68,7 +69,8 @@ import { QrCodeModule } from 'ng-qrcode';
         ToggleButtonComponent,
         LoadingIndicatorComponent,
         IssueIndicatorComponent,
-        InvitesManagerComponent
+        InvitesManagerComponent,
+        BerryCostComponent,
     ],
     exports: [
         CommonModule,
@@ -99,7 +101,8 @@ import { QrCodeModule } from 'ng-qrcode';
         ToggleButtonComponent,
         LoadingIndicatorComponent,
         IssueIndicatorComponent,
-        InvitesManagerComponent
+        InvitesManagerComponent,
+        BerryCostComponent
     ],
     providers: [AuthDirective, ThemeService, UserService, YouTubeMiniatureDropzoneDirective],
     entryComponents: [
