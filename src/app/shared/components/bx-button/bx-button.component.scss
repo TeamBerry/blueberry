@@ -11,6 +11,19 @@
     fill: var(--text-main-color);
 }
 
+.trash-icon {
+    height: 19px;
+    width: 25px;
+    .a56e4c31-dc4f-4dee-98b7-3e4aa62d62ee,.fdca5d17-2fd9-404e-aa8c-935afbc79839{
+        fill: var(--text-main-color);
+    }
+    .a56e4c31-dc4f-4dee-98b7-3e4aa62d62ee{
+        stroke:var(--text-main-color);
+        stroke-miterlimit:10;
+        stroke-width:33px;
+    }
+}
+
 .replay-icon {
     height: 19px;
     width: 25px;

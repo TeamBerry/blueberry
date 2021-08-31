@@ -12,8 +12,9 @@
     <svg-icon src="../../../../assets/images/icons/skip-icon.svg" *ngIf="computedOptions.type === 'skip'"
         [svgClass]="'img-icon'">
     </svg-icon>
-    <img src="../../../../assets/images/icons/trash-icon.svg" alt="" *ngIf="computedOptions.type === 'cancel'"
-        class="img-icon">
+    <svg-icon src="../../../../assets/images/icons/trash-icon.svg" *ngIf="computedOptions.type === 'cancel'"
+        [svgClass]="'trash-icon'">
+    </svg-icon>
     <svg-icon src="../../../../assets/images/icons/add-to-library-icon.svg"
         *ngIf="computedOptions.type === 'addToLibrary'" [svgClass]="'img-icon'">
     </svg-icon>
