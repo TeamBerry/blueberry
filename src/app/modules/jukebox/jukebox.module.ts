@@ -22,6 +22,7 @@ import { DurationLineComponent } from './components/duration-line/duration-line.
 import { RoleSelectorComponent } from './components/role-selector/role-selector.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { RemoteControllerIncidatorComponent } from './components/remote-controller-incidator/remote-controller-incidator.component';
+import { BerryCostComponent } from './components/berry-cost/berry-cost.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { RemoteControllerIncidatorComponent } from './components/remote-controll
         ChatInputComponent,
         ChatBadgeComponent,
         BerryCounterComponent,
+        BerryCostComponent,
         DurationLineComponent,
         RoleSelectorComponent,
         RemoteControllerIncidatorComponent
