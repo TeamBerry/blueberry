@@ -10,9 +10,10 @@
         </nav>
     </div>
     <div class="col ps-4 settings-tabs">
-        <div class="d-flex flex-row-reverse align-items-center close-button-space">
-            <button type="button" class="btn-close me-2" aria-label="close" (click)="closeSettings()">
-            </button>
+        <div class="d-flex flex-row-reverse align-items-center close-button-space pe-3">
+            <app-bx-button [options]="{'type': 'close', 'context': 'queue'}" (click)="closeSettings()"
+                aria-label="close">
+            </app-bx-button>
         </div>
         <div class="col col-xl-7">
             <div id="account-tab" *ngIf="currentTab === 'account'">
