@@ -61,7 +61,9 @@
                             </span>
                         </span>
                     </button>
-                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-divider"
+                        *ngIf="(appliedOptions.submit || appliedOptions.forceNext || appliedOptions.forcePlay) && (appliedOptions.addToPlaylist || appliedOptions.removeFromPlaylist)">
+                    </div>
                     <button *ngIf="appliedOptions.addToPlaylist" class="dropdown-item" (click)="addToPlaylist()">
                         <svg-icon src="../../../../assets/images/icons/add-to-library-icon.svg" [svgClass]="'img-icon'">
                         </svg-icon>
