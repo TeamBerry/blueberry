@@ -44,73 +44,10 @@
                     <span class="ms-2" *ngIf="item?.submitted_by">
                         {{ item?.submitted_by?.name }}
                     </span>
-                    <span class="m-1 d-none d-xxl-block">&#9679;</span>
-                    <span class="d-none d-xxl-block" ngbTooltip="{{ item?.submittedAt | date:'dd/MM/yyyy HH:mm:ss'}}">
-                        {{ item?.submittedAt | fromNow }}
-                    </span>
                 </div>
             </div>
             <div *appAuth="true">
-                <span *ngIf="isReachable; else unreachableVideo">
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                            <app-bx-button *ngIf="item.video" (click)="addToPlaylist()"
-                                [options]="{'type': 'addToLibrary', 'textDisplay': 'tooltip', 'text': 'Add to a Playlist', 'context': 'queue'}">
-                            </app-bx-button>
-                        </div>
-                        <div class="d-flex">
-                            <span *ngIf="permissions.includes('skipVideo'); else noskip">
-                                <app-bx-button *ngIf="status === 'playing'" class="ms-1" (click)="skipVideo(item)"
-                                    [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'queue'}">
-                                </app-bx-button>
-                            </span>
-                            <ng-template #noskip>
-                                <app-bx-button *ngIf="status === 'playing'" class="ms-1" (click)="skipVideo(item)"
-                                    [options]="{'type': 'skip', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 20 berries to skip'}">
-                                </app-bx-button>
-                            </ng-template>
-                            <span *ngIf="permissions.includes('forceNext'); else nonext">
-                                <app-bx-button *ngIf="status === 'upcoming' && !item.setToNext" class="ms-1"
-                                    (click)="togglePreselection(item)"
-                                    [options]="{'type': 'forceNext', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play next'}">
-                                </app-bx-button>
-                                <app-bx-button *ngIf="status === 'upcoming' && item.setToNext" class="ms-1"
-                                    (click)="togglePreselection(item)"
-                                    [options]="{'type': 'play', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play later'}">
-                                </app-bx-button>
-                            </span>
-                            <ng-template #nonext>
-                                <app-bx-button *ngIf="status === 'upcoming' && box?.options?.berries && !item.setToNext"
-                                    class="ms-1" (click)="togglePreselection(item)"
-                                    [options]="{'type': 'forceNext', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 10 berries to play next'}">
-                                </app-bx-button>
-                            </ng-template>
-                            <span *ngIf="permissions.includes('forcePlay'); else nonow">
-                                <app-bx-button *ngIf="status === 'upcoming'" class="ms-1" (click)="forcePlay(item)"
-                                    [options]="{'type': 'forcePlay', 'textDisplay': 'tooltip', 'context': 'queue', 'text': 'Play now', 'context': 'queue'}">
-                                </app-bx-button>
-                            </span>
-                            <ng-template #nonow>
-                                <app-bx-button *ngIf="status === 'upcoming' && box?.options?.berries" class="ms-1"
-                                    (click)="forcePlay(item)"
-                                    [options]="{'type': 'forcePlay', 'textDisplay': 'tooltip', 'context': 'berries', 'text': 'Spend 30 berries to play now'}">
-                                </app-bx-button>
-                            </ng-template>
-                            <span *ngIf="permissions.includes('addVideo')">
-                                <app-bx-button *ngIf="status === 'played'" class="ms-1" (click)="replayVideo(item)"
-                                    [options]="{'type': 'replay', 'textDisplay': 'tooltip', 'context': 'queue'}">
-                                </app-bx-button>
-                            </span>
-                            <span *ngIf="permissions.includes('removeVideo') || item?.submitted_by?._id === user._id">
-                                <app-bx-button *ngIf="(status === 'upcoming' || status === 'played')" class="ms-1"
-                                    (click)="cancelVideo(item)"
-                                    [options]="{'type': 'cancel', 'context': 'danger', 'textDisplay': 'tooltip', 'text': 'Remove from Queue'}">
-                                </app-bx-button>
-                            </span>
-                        </div>
-                    </div>
-                </span>
-                <ng-template #unreachableVideo>
+                <span *ngIf="!isReachable">
                     <div class="d-flex w-100 justify-content-center align-items-center">
                         <app-bx-button *ngIf="status === 'playing'" (click)="skipVideo(item)"
                             [options]="{'type': 'skip', 'context': 'queue', 'text': 'Skip the video'}">
@@ -119,8 +56,79 @@
                             [options]="{'type': 'resolve', 'context': 'queue', 'text': 'Remove the unreachable video'}">
                         </app-bx-button>
                     </div>
-                </ng-template>
+                </span>
             </div>
+        </div>
+        <div *appAuth="true">
+            <span *ngIf="isReachable">
+                <div ngbDropdown container="body">
+                    <div ngbDropdownToggle>
+                        <app-bx-button [options]="{'type': 'menu', 'context': 'queue'}">
+                        </app-bx-button>
+                    </div>
+                    <div ngbDropdownMenu>
+                        <button
+                            *ngIf="(permissions.includes('skipVideo') || box?.options?.berries) && status === 'playing'"
+                            class="dropdown-item" (click)="skipVideo(item)">
+                            <svg-icon src="../../../../assets/images/icons/skip-icon.svg" [svgClass]="'img-icon'">
+                            </svg-icon>
+                            <span>
+                                Skip <span *ngIf="!permissions.includes('skipVideo')">
+                                    (<app-berry-cost value="20"></app-berry-cost>)
+                                </span>
+                            </span>
+                        </button>
+                        <button
+                            *ngIf="(permissions.includes('forceNext') || box?.options?.berries) && status === 'upcoming' && !item.setToNext"
+                            class="dropdown-item" (click)="togglePreselection(item)">
+                            <svg-icon src="../../../../assets/images/icons/play-next-icon.svg" [svgClass]="'img-icon'">
+                            </svg-icon>
+                            <span>
+                                Play Next <span *ngIf="!permissions.includes('forceNext')">
+                                    (<app-berry-cost value="10"></app-berry-cost>)
+                                </span>
+                            </span>
+                        </button>
+                        <button *ngIf="permissions.includes('forceNext') && status === 'upcoming' && item.setToNext"
+                            class="dropdown-item" (click)="togglePreselection(item)">
+                            <svg-icon src="../../../../assets/images/icons/play-later-icon.svg" [svgClass]="'img-icon'">
+                            </svg-icon>
+                            Play later
+                        </button>
+                        <button
+                            *ngIf="(permissions.includes('forcePlay') || box?.options?.berries) && status === 'upcoming'"
+                            class="dropdown-item" (click)="forcePlay(item)">
+                            <svg-icon src="../../../../assets/images/icons/play-now-icon.svg" [svgClass]="'img-icon'">
+                            </svg-icon>
+                            <span>
+                                Play Now <span *ngIf="!permissions.includes('forcePlay')">
+                                    (<app-berry-cost value="30"></app-berry-cost>)
+                                </span>
+                            </span>
+                        </button>
+                        <button *ngIf="permissions.includes('addVideo') && status === 'played'" class="dropdown-item"
+                            (click)="replayVideo(item)">
+                            <svg-icon src="../../../../assets/images/icons/replay-icon.svg" [svgClass]="'replay-icon'">
+                            </svg-icon>
+                            Requeue
+                        </button>
+                        <button
+                            *ngIf="(permissions.includes('removeVideo') || item?.submitted_by?._id === user._id) && (status === 'upcoming' || status === 'played')"
+                            class="dropdown-item dropdown-item-danger" (click)="cancelVideo(item)">
+                            <svg-icon src="../../../../assets/images/icons/trash-icon.svg" [svgClass]="'trash-icon'">
+                            </svg-icon>
+                            Remove from queue
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" (click)="addToPlaylist()">
+                            <svg-icon src="../../../../assets/images/icons/add-to-library-icon.svg"
+                                [svgClass]="'img-icon'">
+                            </svg-icon>
+                            Add to playlist
+                        </button>
+                    </div>
+                </div>
+            </span>
         </div>
     </div>
 </div>

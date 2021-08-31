@@ -5,16 +5,15 @@
     height: 40px;
     cursor: default;
     img {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
     }
     span {
         display: flex;
         align-self: center;
         font-family: 'Nunito';
-        font-weight: 700;
+        font-weight: 800;
         color: var(--text-main-color);
-        font-size: 1.2rem;
-        padding-left: 5px;
+        font-size: 1.1rem;
     }
 }
