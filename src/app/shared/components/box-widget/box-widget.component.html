@@ -13,7 +13,7 @@
             <div class="d-flex flex-row justify-content-between align-items-center pe-2">
                 <h2 class="card-name m-0">{{ box.name }}</h2>
                 <span ngbTooltip="Number of users currently in the box">
-                    <svg class="berrybox-svg me-1" style="height: 1.5em;" xmlns="http://www.w3.org/2000/svg"
+                    <svg class="berrybox-svg" style="height: 1.5em;" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 500 500">
                         <path class="berrybox-path"
                             d="M376,143.42a79.68,79.68,0,0,1-39.9,69.08,105.63,105.63,0,0,0-12.52-.74h-50a79.76,79.76,0,0,0-9.19-141.42A79.74,79.74,0,0,1,376,143.42Z" />
@@ -33,19 +33,6 @@
                     {{ box.lang | languageFlagPipe }}
                 </p>
                 <p id="currently-playing" class="mb-0">{{ currentVideo?.video?.name || "--" }}</p>
-                <div class="modes pb-2">
-                    <app-bx-chip [options]="{'type': 'random'}" [display]="'icon'" *ngIf="box?.options?.random">
-                    </app-bx-chip>
-                    <app-bx-chip [options]="{'type': 'loop'}" [display]="'icon'" *ngIf="box?.options?.loop">
-                    </app-bx-chip>
-                    <app-bx-chip [options]="{'type': 'lock'}" [display]="'icon'" *ngIf="box?.private"></app-bx-chip>
-                    <app-bx-chip [options]="{'type': 'coin-enabled'}" [display]="'icon'" *ngIf="box?.options?.berries">
-                    </app-bx-chip>
-                    <app-bx-chip
-                        [options]="{'type': 'duration-limit', 'tooltipText': 'Videos longer than ' + box.options.videoMaxDurationLimit + ' mins will be rejected.'}"
-                        [display]="'icon'" *ngIf="box?.options?.videoMaxDurationLimit !== 0">
-                    </app-bx-chip>
-                </div>
             </div>
         </div>
     </div>
