@@ -14,10 +14,9 @@
     <div *ngIf="errorMessage" class="p-4">
         <app-bx-alert [options]="{'type': 'danger', 'message': errorMessage}"></app-bx-alert>
     </div>
-    <app-video-entry *ngFor="let video of searchResults" [video]="video"
-        [options]="{'submit': videosInQueue.indexOf(video.link) === -1, 'inQueue': videosInQueue.indexOf(video.link) !== -1, 'berries': this.berriesEnabled, 'forcePlay': true, 'forceNext': true}"
-        [permissions]="permissions" (addedToQueue)="submitVideo($event)"></app-video-entry>
-    <div class="text-center mt-3">
-        <span class="m-1" style="color: var(--video-separator-color);">&#9679;</span>
+    <div *ngFor="let video of searchResults" class="video-item">
+        <app-video-entry [video]="video"
+            [options]="{'submit': videosInQueue.indexOf(video.link) === -1, 'inQueue': videosInQueue.indexOf(video.link) !== -1, 'berries': this.berriesEnabled, 'forcePlay': true, 'forceNext': true}"
+            [permissions]="permissions" (addedToQueue)="submitVideo($event)"></app-video-entry>
     </div>
 </div>
