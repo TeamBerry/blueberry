@@ -35,6 +35,10 @@
     <svg-icon src="../../../../assets/images/icons/error-icon.svg" *ngIf="computedOptions.type === 'close'"
         [svgClass]="'img-icon'">
     </svg-icon>
+    <svg-icon src="../../../../assets/images/icons/search-icon.svg" *ngIf="computedOptions.type==='search'"
+        [svgClass]="'img-icon'"></svg-icon>
+    <svg-icon src="../../../assets/images/icons/back-icon.svg" *ngIf="computedOptions.type === 'back'"
+        [svgClass]="'img-icon'"></svg-icon>
     <span *ngIf="computedOptions.textDisplay === 'button'" class="btn-text d-none d-md-inline ms-2 me-1">{{ buttonText
         }}</span>
 </button>

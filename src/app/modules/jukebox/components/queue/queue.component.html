@@ -12,7 +12,7 @@
                 <div class="d-flex p-2 justify-content-between align-items-center queue-details">
                     <div *ngIf="!isFiltering; else filteringSpace"
                         class="d-flex flex-row justify-content-between align-items-center" style="flex: 1;">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex col align-items-center justify-content-start">
                             <app-bx-chip [options]="{'type': 'random'}" [display]="'icon'" [small]="true"
                                 *ngIf="box?.options?.random">
                             </app-bx-chip>
@@ -24,20 +24,19 @@
                                     [boxToken]="box._id"></app-berry-counter>
                             </span>
                         </div>
-                        <app-bx-button *appAuth="true" (click)="startConversion()" class="d-flex justify-content-center"
-                            [options]="{'type': 'addToLibrary', 'textDisplay': 'button', 'text': 'Add all videos to a Playlist', 'context': 'secondary'}">
-                        </app-bx-button>
-                        <div (click)="showFilter()">
-                            <svg-icon src="../../../../../assets/images/icons/search-icon.svg"
-                                [svgClass]="'icon-button'">
-                            </svg-icon>
+                        <div class="d-flex col align-items-center justify-content-center">
+                            <span>{{ queue.length }} videos</span>
+                        </div>
+                        <div class="d-flex col justify-content-end">
+                            <app-bx-button *appAuth="true" (click)="startConversion()"
+                                [options]="{'type': 'addToLibrary', 'context': 'queue'}"></app-bx-button>
+                            <app-bx-button (click)="showFilter()" [options]="{'type': 'search', 'context': 'queue'}">
+                            </app-bx-button>
                         </div>
                     </div>
                     <ng-template #filteringSpace>
-                        <div (click)="showFilter()">
-                            <svg-icon src="../../../../../assets/images/icons/back-icon.svg" [svgClass]="'icon-button'">
-                            </svg-icon>
-                        </div>
+                        <app-bx-button (click)="showFilter()" [options]="{'type': 'back', 'context': 'queue'}">
+                        </app-bx-button>
                         <div class="p-2 input-group">
                             <input type="text" class="form-control" placeholder="Type to search in the queue..."
                                 #filterInput>
