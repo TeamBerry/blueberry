@@ -51,7 +51,7 @@
         "@angular/cli": "12.2.3",
         "@angular/compiler-cli": "12.2.3",
         "@types/jasmine": "3.8.2",
-        "@types/node": "14.17.13",
+        "@types/node": "14.17.15",
         "@types/youtube": "0.0.45",
         "@typescript-eslint/eslint-plugin": "4.30.0",
         "@typescript-eslint/parser": "4.30.0",
