@@ -112,8 +112,7 @@
                         screen (only available in the box screen and not the manager).</p>
                 </div>
             </ng-template>
-            <button class="fab" *ngIf="permissions.includes('addVideo')" (click)="inAddingProcess = true"
-                ngbTooltip="Add Videos">
+            <button class="fab" *ngIf="permissions.includes('addVideo')" (click)="inAddingProcess = true">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
                     <defs>
                         <style>
@@ -133,6 +132,7 @@
                             transform="translate(761.76 661.16) rotate(180)" />
                     </g>
                 </svg>
+                <span class="fab-text">Add Videos</span>
             </button>
         </div>
     </div>
