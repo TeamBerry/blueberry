@@ -149,6 +149,9 @@ button>svg {
     &:hover {
         background-color: white;
         color: $master-color !important;
+        span {
+            color: inherit;
+        }
     }
 }
 
