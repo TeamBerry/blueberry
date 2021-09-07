@@ -1,13 +1,13 @@
 <div class="panel-tab-title-section" *ngIf="withHeader">
     <p class="panel-tab-title col">Queue</p>
 </div>
-<div *ngIf="box" style="flex: 1; overflow: auto;">
-    <div *ngIf="!isLoading; else loading">
+<div *ngIf="box" style="flex: 1;height: inherit;">
+    <div *ngIf="!isLoading; else loading" style="height: inherit;">
         <div *ngIf="inAddingProcess">
             <app-search-tab [box]="box" [user]="user" [permissions]="permissions" (back)="inAddingProcess = false">
             </app-search-tab>
         </div>
-        <div *ngIf="!inAddingProcess">
+        <div *ngIf="!inAddingProcess" style="height:inherit;">
             <div *ngIf="queue.length > 0; else noVideos" class="d-flex flex-column h-100">
                 <div class="d-flex p-2 justify-content-between align-items-center queue-details">
                     <div *ngIf="!isFiltering; else filteringSpace"
