@@ -15,7 +15,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
         HttpClientModule,
         AngularSvgIconModule.forRoot(),
         ToastrModule.forRoot({
-            timeOut: 4000,
+            timeOut: 3000,
             positionClass: 'toast-bottom-right',
             preventDuplicates: true,
             progressBar: true

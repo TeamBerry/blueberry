@@ -50,10 +50,10 @@
                 <span *ngIf="!isReachable">
                     <div class="d-flex w-100 justify-content-center align-items-center">
                         <app-bx-button *ngIf="status === 'playing'" (click)="skipVideo(item)"
-                            [options]="{'type': 'skip', 'context': 'queue', 'text': 'Skip the video'}">
+                            [options]="{'type': 'skip', 'context': 'secondary', 'text': 'Skip the video', 'textDisplay': 'button'}">
                         </app-bx-button>
                         <app-bx-button *ngIf="status !== 'playing'" (click)="cancelVideo(item)"
-                            [options]="{'type': 'resolve', 'context': 'queue', 'text': 'Remove the unreachable video'}">
+                            [options]="{'type': 'resolve', 'context': 'secondary', 'text': 'Remove the unreachable video', 'textDisplay': 'button'}">
                         </app-bx-button>
                     </div>
                 </span>

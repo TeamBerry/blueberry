@@ -16,21 +16,21 @@
     font-family: 'Nunito', sans-serif;
 }
 
-.now-playing-space {
-    // height: 107px;
-}
-
 .no-playing {
     padding: 40px;
     color: var(--text-main-color);
 }
 
 .lists {
-    height: 100%;
-    overflow: auto;
     @include can-search();
 }
 
 .queue-details {
     background-color: var(--background-main-color);
+}
+
+.queue-space {
+    padding-bottom: 50px;
+    height: 100%;
+    overflow: auto;
 }
