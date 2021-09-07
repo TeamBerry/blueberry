@@ -94,17 +94,11 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
                                     this.toastr.success(message.contents, 'Success');
                                     break;
 
-                                case 'warning':
-                                    this.toastr.warning(message.contents, 'Warning');
-                                    break;
-
                                 case 'error':
                                     this.toastr.error(message.contents, 'Error');
                                     break;
 
-                                case 'info':
                                 default:
-                                    this.toastr.info(message.contents, 'System Information');
                                     break;
                             }
                         }
