@@ -11,7 +11,13 @@
 
 .user-filters {
     :first-child {
-        flex: 5;
+        flex: 3;
+        @include lg {
+            flex: 4;
+        }
+        @include xl {
+            flex: 5;
+        }
     }
     :last-child {
         flex: 1;
