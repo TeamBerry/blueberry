@@ -438,6 +438,13 @@ span.beta {
             }
             width: calc(100% - 4px);
         }
+        .song-list-line {
+            color: $master-color;
+            font-weight: 700;
+        }
+        &.playing-step {
+            background-color: var(--background-secondary-color-alternate);
+        }
     }
 }
 

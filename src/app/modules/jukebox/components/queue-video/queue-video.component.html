@@ -1,5 +1,5 @@
 <div class="row playlist-entry g-0 video p-2"
-    [ngClass]="{'force-next': item.setToNext, 'playing': item.startTime !== null && item.endTime === null}">
+    [ngClass]="{'force-next': item.setToNext, 'playing': item.startTime !== null && item.endTime === null, 'playing-step': item.startTime !== null && item.endTime === null && !box.options.loop}">
     <div *ngIf="item.setToNext" class="d-flex align-items-center">
         <img *ngIf="item?.stateForcedWithBerries" src="../../../../../assets/images/icons/berry-coin-icon.svg" alt=""
             style="height: 30px;" ngbTooltip="This video is preselected thanks to the use of berries.">
@@ -33,8 +33,9 @@
                     </svg-icon>
                 </div>
                 <p class="song-list-line">
-                    <a href="https://youtube.com/watch?v={{item?.video?.link}}"
-                        title="{{item?.video?.name}}">{{item?.video?.name}}</a>
+                    <!-- <a href="https://youtube.com/watch?v={{item?.video?.link}}"
+                        title="{{item?.video?.name}}">{{item?.video?.name}}</a> -->
+                    {{ item?.video?.name }}
                 </p>
             </div>
             <div class="submission-details">
