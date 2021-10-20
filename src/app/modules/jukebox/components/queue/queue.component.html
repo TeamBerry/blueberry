@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="box" style="flex: 1;height: inherit;">
     <div *ngIf="!isLoading; else loading" style="height: inherit;">
-        <div *ngIf="inAddingProcess">
+        <div *ngIf="inAddingProcess" style="height: inherit;">
             <app-search-tab [box]="box" [user]="user" [permissions]="permissions" (back)="inAddingProcess = false">
             </app-search-tab>
         </div>
