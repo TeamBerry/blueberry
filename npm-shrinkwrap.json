@@ -13476,9 +13476,9 @@
             "dev": true
         },
         "ng-qrcode": {
-            "version": "5.0.0",
-            "resolved": "https://registry.npmjs.org/ng-qrcode/-/ng-qrcode-5.0.0.tgz",
-            "integrity": "sha512-N69gy+5Hioznukx+Kbgxt4mhd65XKJQfzApZKyXCvADJEsIAPuHORU/Vrq5hUa1BNfOnDg1rg72X9tVwmKfvwg==",
+            "version": "5.2.0",
+            "resolved": "https://registry.npmjs.org/ng-qrcode/-/ng-qrcode-5.2.0.tgz",
+            "integrity": "sha512-ild1nEULoKn2v5TpWz8aou8xEkM5h7wVXrvPLioAgvrSIgjD3+NM8bAkdOImb6eEFTMyN3LcqwlseNOUHyeOAQ==",
             "requires": {
                 "qrcode": "^1.4.4",
                 "tslib": "^2.0.0"
