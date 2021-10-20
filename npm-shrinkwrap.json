@@ -5815,9 +5815,9 @@
             }
         },
         "@types/youtube": {
-            "version": "0.0.45",
-            "resolved": "https://registry.npmjs.org/@types/youtube/-/youtube-0.0.45.tgz",
-            "integrity": "sha512-NcrYXJvGCRuBabLjchS0c3k6m1dHSWfYXHHc49SMu8Lymy0K7B1As2ZjY6V5VXGL82fC/wm26ERd1SJwlJTI2A==",
+            "version": "0.0.46",
+            "resolved": "https://registry.npmjs.org/@types/youtube/-/youtube-0.0.46.tgz",
+            "integrity": "sha512-Yf1Y4bDj/QIn8v+zdy0l7+OW6s1uoUvzVn5cGqPNCsL4iUW4gYUlIdQIRtH9NOHVgwZNLbVeeRDEn6N4RMq6Nw==",
             "dev": true
         },
         "@typescript-eslint/eslint-plugin": {
