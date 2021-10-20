@@ -38,18 +38,22 @@
                         <app-bx-button (click)="showFilter()" [options]="{'type': 'back', 'context': 'queue'}">
                         </app-bx-button>
                         <div class="p-2 input-group">
-                            <input type="text" class="form-control" placeholder="Type to search in the queue..."
-                                #filterInput>
+                            <input type="text" class="form-control"
+                                placeholder="Filter the queue by typing a video name..." #filterInput>
                             <button class="btn btn-outline-default" type="button" (click)="resetFilter()">Reset</button>
                         </div>
                     </ng-template>
                 </div>
-                <cdk-virtual-scroll-viewport itemSize="40" class="queue-space">
-                    <div *cdkVirtualFor="let item of queue">
+                <cdk-virtual-scroll-viewport itemSize="40" class="queue-space"
+                    [ngClass]="{'is-searching': filterValue !== ''}">
+                    <div *cdkVirtualFor="let item of filteredQueue">
                         <app-queue-video [item]="item" [box]="box"
                             [priority]="item.setToNext && priorityVideos.indexOf(item) + 1"
                             (order)="handlePlaylistOrder($event)" [permissions]="permissions">
                         </app-queue-video>
+                    </div>
+                    <div class="text-center my-3">
+                        <span class="m-1" style="color: var(--video-separator-color);">&#9679;</span>
                     </div>
                 </cdk-virtual-scroll-viewport>
             </div>

@@ -24,6 +24,7 @@ export class QueueComponent implements OnInit, OnChanges {
     @ViewChild('filterInput') input: ElementRef;
 
     queue: Array<QueueItem> = [];
+    filteredQueue: Array<QueueItem> = [];
 
     isLoading = true;
     isFiltering = false;
@@ -74,14 +75,22 @@ export class QueueComponent implements OnInit, OnChanges {
                 distinctUntilChanged(),
                 tap(() => {
                     this.filterValue = this.input.nativeElement.value
+                    this.applyFilter()
                 })
             )
             .subscribe()
     }
 
+    applyFilter() {
+        this.filteredQueue = this.filterValue
+            ? this.queue.filter(item => item.video.name.toLowerCase().includes(this.filterValue.toLowerCase()))
+            : this.queue
+    }
+
     resetFilter() {
         this.filterValue = ''
         this.input.nativeElement.value = ''
+        this.applyFilter()
     }
 
     /**
@@ -93,6 +102,7 @@ export class QueueComponent implements OnInit, OnChanges {
         this.jukeboxService.getQueueStream().subscribe(
             (queue: Array<QueueItem>) => {
                 this.queue = [];
+                this.filteredQueue = [];
 
                 const currentlyPlaying = queue.find((queueItem) => queueItem.startTime !== null && queueItem.endTime === null);
                 const playedVideos = this.buildPartialPlaylist(queue, 'played');
@@ -101,7 +111,9 @@ export class QueueComponent implements OnInit, OnChanges {
 
                 this.queue = this.box.options.loop
                     ? [currentlyPlaying, ...priorityVideos, ...upcomingVideos, ...playedVideos]
-                    : [...playedVideos, currentlyPlaying, ...priorityVideos, ...upcomingVideos];
+                    : [...playedVideos, currentlyPlaying, ...priorityVideos, ...upcomingVideos]
+
+                this.applyFilter()
 
                 this.isLoading = false;
             }
