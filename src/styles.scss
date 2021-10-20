@@ -302,17 +302,7 @@ button>svg {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     display: -webkit-box;
-    a {
-        color: $master-color;
-        width: 100%;
-        text-decoration: none;
-        &:hover {
-            text-decoration: underline;
-        }
-        &:active {
-            color: darken($master-color, 10%);
-        }
-    }
+    color: var(--text-main-color);
 }
 
 img {
