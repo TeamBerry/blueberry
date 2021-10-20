@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { AuthService } from 'app/core/auth/auth.service';
 import { AuthSubject } from 'app/shared/models/session.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +13,7 @@ import { Permission, QueueItem } from '@teamberry/muscadine';
     templateUrl: './queue-video.component.html',
     styleUrls: ['./queue-video.component.scss']
 })
-export class QueueVideoComponent implements OnInit {
+export class QueueVideoComponent implements OnInit, OnChanges {
 
     @Input() box: Box;
 
@@ -43,6 +43,10 @@ export class QueueVideoComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.status = this.computeStatus()
+    }
+
+    ngOnChanges() {
         this.status = this.computeStatus()
     }
 
