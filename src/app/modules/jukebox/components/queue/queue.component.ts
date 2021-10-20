@@ -29,9 +29,6 @@ export class QueueComponent implements OnInit, OnChanges {
     isFiltering = false;
     filterValue = '';
 
-    currentlyPlaying: QueueItem;
-    playedVideos: Array<QueueItem>;
-    upcomingVideos: Array<QueueItem>;
     priorityVideos: Array<QueueItem>;
 
     tabSetOptions = [
@@ -95,30 +92,20 @@ export class QueueComponent implements OnInit, OnChanges {
     listen() {
         this.jukeboxService.getQueueStream().subscribe(
             (queue: Array<QueueItem>) => {
-                this.queue = queue;
-                this.currentlyPlaying = queue.find((queueItem) => queueItem.startTime !== null && queueItem.endTime === null);
+                this.queue = [];
 
-                this.playedVideos = this.buildPartialPlaylist(queue, 'played');
-                this.upcomingVideos = this.buildPartialPlaylist(queue, 'upcoming');
+                const currentlyPlaying = queue.find((queueItem) => queueItem.startTime !== null && queueItem.endTime === null);
+                const playedVideos = this.buildPartialPlaylist(queue, 'played');
+                const upcomingVideos = this.buildPartialPlaylist(queue, 'upcoming');
+                const priorityVideos = this.buildPartialPlaylist(queue, 'priority');
 
-                if (this.box.options.loop) {
-                    this.upcomingVideos = [...this.upcomingVideos, ...this.playedVideos]
-                }
-                this.upcomingVideos = this.putPreselectedFirst(this.upcomingVideos);
+                this.queue = this.box.options.loop
+                    ? [currentlyPlaying, ...priorityVideos, ...upcomingVideos, ...playedVideos]
+                    : [...playedVideos, currentlyPlaying, ...priorityVideos, ...upcomingVideos];
+
                 this.isLoading = false;
             }
         )
-    }
-
-    /**
-     * Isolates the currently playing video
-     *
-     * @param playlist The playlist of the box
-     * @returns The currently playing video
-     * @memberof PlaylistComponent
-     */
-    getCurrentlyPlayingVideo(playlist: Array<QueueItem>): QueueItem {
-        return playlist.find((item: QueueItem) => item.startTime !== null && item.endTime === null);
     }
 
     /**
@@ -131,29 +118,24 @@ export class QueueComponent implements OnInit, OnChanges {
      */
     buildPartialPlaylist(playlist: Array<QueueItem>, state: string): Array<QueueItem> {
         if (state === 'upcoming') {
-            const upcoming = playlist.filter((item: QueueItem) => item.startTime === null);
-
-            this.tabSetOptions[0].title = `Upcoming (${upcoming.length})`
+            const upcoming = playlist.filter((item: QueueItem) => item.startTime === null && !item.setToNext);
             return upcoming
         }
 
         if (state === 'played') {
-            const played = playlist.filter((item: QueueItem) => item.startTime !== null && item.endTime !== null);
-            this.tabSetOptions[1].title = `Played (${played.length})`
+            const played = playlist.filter((item: QueueItem) => item.startTime !== null && item.endTime !== null && !item.setToNext);
             return played
         }
-    }
 
-    putPreselectedFirst(playlist: Array<QueueItem>): Array<QueueItem> {
-        const priorityVideos = playlist
-            .filter(queueItem => queueItem.setToNext)
-            .sort((a, b) => +new Date(a.setToNext) - +new Date(b.setToNext))
+        if (state === 'priority') {
+            const priorityVideos = playlist
+                .filter(queueItem => queueItem.setToNext)
+                .sort((a, b) => +new Date(a.setToNext) - +new Date(b.setToNext))
 
-        this.priorityVideos = priorityVideos;
+            this.priorityVideos = priorityVideos
 
-        const rest = playlist.filter(queueItem => !queueItem.setToNext)
-
-        return [...priorityVideos, ...rest]
+            return priorityVideos;
+        }
     }
 
     /**

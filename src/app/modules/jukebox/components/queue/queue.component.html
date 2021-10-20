@@ -44,56 +44,14 @@
                         </div>
                     </ng-template>
                 </div>
-                <div *ngIf="currentlyPlaying?.stateForcedWithBerries" class="d-flex align-items-center ps-2 pt-3">
-                    <img src="../../../../../assets/images/icons/berry-coin-icon.svg" alt="" style="height: 30px;"
-                        ngbTooltip="This video is playing thanks to the use of berries.">
-                </div>
-                <div class="queue-space">
-                    <div class="video-item" *ngIf="currentlyPlaying; else noPlaying">
-                        <app-queue-video [item]="currentlyPlaying" [box]="box" (order)="handlePlaylistOrder($event)"
-                            [permissions]="permissions">
+                <cdk-virtual-scroll-viewport itemSize="40" class="queue-space">
+                    <div *cdkVirtualFor="let item of queue">
+                        <app-queue-video [item]="item" [box]="box"
+                            [priority]="item.setToNext && priorityVideos.indexOf(item) + 1"
+                            (order)="handlePlaylistOrder($event)" [permissions]="permissions">
                         </app-queue-video>
                     </div>
-                    <ng-template #noPlaying>
-                        <div class="no-playing text-center">
-                            No video is currently playing.
-                        </div>
-                    </ng-template>
-                    <app-bx-tabset *ngIf="!box.options.loop" [options]="tabSetOptions"
-                        (clickedOption)="displayTab = $event" style="flex: 1">
-                    </app-bx-tabset>
-                    <div class="lists" [ngClass]="{'is-searching': filterValue !== ''}">
-                        <div *ngIf="!box.options.loop">
-                            <div *ngIf="displayTab === 'upcoming'">
-                                <div *ngFor="let entry of upcomingVideos | filter:filterValue:['video.name', 'video.link', 'submitted_by.name']; let i = index"
-                                    class="video-item">
-                                    <app-queue-video [item]="entry" [priority]="priorityVideos.indexOf(entry) + 1"
-                                        [box]="box" [permissions]="permissions" (order)="handlePlaylistOrder($event)">
-                                    </app-queue-video>
-                                </div>
-                            </div>
-                            <div *ngIf="displayTab === 'played'">
-                                <div *ngFor="let entry of playedVideos | filter:filterValue:['video.name', 'video.link', 'submitted_by.name']; let i = index"
-                                    class="video-item">
-                                    <app-queue-video [item]="entry" [box]="box" [permissions]="permissions"
-                                        (order)="handlePlaylistOrder($event)">
-                                    </app-queue-video>
-                                </div>
-                            </div>
-                        </div>
-                        <div *ngIf="box.options.loop">
-                            <div *ngFor="let entry of upcomingVideos | filter:filterValue:['video.name', 'video.link', 'submitted_by.name']; let i = index"
-                                class="video-item">
-                                <app-queue-video [item]="entry" [priority]="priorityVideos.indexOf(entry) + 1"
-                                    [box]="box" [permissions]="permissions" (order)="handlePlaylistOrder($event)">
-                                </app-queue-video>
-                            </div>
-                        </div>
-                        <div class="text-center mt-3">
-                            <span class="m-1" style="color: var(--video-separator-color);">&#9679;</span>
-                        </div>
-                    </div>
-                </div>
+                </cdk-virtual-scroll-viewport>
             </div>
             <ng-template #noVideos>
                 <div class="text-center no-contents">

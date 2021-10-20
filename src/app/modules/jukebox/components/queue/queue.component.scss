@@ -21,10 +21,6 @@
     color: var(--text-main-color);
 }
 
-.lists {
-    @include can-search();
-}
-
 .queue-details {
     background-color: var(--background-main-color);
 }
@@ -32,5 +28,6 @@
 .queue-space {
     padding-bottom: 50px;
     height: 100%;
+    width: 100%;
     overflow: auto;
 }

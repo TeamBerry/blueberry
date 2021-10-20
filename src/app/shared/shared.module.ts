@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { AuthDirective } from '../shared/directive/auth.directive';
 import { SlideToggleComponent } from './components/slide-toggle/slide-toggle.component';
@@ -43,6 +44,7 @@ import { BerryCostComponent } from './components/berry-cost/berry-cost.component
         NgbModule,
         AngularSvgIconModule,
         QrCodeModule,
+        ScrollingModule,
     ],
     declarations: [
         AuthDirective,
@@ -102,7 +104,8 @@ import { BerryCostComponent } from './components/berry-cost/berry-cost.component
         LoadingIndicatorComponent,
         IssueIndicatorComponent,
         InvitesManagerComponent,
-        BerryCostComponent
+        BerryCostComponent,
+        ScrollingModule
     ],
     providers: [AuthDirective, ThemeService, UserService, YouTubeMiniatureDropzoneDirective],
     entryComponents: [
