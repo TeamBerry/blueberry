@@ -1,9 +1,5 @@
 <div class="row playlist-entry g-0 video p-2"
-    [ngClass]="{'force-next': item.setToNext, 'playing': item.startTime !== null && item.endTime === null}">
-    <div *ngIf="item.setToNext" class="d-flex align-items-center">
-        <img *ngIf="item?.stateForcedWithBerries" src="../../../../../assets/images/icons/berry-coin-icon.svg" alt=""
-            style="height: 30px;" ngbTooltip="This video is preselected thanks to the use of berries.">
-    </div>
+    [ngClass]="{'force-next': item.setToNext, 'playing': item.startTime !== null && item.endTime === null, 'playing-step': item.startTime !== null && item.endTime === null && !box.options.loop}">
     <div class="entry-info d-flex">
         <div class="entry-image-container">
             <img class="entry-image h-100" src="http://img.youtube.com/vi/{{ item?.video?.link }}/0.jpg" alt=""
@@ -33,16 +29,24 @@
                     </svg-icon>
                 </div>
                 <p class="song-list-line">
-                    <a href="https://youtube.com/watch?v={{item?.video?.link}}"
-                        title="{{item?.video?.name}}">{{item?.video?.name}}</a>
+                    <!-- <a href="https://youtube.com/watch?v={{item?.video?.link}}"
+                        title="{{item?.video?.name}}">{{item?.video?.name}}</a> -->
+                    {{ item?.video?.name }}
                 </p>
             </div>
             <div class="submission-details">
-                <div class="bb-box-picture d-flex align-items-center me-2">
-                    <app-profile-picture [fileName]="item.submitted_by.settings.picture" [size]="'xs'">
-                    </app-profile-picture>
-                    <span class="ms-2" *ngIf="item?.submitted_by">
-                        {{ item?.submitted_by?.name }}
+                <div class="bb-box-picture d-flex align-items-center justify-content-between me-2">
+                    <span>
+                        <app-profile-picture [fileName]="item.submitted_by.settings.picture" [size]="'xs'">
+                        </app-profile-picture>
+                        <span class="ms-2" *ngIf="item?.submitted_by">
+                            {{ item?.submitted_by?.name }}
+                        </span>
+                    </span>
+                    <span class="berry-used-indicator" *ngIf="item?.stateForcedWithBerries">
+                        <img src="../../../../../assets/images/icons/coin-enabled-icon.svg" alt=""
+                            style="height: 20px;">
+                        Berries used
                     </span>
                 </div>
             </div>

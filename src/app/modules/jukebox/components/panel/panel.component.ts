@@ -90,9 +90,9 @@ export class PanelComponent implements OnInit, AfterViewInit, AfterViewChecked {
                             this.newMessages = true
                         } else {
                             switch (message.context) {
-                                case 'success':
-                                    this.toastr.success(message.contents, 'Success');
-                                    break;
+                                // case 'success':
+                                //     this.toastr.success(message.contents, 'Success');
+                                //     break;
 
                                 case 'error':
                                     this.toastr.error(message.contents, 'Error');

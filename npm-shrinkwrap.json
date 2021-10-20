@@ -882,6 +882,23 @@
                 "tslib": "^2.2.0"
             }
         },
+        "@angular/cdk": {
+            "version": "12.2.11",
+            "resolved": "https://registry.npmjs.org/@angular/cdk/-/cdk-12.2.11.tgz",
+            "integrity": "sha512-GgBB3NdVSv6RnDDOMspeLGg3uCbbmWIEIQ9VIqT5TWXWnljd2EANOQWdLu+fkmRzJn66FFdlTtJ6rHYoY/oBkA==",
+            "requires": {
+                "parse5": "^5.0.0",
+                "tslib": "^2.2.0"
+            },
+            "dependencies": {
+                "parse5": {
+                    "version": "5.1.1",
+                    "resolved": "https://registry.npmjs.org/parse5/-/parse5-5.1.1.tgz",
+                    "integrity": "sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==",
+                    "optional": true
+                }
+            }
+        },
         "@angular/cli": {
             "version": "12.2.10",
             "resolved": "https://registry.npmjs.org/@angular/cli/-/cli-12.2.10.tgz",
@@ -12373,7 +12390,8 @@
             "dependencies": {
                 "ansi-regex": {
                     "version": "5.0.0",
-                    "resolved": "",
+                    "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.0.tgz",
+                    "integrity": "sha512-bY6fj56OUQ0hU1KjFNDQuJFezqKdrAyFdIevADiqrWHwSlbmBNMHp5ak2f40Pm8JTFyM2mqxkG6ngkHO11f/lg==",
                     "dev": true
                 },
                 "ansi-styles": {
@@ -16057,7 +16075,8 @@
                 },
                 "ansi-regex": {
                     "version": "5.0.0",
-                    "resolved": "",
+                    "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.0.tgz",
+                    "integrity": "sha512-bY6fj56OUQ0hU1KjFNDQuJFezqKdrAyFdIevADiqrWHwSlbmBNMHp5ak2f40Pm8JTFyM2mqxkG6ngkHO11f/lg==",
                     "dev": true
                 },
                 "ansi-styles": {

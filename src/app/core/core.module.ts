@@ -19,7 +19,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
             positionClass: 'toast-bottom-right',
             preventDuplicates: true,
             progressBar: true
-        })
+        }),
     ],
     declarations: [
     ],

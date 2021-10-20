@@ -1,9 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 
 import { Video } from '../../models/video.model';
-import { UserService } from 'app/shared/services/user.service';
-import { JukeboxService } from 'app/modules/jukebox/jukebox.service';
 import { Permission, QueueItem } from '@teamberry/muscadine';
 
 @Component({
