@@ -34,6 +34,8 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { ClipboardModule } from 'ngx-clipboard';
 import { BoxJoinComponent } from './shared/components/box-join/box-join.component';
 import { QrCodeModule } from 'ng-qrcode';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -64,7 +66,13 @@ import { QrCodeModule } from 'ng-qrcode';
         NgbModule,
         ColorPickerModule,
         ClipboardModule,
-        QrCodeModule
+        QrCodeModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+          enabled: environment.production,
+          // Register the ServiceWorker as soon as the app is stable
+          // or after 30 seconds (whichever comes first).
+          registrationStrategy: 'registerWhenStable:30000'
+        })
     ],
     exports: [
         AppComponent

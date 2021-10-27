@@ -1523,6 +1523,14 @@
                 "tslib": "^2.2.0"
             }
         },
+        "@angular/service-worker": {
+            "version": "12.2.11",
+            "resolved": "https://registry.npmjs.org/@angular/service-worker/-/service-worker-12.2.11.tgz",
+            "integrity": "sha512-m4TfGiuGj/LEGNmiRZ8TnLAYtfS7B6CNhN17EYdNE5OUZ/by+XNPvg0DDpyOy7WtEb7S40i7/gly9trEtAlbdg==",
+            "requires": {
+                "tslib": "^2.2.0"
+            }
+        },
         "@assemblyscript/loader": {
             "version": "0.10.1",
             "resolved": "https://registry.npmjs.org/@assemblyscript/loader/-/loader-0.10.1.tgz",
