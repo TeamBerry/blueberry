@@ -32,3 +32,9 @@
     overflow: auto;
     @include can-search();
 }
+
+.above-fab {
+    position: absolute;
+    bottom: 90px;
+    right: 29px;
+}

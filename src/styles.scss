@@ -405,6 +405,20 @@ span.beta {
     }
 }
 
+.small-fab {
+    background-color: white;
+    svg {
+        height: 24px;
+        width: 24px;
+    }
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 4px 11px 0 var(--background-main-color);
+
+}
+
 // Videos
 .video-item {
     border-bottom: 1px solid var(--video-separator-color);
