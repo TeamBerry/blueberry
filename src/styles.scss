@@ -23,6 +23,22 @@ span {
     color: var(--text-main-color);
 }
 
+.page-container {
+    display: flex;
+    height: calc(100vh - 60px);
+    flex-direction: column;
+    h2 {
+        padding-top: 1.5rem !important;
+        padding-bottom: .25rem !important;
+        font-weight: 700;
+        text-align: center;
+    }
+    .page-contents {
+        flex: 1;
+        overflow-y: auto;
+    }
+}
+
 .berrybox-svg {
     height: 1em;
     stroke: var(--stroke-color);
@@ -281,13 +297,6 @@ button>svg {
 
 .no-border {
     border: none !important;
-}
-
-.admin-tab-title {
-    color: var(--text-main-color);
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    text-align: center;
 }
 
 .song-list-line {
