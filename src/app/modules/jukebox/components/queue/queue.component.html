@@ -44,18 +44,20 @@
                         </div>
                     </ng-template>
                 </div>
-                <cdk-virtual-scroll-viewport #virtualScroller itemSize="40" class="queue-space"
-                    [ngClass]="{'is-searching': filterValue !== ''}">
-                    <div *cdkVirtualFor="let item of filteredQueue">
-                        <app-queue-video [item]="item" [box]="box"
-                            [priority]="item.setToNext && priorityVideos.indexOf(item) + 1"
-                            (order)="handlePlaylistOrder($event)" [permissions]="permissions">
-                        </app-queue-video>
-                    </div>
-                    <div class="text-center my-3 mb-5" style="height: 70px;">
-                        <span class="m-1" style="color: var(--video-separator-color);">&#9679;</span>
-                    </div>
-                </cdk-virtual-scroll-viewport>
+                <div class="px-2 h-100">
+                    <cdk-virtual-scroll-viewport #virtualScroller itemSize="40" class="queue-space"
+                        [ngClass]="{'is-searching': filterValue !== ''}">
+                        <div *cdkVirtualFor="let item of filteredQueue">
+                            <app-queue-video [item]="item" [box]="box"
+                                [priority]="item.setToNext && priorityVideos.indexOf(item) + 1"
+                                (order)="handlePlaylistOrder($event)" [permissions]="permissions">
+                            </app-queue-video>
+                        </div>
+                        <div class="text-center my-3 mb-5" style="height: 70px;">
+                            <span class="m-1" style="color: var(--video-separator-color);">&#9679;</span>
+                        </div>
+                    </cdk-virtual-scroll-viewport>
+                </div>
             </div>
             <ng-template #noVideos>
                 <div class="text-center no-contents">

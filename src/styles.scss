@@ -437,6 +437,8 @@ span.beta {
     padding: 5px 0;
     position: relative;
     border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     &:hover {
         background-color: var(--background-secondary-color-alternate);
     }

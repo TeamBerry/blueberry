@@ -1,9 +1,9 @@
 <div class="page-container">
     <h2>Boxes</h2>
     <div class="d-flex box-manager page-contents">
-        <div class="col-2 box-list px-0">
+        <div class="col-2 box-list">
             <div id="box-list-container">
-                <div *ngFor="let box of boxes" class="box-list-item p-3"
+                <div *ngFor="let box of boxes" class="box-list-item p-3 my-2"
                     [ngClass]="{'active': box._id === selectedBox?._id}" (click)="selectBox(box._id)">
                     <div class="d-flex">
                         <div class="col px-0">
@@ -120,7 +120,7 @@
                 </button>
             </div>
         </div>
-        <div class="col box-panel px-0" *ngIf="selectedBox; else noBox">
+        <div class="col d-flex flex-column px-0" *ngIf="selectedBox; else noBox">
             <div class="box-stats-banner content-space d-flex mx-2">
                 <div class="box-stat" id="box-lifetime">
                     <p class="mb-0 stat-title">Life</p>
