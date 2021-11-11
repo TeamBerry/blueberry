@@ -43,10 +43,8 @@
 }
 
 .box-stats-banner {
-    display: flex;
     justify-content: center;
     margin-bottom: 3px;
-    background-color: var(--background-secondary-color);
     .box-stat {
         background-color: var(--background-main-color);
         padding: 5px;
@@ -93,8 +91,9 @@
 }
 
 
-.playlist-space, .search-space, .chat-space, .player-space {
+.content-space {
     background-color: var(--background-secondary-color);
+    border-radius: 10px;
 }
 
 .box-option-button {
@@ -124,16 +123,8 @@
     flex-wrap: wrap;
 }
 
-.full-panel{
-    height: calc(100vh - 240px);
-}
 .half-panel{
     height: calc(100vh - 415px);
-}
-
-#chat-panel{
-    display: flex;
-    flex-direction: column;
 }
 
 .fixed-tab {
