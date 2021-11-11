@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CollectionComponent } from './collection.component';
+import { BadgeCollectionComponent } from './pages/badge-collection/badge-collection.component';
+import { PlaylistsManagerComponent } from './pages/playlists-manager/playlists-manager.component';
 
 const collectionRoutes: Routes = [
-    { path: '', component: CollectionComponent }
+    { path: 'playlists', component: PlaylistsManagerComponent },
+    { path: 'badges', component: BadgeCollectionComponent },
 ]
 
 @NgModule({

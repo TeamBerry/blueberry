@@ -138,6 +138,9 @@
     cursor: pointer;
     font-family: 'Nunito', sans-serif;
     color: var(--text-system-color) !important;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     &:hover {
         background-color: var(--background-main-hover-color);
     }
@@ -228,6 +231,13 @@
     padding: 1rem 0;
     box-shadow: 0 0 4px 0.05rem black;
     border: none;
+    .dropdown-title {
+        font-weight: 800;
+        color: var(--background-main-border-color);
+        padding-right: 20px;
+        font-size: 1.15rem;
+        margin-bottom: .25rem;
+    }
     .dropdown-item {
         padding: .5rem 1.5rem;
         cursor: pointer;
@@ -274,7 +284,7 @@
         }
     }
     .dropdown-divider {
-        border-color: var(--stroke-color);
+        border-color: var(--video-separator-color);
         padding: 0 1.5rem;
         margin: .5rem 0;
     }

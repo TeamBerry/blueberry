@@ -1,21 +1,16 @@
 @import './../../../../../imports.scss';
-.box-manager {
-    height: 86.8vh;
-    width: 100%;
-}
-
 .box-list {
-    border-right: 1px solid var(--background-secondary-color-alternate);
-    background-color: var(--background-secondary-color);
+    background-color: #202020;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 20px;
     #box-list-container {
         height: inherit;
-        overflow-y: scroll;
-        overflow-x: visible;
+        overflow: auto;
     }
     .box-list-item {
+        border-radius: 10px;
         cursor: pointer;
         .box-name {
             font-family: 'Nunito', sans-serif;
@@ -23,7 +18,7 @@
             font-size: 1.3rem;
         }
         &.active {
-            border-left: 5px solid $master-color;
+            background-color: var(--background-secondary-color-alternate);
         }
         &:hover {
             background-color: var(--background-secondary-color-alternate);
@@ -48,10 +43,8 @@
 }
 
 .box-stats-banner {
-    display: flex;
     justify-content: center;
     margin-bottom: 3px;
-    background-color: var(--background-secondary-color);
     .box-stat {
         background-color: var(--background-main-color);
         padding: 5px;
@@ -64,11 +57,6 @@
             font-weight: 800;
         }
     }
-}
-
-.box-panel {
-    display: flex;
-    flex-direction: column;
 }
 
 .space-title-section {
@@ -98,7 +86,7 @@
 }
 
 
-.playlist-space, .search-space, .chat-space, .player-space {
+.content-space {
     background-color: var(--background-secondary-color);
 }
 
@@ -129,16 +117,8 @@
     flex-wrap: wrap;
 }
 
-.full-panel{
-    height: calc(100vh - 240px);
-}
 .half-panel{
     height: calc(100vh - 415px);
-}
-
-#chat-panel{
-    display: flex;
-    flex-direction: column;
 }
 
 .fixed-tab {

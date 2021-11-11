@@ -9,6 +9,26 @@
     @include can-search();
 }
 
+.user-item {
+    padding: 10px;
+    border-radius: 10px;
+    &:hover {
+        background-color: var(--background-secondary-color-alternate);
+    }
+    .user-name-container {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        align-items: center;
+        .user-name {
+            margin-left: 5px;
+            font-size: 1.2rem;
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-main-color);
+        }
+    }
+}
+
 .user-filters {
     :first-child {
         flex: 3;
@@ -36,20 +56,6 @@
         color: var(--text-main-color);
         font-weight: 600;
         font-family: 'Nunito', sans-serif;
-    }
-}
-
-.user-name-container {
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-    align-items: center;
-    margin-bottom: 10px;
-    .user-name {
-        margin-left: 5px;
-        font-size: 1.2rem;
-        font-family: 'Nunito', sans-serif;
-        color: var(--text-main-color);
     }
 }
 

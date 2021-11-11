@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef } from '@angular/core';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -9,7 +10,7 @@ import { Box } from '../../../../shared/models/box.model';
 import { User } from 'app/shared/models/user.model';
 import { PlaylistSelectorComponent } from 'app/shared/components/playlist-selector/playlist-selector.component';
 import { BoxService } from 'app/shared/services/box.service';
-import { QueueItemActionRequest, QueueItem, VideoSubmissionRequest, BerryCount, Permission } from '@teamberry/muscadine';
+import { QueueItemActionRequest, QueueItem, Permission } from '@teamberry/muscadine';
 
 @Component({
     selector: 'app-queue',
@@ -39,6 +40,8 @@ export class QueueComponent implements OnInit, OnChanges {
     displayTab: 'upcoming' | 'played' = 'upcoming';
 
     inAddingProcess = false;
+
+    @ViewChild(CdkVirtualScrollViewport) virtualScroller: CdkVirtualScrollViewport;
 
     constructor(
         private jukeboxService: JukeboxService,
@@ -91,6 +94,10 @@ export class QueueComponent implements OnInit, OnChanges {
         this.filterValue = ''
         this.input.nativeElement.value = ''
         this.applyFilter()
+    }
+
+    scrollToTop() {
+        this.virtualScroller.scrollToIndex(0, 'smooth');
     }
 
     /**
