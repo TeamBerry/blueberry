@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CollectionComponent } from './collection.component';
-
-import { PlaylistsManagerComponent } from '../collection/playlists-manager/playlists-manager.component';
-import { BadgeCollectionComponent } from '../collection/badge-collection/badge-collection.component';
 import { SharedModule } from 'app/shared/shared.module';
+
+import { PlaylistsManagerComponent } from './pages/playlists-manager/playlists-manager.component';
+import { BadgeCollectionComponent } from './pages/badge-collection/badge-collection.component';
 import { CollectionRoutingModule } from './collection-routing.module';
 
 @NgModule({
@@ -13,7 +11,6 @@ import { CollectionRoutingModule } from './collection-routing.module';
         SharedModule,
   ],
     declarations: [
-        CollectionComponent,
         PlaylistsManagerComponent,
         BadgeCollectionComponent
     ]

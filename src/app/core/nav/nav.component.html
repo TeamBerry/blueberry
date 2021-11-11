@@ -33,15 +33,21 @@
                         <img src="{{pictureLocation}}" class="profile-picture profile-picture-md mx-2" alt="">
                         <span class="nav-name my-auto">{{ user?.name }}</span>
                     </div>
-                    <div class="dropdown-divider"></div>
                     <div class="text-end">
-                        <!-- <a href="friends" class="dropdown-item">Friends</a> -->
-                        <a class="dropdown-item" (click)="summonSettings()">Settings</a>
-                        <a class="dropdown-item" routerLink="/collection"
-                            (click)="settingsHost.viewContainerRef.clear()">Collections</a>
-                        <a class="dropdown-item" routerLink="/admin"
-                            (click)="settingsHost.viewContainerRef.clear()">Administration</a>
                         <div class="dropdown-divider"></div>
+                        <p class="dropdown-title">Collections</p>
+                        <a class="dropdown-item" routerLink="/collection/playlists"
+                            (click)="settingsHost.viewContainerRef.clear()">Playlists</a>
+                        <a class="dropdown-item" routerLink="/collection/badges"
+                            (click)="settingsHost.viewContainerRef.clear()">Badges</a>
+                        <div class="dropdown-divider"></div>
+                        <p class="dropdown-title">Administration</p>
+                        <a class="dropdown-item" routerLink="/admin/boxes"
+                            (click)="settingsHost.viewContainerRef.clear()">Boxes</a>
+                        <a class="dropdown-item" routerLink="/admin/moderation"
+                            (click)="settingsHost.viewContainerRef.clear()">Moderation</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" (click)="summonSettings()">Settings</a>
                         <a (click)="logout()" class="dropdown-item">Log out</a>
                     </div>
                 </div>
