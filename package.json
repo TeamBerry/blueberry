@@ -35,7 +35,7 @@
         "ng-qrcode": "5.2.0",
         "ngx-clipboard": "14.0.1",
         "ngx-color-picker": "11.0.0",
-        "ngx-device-detector": "2.1.1",
+        "ngx-device-detector": "2.2.1",
         "ngx-toastr": "14.1.4",
         "rxjs": "6.6.7",
         "socket.io-client": "3.1.3",

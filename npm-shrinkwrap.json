@@ -13517,9 +13517,9 @@
             }
         },
         "ngx-device-detector": {
-            "version": "2.1.1",
-            "resolved": "https://registry.npmjs.org/ngx-device-detector/-/ngx-device-detector-2.1.1.tgz",
-            "integrity": "sha512-eTuQLAmc2XRRbxDnO9h1QVV0piSyPjstXT5G8fo1rvXy7Ly3MAiniEM2WvTiN7FjtY/VdhEeuBmu/ErSm5cLJg==",
+            "version": "2.2.1",
+            "resolved": "https://registry.npmjs.org/ngx-device-detector/-/ngx-device-detector-2.2.1.tgz",
+            "integrity": "sha512-XGLoAS1qP9pXtrITX/YfNEY/lAeWTFp8+Bhzasz3PgiipCd+2OLF/YaPZ3dblGlxN0X9BDKtzYBhaoiKa2+y1w==",
             "requires": {
                 "tslib": "^2.0.0"
             }
