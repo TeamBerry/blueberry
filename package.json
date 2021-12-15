@@ -33,7 +33,7 @@
         "lodash": "4.17.21",
         "moment": "2.29.1",
         "ng-qrcode": "5.2.0",
-        "ngx-clipboard": "14.0.1",
+        "ngx-clipboard": "14.0.2",
         "ngx-color-picker": "11.0.0",
         "ngx-device-detector": "2.2.1",
         "ngx-toastr": "14.1.4",
