@@ -31,7 +31,7 @@
         "color-contrast": "1.0.0",
         "core-js": "3.19.1",
         "lodash": "4.17.21",
-        "moment": "2.29.1",
+        "moment": "2.29.2",
         "ng-qrcode": "5.2.0",
         "ngx-clipboard": "14.0.1",
         "ngx-color-picker": "11.0.0",
